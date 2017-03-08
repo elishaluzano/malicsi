@@ -6,7 +6,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = function(env) {
     return {
         entry: {
-            main: './src/client/app.js',
+            main: './src/client/app.module.js',
             vendor: './src/vendor.js'
         },
         output: {
@@ -41,7 +41,11 @@ module.exports = function(env) {
             }),
             new ExtractTextPlugin('style.css'),
             new HtmlWebpackPlugin({
-                template: './src/app/index.html'
+                template: './src/client/index.html'
+            }),
+            new webpack.ProvidePlugin({
+                $: 'jquery',
+                jQuery: 'jquery'
             })
         ]
     }
