@@ -39,7 +39,7 @@ exports.addUser = (req, res) => {
 		contact_person : req.body.contact_person,
 		profile_pic : req.body.profile_pic
 	}
-	connection.query('INSERT INTO user set ?',[newUser], function(err, rows, fields) {
+	connection.query('INSERT INTO user SET ?',[newUser], function(err, rows, fields) {
 		if (!err) {
 			req.session.user = newUser;
 			res.send(true);
@@ -47,6 +47,32 @@ exports.addUser = (req, res) => {
 		else {
 			console.log(err);
 			res.send(false);
+		}
+	});
+}
+
+// GET all users
+exports.getUsers = (req, res) => {
+	connection.query('SELECT * FROM user', [], function(err, rows, fields) {
+		if (!err) {
+			res.send(rows);
+			console.log("Successfully retrieved all users");
+		}
+		else {
+			console.log("Error in retrieving all users");
+		}
+	});
+} 
+
+// GET specific user
+exports.getUser = (req, res) => {
+	connection.query('SELECT * FROM user where user_id = ?', [req.body.user_id], function(err, rows, fields) {
+		if (!err) {
+			res.send(rows);
+			console.log("Successfully retrieved user");
+		}
+		else {
+			console.log("Error in retrieving user");
 		}
 	});
 } 
