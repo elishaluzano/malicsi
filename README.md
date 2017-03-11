@@ -5,18 +5,24 @@
 Run `npm install`. If semantic-ui doesn't install, run `sudo npm install -g gulp` first and try installing again.
 
 When setting up semantic-ui, choose the following:
+
 1. Automatic (Use default locations and all components)
+
 2. Is this your project directory? Yes
+
 3. Where should we put Semantic UI inside your project? (semantic/). Just enter.
 
 After installing semantic-ui, delete the `semantic/` and `semantic.json`. We do not need this, we only need the one in node_modules/semantic-ui.
 
 ***
+
 ### How to Run Server
 `npm start`
 * runs `nodemon` on src/server/server.js
 * `nodemon` is like the `node` command but in watch mode, meaning it will restart itself if it sees any changes in the files.
+
 ***
+
 ### How to Build the Front-end
 `npm run build`
 * Uses webpack to build all dependencies starting from src/vendor.js and src/client/app.module.js in watch mode
