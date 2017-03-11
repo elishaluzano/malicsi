@@ -21,7 +21,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false,
 	proxy: true
-}));
+})); 
 
 app.use('/', routes);
 

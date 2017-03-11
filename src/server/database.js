@@ -4,9 +4,9 @@ const mysql = require('mysql');
 //connection to sql file
 const connection = mysql.createConnection({
   host : 'localhost',
-  user : 'admin',
-  password : 'admin',
-  db : 'malICSi'
+  user : 'root',
+  password : 'roor',
+  db : 'malicsi'
 });
 
 //check database connection 
