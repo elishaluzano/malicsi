@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 //server directory
-app.use(express.static(__dirname + '/../../dist'));
+app.use(express.static(__dirname + '/../client'));
 
 var routes = require(__dirname + '/routes/routes.js');
 
