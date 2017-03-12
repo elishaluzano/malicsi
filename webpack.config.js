@@ -32,6 +32,10 @@ module.exports = function(env) {
                 {
                     test: /\.(jpg|gif|png)$/,
                     use: 'file-loader?name=images/[name].[ext]'
+                },
+                {
+                    test: /\.html$/,
+                    use: 'html-loader'
                 }
             ]
         },
