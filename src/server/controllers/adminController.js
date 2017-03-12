@@ -16,7 +16,7 @@ exports.getAllAdmins = (req, res) => {
 		}
 	});
 }
-
+/*
 // GET all admins under a sponsoring institution 
 exports.getAdmins = (req, res) => {
 	connection.query('SELECT * from admin where ',[], function(err, rows, fields) {
@@ -29,3 +29,4 @@ exports.getAdmins = (req, res) => {
 		}
 	});
 }
+*/
