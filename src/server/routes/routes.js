@@ -6,18 +6,17 @@ var router = express.Router();
 //insert routes here
 
 var userCtrl = require('../controllers/userController.js');
-router.get('/getAccount', userCtrl.getAccount);
-router.get('/login', userCtrl.loginUser);
-router.get('/signup', userCtrl.addUser);
+//User Account routes
+router.post('/getAccount', userCtrl.getAccount);
+router.post('/login', userCtrl.loginUser);
+router.post('/signup', userCtrl.addUser);
+//User routes
+router.post('/addUser', userCtrl.addUser);
+router.post('/getUsers', userCtrl.getUsers);
+router.post('/getUser', userCtrl.getUser);
+router.post('/updateUser', userCtrl.updateUser);
+router.post('/deleteUser', userCtrl.deleteUser);
 
-var userInfoCtrl = require('../controllers/userInfoController.js');
-
-/*
-EXAMPLE 
-var sampleCtrl = require('../controllers/sampleController.js');
-router.post('/getSomething', sampleCtrl.getSomething);
-router.post('/insertSomething', sampleCtrl.insertSomething);
-*/
 
 module.exports = router;
 

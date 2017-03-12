@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 //server directory
-app.use(express.static(__dirname + '/../../dist'));
+app.use(express.static(__dirname + '/../client'));
 
 var routes = require(__dirname + '/routes/routes.js');
 
@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //sessions
 app.use(session({
-	secret: 'malICSi',
+	secret: 'malicsi',
 	resave: false,
 	saveUninitialized: false,
 	proxy: true
