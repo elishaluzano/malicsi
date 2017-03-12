@@ -80,21 +80,10 @@ exports.getUser = (req, res) => {
 		}
 	});
 } 
-
+/*
 // PUT specific user
 exports.updateUser = (req, res) => {
-	var userInfo = {
-		name : req.body.name,
-		username : req.body.username,
-		password : req.body.password,
-		gender : req.body.gender,
-		birthday : req.body.birthday,
-		email : req.body.email,
-		contact_number : req.body.contact_number,
-		contact_person : req.body.contact_person,
-		profile_pic : req.body.profile_pic
-	}
-	connection.query('UPDATE user SET ?', [userInfo], function(err, rows, fields) {
+	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ? where user_id = ?',[req.body.user_id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
 		}
@@ -103,7 +92,7 @@ exports.updateUser = (req, res) => {
 		}
 	});
 }
-
+*/
 // DELETE specific user
 exports.deleteUser = (req, res) => {
 	connection.query('DELETE FROM user WHERE user_id = ?',[req.body.user_id], function(err, rows, fields) {

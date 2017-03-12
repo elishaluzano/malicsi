@@ -19,7 +19,7 @@ exports.getAllAdmins = (req, res) => {
 
 // GET all admins under a sponsoring institution 
 exports.getAdmins = (req, res) => {
-	connection.query('SELECT * from admin where ',[], function(err, rows, fields) {
+	connection.query('',[], function(err, rows, fields) {
 		if (!err) {
 			res.send(rows);
 			console.log("Successfully retrieved all admins under an institution");

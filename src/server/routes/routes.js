@@ -14,8 +14,8 @@ router.post('/signup', userCtrl.addUser);
 router.post('/addUser', userCtrl.addUser);
 router.post('/getUsers', userCtrl.getUsers);
 router.post('/getUser', userCtrl.getUser);
-router.post('/updateUser', userCtrl.updateUser);
-router.post('/deleteUser', userCtrl.deleteUser);
+//router.put('/updateUser', userCtrl.updateUser);
+router.delete('/deleteUser', userCtrl.deleteUser);
 
 
 module.exports = router;
