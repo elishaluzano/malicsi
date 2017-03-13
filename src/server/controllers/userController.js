@@ -8,7 +8,6 @@ const connection = require('./../database.js')
 exports.getAccount = (req, res) => {
   res.send(req.session.user);
 }
-
 //login 
 exports.loginUser = (req, res) => {
 	connection.query('SELECT * FROM user WHERE username = ?',[req.body.username], function(err, rows, fields) {
@@ -72,7 +71,7 @@ exports.getUsers = (req, res) => {
 exports.getUser = (req, res) => {
 	connection.query('SELECT * FROM user where user_id = ?', [req.body.user_id], function(err, rows, fields) {
 		if (!err) {
-			res.send(rows);
+			res.send(row[0]);
 			console.log("Successfully retrieved user");
 		}
 		else {

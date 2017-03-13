@@ -14,7 +14,7 @@ router.post('/signup', userCtrl.addUser);
 router.post('/addUser', userCtrl.addUser);
 router.post('/getUsers', userCtrl.getUsers);
 router.post('/getUser', userCtrl.getUser);
-router.put('/updateUser', userCtrl.updateUser);
+//router.put('/updateUser', userCtrl.updateUser);
 router.delete('/deleteUser', userCtrl.deleteUser);
 
 
