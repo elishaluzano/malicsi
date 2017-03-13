@@ -1,6 +1,12 @@
 # malicsi
 ### CMSC 128 2nd Semester AY 2016-2017
 ***
+### Waffle.IO
+https://waffle.io/elishaluzano/malicsi
+***
+### Coding Conventions
+Please take a look [here](https://github.com/elishaluzano/malicsi/wiki/Coding-Conventions).
+***
 ### How to Install
 Run `npm install`. If semantic-ui doesn't install, run `sudo npm install -g gulp` first and try installing again.
 
