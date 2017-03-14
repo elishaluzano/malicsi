@@ -5,15 +5,12 @@ var router = express.Router();
 
 //insert routes here
 
-var sampleCtrl = require('../controllers/sampleController.js');
-router.get('/getAccount',sampleCtrl.getAccount);
-
-/*
-EXAMPLE 
-var sampleCtrl = require('../controllers/sampleController.js');
-router.post('/getSomething', sampleCtrl.getSomething);
-router.post('/insertSomething', sampleCtrl.insertSomething);
-*/
+var institutionController = require('../controllers/institutionController.js');
+router.post('/addSponsoringInstitution',institutionController.addSponsoringInstitution);
+router.post('/viewSponsoringInstitution',institutionController.viewSponsoringInstitution);
+router.post('/viewAllSponsoringInstitution',institutionController.viewAllSponsoringInstitution);
+router.put('/updateSponsoringInstitution',institutionController.updateSponsoringInstitution);
+router.delete('/deleteSponsoringInstitution',institutionController.deleteSponsoringInstitution);
 
 module.exports = router;
 
