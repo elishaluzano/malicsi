@@ -7,15 +7,15 @@ var router = express.Router();
 
 var userCtrl = require('../controllers/userController.js');
 //User Account routes
-router.post('/getAccount', userCtrl.getAccount);
-router.post('/login', userCtrl.loginUser);
-router.post('/signup', userCtrl.addUser);
+router.post('/apiGetAccount', userCtrl.getAccount);
+router.post('/apiLogin', userCtrl.loginUser);
+router.post('/apiSignup', userCtrl.addUser);
 //User routes
-router.post('/addUser', userCtrl.addUser);
-router.post('/getUsers', userCtrl.getUsers);
-router.post('/getUser', userCtrl.getUser);
+router.post('/apiAddUser', userCtrl.addUser);
+router.post('/apiGetUsers', userCtrl.getUsers);
+router.post('/apiGetUser', userCtrl.getUser);
 //router.put('/updateUser', userCtrl.updateUser);
-router.delete('/deleteUser', userCtrl.deleteUser);
+router.delete('/apiDeleteUser', userCtrl.deleteUser);
 
 
 module.exports = router;

@@ -1,7 +1,6 @@
 'use strict'
 
 const mysql = require('mysql');
-const bodyParser = require('body-parser');
 const connection = require('./../database.js')
 
 // GET all admins
