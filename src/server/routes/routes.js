@@ -3,18 +3,19 @@
 var express = require('express');
 var router = express.Router();
 
-//insert routes here
-var userCtrl = require('../controllers/userController.js');
-//User Account routes
-router.post('/getAccount', userCtrl.getAccount);
-router.post('/login', userCtrl.loginUser);
-router.post('/signup', userCtrl.addUser);
-//User routes
-router.post('/addUser', userCtrl.addUser);
-router.post('/getUsers', userCtrl.getUsers);
-router.post('/getUser', userCtrl.getUser);
-//router.put('/updateUser', userCtrl.updateUser);
-router.delete('/deleteUser', userCtrl.deleteUser);
+//Team-Plays Relation routes
+var teamCtrl = require('../controllers/teamController.js');
+router.get('/api/teams/getPlays', teamCtrl.getAllPlays);
+router.get('/api/teams/getPlays/:id', teamCtrl.getPlays);
+router.post('/api/teams/addPlays', teamCtrl.addPlays);
+router.delete('/api/teams/deletePlays/:id', teamCtrl.removePlays);
+
+//Team-Wins Relation routes
+router.get('/api/teams/getWins', teamCtrl.getAllWins);
+router.get('/api/teams/getWins/:id', teamCtrl.getWins);
+router.post('/api/teams/addWins', teamCtrl.addWins);
+router.delete('/api/teams/deleteWins/:id', teamCtrl.removeWins);
+
 /*
 EXAMPLE 
 var sampleCtrl = require('../controllers/sampleController.js');
