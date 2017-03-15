@@ -21,12 +21,12 @@ exports.addSponsoringInstitution = (req,res) => {
 }
 
 exports.viewSponsoringInstitution = (req,res) => {
-	connection.query('SELECT * FROM sponsoringInstitution WHERE institution_id= ?', [req.body.institution_id], function(err, rows, fields){
+	connection.query('SELECT * FROM sponsoringInstitution WHERE institution_id = ?', [req.params.institution_id], function(err, rows, fields){
 		if (err) {
             console.log(err)
          }
         else {
-            res.send(rows)
+            res.send(rows[0])
         }
 	});
 }
@@ -54,7 +54,7 @@ exports.updateSponsoringInstitution = (req,res) => {
 }
 
 exports.deleteSponsoringInstitution = (req,res) => {
-	connection.query('DELETE FROM sponsoringInstitution WHERE institution_id= ?', [req.body.institution_id], function(err, rows, fields){
+	connection.query('DELETE FROM sponsoringInstitution WHERE institution_id= ?', [req.params.institution_id], function(err, rows, fields){
 		if (err) {
             console.log(err)
          }
@@ -64,4 +64,3 @@ exports.deleteSponsoringInstitution = (req,res) => {
 	});
 }
   
-
