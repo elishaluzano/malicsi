@@ -29,13 +29,21 @@ exports.addGame = (req,res) => {
 
 exports.viewGame = (req,res) => {
 	connection.query('SELECT * FROM GAME WHERE game_id = ?', [req.params.game_id], function(err, rows, fields){
-		res.send(rows[0]);
+		if(!err) {
+			res.send(rows[0]);
+		}else{
+			console.log(err);
+		}
 	});
 }
 
 exports.viewAllGame = (req,res) => {
 	connection.query('SELECT * FROM GAME', [], function(err, rows, fields){
-		res.send(rows);
+		if(!err) {
+			res.send(rows[0]);
+		}else{
+			console.log(err);
+		}
 	});
 }
 
@@ -44,7 +52,7 @@ exports.updateGame = (req,res) => {
 		if(!err) {
 			console.log("Success");
 		}else{
-			console.log("Fail");
+			console.log(err);
 		}
 	});
 }
@@ -54,7 +62,7 @@ exports.deleteGame = (req,res) => {
 		if(!err) {
 			console.log("Success");
 		}else{
-			console.log("Fail");
+			console.log(err);
 		}
 	});
 }
