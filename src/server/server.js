@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //sessions
 app.use(session({
-	secret: 'malICSi',
+	secret: 'malicsi',
 	resave: false,
 	saveUninitialized: false,
 	proxy: true
@@ -27,10 +27,10 @@ app.use(session({
 app.use('/', routes);
 
 app.get('/*', function(req, res) {
-	res.sendFile(path.resolve('./../../dist/index.html'))
+	res.sendFile(path.resolve('./../../dist/index.html'));
 });
 
 //listening on port 8000
 app.listen(8000, function(){
-	console.log('Server running at localhost:8000')
+	console.log('Server running at localhost:8000');
 });
