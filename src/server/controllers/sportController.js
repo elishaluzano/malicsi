@@ -25,13 +25,21 @@ exports.addSport = (req,res) => {
 
 exports.viewSport = (req,res) => {
 	connection.query('SELECT * FROM SPORT WHERE sport_id = ?', [req.params.sport_id], function(err, rows, fields){
-		res.send(rows[0]);
+		if(!err) {
+			res.send(rows[0]);
+		}else{
+			console.log(err);
+		}
 	});
 }
 
 exports.viewAllSport = (req,res) => {
 	connection.query('SELECT * FROM SPORT', [], function(err, rows, fields){
-		res.send(rows);
+		if(!err) {
+			res.send(rows);
+		}else{
+			console.log(err);
+		}
 	});
 }
 
@@ -40,7 +48,7 @@ exports.updateSport = (req,res) => {
 		if(!err) {
 			console.log("Success");
 		}else{
-			console.log("Fail");
+			console.log(err);
 		}
 	});
 }
@@ -50,7 +58,7 @@ exports.deleteSport = (req,res) => {
 		if(!err) {
 			console.log("Success");
 		}else{
-			console.log("Fail");
+			console.log(err);
 		}
 	});
 }
