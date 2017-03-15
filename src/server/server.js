@@ -5,14 +5,13 @@ const session = require('express-session')
 const mysql = require('mysql');
 const bodyParser = require('body-parser');	
 const path = require('path');
+
 const app = express();
 
 //server directory
 app.use(express.static(__dirname + '/../../dist'));
 
-
-var routes = require(__dirname  + '/routes/routes.js');
-
+var routes = require(__dirname + '/routes/routes.js');
 
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
@@ -33,5 +32,5 @@ app.get('/*', function(req, res) {
 
 //listening on port 8000
 app.listen(8000, function(){
-	console.log('Server running at localhost:8000')
+	console.log('Server running at localhost:8000');
 });
