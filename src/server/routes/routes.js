@@ -6,20 +6,22 @@ var router = express.Router();
 //insert routes here
 var userCtrl = require('../controllers/userController.js');
 //User Account routes
-router.post('/getAccount', userCtrl.getAccount);
-router.post('/login', userCtrl.loginUser);
-router.post('/signup', userCtrl.addUser);
+router.post('/api/login', userCtrl.loginUser);
+router.post('/api/users/getAccount', userCtrl.getAccount);
+router.post('/api/users/signup', userCtrl.addUser);
 //User routes
-router.post('/addUser', userCtrl.addUser);
-router.post('/getUsers', userCtrl.getUsers);
-router.post('/getUser', userCtrl.getUser);
-//router.put('/updateUser', userCtrl.updateUser);
-router.delete('/deleteUser', userCtrl.deleteUser);
-/*
-EXAMPLE 
-var sampleCtrl = require('../controllers/sampleController.js');
-router.post('/getSomething', sampleCtrl.getSomething);
-router.post('/insertSomething', sampleCtrl.insertSomething);
-*/
+router.get('/api/users', userCtrl.getUsers);
+router.get('/api/users/:id', userCtrl.getUser);
+router.put('/api/users/updateUser', userCtrl.updateUser);
+router.delete('/api/users/:id', userCtrl.deleteUser);
+
+//Admin routes
+var adminCtrl = require('../controllers/adminController.js');
+router.get('/api/admins', adminCtrl.getAdmins);
+router.get('/api/admins/:id', adminCtrl.getAdmin);
+router.post('/api/admins/addAdmin', adminCtrl.addAdmin);
+router.put('/api/admins/updateAdmin', adminCtrl.updateAdmin);
+router.delete('api/admins/:id', adminCtrl.deleteAdmin);
+
 module.exports = router;
 

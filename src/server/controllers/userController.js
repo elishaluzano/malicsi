@@ -1,14 +1,13 @@
 'use strict'
 
 const mysql = require('mysql');
-const bodyParser = require('body-parser');
-const connection = require('./../database.js')
+const connection = require(__dirname + '/../database.js');
 
-//get current user
+// get current user
 exports.getAccount = (req, res) => {
   res.send(req.session.user);
 }
-//login 
+// login 
 exports.loginUser = (req, res) => {
 	connection.query('SELECT * FROM user WHERE username = ?',[req.body.username], function(err, rows, fields) {
 		if (!err){
@@ -27,7 +26,7 @@ exports.loginUser = (req, res) => {
 	});
 }
 
-//signup
+// signup
 exports.addUser = (req, res) => {
 	var newUser = {
 		name : req.body.name,
@@ -69,9 +68,9 @@ exports.getUsers = (req, res) => {
 
 // GET specific user
 exports.getUser = (req, res) => {
-	connection.query('SELECT * FROM user where user_id = ?', [req.body.user_id], function(err, rows, fields) {
+	connection.query('SELECT * FROM user where user_id = ?', [req.params.id], function(err, rows, fields) {
 		if (!err) {
-			res.send(row[0]);
+			res.send(rows[0]);
 			console.log("Successfully retrieved user");
 		}
 		else {
@@ -79,10 +78,10 @@ exports.getUser = (req, res) => {
 		}
 	});
 } 
-/*
+
 // PUT specific user
 exports.updateUser = (req, res) => {
-	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ? where user_id = ?',[req.body.user_id], function(err, rows, fields) {
+	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ? where user_id = ?',[req.body.name, req.body.username, req.body.password, req.body.gender, req.body.birthday, req.body.email, req.body.contact_number,req.body.user_id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
 		}
@@ -91,10 +90,10 @@ exports.updateUser = (req, res) => {
 		}
 	});
 }
-*/
+
 // DELETE specific user
 exports.deleteUser = (req, res) => {
-	connection.query('DELETE FROM user WHERE user_id = ?',[req.body.user_id], function(err, rows, fields) {
+	connection.query('DELETE FROM user WHERE user_id = ?',[req.params.user_id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully deleted user");
 		}
