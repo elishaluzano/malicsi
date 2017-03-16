@@ -54,4 +54,16 @@ router.get('/api/games',gameCtrl.viewAllGame);
 router.put('/api/games/updateGame',gameCtrl.updateGame);
 router.delete('/api/games/:id',gameCtrl.deleteGame);
 
+var teamCtrl = require('../controllers/teamController.js');
+router.post('/api/teams/addTeam', teamCtrl.addTeam);
+router.get('/api/teams', teamCtrl.viewAllTeam);
+router.get('/api/teams/:id', teamCtrl.viewTeam);
+router.put('/api/teams/updateTeam', teamCtrl.updateTeam);
+router.delete('/api/teams/:id', teamCtrl.deleteTeam);
+
+/*router.get('/api/teams/isComposedOf', teamCtrl.getIsComposedOf);
+router.get('/api/teams/isComposedOf/:id', teamCtrl.getAllIsComposedOf);
+router.post('/api/teams/addIsComposedOf', teamCtrl.addIsComposedOf);
+router.delete('/api/teams/:id', teamCtrl.deleteIsComposed);*/
+
 module.exports = router;
