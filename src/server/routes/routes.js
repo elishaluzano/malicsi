@@ -12,10 +12,10 @@ router.get('/api/teams/:id', teamCtrl.viewTeam);
 router.put('/api/teams/updateTeam', teamCtrl.updateTeam);
 router.delete('/api/teams/:id', teamCtrl.deleteTeam);
 
-/*router.get('/api/teams/isComposedOf', teamCtrl.getIsComposedOf);
-router.get('/api/teams/isComposedOf/:id', teamCtrl.getAllIsComposedOf);
+router.get('/api/teams/getAllIsComposedOf', teamCtrl.getAllIsComposedOf);
+router.get('/api/teams/getIsComposedOf/:id', teamCtrl.getIsComposedOf);
 router.post('/api/teams/addIsComposedOf', teamCtrl.addIsComposedOf);
-router.delete('/api/teams/:id', teamCtrl.deleteIsComposed);*/
+router.delete('/api/teams/isComposedOf/:id', teamCtrl.deleteIsComposedOf);
 
 
 /*
