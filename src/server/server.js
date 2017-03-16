@@ -1,10 +1,10 @@
 'use strict'
 
 const express = require('express');
-const session = require('express-session')
+const session = require('express-session');
 const mysql = require('mysql');
-const bodyParser = require('body-parser');	
-const path = require('path');
+const bodyParser = require('body-parser');
+const path = require('path');	
 
 const app = express();
 
@@ -29,6 +29,7 @@ app.use('/', routes);
 app.get('/*', function(req, res) {
 	res.sendFile(path.resolve('./../../dist/index.html'));
 });
+
 
 //listening on port 8000
 app.listen(8000, function(){
