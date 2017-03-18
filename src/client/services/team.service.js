@@ -17,7 +17,7 @@
                     })
                     .catch(function(err) {
                         console.log('Error in getting all teams: ');
-                        console.log(err.status + ':' + err.statusText);
+                        console.log(err.status + ': ' + err.statusText);
                     });
             },
 
@@ -25,25 +25,26 @@
                 return $http.get(api + id)
                     .then(function(response) {
                         console.log(response);
-                        return response.data
+                        return response.data;
                     })
                     .catch(function(err) {
                         console.log('Error in getting one team: ');
-                        console.log(err.status + ':' + err.statusText);
+                        console.log(err.status + ': ' + err.statusText);
                     });
             },
 
-            create: function (id) {
+            create: function (body) {
                 return $http.post(api, body)
-                    .then(function(response)) {
+                    .then(function(response) {
                         return response.data;
-                    }
+                    })
                     .catch(function(err) {
-                        console.log('Error in creating a team: ' + err.status + ':' + err.statusText);
+                        console.log('Error in creating a team: ');
+                        console.log(err.status + ': ' + err.statusText);
                     });
-            }
+            },
 
-            update: function(id) {
+            update: function(id, body) {
                 return $http.put(api + id, body)
                     .then(function(response) {
                         console.log(response);
@@ -51,7 +52,7 @@
                     })
                     .catch(function(err) {
                         console.log('Error in updating a team: ');
-                        console.log(err.status + ':' + err.statusText);
+                        console.log(err.status + ': ' + err.statusText);
                     });  
             },
 
@@ -63,7 +64,7 @@
                     })
                     .catch(function(err) {
                         console.log('Error in deleting a team: ');
-                        console.log(err.status + ':' + err.statusText);
+                        console.log(err.status + ': ' + err.statusText);
                     });
             },
 
