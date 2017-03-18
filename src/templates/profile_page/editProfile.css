@@ -1,0 +1,23 @@
+.field-row {
+    margin-top: 5px;
+    margin-bottom: 10px;    
+}
+
+.user-row {
+    margin: 1px;
+    padding-bottom: 2px;
+}
+
+#edit-user-big {
+    border-radius: 5px;
+    padding-top: 15px;
+    background-color: white; /*change to lighter version of Profile background*/
+}
+
+#change-name {
+    font-size: 2em;
+}
+
+#save-changes-btn {
+    margin: 5px;
+}
