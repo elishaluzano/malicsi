@@ -44,7 +44,7 @@ exports.addAdmin = (req, res) => {
 
 // PUT specific admin 
 exports.updateAdmin = (req, res) => {
-	connection.query('UPDATE admin SET position = ? where admin_id = ?',[req.body.position, req.body.admin_id], function(err, rows, fields) {
+	connection.query('UPDATE admin SET position = ? where admin_id = ?',[req.body.position, req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully updated an admin");
 			res.send(rows[0]);

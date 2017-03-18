@@ -44,7 +44,7 @@ exports.viewAllSponsoringInstitution = (req,res) => {
 }
 
 exports.updateSponsoringInstitution = (req,res) => {
-	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ? WHERE institution_id= ?', [req.body.name, req.body.description, req.body.institution_id], function(err, rows, fields){
+	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ? WHERE institution_id= ?', [req.body.name, req.body.description, req.params.id], function(err, rows, fields){
 		if (err) {
             console.log(err)
          }

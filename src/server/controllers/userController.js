@@ -83,7 +83,7 @@ exports.getUser = (req, res) => {
 
 // PUT specific user
 exports.updateUser = (req, res) => {
-	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ? where user_id = ?',[req.body.name, req.body.username, req.body.password, req.body.gender, req.body.birthday, req.body.email, req.body.contact_number,req.body.user_id], function(err, rows, fields) {
+	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ? where user_id = ?',[req.body.name, req.body.username, req.body.password, req.body.gender, req.body.birthday, req.body.email, req.body.contact_number,req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
 			res.send(rows[0]);
@@ -96,7 +96,7 @@ exports.updateUser = (req, res) => {
 
 // DELETE specific user
 exports.deleteUser = (req, res) => {
-	connection.query('DELETE FROM user WHERE user_id = ?',[req.params.user_id], function(err, rows, fields) {
+	connection.query('DELETE FROM user WHERE user_id = ?',[req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully deleted user");
 		}

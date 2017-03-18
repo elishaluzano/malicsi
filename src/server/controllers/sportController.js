@@ -24,7 +24,7 @@ exports.addSport = (req,res) => {
 }
 
 exports.viewSport = (req,res) => {
-	connection.query('SELECT * FROM SPORT WHERE sport_id = ?', [req.params.sport_id], function(err, rows, fields){
+	connection.query('SELECT * FROM SPORT WHERE sport_id = ?', [req.params.id], function(err, rows, fields){
 		if(!err) {
 			res.send(rows[0]);
 		}else{
@@ -44,7 +44,7 @@ exports.viewAllSport = (req,res) => {
 }
 
 exports.updateSport = (req,res) => {
-	connection.query('UPDATE SPORT SET name = ? WHERE sport_id = ?', [req.body.name,req.body.sport_id], function(err, rows, fields){
+	connection.query('UPDATE SPORT SET name = ? WHERE sport_id = ?', [req.body.name,req.params.id], function(err, rows, fields){
 		if(!err) {
 			console.log("Success");
 			res.send(rows[0]);
@@ -55,7 +55,7 @@ exports.updateSport = (req,res) => {
 }
 
 exports.deleteSport = (req,res) => {
-	connection.query('DELETE FROM SPORT WHERE sport_id = ?', [req.body.sport_id], function(err, rows, fields){
+	connection.query('DELETE FROM SPORT WHERE sport_id = ?', [req.params.id], function(err, rows, fields){
 		if(!err) {
 			console.log("Success");
 		}else{
