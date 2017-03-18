@@ -8,6 +8,10 @@
     padding-bottom: 2px;
 }
 
+.affiliations-header {
+    font-weight: bold;
+}
+
 #edit-user-big {
     border-radius: 5px;
     padding-top: 15px;

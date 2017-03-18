@@ -3,38 +3,38 @@
     <head>
         <title>MalICSi - Edit Profile</title>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="../../../node_modules/materialize-css/dist/js/init.jsnode_modules/materialize-css/dist/css/profile.css">
-        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/js/init.jsnode_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
-        <link rel="stylesheet" type="text/css" href="../../../node_modules/materialize-css/dist/js/init.jsnode_modules/materialize-css/dist/css/editProfile.css">
+        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"/>
+        <link rel="stylesheet" type="text/css" href="profile.css">
+        <link rel="stylesheet" type="text/css" href="editProfile.css">
     </head>
     <body>
         <!-- Navigation -->
         <div class = "navbar-fixed">
-  <nav id="top" class="white">
-    <div class="nav-wrapper">
-      <a href="index.html" class="left" style="width: 200px;"><img src= "../images/logo/malicsi.png"></a>
-      <ul class="left hide-on-med-and-down ">
-        <li><a href="#" class = "dropdown-button black-text" data-activates="dropdown1" hover = "true"><i class = "material-icons grey-text">menu</i></a></li>
-        <ul id = "dropdown1" class = "dropdown-content">
-          <li><a href = "viewleagues.html"> Events</a></li>
-          <li><a href = "profile.html"> Profile</a></li>
-        </ul>
-      <li><input class = "text"></li>
-      </ul>
+          <nav id="top" class="white">
+            <div class="nav-wrapper">
+              <a href="index.html" class="left" style="width: 200px;"><img src= "logo/malicsi.png"></a>
+              <ul class="left hide-on-med-and-down ">
+                <li><a href="#" class = "dropdown-button black-text" data-activates="dropdown1" hover = "true"><i class = "material-icons grey-text">menu</i></a></li>
+                <ul id = "dropdown1" class = "dropdown-content">
+                  <li><a href = "viewleagues.html"> Events</a></li>
+                  <li><a href = "profile.html"> Profile</a></li>
+                </ul>
+              <li><input class = "text"></li>
+              </ul>
 
-      <ul class="right hide-on-med-and-down">
+              <ul class="right hide-on-med-and-down">
 
-        <li><a href="#modal-register" class = "black-text">REGISTER</a></li>
-        <li><a id="login" href="#modal-login"  class = "black-text">LOGIN<i class="material-icons right" >arrow_drop_down</i></a></li>
-      </ul>
-    </div>
-  </nav>
-</div>
+                <li><a href="#modal-register" class = "black-text">REGISTER</a></li>
+                <li><a id="login" href="#modal-login"  class = "black-text">LOGIN<i class="material-icons right" >arrow_drop_down</i></a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
 
         <!--Form proper-->
         <div class="container z-depth-1">
             <div id="edit-user-big">
-                <img id="user-image" class="responsive-img" src="../images/person-flat.png">
+                <img id="user-image" class="responsive-img" src="person-flat.png">
                 <div class="center row">
                     <!--Holds the person's username and name-->
                     <div class="col s10 offset-s1">
@@ -106,31 +106,18 @@
                             <p>Email Address</p>
                         </div>
                         <div class="left-align col s3">
-                            <input type="text" id="changeEmail" placeholder="youremail@example.com">
+                            <input type="text" id="change-email" placeholder="youremail@example.com">
                         </div>
                         <div class="right-align col s3">
-                            <p>Another detail</p>
+                            <p>Mobile Number</p>
                         </div>
                         <div class="left-align col s3">
-                            <input type="text" id="changeDetail" placeholder="Another detail">
+                            <input type="text" id="change-mobile-number" placeholder="09XXXXXXXXX">
                         </div>
                     </div>
 
-                    <!--Other personal details are contained here.-->
-                    <div class="center row user-row">
-                        <div class="right-align col s3">
-                            <p>Additional Detail 1</p>
-                        </div>
-                        <div class="left-align col s3">
-                            <input type="text" id="changeDetail1" placeholder="Another detail 1">
-                        </div>
-                        <div class="right-align col s3">
-                            <p>Additional Detail 2</p>
-                        </div>
-                        <div class="left-align col s3">
-                            <input type="text" id="changeDetail2" placeholder="Another detail 2">
-                        </div>
-                    </div>
+                    <br>
+
 
                     <div class="center row user-row" id="affiliations">
                         <div class="right-align col s6">
@@ -139,10 +126,36 @@
                         <div class="affiliation-row">
                             <div class="left-align col s6" id="changeAffiliations">
                                 <input type="text" class="col s8" placeholder="Affiliation">
-                                
-                                <button class="red waves-effect waves-light btn-floating tooltipped add-affiliation" data-position="top" data-delay="10" data-tooltip="Add another affiliation"><i class="material-icons">add</i></button>
-                                <button class="red disabled waves-effect waves-light btn-floating tooltipped remove-affiliation" data-position="top" data-delay="10" data-tooltip="Remove last affiliation"><i class="material-icons">delete</i></button>
+                                <a class="red waves-effect btn-floating tooltipped add-affiliation" data-position="top" data-delay="10" data-tooltip="Add another affiliation"><i class="material-icons">add</i></a>
+                                <a class="red disabled waves-effect  btn-floating tooltipped remove-affiliation" data-position="top" data-delay="10" data-tooltip="Remove affiliation"><i class="material-icons">delete</i></a>
                             </div>
+                            <div class="left-align col s6"></div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="divider"></div>
+                    <br>
+
+                    <div class="center row user-row">
+                        <h5>CONTACT PERSON IN CASE OF EMERGENCY</h5>
+                        <div class="right-align col s6">
+                            <p>Name of contact person</p>
+                        </div>
+                        <div class="left-align col s6">
+                            <input type="text" id="icoe-name" placeholder="">
+                        </div>
+                        <div class="right-align col s6">
+                            <p>Relation to contact person</p>
+                        </div>
+                        <div class="left-align col s6">
+                            <input type="text" id="icoe-relation" placeholder="Parent/Guardian/Etc">
+                        </div>
+                        <div class="right-align col s6">
+                            <p>Mobile number of contact person</p>
+                        </div>
+                        <div class="left-align col s6">
+                            <input type="text" id="icoe-mobile" placeholder="09XXXXXXXXX">
                         </div>
                     </div>
 
@@ -175,12 +188,9 @@
             </div>
         </div>
         <!--===PLEASE CONFIRM===-->
-        <!--script src="../../../node_modules/materialize-css/dist/js/init.js/node_modules/jquery/dist/jquery-3.1.1.js"></script-->
-        <script src="jquery-3.1.1.js"></script>
-        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/init.jsnode_modules/materialize-css/dist/js/materialize.min.js">
+        <script src="../../../node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js">
         </script>
-        <!--script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/init.jsnode_modules/materialize-css/dist/js/editProfile.js"></script-->
-        <!--===PLEASE CONFIRM===-->
         <script type="text/javascript" src="editProfile.js"></script>
     </body>
 </html>

@@ -11,23 +11,24 @@ $(document).ready(()=>{
     */
     var numAffRow = 1;
     
-    //===PLEASE CONFIRM===
-    //$('select').material_select();
-    //$('.modal').modal();
+    $('select').material_select();
+    $('.modal').modal();
     
     expandRow = (item) => {
         item.on("click", () => {
-            console.log("aneq");
             $("#affiliations .affiliation-row:last-child").clone().appendTo($("#affiliations"));
             expandRow($("#affiliations .affiliation-row:last-child .add-affiliation"));
             deleteRow($("#affiliations .affiliation-row:last-child .remove-affiliation"))
             numAffRow = numAffRow + 1;
+            Waves.displayEffect();
+            $('.tooltipped').tooltip({delay: 50});
             checkAffRows();
         });
     }
 
     deleteRow = (item) => {
         item.on("click", () => {
+            item.tooltip('remove');
             item.parent().parent().remove();
             numAffRow = numAffRow - 1;
             checkAffRows();
