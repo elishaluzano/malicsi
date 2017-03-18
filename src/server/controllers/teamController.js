@@ -12,6 +12,7 @@ exports.addTeam = (req,res) =>{
             console.log(err)
          }
         else {
+
             res.send(rows[0]);
             console.log("Successfully add team");
         }
@@ -48,6 +49,7 @@ exports.updateTeam = (req,res) => {
             console.log(err)
          }
         else {
+
             res.send(rows[0]);
             console.log("Successfully update team.");
         }
@@ -113,4 +115,5 @@ exports.deleteIsComposedOf = (req,res) => {
             console.log("Successfully delete isComposedOf relation.");
         }
 	});
+<<<<<<< HEAD
 }*/

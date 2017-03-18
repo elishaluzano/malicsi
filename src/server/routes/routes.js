@@ -14,13 +14,14 @@ router.get('/api/users/:id', userCtrl.getUser);
 router.put('/api/users/updateUser', userCtrl.updateUser);
 router.delete('/api/users/:id', userCtrl.deleteUser);
 
-//admin routes
 var adminCtrl = require('../controllers/adminController.js');
+//admin routes
 router.get('/api/admins', adminCtrl.getAdmins);
 router.get('/api/admins/:id', adminCtrl.getAdmin);
 router.post('/api/admins/addAdmin', adminCtrl.addAdmin);
 router.put('/api/admins/updateAdmin', adminCtrl.updateAdmin);
 router.delete('api/admins/:id', adminCtrl.deleteAdmin);
+
 
 var institutionCtrl = require('../controllers/institutionController.js');
 //institution routes
@@ -28,7 +29,7 @@ router.post('/api/institutions/addSponsoringInstitution',institutionCtrl.addSpon
 router.get('/api/institutions/:id',institutionCtrl.viewSponsoringInstitution);
 router.get('/api/institutions',institutionCtrl.viewAllSponsoringInstitution);
 router.put('/api/institutions/updateSponsoringInstitution',institutionCtrl.updateSponsoringInstitution);
-router.delete('/api/institutions/delete/:id',institutionCtrl.deleteSponsoringInstitution);
+router.delete('/api/institutions/:id',institutionCtrl.deleteSponsoringInstitution);
 
 var eventCtrl = require('../controllers/eventController.js');
 //event routes
@@ -37,6 +38,7 @@ router.get('/api/events/:id',eventCtrl.viewEvent);
 router.get('/api/events',eventCtrl.viewAllEvent);
 router.put('/api/events/updateEvent',eventCtrl.updateEvent);
 router.delete('/api/events/:id',eventCtrl.deleteEvent);
+
 
 var sportCtrl = require('../controllers/sportController.js');
 //sport routes
@@ -55,6 +57,7 @@ router.put('/api/games/updateGame',gameCtrl.updateGame);
 router.delete('/api/games/:id',gameCtrl.deleteGame);
 
 var teamCtrl = require('../controllers/teamController.js');
+//team routes
 router.post('/api/teams/addTeam', teamCtrl.addTeam);
 router.get('/api/teams', teamCtrl.viewAllTeam);
 router.get('/api/teams/:id', teamCtrl.viewTeam);
