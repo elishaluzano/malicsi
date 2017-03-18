@@ -55,7 +55,7 @@
 
 
             delete: function(id) {
-                return $http.delele(api + id)
+                return $http.delete(api + id)
                     .then(function(response) {
                         return response.data;
                     })
