@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<title>MalICSihan</title>
+	<!-- CSS  -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="../node_modules/materialize-css/dist/css/materialize.cs" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+</head>
+
+
+<!--Remove style for body. Used for contrast viewing only.-->
+<body>
+
+
+<!-- Navigation -->
+<div class = "navbar-fixed">
+  <nav id="top" class="white">
+    <div class="nav-wrapper">
+      <a href="index1.html" class="left" style="width: 200px;"><img src= "../images/logo/malicsi.png"></a>
+
+      <ul class="left hide-on-med-and-down ">
+        <li><a href="#" class = "dropdown-button black-text" data-activates="dropdown1" hover = "true"><i class = "material-icons grey-text">menu</i></a></li>
+        <ul id = "dropdown1" class = "dropdown-content">
+          <li><a href = "#"> Events</a></li>
+          <li><a href = "profile.html"> Profile</a></li>
+        </ul>
+      <li><input class = "text"></li>
+      </ul>
+
+      <ul class="right hide-on-med-and-down">
+
+        <li><a href="#modal-register" class = "black-text">REGISTER</a></li>
+        <li><a id="login" href="#modal-login"  class = "black-text">LOGIN<i class="material-icons right" >arrow_drop_down</i></a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+<!--MODALS-->
+<!--REGISTER-->
+  <div id="modal-register" class="modal">
+    <div class="container modal-content">
+      <h5>Register</h5>
+      <div class = "row">
+        <form>
+        <div class ="input-field">
+          <i class ="material-icons prefix">perm_identity</i>
+          <input id = "icon_prefix" type = "text" name = "searchinput">
+          <label for = "icon_prefix">Username</label>
+        </div>
+          <div class ="input-field">
+          <i class ="material-icons prefix">perm_identity</i>
+          <input id = "icon_prefix" type = "text" name = "searchinput">
+          <label for = "icon_prefix">Password</label>
+        </div>
+        <input type ="submit" value = "Submit" class = "btn right">
+        </form>
+      </div>
+    </div>
+  </div>
+
+<!--LOG IN-->
+  <div id="modal-login" class="modal">
+    <div class="container modal-content">
+      <h5>Log-in</h5>
+      <div class = "row">
+        <form>
+        <div class ="input-field">
+          <i class ="material-icons prefix">perm_identity</i>
+          <input id = "icon_prefix" type = "text" name = "searchinput">
+          <label for = "icon_prefix">Username</label>
+        </div>
+          <div class ="input-field">
+          <i class ="material-icons prefix">perm_identity</i>
+          <input id = "icon_prefix" type = "text" name = "searchinput">
+          <label for = "icon_prefix">Password</label>
+        </div>
+        <input type ="submit" value = "Submit" class = "btn right">
+        </form>
+      </div>
+    </div>
+  </div>
+
+<!--Make this dynamic-->
+<!--Order is reverse chronological-->
+ <div class="row" name = "LeagueRow">
+
+       <div class="col s12 m6 l3">
+          <div class="hoverable card">
+            <div class="card-image">
+               <a href = "#"><img src="../images/logo/malicsi2018.jpg"></a>
+              <span class="card-title black-text">Malicsi Intergames 2018</span>
+            </div>
+            <div class="divider"></div>
+            <div class="card-content hide-on-medium-only">
+              <ul>
+                <li><i class = "material-icons">date_range</i> June 12 - June 14</li>
+                <li><i class = "material-icons">supervisor_account</i><a href = "#"> Institute of Computer Science</a></li>
+              </ul>
+            </div>
+            <div class="card-action">
+              <a href="#" class = "btn">Soon</a>
+              <a href="#" class = "btn red darken-3">Edit</a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col s12 m6 l3">
+          <div class="card">
+            <div class="card-image">
+               <a href = "#"><img src="../images/logo/engmeet2017.jpg"></a>
+              <span class="card-title black-text">Engineering Meet 2017</span>
+            </div>
+            <div class="card-content hide-on-small-only">
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#" class = "btn red">Live</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12 m6 l3">
+          <div class="card">
+            <div class="card-image">
+              <a href = "#"><img src="../images/logo/palacasan2016.jpg"></a>
+              <span class="card-title black-text">PalaCASan 2016</span>
+            </div>
+            <div class="card-content hide-on-small-only">
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="leagueHistory.html" class = "btn black">Done</a>
+            </div>
+          </div>
+        </div>
+
+          <div class="col s12 m6 l3">
+          <div class="card">
+            <div class="card-image">
+               <a href = "#"><img src="../images/logo/palacasan2015.jpg"></a>
+              <span class="card-title black-text">PalaCASan 2015</span>
+            </div>
+            <div class="card-content hide-on-small-only">
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#" class = "btn black">Done</a>
+            </div>
+          </div>
+        </div>
+
+          
+      </div>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="../node_modules/materialize-css/dist/js/sample.js"></script>
+	<script>
+
+		$(document).ready(function(){
+		  $('.parallax').parallax();
+		});
+	</script>
+	<script src="../node_modules/materialize-css/dist/js/materialize.js"></script>
+	<script src="../node_modules/materialize-css/dist/js/init.js"></script>
+
+ <script>
+
+  $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+          
+
+  // Initialize collapse button
+  $(".btn-1").sideNav();
+  $(".modal1").modal('open');
+  $(".modal1").modal('close');
+  $(".modal2").modal('open');
+  $(".modal2").modal('close');
+
+  // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+  //$('.collapsible').collapsible();
+        
+  </script>
+
+</body>
+</html>
