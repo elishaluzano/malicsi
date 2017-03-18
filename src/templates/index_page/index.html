@@ -2,10 +2,9 @@
 <html>
     <head>
         <!--Import Google Icon Font-->
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css" rel="stylesheet" />
+        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.css" media="screen,projection" />
         <link href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css" rel="stylesheet" />
 
         <!--Let browser know website is optimized for mobile-->
@@ -14,11 +13,24 @@
             #news {
                 margin: 0px 0px 50px 0px;
             }
+
+            #dropdown-links {
+                cursor: pointer;
+                font-size: 14px;
+                color: #616161;
+                margin-bottom: 2px;
+                width: 50%;
+                float: left;
+            }
+
+            #dropdown-links:hover {
+                color: #ff0000;
+            }
         </style>
     </head>
     <body>
         <div id="login-form" class="webui-popover-content">
-            <form action="" method="post">
+            <form style="padding: 10px 10px;" action="" method="post">
                 <div class="input-field">
                     <input id="uname" type="text" class="validate">
                     <label for="uname">Username</label>
@@ -27,90 +39,85 @@
                     <input id="pword" type="password" class="validate">
                     <label for="pword">Password</label>
                 </div>
-                <button class="right btn waves-effect waves-light" type="submit" name="action">Login</button>
+                <button style="margin: 0px 0px 20px 0px;" class="right red btn waves-effect waves-light" type="submit" name="action">Login</button>
             </form>
+            <a class="right" style="cursor: pointer; font-size: 12px;">Forgot your password?</a>
         </div>
-        <nav id="top" class="red">
+
+        <div id="additional-links" class="webui-popover-content" style="margin: 10px 0px 20px 0px; width: 200px; height: 50px">
+            <div><a id="dropdown-links">Events</a></div>
+            <div><a id="dropdown-links">Players</a></div>
+            <div><a id="dropdown-links">Leagues</a></div>
+            <div><a id="dropdown-links">About</a></div>
+            <div><a id="dropdown-links">Contact us</a></div>
+        </div>
+
+        <nav id="top" class="white">
             <div class="nav-wrapper">
-                    <a href="#" class="black left" style="width: 100px; text-align: center;">MALICSI</a>
+                <a class="left" style="height: 64px;" href="#"><img src="../images/malicsi-logo.png"></a>
                 <ul class="left hide-on-med-and-down">
-                    <li style="width: 100px; text-align: center;" class="active"><a href="#">Home</a></li>
-                    <li style="width: 100px; text-align: center;"><a href="#">Sports</a></li>
-                    <li style="width: 100px; text-align: center;"><a href="#">Schedules</a></li>
-                    <li style="width: 100px; text-align: center;"><a href="#">Results</a></li>
-                    <li style="width: 100px; text-align: center;"><a href="#">Players</a></li>
-                    <li style="width: 100px; text-align: center;"><a href="#">About</a></li>  
+                    <li><i id="drop-links" style="cursor: pointer;" class="black-text large material-icons">menu</i></li>
+                    <li><a class="black-text" href="#">Sports</a></li>
+                    <li><a class="black-text" href="#">Schedules</a></li> 
+                    <li><a class="black-text" href="#">Results</a></li> 
                 </ul>
+                <div class="left" style="height: 64px; margin: 0px 10px; padding: 8px 0px 0px 0px"><input class="black-text" placeholder="Search" id="input" style="float: left;"><i class="black-text material-icons">search</i></div>
                 <ul class="right hide-on-med-and-down">
-                    <li style="width: 100px; text-align: center;"><a href="#register-part">Register</a></li>
-                    <li><a id="login" href="#">Login<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li style="width: 100px; text-align: center;"><a class="black-text" href="#register-part">Register</a></li>
+                    <li><a id="login" class="black-text" href="#">Login<i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
             </div>
         </nav>
 
         <div class="carousel carousel-slider center" data-indicators="true">
-            <div class="carousel-item white white-text" href="#one!">
+            <div class="carousel-item" href="#">
                 <img src="http://vwcathletics.com/sports/mbkb/2015-16/basketball_sr.jpg">
-                <div class="caption center-align">
-                    <h3>This is our big Tagline!</h3>
-                </div>
             </div>
-            <div class="carousel-item white white-text" href="#two!">
+            <div class="carousel-item" href="#">
                 <img src="http://i2.cdn.cnn.com/cnnnext/dam/assets/160807004251-beach-volleyball-super-169.jpg">
-                <div class="caption center-align">
-                    <h3>This is our big Tagline!</h3>
-                </div>
             </div>
-            <div class="carousel-item white white-text" href="#three!">
+            <div class="carousel-item" href="#">
                 <img src="https://static01.nyt.com/images/2016/08/19/sports/19BADMINTONweb3/19BADMINTONweb3-master675.jpg">
-                <div class="caption center-align">
-                    <h3>This is our big Tagline!</h3>
-                </div>
             </div>
-            <div class="carousel-item white white-text" href="#four!">
+            <div class="carousel-item" href="#">
                 <img src="http://www.nbcolympics.com/sites/default/files/field_image/01June2016/table-tennis-og-image-cropped.jpg">
-                <div class="caption center-align">
-                    <h3>This is our big Tagline!</h3>
-                </div>
             </div>
         </div>
-
-
 
         <h3 style="padding-left: 90px; color: red;">Latest News</h3>
         <div style="text-align: center; margin: 40px 0px;" class="row">
             <div id="news" class="col s4">
-                <img src="https://usatftw.files.wordpress.com/2015/12/usatsi_8668401.jpg?w=1000&h=600&crop=1" height="150px" width="250px">
+                <img src="../images/news.jpg" height="150px" width="250px">
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
             </div>
             <div id="news" class="col s4">
-                <img src="https://usatftw.files.wordpress.com/2015/12/usatsi_8668401.jpg?w=1000&h=600&crop=1" height="150px" width="250px">
+                <img src="../images/news.jpg" height="150px" width="250px">
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
             </div>
             <div id="news" class="col s4">
-                <img src="https://usatftw.files.wordpress.com/2015/12/usatsi_8668401.jpg?w=1000&h=600&crop=1" height="150px" width="250px"> 
+                <img src="../images/news.jpg" height="150px" width="250px"> 
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
             </div>
             <div id="news" class="col s4">
-                <img src="https://usatftw.files.wordpress.com/2015/12/usatsi_8668401.jpg?w=1000&h=600&crop=1" height="150px" width="250px">
+                <img src="../images/news.jpg" height="150px" width="250px">
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
             </div>
             <div id="news" class="col s4">
-                <img src="https://usatftw.files.wordpress.com/2015/12/usatsi_8668401.jpg?w=1000&h=600&crop=1" height="150px" width="250px">
+                <img src="../images/news.jpg" height="150px" width="250px">
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
             </div>
             <div id="news" class="col s4">
-                <img src="https://usatftw.files.wordpress.com/2015/12/usatsi_8668401.jpg?w=1000&h=600&crop=1" height="150px" width="250px"> 
+                <img src="../images/news.jpg" height="150px" width="250px"> 
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
                 <p>Warriors-Cavaliers Warriors-Cavaliers</p>
@@ -118,7 +125,7 @@
         </div>
         <div id="register-part" style="padding: 30px 0px 50px 35%; border-top: 2px solid #c1c1c1;"> 
             <div id="register" class="col s12" style="width: 50%;">
-                <h3 style="text-align: center; color: red;">Join our Community!</h3>
+                <h4 style="text-align: center; color: red;">Join our Community!</h4>
                 <form class="col s12">
                     <div class="form-container">
                         <div class="row">
@@ -156,7 +163,7 @@
                             </div>
                         </div>
                         <center>
-                            <button class="btn waves-effect waves-light teal" type="submit" name="action">Register</button>
+                            <button class="red btn waves-effect waves-light teal" type="submit" name="action">Register</button>
                         </center>
                     </div>
                 </form>
@@ -190,8 +197,8 @@
         </footer>
 
         <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+        <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
         <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
         <script>
@@ -218,7 +225,7 @@
         </script>
         <script>    
             $('#login').webuiPopover({url:'#login-form'});
+            $('#drop-links').webuiPopover({url:'#additional-links'});
         </script>
-
     </body>
 </html>
