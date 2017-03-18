@@ -13,11 +13,12 @@ exports.loginUser = (req, res) => {
 		if (!err){
 			if (req.body.password == rows[0].password) {
 				req.session.user = rows[0];
-				console.log(req.session.user);
-				res.send(true);
+				console.log("Successfully logged in user");
+				res.send(rows[0]);
 			}	
 			else {
 				res.send(false);
+				console.log("Error in logging in user");
 			}
 		}
 		else {
@@ -42,7 +43,7 @@ exports.addUser = (req, res) => {
 	connection.query('INSERT INTO user SET ?', newUser, function(err, rows, fields) {
 		if (!err) {
 			req.session.user = newUser;
-			res.send(true);
+			res.send(rows[0]);
 			console.log("Successfully added user");
 		}
 		else {
@@ -61,6 +62,7 @@ exports.getUsers = (req, res) => {
 			console.log("Successfully retrieved all users");
 		}
 		else {
+			res.send(false);
 			console.log("Error in retrieving all users");
 		}
 	});
@@ -84,6 +86,7 @@ exports.updateUser = (req, res) => {
 	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ? where user_id = ?',[req.body.name, req.body.username, req.body.password, req.body.gender, req.body.birthday, req.body.email, req.body.contact_number,req.body.user_id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
+			res.send(rows[0]);
 		}
 		else {
 			console.log("Error in editing user");

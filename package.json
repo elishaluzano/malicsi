@@ -31,13 +31,19 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
-    "angular": "^1.6.2",
+    "angular": "^1.6.3",
     "angular-ui-router": "^1.0.0-rc.1",
     "body-parser": "^1.17.0",
     "express": "^4.15.0",
     "express-session": "^1.14.2",
     "jquery": "^3.1.1",
+<<<<<<< HEAD
     "materialize-css": "^0.98.0",
     "mysql": "^2.13.0"
+=======
+    "mysql": "^2.13.0",
+    "semantic-ui": "^2.2.9",
+    "webpack": "^2.2.1"
+>>>>>>> f19126bc4daf9f7494f65580421f685e15d08d44
   }
 }

@@ -34,6 +34,7 @@ exports.addAdmin = (req, res) => {
 	connection.query('INSERT INTO admin SET ?',[req.body.admin_id, req.body.position], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully added an admin");
+			res.send(rows[0]);
 		}
 		else {
 			console.log("Error in adding an admin");
@@ -46,6 +47,7 @@ exports.updateAdmin = (req, res) => {
 	connection.query('UPDATE admin SET position = ? where admin_id = ?',[req.body.position, req.body.admin_id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully updated an admin");
+			res.send(rows[0]);
 		}
 		else {
 			console.log("Error in updating an admin");
