@@ -132,14 +132,17 @@
                         </div>
                     </div>
 
-                    <div class="center row user-row">
+                    <div class="center row user-row" id="affiliations">
                         <div class="right-align col s6">
                             <p>Affiliations</p>
                         </div>
-                        <div class="left-align col s6" id="changeAffiliations">
-                            <input type="text" class="col s8" placeholder="Affiliation">
-                            <a id="add-affiliation" class="red waves-effect waves-light btn-floating tooltipped" data-position="top" data-delay="10" data-tooltip="Add another affiliation"><i class="material-icons">add</i></a>
-                            <a id="remove-affiliation" class="red disabled waves-effect waves-light btn-floating tooltipped" data-position="top" data-delay="10" data-tooltip="Remove last affiliation"><i class="material-icons">delete</i></a>
+                        <div class="affiliation-row">
+                            <div class="left-align col s6" id="changeAffiliations">
+                                <input type="text" class="col s8" placeholder="Affiliation">
+                                
+                                <button class="red waves-effect waves-light btn-floating tooltipped add-affiliation" data-position="top" data-delay="10" data-tooltip="Add another affiliation"><i class="material-icons">add</i></button>
+                                <button class="red disabled waves-effect waves-light btn-floating tooltipped remove-affiliation" data-position="top" data-delay="10" data-tooltip="Remove last affiliation"><i class="material-icons">delete</i></button>
+                            </div>
                         </div>
                     </div>
 
@@ -171,9 +174,13 @@
                 </div>
             </div>
         </div>
-        <scriptsrc="../../../node_modules/materialize-css/dist/js/init.js/node_modules/jquery/dist/jquery-3.1.1.js"></script>
+        <!--===PLEASE CONFIRM===-->
+        <!--script src="../../../node_modules/materialize-css/dist/js/init.js/node_modules/jquery/dist/jquery-3.1.1.js"></script-->
+        <script src="jquery-3.1.1.js"></script>
         <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/init.jsnode_modules/materialize-css/dist/js/materialize.min.js">
         </script>
-        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/init.jsnode_modules/materialize-css/dist/js/editProfile.js"></script>
+        <!--script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/init.jsnode_modules/materialize-css/dist/js/editProfile.js"></script-->
+        <!--===PLEASE CONFIRM===-->
+        <script type="text/javascript" src="editProfile.js"></script>
     </body>
 </html>
