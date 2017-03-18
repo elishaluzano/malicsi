@@ -16,7 +16,7 @@
 <body>
 
 
-<!-- Navigation -->
+<!-- =================================== NAVIGATION ===========================================-->
 <div class = "navbar-fixed">
   <nav id="top" class="white">
     <div class="nav-wrapper">
@@ -41,7 +41,7 @@
 </div>
 
 
-<!--MODALS-->
+<!--MODALS FOR LOGIN-->
 <!--REGISTER-->
   <div id="modal-register" class="modal">
     <div class="container modal-content">
@@ -86,6 +86,8 @@
     </div>
   </div>
 
+
+<!-- =================================== EVENT CARDS ===========================================-->
 <!--Make this dynamic-->
 <!--Order is reverse chronological-->
  <div class="row" name = "LeagueRow">
@@ -104,8 +106,8 @@
               </ul>
             </div>
             <div class="card-action">
-              <a href="#" class = "btn">Soon</a>
-              <a href="#" class = "btn red darken-3">Edit</a>
+              <a href="#" class = "btn" data-tooltip="Go to another page">Soon</a>
+              <a href="#modal-edit-event" class = "btn red darken-3">Edit</a>
             </div>
           </div>
         </div>
@@ -161,6 +163,79 @@
 
           
       </div>
+
+
+<!-- ========================================== FAB ====================================================-->
+<!-- =============================== ONLY AVAILABLE TO ADMIN ===========================================-->
+  <div class = "fixed-action-btn">
+    <a class="btn-floating btn-large waves-effect waves-light red tooltipped" href="#modal-add-event"data-position="left" data-tooltip="Add event"><i class="material-icons">note_add</i></a>
+  </div>
+
+<!-- =================================== MODAL FOR ADD EVENT ===========================================-->
+  <div id="modal-add-event" class="modal">
+    <div class="modal-content">
+      <h5>Add event</h5>
+     <!--  <div class = "row">
+        <form>
+        <div class ="input-field">
+          <i class ="material-icons prefix">perm_identity</i>
+          <input id = "icon_prefix" type = "text" name = "searchinput">
+          <label for = "icon_prefix">Event name</label>
+        </div>
+        <div class ="input-field">
+          <i class ="material-icons prefix">perm_identity</i>
+          <input id = "icon_prefix" type = "text" name = "searchinput">
+          <label for = "icon_prefix">Event date</label>
+        </div>
+        <input type ="submit" value = "Submit" class = "btn right">
+      </form>
+      </div> -->
+    </div>
+  </div>
+
+<!-- =================================== MODAL FOR EDIT EVENT ===========================================-->
+  <div id="modal-edit-event" class="modal">
+    <div class="modal-content">
+      <h5>Edit event</h5>
+     <!--  <div class = "row">
+        <form>
+        <div class ="input-field">
+          <i class ="material-icons prefix">perm_identity</i>
+          <input id = "icon_prefix" type = "text" name = "searchinput">
+          <label for = "icon_prefix">Event name</label>
+        </div>
+        <div class ="input-field">
+          <i class ="material-icons prefix">perm_identity</i>
+          <input id = "icon_prefix" type = "text" name = "searchinput">
+          <label for = "icon_prefix">Event date</label>
+        </div>
+        <input type ="submit" value = "Submit" class = "btn right">
+      </form>
+      </div> -->
+    </div>
+  </div>
+
+<!-- =================================== MODAL FOR DELETE EVENT ===========================================-->
+  <div id="modal-delete-event" class="modal">
+    <div class="modal-content">
+      <h5>Delete event</h5>
+     <!--  <div class = "row">
+        <form>
+        <div class ="input-field">
+          <i class ="material-icons prefix">perm_identity</i>
+          <input id = "icon_prefix" type = "text" name = "searchinput">
+          <label for = "icon_prefix">Event name</label>
+        </div>
+        <div class ="input-field">
+          <i class ="material-icons prefix">perm_identity</i>
+          <input id = "icon_prefix" type = "text" name = "searchinput">
+          <label for = "icon_prefix">Event date</label>
+        </div>
+        <input type ="submit" value = "Submit" class = "btn right">
+      </form>
+      </div> -->
+    </div>
+  </div>
 
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="../../../node_modules/materialize-css/dist/js/init.jsnode_modules/materialize-css/dist/js/sample.js"></script>
