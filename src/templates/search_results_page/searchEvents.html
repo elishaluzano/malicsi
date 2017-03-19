@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Search - Events</title>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"/>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <div class = "navbar-fixed">
+            <nav id="top" class="white">
+                <div class="nav-wrapper">
+                    <a href="index.html" class="left" style="width: 200px;"><img src= "../../client/assets/logo/malicsi.png"></a>
+                    <ul class="left hide-on-med-and-down ">
+                        <li><a href="#" class = "dropdown-button black-text" data-activates="dropdown1" hover = "true"><i class = "material-icons grey-text">menu</i></a></li>
+                        <ul id = "dropdown1" class = "dropdown-content">
+                            <li><a href = "viewleagues.html"> Events</a></li>
+                            <li><a href = "profile.html"> Profile</a></li>
+                        </ul>
+                        <li><input class = "text"></li>
+                    </ul>
+
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#modal-register" class = "black-text">REGISTER</a></li>
+                        <li><a id="login" href="#modal-login"  class = "black-text">LOGIN<i class="material-icons right" >arrow_drop_down</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="container row">
+            <h3>Search Events</h3>
+            <!-- Filters: subject to change -->
+            <div class="col s4" id = "filters">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Filters</span>
+                        <form action="#">
+                            <p>
+                                <input class="with-gap" name="event-group" type="radio" id="event-no-filter" checked />
+                                <label for="event-no-filter">No filter</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="event-group" type="radio" id="event-title" />
+                                <label for="event-title">Event Title</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="event-group" type="radio" id="event-venue" />
+                                <label for="event-venue">Event Venue</label>
+                            </p>
+                            <!-- Until there is a different type of date picker, use default -->
+                            <p>
+                                <input class="with-gap" name="event-group" type="radio" id="event-date" />
+                                <label for="event-date">Event Duration</label>
+                            </p>
+                            <br>
+                            <p>
+                                <strong>Event Start Date: </strong>
+                                <br>
+                                <input type=date / id="event-start-date" />
+                            </p>
+                            <p>
+                                <strong>Event End Date: </strong>
+                                <br>
+                                <input type=date / id="event-end-date" />
+                            </p>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results: holds the Collection of events with filters applied -->
+            <div class="col s8" id = "results">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Results</span>
+                        <ul class="collection">
+                            <!-- One Event -->
+                            <li class="collection-item avatar">
+                                <!-- Event logo -->
+                                <a href="#">
+                                    <img src="../../client/assets/person-flat.png" alt="" class="circle">
+                                </a>
+                                <!-- Event name -->
+                                <a href="#">
+                                    <span class="title">Event 1</span>
+                                </a>
+                                <!-- Event details -->
+                                <p>
+                                    <strong>Venue: </strong><span>Place 1</span>
+                                </p>
+                            </li>
+
+                            <li class="collection-item avatar">
+                                <!-- Event logo -->
+                                <a href="#">
+                                    <img src="../../client/assets/person-flat.png" alt="" class="circle">
+                                </a>
+                                <!-- Event name -->
+                                <a href="#">
+                                    <span class="title">Event 2</span>
+                                </a>
+                                <!-- Event details -->
+                                <p>
+                                    <strong>Venue: </strong><span>Place 2</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../../node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js">
+        </script>
+    </body>
+</html>
