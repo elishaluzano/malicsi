@@ -44,7 +44,7 @@ exports.viewVenue = (req,res) => {
 }
 
 exports.updateVenue = (req,res) => {
-	connection.query('UPDATE venue SET name = ? WHERE venue_id = ?', [ req.body.name, req.body.venue_id ], function(err, rows, fields){
+	connection.query('UPDATE venue SET name = ? WHERE venue_id = ?', [ req.body.name, req.params.id ], function(err, rows, fields){
 		if (err) {
             console.log(err)
             res.send(err);

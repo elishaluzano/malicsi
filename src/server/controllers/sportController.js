@@ -8,7 +8,7 @@ const connection = require('./../database.js')
 exports.addSport = (req,res) => {
 	var info = {
 		name: req.body.name,
-		event_id_key: req.body.institution_id_key,
+		event_id_key: req.body.event_id_key,
 	};
 	connection.query('INSERT INTO sport SET ?', info, function(err, rows, fields) {
 		if (!err) {
@@ -64,6 +64,63 @@ exports.deleteSport = (req,res) => {
 			res.send({});
 		}else{
 			console.log(err);
+			res.send(err);
+		}
+	});
+}
+
+exports.addJoin = (req, res) => {
+	var info = {
+		user_id = req.body.user_id,
+		sport_id = req.body.sport_id
+	}
+	connection.query('INSERT into SportIsJoinedByUser SET ?', info, function(err, rows, fields) {
+		if (!err) {
+			console.log("Success");
+			res.send(rows[0]);
+		}
+		else {
+			console.log("Error");
+			res.send(err);
+		}
+	});
+}
+//get all join relations
+exports.getAllJoins = (req, res) => {
+	connection.query('SELECT * FROM sportIsJoinedByUser', [], function(err, rows, fields) {
+		if (!err) {
+			console.log("Success");
+			res.send(rows);
+		}
+		else {
+			console.log("Error");
+			res.send(err);
+		}
+	});
+}
+// get roster under sport from specific team
+exports.getJoins = (req, res) => {
+	connection.query('SELECT user_id, sport_id FROM (SELECT user_player_id FROM teamIsComposedOfUser WHERE team_player_id = ?) c JOIN sportIsJoinedByUser ON user_player_id = user_id', [req.params.id], function(err, rows, fields) {
+		if (!err) {
+			console.log("Success");
+			res.send(rows);
+		}
+		else {
+			console.log("Error");
+			res.send(err);
+		}
+	});
+}
+
+//delete specific relation
+exports.deleteJoin = (req, res) => {
+	connection.query('DELETE FROM sportIsJoinedByUser WHERE user_id = ?', [req.params.id], function(err, rows, fields) {
+		if (!err) {
+			console.log("Success");
+			res.send({});
+		}
+		else {
+			console.log("Error");
 			res.send(err);
 		}
 	});
