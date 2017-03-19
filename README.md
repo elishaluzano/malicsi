@@ -1,19 +1,14 @@
 # malicsi
 ### CMSC 128 2nd Semester AY 2016-2017
 ***
+### Waffle.IO
+https://waffle.io/elishaluzano/malicsi
+***
+### Coding Conventions
+Please take a look [here](https://github.com/elishaluzano/malicsi/wiki/Coding-Conventions).
+***
 ### How to Install
-Run `npm install`. If semantic-ui doesn't install, run `sudo npm install -g gulp` first and try installing again.
-
-When setting up semantic-ui, choose the following:
-
-1. Automatic (Use default locations and all components)
-
-2. Is this your project directory? Yes
-
-3. Where should we put Semantic UI inside your project? (semantic/). Just enter.
-
-After installing semantic-ui, delete the `semantic/` and `semantic.json`. We do not need this, we only need the one in node_modules/semantic-ui.
-
+`npm install`. 
 ***
 
 ### How to Run Server

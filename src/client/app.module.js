@@ -1,4 +1,6 @@
 (function() {
     angular
-        .module('app', []);
+        .module('app', ['ui.router']);
+
+    require('./app.router');
 })();
