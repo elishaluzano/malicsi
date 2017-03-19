@@ -18,11 +18,12 @@ exports.loginUser = (req, res) => {
 			}	
 			else {
 				res.send(false);
-				console.log("Error in logging in user");
+				console.log("Login unsuccessful");
 			}
 		}
 		else {
 			console.log(err);
+			res.send(err);
 		}
 	});
 }
@@ -48,7 +49,7 @@ exports.addUser = (req, res) => {
 		}
 		else {
 			console.log(err);
-			res.send(false);
+			res.send(err);
 			console.log("Error in adding user");
 		}
 	});
@@ -62,7 +63,7 @@ exports.getUsers = (req, res) => {
 			console.log("Successfully retrieved all users");
 		}
 		else {
-			res.send(false);
+			res.send(err);
 			console.log("Error in retrieving all users");
 		}
 	});
@@ -76,6 +77,7 @@ exports.getUser = (req, res) => {
 			console.log("Successfully retrieved user");
 		}
 		else {
+			res.send(err);
 			console.log("Error in retrieving user");
 		}
 	});
@@ -89,6 +91,7 @@ exports.updateUser = (req, res) => {
 			res.send(rows[0]);
 		}
 		else {
+			res.send(err);
 			console.log("Error in editing user");
 		}
 	});
@@ -98,9 +101,11 @@ exports.updateUser = (req, res) => {
 exports.deleteUser = (req, res) => {
 	connection.query('DELETE FROM user WHERE user_id = ?',[req.params.id], function(err, rows, fields) {
 		if (!err) {
+			res.send({});
 			console.log("Successfully deleted user");
 		}
 		else {
+			res.send(err);
 			console.log("Error in deleting user");
 		}
 	});

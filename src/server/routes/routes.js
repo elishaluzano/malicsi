@@ -48,6 +48,11 @@ router.get('/api/sports',sportCtrl.viewAllSport);
 router.put('/api/sports/:id',sportCtrl.updateSport);
 router.delete('/api/sports/:id',sportCtrl.deleteSport);
 
+router.post('/api/teams/addSportIsJoinedBy', sportCtrl.addJoin);
+router.get('/api/teams/getAllSportIsJoinedBy', sportCtrl.getAllJoins);
+router.get('/api/teams/getSportIsJoinedBy/:id', sportCtrl.getJoins);
+router.delete('/api/teams/deleteSportIsJoinedBy/:id', sportCtrl.deleteJoin);
+
 var gameCtrl = require('../controllers/gameController.js');
 //game routes
 router.post('/api/games',gameCtrl.addGame);
@@ -57,8 +62,8 @@ router.put('/api/games/:id',gameCtrl.updateGame);
 router.delete('/api/games/:id',gameCtrl.deleteGame);
 
 var teamCtrl = require('../controllers/teamController.js');
-
-router.post('/api/teams/addTeam', teamCtrl.addTeam);
+//team routes
+router.post('/api/teams', teamCtrl.addTeam);
 router.get('/api/teams', teamCtrl.viewAllTeam);
 router.get('/api/teams/:id', teamCtrl.viewTeam);
 router.put('/api/teams/:id', teamCtrl.updateTeam);
@@ -70,11 +75,11 @@ router.post('/api/teams/addIsComposedOf', teamCtrl.addIsComposedOf);
 router.delete('/api/teams/isComposedOf/:id', teamCtrl.deleteIsComposedOf);
 
 var venueCtrl = require('../controllers/venueController.js');
-
-router.post('/api/venues/addVenue', venueCtrl.addVenue);
+//venue routes
+router.post('/api/venues', venueCtrl.addVenue);
 router.get('/api/venues', venueCtrl.viewAllVenue);
 router.get('/api/venues/:id', venueCtrl.viewVenue);
-router.put('/api/venues/updateVenue', venueCtrl.updateVenue);
+router.put('/api/venues/:id', venueCtrl.updateVenue);
 router.delete('/api/venues/:id', venueCtrl.deleteVenue);
 
 module.exports = router;
