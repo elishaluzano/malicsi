@@ -10,6 +10,7 @@ exports.addTeam = (req,res) =>{
 	connection.query('INSERT INTO team SET ?', team, function(err, rows, fields){
 		if (err) {
             console.log(err);
+            res.send(err);
          }
         else {
             res.send(rows);
