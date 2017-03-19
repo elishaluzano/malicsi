@@ -6,6 +6,7 @@ var router = express.Router();
 //insert routes here
 
 var teamCtrl = require('../controllers/teamController.js');
+
 router.post('/api/teams/addTeam', teamCtrl.addTeam);
 router.get('/api/teams', teamCtrl.viewAllTeam);
 router.get('/api/teams/:id', teamCtrl.viewTeam);
