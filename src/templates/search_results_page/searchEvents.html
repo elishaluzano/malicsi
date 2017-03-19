@@ -37,23 +37,37 @@
                         <span class="card-title">Filters</span>
                         <form action="#">
                             <p>
-                                <input class="with-gap" name="event-group" type="radio" id="event-no-filter" checked />
+                                <input type="checkbox" id="event-no-filter" checked />
                                 <label for="event-no-filter">No filter</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="event-group" type="radio" id="event-title" />
-                                <label for="event-title">Event Title</label>
-                            </p>
+                                <input type="checkbox" id="event-sponsor" />
+                                <label for="event-sponsor">Event Sponsor</label>
                             <p>
-                                <input class="with-gap" name="event-group" type="radio" id="event-venue" />
+                            <p>
+                                <input type="checkbox" id="event-venue" />
                                 <label for="event-venue">Event Venue</label>
                             </p>
-                            <!-- Until there is a different type of date picker, use default -->
                             <p>
-                                <input class="with-gap" name="event-group" type="radio" id="event-date" />
+                                <input type="checkbox" id="event-date" />
                                 <label for="event-date">Event Duration</label>
                             </p>
+
                             <br>
+                            <div class="divider"></div>
+
+                            <strong>For checked criteria:</strong>
+                            <br>
+                            <p class="input-field">
+                                <input type="text" id="event-sponsor-name" />
+                                <label for="event-sponsor-name">Event Sponsor</label>
+                            </p>
+                            <p class="input-field">
+                                <input type="text" id="event-venue-name" />
+                                <label for="event-venue-name">Event Venue</label>
+                            </p>
+
+                            <!-- Until there is a different type of date picker, use default -->
                             <p>
                                 <strong>Event Start Date: </strong>
                                 <br>

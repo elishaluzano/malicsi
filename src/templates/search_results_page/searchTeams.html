@@ -37,17 +37,22 @@
                         <span class="card-title">Filters</span>
                         <form action="#">
                             <p>
-                                <input class="with-gap" name="team-group" type="radio" id="team-no-filter" checked />
+                                <input type="checkbox" id="team-no-filter" checked />
                                 <label for="team-no-filter">No filter</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="team-group" type="radio" id="team-event-attended" checked />
+                                <input type="checkbox" id="team-event-attended"  />
                                 <label for="team-event-attended">Event Attended</label>
                             </p>
-                            <!-- Temporarily placed filter -->
-                            <p>
-                                <input class="with-gap" name="team-group" type="radio" id="team-additional" checked />
-                                <label for="team-additional">Additional filter</label>
+
+                            <br>
+                            <div class="divider"></div>
+
+                            <strong>For checked criteria:</strong>
+                            <br>
+                            <p class="input-field">
+                                <input type="text" id="team-event-name" />
+                                <label for="team-event-name">Event Attended</label>
                             </p>
                         </form>
                     </div>
