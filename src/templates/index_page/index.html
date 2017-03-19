@@ -184,31 +184,6 @@
         <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
         <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                Materialize.updateTextFields();
-            });
-            
-        </script>
-        <script>
-            $('a').click(function(){
-                $('html, body').animate({
-                    scrollTop: $( $(this).attr('href') ).offset().top
-                }, 500);
-                return false;
-            });
-        </script>
-        <script>
-            $('.carousel.carousel-slider').carousel({fullWidth: true});
-            autoplay()   
-            function autoplay() {
-                $('.carousel.carousel-slider').carousel('next');
-                setTimeout(autoplay, 6000);
-            }        
-        </script>
-        <script>    
-            $('#login').webuiPopover({url:'#login-form'});
-            $('#drop-links').webuiPopover({url:'#additional-links'});
-        </script>
+        <script src="index.js"></script>
     </body>
 </html>
