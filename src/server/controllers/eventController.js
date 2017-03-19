@@ -38,7 +38,7 @@ exports.viewEvent = (req,res) => {
 }
 
 exports.viewAllEvent = (req,res) => {
-	connection.query('SELECT * FROM EVENT', [], function(err, rows, fields){
+	connection.query('SELECT * FROM event', [], function(err, rows, fields){
 		if(!err) {
 			res.send(rows);
 		}else{
@@ -49,7 +49,7 @@ exports.viewAllEvent = (req,res) => {
 }
 
 exports.updateEvent = (req,res) => {
-	connection.query('UPDATE EVENT SET event_title = ?, venue = ?, start_date = ?, end_date = ? WHERE event_id = ?', [req.body.event_title, req.body.venue, req.body.start_date, req.body.end_date, req.params.id], function(err, rows, fields){
+	connection.query('UPDATE event SET event_title = ?, venue = ?, start_date = ?, end_date = ? WHERE event_id = ?', [req.body.event_title, req.body.venue, req.body.start_date, req.body.end_date, req.params.id], function(err, rows, fields){
 		if(!err) {
 			res.send(rows[0]);
 			console.log("Success");
@@ -61,7 +61,7 @@ exports.updateEvent = (req,res) => {
 }
 
 exports.deleteEvent = (req,res) => {
-	connection.query('DELETE FROM EVENT WHERE event_id = ?', [req.params.id], function(err, rows, fields){
+	connection.query('DELETE FROM event WHERE event_id = ?', [req.params.id], function(err, rows, fields){
 		if(!err) {
 			console.log("Success");
 			res.send({});
