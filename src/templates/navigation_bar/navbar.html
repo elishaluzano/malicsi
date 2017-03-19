@@ -5,57 +5,40 @@
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="../index_page/index.css" />
         <link href="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.css" rel="stylesheet" />
 
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <style>
-            #news {
-                margin: 0px 0px 50px 0px;
-            }
-
-            #dropdown-links {
-                cursor: pointer;
-                font-size: 14px;
-                color: #616161;
-                margin-bottom: 2px;
-                width: 50%;
-                float: left;
-            }
-
-            #dropdown-links:hover {
-                color: #ff0000;
-            }
-        </style>
     </head>
     <body>
         <nav id="top" class="white">
             <div class="nav-wrapper">
-                <a class="left" style="height: 64px;" href="#"><img src="../images/malicsi-logo.png"></a>
+                <a class="left" id="malicsi-logo-link" href="#"><img src="../images/malicsi-logo.png"></a>
                 <ul class="left hide-on-med-and-down">
                     <li><i id="drop-links" style="cursor: pointer;" class="black-text large material-icons">menu</i></li>
                     <li><a class="black-text" href="#">Sports</a></li>
                     <li><a class="black-text" href="#">Schedules</a></li>
                     <li><a class="black-text" href="#">Results</a></li> 
                 </ul>
-                <div class="left" style="height: 64px; margin: 0px 10px; padding: 8px 0px 0px 0px">
+                <div class="left" id="search-bar-div">
                     <!-- <select class="left black-text">
                         <option value="" disabled selected>Select Fruit</option>
                         <option value="1">Mango</option>
                         <option value="2">Orange</option>
                         <option value="3">Apple</option>
                     </select> -->
-                    <input width="30px" class="left black-text" placeholder="Search" id="input" style="float: left;">
-                    <i class="black-text material-icons" style="cursor: pointer">search</i>
+                    <input width="30px" class="left black-text" placeholder="Search" id="input">
+                    <i class="black-text material-icons" id="search-icon">search</i>
                 </div>
                 <a href="#" data-activates="slide-out" class="right red-text side-nav-button">
                     djbelmonte
-                    <i style="margin: 0px 15px;" class="right black-text material-icons">menu</i>
+                    <i id="sidenav-icon" class="right black-text material-icons">menu</i>
                 </a>            
             </div>
         </nav>
 
-        <div id="additional-links" class="webui-popover-content" style="margin: 10px 0px 20px 0px; width: 200px; height: 50px">
+        <div id="additional-links" class="webui-popover-content">
             <div><a id="dropdown-links">Events</a></div>
             <div><a id="dropdown-links">Players</a></div>
             <div><a id="dropdown-links">Leagues</a></div>
@@ -68,15 +51,15 @@
                 <div class="background">
                     <img src="../images/background.jpg">
                 </div>
-                <a href="#!user"><img class="circle" src="../images/person-flat.png"></a>
-                <a href="#!name"><span class="white-text name">Donn Jerico Belmonte</span></a>
-                <a href="#!email"><span class="white-text email">djbelmonte</span></a>
+                <a href="#"><img class="circle" src="../images/person-flat.png"></a>
+                <a href="#"><span class="white-text name">Donn Jerico Belmonte</span></a>
+                <a href="#"><span class="white-text email">djbelmonte</span></a>
             </div></li>
-            <li><a href="#!">Notifications<i class="material-icons">notifications</i></a></li>
-            <li><a href="#!">Stats<i class="material-icons">equalizer</i></a></li>
-            <li><a href="#!">Leagues<i class="material-icons">subject</i></a></li>
-            <li><a href="#!">Edit Profile<i class="material-icons">settings</i></a></li>
-            <li><a href="#!">Sign out<i class="material-icons">power_settings_new</i></a></li>
+            <li><a href="#">Notifications<i class="material-icons">notifications</i></a></li>
+            <li><a href="#">Stats<i class="material-icons">equalizer</i></a></li>
+            <li><a href="#">Leagues<i class="material-icons">subject</i></a></li>
+            <li><a href="#">Edit Profile<i class="material-icons">settings</i></a></li>
+            <li><a href="#">Sign out<i class="material-icons">power_settings_new</i></a></li>
         </ul>
 
         <!--Import jQuery before materialize.js-->
