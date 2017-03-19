@@ -12,7 +12,6 @@ const app = express();
 app.use(express.static(__dirname + '/../../dist'));
 
 var routes = require(__dirname + '/routes/routes.js');
-
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
 
@@ -29,7 +28,6 @@ app.use('/', routes);
 app.get('/*', function(req, res) {
 	res.sendFile(path.resolve('./../../dist/index.html'));
 });
-
 
 //listening on port 8000
 app.listen(8000, function(){

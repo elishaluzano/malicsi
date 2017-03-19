@@ -16,12 +16,13 @@ exports.addSponsoringInstitution = (req,res) => {
          }
         else {
             res.send('Successfully added an institution.')
+            res.send(rows[0]);
         }
 	});
 }
 
 exports.viewSponsoringInstitution = (req,res) => {
-	connection.query('SELECT * FROM sponsoringInstitution WHERE institution_id = ?', [req.params.institution_id], function(err, rows, fields){
+	connection.query('SELECT * FROM sponsoringInstitution WHERE institution_id = ?', [req.params.id], function(err, rows, fields){
 		if (err) {
             console.log(err)
          }
@@ -34,27 +35,28 @@ exports.viewSponsoringInstitution = (req,res) => {
 exports.viewAllSponsoringInstitution = (req,res) => {
 	connection.query('SELECT * FROM sponsoringInstitution',[], function(err, rows, fields){
 		if (err) {
-            console.log(err)
+            console.log(err);
          }
         else {
-            res.send(rows)
+            res.send(rows);
         }
 	});
 }
 
 exports.updateSponsoringInstitution = (req,res) => {
-	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ? WHERE institution_id= ?', [req.body.name, req.body.description, req.body.institution_id], function(err, rows, fields){
+	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ? WHERE institution_id= ?', [req.body.name, req.body.description, req.params.id], function(err, rows, fields){
 		if (err) {
             console.log(err)
          }
         else {
-            res.send('Successfully updated an institution.')
+            res.send('Successfully updated an institution.');
+            res.send(rows[0]);
         }
 	});
 }
 
 exports.deleteSponsoringInstitution = (req,res) => {
-	connection.query('DELETE FROM sponsoringInstitution WHERE institution_id= ?', [req.params.institution_id], function(err, rows, fields){
+	connection.query('DELETE FROM sponsoringInstitution WHERE institution_id= ?', [req.params.id], function(err, rows, fields){
 		if (err) {
             console.log(err)
          }
