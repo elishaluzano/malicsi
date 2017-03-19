@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 	<title>MalICSihan</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="../../../node_modules/materialize-css/dist/css/materialize-2.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
+	<link href="materialize-2.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="../../../node_modules/webui-popover/dist/jquery.webui-popover.css">
 </head>
 
 <style>
@@ -87,7 +87,14 @@
             </div>
         </nav>
 
-
+        
+        <div id="additional-links" class="webui-popover-content" style="margin: 10px 0px 20px 0px; width: 200px; height: 50px">
+            <div><a id="dropdown-links">Events</a></div>
+            <div><a id="dropdown-links">Players</a></div>
+            <div><a id="dropdown-links">About</a></div>
+            <div><a id="dropdown-links">Contact us</a></div>
+        </div>
+        
 
 <!-- =================================== SIDE NAV ===========================================-->
 
@@ -358,10 +365,12 @@
                   
 <!-- =================================== SCRIPTS ===========================================-->
 
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="../../../node_modules/materialize-css/dist/js/js/sample.js"></script>
-  <script src="../../../node_modules/materialize-css/dist/js/init.js"></script>
+  <script src="../../../node_modules/jquery/dist/jquery.js"></script>
+  <script src="sample.js"></script>
+  <script src="init.js"></script>
   <script src="../../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
+
   <script>
     $(document).ready(function(){
       $('select').material_select();
@@ -372,7 +381,7 @@
     });
     // Initialize collapsible (uncomment the line below if you use the dropdown variation)
     //$('.collapsible').collapsible();
-
+  
   </script>
   <script>
     $('.side-nav-button').sideNav({
@@ -381,6 +390,9 @@
       closeOnClick: true
     });
   </script>
+  <script>
+    $('#drop-links').webuiPopover({url:'#additional-links'});
+</script>
         
 </body>
 </html>
