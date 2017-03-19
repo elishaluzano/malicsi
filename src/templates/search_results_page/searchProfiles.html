@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Search - Profiles</title>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"/>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <div class = "navbar-fixed">
+            <nav id="top" class="white">
+                <div class="nav-wrapper">
+                    <a href="index.html" class="left" style="width: 200px;"><img src= "../../client/assets/logo/malicsi.png"></a>
+                    <ul class="left hide-on-med-and-down ">
+                        <li><a href="#" class = "dropdown-button black-text" data-activates="dropdown1" hover = "true"><i class = "material-icons grey-text">menu</i></a></li>
+                        <ul id = "dropdown1" class = "dropdown-content">
+                            <li><a href = "viewleagues.html"> Events</a></li>
+                            <li><a href = "profile.html"> Profile</a></li>
+                        </ul>
+                        <li><input class = "text"></li>
+                    </ul>
+
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#modal-register" class = "black-text">REGISTER</a></li>
+                        <li><a id="login" href="#modal-login"  class = "black-text">LOGIN<i class="material-icons right" >arrow_drop_down</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="container row">
+            <!-- Filters: subject to change -->
+            <div class="col s4" id = "filters">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Filters</span>
+                        <form action="#">
+                            <p>
+                                <input type="checkbox" id="profile-name" />
+                                <label for="profile-name">Name</label> 
+                            </p>
+                            
+                            <p>
+                                <input type="checkbox" id="profile-team" />
+                                <label for="profile-team">Team</label> 
+                            </p>
+                            
+                            <h6>Gender</h6>
+                            <p>
+                                <input class="with-gap" name="gender-group" type="radio" id="profile-gender-no-filter" checked />
+                                <label for="profile-gender-no-filter">No filter</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="gender-group" type="radio" id="profile-gender-male" />
+                                <label for="profile-gender-male">Male</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="gender-group" type="radio" id="profile-gender-female" />
+                                <label for="profile-gender-female">Female</label> 
+                            </p>
+                            <p>
+                                <input class="with-gap" name="gender-group" type="radio" id="profile-gender-other" />
+                                <label for="profile-gender-other">Other</label>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results: holds the Collection of profiles with filters applied -->
+            <div class="col s8" id = "results">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Results</span>
+                        <ul class="collection">
+                            <!-- One profile -->
+                            <li class="collection-item avatar">
+                                <!-- Profile picture -->
+                                <a href="../profile_page/profile.html">
+                                    <img src="../../client/assets/person-flat.png" alt="" class="circle">
+                                </a>
+                                <!-- Name -->
+                                <a href="../profile_page/profile.html">
+                                    <span class="title">Perso N. Name</span>
+                                </a>
+                                <!-- Affiliations -->
+                                <p>
+                                    <strong>Affiliations:</strong>
+                                    <ul class="profile-affiliations">
+                                        <li>Affiliation 1</li>
+                                        <li>Affiliation 2</li>
+                                    </ul>
+                                </p>
+                            </li>
+
+                            <li class="collection-item avatar">
+                                <!-- Profile picture -->
+                                <a href="../profile_page/profile.html">
+                                    <img src="../../client/assets/person-flat.png" alt="" class="circle">
+                                </a>
+                                <!-- Name -->
+                                <a href="../profile_page/profile.html">
+                                    <span class="title">Another Person</span>
+                                </a>
+                                <!-- Affiliations -->
+                                <p>
+                                    <strong>Affiliations:</strong>
+                                    <ul class="profile-affiliations">
+                                        <li>Affiliation 1</li>
+                                        <li>Affiliation 2</li>
+                                        <li>Affiliation 3</li>
+                                    </ul>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../../node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js">
+        </script>
+    </body>
+</html>
