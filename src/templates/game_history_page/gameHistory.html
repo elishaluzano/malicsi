@@ -1,225 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-	<title>MalICSihan</title>
-	<!-- CSS  -->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="../../../node_modules/materialize-css/dist/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+		<title>MalICSihan</title>
+		<!-- CSS  -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="../../../node_modules/materialize-css/dist/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 
-</head>
+	</head>
 
 
-<!--Remove style for body. Used for contrast viewing only.-->
-<body>
+	<!--Remove style for body. Used for contrast viewing only.-->
+	<body>
 
 
-<!-- Navigation -->
-<div class = "navbar-fixed">
-  <nav id="top" class="white">
-    <div class="nav-wrapper">
-      <a href="index.html" class="left" style="width: 200px;"><img src= "../images/malicsi-logo.png"></a>
-      <ul class="left hide-on-med-and-down ">
-        <li><a href="#" class = "dropdown-button black-text" data-activates="dropdown1" hover = "true"><i class = "material-icons grey-text">menu</i></a></li>
-        <ul id = "dropdown1" class = "dropdown-content">
-          <li><a href = "viewleagues.html"> Events</a></li>
-          <li><a href = "profile.html"> Profile</a></li>
-        </ul>
-      <li><input class = "text"></li>
-      </ul>
-
-      <ul class="right hide-on-med-and-down">
-
-        <li><a href="#modal-register" class = "black-text">REGISTER</a></li>
-        <li><a id="login" href="#modal-login"  class = "black-text">LOGIN<i class="material-icons right" >arrow_drop_down</i></a></li>
-      </ul>
-    </div>
-  </nav>
-</div>
-
-<!--Search bar
-<div class = "row">
-	<div class = "col s4 offset-s4">
-	<form>
-		<div class = "input-field z-depth-2">
-		<i class = "material-icons prefix">search</i>
-		<input id="search" type="search">
-		</div>
-
-	</form>
+	<!-- Navigation -->
+	<div class = "navbar-fixed">
+	  <nav id="top" class="white">
+            <div class="nav-wrapper">
+                <a class="left" style="height: 64px;" href="#"><img src="../images/malicsi-logo.png"></a>
+                <ul class="left hide-on-med-and-down">
+                    <li><i id="drop-links" style="cursor: pointer;" class="black-text large material-icons">menu</i></li>
+                    <li><a class="black-text" href="#">Sports</a></li>
+                    <li><a class="black-text" href="#">Schedules</a></li> 
+                    <li><a class="black-text" href="#">Results</a></li> 
+                </ul>
+                <div class="left" style="height: 64px; margin: 0px 10px; padding: 8px 0px 0px 0px"><input class="black-text" placeholder="Search" id="input" style="float: left;"><i class="black-text material-icons">search</i></div>
+                <ul class="right hide-on-med-and-down">
+                    <li style="width: 100px; text-align: center;"><a class="black-text" href="#register-part">Register</a></li>
+                    <li><a id="login" class="black-text" href="#">Login<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+            </div>
+        </nav>
 	</div>
-</div>
--->
 
-<!--Make this dynamic-->
-<!--Order is reverse chronological-->
- <!--
- <div class="row" name = "LeagueRow">
-	<div class="col s12 m6 l3">
-	  <div class="card>
-		<div class="card-image">
-		   <a href = "#"><img src="../images/logo/engmeet2017.jpg"></a>
-		  <span class="card-title black-text">Engineering Meet 2017</span>
+	<!--Search bar
+	<div class = "row">
+		<div class = "col s4 offset-s4">
+		<form>
+			<div class = "input-field z-depth-2">
+			<i class = "material-icons prefix">search</i>
+			<input id="search" type="search">
+			</div>
+
+		</form>
 		</div>
-		<div class="card-content hide-on-small-only">
-		  <p>Overall Champion: Organization Name</p>
-		</div>
-	  </div>
 	</div>
 	-->
-	<div class="parallax-container">
-		<div class="parallax valign"><img src="../images/logo/palacasan2016.jpg"></div>
-    </div>
-	<table>
-		<thead>
-			<div class="row">
-				<div class="col s12">
-				  <ul class="tabs tabs-fixed-width">
-					<li class="tab col s2"><a href="#test1">Basketball</a></li>
-					<li class="tab col s2"><a href="#test2">Volleyball</a></li>
-					<li class="tab col s2"><a href="#test3">Table Tennis</a></li>
-					<li class="tab col s2"><a href="#test4">Sponsoring Institution</a></li>
-				  </ul>
-				</div>
-			</div>
-		</thead>
-		<tbody>
-			<table class="highlight bordered" id="test1">
-				<thead>
-					<tr>
-						<th>Game</th>
-						<th>Competing Teams</th>
-						<th>Score</th>
-						<th>Winner</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>1</th>
-						<th>A VS B</th>
-						<th>100-70</th>
-						<th>A</th>
-					</tr>
-					<tr>
-						<th>2</th>
-						<th>C VS D</th>
-						<th>63-82</th>
-						<th>D</th>
-					</tr>
-					<tr>
-						<th>3</th>
-						<th>A VS D</th>
-						<th>67-65</th>
-						<th>A</th>
-					</tr>
-					<tr>
-						<th>4</th>
-						<th>B VS C</th>
-						<th>71-70</th>
-						<th>B</th>
-					</tr>
-				</tbody>
-			</table>
-			<table class="highlight bordered" id="test2">
-				<thead>
-					<tr>
-						<th>Game</th>
-						<th>Competing Teams</th>
-						<th>Sets</th>
-						<th>Winner</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>1</th>
-						<th>A VS B</th>
-						<th>3-1</th>
-						<th>A</th>
-					</tr>
-					<tr>
-						<th>2</th>
-						<th>C VS D</th>
-						<th>0-3</th>
-						<th>D</th>
-					</tr>
-					<tr>
-						<th>3</th>
-						<th>A VS D</th>
-						<th>3-2</th>
-						<th>A</th>
-					</tr>
-					<tr>
-						<th>4</th>
-						<th>B VS C</th>
-						<th>3-2</th>
-						<th>B</th>
-					</tr>
-					<tr>
-						<th>5</th>
-						<th>A VS E</th>
-						<th>2-3</th>
-						<th>E</th>
-					</tr>
-				</tbody>
-			</table>
-			<table class="highlight bordered" id="test3">
-				<thead>
-					<tr>
-						<th>Game</th>
-						<th>Competing Teams</th>
-						<th>Sets</th>
-						<th>Winner</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>1</th>
-						<th>A VS B</th>
-						<th>3-0</th>
-						<th>A</th>
-					</tr>
-					<tr>
-						<th>2</th>
-						<th>C VS D</th>
-						<th>2-3</th>
-						<th>D</th>
-					</tr>
-					<tr>
-						<th>3</th>
-						<th>A VS D</th>
-						<th>3-2</th>
-						<th>A</th>
-					</tr>
-				</tbody>
-			</table>
-			<table class="highlight bordered" id="test4">
-				<thead>
-					<tr>
-						<th>Name</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>Sponsor Name</th>
-					</tr>
-				</tbody>
-			</table>
-		</tbody>
-	</table>
-	
-	
-	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script src="../../../node_modules/materialize-css/dist/js/js/sample.js"></script>
-	<script>
 
-		$(document).ready(function(){
-		  $('.parallax').parallax();
-		});
+	<!--Make this dynamic-->
+	<!--Order is reverse chronological-->
+	 <!--
+	 <div class="row" name = "LeagueRow">
+		<div class="col s12 m6 l3">
+		  <div class="card>
+			<div class="card-image">
+			   <a href = "#"><img src="../images/logo/engmeet2017.jpg"></a>
+			  <span class="card-title black-text">Engineering Meet 2017</span>
+			</div>
+			<div class="card-content hide-on-small-only">
+			  <p>Overall Champion: Organization Name</p>
+			</div>
+		  </div>
+		</div>
+		-->
+		<div class="parallax-container">
+			<div class="parallax valign"><img src="../images/logo/palacasan2016.jpg"></div>
+		</div>
 		
-	</script>
-	<script src="../../../node_modules/materialize-css/dist/js/materialize.js"></script>
-	<script src="../../../node_modules/materialize-css/dist/js/js/init.js"></script>
-</body>
+		<div class="container">
+			<table>
+				<thead>
+					<div class="row">
+						<div class="col s12">
+						  <ul class="tabs tabs-fixed-width red">
+							<li class="tab col s3"><a class="white-text" href="#test1">Basketball</a></li>
+							<li class="tab col s3"><a class="white-text" href="#test2">Volleyball</a></li>
+							<li class="tab col s3"><a class="white-text" href="#test3">Table Tennis</a></li>
+							<li class="tab col s3"><a class="white-text" href="#test4">Sponsoring Institution</a></li>
+						  </ul>
+						</div>
+					</div>
+				</thead>
+				<tbody>
+					<table class="highlight bordered striped" id="test1">
+						<thead>
+							<tr>
+								<th>Game</th>
+								<th>Competing Teams</th>
+								<th>Score</th>
+								<th>Winner</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>1</th>
+								<th>A VS B</th>
+								<th>100-70</th>
+								<th>A</th>
+							</tr>
+							<tr>
+								<th>2</th>
+								<th>C VS D</th>
+								<th>63-82</th>
+								<th>D</th>
+							</tr>
+							<tr>
+								<th>3</th>
+								<th>A VS D</th>
+								<th>67-65</th>
+								<th>A</th>
+							</tr>
+							<tr>
+								<th>4</th>
+								<th>B VS C</th>
+								<th>71-70</th>
+								<th>B</th>
+							</tr>
+						</tbody>
+					</table>
+					<table class="highlight bordered" id="test2">
+						<thead>
+							<tr>
+								<th>Game</th>
+								<th>Competing Teams</th>
+								<th>Sets</th>
+								<th>Winner</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>1</th>
+								<th>A VS B</th>
+								<th>3-1</th>
+								<th>A</th>
+							</tr>
+							<tr>
+								<th>2</th>
+								<th>C VS D</th>
+								<th>0-3</th>
+								<th>D</th>
+							</tr>
+							<tr>
+								<th>3</th>
+								<th>A VS D</th>
+								<th>3-2</th>
+								<th>A</th>
+							</tr>
+							<tr>
+								<th>4</th>
+								<th>B VS C</th>
+								<th>3-2</th>
+								<th>B</th>
+							</tr>
+							<tr>
+								<th>5</th>
+								<th>A VS E</th>
+								<th>2-3</th>
+								<th>E</th>
+							</tr>
+						</tbody>
+					</table>
+					<table class="highlight bordered" id="test3">
+						<thead>
+							<tr>
+								<th>Game</th>
+								<th>Competing Teams</th>
+								<th>Sets</th>
+								<th>Winner</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>1</th>
+								<th>A VS B</th>
+								<th>3-0</th>
+								<th>A</th>
+							</tr>
+							<tr>
+								<th>2</th>
+								<th>C VS D</th>
+								<th>2-3</th>
+								<th>D</th>
+							</tr>
+							<tr>
+								<th>3</th>
+								<th>A VS D</th>
+								<th>3-2</th>
+								<th>A</th>
+							</tr>
+						</tbody>
+					</table>
+					<table class="highlight bordered" id="test4">
+						<thead>
+							<tr>
+								<th>Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>Sponsor Name</th>
+							</tr>
+						</tbody>
+					</table>
+				</tbody>
+			</table>
+		</div>
+		
+		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="sample.js"></script>
+		<script src="../../../node_modules/materialize-css/dist/js/materialize.js"></script>
+		<script src="init.js"></script>
+	</body>
 </html>
