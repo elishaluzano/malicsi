@@ -77,3 +77,65 @@ describe('Team', function(){
 		 });
 	 });
 });
+
+describe('Team Relation (isComposedOf)', function(){
+	 var url = 'http://localhost:8000';
+	 describe('getAllIsComposedOf()', function(){
+		 it('retrieves all isComposedOf relations', function(done){
+			 request(url)
+			 .get('/api/teams/getAllIsComposedOf')
+			 .end(function(err,res){
+				 if(err) throw err;
+				 try{
+				 	res.should.have.status(200);
+				 	res.body.should.be.an.instanceOf(Array);
+				 }catch(e){
+				 	done();
+				 }
+			 });
+		 });
+	 });
+
+	 describe('getIsComposedOf()', function () {
+		 it('retrieves a specific isComposedOf relation', function (done) {
+			 request(url)
+				 .get('/api/teams/getIsComposedOf/' + '2')
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
+					 res.body.should.be.an.instanceOf(Object);
+					 done();
+				 });
+		 });
+	 });
+
+	 describe('addIsComposedOf()', function () {
+		 it('creates a new isComposedOf relation', function (done) {
+			 var relation = {
+				 'team_player_id': 7,
+				 'user_player_id': 4
+			 };
+			 request(url)
+				 .post('/api/teams/addIsComposedOf')
+				 .send(relation)
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
+					 done();
+				 });
+		 });
+	 });
+
+	 describe('deleteIsComposedOf()', function () {
+		 it('deletes a specific isComposedOf relation', function (done) {
+			 request(url)
+				 .delete('/api/teams/isComposedOf/' + '7')
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
+					 	res.body.should.be.an.instanceOf(Object);
+					 done();
+				 });
+		 });
+	 });
+});
