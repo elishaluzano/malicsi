@@ -3,5 +3,5 @@
         .module('app', ['ui.router']);
 
     require('./app.router');
-    require('./services/games.services.js')
+    require('./services/game.service');
 })();
