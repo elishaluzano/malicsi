@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MalICSi - Search Teams</title>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"/>
+        <link href="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.css" rel="stylesheet" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            #news {
+                margin: 0px 0px 50px 0px;
+            }
+
+            #dropdown-links {
+                cursor: pointer;
+                font-size: 14px;
+                color: #616161;
+                margin-bottom: 2px;
+                width: 50%;
+                float: left;
+            }
+
+            #dropdown-links:hover {
+                color: #ff0000;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav id="top" class="white">
+            <div class="nav-wrapper">
+                <a class="left" style="height: 64px;" href="#"><img src="../images/logo/malicsi-logo.png"></a>
+                <ul class="left hide-on-med-and-down">
+                    <li><i id="drop-links" style="cursor: pointer;" class="black-text large material-icons">menu</i></li>
+                    <li><a class="black-text" href="#">Sports</a></li>
+                    <li><a class="black-text" href="#">Schedules</a></li>
+                    <li><a class="black-text" href="#">Results</a></li> 
+                </ul>
+                <div class="left" style="height: 64px; margin: 0px 10px; padding: 8px 0px 0px 0px">
+                    <input width="30px" class="left black-text" placeholder="Search" id="input" style="float: left;">
+                    <i class="black-text material-icons" style="cursor: pointer">search</i>
+                </div>
+                <a href="#" data-activates="slide-out" class="right red-text side-nav-button">
+                    djbelmonte
+                    <i style="margin: 0px 15px;" class="right black-text material-icons">menu</i>
+                </a>            
+            </div>
+        </nav>
+
+        <div id="additional-links" class="webui-popover-content" style="margin: 10px 0px 20px 0px; width: 200px; height: 50px">
+            <div><a id="dropdown-links">Events</a></div>
+            <div><a id="dropdown-links">Players</a></div>
+            <div><a id="dropdown-links">About</a></div>
+            <div><a id="dropdown-links">Contact us</a></div>
+        </div>
+        
+        <ul id="slide-out" class="side-nav">
+            <li><div class="userView">
+                <div class="background">
+                    <img src="../images/background.jpg">
+                </div>
+                <a href="#!user"><img class="circle" src="../images/person-flat.png"></a>
+                <a href="#!name"><span class="white-text name">Donn Jerico Belmonte</span></a>
+                <a href="#!email"><span class="white-text email">djbelmonte</span></a>
+            </div></li>
+            <li><a href="#!">Notifications<i class="material-icons">notifications</i></a></li>
+            <li><a href="#!">Stats<i class="material-icons">equalizer</i></a></li>
+            <li><a href="#!">Events<i class="material-icons">subject</i></a></li>
+            <li><a href="#!">Edit Profile<i class="material-icons">settings</i></a></li>
+            <li><a href="#!">Sign out<i class="material-icons">power_settings_new</i></a></li>
+        </ul>
+
+        <!-- End of Navigation-->
+
+        <div class="container row">
+            <h3>Search Teams</h3>
+            <!-- Filters: subject to change -->
+            <div class="col s4" id = "filters">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Filters</span>
+                        <form action="#">
+                            <p>
+                                <input type="checkbox" id="team-no-filter" checked />
+                                <label for="team-no-filter">No filter</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" id="team-event-attended"  />
+                                <label for="team-event-attended">Event Attended</label>
+                            </p>
+
+                            <br>
+                            <div class="divider"></div>
+
+                            <strong>For checked criteria:</strong>
+                            <br>
+                            <p class="input-field">
+                                <input type="text" id="team-event-name" />
+                                <label for="team-event-name">Event Attended</label>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results: holds the Collection of teams with filters applied -->
+            <div class="col s8" id = "results">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Results</span>
+                        <ul class="collection">
+                            <a class="collection-item red white-text">Team One</a>
+                            <a class="collection-item grey darken-3 white-text">Team Two</a>
+                            <a class="collection-item blue darken-2 white-text">Team Three</a>
+                            <a class="collection-item yellow black-text">Team Four</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../../node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js">
+        </script>
+        <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
+        <script>
+            $('.side-nav-button').sideNav({
+                menuWidth: 300, // Default is 300
+                edge: 'right', // Choose the horizontal origin
+                closeOnClick: true
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                Materialize.updateTextFields();
+            }); 
+        </script>
+        <script>
+            $('a').click(function(){
+                $('html, body').animate({
+                    scrollTop: $( $(this).attr('href') ).offset().top
+                }, 500);
+                return false;
+            });
+        </script>
+        <script>
+            $('#drop-links').webuiPopover({url:'#additional-links'});
+        </script>
+    </body>
+</html>
