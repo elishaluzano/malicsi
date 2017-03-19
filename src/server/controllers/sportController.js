@@ -17,7 +17,7 @@ exports.addSport = (req,res) => {
 		}
 		else {
 			console.log(err);
-			res.send(false);
+			res.send(err);
 			console.log("Error in adding sport");
 		}
 	});
@@ -29,6 +29,7 @@ exports.viewSport = (req,res) => {
 			res.send(rows[0]);
 		}else{
 			console.log(err);
+			res.send(err);
 		}
 	});
 }
@@ -39,6 +40,7 @@ exports.viewAllSport = (req,res) => {
 			res.send(rows);
 		}else{
 			console.log(err);
+			res.send(err);
 		}
 	});
 }
@@ -50,6 +52,7 @@ exports.updateSport = (req,res) => {
 			res.send(rows[0]);
 		}else{
 			console.log(err);
+			res.send(err);
 		}
 	});
 }
@@ -58,8 +61,10 @@ exports.deleteSport = (req,res) => {
 	connection.query('DELETE FROM SPORT WHERE sport_id = ?', [req.params.id], function(err, rows, fields){
 		if(!err) {
 			console.log("Success");
+			res.send({});
 		}else{
 			console.log(err);
+			res.send(err);
 		}
 	});
 }

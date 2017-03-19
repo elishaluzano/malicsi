@@ -20,7 +20,7 @@ exports.addEvent = (req,res) => {
 		}
 		else {
 			console.log(err);
-			res.send(false);
+			res.send(err);
 			console.log("Error in adding event");
 		}
 	});
@@ -32,6 +32,7 @@ exports.viewEvent = (req,res) => {
 			res.send(rows[0]);
 		}else{
 			console.log(err);
+			res.send(err);
 		}
 	});
 }
@@ -42,6 +43,7 @@ exports.viewAllEvent = (req,res) => {
 			res.send(rows);
 		}else{
 			console.log(err);
+			res.send(err);
 		}
 	});
 }
@@ -53,6 +55,7 @@ exports.updateEvent = (req,res) => {
 			console.log("Success");
 		}else{
 			console.log(err);
+			res.send(err);
 		}
 	});
 }
@@ -61,8 +64,10 @@ exports.deleteEvent = (req,res) => {
 	connection.query('DELETE FROM EVENT WHERE event_id = ?', [req.params.id], function(err, rows, fields){
 		if(!err) {
 			console.log("Success");
+			res.send({});
 		}else{
 			console.log(err);
+			res.send(err);
 		}
 	});
 }
