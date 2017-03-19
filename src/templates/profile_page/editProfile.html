@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MalICSi - Edit Profile</title>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"/>
+        <link rel="stylesheet" type="text/css" href="profile.css">
+        <link rel="stylesheet" type="text/css" href="editProfile.css">
+        <link href="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.css" rel="stylesheet" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            #news {
+                margin: 0px 0px 50px 0px;
+            }
+
+            #dropdown-links {
+                cursor: pointer;
+                font-size: 14px;
+                color: #616161;
+                margin-bottom: 2px;
+                width: 50%;
+                float: left;
+            }
+
+            #dropdown-links:hover {
+                color: #ff0000;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav id="top" class="white">
+            <div class="nav-wrapper">
+                <a class="left" style="height: 64px;" href="#"><img src="../images/logo/malicsi-logo.png"></a>
+                <ul class="left hide-on-med-and-down">
+                    <li><i id="drop-links" style="cursor: pointer;" class="black-text large material-icons">menu</i></li>
+                    <li><a class="black-text" href="#">Sports</a></li>
+                    <li><a class="black-text" href="#">Schedules</a></li>
+                    <li><a class="black-text" href="#">Results</a></li> 
+                </ul>
+                <div class="left" style="height: 64px; margin: 0px 10px; padding: 8px 0px 0px 0px">
+                    <input width="30px" class="left black-text" placeholder="Search" id="input" style="float: left;">
+                    <i class="black-text material-icons" style="cursor: pointer">search</i>
+                </div>
+                <a href="#" data-activates="slide-out" class="right red-text side-nav-button">
+                    djbelmonte
+                    <i style="margin: 0px 15px;" class="right black-text material-icons">menu</i>
+                </a>            
+            </div>
+        </nav>
+
+        <div id="additional-links" class="webui-popover-content" style="margin: 10px 0px 20px 0px; width: 200px; height: 50px">
+            <div><a id="dropdown-links">Events</a></div>
+            <div><a id="dropdown-links">Players</a></div>
+            <div><a id="dropdown-links">Leagues</a></div>
+            <div><a id="dropdown-links">About</a></div>
+            <div><a id="dropdown-links">Contact us</a></div>
+        </div>
+        
+        <ul id="slide-out" class="side-nav">
+            <li><div class="userView">
+                <div class="background">
+                    <img src="../images/background.jpg">
+                </div>
+                <a href="#!user"><img class="circle" src="../images/person-flat.png"></a>
+                <a href="#!name"><span class="white-text name">Donn Jerico Belmonte</span></a>
+                <a href="#!email"><span class="white-text email">djbelmonte</span></a>
+            </div></li>
+            <li><a href="#!">Notifications<i class="material-icons">notifications</i></a></li>
+            <li><a href="#!">Stats<i class="material-icons">equalizer</i></a></li>
+            <li><a href="#!">Leagues<i class="material-icons">subject</i></a></li>
+            <li><a href="#!">Edit Profile<i class="material-icons">settings</i></a></li>
+            <li><a href="#!">Sign out<i class="material-icons">power_settings_new</i></a></li>
+        </ul>
+
+        <!-- End of Navigation-->
+
+        <!--Form proper-->
+        <div class="container z-depth-1">
+            <div id="edit-user-big">
+                <!-- A static image was used for now. This is meant to show the user's profile picture. If there was none uploaded, this is what will show. -->
+                <img id="user-image" class="responsive-img" src="../images/person-flat.png">
+                <div class="center row">
+                    <!--Holds the person's username and name-->
+                    <div class="col s10 offset-s1">
+                        <div class="col s8 offset-s2 input-field">
+                            <input type="text" id="change-name" class="center">
+                            <label class="center" for="change-name">Full Name</label>
+                        </div>
+                        <div class="col s8 offset-s2 input-field">
+                            <input type="text" id="change-username" class="center">
+                            <label class="center" for="change-username">Username</label>
+                        </div>
+                        <div class="col s8 offset-s2 input-field">
+                            <input type="text" id="change-password" class="center">
+                            <label class="center" for="change-password">Password</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="divider"></div>
+            <br>
+
+            <!--Holds the user's information-->
+            <div class="row" id="user-info">
+                <div class="col s10 offset-s1">
+                    <div class="center row user-row">
+                        <div class="input-field right-align col s3">
+                            <p>Birthday</p>
+                        </div>
+                        <div class="col s3">
+                            <div class="input-field col s4">
+                                <select>
+                                    <option value="1">Jan</option>
+                                    <option value="2">Feb</option>
+                                    <option value="3">Mar</option>
+                                    <option value="4">Apr</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">Aug</option>
+                                    <option value="9">Sept</option>
+                                    <option value="10">Oct</option>
+                                    <option value="11">Nov</option>
+                                    <option value="12">Dec</option>
+                                </select>
+                                <label>Month</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input id="bday-day" type="text" placeholder="">
+                                <label for="bday-day">Day</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input id="bday-year" type="text" placeholder="">
+                                <label for="bday-year">Year</label>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <div class="right-align col s3">
+                                <p>Gender</p>
+                            </div>
+                            <div class="left-align col s3">
+                                <input type="text" id="change-gender" placeholder="Male/Female/Other">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-field center row user-row">
+                        <div class="input-field">
+                            <div class="right-align col s3">
+                                <p>Email Address</p>
+                            </div>
+                            <div class="left-align col s3">
+                                <input type="text" id="change-email" placeholder="youremail@example.com">
+                            </div>
+                        </div>
+                        <div class="right-align col s3">
+                            <p>Mobile Number</p>
+                        </div>
+                        <div class="left-align col s3">
+                            <input type="text" id="change-mobile-number" placeholder="09XXXXXXXXX">
+                        </div>
+                    </div>
+                    <div class="center row user-row" id="affiliations">
+                        <div class="input-field right-align col s6">
+                            <p>Affiliations</p>
+                        </div>
+                        <div class="affiliation-row">
+                            <div class="input-field left-align col s6 change-affiliations">
+                                <input type="text" class="col s8" placeholder="Affiliation">
+                                <a class="red waves-effect btn-floating tooltipped add-affiliation" data-position="top" data-delay="10" data-tooltip="Add another affiliation"><i class="material-icons">add</i></a>
+                                <a class="red disabled waves-effect  btn-floating tooltipped remove-affiliation" data-position="top" data-delay="10" data-tooltip="Remove affiliation"><i class="material-icons">delete</i></a>
+                            </div>
+                            <div class="left-align col s6"></div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="divider"></div>
+                    <br>
+
+                    <h5>CONTACT PERSON IN CASE OF EMERGENCY</h5>
+                    <div class="input-field center row user-row">
+                        <div class="right-align col s6">
+                            <p>Name of contact person</p>
+                        </div>
+                        <div class="left-align col s6">
+                            <input type="text" id="icoe-name" placeholder="">
+                        </div>
+                    </div>
+                    <div class="input-field center row user-row">
+                        <div class="right-align col s6">
+                            <p>Relation to contact person</p>
+                        </div>
+                        <div class="left-align col s6">
+                            <input type="text" id="icoe-relation" placeholder="Parent/Guardian/Etc">
+                        </div>
+                    </div>
+                    <div class="input-field center row user-row">
+                        <div class="right-align col s6">
+                            <p>Mobile number of contact person</p>
+                        </div>
+                        <div class="left-align col s6">
+                            <input type="text" id="icoe-mobile" placeholder="09XXXXXXXXX">
+                        </div>
+                    </div>
+
+                    <div class="center row user-row">
+                        <a id="save-changes-btn" href="#save-changes" class="green btn waves-effect waves-light">Save Changes</a>
+                        <a id="delete-account-btn" href="#delete-account" class="red btn waves-effect waves-light">Delete Account</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="save-changes" class="modal">
+                <div class="modal-content">
+                    <h4>Save Changes</h4>
+                    <p>Are you sure you want to make these changes to your profile?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-red">No</a>
+                    <a href="profile.html" class="btn-flat modal-action modal-close waves-effect waves-green">Yes</a>
+                </div>
+            </div>
+            <div id="delete-account" class="modal">
+                <div class="modal-content">
+                    <h4>Delete Account</h4>
+                    <p>Are you sure you want to delete your account?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-red">No</a>
+                    <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-green">Yes</a>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../../node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js">
+        </script>
+        <script type="text/javascript" src="editProfile.js"></script>
+        <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
+        <script>
+            $('.side-nav-button').sideNav({
+                menuWidth: 300, // Default is 300
+                edge: 'right', // Choose the horizontal origin
+                closeOnClick: true
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                Materialize.updateTextFields();
+            }); 
+        </script>
+        <!--script>
+            $('a').click(function(){
+                $('html, body').animate({
+                    scrollTop: $( $(this).attr('href') ).offset().top
+                }, 500);
+                return false;
+            });
+        </script-->
+        <script>
+            $('#drop-links').webuiPopover({url:'#additional-links'});
+        </script>
+    </body>
+</html>
