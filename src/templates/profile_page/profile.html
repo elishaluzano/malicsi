@@ -3,37 +3,35 @@
     <head>
         <title>MalICSi - View Profile</title>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/js/init.jsnode_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
-        <link rel="stylesheet" type="text/css" href="../../../node_modules/materialize-css/dist/js/init.jsnode_modules/materialize-css/dist/css/profile.css">
+        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"/>
+        <link rel="stylesheet" type="text/css" href="profile.css">
     </head>
     <body>
         <!-- Navigation -->
         <div class = "navbar-fixed">
-  <nav id="top" class="white">
-    <div class="nav-wrapper">
-      <a href="index.html" class="left" style="width: 200px;"><img src= "../images/logo/malicsi.png"></a>
-      <ul class="left hide-on-med-and-down ">
-        <li><a href="#" class = "dropdown-button black-text" data-activates="dropdown1" hover = "true"><i class = "material-icons grey-text">menu</i></a></li>
-        <ul id = "dropdown1" class = "dropdown-content">
-          <li><a href = "viewleagues.html"> Events</a></li>
-          <li><a href = "profile.html"> Profile</a></li>
-        </ul>
-      <li><input class = "text"></li>
-      </ul>
+            <nav id="top" class="white">
+                <div class="nav-wrapper">
+                    <a href="index.html" class="left" style="width: 200px;"><img src= "../../client/assets/logo/malicsi.png"></a>
+                    <ul class="left hide-on-med-and-down ">
+                        <li><a href="#" class = "dropdown-button black-text" data-activates="dropdown1" hover = "true"><i class = "material-icons grey-text">menu</i></a></li>
+                        <ul id = "dropdown1" class = "dropdown-content">
+                            <li><a href = "viewleagues.html"> Events</a></li>
+                            <li><a href = "profile.html"> Profile</a></li>
+                        </ul>
+                        <li><input class = "text"></li>
+                    </ul>
 
-      <ul class="right hide-on-med-and-down">
-
-        <li><a href="#modal-register" class = "black-text">REGISTER</a></li>
-        <li><a id="login" href="#modal-login"  class = "black-text">LOGIN<i class="material-icons right" >arrow_drop_down</i></a></li>
-      </ul>
-    </div>
-  </nav>
-</div>
-
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#modal-register" class = "black-text">REGISTER</a></li>
+                        <li><a id="login" href="#modal-login"  class = "black-text">LOGIN<i class="material-icons right" >arrow_drop_down</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
 
         <div class="container z-depth-1">
             <div id="user-big">
-                <img id="user-image" class="responsive-img" src="../images/person-flat.png">
+                <img id="user-image" class="responsive-img" src="../../client/assets/person-flat.png">
                 <div class="center row">
                     <!--Holds the person's username and name-->
                     <h5>Perso N. Name</h5>
@@ -44,24 +42,6 @@
             <!--Holds the user's information-->
             <div class="row" id="user-info">
                 <div class="col s10 offset-s1">
-                    <!--
-                    <div class="center row user-row">
-                        <div class="right-align col s6">
-                            <p>Birthday</p>
-                        </div>
-                        <div class="left-align col s6">
-                            <p>March 11, 19XX</p>
-                        </div>
-                    </div>
-                    <div class="center row user-row">
-                        <div class="right-align col s6">
-                            <p>Gender</p>
-                        </div>
-                        <div class="left-align col s6">
-                            <p>Male/Female/Other</p>
-                        </div>
-                    </div>
-                    -->
 
                     <!--Two-in-a-row format-->
                     <div class="center row user-row">
@@ -86,26 +66,10 @@
                             <p>personname@email.com</p>
                         </div>
                         <div class="right-align col s3">
-                            <p>Another detail</p>
+                            <p>Mobile Number</p>
                         </div>
                         <div class="left-align col s3">
-                            <p>Some other details, another thing here, and there</p>
-                        </div>
-                    </div>
-
-                    <!--Other personal details are contained here.-->
-                    <div class="center row user-row">
-                        <div class="right-align col s3">
-                            <p>Additional Detail 1</p>
-                        </div>
-                        <div class="left-align col s3">
-                            <p>Corresponding Detail 1</p>
-                        </div>
-                        <div class="right-align col s3">
-                            <p>Additional Detail 2</p>
-                        </div>
-                        <div class="left-align col s3">
-                            <p>Corresponding Detail 2</p>
+                            <p>09XXXXXXXXX</p>
                         </div>
                     </div>
 
@@ -122,12 +86,40 @@
                             </p>
                         </div>
                     </div>
+
+                    <br>
+                    <div class="divider"></div>
+                    <br>
+
+                    <div class="center row user-row">
+                        <h5>CONTACT PERSON IN CASE OF EMERGENCY</h5>
+                        <div class="right-align col s6">
+                            <p>Name of contact person</p>
+                        </div>
+                        <div class="left-align col s6">
+                            <input type="text" id="icoe-name" placeholder="">
+                        </div>
+                        <div class="right-align col s6">
+                            <p>Relation to contact person</p>
+                        </div>
+                        <div class="left-align col s6">
+                            <input type="text" id="icoe-relation" placeholder="Parent/Guardian/Etc">
+                        </div>
+                        <div class="right-align col s6">
+                            <p>Mobile number of contact person</p>
+                        </div>
+                        <div class="left-align col s6">
+                            <input type="text" id="icoe-mobile" placeholder="09XXXXXXXXX">
+                        </div>
+
+                        <div class="col s4 offset-s3">
+                            <a href = "editProfile.html" class = "btn right">Edit</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="divider">
-                
-            </div>
+            <div class="divider"></div>
 
             <!--
             Contains stats for each participated game
@@ -179,9 +171,10 @@
                     </table>
                 </div>
             </div>
-            <a href = "editProfile.html" class = "btn right">Edit</a>
         </div>
-        <script src="../../../node_modules/jquery/dist/jquery-3.1.1.js"></script>
-        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/init.jsnode_modules/materialize-css/dist/js/materialize.min.js"></script>
+        
+        <script src="../../../node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js">
+        </script>
     </body>
 </html>
