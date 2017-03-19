@@ -37,16 +37,13 @@
     "express": "^4.15.0",
     "express-session": "^1.14.2",
     "jquery": "^3.1.1",
-<<<<<<< HEAD
-    "materialize-css": "^0.98.0",
-    "mysql": "^2.13.0"
-=======
     "mysql": "^2.13.0",
     "semantic-ui": "^2.2.9",
+    "should": "^11.2.0",
+    "should-http": "^0.1.0",
+    "supertest": "^3.0.0",
+    "materialize-css": "^0.98.0",
+    "semantic-ui": "^2.2.9",
     "webpack": "^2.2.1"
-<<<<<<< HEAD
->>>>>>> f19126bc4daf9f7494f65580421f685e15d08d44
-=======
->>>>>>> f19126bc4daf9f7494f65580421f685e15d08d44
   }
 }

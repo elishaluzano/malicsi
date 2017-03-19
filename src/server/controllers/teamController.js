@@ -12,9 +12,8 @@ exports.addTeam = (req,res) =>{
             console.log(err)
          }
         else {
-
-            res.send(rows[0]);
-            console.log("Successfully add team");
+            res.send(rows);
+            console.log("Successfully added a team");
         }
 	});
 }
@@ -26,7 +25,7 @@ exports.viewAllTeam = (req,res) => {
          }
         else {
             res.send(rows);
-            console.log("Successfully view all teams.");
+            console.log("Successfully viewed all teams.");
         }
 	});
 }
@@ -38,20 +37,19 @@ exports.viewTeam = (req,res) => {
          }
         else {
             res.send(rows[0]);
-            console.log("Successfully view all teams.");
+            console.log("Successfully viewed a team.");
         }
 	});
 }
 
 exports.updateTeam = (req,res) => {
-	connection.query('UPDATE team SET name = ?, event_id_key = ? WHERE team_id = ?', [ req.body.name, req.body.event_id_key, req.params.id ], function(err, rows, fields){
+	connection.query('UPDATE team SET name = ?, event_id_key = ? WHERE team_id = ?', [ req.body.name, req.body.event_id_key, req.body.team_id ], function(err, rows, fields){
 		if (err) {
             console.log(err)
          }
         else {
-
-            res.send(rows[0]);
-            console.log("Successfully update team.");
+            res.send(rows);
+            console.log("Successfully updated team.");
         }
 	});
 }
@@ -63,13 +61,13 @@ exports.deleteTeam = (req,res) => {
          }
         else {
             res.send(rows);
-            console.log("Successfully delete team.");
+            console.log("Successfully deleted a team.");
         }
 	});
 }
 
-/*exports.getAllIsComposedOf = (req,res) => {
-	connection.query('SELECT * FROM isComposedOf',[], function(err, rows, fields){
+exports.getAllIsComposedOf = (req,res) => {
+	connection.query('SELECT * FROM teamIsComposedOfUser',[], function(err, rows, fields){
 		if (err) {
             console.log(err)
          }
@@ -81,7 +79,7 @@ exports.deleteTeam = (req,res) => {
 }
 
 exports.getIsComposedOf = (req,res) => {
-	connection.query('SELECT * FROM isComposedOf WHERE ?',[ req.params.team_player_id ], function(err, rows, fields){
+	connection.query('SELECT * FROM teamIsComposedOfUser WHERE team_player_id = ?',[ req.params.id ], function(err, rows, fields){
 		if (err) {
             console.log(err)
          }
@@ -93,7 +91,11 @@ exports.getIsComposedOf = (req,res) => {
 
 
 exports.addIsComposedOf = (req, res) => {
-	connection.query('INSERT INTO isComposedOf SET ?',[ req.body.team_player_id, req.body.user_player_id ], function(err, rows, fields){
+	var relation = {
+		team_player_id : req.body.team_player_id,
+		user_player_id : req.body.user_player_id
+	};
+	connection.query('INSERT INTO teamIsComposedOfUser SET ?', relation, function(err, rows, fields){
 		if (err) {
             console.log(err)
          }
@@ -106,7 +108,7 @@ exports.addIsComposedOf = (req, res) => {
 }
 
 exports.deleteIsComposedOf = (req,res) => {
-	connection.query('DELETE FROM isComposedOf WHERE team_player_id = ?', [ req.params.team_player_id ], function(err, rows, fields){
+	connection.query('DELETE FROM teamIsComposedOfUser WHERE team_player_id = ?', [ req.params.id ], function(err, rows, fields){
 		if (err) {
             console.log(err)
          }
@@ -115,5 +117,4 @@ exports.deleteIsComposedOf = (req,res) => {
             console.log("Successfully delete isComposedOf relation.");
         }
 	});
-<<<<<<< HEAD
-}*/
+}
