@@ -69,4 +69,12 @@ router.get('/api/teams/getIsComposedOf/:id', teamCtrl.getIsComposedOf);
 router.post('/api/teams/addIsComposedOf', teamCtrl.addIsComposedOf);
 router.delete('/api/teams/isComposedOf/:id', teamCtrl.deleteIsComposedOf);
 
+var venueCtrl = require('../controllers/venueController.js');
+
+router.post('/api/venues/addVenue', venueCtrl.addVenue);
+router.get('/api/venues', venueCtrl.viewAllVenue);
+router.get('/api/venues/:id', venueCtrl.viewVenue);
+router.put('/api/venues/updateVenue', venueCtrl.updateVenue);
+router.delete('/api/venues/:id', venueCtrl.deleteVenue);
+
 module.exports = router;
