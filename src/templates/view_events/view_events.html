@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
 	<title>MalICSihan</title>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="../../../node_modules/materialize-css/dist/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link rel="stylesheet" type="text/css" href="../../../node_modules/webui-popover/dist/jquery.webui-popover.css">
+
 </head>
 
 <style>
@@ -109,7 +113,7 @@
             </div></li>
             <li><a href="#!">Notifications<i class="material-icons">notifications</i></a></li>
             <li><a href="#!">Stats<i class="material-icons">equalizer</i></a></li>
-            <li><a href="#!">Leagues<i class="material-icons">subject</i></a></li>
+            <li><a href="#!">Events<i class="material-icons">subject</i></a></li>
             <li><a href="#!">Edit Profile<i class="material-icons">settings</i></a></li>
             <li><a href="#!">Sign out<i class="material-icons">power_settings_new</i></a></li>
 
@@ -167,7 +171,7 @@
 <!--Make this dynamic-->
 <!--Order is reverse chronological-->
 
- <div class="row" name = "LeagueRow">
+ <div class="row" name = "eventRow">
 
        <div class="col s12 m6 l3">
           <div class="hoverable card" >
@@ -347,9 +351,6 @@
 <!--  
   1.) Cancel button closes the modal
   2.) Okay button must delete the event, then, reloads the page
-
-
-
 -->
 
   <div id="modal-delete-event" class="modal z-depth-0 center">
@@ -381,7 +382,7 @@
     });
     // Initialize collapsible (uncomment the line below if you use the dropdown variation)
     //$('.collapsible').collapsible();
-  
+
   </script>
   <script>
     $('.side-nav-button').sideNav({
@@ -392,7 +393,7 @@
   </script>
   <script>
     $('#drop-links').webuiPopover({url:'#additional-links'});
-</script>
+  </script>
         
 </body>
 </html>
