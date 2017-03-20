@@ -145,7 +145,7 @@ describe('Team Relation (playsGame)', function(){
 	 describe('getAllPlays()', function(){
 		 it('retrieves all playsGame relations', function(done){
 			 request(url)
-			 .get('/api/teams/getPlays')
+			 .get('/api/teams/plays')
 			 .end(function(err,res){
 				 if(err) throw err;
 				 try{
@@ -161,7 +161,7 @@ describe('Team Relation (playsGame)', function(){
 	 describe('getPlays()', function () {
 		 it('retrieves a specific playsGame relation', function (done) {
 			 request(url)
-				 .get('/api/teams/getPlays/' + '10')
+				 .get('/api/teams/plays/' + '10')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
@@ -178,8 +178,8 @@ describe('Team Relation (playsGame)', function(){
 				 'game_id_play': 4
 			 };
 			 request(url)
-				 .post('/api/teams/addPlays')
-				 .send(relation)
+				 .post('/api/teams/plays')
+				 .send(new_plays)
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
@@ -191,7 +191,7 @@ describe('Team Relation (playsGame)', function(){
 	 describe('deletePlays()', function () {
 		 it('deletes a specific playsGame relation', function (done) {
 			 request(url)
-				 .delete('/api/teams/deletePlays/' + '10')
+				 .delete('/api/teams/plays/' + '10')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
@@ -207,7 +207,7 @@ describe('Team Relation (winsGame)', function(){
 	 describe('getAllWins()', function(){
 		 it('retrieves all winsGame relations', function(done){
 			 request(url)
-			 .get('/api/teams/getWins')
+			 .get('/api/teams/wins')
 			 .end(function(err,res){
 				 if(err) throw err;
 				 try{
@@ -223,7 +223,7 @@ describe('Team Relation (winsGame)', function(){
 	 describe('getWins()', function () {
 		 it('retrieves a specific winsGame relation', function (done) {
 			 request(url)
-				 .get('/api/teams/winsGame/' + '2')
+				 .get('/api/teams/wins/' + '2')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
@@ -240,8 +240,8 @@ describe('Team Relation (winsGame)', function(){
 				 'game_id_key': 2
 			 };
 			 request(url)
-				 .post('/api/teams/addWins')
-				 .send(relation)
+				 .post('/api/teams/wins')
+				 .send(new_wins)
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
@@ -253,7 +253,7 @@ describe('Team Relation (winsGame)', function(){
 	 describe('deleteWins()', function () {
 		 it('deletes a specific winsGame relation', function (done) {
 			 request(url)
-				 .delete('/api/teams/deleteWins/' + '2')
+				 .delete('/api/teams/wins/' + '2')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
