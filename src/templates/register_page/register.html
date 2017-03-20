@@ -36,14 +36,16 @@
                     <li><a class="black-text" href="#">Results</a></li> 
                 </ul>
                 <div class="left" id="search-bar-div">
-                    <!-- <select class="left black-text">
-                        <option value="" disabled selected>Select Fruit</option>
-                        <option value="1">Mango</option>
-                        <option value="2">Orange</option>
-                        <option value="3">Apple</option>
-                    </select> -->
-                    <input width="30px" class="left black-text" placeholder="Search" id="input">
-                    <i class="black-text material-icons" id="search-icon">search</i>
+                    <select id="select-dropdown" class="left black-text browser-default">
+                        <option value="1">Search All</option>
+                        <option value="2">User</option>
+                        <option value="3">Team</option>
+                        <option value="4">Event</option>
+                    </select>
+                    <div class="left">
+                        <input class="left black-text" placeholder="Search" id="input">
+                        <i class="black-text material-icons" id="search-icon">search</i>
+                    </div>
                 </div>
                 <ul class="right hide-on-med-and-down">
                     <li><a id="login" class="black-text" href="#login-form">Login<i class="material-icons right">arrow_drop_down</i></a></li>
