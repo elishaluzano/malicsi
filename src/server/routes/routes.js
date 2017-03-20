@@ -72,9 +72,5 @@ router.get('/api/teams/getWins', teamCtrl.getAllWins);
 router.get('/api/teams/getWins/:id', teamCtrl.getWins);
 router.post('/api/teams/addWins', teamCtrl.addWins);
 router.delete('/api/teams/deleteWins/:id', teamCtrl.removeWins);
-/*router.get('/api/teams/isComposedOf', teamCtrl.getIsComposedOf);
-router.get('/api/teams/isComposedOf/:id', teamCtrl.getAllIsComposedOf);
-router.post('/api/teams/addIsComposedOf', teamCtrl.addIsComposedOf);
-router.delete('/api/teams/:id', teamCtrl.deleteIsComposed);*/
 
 module.exports = router;

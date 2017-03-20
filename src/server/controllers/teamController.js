@@ -1,70 +1,7 @@
+'use strict'
+
 const mysql = require('mysql');
-const connection = require('./../database.js');
-
-
-exports.addTeam = (req,res) =>{
-	var team = {
-		name : req.body.name,
-		event_id_key : req.body.event_id_key
-	};
-	connection.query('INSERT INTO team SET ?', team, function(err, rows, fields){
-		if (err) {
-            console.log(err)
-         }
-        else {
-            res.send(rows);
-            console.log("Successfully add team");
-        }
-	});
-}
-
-exports.viewAllTeam = (req,res) => {
-	connection.query('SELECT * FROM team',[], function(err, rows, fields){
-		if (err) {
-            console.log(err)
-         }
-        else {
-            res.send(rows);
-            console.log("Successfully view all teams.");
-        }
-	});
-}
-
-exports.viewTeam = (req,res) => {
-	connection.query('SELECT * FROM team WHERE event_id_key = ?', [ req.params.id ], function(err, rows, fields){
-		if (err) {
-            console.log(err)
-         }
-        else {
-            res.send(rows[0]);
-            console.log("Successfully view all teams.");
-        }
-	});
-}
-
-exports.updateTeam = (req,res) => {
-	connection.query('UPDATE team SET name = ?, event_id_key = ? WHERE team_id = ?', [ req.body.name, req.body.event_id_key, req.body.team_id ], function(err, rows, fields){
-		if (err) {
-            console.log(err)
-         }
-        else {
-            res.send(rows);
-            console.log("Successfully update team.");
-        }
-	});
-}
-
-exports.deleteTeam = (req,res) => {
-	connection.query('DELETE FROM team WHERE team_id = ?', [ req.params.id ], function(err, rows, fields){
-		if (err) {
-            console.log(err)
-         }
-        else {
-            res.send(rows);
-            console.log("Successfully delete team.");
-        }
-	});
-}
+const connection = require('./../database.js')
 
 exports.getAllPlays = (req, res) => {
 	connection.query('SELECT * FROM plays', [], function(err, rows, fields) {
@@ -148,5 +85,16 @@ exports.addWins = (req, res) => {
 		} else {
 			console.log("Failed in adding wins");
 		}
-	}
+	});
+}
+
+
+exports.removeWins = (req, res) => {
+	connection.query('DELETE FROM wins where team_id_key = ?', [ req.params.id ], function(err, rows, fields) {
+		if(!err) {
+			console.log("Successfully deleted wins");
+		} else {
+			console.log("Error in deleting wins");
+		}
+	});
 }
