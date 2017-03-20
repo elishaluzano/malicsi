@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="index.css" />
+        <link href="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.css" rel="stylesheet" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div id="login-form" class="webui-popover-content">
+            <form id="login-form" action="" method="post">
+                <div class="input-field">
+                    <input id="uname" type="text" class="validate">
+                    <label for="uname">Username</label>
+                </div>
+                <div class="input-field">
+                    <input id="pword" type="password" class="validate">
+                    <label for="pword">Password</label>
+                </div>
+                <button id="login-button" class="right red btn waves-effect waves-light" type="submit" name="action">Login</button>
+            </form>
+            <a id="forgot-password-link" class="right">Forgot your password?</a>
+        </div>
+
+        <div id="additional-links" class="webui-popover-content">
+            <div><a id="dropdown-links">Events</a></div>
+            <div><a id="dropdown-links">Players</a></div>
+            <div><a id="dropdown-links">Leagues</a></div>
+            <div><a id="dropdown-links">About</a></div>
+            <div><a id="dropdown-links">Contact us</a></div>
+        </div>
+
+        <nav id="top" class="white">
+            <div class="nav-wrapper">
+                <a class="left" id="malicsi-logo-link" href="#"><img src="../images/malicsi-logo.png"></a>
+                <ul class="left hide-on-med-and-down">
+                    <li><i id="drop-links" class="black-text large material-icons">menu</i></li>
+                    <li><a class="black-text" href="#">Sports</a></li>
+                    <li><a class="black-text" href="#">Schedules</a></li> 
+                    <li><a class="black-text" href="#">Results</a></li> 
+                </ul>
+                <div class="left" id="search-bar-div"><input class="black-text" placeholder="Search" id="input"><i id="search-icon" class="black-text material-icons">search</i></div>
+                <ul class="right hide-on-med-and-down">
+                    <li id="register-link"><a class="black-text" href="#register-part">Register</a></li>
+                    <li><a id="login" class="black-text" href="#login-form">Login<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="carousel carousel-slider center" data-indicators="true">
+            <div class="carousel-item" href="#">
+                <img src="http://vwcathletics.com/sports/mbkb/2015-16/basketball_sr.jpg">
+            </div>
+            <div class="carousel-item" href="#">
+                <img src="http://i2.cdn.cnn.com/cnnnext/dam/assets/160807004251-beach-volleyball-super-169.jpg">
+            </div>
+            <div class="carousel-item" href="#">
+                <img src="https://static01.nyt.com/images/2016/08/19/sports/19BADMINTONweb3/19BADMINTONweb3-master675.jpg">
+            </div>
+            <div class="carousel-item" href="#">
+                <img src="http://www.nbcolympics.com/sites/default/files/field_image/01June2016/table-tennis-og-image-cropped.jpg">
+            </div>
+        </div>
+
+        <h3 id="latest-news-header">Latest News</h3>
+        <div id="news-grid" class="row">
+            <div id="news" class="col s4">
+                <img src="../images/news.jpg" height="150px" width="250px">
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+            </div>
+            <div id="news" class="col s4">
+                <img src="../images/news.jpg" height="150px" width="250px">
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+            </div>
+            <div id="news" class="col s4">
+                <img src="../images/news.jpg" height="150px" width="250px"> 
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+            </div>
+            <div id="news" class="col s4">
+                <img src="../images/news.jpg" height="150px" width="250px">
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+            </div>
+            <div id="news" class="col s4">
+                <img src="../images/news.jpg" height="150px" width="250px">
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+            </div>
+            <div id="news" class="col s4">
+                <img src="../images/news.jpg" height="150px" width="250px"> 
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+            </div>
+        </div>
+        <div id="register-part"> 
+            <div id="register" class="col s12">
+                <h4 id="join-header">Join our Community!</h4>
+                <form class="col s12">
+                    <div class="form-container">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="last_name" type="text" class="validate">
+                                <label for="last_name">First Name</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="last_name" type="text" class="validate">
+                                <label for="last_name">Last Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" type="email" class="validate">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email-confirm" type="email" class="validate">
+                                <label for="email-confirm">Email Confirmation</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="password" type="password" class="validate">
+                                <label for="password">Password</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="password-confirm" type="password" class="validate">
+                                <label for="password-confirm">Password Confirmation</label>
+                            </div>
+                        </div>
+                        <center>
+                            <button class="red btn waves-effect waves-light teal" type="submit" name="action">Register</button>
+                        </center>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <footer class="red page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Footer Content</h5>
+                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    BETELOG 2017 Copyright 
+                    <a class="grey-text text-lighten-4 right" href="#top">Back to top</a>
+                </div>
+            </div>
+        </footer>
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.js"></script>
+        <script src="../../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+        <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
