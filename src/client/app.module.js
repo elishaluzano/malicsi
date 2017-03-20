@@ -3,11 +3,8 @@
         .module('app', ['ui.router']);
 
     require('./app.router');
-    // IMPORT ALL SERVICES BELOW
-    require('./services/user-log.service');
-    require('./services/team.service');
-    require('./services/game.service');
-
-    // IMPORT ALL COMPONENTS BELOW
-
+    require.context('./assets', true, /.*\.(png|jpg|gif)$/);
+    require.context('./services', true, /.*\.service\.js$/);
+    require.context('./components', true, /.*\.component\.js$/);
+    require.context('./shared', true, /.*\.component\.js$/);
 })();
