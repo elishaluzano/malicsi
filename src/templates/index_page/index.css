@@ -1,3 +1,8 @@
+* {
+    outline: 0;
+}
+
+
 #news {
     margin: 0px 0px 50px 0px;
 }
@@ -80,4 +85,9 @@
 
 #sidenav-icon {
     margin: 0px 15px;
+}
+
+#select-dropdown {
+    width: 105px;
+    margin-right: 10px;
 }
