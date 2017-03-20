@@ -7,7 +7,7 @@ const connection = require(__dirname + '/../database.js');
 exports.getAccount = (req, res) => {
   res.send(req.session.user);
 }
-// login 
+// login
 exports.loginUser = (req, res) => {
 	connection.query('SELECT * FROM user WHERE username = ?',[req.body.username], function(err, rows, fields) {
 		if (!err){
@@ -15,7 +15,7 @@ exports.loginUser = (req, res) => {
 				req.session.user = rows[0];
 				console.log("Successfully logged in user");
 				res.send(rows[0]);
-			}	
+			}
 			else {
 				res.send(false);
 				console.log("Login unsuccessful");
@@ -67,7 +67,7 @@ exports.getUsers = (req, res) => {
 			console.log("Error in retrieving all users");
 		}
 	});
-} 
+}
 
 // GET specific user
 exports.getUser = (req, res) => {
@@ -81,7 +81,7 @@ exports.getUser = (req, res) => {
 			console.log("Error in retrieving user");
 		}
 	});
-} 
+}
 
 // PUT specific user
 exports.updateUser = (req, res) => {
