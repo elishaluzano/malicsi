@@ -139,3 +139,128 @@ describe('Team Relation (isComposedOf)', function(){
 		 });
 	 });
 });
+
+describe('Team Relation (playsGame)', function(){
+	 var url = 'http://localhost:8000';
+	 describe('getAllPlays()', function(){
+		 it('retrieves all playsGame relations', function(done){
+			 request(url)
+			 .get('/api/teams/getPlays')
+			 .end(function(err,res){
+				 if(err) throw err;
+				 try{
+				 	res.should.have.status(200);
+				 	res.body.should.be.an.instanceOf(Array);
+				 }catch(e){
+				 	done();
+				 }
+			 });
+		 });
+	 });
+
+	 describe('getPlays()', function () {
+		 it('retrieves a specific playsGame relation', function (done) {
+			 request(url)
+				 .get('/api/teams/getPlays/' + '10')
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
+					 res.body.should.be.an.instanceOf(Object);
+					 done();
+				 });
+		 });
+	 });
+
+	 describe('addPlay()', function () {
+		 it('creates a new playsGame relation', function (done) {
+			 var new_plays = {
+				 'team_id_play': 7,
+				 'game_id_play': 4
+			 };
+			 request(url)
+				 .post('/api/teams/addPlays')
+				 .send(relation)
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
+					 done();
+				 });
+		 });
+	 });
+
+	 describe('deletePlays()', function () {
+		 it('deletes a specific playsGame relation', function (done) {
+			 request(url)
+				 .delete('/api/teams/deletePlays/' + '10')
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
+					 	res.body.should.be.an.instanceOf(Object);
+					 done();
+				 });
+		 });
+	 });
+});
+
+describe('Team Relation (winsGame)', function(){
+	 var url = 'http://localhost:8000';
+	 describe('getAllWins()', function(){
+		 it('retrieves all winsGame relations', function(done){
+			 request(url)
+			 .get('/api/teams/getWins')
+			 .end(function(err,res){
+				 if(err) throw err;
+				 try{
+				 	res.should.have.status(200);
+				 	res.body.should.be.an.instanceOf(Array);
+				 }catch(e){
+				 	done();
+				 }
+			 });
+		 });
+	 });
+
+	 describe('getWins()', function () {
+		 it('retrieves a specific winsGame relation', function (done) {
+			 request(url)
+				 .get('/api/teams/winsGame/' + '2')
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
+					 res.body.should.be.an.instanceOf(Object);
+					 done();
+				 });
+		 });
+	 });
+
+	 describe('addWins()', function () {
+		 it('creates a new playsGame relation', function (done) {
+			 var new_wins = {
+				 'team_id_key': 3,
+				 'game_id_key': 2
+			 };
+			 request(url)
+				 .post('/api/teams/addWins')
+				 .send(relation)
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
+					 done();
+				 });
+		 });
+	 });
+
+	 describe('deleteWins()', function () {
+		 it('deletes a specific winsGame relation', function (done) {
+			 request(url)
+				 .delete('/api/teams/deleteWins/' + '2')
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
+					 	res.body.should.be.an.instanceOf(Object);
+					 done();
+				 });
+		 });
+	 });
+});
+
