@@ -5,8 +5,8 @@ const mysql = require('mysql');
 const connection = mysql.createConnection({
   host : 'localhost',
   user : 'root',
-  password : 'admin',
-  db : 'MALICSI'
+  password : 'root',
+  db : 'malicsi'
 });
 
 //check database connection 
@@ -15,8 +15,9 @@ connection.connect((err) => {
         console.log("The database is connected!");
     } else {
         console.log("There is an error in database connection!");
+        console.log(err);
     }
 });
-connection.query('USE MALICSI');
+connection.query('USE malicsi');
 module.exports = connection;
 

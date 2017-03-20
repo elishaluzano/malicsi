@@ -5,6 +5,7 @@ const session = require('express-session')
 const mysql = require('mysql');
 const bodyParser = require('body-parser');	
 const path = require('path');
+
 const app = express();
 
 //server directory
@@ -17,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //sessions
 app.use(session({
-	secret: 'malICSi',
+	secret: 'malicsi',
 	resave: false,
 	saveUninitialized: false,
 	proxy: true
@@ -31,5 +32,5 @@ app.get('/*', function(req, res) {
 
 //listening on port 8000
 app.listen(8000, function(){
-	console.log('Server running at localhost:8000')
+	console.log('Server running at localhost:8000');
 });
