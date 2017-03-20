@@ -29,7 +29,6 @@ app.get('/*', function(req, res) {
 	res.sendFile(path.resolve('./../../dist/index.html'));
 });
 
-
 //listening on port 8000
 app.listen(8000, function(){
 	console.log('Server running at localhost:8000');

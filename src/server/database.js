@@ -15,7 +15,6 @@ connection.connect((err) => {
         console.log("The database is connected!");
     } else {
         console.log("There is an error in database connection!");
-        console.log(err);
     }
 });
 connection.query('USE malicsi');

@@ -12,6 +12,7 @@ exports.getAdmins = (req, res) => {
 		}
 		else {
 			console.log("Error in retrieving all admins");
+			res.send(err);
 		}
 	});
 }
@@ -25,6 +26,7 @@ exports.getAdmin = (req, res) => {
 		}
 		else {
 			console.log("Error in retrieving an admin");
+			res.send(err);
 		}
 	});
 }
@@ -34,21 +36,25 @@ exports.addAdmin = (req, res) => {
 	connection.query('INSERT INTO admin SET ?',[req.body.admin_id, req.body.position], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully added an admin");
+			res.send(rows[0]);
 		}
 		else {
 			console.log("Error in adding an admin");
+			res.send(err);
 		}
 	});
 }
 
 // PUT specific admin 
 exports.updateAdmin = (req, res) => {
-	connection.query('UPDATE admin SET position = ? where admin_id = ?',[req.body.position, req.body.admin_id], function(err, rows, fields) {
+	connection.query('UPDATE admin SET position = ? where admin_id = ?',[req.body.position, req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully updated an admin");
+			res.send(rows[0]);
 		}
 		else {
 			console.log("Error in updating an admin");
+			res.send(err);
 		}
 	});
 }
@@ -58,24 +64,12 @@ exports.deleteAdmin = (req, res) => {
 	connection.query('DELETE FROM admin where admin_id = ?',[req.params.id],function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully deleted an admin");
+			res.send({});
 		}
 		else {
 			console.log("Error in deleting an admin");
+			res.send(err);
 		}
 	});
 }
 
-/*
-// GET all admins under a sponsoring institution 
-exports.getAdmins = (req, res) => {
-	connection.query('SELECT * from admin where ',[], function(err, rows, fields) {
-		if (!err) {
-			res.send(rows);
-			console.log("Successfully retrieved all admins under an institution");
-		}
-		else {
-			console.log("Error in retrieving all admins under an institution");
-		}
-	});
-}
-*/
