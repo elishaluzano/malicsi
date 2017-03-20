@@ -21,7 +21,18 @@
                     <li><a class="black-text" href="#">Schedules</a></li>
                     <li><a class="black-text" href="#">Results</a></li> 
                 </ul>
-                <div class="left" id="search-bar-div"><input class="black-text" placeholder="Search" id="input"><i id="search-icon" class="black-text material-icons">search</i></div>
+                <div class="left" id="search-bar-div">
+                    <select id="select-dropdown" class="left black-text browser-default">
+                        <option value="1">Search All</option>
+                        <option value="2">User</option>
+                        <option value="3">Team</option>
+                        <option value="4">Event</option>
+                    </select>
+                    <div class="left">
+                        <input class="left black-text" placeholder="Search" id="input">
+                        <i class="black-text material-icons" id="search-icon">search</i>
+                    </div>
+                </div>
                 <a href="#" data-activates="slide-out" class="right red-text side-nav-button">
                     djbelmonte
                     <i id="sidenav-icon" class="right black-text material-icons">menu</i>
