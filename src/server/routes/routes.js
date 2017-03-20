@@ -8,6 +8,7 @@ var userCtrl = require('../controllers/userController.js');
 router.post('/api/login', userCtrl.loginUser);
 router.post('/api/sessions', userCtrl.getAccount);
 router.post('/api/users', userCtrl.addUser);
+router.post('/api/logout', userCtrl.logout)
 //user routes
 router.get('/api/users', userCtrl.getUsers);
 router.get('/api/users/:id', userCtrl.getUser);

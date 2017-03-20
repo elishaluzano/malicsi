@@ -55,6 +55,12 @@ exports.addUser = (req, res) => {
 	});
 }
 
+// logout
+exports.logout = (req, res) => {
+    req.session.user = {};
+    res.send({});
+}
+
 // GET all users
 exports.getUsers = (req, res) => {
 	connection.query('SELECT * FROM user', [], function(err, rows, fields) {
@@ -85,7 +91,7 @@ exports.getUser = (req, res) => {
 
 // PUT specific user
 exports.updateUser = (req, res) => {
-	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ? where user_id = ?',[req.body.name, req.body.username, req.body.password, req.body.gender, req.body.birthday, req.body.email, req.body.contact_number,req.params.id], function(err, rows, fields) {
+	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, req.body.password, req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, req.body.profile_pic, req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
 			res.send(rows[0]);
