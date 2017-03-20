@@ -3,15 +3,15 @@
 
     angular
         .module('app')
-        .factory('loginService', loginService);
+        .factory('sessionService', sessionService);
 
-    function loginService($http) {
+    function sessionService($http) {
         // currently logged in user
-        var user = null;
+        var currentUser = null;
 
         var service = {
-            getUser: function() {
-                return user;
+            user: function() {
+                return currentUser;
             },
 
             login: function(username, password) {
@@ -52,7 +52,7 @@
                     });
             }
         };
-
+        
         return service;
     }
 
