@@ -168,7 +168,7 @@ exports.addPlays = (req, res) => {
 }
 
 
-exports.removePlays = (req, res) => {
+exports.deletePlays = (req, res) => {
 	connection.query('DELETE FROM teamPlaysGame where team_id_play = ?', [ req.params.id ], function(err, rows, fields) {
 		if(!err) {
 			res.send({});
@@ -221,7 +221,7 @@ exports.addWins = (req, res) => {
 }
 
 
-exports.removeWins = (req, res) => {
+exports.deleteWins = (req, res) => {
 	connection.query('DELETE FROM teamWinsGame where team_id_key = ?', [ req.params.id ], function(err, rows, fields) {
 		if(!err) {
 			res.send({});

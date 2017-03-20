@@ -75,6 +75,18 @@ router.get('/api/teams/getIsComposedOf/:id', teamCtrl.getIsComposedOf);
 router.post('/api/teams/addIsComposedOf', teamCtrl.addIsComposedOf);
 router.delete('/api/teams/isComposedOf/:id', teamCtrl.deleteIsComposedOf);
 
+//team-plays routes
+router.get('/api/teams/getPlays', teamCtrl.getAllPlays);
+router.get('/api/teams/getPlays/:id', teamCtrl.getPlays);
+router.post('/api/teams/addPlays', teamCtrl.addPlays);
+router.delete('/api/teams/deletePlays/:id', teamCtrl.deletePlays);
+
+//team-wins routes
+router.get('/api/teams/getWins', teamCtrl.getAllWins);
+router.get('/api/teams/getWins/:id', teamCtrl.getWins);
+router.post('/api/teams/addWins', teamCtrl.addWins);
+router.delete('/api/teams/deleteWins/:id', teamCtrl.deleteWins);
+
 var venueCtrl = require('../controllers/venueController.js');
 //venue routes
 router.post('/api/venues', venueCtrl.addVenue);
