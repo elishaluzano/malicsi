@@ -15,13 +15,12 @@ router.get('/api/users/:id', userCtrl.getUser);
 router.put('/api/users/:id', userCtrl.updateUser);
 router.delete('/api/users/:id', userCtrl.deleteUser);
 
-var adminCtrl = require('../controllers/adminController.js');
 //admin routes
-router.get('/api/admins', adminCtrl.getAdmins);
-router.get('/api/admins/:id', adminCtrl.getAdmin);
-router.post('/api/admins', adminCtrl.addAdmin);
-router.put('/api/admins/:id', adminCtrl.updateAdmin);
-router.delete('api/admins/:id', adminCtrl.deleteAdmin);
+router.get('/api/checkAdmin/:id', userCtrl.checkAdmin);
+router.get('/api/admins', userCtrl.getAdmins);
+router.get('/api/admins/:id', userCtrl.getAdmin);
+router.post('/api/admins', userCtrl.addAdmin);
+router.delete('api/admins/:institution_id/:user_id', userCtrl.deleteAdmin);
 
 
 var institutionCtrl = require('../controllers/institutionController.js');

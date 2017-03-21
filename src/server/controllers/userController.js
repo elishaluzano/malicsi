@@ -116,3 +116,86 @@ exports.deleteUser = (req, res) => {
 		}
 	});
 }
+
+//Admin
+
+// check if user is an admin
+exports.checkAdmin = (req, res) => {
+    connection.query('SELECT * FROM user JOIN institutionHasAdmin ON user.user_id = institutionHasAdmin.user_no where user.user_id = ?', [req.params.id], function(err, rows, fields) {
+        if (!err){
+            if (rows[0] !== null){
+                res.send(rows[0]);
+                console.log("User is an admin");
+            }
+            else {
+                res.send(false);
+                console.log("User is not an admin");
+            }
+        }
+        else {
+            res.send(err);
+            console.log("Error in checking admin");
+        }
+    });
+}
+
+// GET all admins
+exports.getAdmins = (req, res) => {
+    connection.query('SELECT * FROM user JOIN institutionHasAdmin on user.user_id = institutionHasAdmin.user_no',[], function (err, rows, fields){
+        if (!err) {
+            res.send(rows);
+            console.log("Successfully retrieved all admins");
+        }
+        else {
+            res.send(err);
+            console.log("Error in retrieving all admins");
+        }
+    });
+}
+
+// GET all admins under specific institution
+exports.getAdmin = (req, res) => {
+    connection.query('SELECT * FROM user JOIN institutionHasAdmin on user.user_id = institutionHasAdmin.user_no where institution_no = ?',[req.params.id],function(err, rows, fields){
+        if (!err){
+            res.send(rows);
+            console.log("Successfully retrieved all admins under an institution");
+        }
+        else {
+            res.send(err);
+            console.log("Error in retrieving all admins under an institution");
+        }
+    });
+}
+
+// POST an admin
+exports.addAdmin = (req, res) => {
+    var newAdmin = {
+        institution_no : req.body.institution_no,
+        user_no : req.body.user_no
+    }
+    connection.query('INSERT INTO institutionHasAdmin set ?', newAdmin, function(err, rows, fields){
+        if (!err){
+            res.send(rows[0]);
+            console.log("Successfully added new admin");
+        }
+        else {
+            res.send(err);
+            console.log("Error in adding new admin");
+        }
+        
+    });
+}
+
+// DELETE an admin
+exports.deleteAdmin = (req, res) => {
+    connection.query('DELETE FROM institutionHasAdmin where institution_no = ? and user_no = ?',[req.params.institution_id, req.params.user_id],function(err, rows, fields){
+        if (!err){
+            res.send({});
+            console.log("Successfully deleted an admin");
+        }
+        else {
+            res.send(err);
+            console.log("Error in deleting an admin");
+        }
+    });
+}

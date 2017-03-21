@@ -7,7 +7,7 @@ const connection = require(__dirname + '/../database.js');
 exports.getAdmins = (req, res) => {
 	connection.query('SELECT * FROM admin',[], function(err, rows, fields) {
 		if (!err) {
-			res.send(rows);	
+			res.send(rows);
 			console.log("Successfully retrieved all admins");
 		}
 		else {
@@ -45,7 +45,7 @@ exports.addAdmin = (req, res) => {
 	});
 }
 
-// PUT specific admin 
+// PUT specific admin
 exports.updateAdmin = (req, res) => {
 	connection.query('UPDATE admin SET position = ? where admin_id = ?',[req.body.position, req.params.id], function(err, rows, fields) {
 		if (!err) {

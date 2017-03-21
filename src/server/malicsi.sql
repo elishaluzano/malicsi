@@ -1,3 +1,6 @@
+DROP DATABASE IF EXISTS malicsi;
+CREATE DATABASE malicsi;
+USE malicsi;
 CREATE TABLE contactPersonInCaseOfEmergency (
 	contact_person_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	contact_person_name varchar(50) NOT NULL,
@@ -33,8 +36,8 @@ CREATE TABLE sponsoringInstitution (
 
 CREATE TABLE institutionHasAdmin (
   	institution_no int NOT NULL,
-  	admin_no int NOT NULL,
-  	CONSTRAINT institutionHasAdmin_admin_no_fk FOREIGN KEY (admin_no) REFERENCES admin (admin_id),
+  	user_no int NOT NULL,
+  	CONSTRAINT institutionHasAdmin_user_no_fk FOREIGN KEY (user_no) REFERENCES user (user_id),
   	CONSTRAINT institutionHas_institution_no_fk FOREIGN KEY (institution_no) REFERENCES sponsoringInstitution (institution_id)
 );
 
