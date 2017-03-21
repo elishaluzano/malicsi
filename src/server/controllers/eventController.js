@@ -31,7 +31,6 @@ exports.viewEvent = (req,res) => {
 		if(!err) {
 			res.send(rows[0]);
 		}else{
-			console.log(err);
 			res.send(err);
 		}
 	});
@@ -42,7 +41,6 @@ exports.viewAllEvent = (req,res) => {
 		if(!err) {
 			res.send(rows);
 		}else{
-			console.log(err);
 			res.send(err);
 		}
 	});

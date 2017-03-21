@@ -15,6 +15,14 @@ router.get('/api/users/:id', userCtrl.getUser);
 router.put('/api/users/:id', userCtrl.updateUser);
 router.delete('/api/users/:id', userCtrl.deleteUser);
 
+var contactCtrl = require('../controllers/contactController.js');
+//contact person in case of emergency routes
+router.post('/api/contacts',contactCtrl.addContact);
+router.get('/api/contacts/:id',contactCtrl.viewContact);
+router.get('/api/contacts',contactCtrl.viewAllContact);
+router.put('/api/contacts/:id',contactCtrl.updateContact);
+router.delete('/api/contacts/:id',contactCtrl.deleteContact);
+
 //admin routes
 router.get('/api/checkAdmin/:id', userCtrl.checkAdmin);
 router.get('/api/admins', userCtrl.getAdmins);

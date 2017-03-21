@@ -3,7 +3,6 @@
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const connection = require('./../database.js')
-
     
 exports.addGame = (req,res) => {
 	var info = {
@@ -16,7 +15,6 @@ exports.addGame = (req,res) => {
 	};
 	connection.query('INSERT INTO game SET ?', info, function(err, rows, fields) {
 		if (!err) {
-
 			res.send(rows);
 			console.log("Successfully added game");
 		}
