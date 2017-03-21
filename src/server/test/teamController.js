@@ -191,7 +191,7 @@ describe('Team Relation (playsGame)', function(){
 	 describe('deletePlays()', function () {
 		 it('deletes a specific playsGame relation', function (done) {
 			 request(url)
-				 .delete('/api/teams/plays/' + '10')
+				 .delete('/api/teams/plays/' + '1/' +'2')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
@@ -253,7 +253,7 @@ describe('Team Relation (winsGame)', function(){
 	 describe('deleteWins()', function () {
 		 it('deletes a specific winsGame relation', function (done) {
 			 request(url)
-				 .delete('/api/teams/wins/' + '2')
+				 .delete('/api/teams/wins/' + '2/' + '1')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
