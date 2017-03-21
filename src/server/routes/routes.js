@@ -22,6 +22,11 @@ router.get('/api/admins/:id', userCtrl.getAdmin);
 router.post('/api/admins', userCtrl.addAdmin);
 router.delete('api/admins/:institution_id/:user_id', userCtrl.deleteAdmin);
 
+var userlogCtrl = require('../controllers/userlogController.js');
+//userlog routes
+router.post('/api/userlogs', userlogCtrl.addLog);
+router.get('/api/userlogs', userlogCtrl.getUserlogs);
+router.get('/api/userlogs/:id', userlogCtrl.getUserlog);
 
 var institutionCtrl = require('../controllers/institutionController.js');
 //institution routes
@@ -38,7 +43,6 @@ router.get('/api/events/:id',eventCtrl.viewEvent);
 router.get('/api/events',eventCtrl.viewAllEvent);
 router.put('/api/events/:id',eventCtrl.updateEvent);
 router.delete('/api/events/:id',eventCtrl.deleteEvent);
-
 
 var sportCtrl = require('../controllers/sportController.js');
 //sport routes

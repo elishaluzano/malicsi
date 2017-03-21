@@ -111,7 +111,7 @@ CREATE TABLE sportIsJoinedByUser (
 );
 
 CREATE TABLE userlog (
-	log_id int NOT NULL PRIMARY KEY,
+	log_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	user_id int NOT NULL,
 	action varchar(100) NOT NULL,
 	activity_time timestamp NOT NULL
