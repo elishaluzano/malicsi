@@ -37,7 +37,7 @@
                         return response.data;
                     })
                     .catch(function(err) {
-                        console.log('Error in getting creating event.');
+                        console.log('Error in creating event.');
                         console.log(err.status + ': ' + err.statusText);
                 });
             },
@@ -48,7 +48,7 @@
                         return response.data;
                     })
                     .catch(function(err) {
-                        console.log('Error in getting updating event.');
+                        console.log('Error in updating event.');
                         console.log(err.status + ': ' + err.statusText);
                     });
             },
@@ -59,7 +59,7 @@
                         return response.data;
                     })
                     .catch(function(err) {
-                        console.log('Error in getting deleting an event!');
+                        console.log('Error in deleting an event.');
                         console.log(err.status + ': ' + err.statusText);
                     });
             }
