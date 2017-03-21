@@ -1,4 +1,3 @@
-
 (function () {
 	'use strict'
 
@@ -14,6 +13,6 @@
 
 	function eventCardController(){
 		var vm = this;
-	}
+    }
 
 })();
