@@ -6,12 +6,12 @@
         .factory('eventService', eventService);
 
     function eventService($http) {
-        var api = '';
+        var api = '/api/events/';
 
-        var service = {		
+        var service = {     
             getAll: function() {
-                return $http.get(api)		
-                    .then(function(response) {	
+                return $http.get(api)       
+                    .then(function(response) {  
                         return response.data;
                     })
                     .catch(function(err) {
@@ -21,8 +21,8 @@
             },
 
             getOne: function(id) {
-                return $http.get(api + id)		
-                    .then(function(response) {	
+                return $http.get(api + id)      
+                    .then(function(response) {  
                         return response.data;
                     })
                     .catch(function(err) {
@@ -32,8 +32,8 @@
             },
 
             create: function(body) {
-                return $http.post(api, body)		
-                    .then(function(response) {	
+                return $http.post(api, body)        
+                    .then(function(response) {  
                         return response.data;
                     })
                     .catch(function(err) {
@@ -43,8 +43,8 @@
             },
 
             update: function(id, body) {
-                return $http.put(api + id, body)		
-                    .then(function(response) {	
+                return $http.put(api + id, body)        
+                    .then(function(response) {  
                         return response.data;
                     })
                     .catch(function(err) {
@@ -54,8 +54,8 @@
             },
 
             delete: function(id) {
-                return $http.delete(api + id)		
-                    .then(function(response) {	
+                return $http.delete(api + id)       
+                    .then(function(response) {  
                         return response.data;
                     })
                     .catch(function(err) {
