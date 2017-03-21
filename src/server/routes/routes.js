@@ -52,6 +52,7 @@ router.get('/api/sports',sportCtrl.viewAllSport);
 router.put('/api/sports/:id',sportCtrl.updateSport);
 router.delete('/api/sports/:id',sportCtrl.deleteSport);
 
+//sport join routes
 router.post('/api/teams/addSportIsJoinedBy', sportCtrl.addJoin);
 router.get('/api/teams/getAllSportIsJoinedBy', sportCtrl.getAllJoins);
 router.get('/api/teams/getSportIsJoinedBy/:id', sportCtrl.getJoins);
@@ -73,6 +74,7 @@ router.get('/api/teams/:id', teamCtrl.viewTeam);
 router.put('/api/teams/:id', teamCtrl.updateTeam);
 router.delete('/api/teams/:id', teamCtrl.deleteTeam);
 
+//team isComposedOf routes
 router.get('/api/teams/getAllIsComposedOf', teamCtrl.getAllIsComposedOf);
 router.get('/api/teams/getIsComposedOf/:id', teamCtrl.getIsComposedOf);
 router.post('/api/teams/addIsComposedOf', teamCtrl.addIsComposedOf);
