@@ -33,7 +33,7 @@ exports.viewAllTeam = (req,res) => {
 }
 
 exports.viewTeam = (req,res) => {
-	connection.query('SELECT * FROM team WHERE event_id_key = ?', [ req.params.id ], function(err, rows, fields){
+	connection.query('SELECT * FROM team WHERE team_id = ?', [ req.params.id ], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
@@ -46,7 +46,7 @@ exports.viewTeam = (req,res) => {
 }
 
 exports.updateTeam = (req,res) => {
-	connection.query('UPDATE team SET name = ?, event_id_key = ? WHERE team_id = ?', [ req.body.name, req.body.event_id_key, req.body.team_id ], function(err, rows, fields){
+	connection.query('UPDATE team SET name = ?, event_id_key = ? WHERE team_id = ?', [ req.body.name, req.body.event_id_key, req.params.team_id ], function(err, rows, fields){
 		if (err) {
             console.log(err)
             res.send(err);
@@ -130,7 +130,7 @@ exports.deleteIsComposedOf = (req,res) => {
 exports.getAllPlays = (req, res) => {
 	connection.query('SELECT * FROM teamPlaysGame', [], function(err, rows, fields) {
 		if(!err) {
-			res.send(rows);	
+			res.send(rows);
 			console.log("Successfully retrieved all plays");
 		} else {
 			res.send(err);
@@ -142,7 +142,7 @@ exports.getAllPlays = (req, res) => {
 exports.getPlays = (req, res) => {
 	connection.query('SELECT * FROM teamPlaysGame where team_id_play = ?', [ req.params.id ], function(err, rows, fields) {
 		if(!err) {
-			res.send(rows);	
+			res.send(rows);
 			console.log("Successfully retrieved plays");
 		} else {
 			console.log("Error in retrieving plays");
@@ -183,7 +183,7 @@ exports.deletePlays = (req, res) => {
 exports.getAllWins = (req, res) => {
 	connection.query('SELECT * FROM teamWinsGame', [], function(err, rows, fields) {
 		if(!err) {
-			res.send(rows);	
+			res.send(rows);
 			console.log("Successfully retrieved all wins");
 		} else {
 			console.log("Error in retrieving all wins");
@@ -195,7 +195,7 @@ exports.getAllWins = (req, res) => {
 exports.getWins = (req, res) => {
 	connection.query('SELECT * FROM teamWinsGame where team_id_key = ?', [ req.params.id ], function(err, rows, fields) {
 		if(!err) {
-			res.send(rows);	
+			res.send(rows);
 			console.log("Successfully retrieved wins");
 		} else {
 			console.log("Error in retrieving wins");
