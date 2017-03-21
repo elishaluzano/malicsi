@@ -3,6 +3,7 @@
         .module('app', ['ui.router']);
 
     require('./app.router');
+
     require.context('./assets', true, /.*\.(png|jpg|gif)$/);
     require.context('./services', true, /.*\.service\.js$/);
     require.context('./components', true, /.*\.component\.js$/);
