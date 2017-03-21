@@ -15,12 +15,12 @@ exports.addEvent = (req,res) => {
 	};
 	connection.query('INSERT INTO event SET ?', info, function(err, rows, fields) {
 		if (!err) {
-			res.send(rows[0]);
+			res.send(rows);
 			console.log("Successfully added event");
 		}
 		else {
 			console.log(err);
-			res.send(err);
+			res.send(false);
 			console.log("Error in adding event");
 		}
 	});
@@ -31,7 +31,6 @@ exports.viewEvent = (req,res) => {
 		if(!err) {
 			res.send(rows[0]);
 		}else{
-			console.log(err);
 			res.send(err);
 		}
 	});
@@ -42,7 +41,6 @@ exports.viewAllEvent = (req,res) => {
 		if(!err) {
 			res.send(rows);
 		}else{
-			console.log(err);
 			res.send(err);
 		}
 	});
