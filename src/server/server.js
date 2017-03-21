@@ -1,10 +1,10 @@
 'use strict'
 
 const express = require('express');
-const session = require('express-session')
+const session = require('express-session');
 const mysql = require('mysql');
-const bodyParser = require('body-parser');	
-const path = require('path');
+const bodyParser = require('body-parser');
+const path = require('path');	
 
 const app = express();
 
@@ -12,7 +12,6 @@ const app = express();
 app.use(express.static(__dirname + '/../../dist'));
 
 var routes = require(__dirname + '/routes/routes.js');
-
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
 

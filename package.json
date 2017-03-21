@@ -37,8 +37,10 @@
     "express": "^4.15.0",
     "express-session": "^1.14.2",
     "jquery": "^3.1.1",
+    "materialize-css": "^0.98.0",
     "mysql": "^2.13.0",
-    "semantic-ui": "^2.2.9",
+    "should": "^11.2.0",
+    "should-http": "^0.1.0",
     "supertest": "^3.0.0",
     "webpack": "^2.2.1"
   }

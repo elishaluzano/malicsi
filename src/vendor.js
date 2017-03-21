@@ -1,5 +1,7 @@
 require('angular');
 require('angular-ui-router');
 require('jquery');
-// require('semantic-ui/dist/semantic.css');
-// require('semantic-ui/dist/semantic.js');
+
+require('materialize-css/dist/css/materialize.css');
+require('materialize-css/dist/js/materialize.js');
+
