@@ -55,7 +55,7 @@ router.delete('/api/sports/:id',sportCtrl.deleteSport);
 router.post('/api/teams/addSportIsJoinedBy', sportCtrl.addJoin);
 router.get('/api/teams/getAllSportIsJoinedBy', sportCtrl.getAllJoins);
 router.get('/api/teams/getSportIsJoinedBy/:id', sportCtrl.getJoins);
-router.delete('/api/teams/deleteSportIsJoinedBy/:id', sportCtrl.deleteJoin);
+router.delete('/api/teams/deleteSportIsJoinedBy/:user_id/:sport_id', sportCtrl.deleteJoin);
 
 var gameCtrl = require('../controllers/gameController.js');
 //game routes
