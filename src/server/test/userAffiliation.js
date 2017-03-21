@@ -49,10 +49,10 @@ describe('User Affiliation', function(){
 		 });
 	 });
 
-	 describe('deleteWins()', function () {
+	 describe('deleteUserAffiliation()', function () {
 		 it('deletes a specific user affiliation', function (done) {
 			 request(url)
-				 .delete('/api/users/userAffiliations/' + '4')
+				 .delete('/api/users/userAffiliations/' + '1/' + 'ASTROSOC')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
