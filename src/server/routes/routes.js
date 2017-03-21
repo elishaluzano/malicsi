@@ -23,7 +23,6 @@ router.get('/api/contacts',contactCtrl.viewAllContact);
 router.put('/api/contacts/:id',contactCtrl.updateContact);
 router.delete('/api/contacts/:id',contactCtrl.deleteContact);
 
-var adminCtrl = require('../controllers/adminController.js');
 //admin routes
 router.get('/api/checkAdmin/:id', userCtrl.checkAdmin);
 router.get('/api/admins', userCtrl.getAdmins);
