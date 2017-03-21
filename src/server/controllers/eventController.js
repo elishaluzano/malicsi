@@ -15,12 +15,12 @@ exports.addEvent = (req,res) => {
 	};
 	connection.query('INSERT INTO event SET ?', info, function(err, rows, fields) {
 		if (!err) {
-			res.send(rows);
+			res.send(rows[0]);
 			console.log("Successfully added event");
 		}
 		else {
 			console.log(err);
-			res.send(false);
+			res.send(err);
 			console.log("Error in adding event");
 		}
 	});
