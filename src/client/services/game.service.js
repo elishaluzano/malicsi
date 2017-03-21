@@ -5,7 +5,7 @@
 
     function gameService($http) {
      
-        var api = '/games/';
+        var api = 'api/games/';
     
         var service = {    
 
