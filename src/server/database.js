@@ -9,7 +9,7 @@ const connection = mysql.createConnection({
   db : 'malicsi'
 });
 
-//check database connection 
+//check database connection
 connection.connect((err) => {
     if (!err) {
         console.log("The database is connected!");

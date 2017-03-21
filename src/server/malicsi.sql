@@ -1,8 +1,6 @@
 DROP DATABASE IF EXISTS malicsi;
 CREATE DATABASE malicsi;
-
 USE malicsi;
-
 CREATE TABLE contactPersonInCaseOfEmergency (
 	contact_person_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	contact_person_name varchar(50) NOT NULL,
@@ -24,12 +22,6 @@ CREATE TABLE user (
 	constraint user_contact_person_fk foreign key (contact_person) references contactPersonInCaseOfEmergency(contact_person_id)
 );
 
-CREATE TABLE admin (
-	admin_id int NOT NULL,
-	position varchar(50) NOT NULL,
-	constraint admin_admin_id_fk foreign key(admin_id) references user(user_id)
-);
-
 CREATE TABLE userAffiliation (
   	user_no int NOT NULL,
   	affiliation varchar(50) NOT NULL,
@@ -44,8 +36,8 @@ CREATE TABLE sponsoringInstitution (
 
 CREATE TABLE institutionHasAdmin (
   	institution_no int NOT NULL,
-  	admin_no int NOT NULL,
-  	CONSTRAINT institutionHasAdmin_admin_no_fk FOREIGN KEY (admin_no) REFERENCES admin (admin_id),
+  	user_no int NOT NULL,
+  	CONSTRAINT institutionHasAdmin_user_no_fk FOREIGN KEY (user_no) REFERENCES user (user_id),
   	CONSTRAINT institutionHas_institution_no_fk FOREIGN KEY (institution_no) REFERENCES sponsoringInstitution (institution_id)
 );
 
@@ -119,10 +111,9 @@ CREATE TABLE sportIsJoinedByUser (
 );
 
 CREATE TABLE userlog (
-	userlog_id int NOT NULL PRIMARY KEY,
+	log_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	user_id int NOT NULL,
-	activity varchar(30) NOT NULL,
-	entity varchar(20) NOT NULL,
+	action varchar(100) NOT NULL,
 	activity_time timestamp NOT NULL
 );
 
@@ -156,16 +147,6 @@ insert into user (name, username, password, gender, birthday, email, contact_num
 insert into user (name, username, password, gender, birthday, email, contact_number, contact_person) values ('Genica Mangilin', 'genicamangilin', 'gmangilin', 'female', '1996-10-03', 'gmangilin@up.edu.ph', '09666555778', 13);
 insert into user (name, username, password, gender, birthday, email, contact_number, contact_person) values ('Joyce Sorilla', 'joycesorilla', 'jsorilla', 'female', '1997-07-30', 'jsorilla@up.edu.ph', '09099887765', 14);
 insert into user (name, username, password, gender, birthday, email, contact_number, contact_person) values ('Kaye Gonzales', 'kayegonzales', 'kgonzales', 'female', '1998-07-06', 'kgonzales@up.edu.ph', '09236512875', 15);
-insert into admin values (1, 'Administrative Assistant');
-insert into admin values (3, 'Administrative Coordinator');
-insert into admin values (5, 'Administrative Manager');
-insert into admin values (7, 'Administrative Services Manage');
-insert into admin values (8, 'Administrative Services Officer');
-insert into admin values (10, 'Events Manager');
-insert into admin values (12, 'Support Specialist');
-insert into admin values (13, 'Special Events Coordinator');
-insert into admin values (15, 'Special Programs Coordinator');
-insert into admin values (4, 'Staff Assistant');
 insert into userAffiliation values(1, 'UPLB ASTROSOC');
 insert into userAffiliation values(2, 'UPLB ASTROSOC');
 insert into userAffiliation values(3, 'CHORAL ENSEMBLE');

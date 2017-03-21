@@ -7,7 +7,7 @@ const connection = require(__dirname + '/../database.js');
 exports.getAccount = (req, res) => {
   res.send(req.session.user);
 }
-// login 
+// login
 exports.loginUser = (req, res) => {
 	connection.query('SELECT * FROM user WHERE username = ?',[req.body.username], function(err, rows, fields) {
 		if (!err){
@@ -15,7 +15,7 @@ exports.loginUser = (req, res) => {
 				req.session.user = rows[0];
 				console.log("Successfully logged in user");
 				res.send(rows[0]);
-			}	
+			}
 			else {
 				res.send(false);
 				console.log("Login unsuccessful");
@@ -55,6 +55,12 @@ exports.addUser = (req, res) => {
 	});
 }
 
+// logout
+exports.logout = (req, res) => {
+    req.session.user = {};
+    res.send({});
+}
+
 // GET all users
 exports.getUsers = (req, res) => {
 	connection.query('SELECT * FROM user', [], function(err, rows, fields) {
@@ -67,7 +73,7 @@ exports.getUsers = (req, res) => {
 			console.log("Error in retrieving all users");
 		}
 	});
-} 
+}
 
 // GET specific user
 exports.getUser = (req, res) => {
@@ -81,11 +87,11 @@ exports.getUser = (req, res) => {
 			console.log("Error in retrieving user");
 		}
 	});
-} 
+}
 
 // PUT specific user
 exports.updateUser = (req, res) => {
-	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ? where user_id = ?',[req.body.name, req.body.username, req.body.password, req.body.gender, req.body.birthday, req.body.email, req.body.contact_number,req.params.id], function(err, rows, fields) {
+	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, req.body.password, req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, req.body.profile_pic, req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
 			res.send(rows[0]);
@@ -111,72 +117,85 @@ exports.deleteUser = (req, res) => {
 	});
 }
 
-// ADD specific contact
-exports.addContact = (req,res) => {
-	var info = {
-		contact_person_name: req.body.contact_person_name,
-		contact_person_relationship: req.body.contact_person_relationship,
-		contact_person_number: req.body.contact_person_number
-	};
-	connection.query('INSERT INTO contactpersonincaseofemergency SET ?', info, function(err, rows, fields) {
-		if (!err) {
-			res.send(rows[0]);
-			console.log("Successfully added contact");
-		}
-		else {
-			console.log(err);
-			res.send(err);
-			console.log("Error in adding contact");
-		}
-	});
+//Admin
+
+// check if user is an admin
+exports.checkAdmin = (req, res) => {
+    connection.query('SELECT * FROM user JOIN institutionHasAdmin ON user.user_id = institutionHasAdmin.user_no where user.user_id = ?', [req.params.id], function(err, rows, fields) {
+        if (!err){
+            if (rows[0] !== null){
+                res.send(rows[0]);
+                console.log("User is an admin");
+            }
+            else {
+                res.send(false);
+                console.log("User is not an admin");
+            }
+        }
+        else {
+            res.send(err);
+            console.log("Error in checking admin");
+        }
+    });
 }
 
-// VIEW specific contact
-exports.viewContact = (req,res) => {
-	connection.query('SELECT * FROM contactpersonincaseofemergency WHERE contact_person_name = ?', [req.params.id], function(err, rows, fields){
-		if(!err) {
-			res.send(rows[0]);
-		}else{
-			console.log(err);
-			res.send(err);
-		}
-	});
+// GET all admins
+exports.getAdmins = (req, res) => {
+    connection.query('SELECT * FROM user JOIN institutionHasAdmin on user.user_id = institutionHasAdmin.user_no',[], function (err, rows, fields){
+        if (!err) {
+            res.send(rows);
+            console.log("Successfully retrieved all admins");
+        }
+        else {
+            res.send(err);
+            console.log("Error in retrieving all admins");
+        }
+    });
 }
 
-// VIEW all contacts
-exports.viewAllContact = (req,res) => {
-	connection.query('SELECT * FROM contactpersonincaseofemergency', [], function(err, rows, fields){
-		if(!err) {
-			res.send(rows);
-		}else{
-			console.log(err);
-			res.send(err);
-		}
-	});
+// GET all admins under specific institution
+exports.getAdmin = (req, res) => {
+    connection.query('SELECT * FROM user JOIN institutionHasAdmin on user.user_id = institutionHasAdmin.user_no where institution_no = ?',[req.params.id],function(err, rows, fields){
+        if (!err){
+            res.send(rows);
+            console.log("Successfully retrieved all admins under an institution");
+        }
+        else {
+            res.send(err);
+            console.log("Error in retrieving all admins under an institution");
+        }
+    });
 }
 
-// UPDATE specific contact
-exports.updateContact = (req,res) => {
-	connection.query('UPDATE contactpersonincaseofemergency SET contact_person_relationship = ?, contact_person_number = ? WHERE contact_person_name = ?', [req.body.contact_person_relationship,req.body.contact_person_number,req.params.id], function(err, rows, fields){
-		if(!err) {
-			console.log("Success");
-			res.send(rows[0]);
-		}else{
-			console.log(err);
-			res.send(err);
-		}
-	});
+// POST an admin
+exports.addAdmin = (req, res) => {
+    var newAdmin = {
+        institution_no : req.body.institution_no,
+        user_no : req.body.user_no
+    }
+    connection.query('INSERT INTO institutionHasAdmin set ?', newAdmin, function(err, rows, fields){
+        if (!err){
+            res.send(rows[0]);
+            console.log("Successfully added new admin");
+        }
+        else {
+            res.send(err);
+            console.log("Error in adding new admin");
+        }
+        
+    });
 }
 
-// DELETE specific contact
-exports.deleteContact = (req,res) => {
-	connection.query('DELETE FROM contactpersonincaseofemergency WHERE contact_person_name = ?', [req.params.id], function(err, rows, fields){
-		if(!err) {
-			console.log("Success");
-			res.send({});
-		}else{
-			console.log(err);
-			res.send(err);
-		}
-	});
+// DELETE an admin
+exports.deleteAdmin = (req, res) => {
+    connection.query('DELETE FROM institutionHasAdmin where institution_no = ? and user_no = ?',[req.params.institution_id, req.params.user_id],function(err, rows, fields){
+        if (!err){
+            res.send({});
+            console.log("Successfully deleted an admin");
+        }
+        else {
+            res.send(err);
+            console.log("Error in deleting an admin");
+        }
+    });
 }
