@@ -14,7 +14,7 @@ exports.addUserAffiliation = (req,res) =>{
          }
         else {
             res.send(rows);
-            console.log("Successfully added a user_affilitaion");
+            console.log("Successfully added a user affiliaton");
         }
 	});
 }
@@ -59,7 +59,7 @@ exports.updateUserAffiliation = (req,res) => {
 }
 
 exports.deleteUserAffiliation = (req,res) => {
-	connection.query('DELETE FROM useraffiliation WHERE user_no = ?', [ req.params.id ], function(err, rows, fields){
+	connection.query('DELETE FROM useraffiliation WHERE user_no = ? and affiliation = ?', [ req.params.id, req.params.affiliation], function(err, rows, fields){
 		if (err) {
             console.log(err)
             res.send(err);

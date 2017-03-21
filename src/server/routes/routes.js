@@ -16,10 +16,11 @@ router.delete('/api/users/:id', userCtrl.deleteUser);
 
 var userAffiliationCtrl = require('../controllers/userAffiliationController.js');
 //user affiliation routes
-router.get('/api/users/userAffliations', userAffiliationCtrl.viewAllUserAffiliation);
-router.get('/api/users/userAffliations/:id', userAffiliationCtrl.viewUserAffiliation);
-router.post('/api/users/userAffliations', userAffiliationCtrl.addUserAffiliation);
-router.delete('/api/users/userAffliations/:id', userAffiliationCtrl.deleteUserAffliation);
+router.get('/api/useraffiliations', userAffiliationCtrl.viewAllUserAffiliation);
+router.get('/api/useraffiliations/:id', userAffiliationCtrl.viewUserAffiliation);
+router.post('/api/useraffiliations', userAffiliationCtrl.addUserAffiliation);
+router.put('/api/useraffiliations/:id', userAffiliationCtrl.updateUserAffiliation);
+router.delete('/api/useraffiliations/:id/:affiliation', userAffiliationCtrl.deleteUserAffiliation);
 
 var adminCtrl = require('../controllers/adminController.js');
 //admin routes
