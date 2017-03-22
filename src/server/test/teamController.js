@@ -36,7 +36,7 @@ describe('Team', function(){
 				 'event_id_key': 1
 			 };
 			 request(url)
-				 .post('/api/teams/addTeam')
+				 .post('/api/teams')
 				 .send(team)
 				 .end(function(err, res) {
 					 if (err) throw err;
@@ -50,11 +50,10 @@ describe('Team', function(){
 		 it('updates a team', function (done) {
 			 var team = {
 				 'name': 'Team Test Update',
-				 'event_id_key': 2,
-				 'team_id' : 3,
+				 'event_id_key': 2
 			 };
 			 request(url)
-				 .put('/api/teams/updateTeam')
+				 .put('/api/teams/' + '3')
 				 .send(team)
 				 .end(function(err, res) {
 					 if (err) throw err;
