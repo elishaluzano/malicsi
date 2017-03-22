@@ -71,8 +71,8 @@ exports.deleteSport = (req,res) => {
 
 exports.addJoin = (req, res) => {
 	var info = {
-		user_id = req.body.user_id,
-		sport_id = req.body.sport_id
+		user_id : req.body.user_id,
+		sport_id : req.body.sport_id
 	}
 	connection.query('INSERT into SportIsJoinedByUser SET ?', info, function(err, rows, fields) {
 		if (!err) {
