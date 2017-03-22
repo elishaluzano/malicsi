@@ -7,6 +7,7 @@
 
         // $stateProvider.state({});
         // $urlRouterProvider.otherwise('/');
+        
     }
 
 })();
