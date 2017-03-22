@@ -10,7 +10,7 @@ describe ('Sport', function () {
         'event_id_key': '1'
       };
       request(url)
-        .post('/api/sports/addSport')
+        .post('/api/sports')
         .send(sport)
         .end(function(err, res) {
           if (err) throw err;
@@ -49,10 +49,9 @@ describe ('Sport', function () {
   describe('updateSport()', function () {
     it('update sport', function (done) {
       request(url)
-        .put('/api/sports/updateSport')
+        .put('/api/sports/' + '11')
         .send({
-            'name': "Poker",
-            'sport_id': "11" 
+            'name': "Poker"
             })
         .end(function(err, res) {
           if (err) throw err;
