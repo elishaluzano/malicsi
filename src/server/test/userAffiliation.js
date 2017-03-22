@@ -6,7 +6,7 @@ describe('User Affiliation', function(){
 	 describe('viewAllUserAffiliation()', function(){
 		 it('retrieves all user affiliations', function(done){
 			 request(url)
-			 .get('/api/users/userAffiliations')
+			 .get('/api/useraffiliations')
 			 .end(function(err,res){
 				 if(err) throw err;
 				 try{
@@ -22,7 +22,7 @@ describe('User Affiliation', function(){
 	 describe('viewUserAffiliation()', function () {
 		 it('retrieves a specific user affiliation', function (done) {
 			 request(url)
-				 .get('/api/users/userAffiliations/' + '2')
+				 .get('/api/useraffiliations/' + '2')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
@@ -39,7 +39,7 @@ describe('User Affiliation', function(){
 				 'affiliation': 'Harmonya'
 			 };
 			 request(url)
-				 .post('/api/users/userAffiliations')
+				 .post('/api/useraffiliations')
 				 .send(new_user_affiliation)
 				 .end(function(err, res) {
 					 if (err) throw err;
@@ -52,7 +52,7 @@ describe('User Affiliation', function(){
 	 describe('deleteUserAffiliation()', function () {
 		 it('deletes a specific user affiliation', function (done) {
 			 request(url)
-				 .delete('/api/users/userAffiliations/' + '1/' + 'ASTROSOC')
+				 .delete('/api/userAffiliations/' + '1/' + 'ASTROSOC')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
