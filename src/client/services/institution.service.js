@@ -1,11 +1,11 @@
 (function() {
     angular
         .module('app')  
-        .factory('userService', userService);
+        .factory('institutionService', institutionService);
 
-    function userService($http) {
+    function institutionService($http) {
      
-        var api = '/api/users/';
+        var api = 'api/institutions/';
     
         var service = {    
 
@@ -15,7 +15,7 @@
                         return response.data;
                     })
                     .catch(function(error) {
-                        console.log('Error in getting all users');
+                        console.log('Error in getting all institutions');
                         console.log(error.status + ': ' + error.statusText);
                     });
             },
@@ -26,7 +26,7 @@
                         return response.data;
                     })
                     .catch(function(error) {
-                        console.log('Error in finding one user');
+                        console.log('Error in finding one institution');
                         console.log(error.status + ': ' + error.statusText);
                     });
             },
@@ -37,8 +37,7 @@
                         return response.data;
                     })
                     .catch(function(error) {
-                        console.log(body);
-                        console.log('Error in creating user');
+                        console.log('Error in creating institution');
                         console.log(error.status + ': ' + error.statusText);
                     });
             },
@@ -49,7 +48,7 @@
                         return response.data;
                     })
                     .catch(function(error) {
-                        console.log('Error in updating user');
+                        console.log('Error in updating institution');
                         console.log(error.status + ': ' + error.statusText);
                     });
             },
@@ -61,7 +60,7 @@
                         return response.data;
                     })
                     .catch(function(error) {
-                        console.log('Error in deleting user');
+                        console.log('Error in deleting institution');
                         console.log(error.status + ': ' + error.statusText);
                     });
             }
