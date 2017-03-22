@@ -15,6 +15,14 @@ router.get('/api/users/:id', userCtrl.getUser);
 router.put('/api/users/:id', userCtrl.updateUser);
 router.delete('/api/users/:id', userCtrl.deleteUser);
 
+var userAffiliationCtrl = require('../controllers/userAffiliationController.js');
+//user affiliation routes
+router.get('/api/useraffiliations', userAffiliationCtrl.viewAllUserAffiliation);
+router.get('/api/useraffiliations/:id', userAffiliationCtrl.viewUserAffiliation);
+router.post('/api/useraffiliations', userAffiliationCtrl.addUserAffiliation);
+router.put('/api/useraffiliations/:id', userAffiliationCtrl.updateUserAffiliation);
+router.delete('/api/useraffiliations/:id/:affiliation', userAffiliationCtrl.deleteUserAffiliation);
+
 var contactCtrl = require('../controllers/contactController.js');
 //contact person in case of emergency routes
 router.post('/api/contacts',contactCtrl.addContact);
