@@ -69,7 +69,7 @@
                 <a href="#"><span class="white-text email">djbelmonte</span></a>
             </div></li>
             <li><a href="#">Notifications<i class="material-icons">notifications</i></a></li>
-            <li><a href="#">Stats<i class="material-icons">equalizer</i></a></li>
+            <li><a href="../profile_page/profile.html">Stats<i class="material-icons">equalizer</i></a></li>
             <li><a href="#">Joined Events<i class="material-icons">subject</i></a></li>
             <li><a href="../profile_page/edit_profile.html">Edit Profile<i class="material-icons">settings</i></a></li>
             <li><a href="../index_page/index.html">Sign out<i class="material-icons">power_settings_new</i></a></li>
@@ -94,7 +94,7 @@
               <!-- Settings button is available only for Admin-->
               <!-- Settings button is either gray or not visible to guest and normal user-->
 
-              <!-- <a class="dropdown-button hoverable btn-floating halfway-fab waves-effect waves-light red" href = "#" data-activates = "settings-dropdown"><i class="material-icons">settings</i></a> -->
+              <a class="dropdown-button hoverable btn-floating halfway-fab waves-effect waves-light red" href = "#" data-activates = "settings-dropdown"><i class="material-icons">settings</i></a>
             </div>
             <div class="divider"></div>
             <div class="card-content hide-on-medium-only">
@@ -104,67 +104,75 @@
               </ul>
             </div>
             <div class="card-action">
-               <div class="chip blue white-text"> Soon </div>
-               <div class="chip blue white-text"> Your Event </div>
+               <div class="chip red white-text"> Soon </div>
+               <!-- <div class="chip blue white-text"> Your Event </div> -->
             </div>
           </div>
         </div>
 
         <!-- Dropdown for settings -->
         <ul id='settings-dropdown' class='dropdown-content'>
-          <li><a href="#modal-edit-event">Edit</a></li>
+          <li><a href="#modal-edit-event" class = "black-text ">Edit</a></li>
           <li class="divider"></li>
-          <li><a href="#modal-delete-event">Delete</a></li>
+          <li><a href="#modal-delete-event" class = "black-text">Delete</a></li>
         </ul>
 
         <div class="col s12 m6 l3">
-          <div class="card">
+          <div class="hoverable card">
             <div class="card-image">
-               <a href = "#"><img src="../images/logo/engmeet2017.jpg"></a>
+               <a href = "../view_live_page/live_page.html"><img src="../images/logo/engmeet2017.jpg"></a>
               <span class="card-title black-text">Engineering Meet 2017</span>
             </div>
-            <div class="card-content hide-on-small-only">
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
+            <div class="divider"></div>
+            <div class="card-content hide-on-medium-only">
+              <ul>
+                <li><i class = "material-icons">date_range</i> June 12 - June 14</li>
+                <li><i class = "material-icons">supervisor_account</i><a href = "#"> Institute of Computer Science</a></li>
+              </ul>
             </div>
             <div class="card-action">
-              <a href="#" class = "btn red">Live</a>
+               <div class="chip green white-text"> Live </div>
             </div>
           </div>
         </div>
 
         <div class="col s12 m6 l3">
-          <div class="card">
+          <div class="hoverable card">
             <div class="card-image">
-              <a href = "#"><img src="../images/logo/palacasan2016.jpg"></a>
+              <a href = "../game_history_page/game_history.html"><img src="../images/logo/palacasan2016.jpg"></a>
               <span class="card-title black-text">PalaCASan 2016</span>
             </div>
-            <div class="card-content hide-on-small-only">
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
+            <div class="divider"></div>
+            <div class="card-content hide-on-medium-only">
+              <ul>
+                <li><i class = "material-icons">date_range</i> June 12 - June 14</li>
+                <li><i class = "material-icons">supervisor_account</i><a href = "#"> Institute of Computer Science</a></li>
+              </ul>
             </div>
             <div class="card-action">
-              <a href="../game_history_page/game_history.html" class = "btn black">Done</a>
+               <div class="chip black white-text"> Done </div>
             </div>
           </div>
         </div>
 
           <div class="col s12 m6 l3">
-          <div class="card">
+          <div class="hoverable card">
             <div class="card-image">
-               <a href = "#"><img src="../images/logo/palacasan2015.jpg"></a>
+               <a href = ""><img src="../images/logo/palacasan2015.jpg"></a>
               <span class="card-title black-text">PalaCASan 2015</span>
             </div>
-            <div class="card-content hide-on-small-only">
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
+            <div class="divider"></div>
+            <div class="card-content hide-on-medium-only">
+              <ul>
+                <li><i class = "material-icons">date_range</i> June 12 - June 14</li>
+                <li><i class = "material-icons">supervisor_account</i><a href = "#"> Institute of Computer Science</a></li>
+              </ul>
             </div>
             <div class="card-action">
-              <a href="#" class = "btn black">Done</a>
+               <div class="chip black white-text"> Done </div>
             </div>
           </div>
         </div>
-      </div>
 
 <!-- ========================================== FAB ====================================================-->
 <!-- =============================== ONLY AVAILABLE TO ADMIN ===========================================-->
