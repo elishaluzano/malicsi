@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+		<title>MalICSihan</title>
+		<!-- CSS  -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="../../../node_modules/materialize-css/dist/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+ 		<link rel="stylesheet" type="text/css" href="../../../node_modules/webui-popover/dist/jquery.webui-popover.css">
+        <!-- FOR NAVIGATION CSS -->
+        <link type="text/css" rel="stylesheet" href="../index_page/index.css" />
+
+	</head>
+	
+
+
+
+	<!--Remove style for body. Used for contrast viewing only.-->
+	<body>
+
+
+	<!-- Navigation -->
+ <div class ="navbar-fixed">
+   <nav id="top" class="white">
+            <div class="nav-wrapper">
+                <a class="left" id="malicsi-logo-link" href="../index_page/index_logged_in.html"><img src="../images/malicsi-logo.png"></a>
+                <i id="drop-links" style="cursor: pointer;" class="black-text large material-icons left hide-on-large-only">menu</i>
+                <ul class="left hide-on-med-and-down">
+                    <li class = "active"><a class="black-text" href="../index_page/index.html">Live</a></li>
+                    <li><a class="black-text" href="../view_events/view_events.html">Events</a></li>
+                    <li><a class="black-text" href="../view_team_page/view_teams.html">Teams</a></li>
+                    <li><a class="black-text" href="../view_schedule_page/view_schedule.html">Schedules</a></li>
+                    <li><a class="black-text" href="../view_sponsors_page/view_sponsors.html">Sponsors</a></li>
+
+                </ul>
+                <form class = "left hide-on-small-only">
+                <div class="left" id="search-bar-div">
+                    <select id="select-dropdown" class="left black-text browser-default">
+                        <option value="" selected disabled>Search All</option>
+                        <option value="2">Player</option>
+                        <option value="3">Team</option>
+                        <option value="4">Event</option>
+                        <option value="5">Sponsoring Institution</option>
+                    </select>
+                </div>
+                 <div class="left" >
+                        <input class="left black-text" placeholder="Search" id="input">
+                        <i class="black-text material-icons" id="search-icon">search</i>
+                    </div>
+                </form>
+                <a href="#" data-activates="slide-out" class="right black-text side-nav-button">
+                    username
+                    <i id="sidenav-icon" class="right black-text material-icons">play_arrow</i>
+                </a>            
+            </div>
+        </nav>
+        </div>
+
+        <div id="additional-links" class="webui-popover-content">
+            <div><a id="dropdown-links" href = "#">Live</a></div>
+            <div><a id="dropdown-links" href = "../view_events/view_events.html">Events</a></div>
+            <div><a id="dropdown-links" href = "../view_team_page/view_teams.html">Teams</a></div>
+            <div><a id="dropdown-links" href = "../view_schedule_page/view_schedules.html">Schedules</a></div>
+            <div><a id="dropdown-links" href = "../view_sponsors_page/view_sponsors.html">Sponsors</a></div>
+        </div>
+        
+        <ul id="slide-out" class="side-nav">
+            <li><div class="userView">
+                <div class="background">
+                    <img src="../images/parallaxsampsquaresmall.jpg">
+                </div>
+                <a href="#"><img class="circle" src="../images/person-flat.png"></a>
+                <a href="#"><span class="white-text name">Donn Jerico Belmonte</span></a>
+                <a href="#"><span class="white-text email">djbelmonte</span></a>
+            </div></li>
+            <li><a href="#">Notifications<i class="material-icons">notifications</i></a></li>
+            <li><a href="../profile_page/profile.html">Stats<i class="material-icons">equalizer</i></a></li>
+            <li><a href="#">Joined Events<i class="material-icons">subject</i></a></li>
+            <li><a href="../profile_page/edit_profile.html">Edit Profile<i class="material-icons">settings</i></a></li>
+            <li><a href="../index_page/index.html">Sign out<i class="material-icons">power_settings_new</i></a></li>
+        </ul>
+
+
+		<div class="parallax-container">
+			<div class="parallax valign"><img src="../images/logo/palacasan2016.jpg"></div>
+		</div>
+		
+
+		<!-- 
+			-teams should be linked to team_page.html
+		 -->
+		<div class="container">
+			<table>
+				<thead>
+					<div class="row">
+						<div class="col s12">
+						  <ul class="tabs tabs-fixed-width red">
+							<li class="tab col s3"><a class="white-text" href="#test1">Basketball</a></li>
+							<li class="tab col s3"><a class="white-text" href="#test2">Volleyball</a></li>
+							<li class="tab col s3"><a class="white-text" href="#test3">Table Tennis</a></li>
+							<li class="tab col s3"><a class="white-text" href="#test4">Sponsoring Institution</a></li>
+						  </ul>
+						</div>
+					</div>
+				</thead>
+				<tbody>
+					<table class="highlight bordered striped" id="test1">
+						<thead>
+							<tr>
+								<th>Game</th>
+								<th>Competing Teams</th>
+								<th>Score</th>
+								<th>Winner</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>1</th>
+								<th><a href ="../team_page/team_page.html">A</a> VS <a href ="../team_page/team_page.html">B</a></th>
+								<th>100-70</th>
+								<th>A</th>
+							</tr>
+							<tr>
+								<th>2</th>
+								<th>C VS D</th>
+								<th>63-82</th>
+								<th>D</th>
+							</tr>
+							<tr>
+								<th>3</th>
+								<th>A VS D</th>
+								<th>67-65</th>
+								<th>A</th>
+							</tr>
+							<tr>
+								<th>4</th>
+								<th>B VS C</th>
+								<th>71-70</th>
+								<th>B</th>
+							</tr>
+						</tbody>
+					</table>
+					<table class="highlight bordered" id="test2">
+						<thead>
+							<tr>
+								<th>Game</th>
+								<th>Competing Teams</th>
+								<th>Sets</th>
+								<th>Winner</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>1</th>
+								<th>A VS B</th>
+								<th>3-1</th>
+								<th>A</th>
+							</tr>
+							<tr>
+								<th>2</th>
+								<th>C VS D</th>
+								<th>0-3</th>
+								<th>D</th>
+							</tr>
+							<tr>
+								<th>3</th>
+								<th>A VS D</th>
+								<th>3-2</th>
+								<th>A</th>
+							</tr>
+							<tr>
+								<th>4</th>
+								<th>B VS C</th>
+								<th>3-2</th>
+								<th>B</th>
+							</tr>
+							<tr>
+								<th>5</th>
+								<th>A VS E</th>
+								<th>2-3</th>
+								<th>E</th>
+							</tr>
+						</tbody>
+					</table>
+					<table class="highlight bordered" id="test3">
+						<thead>
+							<tr>
+								<th>Game</th>
+								<th>Competing Teams</th>
+								<th>Sets</th>
+								<th>Winner</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>1</th>
+								<th>A VS B</th>
+								<th>3-0</th>
+								<th>A</th>
+							</tr>
+							<tr>
+								<th>2</th>
+								<th>C VS D</th>
+								<th>2-3</th>
+								<th>D</th>
+							</tr>
+							<tr>
+								<th>3</th>
+								<th>A VS D</th>
+								<th>3-2</th>
+								<th>A</th>
+							</tr>
+						</tbody>
+					</table>
+					<table class="highlight bordered" id="test4">
+						<thead>
+							<tr>
+								<th>Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>Sponsor Name</th>
+							</tr>
+						</tbody>
+					</table>
+				</tbody>
+			</table>
+		</div>
+		
+		<script src="../../../node_modules/jquery/dist/jquery.js"></script>
+		<script src="sample.js"></script>
+		<script src="../../../node_modules/materialize-css/dist/js/materialize.js"></script>
+		<script src="init.js"></script>
+		<script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('select').material_select();
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal').modal({
+      opacity: .5, // Opacity of modal background
+      });
+    });
+    // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+    //$('.collapsible').collapsible();
+
+  </script>
+  <script>
+    $('.side-nav-button').sideNav({
+      menuWidth: 300, // Default is 300
+      edge: 'right', // Choose the horizontal origin
+      closeOnClick: true
+    });
+  </script>
+  <script>
+    $('#drop-links').webuiPopover({url:'#additional-links'});
+  </script>
+ 
+
+	</body>
+</html>

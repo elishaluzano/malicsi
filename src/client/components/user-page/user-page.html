@@ -1,0 +1,88 @@
+<div class="container z-depth-1">
+    <div id="user-big">
+        <img id="user-image" class="responsive-img" ng-src="{{ $ctrl.user.profile_pic }}">
+        <div class="center row">
+            <h5>{{ $ctrl.user.name }}</h5>
+            <h6>{{ $ctrl.user.username }}</h6>
+        </div>
+    </div>
+
+    <div class="row" id="user-info">
+        <div class="col s10 offset-s1">
+
+            <div class="center row user-row">
+                <div class="right-align col s3">
+                    <p>Birthday</p>
+                </div>
+                <div class="left-align col s3" ng-if="!($ctrl.isBeingEdited)">
+                    <p>{{ $ctrl.user.birthday }}</p>
+                </div>
+                <div class="right-align col s3">
+                    <p>Gender</p>
+                </div>
+                <div class="left-align col s3" ng-if="!($ctrl.isBeingEdited)">
+                    <p>{{ $ctrl.user.gender }}</p>
+                </div>
+            </div>
+            <div class="center row user-row">
+                <div class="right-align col s3">
+                    <p>Email Address</p>
+                </div>
+                <div class="left-align col s3" ng-if="!($ctrl.isBeingEdited)">
+                    <p>{{ $ctrl.user.email }}</p>
+                </div>
+                <div class="right-align col s3">
+                    <p>Mobile Number</p>
+                </div>
+                <div class="left-align col s3" ng-if="!($ctrl.isBeingEdited)">
+                    <p>{{ $ctrl.user.contact_number }}</p>
+                </div>
+            </div>
+
+            <div class="center row user-row">
+                <div class="right-align col s6">
+                    <p>Affiliations</p>
+                </div>
+                <div class="left-align col s6">
+                    <p>
+                        <ul>
+                            <li>Affiliation One With A Long Name</li>
+                            <li>Affiliation 2</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+
+            <br>
+            <div class="divider"></div>
+            <br>
+
+            <div class="center row user-row">
+                <h5>CONTACT PERSON IN CASE OF EMERGENCY</h5>
+                <div class="right-align col s6">
+                    <p>Name of contact person</p>
+                </div>
+                <div class="left-align col s6">
+                    <p>{{ $ctrl.user.contact_person }}</p>
+                </div>
+                <div class="right-align col s6">
+                    <p>Relation to contact person</p>
+                </div>
+                <div class="left-align col s6">
+                    <p>Mother</p>
+                </div>
+                <div class="right-align col s6">
+                    <p>Mobile number of contact person</p>
+                </div>
+                <div class="left-align col s6">
+                    <p>09XXXXXXXXX</p>
+                </div>
+
+                <div class="col s4 offset-s4">
+                    <a class = "red btn" ng-click="$ctrl.toggleEdit()">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

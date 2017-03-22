@@ -4,9 +4,19 @@
         .config(routerConfig);
     
     function routerConfig($stateProvider, $urlRouterProvider) {
+        $stateProvider
+            .state({
+                name: 'userLogPage',
+                url: '/log',
+                component: 'userLogPage'
+            })
+            .state({
+                name: 'userPage',
+                url: '/user/{userId}',
+                component: 'userPage'
+            });;
 
-        // $stateProvider.state({});
-        // $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/');
     }
 
 })();
