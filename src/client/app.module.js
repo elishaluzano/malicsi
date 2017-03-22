@@ -3,6 +3,15 @@
         .module('app', ['ui.router']);
 
     require('./app.router');
+<<<<<<< HEAD
+    require.context('./assets', true, /.*\.(png|jpg|gif)$/);
+    require.context('./services', true, /.*\.service\.js$/);
+    require.context('./components', true, /.*\.component\.js$/);
+    require.context('./shared', true, /.*\.component\.js$/);
+
+    require('./components/registration-card/registration-card.component');
+    require('./services/user.service.js');
+=======
 
     var assets = require.context('./assets', true, /.*\.(png|jpg|gif)$/);
     var services = require.context('./services', true, /.*\.service\.js$/);
@@ -14,4 +23,5 @@
     shared.keys().forEach(shared);
     components.keys().forEach(components);
 
+>>>>>>> 1407cf627d758a71081a1559215ee3f50f1b2b16
 })();

@@ -74,7 +74,11 @@ exports.addJoin = (req, res) => {
 	var info = {
 		user_id : req.body.user_id,
 		sport_id : req.body.sport_id
+<<<<<<< HEAD
+	}
+=======
 	};
+>>>>>>> 1407cf627d758a71081a1559215ee3f50f1b2b16
 	connection.query('INSERT into SportIsJoinedByUser SET ?', info, function(err, rows, fields) {
 		if (!err) {
 			console.log("Success");
