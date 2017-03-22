@@ -2,7 +2,7 @@
     'use strict'
 
     angular
-        .module('app');
+        .module('app')
         .component('eventCard', {
             template: require('./event-card.html'),
             controller: eventCardController,

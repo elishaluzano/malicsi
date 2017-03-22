@@ -5,7 +5,7 @@
 
     function userService($http) {
 
-        var api = '/users/';
+        var api = '/api/users/';
 
         var service = {
 
@@ -18,7 +18,7 @@
                         console.log('Error in getting all users!');
                         console.log(err.status + ': ' + err.statusText);
                     });
-            }
+            },
 
             getOne: function(id) {
                 return $http.get(api + id)
@@ -29,7 +29,7 @@
                         console.log('Error in getting one user!');
                         console.log(err.status + ': ' + err.statusText);
                     });
-            }
+            },
 
             create: function(body) {
                 return $http.post(api, body)
@@ -40,7 +40,7 @@
                         console.log('Error in creating user!');
                         console.log(err.status + ': ' + err.statusText);
                     });
-            }
+            },
 
             update: function(id, body) {
                 return $http.put(api + id, body)
@@ -51,7 +51,7 @@
                         console.log('Error in updating user!');
                         console.log(err.status + ': ' + err.statusText);
                     });
-            }
+            },
 
             delete: function(id) {
                 return $http.delete(api + id)

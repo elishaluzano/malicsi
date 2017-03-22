@@ -5,7 +5,7 @@
 
     function teamService($http) {
 
-        var api = 'api/teams/';
+        var api = '/api/teams/';
 
         var service = {
 
