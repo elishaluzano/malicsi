@@ -2,119 +2,119 @@ DROP DATABASE IF EXISTS malicsi;
 CREATE DATABASE malicsi;
 USE malicsi;
 CREATE TABLE contactPersonInCaseOfEmergency (
-	contact_person_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	contact_person_name varchar(50) NOT NULL,
-  	contact_person_relationship varchar(20) NOT NULL,
-  	contact_person_number varchar(15) NOT NULL
+  contact_person_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  contact_person_name varchar(50) NOT NULL,
+    contact_person_relationship varchar(20) NOT NULL,
+    contact_person_number varchar(15) NOT NULL
 );
 
 CREATE TABLE user (
-  	user_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  	name varchar(50) NOT NULL,
-  	username varchar(20) NOT NULL,
-  	password varchar(20) NOT NULL,
-  	gender varchar(6) NOT NULL,
- 	birthday date NOT NULL,
-  	email varchar(30),
-  	contact_number varchar(15),
-  	contact_person int,
-  	profile_pic text,
-	constraint user_contact_person_fk foreign key (contact_person) references contactPersonInCaseOfEmergency(contact_person_id)
+    user_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name varchar(50) NOT NULL,
+    username varchar(20) NOT NULL,
+    password varchar(20) NOT NULL,
+    gender varchar(6) NOT NULL,
+  birthday date NOT NULL,
+    email varchar(30),
+    contact_number varchar(15),
+    contact_person int,
+    profile_pic text,
+  constraint user_contact_person_fk foreign key (contact_person) references contactPersonInCaseOfEmergency(contact_person_id)
 );
 
 CREATE TABLE userAffiliation (
-  	user_no int NOT NULL,
-  	affiliation varchar(50) NOT NULL,
-  	CONSTRAINT userAffiliation_user_no_fk FOREIGN KEY (user_no) REFERENCES user(user_id)
+    user_no int NOT NULL,
+    affiliation varchar(50) NOT NULL,
+    CONSTRAINT userAffiliation_user_no_fk FOREIGN KEY (user_no) REFERENCES user(user_id)
 );
 
 CREATE TABLE sponsoringInstitution (
-  	institution_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  	name varchar(50) NOT NULL,
-  	description varchar(1000) NOT NULL
+    institution_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name varchar(50) NOT NULL,
+    description varchar(1000) NOT NULL
 );
 
 CREATE TABLE institutionHasAdmin (
-  	institution_no int NOT NULL,
-  	user_no int NOT NULL,
-  	CONSTRAINT institutionHasAdmin_user_no_fk FOREIGN KEY (user_no) REFERENCES user (user_id),
-  	CONSTRAINT institutionHas_institution_no_fk FOREIGN KEY (institution_no) REFERENCES sponsoringInstitution (institution_id)
+    institution_no int NOT NULL,
+    user_no int NOT NULL,
+    CONSTRAINT institutionHasAdmin_user_no_fk FOREIGN KEY (user_no) REFERENCES user (user_id),
+    CONSTRAINT institutionHas_institution_no_fk FOREIGN KEY (institution_no) REFERENCES sponsoringInstitution (institution_id)
 );
 
 CREATE TABLE venue (
-	venue_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	name varchar(50) NOT NULL
+  venue_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name varchar(50) NOT NULL
 );
 
 CREATE TABLE event (
-	event_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  	event_title varchar(50) NOT NULL,
-   	venue varchar(50) NOT NULL,
-  	start_date date NOT NULL,
-  	end_date date NOT NULL,
-  	institution_id_key int NOT NULL,
-	constraint event_institution_key_fk foreign key(institution_id_key) references sponsoringInstitution(institution_id)
+  event_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    event_title varchar(50) NOT NULL,
+    venue varchar(50) NOT NULL,
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+    institution_id_key int NOT NULL,
+  constraint event_institution_key_fk foreign key(institution_id_key) references sponsoringInstitution(institution_id)
 );
 
 CREATE TABLE sport (
-  	sport_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  	name varchar(20) NOT NULL,
- 	event_id_key int NOT NULL,
-  	CONSTRAINT sport_event_id_key_fk FOREIGN KEY (event_id_key) REFERENCES event (event_id)
+    sport_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name varchar(20) NOT NULL,
+  event_id_key int NOT NULL,
+    CONSTRAINT sport_event_id_key_fk FOREIGN KEY (event_id_key) REFERENCES event (event_id)
 );
 
 CREATE TABLE game (
-	game_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  	time datetime NOT NULL,
-  	min_num_of_players int NOT NULL,
-  	max_num_of_players int NOT NULL,
-  	status varchar(10) NOT NULL,
-	venue int NOT NULL,
-  	sport_id_key int NOT NULL,
-	CONSTRAINT game_venue_fk FOREIGN KEY (venue) REFERENCES venue (venue_id),
-	CONSTRAINT game_sport_id_key_fk FOREIGN KEY (sport_id_key) REFERENCES sport (sport_id)
+  game_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    time datetime NOT NULL,
+    min_num_of_players int NOT NULL,
+    max_num_of_players int NOT NULL,
+    status varchar(10) NOT NULL,
+  venue int NOT NULL,
+    sport_id_key int NOT NULL,
+  CONSTRAINT game_venue_fk FOREIGN KEY (venue) REFERENCES venue (venue_id),
+  CONSTRAINT game_sport_id_key_fk FOREIGN KEY (sport_id_key) REFERENCES sport (sport_id)
 );
 
 CREATE TABLE team (
-  	team_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  	name varchar(20) NOT NULL,
-  	event_id_key int NOT NULL,
-  	CONSTRAINT team_event_id_key_fk FOREIGN KEY (event_id_key) REFERENCES event (event_id)
+    team_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name varchar(20) NOT NULL,
+    event_id_key int NOT NULL,
+    CONSTRAINT team_event_id_key_fk FOREIGN KEY (event_id_key) REFERENCES event (event_id)
 );
 
 CREATE TABLE teamIsComposedOfUser (
-  	team_player_id int NOT NULL,
-  	user_player_id int NOT NULL,
-  	CONSTRAINT isComposedOf_team_player_id_fk FOREIGN KEY (team_player_id) REFERENCES team (team_id),
-  	CONSTRAINT isComposedOf_user_player_id_fk FOREIGN KEY (user_player_id) REFERENCES user (user_id)
+    team_player_id int NOT NULL,
+    user_player_id int NOT NULL,
+    CONSTRAINT isComposedOf_team_player_id_fk FOREIGN KEY (team_player_id) REFERENCES team (team_id),
+    CONSTRAINT isComposedOf_user_player_id_fk FOREIGN KEY (user_player_id) REFERENCES user (user_id)
 );
 
 CREATE TABLE teamPlaysGame (
-  	team_id_play int NOT NULL,
-  	game_id_play int NOT NULL,
-  	CONSTRAINT plays_game_id_play_fk FOREIGN KEY (game_id_play) REFERENCES game (game_id),
-  	CONSTRAINT plays_team_id_play_fk FOREIGN KEY (team_id_play) REFERENCES team (team_id)
+    team_id_play int NOT NULL,
+    game_id_play int NOT NULL,
+    CONSTRAINT plays_game_id_play_fk FOREIGN KEY (game_id_play) REFERENCES game (game_id),
+    CONSTRAINT plays_team_id_play_fk FOREIGN KEY (team_id_play) REFERENCES team (team_id)
 );
 
 CREATE TABLE teamWinsGame (
-  	team_id_key int NOT NULL,
-  	game_id_key int NOT NULL,
-  	CONSTRAINT wins_game_id_key_fk FOREIGN KEY (game_id_key) REFERENCES game (game_id),
-  	CONSTRAINT wins_team_id_key_fk FOREIGN KEY (team_id_key) REFERENCES team (team_id)
+    team_id_key int NOT NULL,
+    game_id_key int NOT NULL,
+    CONSTRAINT wins_game_id_key_fk FOREIGN KEY (game_id_key) REFERENCES game (game_id),
+    CONSTRAINT wins_team_id_key_fk FOREIGN KEY (team_id_key) REFERENCES team (team_id)
 );
 
 CREATE TABLE sportIsJoinedByUser (
-	user_id int NOT NULL,
-	sport_id int NOT NULL,
-	CONSTRAINT sportIsJoinedByUser_user_id_fk FOREIGN KEY (user_id) REFERENCES user(user_id),
-	CONSTRAINT sportIsJoinedByUser_sport_id_fk FOREIGN KEY (sport_id) REFERENCES sport(sport_id)
+  user_id int NOT NULL,
+  sport_id int NOT NULL,
+  CONSTRAINT sportIsJoinedByUser_user_id_fk FOREIGN KEY (user_id) REFERENCES user(user_id),
+  CONSTRAINT sportIsJoinedByUser_sport_id_fk FOREIGN KEY (sport_id) REFERENCES sport(sport_id)
 );
 
 CREATE TABLE userlog (
-	log_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	user_id int NOT NULL,
-	action varchar(100) NOT NULL,
-	activity_time timestamp NOT NULL
+  log_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  user_id int NOT NULL,
+  action varchar(100) NOT NULL,
+  activity_time timestamp NOT NULL
 );
 
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Ryan Magorian','Father','09987898765');

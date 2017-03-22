@@ -14,7 +14,7 @@ describe ('Game', function () {
         'sport_id_key': '1'
       };
       request(url)
-        .post('/api/games/addGame')
+        .post('/api/games')
         .send(game)
         .end(function(err, res) {
           if (err) throw err;
@@ -53,17 +53,16 @@ describe ('Game', function () {
 
   describe('updateGame()', function () {
     it('update game', function (done) {
-      request(url)
-        .put('/api/games/updateGame')
-        .send({
+        var game = {
+            'venue': 'Baker Hall',
             'time': '2017-03-02 02:00:00',
         	'min_num_of_players': '2',
         	'max_num_of_players': '6',
-        	'status': 'Ongoing',
-        	'venue': 'Baker Hall',
-        	'sport_id_key': '1',
-            'game_id': '1'
-            })
+        	'stat': 'Ongoing'
+        };
+      request(url)
+        .put('/api/games/' + '1')
+        .send(game)
         .end(function(err, res) {
           if (err) throw err;
           res.should.have.status(200);
