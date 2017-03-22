@@ -7,14 +7,6 @@
 
         // $stateProvider.state({});
         // $urlRouterProvider.otherwise('/');
-        $stateProvider
-        	.state({
-        		name: 'registrationCard',
-        		url: '/',
-        		component: 'registrationCard'
-        	});
-
-        $urlRouterProvider.otherwise('/');
     }
 
 })();

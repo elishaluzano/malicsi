@@ -8,7 +8,7 @@ const connection = require('./../database.js')
 exports.addSport = (req,res) => {
 	var info = {
 		name: req.body.name,
-		event_id_key: req.body.event_id_key,
+		event_id_key: req.body.event_id_key
 	};
 	connection.query('INSERT INTO sport SET ?', info, function(err, rows, fields) {
 		if (!err) {
@@ -69,11 +69,16 @@ exports.deleteSport = (req,res) => {
 	});
 }
 
+//post join relation
 exports.addJoin = (req, res) => {
 	var info = {
 		user_id : req.body.user_id,
 		sport_id : req.body.sport_id
+<<<<<<< HEAD
 	}
+=======
+	};
+>>>>>>> 1407cf627d758a71081a1559215ee3f50f1b2b16
 	connection.query('INSERT into SportIsJoinedByUser SET ?', info, function(err, rows, fields) {
 		if (!err) {
 			console.log("Success");
@@ -114,7 +119,7 @@ exports.getJoins = (req, res) => {
 
 //delete specific relation
 exports.deleteJoin = (req, res) => {
-	connection.query('DELETE FROM sportIsJoinedByUser WHERE user_id = ?', [req.params.id], function(err, rows, fields) {
+	connection.query('DELETE FROM sportIsJoinedByUser WHERE user_id = ? and sport_id = ?', [req.params.user_id, req.params.sport_id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Success");
 			res.send({});
