@@ -7,10 +7,5 @@
             
         });
 
-    function footerCardController() {
-        var vm = this;
-
-        
-
-    }
+  
 })();
