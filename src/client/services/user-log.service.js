@@ -6,7 +6,7 @@
         .factory('userLogService', userLogService);
 
     function userLogService($http) {
-        var api = ''; // tentative
+        var api = '/api/userlogs/'; // tentative
 
         var service = {
             getAll: function() {

@@ -8,6 +8,14 @@
         // $stateProvider.state({});
         // $urlRouterProvider.otherwise('/');
         
+        $stateProvider
+            .state({
+                name: 'userLogPage',
+                url: '/log',
+                component: 'userLogPage'
+            });
+
+        $urlRouterProvider.otherwise('/');
     }
 
 })();
