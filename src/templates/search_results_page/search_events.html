@@ -81,16 +81,13 @@
             <div class="col s4" id = "filters">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Filters</span>
                         <form action="#">
+                            <!-- Filters with checkboxes for specific criteria -->
+                            <span class="card-title">Filters</span>
                             <p>
                                 <input type="checkbox" id="event-no-filter" checked />
                                 <label for="event-no-filter">No filter</label>
                             </p>
-                            <p>
-                                <input type="checkbox" id="event-sponsor" />
-                                <label for="event-sponsor">Event Sponsor</label>
-                            <p>
                             <p>
                                 <input type="checkbox" id="event-venue" />
                                 <label for="event-venue">Event Venue</label>
@@ -99,21 +96,49 @@
                                 <input type="checkbox" id="event-date" />
                                 <label for="event-date">Event Duration</label>
                             </p>
+                            <p>
+                                <input type="checkbox" id="event-sponsor" />
+                                <label for="event-sponsor">Event Sponsor</label>
+                            </p>
+
+                            <!-- Sort the results by one category -->
+                            <br>
+                            <span class="card-title">Sort by...</span>
+                            <p>
+                                <input class="with-gap" name="sort-event" type="radio" id="sort-event-no-sort" checked />
+                                <label for="sort-event-no-sort">None</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="sort-event" type="radio" id="sort-event-title" />
+                                <label for="sort-event-title">Event Title</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="sort-event" type="radio" id="sort-event-venue" />
+                                <label for="sort-event-venue">Event Venue</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="sort-event" type="radio" id="sort-event-start-date" />
+                                <label for="sort-event-start-date">Event Start Date</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="sort-event" type="radio" id="sort-event-end-date" />
+                                <label for="sort-event-end-date">Event End Date</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="sort-event" type="radio" id="sort-event-sponsor" />
+                                <label for="sort-event-sponsor">Event Sponsor</label>
+                            </p>
 
                             <br>
                             <div class="divider"></div>
 
                             <strong>For checked criteria:</strong>
                             <br>
-                            <p class="input-field">
-                                <input type="text" id="event-sponsor-name" />
-                                <label for="event-sponsor-name">Event Sponsor</label>
-                            </p>
+                            
                             <p class="input-field">
                                 <input type="text" id="event-venue-name" />
                                 <label for="event-venue-name">Event Venue</label>
                             </p>
-
                             <!-- Until there is a different type of date picker, use default -->
                             <p>
                                 <strong>Event Start Date: </strong>
@@ -125,7 +150,10 @@
                                 <br>
                                 <input type=date id="event-end-date" />
                             </p>
-                            
+                            <p class="input-field">
+                                <input type="text" id="event-sponsor-name" />
+                                <label for="event-sponsor-name">Event Sponsor</label>
+                            </p>
                         </form>
                     </div>
                 </div>
@@ -203,28 +231,6 @@
         <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js">
         </script>
         <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
-        <script>
-            $('.side-nav-button').sideNav({
-                menuWidth: 300, // Default is 300
-                edge: 'right', // Choose the horizontal origin
-                closeOnClick: true
-            });
-        </script>
-        <script>
-            $(document).ready(function() {
-                Materialize.updateTextFields();
-            }); 
-        </script>
-        <script>
-            $('a').click(function(){
-                $('html, body').animate({
-                    scrollTop: $( $(this).attr('href') ).offset().top
-                }, 500);
-                return false;
-            });
-        </script>
-        <script>
-            $('#drop-links').webuiPopover({url:'#additional-links'});
-        </script>
+        <script src="../index_page/index.js"></script>
     </body>
 </html>
