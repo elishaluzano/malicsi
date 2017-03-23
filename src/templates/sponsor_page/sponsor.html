@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MalICSi - View Profile</title>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"/>
+        <link rel="stylesheet" type="text/css" href="sponsor.css">
+        <link href="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.css" rel="stylesheet" />
+        <!-- FOR NAVIGATION CSS -->
+        <link type="text/css" rel="stylesheet" href="../index_page/index.css" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div class ="navbar-fixed">
+   <nav id="top" class="white">
+            <div class="nav-wrapper">
+                <a class="left" id="malicsi-logo-link" href="../index_page/index_logged_in.html"><img src="../images/malicsi-logo.png"></a>
+                <i id="drop-links" style="cursor: pointer;" class="black-text large material-icons left hide-on-large-only">menu</i>
+                <ul class="left hide-on-med-and-down">
+                    <li class = "active"><a class="black-text" href="../index_page/index.html">Live</a></li>
+                    <li><a class="black-text" href="../view_events/view_events.html">Events</a></li>
+                    <li><a class="black-text" href="../view_team_page/view_teams.html">Teams</a></li>
+                    <li><a class="black-text" href="../view_schedule_page/view_schedule.html">Schedules</a></li>
+                    <li><a class="black-text" href="../view_sponsors_page/view_sponsors.html">Sponsors</a></li>
+
+                </ul>
+                <form class = "left hide-on-small-only">
+                <div class="left" id="search-bar-div">
+                    <select id="select-dropdown" class="left black-text browser-default">
+                        <option value="" selected disabled>Search All</option>
+                        <option value="2">Player</option>
+                        <option value="3">Team</option>
+                        <option value="4">Event</option>
+                        <option value="5">Sponsoring Institution</option>
+                    </select>
+                </div>
+                 <div class="left" >
+                        <input class="left black-text" placeholder="Search" id="input">
+                        <i class="black-text material-icons" id="search-icon">search</i>
+                    </div>
+                </form>
+                <a href="#" data-activates="slide-out" class="right black-text side-nav-button">
+                    username
+                    <i id="sidenav-icon" class="right black-text material-icons">play_arrow</i>
+                </a>            
+            </div>
+        </nav>
+        </div>
+
+        <div id="additional-links" class="webui-popover-content">
+            <div><a id="dropdown-links" href = "#">Live</a></div>
+            <div><a id="dropdown-links" href = "../view_events/view_events.html">Events</a></div>
+            <div><a id="dropdown-links" href = "../view_team_page/view_teams.html">Teams</a></div>
+            <div><a id="dropdown-links" href = "../view_schedule_page/view_schedules.html">Schedules</a></div>
+            <div><a id="dropdown-links" href = "../view_sponsors_page/view_sponsors.html">Sponsors</a></div>
+        </div>
+        
+        <ul id="slide-out" class="side-nav">
+            <li><div class="userView">
+                <div class="background">
+                    <img src="../images/parallaxsampsquaresmall.jpg">
+                </div>
+                <a href="#"><img class="circle" src="../images/person-flat.png"></a>
+                <a href="#"><span class="white-text name">Donn Jerico Belmonte</span></a>
+                <a href="#"><span class="white-text email">djbelmonte</span></a>
+            </div></li>
+            <li><a href="#">Notifications<i class="material-icons">notifications</i></a></li>
+            <li><a href="../profile_page/profile.html">Stats<i class="material-icons">equalizer</i></a></li>
+            <li><a href="#">Joined Events<i class="material-icons">subject</i></a></li>
+            <li><a href="../profile_page/edit_profile.html">Edit Profile<i class="material-icons">settings</i></a></li>
+            <li><a href="../index_page/index.html">Sign out<i class="material-icons">power_settings_new</i></a></li>
+        </ul>
+
+        <!-- End of Navigation-->
+
+        <div id="additional-links" class="webui-popover-content" style="margin: 10px 0px 20px 0px; width: 200px; height: 50px">
+            <div><a id="dropdown-links">Events</a></div>
+            <div><a id="dropdown-links">Players</a></div>
+            <div><a id="dropdown-links">About</a></div>
+            <div><a id="dropdown-links">Contact us</a></div>
+        </div>
+        
+        <ul id="slide-out" class="side-nav">
+            <li><div class="userView">
+                <div class="background">
+                    <img src="../images/background.jpg">
+                </div>
+                <a href="#!user"><img class="circle" src="../images/person-flat.png"></a>
+                <a href="#!name"><span class="white-text name">Donn Jerico Belmonte</span></a>
+                <a href="#!email"><span class="white-text email">djbelmonte</span></a>
+            </div></li>
+            <li><a href="#!">Notifications<i class="material-icons">notifications</i></a></li>
+            <li><a href="#!">Stats<i class="material-icons">equalizer</i></a></li>
+            <li><a href="#!">Events<i class="material-icons">subject</i></a></li>
+            <li><a href="#!">Edit Profile<i class="material-icons">settings</i></a></li>
+            <li><a href="#!">Sign out<i class="material-icons">power_settings_new</i></a></li>
+        </ul>
+
+        <!-- End of Navigation-->
+
+        <div class="container z-depth-1">
+            <div id="sponsor-big" style="background-image: url(../images/temp-bg-2.jpg)">
+                <!--Change the background-image url to the logo of the sponsor-->
+                <div class="center row">
+                    <h4>Dig Delis</h4>
+                    <p>SPONSOR</p>
+                </div>
+            </div>
+
+            <!--Holds the sponsor's information-->
+            <div class="center row" id="sponsor-info">
+                <p>We are a company that delivers the best cuisines right to your doorstep.</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div id="sponsor-info">
+                <h5 class="center">SPONSORED EVENTS</h5>
+                <div class="container">
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th>Event Title</th>
+                                <th>Venue</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>PalICSihan 2018</td>
+                                <td>Copeland Gym</td>
+                                <td>February 12, 2018</td>
+                                <td>February 16, 2018</td>
+                            </tr>
+                            <tr>
+                                <td>PalICSihan 2018</td>
+                                <td>Copeland Gym</td>
+                                <td>February 12, 2018</td>
+                                <td>February 16, 2018</td>
+                            </tr>
+                            <tr>
+                                <td>PalICSihan 2018</td>
+                                <td>Copeland Gym</td>
+                                <td>February 12, 2018</td>
+                                <td>February 16, 2018</td>
+                            </tr>
+                            <tr>
+                                <td>PalICSihan 2018</td>
+                                <td>Copeland Gym</td>
+                                <td>February 12, 2018</td>
+                                <td>February 16, 2018</td>
+                            </tr>
+                            <tr>
+                                <td>PalICSihan 2018</td>
+                                <td>Copeland Gym</td>
+                                <td>February 12, 2018</td>
+                                <td>February 16, 2018</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="red page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Footer Content</h5>
+                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    BETELOG 2017 Copyright 
+                    <a class="grey-text text-lighten-4 right" href="#top">Back to top</a>
+                </div>
+            </div>
+        </footer>
+
+        
+        <script src="../../../node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js">
+        </script>
+        <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
+        <script src="../index_page/index.js"></script>
+    </body>
+</html>
