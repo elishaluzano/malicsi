@@ -47,7 +47,7 @@ exports.viewAllGame = (req,res) => {
 }
 
 exports.updateGame = (req,res) => {
-	connection.query('UPDATE game SET venue = ?, time = ?, min_num_of_players = ?, max_num_of_players = ?, status = ? WHERE game_id = ?', [req.body.venue, req.body.time, req.body.min_num_of_players, req.body.max_num_of_players, req.body.stat, req.params.id], function(err, rows, fields){
+	connection.query('UPDATE game SET venue = ?, time = ?, min_num_of_players = ?, max_num_of_players = ?, status = ? WHERE game_id = ?', [req.body.venue, req.body.time, req.body.min_num_of_players, req.body.max_num_of_players, req.body.status, req.params.id], function(err, rows, fields){
 		if(!err) {
 			console.log("Success");
 			res.send(rows[0]);
@@ -58,7 +58,7 @@ exports.updateGame = (req,res) => {
 }
 
 exports.deleteGame = (req,res) => {
-	connection.query('DELETE FROM game WHERE game_id = ?', [req.params.id], function(err, rows, fields){
+	connection.query('call deleteGame(?)', [req.params.id], function(err, rows, fields){
 		if(!err) {
 			console.log("Success");
 			res.send({});

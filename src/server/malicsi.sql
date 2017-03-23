@@ -117,6 +117,16 @@ CREATE TABLE userlog (
   activity_time timestamp NOT NULL
 );
 
+delimiter //
+create procedure deleteGame(in id int)
+BEGIN
+delete from teamPlaysGame where game_id_play = id;
+delete from teamWinsGame where game_id_key = id;
+delete from game where game_id = id;
+END;
+//
+delimiter ;
+
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Ryan Magorian','Father','09987898765');
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Cath Kaufer','Mother', '09192969040');
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Sheerrie Linton','Sister', '09296004019');
