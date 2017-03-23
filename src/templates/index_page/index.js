@@ -2,10 +2,6 @@ $(document).ready(function() {
     Materialize.updateTextFields();
 });
 
-$(document).ready(function() {
-    $('select').material_select();
-});   
-
 $('.side-nav-button').sideNav({
     menuWidth: 300,
     edge: 'right',

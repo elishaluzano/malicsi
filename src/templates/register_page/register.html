@@ -13,7 +13,7 @@
     </head>
     <body>
         <div id="login-form" class="webui-popover-content">
-            <form id="login-form" action="" method="post">
+            <form id="login-form" action="../index_page/index_logged_in.html" method="post">
                 <div class="input-field">
                     <input id="uname" type="text" class="validate">
                     <label for="uname">Username</label>
@@ -26,44 +26,54 @@
             </form>
             <a id="forgot-password-link" class="right">Forgot your password?</a>
         </div>
+        <div>
         <nav id="top" class="white">
             <div class="nav-wrapper">
-                <a class="left" id="malicsi-logo-link" href="#"><img src="../images/malicsi-logo.png"></a>
+                <a class="left" id="malicsi-logo-link" href="../index_page/index.html"><img src="../images/malicsi-logo.png"></a>
+                <i id="drop-links" style="cursor: pointer;" class="black-text large material-icons left hide-on-large-only">menu</i>
                 <ul class="left hide-on-med-and-down">
-                    <li><i id="drop-links" style="cursor: pointer;" class="black-text large material-icons">menu</i></li>
-                    <li><a class="black-text" href="#">Sports</a></li>
-                    <li><a class="black-text" href="#">Schedules</a></li>
-                    <li><a class="black-text" href="#">Results</a></li> 
+                    <li class = "active"><a class="black-text" href="../index_page/index.html">Live</a></li>
+                    <li><a class="black-text" href="../view_events/view_events.html">Events</a></li>
+                    <li><a class="black-text" href="../view_team_page/view_teams.html">Teams</a></li>
+                    <li><a class="black-text" href="../view_schedule_page/view_schedules.html">Schedules</a></li>
+                    <li><a class="black-text" href="../view_sponsors/view_sponsors.html">Sponsors</a></li>
+
                 </ul>
+                <form class = "left hide-on-small-only">
                 <div class="left" id="search-bar-div">
                     <select id="select-dropdown" class="left black-text browser-default">
-                        <option value="1">Search All</option>
-                        <option value="2">User</option>
+                        <option value="" selected disabled>Search All</option>
+                        <option value="2">Player</option>
                         <option value="3">Team</option>
                         <option value="4">Event</option>
+                        <option value="5">Sponsoring Institution</option>
                     </select>
-                    <div class="left">
+                </div>
+                 <div class="left" >
                         <input class="left black-text" placeholder="Search" id="input">
                         <i class="black-text material-icons" id="search-icon">search</i>
                     </div>
-                </div>
-                <ul class="right hide-on-med-and-down">
+                </form>
+                <ul class="right">
+                    <li><a class="black-text" href="../register_page/register.html">Register</a></li>
                     <li><a id="login" class="black-text" href="#login-form">Login<i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>           
             </div>
         </nav>
+        </div>
 
         <div id="additional-links" class="webui-popover-content">
-            <div><a id="dropdown-links">Events</a></div>
-            <div><a id="dropdown-links">Players</a></div>
-            <div><a id="dropdown-links">Leagues</a></div>
-            <div><a id="dropdown-links">About</a></div>
-            <div><a id="dropdown-links">Contact us</a></div>
+            <div><a id="dropdown-links" href = "#">Live</a></div>
+            <div><a id="dropdown-links" href = "../view_events/view_events.html">Events</a></div>
+            <div><a id="dropdown-links" href = "../view_teams/view_teams.html">Teams</a></div>
+            <div><a id="dropdown-links" href = "../view_schedule/view_schedules.htlm">Schedules</a></div>
+            <div><a id="dropdown-links" href = "../view_sponsors/view_sponsors.html">Sponsors</a></div>
         </div>
+
 
         <div id="register-part"> 
             <div id="register" class="col s12">
-                <h4 id="join-header">Join our Community!</h4>
+                <h4 id="join-header">Join the Malicsi Movement!</h4>
                 <form class="col s12">
                     <div class="form-container">
                         <div class="row">
