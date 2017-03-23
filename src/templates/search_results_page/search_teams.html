@@ -79,8 +79,8 @@
             <div class="col s4" id = "filters">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Filters</span>
                         <form action="#">
+                            <span class="card-title">Filters</span>
                             <p>
                                 <input type="checkbox" id="team-no-filter" checked />
                                 <label for="team-no-filter">No filter</label>
@@ -88,6 +88,22 @@
                             <p>
                                 <input type="checkbox" id="team-event-attended"  />
                                 <label for="team-event-attended">Event Attended</label>
+                            </p>
+
+                            <!-- Sort the results by one category -->
+                            <br>
+                            <span class="card-title">Sort by...</span>
+                            <p>
+                                <input class="with-gap" name="sort-team" type="radio" id="sort-team-no-sort" checked />
+                                <label for="sort-team-no-sort">None</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="sort-team" type="radio" id="sort-team-name" />
+                                <label for="sort-team-name">Name</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="sort-team" type="radio" id="sort-team-event-attended" />
+                                <label for="sort-team-event-attended">Event Attended</label>
                             </p>
 
                             <br>
@@ -150,28 +166,6 @@
         <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js">
         </script>
         <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
-        <script>
-            $('.side-nav-button').sideNav({
-                menuWidth: 300, // Default is 300
-                edge: 'right', // Choose the horizontal origin
-                closeOnClick: true
-            });
-        </script>
-        <script>
-            $(document).ready(function() {
-                Materialize.updateTextFields();
-            }); 
-        </script>
-        <script>
-            $('a').click(function(){
-                $('html, body').animate({
-                    scrollTop: $( $(this).attr('href') ).offset().top
-                }, 500);
-                return false;
-            });
-        </script>
-        <script>
-            $('#drop-links').webuiPopover({url:'#additional-links'});
-        </script>
+        <script src="../index_page/index.js"></script>
     </body>
 </html>
