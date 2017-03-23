@@ -78,20 +78,8 @@
             <div class="col s4" id = "filters">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Filters</span>
                         <form action="#">
-                            <!-- Events that the searched profile/s has/have attended, if there are any -->
-                            <p>
-                                <input type="checkbox" id="profile-event-attended" />
-                                <label for="profile-event-attended">Event Attended</label>
-                            </p>
-                            <!-- Teams the searched profile/s has/have played for, if there are any -->
-                            <p>
-                                <input type="checkbox" id="profile-team" />
-                                <label for="profile-team">Team</label>
-                            </p>
-                            
-                            <br>
+                            <span class="card-title">Filters</span>
                             <strong>Gender</strong>
                             <p>
                                 <input type="checkbox" id="profile-gender-no-filter" checked />
@@ -109,12 +97,47 @@
                                 <input type="checkbox" id="profile-gender-other" />
                                 <label for="profile-gender-other">Other</label>
                             </p>
+                            <br>
+                            <!-- Events that the searched profile/s has/have attended, if there are any -->
+                            <p>
+                                <input type="checkbox" id="profile-event-attended" />
+                                <label for="profile-event-attended">Event Attended</label>
+                            </p>
+                            <!-- Teams the searched profile/s has/have played for, if there are any -->
+                            <p>
+                                <input type="checkbox" id="profile-team" />
+                                <label for="profile-team">Team</label>
+                            </p>
+
+                            <!-- Sort the results by one category -->
+                            <br>
+                            <span class="card-title">Sort by...</span>
+                            <p>
+                                <input class="with-gap" name="sort-profile" type="radio" id="sort-profile-no-sort" checked />
+                                <label for="sort-profile-no-sort">None</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="sort-profile" type="radio" id="sort-profile-name" />
+                                <label for="sort-profile-name">Name</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="sort-profile" type="radio" id="sort-profile-gender" />
+                                <label for="sort-profile-gender">Gender</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="sort-profile" type="radio" id="sort-profile-event-attended" />
+                                <label for="sort-profile-event-attended">Event Attended</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="sort-profile" type="radio" id="sort-profile-team" />
+                                <label for="sort-profile-team">Team</label>
+                            </p>
 
                             <br>
                             <div class="divider"></div>
 
                             <!-- Text inputs for the checked criteria -->
-                            <strong>For checked criteria:</strong>
+                            <strong>For checked criteria (other than Gender):</strong>
                             <br>
                             <p class="input-field">
                                 <input type="text" id="event-attended-name" />
@@ -210,28 +233,6 @@
         <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js">
         </script>
         <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
-        <script>
-            $('.side-nav-button').sideNav({
-                menuWidth: 300, // Default is 300
-                edge: 'right', // Choose the horizontal origin
-                closeOnClick: true
-            });
-        </script>
-        <script>
-            $(document).ready(function() {
-                Materialize.updateTextFields();
-            }); 
-        </script>
-        <script>
-            $('a').click(function(){
-                $('html, body').animate({
-                    scrollTop: $( $(this).attr('href') ).offset().top
-                }, 500);
-                return false;
-            });
-        </script>
-        <script>
-            $('#drop-links').webuiPopover({url:'#additional-links'});
-        </script>
+        <script src="../index_page/index.js"></script>
     </body>
 </html>
