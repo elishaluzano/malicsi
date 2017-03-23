@@ -10,7 +10,7 @@ describe ('Game', function () {
         'min_num_of_players': '4',
         'max_num_of_players': '4',
         'status': 'Ongoing',
-        'venue': 'Copeland',
+        'venue': '1',
         'sport_id_key': '1'
       };
       request(url)
@@ -54,11 +54,11 @@ describe ('Game', function () {
   describe('updateGame()', function () {
     it('update game', function (done) {
         var game = {
-            'venue': 'Baker Hall',
+            'venue': '1',
             'time': '2017-03-02 02:00:00',
         	'min_num_of_players': '2',
         	'max_num_of_players': '6',
-        	'stat': 'Ongoing'
+        	'status': 'Ongoing'
         };
       request(url)
         .put('/api/games/' + '1')
