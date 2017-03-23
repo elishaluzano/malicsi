@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="index.css" />
+        <link href="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.css" rel="stylesheet" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div id="login-form" class="webui-popover-content">
+            <form id="login-form" action="../index_page/index_logged_in.html" method="post">
+                <div class="input-field">
+                    <input id="uname" type="text" class="validate">
+                    <label for="uname">Username</label>
+                </div>
+                <div class="input-field">
+                    <input id="pword" type="password" class="validate">
+                    <label for="pword">Password</label>
+                </div>
+                <button id="login-button" class="right red btn waves-effect waves-light" type="submit" name="action">Login</button>
+            </form>
+            <a id="forgot-password-link" class="right">Forgot your password?</a>
+        </div>
+        <div>
+        <nav id="top" class="white">
+            <div class="nav-wrapper">
+                <a class="left" id="malicsi-logo-link" href="../index_page/index.html"><img src="../images/malicsi-logo.png"></a>
+                <i id="drop-links" style="cursor: pointer;" class="black-text large material-icons left hide-on-large-only">menu</i>
+                <ul class="left hide-on-med-and-down">
+                    <li class = "active"><a class="black-text" href="../index_page/index.html">Live</a></li>
+                    <li><a class="black-text" href="../view_events/view_events.html">Events</a></li>
+                    <li><a class="black-text" href="../view_team_page/view_teams.html">Teams</a></li>
+                    <li><a class="black-text" href="../view_schedule_page/view_schedules.html">Schedules</a></li>
+                    <li><a class="black-text" href="../view_sponsors/view_sponsors.html">Sponsors</a></li>
+
+                </ul>
+                <form class = "left hide-on-small-only">
+                <div class="left" id="search-bar-div">
+                    <select id="select-dropdown" class="left black-text browser-default">
+                        <option value="" selected disabled>Search All</option>
+                        <option value="2">Player</option>
+                        <option value="3">Team</option>
+                        <option value="4">Event</option>
+                        <option value="5">Sponsoring Institution</option>
+                    </select>
+                </div>
+                 <div class="left" >
+                        <input class="left black-text" placeholder="Search" id="input">
+                        <i class="black-text material-icons" id="search-icon">search</i>
+                    </div>
+                </form>
+                <ul class="right">
+                    <li><a class="black-text" href="../register_page/register.html">Register</a></li>
+                    <li><a id="login" class="black-text" href="#login-form">Login<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>           
+            </div>
+        </nav>
+        </div>
+
+        <div id="additional-links" class="webui-popover-content">
+            <div><a id="dropdown-links" href = "#">Live</a></div>
+            <div><a id="dropdown-links" href = "../view_events/view_events.html">Events</a></div>
+            <div><a id="dropdown-links" href = "../view_teams/view_teams.html">Teams</a></div>
+            <div><a id="dropdown-links" href = "../view_schedule/view_schedules.htlm">Schedules</a></div>
+            <div><a id="dropdown-links" href = "../view_sponsors/view_sponsors.html">Sponsors</a></div>
+        </div>
+
+
+        <!-- OLD BODY -->
+        <!-- 
+        <div class="carousel carousel-slider center" data-indicators="true">
+            <div class="carousel-item" href="#">
+                <img src="http://vwcathletics.com/sports/mbkb/2015-16/basketball_sr.jpg">
+            </div>
+            <div class="carousel-item" href="#">
+                <img src="http://i2.cdn.cnn.com/cnnnext/dam/assets/160807004251-beach-volleyball-super-169.jpg">
+            </div>
+            <div class="carousel-item" href="#">
+                <img src="https://static01.nyt.com/images/2016/08/19/sports/19BADMINTONweb3/19BADMINTONweb3-master675.jpg">
+            </div>
+            <div class="carousel-item" href="#">
+                <img src="http://www.nbcolympics.com/sites/default/files/field_image/01June2016/table-tennis-og-image-cropped.jpg">
+            </div>
+        </div>
+
+        <h3 id="latest-news-header">Latest News</h3>
+        <div id="news-grid" class="row">
+            <div id="news" class="col s4">
+                <img src="../images/news.jpg" height="150px" width="250px">
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+            </div>
+            <div id="news" class="col s4">
+                <img src="../images/news.jpg" height="150px" width="250px">
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+            </div>
+            <div id="news" class="col s4">
+                <img src="../images/news.jpg" height="150px" width="250px"> 
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+            </div>
+            <div id="news" class="col s4">
+                <img src="../images/news.jpg" height="150px" width="250px">
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+            </div>
+            <div id="news" class="col s4">
+                <img src="../images/news.jpg" height="150px" width="250px">
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+            </div>
+            <div id="news" class="col s4">
+                <img src="../images/news.jpg" height="150px" width="250px"> 
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+                <p>Warriors-Cavaliers Warriors-Cavaliers</p>
+            </div>
+        </div>
+ -->
+            <br>
+            <div class = "row">
+
+                <div class = "col l3">
+                 <ul class="collapsible" data-collapsible="expandable">
+    <li>
+      <div class="collapsible-header active"><div class = "chip green white-text">Live</div>Malicsi 2018 Intergames Standing</div>
+      <div class="collapsible-body">
+          <table>
+              <thead>
+          <tr>
+              <th>Team</th>
+              <th>Standing</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><a href = "#">Blue Sails</a></td>
+            <td>08 - 02</td>
+          </tr>
+          <tr>
+            <td><a href = "#">Red Meteors</a></td>
+            <td>02 - 08</td>
+          </tr>
+          <tr>
+            <td><a href = "#">Green Vipers</a></td>
+            <td>05 - 03</td>
+          </tr>
+          <tr>
+            <td><a href = "#">White Eagles</a></td>
+            <td>03 - 05</td>
+          </tr>
+        </tbody>
+          </table>
+      </div>
+    </li>
+    <li>
+        <div class="collapsible-header"><div class = "chip green white-text">Live</div>Engineering Meet 2017 Standing</div>
+        <div class = "collapsible-body">
+ 
+          <table>
+              <thead>
+          <tr>
+              <th>Team</th>
+              <th>Standing</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><a href = "#">Blue Sails</a></td>
+            <td>08 - 02</td>
+          </tr>
+          <tr>
+            <td><a href = "#">Red Meteors</a></td>
+            <td>02 - 08</td>
+          </tr>
+          <tr>
+            <td><a href = "#">Green Vipers</a></td>
+            <td>05 - 03</td>
+          </tr>
+          <tr>
+            <td><a href = "#">White Eagles</a></td>
+            <td>03 - 05</td>
+          </tr>
+        </tbody>
+          </table>           
+
+        </div>
+    </li>
+    
+  </ul>
+        
+              </div>
+
+
+
+
+
+        <div class = "col l9">
+         <div class = "row">
+         <div class = "col l12">
+<ul class = "collection">
+                <li class = "collection-header"><h5>&nbsp<div class = "chip green white-text">Live</div>&nbsp Basketball-Mens</h5></li>
+                <li class = "collection-item"> <table class = "highlight">
+                    <thead>
+                        <tr>
+                          <th data-field="id">Date</th>
+                          <th data-field="name">Time</th>
+                          <th data-field="price">Matchup</th>
+                          <th data-field="price">Event name</th>
+                          <th data-field="sponsor">Sponsor</th>
+                          <th data-field="price">Venue</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>04/21/2018</td>
+                            <td>07:00</td>
+                            <td><a href = "#">Team 1</a> vs <a href="">Team 2</a></td>
+                            <td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
+                            <td><a href = "#">Institute of Computer Science</a></td>
+                            <td>Copeland Gym</td>
+                        </tr>
+                       <tr>
+                            <td>04/21/2018</td>
+                            <td>10:00</td>
+                            <td><a href = "#">Team 3</a> vs <a href="">Team 4</a></td>
+                            <td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
+                            <td><a href = "#">Institute of Computer Science</a></td>
+                            <td>Copeland Gym</td>
+                        </tr>
+  
+                    </tbody>
+                </table></li>
+
+               </ul> 
+            </div>
+
+         <div class="col l4">
+          <div class="hoverable card" >
+            <div class="card-image">
+               <a href = "#"><img src="../images/logo/malicsi2018.jpg"></a>
+              <span class="card-title black-text">Malicsi Intergames 2018</span>
+
+              <!-- Settings button is available only for Admin-->
+              <!-- Settings button is either gray or not visible to guest and normal user-->
+
+              <a class="dropdown-button hoverable btn-floating halfway-fab waves-effect waves-light red" href = "#" data-activates = "settings-dropdown"><i class="material-icons">settings</i></a>
+            </div>
+            <div class="divider"></div>
+            <div class="card-content hide-on-medium-only">
+              <ul>
+                <li><i class = "material-icons">date_range</i> June 12 - June 14</li>
+                <li><i class = "material-icons">supervisor_account</i><a href = "#"> Institute of Computer Science</a></li>
+              </ul>
+            </div>
+            <div class="card-action">
+               <div class="chip red white-text"> Soon </div>
+               <!-- <div class="chip blue white-text"> Your Event </div> -->
+            </div>
+          </div>
+        </div>
+                 <div class="col l4">
+          <div class="hoverable card" >
+            <div class="card-image">
+               <a href = "#"><img src="../images/logo/malicsi2018.jpg"></a>
+              <span class="card-title black-text">Malicsi Intergames 2018</span>
+
+              <!-- Settings button is available only for Admin-->
+              <!-- Settings button is either gray or not visible to guest and normal user-->
+
+              <a class="dropdown-button hoverable btn-floating halfway-fab waves-effect waves-light red" href = "#" data-activates = "settings-dropdown"><i class="material-icons">settings</i></a>
+            </div>
+            <div class="divider"></div>
+            <div class="card-content hide-on-medium-only">
+              <ul>
+                <li><i class = "material-icons">date_range</i> June 12 - June 14</li>
+                <li><i class = "material-icons">supervisor_account</i><a href = "#"> Institute of Computer Science</a></li>
+              </ul>
+            </div>
+            <div class="card-action">
+               <div class="chip red white-text"> Soon </div>
+               <!-- <div class="chip blue white-text"> Your Event </div> -->
+            </div>
+          </div>
+        </div>
+                 <div class="col l4">
+          <div class="hoverable card" >
+            <div class="card-image">
+               <a href = "#"><img src="../images/logo/malicsi2018.jpg"></a>
+              <span class="card-title black-text">Malicsi Intergames 2018</span>
+
+              <!-- Settings button is available only for Admin-->
+              <!-- Settings button is either gray or not visible to guest and normal user-->
+
+              <a class="dropdown-button hoverable btn-floating halfway-fab waves-effect waves-light red" href = "#" data-activates = "settings-dropdown"><i class="material-icons">settings</i></a>
+            </div>
+            <div class="divider"></div>
+            <div class="card-content hide-on-medium-only">
+              <ul>
+                <li><i class = "material-icons">date_range</i> June 12 - June 14</li>
+                <li><i class = "material-icons">supervisor_account</i><a href = "#"> Institute of Computer Science</a></li>
+              </ul>
+            </div>
+            <div class="card-action">
+               <div class="chip red white-text"> Soon </div>
+               <!-- <div class="chip blue white-text"> Your Event </div> -->
+            </div>
+          </div>
+        </div>
+            
+</div>
+    <div class = "row">
+                    </div>
+        </div>
+
+</div>
+
+
+
+        <footer class="red page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Footer Content</h5>
+                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    BETELOG 2017 Copyright 
+                    <a class="grey-text text-lighten-4 right" href="#top">Back to top</a>
+                </div>
+            </div>
+        </footer>
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.js"></script>
+        <script src="../../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+        <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>

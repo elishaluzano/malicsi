@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>MalICSi - Search Teams</title>
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"/>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.css" media="screen,projection" />    
         <link href="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.css" rel="stylesheet" />
+    
         <!-- FOR NAVIGATION CSS -->
         <link type="text/css" rel="stylesheet" href="../index_page/index.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>     
+        
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     </head>
     <body>
-        <div class ="navbar-fixed">
+
+    <!--========================================================== NAVIGATION =========================================================-->
+    <div class ="navbar-fixed">
    <nav id="top" class="white">
             <div class="nav-wrapper">
-                <a class="left" id="malicsi-logo-link" href="../index_page/index_logged_in.html"><img src="../images/malicsi-logo.png"></a>
+                <a class="left" id="malicsi-logo-link" href="#"><img src="../images/malicsi-logo.png"></a>
                 <i id="drop-links" style="cursor: pointer;" class="black-text large material-icons left hide-on-large-only">menu</i>
                 <ul class="left hide-on-med-and-down">
-                    <li class = "active"><a class="black-text" href="../index_page/index.html">Live</a></li>
+                    <li><a class="black-text" href="#">Live</a></li>
                     <li><a class="black-text" href="../view_events/view_events.html">Events</a></li>
                     <li><a class="black-text" href="../view_team_page/view_teams.html">Teams</a></li>
                     <li><a class="black-text" href="../view_schedule_page/view_schedule.html">Schedules</a></li>
                     <li><a class="black-text" href="../view_sponsors_page/view_sponsors.html">Sponsors</a></li>
 
+                    <!-- Available to the admin only -->
+                    <!-- not visible if not admin -->
+                    <li class = "active"><a class="black-text" href="../view_user_logs_page/user_logs.html">Logs</a></li>
                 </ul>
                 <form class = "left hide-on-small-only">
                 <div class="left" id="search-bar-div">
@@ -70,82 +80,69 @@
             <li><a href="../index_page/index.html">Sign out<i class="material-icons">power_settings_new</i></a></li>
         </ul>
 
+        <!--========================================================== NAVIGATION =========================================================-->
 
-        <!-- End of Navigation-->
+        <div class = "row">
+            <div class = "col m2">
+            </div>
+            
+            <div class = "col m8">
+                <table class = "centered bordered highlight">
+                    <thead>
+                        <tr>
+                            <th data-field="id">User</th>
+                            <th data-field="name">Action</th>
+                            <th data-field="price">Time Stamp</th>
+                        </tr>
+                    </thead>
 
-        <div class="container row">
-            <h3>Search Teams</h3>
-            <!-- Filters: subject to change -->
-            <div class="col s4" id = "filters">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">Filters</span>
-                        <form action="#">
-                            <p>
-                                <input type="checkbox" id="team-no-filter" checked />
-                                <label for="team-no-filter">No filter</label>
-                            </p>
-                            <p>
-                                <input type="checkbox" id="team-event-attended"  />
-                                <label for="team-event-attended">Event Attended</label>
-                            </p>
+                    <tbody>
+                        <tr>
+                            <td>drewguiao</td>
+                            <td><p>An action was done by the user and it was probably awesome</p></td>
+                            <td>03.21.2017 08:00AM</td>
+                        </tr>
+                        <tr>
+                            <td>elishaluzano</td>
+                            <td><p>An action was done by the user and it was probably awesome</p></td>
+                            <td>03.21.2017 08:00AM</td>
+                        </tr>
+                        <tr>
+                            <td>maze</td>
+                            <td><p>An action was done by the user and it was probably awesome</p></td>
+                            <td>03.21.2017 08:00AM</td>
+                        </tr>
+                        <tr>
+                            <td>sam</td>
+                            <td><p>An action was done by the user and it was probably awesome</p></td>
+                            <td>03.21.2017 08:00AM</td>
+                        </tr>
+                        <tr>
+                            <td>frodo</td>
+                            <td><p>An action was done by the user and it was probably awesome</p></td>
+                            <td>03.21.2017 08:00AM</td>
+                        </tr>
+                        <tr>
+                            <td>the ring</td>
+                            <td><p>An action was done by the user and it was probably awesome</p></td>
+                            <td>03.21.2017 08:00AM</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                            <br>
-                            <div class="divider"></div>
-
-                            <strong>For checked criteria:</strong>
-                            <br>
-                            <p class="input-field">
-                                <input type="text" id="team-event-name" />
-                                <label for="team-event-name">Event Attended</label>
-                            </p>
-                        </form>
-                    </div>
-                </div>
             </div>
 
-            <!-- Results: holds the Collection of teams with filters applied -->
-            <div class="col s8" id = "results">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">Results</span>
-                        <ul class="collection">
-                            <a class="collection-item red white-text">Team One</a>
-                            <a class="collection-item grey darken-3 white-text">Team Two</a>
-                            <a class="collection-item blue darken-2 white-text">Team Three</a>
-                            <a class="collection-item yellow black-text">Team Four</a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
         </div>
 
-        <script src="../../../node_modules/jquery/dist/jquery.js"></script>
-        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js">
-        </script>
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.js"></script>
         <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
-        <script>
-            $('.side-nav-button').sideNav({
-                menuWidth: 300, // Default is 300
-                edge: 'right', // Choose the horizontal origin
-                closeOnClick: true
-            });
-        </script>
-        <script>
-            $(document).ready(function() {
-                Materialize.updateTextFields();
-            }); 
-        </script>
-        <script>
-            $('a').click(function(){
-                $('html, body').animate({
-                    scrollTop: $( $(this).attr('href') ).offset().top
-                }, 500);
-                return false;
-            });
-        </script>
-        <script>
-            $('#drop-links').webuiPopover({url:'#additional-links'});
-        </script>
+        
+        <!-- FOR NAVIGATION JS -->
+        <script src="../index_page/index.js"></script>     
+        
     </body>
 </html>
