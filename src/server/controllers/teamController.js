@@ -169,7 +169,7 @@ exports.addPlays = (req, res) => {
 
 
 exports.deletePlays = (req, res) => {
-	connection.query('DELETE FROM teamPlaysGame where team_id_play = ?', [ req.params.id ], function(err, rows, fields) {
+	connection.query('DELETE FROM teamPlaysGame where team_id_play = ? and game_id_play = ?', [ req.params.id, req.params.game ], function(err, rows, fields) {
 		if(!err) {
 			res.send({});
 			console.log("Successfully deleted plays");
@@ -222,7 +222,7 @@ exports.addWins = (req, res) => {
 
 
 exports.deleteWins = (req, res) => {
-	connection.query('DELETE FROM teamWinsGame where team_id_key = ?', [ req.params.id ], function(err, rows, fields) {
+	connection.query('DELETE FROM teamWinsGame where team_id_key = ? and game_id_key = ?', [ req.params.id, req.params.game ], function(err, rows, fields) {
 		if(!err) {
 			res.send({});
 			console.log("Successfully deleted wins");

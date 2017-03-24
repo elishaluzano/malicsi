@@ -10,7 +10,7 @@ describe('Institution', function () {
 				 'description': 'College of Vet Med'
 			 };
 			 request(url)
-				 .post('/api/institutions/addSponsoringInstitution')
+				 .post('/api/institutions')
 				 .send(institution)
 				 .end(function(err, res) {
 					 if (err) throw err;
@@ -49,8 +49,8 @@ describe('Institution', function () {
 	describe('updateSponsoringInstitution()', function () {
 		 it('update institution', function (done) {
 			 request(url)
-				 .put('/api/institutions/updateSponsoringInstitution')
-				 .send({name:"CVMM", description: "College of Veterany Medicine", institution_id: "11"})
+				 .put('/api/institutions/' + 11)
+				 .send({name:"CVMM", description: "College of Veterany Medicine"})
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
@@ -62,7 +62,7 @@ describe('Institution', function () {
 	describe('deleteSponsoringInstitution()', function () {
 		 it('delete institution', function (done) {
 			 request(url)
-				 .delete('/api/institutions/delete/' + '11')
+				 .delete('/api/institutions/' + '11')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);

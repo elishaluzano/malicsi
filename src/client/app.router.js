@@ -4,10 +4,6 @@
         .config(routerConfig);
     
     function routerConfig($stateProvider, $urlRouterProvider) {
-
-        // $stateProvider.state({});
-        // $urlRouterProvider.otherwise('/');
-        
         $stateProvider
             .state({
                 name: 'userLogPage',

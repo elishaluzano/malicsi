@@ -58,7 +58,7 @@ exports.updateGame = (req,res) => {
 }
 
 exports.deleteGame = (req,res) => {
-	connection.query('DELETE FROM game WHERE game_id = ?', [req.params.id], function(err, rows, fields){
+	connection.query('call deleteGame(?)', [req.params.id], function(err, rows, fields){
 		if(!err) {
 			console.log("Success");
 			res.send({});
