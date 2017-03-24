@@ -24,7 +24,7 @@
 
         vm.$onInit = function() {
             console.log(vm.event);
-            institutionService.getOne(event.institution_id_key)
+            institutionService.getOne(vm.event.institution_id_key)
                 .then(function(data) {
                     if (data) {
                         vm.institutionName = data.name;
@@ -32,7 +32,7 @@
                 });
 
             newDate = new Date().getTime();
-            if (newDate > new Date(event.start_date).getTime && newDate < new Date(event.end_date).getTime) {
+            if (newDate >= new Date(vm.event.start_date).getTime() && newDate <= new Date(vm.event.end_date).getTime()) {
                 vm.eventStatus.color = 'green';
                 vm.eventStatus.text = 'Live';
             }
