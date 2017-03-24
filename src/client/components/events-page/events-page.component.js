@@ -5,27 +5,17 @@
         .module('app')
         .component('eventsPage', {
             template: require('./events-page.html'),
-            controller: eventsPageController
+            controller: eventsPageController,
+            bindings: {
+                events: '<'
+            }
         });
 
-    function eventsPageController(eventService, sessionService) {
+    function eventsPageController(eventService) {
         var vm = this;
 
-        vm.events = [];
-        vm.isAdmin = [];
-
         vm.$onInit = function() {
-            sessionService.session()
-                .then(function(data) {
-                    let user = data;
-
-                    eventService.getAll()
-                        .then(function(data) {
-                            if ()
-                        });
-                    
-                });
-
+            console.log(vm.events);
         }
 
     }

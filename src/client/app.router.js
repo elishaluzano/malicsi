@@ -18,7 +18,12 @@
             .state({
                 name: 'eventsPage',
                 url: '/events',
-                component: 'eventsPage'
+                component: 'eventsPage',
+                resolve: {
+                    events: function(eventService) {
+                        return eventService.getAll();
+                    }
+                }
             })
             .state({
                 name: 'registrationPage',
