@@ -78,7 +78,7 @@
         <div class="container row">
             <h3>Search All</h3>
             <!-- Filters: subject to change -->
-            <div class="col s4" id = "filters">
+            <div class="col m4 l4 hide-on-small-only" id = "filters">
                 <div class="card">
                     <div class="card-content">
                         <form action="#">
@@ -106,71 +106,154 @@
             </div>
 
             <!-- Results: holds the Collection of all search results with filters applied -->
-            <div class="col s8" id = "results">
+            <div class="col m8 l8" id = "results">
+                <!-- Holds the results for Profiles -->
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Results</span>
+                        <span class="card-title">Profiles</span>
                         <ul class="collection">
                             <!-- One Result -->
                             <li class="collection-item avatar">
-                                <!-- Result logo/profile picture -->
+                                <!-- Profile picture -->
+                                <a href="../profile_page/profile.html">
+                                    <img src="../images/person-flat.png" alt="" class="circle">
+                                </a>
+                                <!-- Name -->
+                                <a href="../profile_page/profile.html">
+                                    <span class="title">Perso N. Name</span>
+                                </a>
+                                <!-- Affiliations -->
+                                <p>
+                                    <strong>Affiliations:</strong>
+                                    <ul class="profile-affiliations">
+                                        <li>Affiliation 1</li>
+                                        <li>Affiliation 2</li>
+                                    </ul>
+                                </p>
+                            </li>
+
+                            <li class="collection-item avatar">
+                                <!-- Profile picture -->
+                                <a href="../profile_page/profile.html">
+                                    <img src="../images/person-flat.png" alt="" class="circle">
+                                </a>
+                                <!-- Name -->
+                                <a href="../profile_page/profile.html">
+                                    <span class="title">Another Person</span>
+                                </a>
+                                <!-- Affiliations -->
+                                <p>
+                                    <strong>Affiliations:</strong>
+                                    <ul class="profile-affiliations">
+                                        <li>Affiliation 1</li>
+                                        <li>Affiliation 2</li>
+                                        <li>Affiliation 3</li>
+                                    </ul>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Holds the results for Teams -->
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Teams</span>
+                        <ul class="collection">
+                            <a class="collection-item red white-text">Team One</a>
+                            <a class="collection-item grey darken-3 white-text">Team Two</a>
+                            <a class="collection-item blue darken-2 white-text">Team Three</a>
+                            <a class="collection-item yellow black-text">Team Four</a>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Holds the results for Events -->
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Events</span>
+                        <ul class="collection">
+                            <!-- One Event -->
+                            <li class="collection-item avatar">
+                                <!-- Event logo -->
                                 <a href="#">
                                     <img src="../images/person-flat.png" alt="" class="circle">
                                 </a>
-                                <!-- Result name -->
+                                <!-- Event name -->
                                 <a href="#">
-                                    <span class="title">Perso N. Name</span> <span>(Profile)</span>
+                                    <span class="title">Event 1</span>
                                 </a>
+                                <!-- Event details -->
+                                <p>
+                                    <strong>Venue: </strong><span>Place 1</span>
+                                </p>
+                            </li>
+
+                            <li class="collection-item avatar">
+                                <!-- Event logo -->
+                                <a href="#">
+                                    <img src="../images/person-flat.png" alt="" class="circle">
+                                </a>
+                                <!-- Event name -->
+                                <a href="#">
+                                    <span class="title">Event 2</span>
+                                </a>
+                                <!-- Event details -->
+                                <p>
+                                    <strong>Venue: </strong><span>Place 2</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Holds the results for Sponsors -->
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Sponsors</span>
+                        <ul class="collection">
+                            <!-- One Sponsor -->
+                            <li class="collection-item avatar">
+                                <!-- Sponsor logo -->
+                                <a href="#">
+                                    <img src="../images/person-flat.png" alt="" class="circle">
+                                </a>
+                                <!-- Sponsor name -->
+                                <a href="#">
+                                    <span class="title">Sponsor 1</span>
+                                </a>
+                                <!-- Sponsor details -->
+                                <p>
+                                    <strong>Description: </strong><span>Sponsor 1 is [description over here].</span>
+                                </p>
                             </li>
                             <li class="collection-item avatar">
-                                <!-- Result logo/profile picture -->
+                                <!-- Sponsor logo -->
                                 <a href="#">
                                     <img src="../images/person-flat.png" alt="" class="circle">
                                 </a>
-                                <!-- Result name -->
+                                <!-- Sponsor name -->
                                 <a href="#">
-                                    <span class="title">Anne Othe R. User</span> <span>(Profile)</span>
+                                    <span class="title">Sponsor 2</span>
                                 </a>
+                                <!-- Sponsor details -->
+                                <p>
+                                    <strong>Description: </strong><span>Sponsor 2 is [description 2 over here].</span>
+                                </p>
                             </li>
                             <li class="collection-item avatar">
-                                <!-- Result logo/profile picture -->
+                                <!-- Sponsor logo -->
                                 <a href="#">
                                     <img src="../images/person-flat.png" alt="" class="circle">
                                 </a>
-                                <!-- Result name -->
+                                <!-- Sponsor name -->
                                 <a href="#">
-                                    <span class="title">Team Ba</span> <span>(Team)</span>
+                                    <span class="title">Sponsor 3</span>
                                 </a>
-                            </li>
-                            <li class="collection-item avatar">
-                                <!-- Result logo/profile picture -->
-                                <a href="#">
-                                    <img src="../images/person-flat.png" alt="" class="circle">
-                                </a>
-                                <!-- Result name -->
-                                <a href="#">
-                                    <span class="title">Team Possible</span> <span>(Team)</span>
-                                </a>
-                            </li>
-                            <li class="collection-item avatar">
-                                <!-- Result logo/profile picture -->
-                                <a href="#">
-                                    <img src="../images/person-flat.png" alt="" class="circle">
-                                </a>
-                                <!-- Result name -->
-                                <a href="#">
-                                    <span class="title">Eventelog</span> <span>(Event)</span>
-                                </a>
-                            </li>
-                            <li class="collection-item avatar">
-                                <!-- Result logo/profile picture -->
-                                <a href="#">
-                                    <img src="../images/person-flat.png" alt="" class="circle">
-                                </a>
-                                <!-- Result name -->
-                                <a href="#">
-                                    <span class="title">Dig Delis</span> <span>(Sponsor)</span>
-                                </a>
+                                <!-- Sponsor details -->
+                                <p>
+                                    <strong>Description: </strong><span>Sponsor 3 is [description 333 over here].</span>
+                                </p>
                             </li>
                         </ul>
                     </div>
