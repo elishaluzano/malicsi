@@ -16,6 +16,11 @@
                 component: 'userPage'
             })
             .state({
+                name: 'eventsPage',
+                url: '/events',
+                component: 'eventsPage'
+            })
+            .state({
                 name: 'registrationPage',
                 url: '/register',
                 component: 'registrationCard'
