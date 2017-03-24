@@ -10,6 +10,7 @@
     function landingPageController(eventService) {
         var vm = this;
         vm.events = '';
-        
+
+        vm.eventCardList = eventService.getAll();
     }
 })();

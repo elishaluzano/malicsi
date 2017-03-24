@@ -19,7 +19,12 @@
                 name: 'registrationPage',
                 url: '/register',
                 component: 'registrationCard'
-            });
+            })
+            .state({
+                name: 'landingPage',
+                url: '/',
+                component: 'landingPage'
+            })
 
         $urlRouterProvider.otherwise('/');
     }
