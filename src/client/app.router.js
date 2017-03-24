@@ -14,7 +14,12 @@
                 name: 'userPage',
                 url: '/user/{userId}',
                 component: 'userPage'
-            });;
+            })
+            .state({
+                name: 'registrationPage',
+                url: '/register',
+                component: 'registrationCard'
+            });
 
         $urlRouterProvider.otherwise('/');
     }
