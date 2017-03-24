@@ -13,6 +13,12 @@
                 name: 'userLogPage',
                 url: '/log',
                 component: 'userLogPage'
+            })
+
+            .state({
+                name: 'gameHistoryPage',
+                url: '/gameHistory',
+                component: 'gameHistoryPage'
             });
 
         $urlRouterProvider.otherwise('/');

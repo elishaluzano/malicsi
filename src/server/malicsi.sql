@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS malicsi;
+  qDROP DATABASE IF EXISTS malicsi;
 CREATE DATABASE malicsi;
 USE malicsi;
 CREATE TABLE contactPersonInCaseOfEmergency (
