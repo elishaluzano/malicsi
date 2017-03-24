@@ -4,15 +4,21 @@
         .config(routerConfig);
     
     function routerConfig($stateProvider, $urlRouterProvider) {
-        
-        // $stateProvider.state({});
-        // $urlRouterProvider.otherwise('/');
-        
         $stateProvider
             .state({
                 name: 'userLogPage',
                 url: '/log',
                 component: 'userLogPage'
+            })
+            .state({
+                name: 'userPage',
+                url: '/user/{userId}',
+                component: 'userPage'
+            })
+            .state({
+                name: 'registrationPage',
+                url: '/register',
+                component: 'registrationCard'
             });
 
         $urlRouterProvider.otherwise('/');

@@ -13,7 +13,7 @@ describe ('Event', function () {
         'institution_id_key': '10'
       };
       request(url)
-        .post('/api/events/addEvent')
+        .post('/api/events')
         .send(event)
         .end(function(err, res) {
           if (err) throw err;
@@ -52,13 +52,12 @@ describe ('Event', function () {
   describe('updateEvent()', function () {
     it('update event', function (done) {
       request(url)
-        .put('/api/events/updateEvent')
+        .put('/api/events/' + '1')
         .send({
             'event_title': "CemCemlympics",
             'venue': "Baker Hall",
             'start_date': "2017-04-23",
-            'end_date': "2017-05-09",
-            'event_id': "1" 
+            'end_date': "2017-05-09"
             })
         .end(function(err, res) {
           if (err) throw err;

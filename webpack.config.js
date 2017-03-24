@@ -56,7 +56,8 @@ module.exports = function(env) {
             }),
             new webpack.ProvidePlugin({
                 $: 'jquery',
-                jQuery: 'jquery'
+                jQuery: 'jquery',
+                'window.jQuery': 'jquery'
             }),
             new CompressionPlugin({
                 asset: "[path].gz[query]",

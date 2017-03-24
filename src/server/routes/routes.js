@@ -8,12 +8,20 @@ var userCtrl = require('../controllers/userController.js');
 router.post('/api/login', userCtrl.loginUser);
 router.post('/api/sessions', userCtrl.getAccount);
 router.post('/api/users', userCtrl.addUser);
-router.post('/api/logout', userCtrl.logout)
+router.post('/api/logout', userCtrl.logout);
 //user routes
 router.get('/api/users', userCtrl.getUsers);
 router.get('/api/users/:id', userCtrl.getUser);
 router.put('/api/users/:id', userCtrl.updateUser);
 router.delete('/api/users/:id', userCtrl.deleteUser);
+
+var userAffiliationCtrl = require('../controllers/userAffiliationController.js');
+//user affiliation routes
+router.get('/api/useraffiliations', userAffiliationCtrl.viewAllUserAffiliation);
+router.get('/api/useraffiliations/:id', userAffiliationCtrl.viewUserAffiliation);
+router.post('/api/useraffiliations', userAffiliationCtrl.addUserAffiliation);
+router.put('/api/useraffiliations/:id', userAffiliationCtrl.updateUserAffiliation);
+router.delete('/api/useraffiliations/:id/:affiliation', userAffiliationCtrl.deleteUserAffiliation);
 
 var contactCtrl = require('../controllers/contactController.js');
 //contact person in case of emergency routes
@@ -89,16 +97,16 @@ router.post('/api/teams/addIsComposedOf', teamCtrl.addIsComposedOf);
 router.delete('/api/teams/isComposedOf/:id', teamCtrl.deleteIsComposedOf);
 
 //team-plays routes
-router.get('/api/teams/getPlays', teamCtrl.getAllPlays);
-router.get('/api/teams/getPlays/:id', teamCtrl.getPlays);
-router.post('/api/teams/addPlays', teamCtrl.addPlays);
-router.delete('/api/teams/deletePlays/:id', teamCtrl.deletePlays);
+router.get('/api/teams/plays', teamCtrl.getAllPlays);
+router.get('/api/teams/plays/:id', teamCtrl.getPlays);
+router.post('/api/teams/plays', teamCtrl.addPlays);
+router.delete('/api/teams/plays/:id/:game', teamCtrl.deletePlays);
 
 //team-wins routes
-router.get('/api/teams/getWins', teamCtrl.getAllWins);
-router.get('/api/teams/getWins/:id', teamCtrl.getWins);
-router.post('/api/teams/addWins', teamCtrl.addWins);
-router.delete('/api/teams/deleteWins/:id', teamCtrl.deleteWins);
+router.get('/api/teams/wins', teamCtrl.getAllWins);
+router.get('/api/teams/wins/:id', teamCtrl.getWins);
+router.post('/api/teams/wins', teamCtrl.addWins);
+router.delete('/api/teams/wins/:id/:game', teamCtrl.deleteWins);
 
 var venueCtrl = require('../controllers/venueController.js');
 //venue routes
