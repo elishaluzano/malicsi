@@ -36,7 +36,7 @@ router.get('/api/checkAdmin/:id', userCtrl.checkAdmin);
 router.get('/api/admins', userCtrl.getAdmins);
 router.get('/api/admins/:id', userCtrl.getAdmin);
 router.post('/api/admins', userCtrl.addAdmin);
-router.delete('api/admins/:institution_id/:user_id', userCtrl.deleteAdmin);
+router.delete('/api/admins/:institution_id/:user_id', userCtrl.deleteAdmin);
 
 var userlogCtrl = require('../controllers/userlogController.js');
 //userlog routes
@@ -67,6 +67,10 @@ router.delete('/api/events/:id',eventCtrl.deleteEvent);
 router.get('/api/events/:id/sports', eventCtrl.viewSportsInEvent);
 //get all teams from an event
 router.get('/api/events/:id/teams', eventCtrl.viewTeamsInEvent);
+//get all games from an event
+router.get('/api/events/:id/games', eventCtrl.viewGamesInEvent);
+//get all games from a sport from an event
+router.get('/api/events/:event_id/sports/:sport_id/games', eventCtrl.viewGamesInSportInEvent);
 
 var sportCtrl = require('../controllers/sportController.js');
 //sport routes
@@ -90,6 +94,9 @@ router.get('/api/games',gameCtrl.viewAllGame);
 router.put('/api/games/:id',gameCtrl.updateGame);
 router.delete('/api/games/:id',gameCtrl.deleteGame);
 
+//get all teams from specific game
+router.get('/api/games/:id/teams',gameCtrl.viewTeamsInGame);
+
 var teamCtrl = require('../controllers/teamController.js');
 //team routes
 router.post('/api/teams', teamCtrl.addTeam);
@@ -99,22 +106,18 @@ router.put('/api/teams/:id', teamCtrl.updateTeam);
 router.delete('/api/teams/:id', teamCtrl.deleteTeam);
 
 //team isComposedOf routes
-router.get('/api/teams/getAllIsComposedOf', teamCtrl.getAllIsComposedOf);
-router.get('/api/teams/getIsComposedOf/:id', teamCtrl.getIsComposedOf);
-router.post('/api/teams/addIsComposedOf', teamCtrl.addIsComposedOf);
-router.delete('/api/teams/isComposedOf/:id', teamCtrl.deleteIsComposedOf);
+router.get('/api/teams/composedOf', teamCtrl.getAllIsComposedOf);
+//get all users from a specific team
+router.get('/api/teams/:id/users', teamCtrl.getIsComposedOf);
+router.post('/api/teams/composedOf', teamCtrl.addIsComposedOf);
+router.delete('/api/teams/composedOf/:id', teamCtrl.deleteIsComposedOf);
 
 //team-plays routes
 router.get('/api/teams/plays', teamCtrl.getAllPlays);
-router.get('/api/teams/plays/:id', teamCtrl.getPlays);
+//get all games from a specific team
+router.get('/api/teams/:id/plays/', teamCtrl.getPlays);//get all teams from a specific game
 router.post('/api/teams/plays', teamCtrl.addPlays);
 router.delete('/api/teams/plays/:id/:game', teamCtrl.deletePlays);
-
-//team-wins routes
-router.get('/api/teams/wins', teamCtrl.getAllWins);
-router.get('/api/teams/wins/:id', teamCtrl.getWins);
-router.post('/api/teams/wins', teamCtrl.addWins);
-router.delete('/api/teams/wins/:id/:game', teamCtrl.deleteWins);
 
 var venueCtrl = require('../controllers/venueController.js');
 //venue routes
