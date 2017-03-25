@@ -94,6 +94,9 @@ router.get('/api/games',gameCtrl.viewAllGame);
 router.put('/api/games/:id',gameCtrl.updateGame);
 router.delete('/api/games/:id',gameCtrl.deleteGame);
 
+//get all teams from specific game
+router.get('/api/games/:id/teams',gameCtrl.viewTeamsInGame);
+
 var teamCtrl = require('../controllers/teamController.js');
 //team routes
 router.post('/api/teams', teamCtrl.addTeam);
@@ -112,7 +115,7 @@ router.delete('/api/teams/composedOf/:id', teamCtrl.deleteIsComposedOf);
 //team-plays routes
 router.get('/api/teams/plays', teamCtrl.getAllPlays);
 //get all games from a specific team
-router.get('/api/teams/:id/plays/', teamCtrl.getPlays);
+router.get('/api/teams/:id/plays/', teamCtrl.getPlays);//get all teams from a specific game
 router.post('/api/teams/plays', teamCtrl.addPlays);
 router.delete('/api/teams/plays/:id/:game', teamCtrl.deletePlays);
 
