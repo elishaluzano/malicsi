@@ -66,7 +66,7 @@ describe('Team', function(){
 	 describe('deleteTeam()', function () {
 		 it('deletes a specific team', function (done) {
 			 request(url)
-				 .get('/api/teams/' + '4')
+				 .delete('/api/teams/' + '4')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);

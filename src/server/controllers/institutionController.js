@@ -2,7 +2,7 @@
 
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-const connection = require('./../database.js')
+const connection = require('./../database.js');
 
     
 exports.addSponsoringInstitution = (req,res) => {
@@ -12,27 +12,27 @@ exports.addSponsoringInstitution = (req,res) => {
 	};
 	connection.query('INSERT INTO sponsoringInstitution SET ?', institution, function(err, rows, fields){
 		if (err) {
-            console.log(err)
+            console.log(err);
             res.send(err);
          }
         else {
-            res.send('Successfully added an institution.')
+            res.send('Successfully added an institution.');
             res.send(rows[0]);
         }
 	});
-}
+};
 
 exports.viewSponsoringInstitution = (req,res) => {
 	connection.query('SELECT * FROM sponsoringInstitution WHERE institution_id = ?', [req.params.id], function(err, rows, fields){
 		if (err) {
-            console.log(err)
+            console.log(err);
             res.send(err);
          }
         else {
-            res.send(rows[0])
+            res.send(rows[0]);
         }
 	});
-}
+};
 
 exports.viewAllSponsoringInstitution = (req,res) => {
 	connection.query('SELECT * FROM sponsoringInstitution',[], function(err, rows, fields){
@@ -44,12 +44,12 @@ exports.viewAllSponsoringInstitution = (req,res) => {
             res.send(rows);
         }
 	});
-}
+};
 
 exports.updateSponsoringInstitution = (req,res) => {
 	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ? WHERE institution_id= ?', [req.body.name, req.body.description, req.params.id], function(err, rows, fields){
 		if (err) {
-            console.log(err)
+            console.log(err);
             res.send(err);
          }
         else {
@@ -57,17 +57,29 @@ exports.updateSponsoringInstitution = (req,res) => {
             res.send(rows[0]);
         }
 	});
-}
+};
 
 exports.deleteSponsoringInstitution = (req,res) => {
 	connection.query('DELETE FROM sponsoringInstitution WHERE institution_id= ?', [req.params.id], function(err, rows, fields){
 		if (err) {
-            console.log(err)
+            console.log(err);
             res.send(err);
          }
         else {
             res.send({});
         }
 	});
-}
+};
   
+exports.viewEventsInInstitution = (req, res) => {
+    connection.query('select * from event where institution_id_key = ?',[req.params.id],function(err, rows, fields){
+        if (err) {
+            console.log(err);
+            res.send(err);
+        }
+        else {
+            res.send(rows);
+            console.log("Success");
+        }
+    });
+};
