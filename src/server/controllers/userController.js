@@ -172,7 +172,7 @@ exports.addAdmin = (req, res) => {
     var newAdmin = {
         institution_no : req.body.institution_no,
         user_no : req.body.user_no
-    }
+    };
     connection.query('INSERT INTO institutionHasAdmin set ?', newAdmin, function(err, rows, fields){
         if (!err){
             res.send(rows[0]);
@@ -184,7 +184,7 @@ exports.addAdmin = (req, res) => {
         }
         
     });
-}
+};
 
 // DELETE an admin
 exports.deleteAdmin = (req, res) => {
