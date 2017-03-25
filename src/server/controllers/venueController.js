@@ -64,7 +64,7 @@ exports.deleteVenue = (req,res) => {
          }
         else {
             res.send({});
-            console.log("Successfully deleted a team.");
+            console.log("Successfully deleted a venue.");
         }
 	});
 }

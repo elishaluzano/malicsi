@@ -36,7 +36,7 @@ router.get('/api/checkAdmin/:id', userCtrl.checkAdmin);
 router.get('/api/admins', userCtrl.getAdmins);
 router.get('/api/admins/:id', userCtrl.getAdmin);
 router.post('/api/admins', userCtrl.addAdmin);
-router.delete('api/admins/:institution_id/:user_id', userCtrl.deleteAdmin);
+router.delete('/api/admins/:institution_id/:user_id', userCtrl.deleteAdmin);
 
 var userlogCtrl = require('../controllers/userlogController.js');
 //userlog routes
