@@ -10,7 +10,6 @@
  		<link rel="stylesheet" type="text/css" href="../../../node_modules/webui-popover/dist/jquery.webui-popover.css"/>
         <!-- FOR NAVIGATION CSS -->
         <link type="text/css" rel="stylesheet" href="../index_page/index.css" />
-
 	</head>
 	
 
@@ -94,7 +93,7 @@
 				</ul>
 			</div>
 			<div id="test1" class="container">
-				<div class="card-panel center-align">
+				<div class="card-panel">
 					<div class="row">
 						<a class="btn-large waves-effect waves-light red white-text" href="#rules-modal"><i class="material-icons left">info</i>Rules</a>
 						<a class="btn-large waves-effect waves-light red white-text" href="#join-sport-modal"><i class="material-icons left">add</i>Join</a>
@@ -107,7 +106,7 @@
 			</div>
 
 			<div id="test2" class="container">
-				<div class="card-panel center-align">
+				<div class="card-panel">
 					<div class="row">
 						<a class="btn-large waves-effect waves-light red white-text" href="#rules-modal"><i class="material-icons left">info</i>Rules</a>
 						<a class="btn-large waves-effect waves-light red white-text" href="#join-sport-modal"><i class="material-icons left">add</i>Join</a>
@@ -120,7 +119,7 @@
 			</div>
 
 			<div id="test3" class="container">
-				<div class="card-panel center-align">
+				<div class="card-panel">
 					<div class="row">
 						<a class="btn-large waves-effect waves-light red white-text" href="#rules-modal"><i class="material-icons left">info</i>Rules</a>
 						<a class="btn-large waves-effect waves-light red white-text" href="#join-sport-modal"><i class="material-icons left">add</i>Join</a>
@@ -209,10 +208,22 @@
 		</div>
 		
 		<!--Add Sport button and modal-->
-		<div class="fixed-action-btn">
-			<a class="btn-floating btn-large white tooltipped" href="#add-sport-modal" data-position="top" data-tooltip="Add Sport">
-				<i class="material-icons red-text">add</i>
+		<div class="fixed-action-btn horizontal click-to-toggle">
+			<a class="btn-floating btn-large white"  >
+				<i class="material-icons red-text">menu</i>
 			</a>
+			<ul>
+				<li>
+					<a class="btn-floating white tooltipped" href="#add-team-modal" data-position="top" data-tooltip="Add Team">
+						<i class="material-icons red-text">playlist_add</i>
+					</a>
+				</li>
+				<li>
+					<a class="btn-floating white tooltipped" href="#add-sport-modal" data-position="top" data-tooltip="Add Sport">
+						<i class="material-icons red-text">add</i>
+					</a>
+				</li>
+			</ul>
 		</div>
 			  
 		<div id="add-sport-modal" class="modal">
@@ -225,8 +236,12 @@
 						<label for="sport_name">Sport</label>
 					</div>
 					<div class="input-field">
-						<input id="participants" type="text" class="validate">
-						<label for="participants">Number of participants</label>
+						<input id="min-participants" type="text" class="validate">
+						<label for="min-participants">Minimum number of participants</label>
+					</div>
+					<div class="input-field">
+						<input id="max-participants" type="text" class="validate">
+						<label for="max-participants">Maximum number of participants</label>
 					</div>
 					<label for="schedule">Schedule</label>
 					<input id="schedule" type="date" class="datepicker">
@@ -270,10 +285,39 @@
 						</select>
 						<label>End Time</label>
 					</div>
+					<div class="input-field">
+						<input id="venue" type="text" class="validate">
+						<label for="venue">Venue</label>
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<a class="modal-action modal-close waves-effect waves-light btn-large red"><i class="material-icons right">send</i>Submit</a>
+				<a class="modal-action modal-close waves-effect waves-light btn-large red" onclick="Materialize.toast('Sport successfully added!	', 2000)"><i class="material-icons right">send</i>Submit</a>
+			</div>
+		</div>
+		
+		<div id="add-team-modal" class="modal">
+			<div class="modal-content">
+				<h5>Add Team</h5>
+				<div class="divider"></div>
+				<div class="container row">
+					<div class="input-field">
+						<input id="team-name" type="text" class="validate">
+						<label for="team-name">Team Name</label>
+					</div>
+					<div class="file-field input-field">
+						<div class="btn red">
+							<span>Upload Logo</span>
+							<input type="file">
+						</div>
+						<div class="file-path-wrapper">
+							<input class="file-path validate" type="text">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a class="modal-action modal-close waves-effect waves-light btn-large red" onclick="Materialize.toast('Team successfully added!	', 2000)"><i class="material-icons right">send</i>Submit</a>
 			</div>
 		</div>
 		
