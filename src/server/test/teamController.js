@@ -82,7 +82,7 @@ describe('Team Relation (isComposedOf)', function(){
 	 describe('getAllIsComposedOf()', function(){
 		 it('retrieves all isComposedOf relations', function(done){
 			 request(url)
-			 .get('/api/teams/getAllIsComposedOf')
+			 .get('/api/teams/composedOf')
 			 .end(function(err,res){
 				 if(err) throw err;
 				 try{
@@ -98,7 +98,7 @@ describe('Team Relation (isComposedOf)', function(){
 	 describe('getIsComposedOf()', function () {
 		 it('retrieves a specific isComposedOf relation', function (done) {
 			 request(url)
-				 .get('/api/teams/getIsComposedOf/' + '2')
+				 .get('/api/teams/composedOf/' + '2')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
@@ -115,7 +115,7 @@ describe('Team Relation (isComposedOf)', function(){
 				 'user_player_id': 4
 			 };
 			 request(url)
-				 .post('/api/teams/addIsComposedOf')
+				 .post('/api/teams/composedOf')
 				 .send(relation)
 				 .end(function(err, res) {
 					 if (err) throw err;
@@ -128,7 +128,7 @@ describe('Team Relation (isComposedOf)', function(){
 	 describe('deleteIsComposedOf()', function () {
 		 it('deletes a specific isComposedOf relation', function (done) {
 			 request(url)
-				 .delete('/api/teams/isComposedOf/' + '7')
+				 .delete('/api/teams/composedOf/' + '7')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
