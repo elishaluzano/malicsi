@@ -12,12 +12,22 @@
         });
 
         /* ADD sessionService, userService as parameter */
-        function eventsPageController(eventService, adminService) {
+        function eventsPageController(eventService, sessionService, adminService) {
             var vm = this;
-            var vm.isAdmin = false;
+            vm.isAdmin = false;
+            vm.loggedUser = null;
+            vm.user = null;
 
-            /* check the current user
-            if (sessionService.user().user_id === )
-            */
+            vm.$onInit = function() {
+                /* check the current user 
+                if (sessionService.user().user_id) {
+                    //vm.loggedUser = sessionService.user().user_id;
+
+                    if (adminService.checkAdmin(sessionService.user().user_id)) {
+                        isAdmin = true;
+                    }
+                }
+                */
+            }
         }
 })();
