@@ -33,6 +33,30 @@
                     });
             },
 
+            getUsers: function(id) {
+                return $http.get(api + id + '/users')
+                    .then(function(response) {
+                        console.log(response);
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting users of a team');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
+            getGames: function(id) {
+                return $http.get(api + id + '/games')
+                    .then(function(response) {
+                        console.log(response);
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting games of a team');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
             create: function (body) {
                 return $http.post(api, body)
                     .then(function(response) {
