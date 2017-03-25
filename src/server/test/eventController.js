@@ -52,7 +52,7 @@ describe ('Event', function () {
   describe('searchEvent()', function () {
     it('search events', function (done) {
       request(url)
-        .get('/api/events/search/' + 'a')
+        .get('/api/events/search/' + 'ics')
         .end(function(err, res) {
           if (err) throw err;
           res.should.have.status(200);

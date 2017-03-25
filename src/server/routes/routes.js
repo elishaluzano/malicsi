@@ -49,6 +49,7 @@ var institutionCtrl = require('../controllers/institutionController.js');
 router.post('/api/institutions',institutionCtrl.addSponsoringInstitution);
 router.get('/api/institutions/:id',institutionCtrl.viewSponsoringInstitution);
 router.get('/api/institutions',institutionCtrl.viewAllSponsoringInstitution);
+router.get('/api/institutions/search/:search', institutionCtrl.searchSponsoringInstitution);
 router.put('/api/institutions/:id',institutionCtrl.updateSponsoringInstitution);
 router.delete('/api/institutions/:id',institutionCtrl.deleteSponsoringInstitution);
 

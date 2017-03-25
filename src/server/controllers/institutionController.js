@@ -46,6 +46,18 @@ exports.viewAllSponsoringInstitution = (req,res) => {
 	});
 };
 
+exports.searchSponsoringInstitution = (req,res) => {
+    connection.query('SELECT * FROM sponsoringInstitution WHERE name LIKE ?', ['%' + req.params.search + '%'], function(err, rows, fields){
+        if (err) {
+            console.log(err);
+            res.send(err);
+         }
+        else {
+            res.send(rows[0]);
+        }
+    });
+};
+
 exports.updateSponsoringInstitution = (req,res) => {
 	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ? WHERE institution_id= ?', [req.body.name, req.body.description, req.params.id], function(err, rows, fields){
 		if (err) {
