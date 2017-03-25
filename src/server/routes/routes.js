@@ -105,7 +105,7 @@ router.delete('/api/teams/:id', teamCtrl.deleteTeam);
 //team isComposedOf routes
 router.get('/api/teams/composedOf', teamCtrl.getAllIsComposedOf);
 //get all users from a specific team
-router.get('/api/teams/composedOf/:id', teamCtrl.getIsComposedOf);
+router.get('/api/teams/:id/users', teamCtrl.getIsComposedOf);
 router.post('/api/teams/composedOf', teamCtrl.addIsComposedOf);
 router.delete('/api/teams/composedOf/:id', teamCtrl.deleteIsComposedOf);
 
