@@ -54,7 +54,7 @@
             },
 
             getGames: function(id) {
-                return $http.get(api + id + '/plays')
+                return $http.get(api + id + '/games')
                     .then(function(response) {  
                         return response.data;
                     })
