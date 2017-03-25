@@ -48,7 +48,7 @@ exports.viewAllSport = (req,res) => {
 exports.searchSport = (req,res) => {
 	connection.query('SELECT * FROM sport WHERE name LIKE ?', [ '%' + req.params.search + '%'], function(err, rows, fields){
 		if(!err) {
-			res.send(rows[0]);
+			res.send(rows);
 		}else{
 			console.log(err);
 			res.send(err);
