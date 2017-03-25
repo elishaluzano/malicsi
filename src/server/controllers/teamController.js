@@ -51,7 +51,7 @@ exports.searchTeam = (req,res) => {
             res.send(err);
          }
         else {
-            res.send(rows[0]);
+            res.send(rows);
             console.log("Successfully viewed a team.");
         }
 	});
