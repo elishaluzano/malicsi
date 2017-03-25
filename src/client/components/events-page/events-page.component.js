@@ -15,8 +15,6 @@
         function eventsPageController(eventService, sessionService, adminService) {
             var vm = this;
             vm.isAdmin = false;
-            vm.loggedUser = null;
-            vm.user = null;
 
             vm.$onInit = function() {
                 /* check the current user 

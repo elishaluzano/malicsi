@@ -1,8 +1,7 @@
 'use strict'
 
 const mysql = require('mysql');
-const bodyParser = require('body-parser');
-const connection = require('./../database.js')
+const connection = require('./../database.js');
     
 exports.addGame = (req,res) => {
 	var info = {
@@ -24,7 +23,7 @@ exports.addGame = (req,res) => {
 			console.log("Error in adding game");
 		}
 	});
-}
+};
 
 exports.viewGame = (req,res) => {
 	connection.query('SELECT * FROM game WHERE game_id = ?', [req.params.id], function(err, rows, fields){
@@ -34,7 +33,7 @@ exports.viewGame = (req,res) => {
 			console.log(err);
 		}
 	});
-}
+};
 
 exports.viewAllGame = (req,res) => {
 	connection.query('SELECT * FROM game', [], function(err, rows, fields){
@@ -44,7 +43,7 @@ exports.viewAllGame = (req,res) => {
 			console.log(err);
 		}
 	});
-}
+};
 
 exports.updateGame = (req,res) => {
 	connection.query('UPDATE game SET venue = ?, time = ?, min_num_of_players = ?, max_num_of_players = ?, status = ? WHERE game_id = ?', [req.body.venue, req.body.time, req.body.min_num_of_players, req.body.max_num_of_players, req.body.status, req.params.id], function(err, rows, fields){
@@ -55,7 +54,7 @@ exports.updateGame = (req,res) => {
 			console.log(err);
 		}
 	});
-}
+};
 
 exports.deleteGame = (req,res) => {
 	connection.query('call deleteGame(?)', [req.params.id], function(err, rows, fields){
@@ -66,4 +65,14 @@ exports.deleteGame = (req,res) => {
 			console.log(err);
 		}
 	});
-}
+};
+
+exports.viewTeamsInGame = (req,res) => {
+	connection.query('SELECT * FROM team JOIN teamPlaysGame ON team_id_play = team_id WHERE game_id_play = ?', [req.params.id], function(err, rows, fields){
+		if(!err) {
+			res.send(rows);
+		}else{
+			console.log(err);
+		}
+	});
+};

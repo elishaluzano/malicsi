@@ -9,12 +9,9 @@ describe('User Affiliation', function(){
 			 .get('/api/useraffiliations')
 			 .end(function(err,res){
 				 if(err) throw err;
-				 try{
 				 	res.should.have.status(200);
 				 	res.body.should.be.an.instanceOf(Array);
-				 }catch(e){
 				 	done();
-				 }
 			 });
 		 });
 	 });
@@ -52,7 +49,7 @@ describe('User Affiliation', function(){
 	 describe('deleteUserAffiliation()', function () {
 		 it('deletes a specific user affiliation', function (done) {
 			 request(url)
-				 .delete('/api/userAffiliations/' + '1/' + 'ASTROSOC')
+				 .delete('/api/useraffiliations/' + '1/' + 'ASTROSOC')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);

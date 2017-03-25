@@ -31,6 +31,50 @@
                     });
             },
 
+            getSports: function(id) {
+                return $http.get(api + id + '/sports')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting sports of an event.');
+                        console.log(err.status + ': ' + err.statusText);
+                    }); 
+            },
+
+            getTeams: function(id) {
+                return $http.get(api + id + '/teams')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting teams of an event.');
+                        console.log(err.status + ': ' + err.statusText);
+                    });  
+            },
+
+            getGames: function(id) {
+                return $http.get(api + id + '/games')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting games of an event.');
+                        console.log(err.status + ': ' + err.statusText);
+                    }); 
+            },
+
+            getGamesOfSport: function(eventId, sportId) {
+                return $http.get(api + id + '/sports/' + sportId + '/games')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting games of an event of a sport.');
+                        console.log(err.status + ': ' + err.statusText);
+                    }); 
+            },
+
             create: function(body) {
                 return $http.post(api, body)        
                     .then(function(response) {  

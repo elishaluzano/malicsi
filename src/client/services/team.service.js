@@ -12,7 +12,6 @@
             getAll: function() {
                 return $http.get(api)
                     .then(function(response) {
-                        console.log(response);
                         return response.data
                     })
                     .catch(function(err) {
@@ -24,11 +23,32 @@
             getOne: function(id) {
                 return $http.get(api + id)
                     .then(function(response) {
-                        console.log(response);
                         return response.data;
                     })
                     .catch(function(err) {
                         console.log('Error in getting one team: ');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
+            getUsers: function(id) {
+                return $http.get(api + id + '/users')
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting users of a team');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
+            getGames: function(id) {
+                return $http.get(api + id + '/plays')
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting games of a team');
                         console.log(err.status + ': ' + err.statusText);
                     });
             },
@@ -47,7 +67,6 @@
             update: function(id, body) {
                 return $http.put(api + id, body)
                     .then(function(response) {
-                        console.log(response);
                         return response.data
                     })
                     .catch(function(err) {
@@ -59,7 +78,6 @@
             delete: function(id) {
                 return $http.delete(api + id)
                     .then(function(response) {
-                        console.log(response);
                         return response.data
                     })
                     .catch(function(err) {
