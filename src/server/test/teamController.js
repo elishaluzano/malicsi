@@ -82,7 +82,7 @@ describe('Team Relation (isComposedOf)', function(){
 	 describe('getAllIsComposedOf()', function(){
 		 it('retrieves all isComposedOf relations', function(done){
 			 request(url)
-			 .get('/api/teams/getAllIsComposedOf')
+			 .get('/api/teams/composedOf')
 			 .end(function(err,res){
 				 if(err) throw err;
 				 try{
@@ -98,7 +98,7 @@ describe('Team Relation (isComposedOf)', function(){
 	 describe('getIsComposedOf()', function () {
 		 it('retrieves a specific isComposedOf relation', function (done) {
 			 request(url)
-				 .get('/api/teams/getIsComposedOf/' + '2')
+				 .get('/api/teams/composedOf/' + '2')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
@@ -115,7 +115,7 @@ describe('Team Relation (isComposedOf)', function(){
 				 'user_player_id': 4
 			 };
 			 request(url)
-				 .post('/api/teams/addIsComposedOf')
+				 .post('/api/teams/composedOf')
 				 .send(relation)
 				 .end(function(err, res) {
 					 if (err) throw err;
@@ -128,7 +128,7 @@ describe('Team Relation (isComposedOf)', function(){
 	 describe('deleteIsComposedOf()', function () {
 		 it('deletes a specific isComposedOf relation', function (done) {
 			 request(url)
-				 .delete('/api/teams/isComposedOf/' + '7')
+				 .delete('/api/teams/composedOf/' + '7')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
@@ -160,7 +160,7 @@ describe('Team Relation (playsGame)', function(){
 	 describe('getPlays()', function () {
 		 it('retrieves a specific playsGame relation', function (done) {
 			 request(url)
-				 .get('/api/teams/plays/' + '10')
+				 .get('/api/teams/10/plays')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
@@ -201,64 +201,3 @@ describe('Team Relation (playsGame)', function(){
 	 });
 });
 
-describe('Team Relation (winsGame)', function(){
-	 var url = 'http://localhost:8000';
-	 describe('getAllWins()', function(){
-		 it('retrieves all winsGame relations', function(done){
-			 request(url)
-			 .get('/api/teams/wins')
-			 .end(function(err,res){
-				 if(err) throw err;
-				 try{
-				 	res.should.have.status(200);
-				 	res.body.should.be.an.instanceOf(Array);
-				 }catch(e){
-				 	done();
-				 }
-			 });
-		 });
-	 });
-
-	 describe('getWins()', function () {
-		 it('retrieves a specific winsGame relation', function (done) {
-			 request(url)
-				 .get('/api/teams/wins/' + '2')
-				 .end(function(err, res) {
-					 if (err) throw err;
-					 res.should.have.status(200);
-					 res.body.should.be.an.instanceOf(Object);
-					 done();
-				 });
-		 });
-	 });
-
-	 describe('addWins()', function () {
-		 it('creates a new playsGame relation', function (done) {
-			 var new_wins = {
-				 'team_id_key': 3,
-				 'game_id_key': 2
-			 };
-			 request(url)
-				 .post('/api/teams/wins')
-				 .send(new_wins)
-				 .end(function(err, res) {
-					 if (err) throw err;
-					 res.should.have.status(200);
-					 done();
-				 });
-		 });
-	 });
-
-	 describe('deleteWins()', function () {
-		 it('deletes a specific winsGame relation', function (done) {
-			 request(url)
-				 .delete('/api/teams/wins/' + '2/' + '1')
-				 .end(function(err, res) {
-					 if (err) throw err;
-					 res.should.have.status(200);
-					 	res.body.should.be.an.instanceOf(Object);
-					 done();
-				 });
-		 });
-	 });
-});

@@ -196,4 +196,15 @@ describe('Admin', function() {
           });
         });
    });
+   describe('deleteAdmin()', function() {
+        it('Deletes an admin', function (done){
+           request(url)
+          .delete('/api/admins/2/1')
+          .end(function(err, res) {
+                if (err) throw err;
+                res.should.have.status(200);
+                done();
+          });
+        });
+   });
 });
