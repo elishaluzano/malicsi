@@ -67,6 +67,6 @@ module.exports = function(env) {
                 minRatio: 0.8
             })
         ],
-        devtool: 'cheap-module-source-map'
+        devtool: '#eval'
     }
 }

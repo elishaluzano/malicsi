@@ -6,4 +6,5 @@ require('materialize-css/dist/js/materialize.js');
 require('material-design-icons/iconfont/material-icons.css');
 require('webui-popover/dist/jquery.webui-popover.css');
 require('webui-popover/dist/jquery.webui-popover.js');
+require('angular-materialize/src');
 require('./client/style.css');

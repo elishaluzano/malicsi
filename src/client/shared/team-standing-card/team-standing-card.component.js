@@ -5,12 +5,24 @@
         .module('app')
         .component('teamStandingCard', {
             template: require('./team-standing-card.html'),
-            controller: teamStandingCardController
+            controller: teamStandingCardController,
+            bindings: {
+                event: '<'
+            }
         });
     
-    function teamStandingCardController() {
+    function teamStandingCardController(eventService) {
         var vm = this;
 
-        
+        vm.teams = [];
+
+        vm.$onInit = function() {
+            eventService.getTeams(vm.event.event_id)
+                .then(function(data) {
+                    vm.teams = data;
+                });
+        }
+
+
     }
 })();
