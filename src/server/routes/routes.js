@@ -79,6 +79,7 @@ var sportCtrl = require('../controllers/sportController.js');
 router.post('/api/sports',sportCtrl.addSport);
 router.get('/api/sports/:id',sportCtrl.viewSport);
 router.get('/api/sports',sportCtrl.viewAllSport);
+router.get('/api/sports/search/:search',sportCtrl.searchSport);
 router.put('/api/sports/:id',sportCtrl.updateSport);
 router.delete('/api/sports/:id',sportCtrl.deleteSport);
 

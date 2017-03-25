@@ -45,6 +45,17 @@ exports.viewAllSport = (req,res) => {
 	});
 };
 
+exports.searchSport = (req,res) => {
+	connection.query('SELECT * FROM sport WHERE name LIKE ?', [ '%' + req.params.search + '%'], function(err, rows, fields){
+		if(!err) {
+			res.send(rows[0]);
+		}else{
+			console.log(err);
+			res.send(err);
+		}
+	});
+};
+
 exports.updateSport = (req,res) => {
 	connection.query('UPDATE sport SET name = ? WHERE sport_id = ?', [req.body.name,req.params.id], function(err, rows, fields){
 		if(!err) {
