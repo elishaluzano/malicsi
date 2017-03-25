@@ -17,9 +17,6 @@
         vm.teams = [];
 
         vm.$onInit = function() {
-            $('.collapsible').collapsible({
-                accordion: false
-            });
             eventService.getTeams(vm.event.event_id)
                 .then(function(teams) {
                     for (let team of teams) {
