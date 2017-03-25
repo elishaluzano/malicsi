@@ -6,7 +6,7 @@ const connection = require(__dirname + '/../database.js');
 // get current user
 exports.getAccount = (req, res) => {
   res.send(req.session.user);
-}
+};
 // login
 exports.loginUser = (req, res) => {
 	connection.query('SELECT * FROM user WHERE username = ?',[req.body.username], function(err, rows, fields) {
@@ -26,7 +26,7 @@ exports.loginUser = (req, res) => {
 			res.send(err);
 		}
 	});
-}
+};
 
 // signup
 exports.addUser = (req, res) => {
@@ -53,13 +53,13 @@ exports.addUser = (req, res) => {
 			console.log("Error in adding user");
 		}
 	});
-}
+};
 
 // logout
 exports.logout = (req, res) => {
     req.session.user = {};
     res.send({});
-}
+};
 
 // GET all users
 exports.getUsers = (req, res) => {
@@ -73,7 +73,7 @@ exports.getUsers = (req, res) => {
 			console.log("Error in retrieving all users");
 		}
 	});
-}
+};
 
 // GET specific user
 exports.getUser = (req, res) => {
@@ -87,7 +87,7 @@ exports.getUser = (req, res) => {
 			console.log("Error in retrieving user");
 		}
 	});
-}
+};
 
 // PUT specific user
 exports.updateUser = (req, res) => {
@@ -101,7 +101,7 @@ exports.updateUser = (req, res) => {
 			console.log("Error in editing user");
 		}
 	});
-}
+};
 
 // DELETE specific user
 exports.deleteUser = (req, res) => {
@@ -115,7 +115,7 @@ exports.deleteUser = (req, res) => {
 			console.log("Error in deleting user");
 		}
 	});
-}
+};
 
 //Admin
 
@@ -137,7 +137,7 @@ exports.checkAdmin = (req, res) => {
             console.log("Error in checking admin");
         }
     });
-}
+};
 
 // GET all admins
 exports.getAdmins = (req, res) => {
@@ -151,7 +151,7 @@ exports.getAdmins = (req, res) => {
             console.log("Error in retrieving all admins");
         }
     });
-}
+};
 
 // GET all admins under specific institution
 exports.getAdmin = (req, res) => {
@@ -165,7 +165,7 @@ exports.getAdmin = (req, res) => {
             console.log("Error in retrieving all admins under an institution");
         }
     });
-}
+};
 
 // POST an admin
 exports.addAdmin = (req, res) => {
@@ -198,4 +198,4 @@ exports.deleteAdmin = (req, res) => {
             console.log("Error in deleting an admin");
         }
     });
-}
+};

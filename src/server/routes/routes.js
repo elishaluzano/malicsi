@@ -36,7 +36,7 @@ router.get('/api/checkAdmin/:id', userCtrl.checkAdmin);
 router.get('/api/admins', userCtrl.getAdmins);
 router.get('/api/admins/:id', userCtrl.getAdmin);
 router.post('/api/admins', userCtrl.addAdmin);
-router.delete('api/admins/:institution_id/:user_id', userCtrl.deleteAdmin);
+router.delete('/api/admins/:institution_id/:user_id', userCtrl.deleteAdmin);
 
 var userlogCtrl = require('../controllers/userlogController.js');
 //userlog routes
@@ -67,6 +67,10 @@ router.delete('/api/events/:id',eventCtrl.deleteEvent);
 router.get('/api/events/:id/sports', eventCtrl.viewSportsInEvent);
 //get all teams from an event
 router.get('/api/events/:id/teams', eventCtrl.viewTeamsInEvent);
+//get all games from an event
+router.get('/api/events/:id/games', eventCtrl.viewGamesInEvent);
+//get all games from a sport from an event
+router.get('/api/events/:event_id/sports/:sport_id/games', eventCtrl.viewGamesInSportInEvent);
 
 var sportCtrl = require('../controllers/sportController.js');
 //sport routes

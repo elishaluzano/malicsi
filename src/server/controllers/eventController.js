@@ -95,3 +95,30 @@ exports.viewTeamsInEvent = (req, res) => {
         }
     });
 };
+
+exports.viewGamesInEvent = (req, res) => {
+    connection.query('SELECT * FROM game WHERE sport_id_key IN (SELECT sport_id FROM sport WHERE event_id_key = ?)', [req.params.id], function(err, rows, fields){
+        if (!err) {
+            console.log("Success");
+            res.send(rows);
+        }
+        else {
+            console.log("Error");
+            res.send(err);
+        }
+    });
+};
+
+exports.viewGamesInSportInEvent = (req, res) => {
+    connection.query('SELECT * FROM game where sport_id_key = (select sport_id from sport where event_id_key = ? and sport_id = ?)', [req.params.event_id, req.params.sport_id], function(err, rows, fields){
+        if (!err) {
+            console.log("Success");
+            res.send(rows);
+        }
+        else {
+            console.log("Error");
+            res.send(err);
+        }
+    });
+};
+
