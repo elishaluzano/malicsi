@@ -34,7 +34,6 @@
                     vm.isSameUser = true;
                 }
             });
-
     };
 
 })();
