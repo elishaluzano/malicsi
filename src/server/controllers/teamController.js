@@ -71,7 +71,7 @@ exports.deleteTeam = (req,res) => {
 };
 
 exports.getAllIsComposedOf = (req,res) => {
-	connection.query('SELECT * FROM teamIsComposedOfUser',[], function(err, rows, fields){
+	connection.query('SELECT * FROM teamIsComposedOfUser JOIN user ON user_id = user_player_id',[], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
@@ -84,7 +84,7 @@ exports.getAllIsComposedOf = (req,res) => {
 };
 
 exports.getIsComposedOf = (req,res) => {
-	connection.query('SELECT * FROM teamIsComposedOfUser WHERE team_player_id = ?',[ req.params.id ], function(err, rows, fields){
+	connection.query('SELECT * FROM teamIsComposedOfUser JOIN user ON user_id = user_player_id WHERE team_player_id = ?',[ req.params.id ], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
@@ -127,7 +127,7 @@ exports.deleteIsComposedOf = (req,res) => {
 };
 
 exports.getAllPlays = (req, res) => {
-	connection.query('SELECT * FROM teamPlaysGame', [], function(err, rows, fields) {
+	connection.query('SELECT * FROM teamPlaysGame JOIN game ON game_id_play = game_id', [], function(err, rows, fields) {
 		if(!err) {
 			res.send(rows);
 			console.log("Successfully retrieved all plays");

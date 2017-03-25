@@ -103,13 +103,15 @@ router.put('/api/teams/:id', teamCtrl.updateTeam);
 router.delete('/api/teams/:id', teamCtrl.deleteTeam);
 
 //team isComposedOf routes
-router.get('/api/teams/getAllIsComposedOf', teamCtrl.getAllIsComposedOf);
-router.get('/api/teams/getIsComposedOf/:id', teamCtrl.getIsComposedOf);
-router.post('/api/teams/addIsComposedOf', teamCtrl.addIsComposedOf);
-router.delete('/api/teams/isComposedOf/:id', teamCtrl.deleteIsComposedOf);
+router.get('/api/teams/composedOf', teamCtrl.getAllIsComposedOf);
+//get all users from a specific team
+router.get('/api/teams/composedOf/:id', teamCtrl.getIsComposedOf);
+router.post('/api/teams/composedOf', teamCtrl.addIsComposedOf);
+router.delete('/api/teams/composedOf/:id', teamCtrl.deleteIsComposedOf);
 
 //team-plays routes
 router.get('/api/teams/plays', teamCtrl.getAllPlays);
+//get all games from a specific team
 router.get('/api/teams/:id/plays/', teamCtrl.getPlays);
 router.post('/api/teams/plays', teamCtrl.addPlays);
 router.delete('/api/teams/plays/:id/:game', teamCtrl.deletePlays);
