@@ -52,6 +52,9 @@ router.get('/api/institutions',institutionCtrl.viewAllSponsoringInstitution);
 router.put('/api/institutions/:id',institutionCtrl.updateSponsoringInstitution);
 router.delete('/api/institutions/:id',institutionCtrl.deleteSponsoringInstitution);
 
+//get all events from an institution
+router.get('/api/institutions/:id/events',institutionCtrl.viewEventsInInstitution);
+
 var eventCtrl = require('../controllers/eventController.js');
 //event routes
 router.post('/api/events',eventCtrl.addEvent);
@@ -59,6 +62,11 @@ router.get('/api/events/:id',eventCtrl.viewEvent);
 router.get('/api/events',eventCtrl.viewAllEvent);
 router.put('/api/events/:id',eventCtrl.updateEvent);
 router.delete('/api/events/:id',eventCtrl.deleteEvent);
+
+//get all sports from an event
+router.get('/api/events/:id/sports', eventCtrl.viewSportsInEvent);
+//get all teams from an event
+router.get('/api/events/:id/teams', eventCtrl.viewTeamsInEvent);
 
 var sportCtrl = require('../controllers/sportController.js');
 //sport routes
@@ -69,10 +77,10 @@ router.put('/api/sports/:id',sportCtrl.updateSport);
 router.delete('/api/sports/:id',sportCtrl.deleteSport);
 
 //sport join routes
-router.post('/api/teams/addSportIsJoinedBy', sportCtrl.addJoin);
-router.get('/api/teams/getAllSportIsJoinedBy', sportCtrl.getAllJoins);
-router.get('/api/teams/getSportIsJoinedBy/:id', sportCtrl.getJoins);
-router.delete('/api/teams/deleteSportIsJoinedBy/:user_id/:sport_id', sportCtrl.deleteJoin);
+router.post('/api/teams/joins', sportCtrl.addJoin);
+router.get('/api/teams/joins', sportCtrl.getAllJoins);
+router.get('/api/teams/joins/:id', sportCtrl.getJoins);
+router.delete('/api/teams/joins/:user_id/:sport_id', sportCtrl.deleteJoin);
 
 var gameCtrl = require('../controllers/gameController.js');
 //game routes
