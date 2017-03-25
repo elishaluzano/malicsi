@@ -20,18 +20,13 @@
                 url: '/register',
                 component: 'registrationCard'
             })
-
-
-
-
-
-
             .state({
                 name: 'schedulePage',
                 url: '/schedule',
                 component: 'schedulePage',
                 resolve: {
                     games: function(gameService){
+                        return gameService.getAll();
                     }
                 }
             });
