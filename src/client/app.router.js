@@ -16,16 +16,6 @@
                 component: 'userPage'
             })
             .state({
-                name: 'eventsPage',
-                url: '/events',
-                component: 'eventsPage',
-                resolve: {
-                    events: function(eventService) {
-                        return eventService.getAll();
-                    }
-                }
-            })
-            .state({
                 name: 'registrationPage',
                 url: '/register',
                 component: 'registrationCard'
