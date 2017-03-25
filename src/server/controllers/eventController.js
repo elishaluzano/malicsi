@@ -2,7 +2,7 @@
 
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-const connection = require('./../database.js')
+const connection = require('./../database.js');
 
 
 exports.addEvent = (req,res) => {
@@ -24,7 +24,7 @@ exports.addEvent = (req,res) => {
 			console.log("Error in adding event");
 		}
 	});
-}
+};
 
 exports.viewEvent = (req,res) => {
 	connection.query('SELECT * FROM event WHERE event_id = ?', [req.params.id], function(err, rows, fields){
@@ -34,7 +34,7 @@ exports.viewEvent = (req,res) => {
 			res.send(err);
 		}
 	});
-}
+};
 
 exports.viewAllEvent = (req,res) => {
 	connection.query('SELECT * FROM event', [], function(err, rows, fields){
@@ -44,7 +44,7 @@ exports.viewAllEvent = (req,res) => {
 			res.send(err);
 		}
 	});
-}
+};
 
 exports.updateEvent = (req,res) => {
 	connection.query('UPDATE event SET event_title = ?, venue = ?, start_date = ?, end_date = ? WHERE event_id = ?', [req.body.event_title, req.body.venue, req.body.start_date, req.body.end_date, req.params.id], function(err, rows, fields){
@@ -56,7 +56,7 @@ exports.updateEvent = (req,res) => {
 			res.send(err);
 		}
 	});
-}
+};
 
 exports.deleteEvent = (req,res) => {
 	connection.query('DELETE FROM event WHERE event_id = ?', [req.params.id], function(err, rows, fields){
@@ -68,4 +68,30 @@ exports.deleteEvent = (req,res) => {
 			res.send(err);
 		}
 	});
-}
+};
+
+exports.viewSportsInEvent = (req, res) => {
+    connection.query('SELECT * FROM sport WHERE event_id_key = ?', [req.params.id], function(err, rows, fields){
+        if (!err) {
+            console.log("Success");
+            res.send(rows);
+        }
+        else {
+            console.log("Error");
+            res.send(err);
+        }
+    });
+};
+
+exports.viewTeamsInEvent = (req, res) => {
+    connection.query('SELECT * FROM team WHERE event_id_key = ?', [req.params.id], function(err, rows, fields){
+        if (!err) {
+            console.log("Success");
+            res.send(rows);
+        }
+        else {
+            console.log("Error");
+            res.send(err);
+        }
+    });
+};
