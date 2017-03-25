@@ -139,18 +139,6 @@ describe('User', function(){
 			});
 		});
 	});
-	describe('searchUsers()', function () {
-	    it('searches users', function (done) {
-			request(url)
-		    .get('/api/users/' + 'm')
-			.end(function(err, res) {
-			    if (err) throw err;
-				res.should.have.status(200);
-			        res.body.should.be.an.instanceOf(Object);
-				done();
-			});
-		});
-	});
 });
 
 describe('Admin', function() {
