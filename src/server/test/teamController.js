@@ -98,7 +98,7 @@ describe('Team Relation (isComposedOf)', function(){
 	 describe('getIsComposedOf()', function () {
 		 it('retrieves a specific isComposedOf relation', function (done) {
 			 request(url)
-				 .get('/api/teams/composedOf/' + '2')
+				 .get('/api/teams/2/users')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
