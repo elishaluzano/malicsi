@@ -31,6 +31,17 @@
                     });
             },
 
+            getEvents: function(id) {
+                return $http.get(api + id + '/events')
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(error) {
+                        console.log('Error in finding events of an institution');
+                        console.log(error.status + ': ' + error.statusText);
+                    });
+            },
+
             create: function(body) {
                 return $http.post(api, body)
                     .then(function(response) {
