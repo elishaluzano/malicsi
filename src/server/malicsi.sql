@@ -92,16 +92,10 @@ CREATE TABLE teamIsComposedOfUser (
 CREATE TABLE teamPlaysGame (
     team_id_play int NOT NULL,
     game_id_play int NOT NULL,
+    record ENUM('WIN','LOSE','DRAW') default NULL,
     score float default 0,
     CONSTRAINT plays_game_id_play_fk FOREIGN KEY (game_id_play) REFERENCES game (game_id),
     CONSTRAINT plays_team_id_play_fk FOREIGN KEY (team_id_play) REFERENCES team (team_id)
-);
-
-CREATE TABLE teamWinsGame (
-    team_id_key int NOT NULL,
-    game_id_key int NOT NULL,
-    CONSTRAINT wins_game_id_key_fk FOREIGN KEY (game_id_key) REFERENCES game (game_id),
-    CONSTRAINT wins_team_id_key_fk FOREIGN KEY (team_id_key) REFERENCES team (team_id)
 );
 
 CREATE TABLE sportIsJoinedByUser (
@@ -133,7 +127,6 @@ delimiter //
 create procedure deleteGame(in id int)
 BEGIN
 delete from teamPlaysGame where game_id_play = id;
-delete from teamWinsGame where game_id_key = id;
 delete from game where game_id = id;
 END;
 //
@@ -151,7 +144,7 @@ delimiter ;
 delimiter //
 create procedure gameUpdate(in team_id int, game_id int, score float)
 BEGIN
-update teamPlaysGame set score=score where team_id=team_id and game_id=game_id;
+update teamPlaysGame set score=score where team_id_play=team_id and game_id_play=game_id;
 insert into gameUpdateLog (team_id, game_id, score) values (team_id, game_id, score);
 END;
 //
@@ -314,16 +307,6 @@ call gameAdd(9,10);
 call gameUpdate(9, 10, 70);
 call gameAdd(7,10);
 call gameUpdate(7, 10, 57);
-insert into teamWinsGame values (1, 1);
-insert into teamWinsGame values (3, 4);
-insert into teamWinsGame values (5, 5);
-insert into teamWinsGame values (6, 3);
-insert into teamWinsGame values (8, 6);
-insert into teamWinsGame values (10, 8);
-insert into teamWinsGame values (3, 2);
-insert into teamWinsGame values (1, 7);
-insert into teamWinsGame values (10, 9);
-insert into teamWinsGame values (9, 10);
 insert into sportIsJoinedByUser values (1, 1);
 insert into sportIsJoinedByUser values (1, 2);
 insert into sportIsJoinedByUser values (1, 3);
