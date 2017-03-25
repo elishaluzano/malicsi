@@ -44,6 +44,19 @@ exports.viewTeam = (req,res) => {
 	});
 };
 
+exports.searchTeam = (req,res) => {
+	connection.query('SELECT * FROM team WHERE name LIKE ?', [ '%' + req.params.search + '%' ], function(err, rows, fields){
+		if (err) {
+            console.log(err);
+            res.send(err);
+         }
+        else {
+            res.send(rows[0]);
+            console.log("Successfully viewed a team.");
+        }
+	});
+};
+
 exports.updateTeam = (req,res) => {
 	connection.query('UPDATE team SET name = ?, event_id_key = ? WHERE team_id = ?', [ req.body.name, req.body.event_id_key, req.params.team_id ], function(err, rows, fields){
 		if (err) {

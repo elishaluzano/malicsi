@@ -102,6 +102,7 @@ var teamCtrl = require('../controllers/teamController.js');
 router.post('/api/teams', teamCtrl.addTeam);
 router.get('/api/teams', teamCtrl.viewAllTeam);
 router.get('/api/teams/:id', teamCtrl.viewTeam);
+router.get('/api/teams/search/:search', teamCtrl.searchTeam);
 router.put('/api/teams/:id', teamCtrl.updateTeam);
 router.delete('/api/teams/:id', teamCtrl.deleteTeam);
 
