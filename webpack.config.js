@@ -3,7 +3,6 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CompressionPlugin = require('compression-webpack-plugin');
-
 module.exports = function(env) {
     return {
         entry: {
@@ -59,13 +58,13 @@ module.exports = function(env) {
                 jQuery: 'jquery',
                 'window.jQuery': 'jquery'
             }),
-            new CompressionPlugin({
-                asset: "[path].gz[query]",
-                algorithm: "gzip",
-                test: /\.js$|\.css$|\.html$/,
-                threshold: 10240,
-                minRatio: 0.8
-            })
+            // new CompressionPlugin({
+            //     asset: "[path].gz[query]",
+            //     algorithm: "gzip",
+            //     test: /\.js$|\.css$|\.html$/,
+            //     threshold: 10240,
+            //     minRatio: 0.8
+            // })
         ],
         devtool: 'eval'
     }

@@ -1,7 +1,10 @@
 (function() {
     angular
-        .module('app', ['ui.router']);
-
+        .module('app', [
+            'ui.router',
+            'ui.materialize'
+        ]);
+    
     require('./app.router');
 
     var assets = require.context('./assets', true, /.*\.(png|jpg|gif)$/);
