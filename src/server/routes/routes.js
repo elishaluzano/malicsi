@@ -60,6 +60,7 @@ var eventCtrl = require('../controllers/eventController.js');
 router.post('/api/events',eventCtrl.addEvent);
 router.get('/api/events/:id',eventCtrl.viewEvent);
 router.get('/api/events',eventCtrl.viewAllEvent);
+router.get('/api/events/search/:search', eventCtrl.searchEvent);
 router.put('/api/events/:id',eventCtrl.updateEvent);
 router.delete('/api/events/:id',eventCtrl.deleteEvent);
 
