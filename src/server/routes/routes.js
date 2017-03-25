@@ -14,6 +14,8 @@ router.get('/api/users', userCtrl.getUsers);
 router.get('/api/users/:id', userCtrl.getUser);
 router.put('/api/users/:id', userCtrl.updateUser);
 router.delete('/api/users/:id', userCtrl.deleteUser);
+//search users
+//router.get('/api/users/search/:search', userCtrl.searchUsers);
 
 var userAffiliationCtrl = require('../controllers/userAffiliationController.js');
 //user affiliation routes
@@ -67,6 +69,8 @@ router.delete('/api/events/:id',eventCtrl.deleteEvent);
 router.get('/api/events/:id/sports', eventCtrl.viewSportsInEvent);
 //get all teams from an event
 router.get('/api/events/:id/teams', eventCtrl.viewTeamsInEvent);
+//get all games from an event
+router.get('/api/events/:id/games', eventCtrl.viewGamesInEvent);
 
 var sportCtrl = require('../controllers/sportController.js');
 //sport routes
