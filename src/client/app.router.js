@@ -23,10 +23,25 @@
             .state({
                 name: 'landingPage',
                 url: '/',
-                component: 'landingPage'
+                component: 'landingPage',
+                resolve: {
+                    events: function(eventService) {
+                        return eventService.getAll();
+                    }
+                }
             })
+            .state({
+                name: 'eventsPage',
+                url: '/events',
+                component: 'eventsPage',
+                resolve: {
+                    events: function(eventService) {
+                        return eventService.getAll();
+                    }
+                }
+            });
 
-        $urlRouterProvider.otherwise('/');
+        //$urlRouterProvider.otherwise('/');
     }
 
 })();

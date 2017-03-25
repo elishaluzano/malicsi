@@ -83,10 +83,8 @@
             </div>
 
             <!-- EVENT-CARD -->
-            <div ng-repeat="each in $ctrl.eventCardList">
-                <event-card event="each | filter: 'Soon'" >  <!-- FILTER dapat soon lang -->
-                </event-card>
-            </div>
+            <event-card ng-repeat="each in $ctrl.events">  <!-- FILTER dapat soon lang -->
+            </event-card>
                 
         </div>
         

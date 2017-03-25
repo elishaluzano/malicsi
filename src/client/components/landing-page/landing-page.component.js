@@ -4,13 +4,17 @@
         .module('app')
         .component('landingPage',{
             template: require('./landing-page.html'),
-            controller: landingPageController
+            controller: landingPageController,
+            bindings: {
+                events: '<'
+            }
         });
 
     function landingPageController(eventService) {
         var vm = this;
-        vm.events = '';
-
-        vm.eventCardList = eventService.getAll();
+        
+        vm.$onInit = function() {
+            console.log(vm.events);
+        }
     }
 })();
