@@ -12,6 +12,7 @@ router.post('/api/logout', userCtrl.logout);
 //user routes
 router.get('/api/users', userCtrl.getUsers);
 router.get('/api/users/:id', userCtrl.getUser);
+router.get('/api/users/search/:search', userCtrl.searchUser);
 router.put('/api/users/:id', userCtrl.updateUser);
 router.delete('/api/users/:id', userCtrl.deleteUser);
 
@@ -64,6 +65,9 @@ router.get('/api/events',eventCtrl.viewAllEvent);
 router.get('/api/events/search/:search', eventCtrl.searchEvent);
 router.put('/api/events/:id',eventCtrl.updateEvent);
 router.delete('/api/events/:id',eventCtrl.deleteEvent);
+
+//get all event details from an event
+router.get('/api/events/:id/generalnformation', eventCtrl.viewEventDetails);
 
 //get all sports from an event
 router.get('/api/events/:id/sports', eventCtrl.viewSportsInEvent);
