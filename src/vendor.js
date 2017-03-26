@@ -6,5 +6,5 @@ window.jQuery = window.$ = require('jquery');
 require('angular');
 require('materialize-css/dist/js/materialize.js');
 require('angular-ui-router');
-require('angular-materialize');
+require('angular-materialize/src');
 require('webui-popover/dist/jquery.webui-popover.js');
