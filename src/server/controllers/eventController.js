@@ -56,12 +56,12 @@ exports.searchEvent = (req,res) => {
 	});
 };
 
-exports.searchEventDetails = (req,res) => {
+exports.viewEventDetails = (req,res) => {
 	connection.query('SELECT e.event_title AS event, s.name AS sport, g.time, g.game_id, t.name AS team, si.name AS institution, \
 		v.name AS venue FROM event e JOIN game g JOIN sport s JOIN team t JOIN sponsoringInstitution si JOIN venue v JOIN teamPlaysGame tpg \
 		WHERE e.event_id = ? AND s.event_id_key = e.event_id AND g.sport_id_key = s.sport_id AND e.institution_id_key = si.institution_id \
 		AND g.venue = v.venue_id AND tpg.game_id_play = g.game_id AND tpg.team_id_play = t.team_id AND t.event_id_key = e.event_id', 
-		[ '%' + req.params.search + '%'], function(err, rows, fields){
+		[ req.params.id ], function(err, rows, fields){
 		if(!err) {
 			res.send(rows);
 		}else{

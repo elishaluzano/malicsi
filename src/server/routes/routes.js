@@ -66,6 +66,9 @@ router.get('/api/events/search/:search', eventCtrl.searchEvent);
 router.put('/api/events/:id',eventCtrl.updateEvent);
 router.delete('/api/events/:id',eventCtrl.deleteEvent);
 
+//get all event details from an event
+router.get('/api/events/:id/generalnformation', eventCtrl.viewEventDetails);
+
 //get all sports from an event
 router.get('/api/events/:id/sports', eventCtrl.viewSportsInEvent);
 //get all teams from an event
