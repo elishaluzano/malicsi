@@ -118,6 +118,20 @@ exports.deleteUser = (req, res) => {
 	});
 };
 
+// SEARCH a user
+exports.searchUser = (req,res) => {
+	connection.query('SELECT * FROM team WHERE name LIKE ? or username LIKE ?', [ '%' + req.params.search + '%' ], function(err, rows, fields){
+		if (err) {
+            console.log(err);
+            res.send(err);
+         }
+        else {
+            res.send(rows);
+            console.log("Successfully viewed a user.");
+        }
+	});
+};
+
 //Admin
 
 // check if user is an admin
