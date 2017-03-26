@@ -12,6 +12,7 @@ router.post('/api/logout', userCtrl.logout);
 //user routes
 router.get('/api/users', userCtrl.getUsers);
 router.get('/api/users/:id', userCtrl.getUser);
+router.get('/api/users/search/:search', userCtrl.searchUser);
 router.put('/api/users/:id', userCtrl.updateUser);
 router.delete('/api/users/:id', userCtrl.deleteUser);
 
