@@ -46,6 +46,19 @@ describe('Institution', function () {
 		 });
 	 });
 
+	describe('searchSponsoringInstitution()', function () {
+		 it('search institution by name', function (done) {
+			 request(url)
+				 .get('/api/institutions/search' + 'cas')
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
+					 	res.body.should.be.an.instanceOf(Object);
+					 done();
+				 });
+		 });
+	 });
+
 	describe('updateSponsoringInstitution()', function () {
 		 it('update institution', function (done) {
 			 request(url)

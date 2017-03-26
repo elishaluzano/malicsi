@@ -49,6 +49,7 @@ var institutionCtrl = require('../controllers/institutionController.js');
 router.post('/api/institutions',institutionCtrl.addSponsoringInstitution);
 router.get('/api/institutions/:id',institutionCtrl.viewSponsoringInstitution);
 router.get('/api/institutions',institutionCtrl.viewAllSponsoringInstitution);
+router.get('/api/institutions/search/:search', institutionCtrl.searchSponsoringInstitution);
 router.put('/api/institutions/:id',institutionCtrl.updateSponsoringInstitution);
 router.delete('/api/institutions/:id',institutionCtrl.deleteSponsoringInstitution);
 
@@ -60,6 +61,7 @@ var eventCtrl = require('../controllers/eventController.js');
 router.post('/api/events',eventCtrl.addEvent);
 router.get('/api/events/:id',eventCtrl.viewEvent);
 router.get('/api/events',eventCtrl.viewAllEvent);
+router.get('/api/events/search/:search', eventCtrl.searchEvent);
 router.put('/api/events/:id',eventCtrl.updateEvent);
 router.delete('/api/events/:id',eventCtrl.deleteEvent);
 
@@ -77,6 +79,7 @@ var sportCtrl = require('../controllers/sportController.js');
 router.post('/api/sports',sportCtrl.addSport);
 router.get('/api/sports/:id',sportCtrl.viewSport);
 router.get('/api/sports',sportCtrl.viewAllSport);
+router.get('/api/sports/search/:search',sportCtrl.searchSport);
 router.put('/api/sports/:id',sportCtrl.updateSport);
 router.delete('/api/sports/:id',sportCtrl.deleteSport);
 
@@ -102,6 +105,7 @@ var teamCtrl = require('../controllers/teamController.js');
 router.post('/api/teams', teamCtrl.addTeam);
 router.get('/api/teams', teamCtrl.viewAllTeam);
 router.get('/api/teams/:id', teamCtrl.viewTeam);
+router.get('/api/teams/search/:search', teamCtrl.searchTeam);
 router.put('/api/teams/:id', teamCtrl.updateTeam);
 router.delete('/api/teams/:id', teamCtrl.deleteTeam);
 
@@ -124,6 +128,7 @@ var venueCtrl = require('../controllers/venueController.js');
 router.post('/api/venues', venueCtrl.addVenue);
 router.get('/api/venues', venueCtrl.viewAllVenue);
 router.get('/api/venues/:id', venueCtrl.viewVenue);
+router.get('/api/venues/search/:search', venueCtrl.searchVenue);
 router.put('/api/venues/:id', venueCtrl.updateVenue);
 router.delete('/api/venues/:id', venueCtrl.deleteVenue);
 

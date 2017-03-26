@@ -31,7 +31,8 @@
     "style-loader": "^0.13.2",
     "supertest": "^3.0.0",
     "url-loader": "^0.5.8",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "crypto" : "^3.1.9"
   },
   "dependencies": {
     "angular": "^1.6.3",

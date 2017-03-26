@@ -43,6 +43,18 @@ exports.viewVenue = (req,res) => {
 	});
 }
 
+exports.searchVenue = (req,res) => {
+    connection.query('SELECT * FROM venue WHERE name LIKE ?', ['%' + req.params.search + '%'], function(err, rows, fields){
+        if (err) {
+            console.log(err);
+            res.send(err);
+         }
+        else {
+            res.send(rows);
+        }
+    });
+};
+
 exports.updateVenue = (req,res) => {
 	connection.query('UPDATE venue SET name = ? WHERE venue_id = ?', [ req.body.name, req.params.id ], function(err, rows, fields){
 		if (err) {
