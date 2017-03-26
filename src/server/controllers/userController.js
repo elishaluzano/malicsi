@@ -9,17 +9,16 @@ exports.getAccount = (req, res) => {
 };
 // login
 exports.loginUser = (req, res) => {
-	connection.query('SELECT * FROM user WHERE username = ?',[req.body.username], function(err, rows, fields) {
+	connection.query('SELECT * FROM user WHERE username = ? and password = ?',[req.body.username, req.body.password], function(err, rows, fields) {
 		if (!err){
-			if (req.body.password == rows[0].password) {
-				req.session.user = rows[0];
-				console.log("Successfully logged in user");
-				res.send(rows[0]);
-			}
-			else {
-				res.send(false);
-				console.log("Login unsuccessful");
-			}
+            if (rows.length !== 0) {
+                req.session.user = rows[0];
+                console.log('Successfully logged in user');
+                res.send(rows[0]);
+            } else {
+                res.send(false);
+                console.log('Login unsuccessful');
+            }
 		}
 		else {
 			console.log(err);
