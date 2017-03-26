@@ -12,19 +12,14 @@ exports.getAccount = (req, res) => {
 exports.loginUser = (req, res) => {
 	connection.query('SELECT * FROM user WHERE username = ? and password = ?',[req.body.username, req.body.password], function(err, rows, fields) {
 		if (!err){
-			if(req.body.password == crypt.decrypt(req.body.password)){
-				req.session.user = rows[0];
-				console.log("Successfully logged in user");
-				res.send(rows[0]);
-			}
-			/*if (req.body.password == rows[0].password) {
-				req.session.user = rows[0];
-				console.log("Successfully logged in user");
-				res.send(rows[0]);
-			}*/
-			else {
+			if (rows.length === 0) {
 				res.send(false);
 				console.log("Login unsuccessful");
+			}
+			else if(req.body.password == crypt.decrypt(req.body.password)){
+				req.session.user = rows[0];
+				console.log("Successfully logged in user");
+				res.send(rows[0]);
 			}
 		}
 		else {
