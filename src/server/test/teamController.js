@@ -29,6 +29,19 @@ describe('Team', function(){
 		 });
 	 });
 
+	 describe('search Team()', function () {
+		 it('search a team by name', function (done) {
+			 request(url)
+				 .get('/api/teams/search' + 'red team')
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
+					 	res.body.should.be.an.instanceOf(Object);
+					 done();
+				 });
+		 });
+	 });
+
 	 describe('addTeam()', function () {
 		 it('creates a new team', function (done) {
 			 var team = {

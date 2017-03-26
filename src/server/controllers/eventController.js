@@ -46,6 +46,16 @@ exports.viewAllEvent = (req,res) => {
 	});
 };
 
+exports.searchEvent = (req,res) => {
+	connection.query('SELECT * FROM event WHERE event_title LIKE ?', [ '%' + req.params.search + '%'], function(err, rows, fields){
+		if(!err) {
+			res.send(rows);
+		}else{
+			res.send(err);
+		}
+	});
+};
+
 exports.updateEvent = (req,res) => {
 	connection.query('UPDATE event SET event_title = ?, venue = ?, start_date = ?, end_date = ? WHERE event_id = ?', [req.body.event_title, req.body.venue, req.body.start_date, req.body.end_date, req.params.id], function(err, rows, fields){
 		if(!err) {
