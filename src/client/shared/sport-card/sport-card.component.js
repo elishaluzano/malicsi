@@ -6,30 +6,55 @@
             template: require('./sport-card.html'),
             controller: sportCardController,
             bindings: {
-                games: '<',
-                sports: '<'
+                information: '<'
             }
         });
 
     function sportCardController(eventService) {
         var vm = this;
+        vm.sports = [];
+        vm.sportsAndGames = [];
 
         vm.$onInit = function(){
 
-            for(var i=0; i<vm.sports.length; i++){
-                vm.sports[i].games = [];
-            }
-
-            for(var i=0; i<vm.sports.length; i++){
-                for(var j=0; j<vm.games.length; j++){
-                    if(vm.sports[i].sport_id == vm.games[j].sport_id_key){
-                        vm.sports[i].games.push(vm.games[j]);
-                        vm.games.splice(j,1);
+            for(var i=0; i<vm.information.length; i++){
+                if(vm.sports.indexOf(vm.information[i].sport) < 0){
+                    vm.sports.push(vm.information[i].sport);
+                    vm.sportsAndGames.push({name: vm.information[i].sport, games: [vm.information[i]]});
+                }
+                else{
+                    for(var j=0; j<vm.sportsAndGames.length; j++) {
+                        if(vm.sportsAndGames[j].name == vm.information[i].sport){
+                            vm.sportsAndGames[j].games.push(vm.information[i]);
+                        }
                     }
                 }
             }
 
-            console.log(vm.sports);
+            for(var i=0; i<vm.sportsAndGames.length; i++){
+                var games = [];
+                var gamesPerSport = [];
+
+                for(var j=0; j<vm.sportsAndGames[i].games.length; j++){
+
+                    if(games.indexOf(vm.sportsAndGames[i].games[j].game_id) < 0){
+                        games.push(vm.sportsAndGames[i].games[j].game_id);
+                        vm.sportsAndGames[i].games[j].team = [vm.sportsAndGames[i].games[j].team];
+                        gamesPerSport.push(vm.sportsAndGames[i].games[j]);
+                    }
+
+                    else{
+                        for(var k=0; k<gamesPerSport.length; k++) {
+                            if(gamesPerSport[k].game_id == vm.sportsAndGames[i].games[j].game_id){
+                                gamesPerSport[k].team.push(vm.sportsAndGames[i].games[j].team);
+                            }
+                        }
+                    }
+                }
+
+                vm.sportsAndGames[i].games = gamesPerSport;
+            }
+            console.log(vm.sportsAndGames);
         }
         
     }

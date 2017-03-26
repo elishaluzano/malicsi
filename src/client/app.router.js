@@ -39,6 +39,16 @@
                         return eventService.getAll();
                     }
                 }
+            })
+            .state({
+                name: 'sportCard',
+                url: '/sportcard/{eventId}',
+                component: 'sportCard',
+                resolve: {
+                    information: function(eventService, $transition$) {
+                        return eventService.getGeneralInformation($transition$.params().eventId);
+                    }
+                }
             });
 
         $urlRouterProvider.otherwise('/');
