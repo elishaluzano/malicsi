@@ -120,7 +120,7 @@ exports.deleteUser = (req, res) => {
 
 // SEARCH a user
 exports.searchUser = (req,res) => {
-	connection.query('SELECT * FROM user WHERE name LIKE ? or username LIKE ?', [ '%' + req.params.search + '%' ], function(err, rows, fields){
+	connection.query('SELECT * FROM user WHERE name LIKE ? or username LIKE ?', [ '%' + req.params.search + '%' , '%' + req.params.search + '%'], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
