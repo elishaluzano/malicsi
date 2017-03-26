@@ -124,6 +124,7 @@ var venueCtrl = require('../controllers/venueController.js');
 router.post('/api/venues', venueCtrl.addVenue);
 router.get('/api/venues', venueCtrl.viewAllVenue);
 router.get('/api/venues/:id', venueCtrl.viewVenue);
+router.get('/api/venues/search/:search', venueCtrl.searchVenue);
 router.put('/api/venues/:id', venueCtrl.updateVenue);
 router.delete('/api/venues/:id', venueCtrl.deleteVenue);
 
