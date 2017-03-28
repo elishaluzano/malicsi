@@ -58,9 +58,7 @@ CREATE TABLE event (
 
 CREATE TABLE sport (
     sport_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name varchar(20) NOT NULL,
-    event_id_key int NOT NULL,
-    CONSTRAINT sport_event_id_key_fk FOREIGN KEY (event_id_key) REFERENCES event (event_id)
+    name varchar(20) NOT NULL
 );
 
 CREATE TABLE game (
@@ -70,9 +68,18 @@ CREATE TABLE game (
     max_num_of_players int NOT NULL,
     status varchar(10) NOT NULL,
     venue int NOT NULL,
-    sport_id_key int NOT NULL,
+    event_id int NOT NULL,
+    sport_id int NOT NULL,
     CONSTRAINT game_venue_fk FOREIGN KEY (venue) REFERENCES venue (venue_id),
-    CONSTRAINT game_sport_id_key_fk FOREIGN KEY (sport_id_key) REFERENCES sport (sport_id)
+    CONSTRAINT game_event_id_fk FOREIGN KEY (event_id) REFERENCES event (event_id),
+    CONSTRAINT game_sport_id_fk FOREIGN KEY (sport_id) REFERENCES sport (sport_id)
+);
+
+CREATE TABLE eventHasSport (
+    event_id int NOT NULL,
+    sport_id int NOT NULL,
+    CONSTRAINT eventHasSport_event_id_fk FOREIGN KEY (event_id) REFERENCES event (event_id),
+    CONSTRAINT eventHasSport_sport_id_fk FOREIGN KEY (sport_id) REFERENCES sport (sport_id)
 );
 
 CREATE TABLE team (
@@ -235,26 +242,36 @@ insert into event values (event_id, 'CA Sportfest', 'Copeland Gym', '2017-02-13'
 insert into event values (event_id, 'IBSlympics', 'Copeland Gym', '2017-02-13', '2017-02-13', 4);
 insert into event values (event_id, 'CHElympics', 'Baker Hall', '2017-04-10', '2017-04-11', 2);
 insert into event values (event_id, 'PALACASAN', 'UPLB', '2017-02-13', '2017-02-13', 3);
-insert into sport values (sport_id, 'Basketball',1);
-insert into sport values (sport_id, 'Basketball',2);
-insert into sport values (sport_id, 'Volleyball',1);
-insert into sport values (sport_id, 'Volleyball',2);
-insert into sport values (sport_id, 'Football',2);
-insert into sport values (sport_id, 'Scrabble',2);
-insert into sport values (sport_id, 'Badminton',1);
-insert into sport values (sport_id, 'Badminton',2);
-insert into sport values (sport_id, 'Bowling',2);
-insert into sport values (sport_id, 'Chess',2);
-insert into game values (game_id, '2017-02-13 08:30:00', 5, 10, 'Done', 3, 1);
-insert into game values (game_id, '2017-02-13 10:30:00', 5, 10, 'Done', 3, 1);
-insert into game values (game_id, '2017-04-01 09:30:00', 5, 10, 'Planned', 3, 2);
-insert into game values (game_id, '2017-02-13 08:30:00', 6, 12, 'Done', 3, 3);
-insert into game values (game_id, '2017-02-13 10:30:00', 6, 12, 'Done', 3, 3);
-insert into game values (game_id, '2017-04-01 08:30:00', 6, 12, 'Planned', 3, 4);
-insert into game values (game_id, '2017-02-13 09:30:00', 1, 2, 'Done', 3, 7);
-insert into game values (game_id, '2017-04-02 15:30:00', 11, 17, 'Planned', 2, 5);
-insert into game values (game_id, '2017-04-05 09:30:00', 1, 2, 'Planned', 3, 10);
-insert into game values (game_id, '2017-04-05 12:30:00', 1, 1, 'Done', 5, 9);
+insert into sport values (sport_id, 'Basketball');
+insert into sport values (sport_id, 'Volleyball');
+insert into sport values (sport_id, 'Soccer');
+insert into sport values (sport_id, 'Scrabble');
+insert into sport values (sport_id, 'Badminton');
+insert into sport values (sport_id, 'Bowling');
+insert into sport values (sport_id, 'Chess');
+insert into sport values (sport_id, 'Swimming');
+insert into sport values (sport_id, 'Table Tennis');
+insert into sport values (sport_id, 'Track and Field');
+insert into game values (game_id, '2017-02-13 08:30:00', 5, 10, 'Done', 3, 1, 1);
+insert into game values (game_id, '2017-02-13 10:30:00', 5, 10, 'Done', 3, 1, 1);
+insert into game values (game_id, '2017-04-01 09:30:00', 5, 10, 'Planned', 3, 2, 1);
+insert into game values (game_id, '2017-02-13 08:30:00', 6, 12, 'Done', 3, 1, 2);
+insert into game values (game_id, '2017-02-13 10:30:00', 6, 12, 'Done', 3, 1, 2);
+insert into game values (game_id, '2017-04-01 08:30:00', 6, 12, 'Planned', 3, 2, 2);
+insert into game values (game_id, '2017-02-13 09:30:00', 1, 2, 'Done', 3, 1, 5);
+insert into game values (game_id, '2017-04-02 15:30:00', 11, 17, 'Planned', 2, 2, 3);
+insert into game values (game_id, '2017-04-05 09:30:00', 1, 2, 'Planned', 3, 2, 7);
+insert into game values (game_id, '2017-04-05 12:30:00', 1, 1, 'Done', 5, 2, 6);
+insert into eventHasSport values (1, 1);
+insert into eventHasSport values (2, 1);
+insert into eventHasSport values (1, 2);
+insert into eventHasSport values (2, 2);
+insert into eventHasSport values (2, 3);
+insert into eventHasSport values (2, 4);
+insert into eventHasSport values (1, 5);
+insert into eventHasSport values (2, 5);
+insert into eventHasSport values (2, 6);
+insert into eventHasSport values (2, 7);
 insert into team values (team_id, 'Red Team', 1);
 insert into team values (team_id, 'White Team', 1);
 insert into team values (team_id, 'Yellow Team', 1);
@@ -311,9 +328,9 @@ insert into sportIsJoinedByUser values (1, 1);
 insert into sportIsJoinedByUser values (1, 2);
 insert into sportIsJoinedByUser values (1, 3);
 insert into sportIsJoinedByUser values (1, 4);
-insert into sportIsJoinedByUser values (2, 7);
-insert into sportIsJoinedByUser values (3, 5);
-insert into sportIsJoinedByUser values (4, 6);
+insert into sportIsJoinedByUser values (1, 7);
+insert into sportIsJoinedByUser values (2, 5);
+insert into sportIsJoinedByUser values (2, 6);
+insert into sportIsJoinedByUser values (2, 8);
+insert into sportIsJoinedByUser values (3, 7);
 insert into sportIsJoinedByUser values (4, 8);
-insert into sportIsJoinedByUser values (5, 7);
-insert into sportIsJoinedByUser values (6, 8);
