@@ -46,6 +46,30 @@ exports.viewAllEvent = (req,res) => {
 	});
 };
 
+exports.searchEvent = (req,res) => {
+	connection.query('SELECT * FROM event WHERE event_title LIKE ?', [ '%' + req.params.search + '%'], function(err, rows, fields){
+		if(!err) {
+			res.send(rows);
+		}else{
+			res.send(err);
+		}
+	});
+};
+
+exports.viewEventDetails = (req,res) => {
+	connection.query('SELECT e.event_title AS event, s.name AS sport, g.time, g.game_id, t.name AS team, si.name AS institution, \
+		v.name AS venue FROM event e JOIN game g JOIN sport s JOIN team t JOIN sponsoringInstitution si JOIN venue v JOIN teamPlaysGame tpg \
+		WHERE e.event_id = ? AND s.event_id_key = e.event_id AND g.sport_id_key = s.sport_id AND e.institution_id_key = si.institution_id \
+		AND g.venue = v.venue_id AND tpg.game_id_play = g.game_id AND tpg.team_id_play = t.team_id AND t.event_id_key = e.event_id', 
+		[ req.params.id ], function(err, rows, fields){
+		if(!err) {
+			res.send(rows);
+		}else{
+			res.send(err);
+		}
+	});
+};
+
 exports.updateEvent = (req,res) => {
 	connection.query('UPDATE event SET event_title = ?, venue = ?, start_date = ?, end_date = ? WHERE event_id = ?', [req.body.event_title, req.body.venue, req.body.start_date, req.body.end_date, req.params.id], function(err, rows, fields){
 		if(!err) {

@@ -1,5 +1,6 @@
 'use strict'
 
+const crypt = require('../crypt');
 const mysql = require('mysql');
 const connection = require(__dirname + '/../database.js');
 
@@ -9,16 +10,16 @@ exports.getAccount = (req, res) => {
 };
 // login
 exports.loginUser = (req, res) => {
-	connection.query('SELECT * FROM user WHERE username = ?',[req.body.username], function(err, rows, fields) {
+	connection.query('SELECT * FROM user WHERE username = ? and password = ?',[req.body.username, req.body.password], function(err, rows, fields) {
 		if (!err){
-			if (req.body.password == rows[0].password) {
+			if (rows.length === 0) {
+				res.send(false);
+				console.log("Login unsuccessful");
+			}
+			else if(req.body.password == crypt.decrypt(req.body.password)){
 				req.session.user = rows[0];
 				console.log("Successfully logged in user");
 				res.send(rows[0]);
-			}
-			else {
-				res.send(false);
-				console.log("Login unsuccessful");
 			}
 		}
 		else {
@@ -33,7 +34,7 @@ exports.addUser = (req, res) => {
 	var newUser = {
 		name : req.body.name,
 		username : req.body.username,
-		password : req.body.password,
+		password : crypt.encrypt(req.body.password),
 		gender : req.body.gender,
 		birthday : req.body.birthday,
 		email : req.body.email,
@@ -91,7 +92,7 @@ exports.getUser = (req, res) => {
 
 // PUT specific user
 exports.updateUser = (req, res) => {
-	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, req.body.password, req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, req.body.profile_pic, req.params.id], function(err, rows, fields) {
+	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, crypt.encrypt(req.body.password), req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, req.body.profile_pic, req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
 			res.send(rows[0]);
@@ -114,6 +115,20 @@ exports.deleteUser = (req, res) => {
 			res.send(err);
 			console.log("Error in deleting user");
 		}
+	});
+};
+
+// SEARCH a user
+exports.searchUser = (req,res) => {
+	connection.query('SELECT * FROM user WHERE name LIKE ? or username LIKE ?', [ '%' + req.params.search + '%' , '%' + req.params.search + '%'], function(err, rows, fields){
+		if (err) {
+            console.log(err);
+            res.send(err);
+         }
+        else {
+            res.send(rows);
+            console.log("Successfully viewed a user.");
+        }
 	});
 };
 
