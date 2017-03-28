@@ -183,41 +183,7 @@
                         </div>
                       </div>
 
-                    <div id="edit-modal" class="modal">
-                        <div class="modal-content">
-                          <h4>Edit Team</h4>
-                            <div class="row">
-                                <div class="input-field col l8">
-                                    <i class="material-icons prefix">mode_edit</i>
-                                    <input value="Red Rangers" id="team-name-new" type="text">
-                                    <label class="active" for="team-name-new">Team name</label>
-
-
-                                    <form action="#">
-                                        <div class="file-field input-field">
-                                            
-                                            <div class="file-path-wrapper col l7" style="padding-left: 0px; margin-right: 5px">
-                                                <i class="material-icons prefix">mode_edit</i>
-                                                <input id="team-logo" value="" class="file-path validate" type="text">
-                                                <label class="active" for="team-logo">Upload new logo</label>
-                                            </div>
-                                            <div class="btn col l4">
-                                                <span>File</span>
-                                                <input type="file">
-                                            </div>
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div>
-
-                              
-                        </div>
-                        <div class="modal-footer">
-                          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-                          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
-                        </div>
-                      </div>
+                    
 
 
                     <div class="col l5">      
@@ -460,6 +426,42 @@
             </div>
         </footer>
 
+        <div id="edit-modal" class="modal">
+                        <div class="modal-content">
+                          <h4>Edit Team</h4>
+                            <div class="row">
+                                <div class="input-field col l8">
+                                    <i class="material-icons prefix">mode_edit</i>
+                                    <input value="Red Rangers" id="team-name-new" type="text">
+                                    <label class="active" for="team-name-new">Team name</label>
+
+
+                                    <form action="#">
+                                        <div class="file-field input-field">
+                                            
+                                            <div class="file-path-wrapper col l7" style="padding-left: 0px; margin-right: 5px">
+                                                <i class="material-icons prefix">mode_edit</i>
+                                                <input id="team-logo" value="" class="file-path validate" type="text">
+                                                <label class="active" for="team-logo">Upload new logo</label>
+                                            </div>
+                                            <div class="btn col l4">
+                                                <span>File</span>
+                                                <input type="file">
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                              
+                        </div>
+                        <div class="modal-footer">
+                          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+                          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+                        </div>
+                      </div>
+
         
         <script src="../../../node_modules/jquery/dist/jquery.js"></script>
         <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js">
@@ -477,14 +479,14 @@
                 Materialize.updateTextFields();
             }); 
         </script>
-        <script>
+        <!--script>
             $('a').click(function(){
                 $('html, body').animate({
                     scrollTop: $( $(this).attr('href') ).offset().top
                 }, 500);
                 return false;
             });
-        </script>
+        </script-->
         <script>
             $('#drop-links').webuiPopover({url:'#additional-links'});
         </script>
