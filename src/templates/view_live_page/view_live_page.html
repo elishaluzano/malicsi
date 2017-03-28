@@ -86,18 +86,53 @@
             <div class = "col s12 m8">
             <!-- Your code here!!! -->
 
-            <div  class=" card col s4 center">
-                <a class="black-text" href="../view_team_page/view_teams.html"><img class="circle" src="#"></a><!-- for team1 image -->
-                <a class="black-text" href="../view_team_page/view_teams.html"><h4>TEAM 1</h4></a>
-                <h5>99</h5>
-            </div>
+            <div class="card col s12">
+                <!--image for the background-->
+                <div class="background">
+                    <img src="../images/background.jpg">
+                </div>
 
-            <div class="col s4 center"><h1>VS</h1></div>
-            
-            <div  class=" card col s4 center">
-                <a class="black-text" href="../view_team_page/view_teams.html"><img class="circle" src="#"></a><!-- for team2 image -->
-                <a class="black-text" href="../view_team_page/view_teams.html"><h4>TEAM 2</h4></a>
-                <h5>100</h5>
+                <div  class="col s4 center">
+                    <a class="black-text" href="../view_team_page/view_teams.html"><img class="circle" src="../images/logo/red_lion.png"></a><!-- for team1 image -->
+                    <a class="black-text" href="../view_team_page/view_teams.html"><h4>Red Lions</h4></a>
+                    <h3>99</h3>
+                </div>
+
+                <div class="col s4 center"><h1>VS</h1></div>
+                
+                <div  class="col s4 center">
+                    <a class="black-text" href="../view_team_page/view_teams.html"><img class="circle" src="../images/logo/blue_tiger.png"></a><!-- for team2 image -->
+                    <a class="black-text" href="../view_team_page/view_teams.html"><h4>Blue Tigers</h4></a>
+                    <h3>100</h3>
+                </div>
+                <div class"right">
+                <a class="modal-trigger waves-effect waves-light btn" href="#edit_scores"><i class="material-icons">mode_edit</i></a>
+
+                <div id="edit_scores" class="modal modal-fixed-footer">
+                    <div class="modal-content">
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" id="team1score" placeholder="10"></input>
+                                        <label for="team1score">Red Lions Score</label>  
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" id="team2score" placeholder="10"></input>
+                                        <label for="team2score">Blue Tigers Score</label>  
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"> OK </a>
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"> Cancel </a>
+                    </div>
+                </div>    
+                </div>
             </div>
             <div class="card-tabs">
             <ul class="tabs tabs-fixed-width">
@@ -113,7 +148,7 @@
                 <ul class="collapsible" data-collapsible="expandable">
                     <li class="active">
                         <div class="collapsible-header active">
-                            <a class="black-text" href="../view_team_page/view_teams.html"><h5>Team 1</h5></a>
+                            <a class="black-text" href="../view_team_page/view_teams.html"><h5>Red Lions</h5></a>
                         </div>
                         <div class="collapsible-body ">
                             <a href="#"><img class="circle" src="../images/person-flat.png"></a>
@@ -139,7 +174,7 @@
          
                     <li class="active">
                         <div class="collapsible-header active">
-                            <a class="black-text" href="../view_team_page/view_teams.html"><h5>Team 2</h5></a>
+                            <a class="black-text" href="../view_team_page/view_teams.html"><h5>Blue Tigers</h5></a>
                         </div>
                         <div class="collapsible-body ">
                             <a href="#"><img class="circle" src="../images/person-flat.png"></a>
@@ -207,6 +242,6 @@
         
         <!-- FOR NAVIGATION JS -->
         <script src="../index_page/index.js"></script>     
-        
+        <script src="view_live_page.js"></script>
     </body>
 </html>
