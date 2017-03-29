@@ -21,6 +21,17 @@
                 component: 'registrationCard'
             })
             .state({
+                name: 'schedulePage',
+                url: '/schedule',
+                component: 'schedulePage',
+                resolve: {
+                    games: function(gameService){
+                        return gameService.getAll();
+                    }
+                
+                }
+            })
+            .state({
                 name: 'landingPage',
                 url: '/',
                 component: 'landingPage',
@@ -37,6 +48,7 @@
                 resolve: {
                     events: function(eventService) {
                         return eventService.getAll();
+
                     }
                 }
             });
