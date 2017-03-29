@@ -25,8 +25,8 @@
                 url: '/schedule',
                 component: 'schedulePage',
                 resolve: {
-                    games: function(gameService){
-                        return gameService.getAll();
+                    games: function(sportService){
+                        return sportService.getAll();
                     }
                 
                 }
