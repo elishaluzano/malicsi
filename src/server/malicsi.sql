@@ -35,8 +35,8 @@ CREATE TABLE sponsoringInstitution (
 );
 
 CREATE TABLE institutionHasAdmin (
-    institution_no int NOT NULL,
-    user_no int NOT NULL,
+    institution_no int NOT NULL ON DELETE CASCADE,
+    user_no int NOT NULL ON DELETE CASCADE,
     CONSTRAINT institutionHasAdmin_user_no_fk FOREIGN KEY (user_no) REFERENCES user (user_id),
     CONSTRAINT institutionHas_institution_no_fk FOREIGN KEY (institution_no) REFERENCES sponsoringInstitution (institution_id)
 );
@@ -76,8 +76,8 @@ CREATE TABLE game (
 );
 
 CREATE TABLE eventHasSport (
-    event_id int NOT NULL,
-    sport_id int NOT NULL,
+    event_id int NOT NULL ON DELETE CASCADE,
+    sport_id int NOT NULL ON DELETE CASCADE,
     CONSTRAINT eventHasSport_event_id_fk FOREIGN KEY (event_id) REFERENCES event (event_id),
     CONSTRAINT eventHasSport_sport_id_fk FOREIGN KEY (sport_id) REFERENCES sport (sport_id)
 );
@@ -90,15 +90,15 @@ CREATE TABLE team (
 );
 
 CREATE TABLE teamIsComposedOfUser (
-    team_player_id int NOT NULL,
-    user_player_id int NOT NULL,
+    team_player_id int NOT NULL ON DELETE CASCADE,
+    user_player_id int NOT NULL ON DELETE CASCADE,
     CONSTRAINT isComposedOf_team_player_id_fk FOREIGN KEY (team_player_id) REFERENCES team (team_id),
     CONSTRAINT isComposedOf_user_player_id_fk FOREIGN KEY (user_player_id) REFERENCES user (user_id)
 );
 
 CREATE TABLE teamPlaysGame (
-    team_id_play int NOT NULL,
-    game_id_play int NOT NULL,
+    team_id_play int NOT NULL ON DELETE CASCADE,
+    game_id_play int NOT NULL ON DELETE CASCADE,
     record ENUM('WIN','LOSE','DRAW') default NULL,
     score float default 0,
     CONSTRAINT plays_game_id_play_fk FOREIGN KEY (game_id_play) REFERENCES game (game_id),
@@ -106,8 +106,8 @@ CREATE TABLE teamPlaysGame (
 );
 
 CREATE TABLE sportIsJoinedByUser (
-  user_id int NOT NULL,
-  sport_id int NOT NULL,
+  user_id int NOT NULL ON DELETE CASCADE,
+  sport_id int NOT NULL ON DELETE CASCADE,
   CONSTRAINT sportIsJoinedByUser_user_id_fk FOREIGN KEY (user_id) REFERENCES user(user_id),
   CONSTRAINT sportIsJoinedByUser_sport_id_fk FOREIGN KEY (sport_id) REFERENCES sport(sport_id)
 );
@@ -129,15 +129,6 @@ CREATE TABLE gameUpdateLog (
     CONSTRAINT gameUpdateLog_team_id_fk FOREIGN KEY (team_id) REFERENCES team (team_id),
     CONSTRAINT gameUpdateLog_game_id_fk FOREIGN KEY (game_id) REFERENCES game (game_id)
 );
-
-delimiter //
-create procedure deleteGame(in id int)
-BEGIN
-delete from teamPlaysGame where game_id_play = id;
-delete from game where game_id = id;
-END;
-//
-delimiter ;
 
 delimiter //
 create procedure gameAdd(in team_id int, game_id int)
