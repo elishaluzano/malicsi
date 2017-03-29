@@ -75,6 +75,17 @@
                     }); 
             },
 
+            getGeneralInformation: function(id) {
+                return $http.get(api + id + '/info')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting general information of an event of a sport.');
+                        console.log(err.status + ': ' + err.statusText);
+                    }); 
+            },
+
             create: function(body) {
                 return $http.post(api, body)        
                     .then(function(response) {  
