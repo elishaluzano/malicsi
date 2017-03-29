@@ -8,6 +8,10 @@
     padding: 10px;
 }
 
+#add-sponsor-button {
+    margin-bottom: 10px;
+}
+
 .sponsor-row .right-align {
     font-weight: bold;
 }
