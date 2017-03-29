@@ -6,30 +6,52 @@
             template: require('./sport-card.html'),
             controller: sportCardController,
             bindings: {
-                games: '<',
-                sports: '<'
+                information: '<'
             }
         });
 
     function sportCardController(eventService) {
         var vm = this;
+        vm.sports = [];
+        vm.sportsAndGames = [];
 
         vm.$onInit = function(){
-
-            for(var i=0; i<vm.sports.length; i++){
-                vm.sports[i].games = [];
-            }
-
-            for(var i=0; i<vm.sports.length; i++){
-                for(var j=0; j<vm.games.length; j++){
-                    if(vm.sports[i].sport_id == vm.games[j].sport_id_key){
-                        vm.sports[i].games.push(vm.games[j]);
-                        vm.games.splice(j,1);
-                    }
+            console.log(vm.information);
+            vm.information.forEach(function(information){
+                if(vm.sports.indexOf(information.sport) < 0){
+                    vm.sports.push(information.sport);
+                    vm.sportsAndGames.push({name: information.sport, games: [information]});
                 }
-            }
+                else{
+                    vm.sportsAndGames.forEach(function(sportAndGame){
+                        if(sportAndGame.name == information.sport){
+                            sportAndGame.games.push(information);
+                        }
+                    });
+                }
+            });
 
-            console.log(vm.sports);
+            vm.sportsAndGames.forEach(function(sportAndGame){
+                var games = [];
+                var gamesPerSport = [];
+
+                (sportAndGame.games).forEach(function(game){
+                    if(games.indexOf(game.game_id) < 0){
+                        games.push(game.game_id);
+                        game.team = [game.team];
+                        gamesPerSport.push(game);
+                    }
+                    else{
+                        gamesPerSport.forEach(function(gamePerSport){
+                            if(gamePerSport.game_id == game.game_id){
+                                gamePerSport.team.push(game.team);
+                            }
+                        });
+                    }
+                });
+
+                sportAndGame.games = gamesPerSport;
+            });
         }
         
     }

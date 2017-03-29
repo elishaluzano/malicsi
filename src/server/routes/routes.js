@@ -73,6 +73,8 @@ router.get('/api/events/:id/teams', eventCtrl.viewTeamsInEvent);
 router.get('/api/events/:id/games', eventCtrl.viewGamesInEvent);
 //get all games from a sport from an event
 router.get('/api/events/:event_id/sports/:sport_id/games', eventCtrl.viewGamesInSportInEvent);
+//get general information of an event
+router.get('/api/events/:id/info', eventCtrl.viewGeneralInformation);
 
 var sportCtrl = require('../controllers/sportController.js');
 //sport routes
