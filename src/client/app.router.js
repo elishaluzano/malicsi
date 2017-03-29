@@ -13,7 +13,12 @@
             .state({
                 name: 'userPage',
                 url: '/user/{userId}',
-                component: 'userPage'
+                component: 'userPage',
+                resolve: {
+                    user: function(userService, $transition$){
+                        return userService.getOne($transition$.params().userId);
+                    }
+                }
             })
             .state({
                 name: 'registrationPage',
