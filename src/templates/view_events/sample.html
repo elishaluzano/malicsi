@@ -156,7 +156,8 @@
     <div class = "col s12 m8 l9">
     <div class="row">
       <div class = "tab-custom" id = "addhere">
-        <button onclick = "createDate()">Add date</button>
+        <button onClick = "openData(event, 'teams')" class = "white-text black">Teams</button>
+        <button onClick = "createDate()" class="red lighten-1 white-text">Add date</button>
         <button class = "tablinks active" onclick="openData(event,'June_12_game')" id ="defaultOpen">June 12</button>
         <button class = "tablinks" onclick="openData(event,'June_13_game')">June 13</button>
         <button class = "tablinks" onclick="openData(event,'June_14_game')">June 14</button>
@@ -165,7 +166,7 @@
 
 
       <!--=====================================================  DAY ONE GAMES ==================================================================-->
-      <div class = "game_container">
+   <div id = "game_container">
       <div id = "June_12_game" class = "tabcontent">
         <ul class="collapsible" data-collapsible="expandable" id = "test1">
         <li class="active">
@@ -267,7 +268,7 @@
 
 
     <!--=====================================================  DAY TWO GAMES ==================================================================-->
-
+    <div class = "game_container">
     <div id = "June_13_game" class = "tabcontent">
       <ul class="collapsible" data-collapsible="expandable" id = "test1">
         <li class="active">
@@ -400,14 +401,14 @@
                 </tr>
                 <tr>
                   <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td></td>
+                  <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
                   <td>99 - 100</td>
                   <td>10:00AM - 11:30PM</td>
                   <td>LBNHS Court</td>
                   <td></td>
                 </tr>
                 <tr><td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td></td>
+                  <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
                   <td>-</td>
                   <td>1:00PM - 2:30PM</td>
                   <td>Copeland Gym</td>
@@ -463,15 +464,57 @@
             </table>
           </div>
         </li>
-    </ul>
+      </ul>
+    </div> <!-- end Div for day 3 -->
+
+    <div id = "new_game" class = "tabcontent">
+      No sports yet. Add a sport?
     </div>
 
-    </div>
+    <div id = "teams" class = "tabcontent">
+      <div class = "row">
 
-    </div>
-    </div>
-    </div>
+      <table class = "col l12">
+      <tbody>
+      <tr>
+        <td>UPLB SELES</td>
+        <td>
+          <a href ="#join-modal" data-target="join-modal"><div class = "chip green white-text">Join</div></a>
+          <div class = "chip grey white-text">Cancel</div>
+          <div class = "chip orange white-text">Edit</div>
+          <div class = "chip red white-text">Delete</div>
+        </td>
 
+      </tr>
+      <tr>
+        <td>UPCES</td>
+        <td>
+          <div class = "chip grey white-text">Join</div>
+          <div class = "chip green white-text">Cancel</div>
+          <div class = "chip orange white-text">Edit</div>
+          <div class = "chip red white-text">Delete</div>
+        </td>
+      </tr>
+      </tbody>
+      </table>
+      </div>
+      No teams yet. Add a team? <button class = "btn"> Add a team</button>
+    </div>
+    </div>
+    </div>
+    </div>
+      </div>
+        </div>
+
+        <div id="join-modal" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
     <!-- footer -->
 
     <footer class="red page-footer">
@@ -522,18 +565,28 @@
       var para = document.createElement("BUTTON");
       var t = document.createTextNode("June " + n);
       para.className = "tablinks";
-      para.setAttribute("onClick","openData(event,'June_"+ n +"_game')");
+      para.setAttribute("onClick","openData(event,'new_game')");
       para.appendChild(t);
       document.getElementById("addhere").appendChild(para);
 
       var content = document.createElement("div");
-      content.setAttribute("class","tabcontent");
-      content.setAttribute("id","June_"+ n+ "_game");
       var s = document.createTextNode("HEHEE");
-      content.appendChild(s);
+      
+      content.className = "tabcontent";
+      // content.setAttribute("id","June_"+n+ "_game");
+      content.setAttribute("id","new_game");
+
+       content.appendChild(s);
       document.getElementById("game_container").appendChild(content);
       n++;
+      Materialize.toast('Added new day!', 3000)
     }
+    </script>
+    <script>
+$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
     </script>
   </body>
 </html>
