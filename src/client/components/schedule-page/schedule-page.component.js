@@ -12,7 +12,8 @@
 
     function schedulePageController(sportService, gameService) {
         var vm = this;
-        vm.onInit = function(){
+
+        vm.$onInit = function(){
             console.log(games);
         }
     }
