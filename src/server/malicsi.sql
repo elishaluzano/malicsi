@@ -17,13 +17,13 @@ CREATE TABLE user (
     birthday date NOT NULL,
     email varchar(30),
     contact_number varchar(15),
-    contact_person int,
+    contact_person int ON DELETE NULL,
     profile_pic text,
     constraint user_contact_person_fk foreign key (contact_person) references contactPersonInCaseOfEmergency(contact_person_id)
 );
 
 CREATE TABLE userAffiliation (
-    user_no int NOT NULL,
+    user_no int NOT NULL ON DELETE CASCADE,
     affiliation varchar(50) NOT NULL,
     CONSTRAINT userAffiliation_user_no_fk FOREIGN KEY (user_no) REFERENCES user(user_id)
 );
@@ -35,8 +35,8 @@ CREATE TABLE sponsoringInstitution (
 );
 
 CREATE TABLE institutionHasAdmin (
-    institution_no int NOT NULL,
-    user_no int NOT NULL,
+    institution_no int NOT NULL ON DELETE CASCADE,
+    user_no int NOT NULL ON DELETE CASCADE,
     CONSTRAINT institutionHasAdmin_user_no_fk FOREIGN KEY (user_no) REFERENCES user (user_id),
     CONSTRAINT institutionHas_institution_no_fk FOREIGN KEY (institution_no) REFERENCES sponsoringInstitution (institution_id)
 );
@@ -52,7 +52,7 @@ CREATE TABLE event (
     venue varchar(50) NOT NULL,
     start_date date NOT NULL,
     end_date date NOT NULL,
-    institution_id_key int NOT NULL,
+    institution_id_key int NOT NULL ON DELETE CASCADE,
     constraint event_institution_key_fk foreign key(institution_id_key) references sponsoringInstitution(institution_id)
 );
 
@@ -67,17 +67,17 @@ CREATE TABLE game (
     min_num_of_players int NOT NULL,
     max_num_of_players int NOT NULL,
     status varchar(10) NOT NULL,
-    venue int NOT NULL,
-    event_id int NOT NULL,
-    sport_id int NOT NULL,
+    venue int NOT NULL ON DELETE NULL,
+    event_id int NOT NULL ON DELETE CASCADE,
+    sport_id int NOT NULL ON DELETE CASCADE,
     CONSTRAINT game_venue_fk FOREIGN KEY (venue) REFERENCES venue (venue_id),
     CONSTRAINT game_event_id_fk FOREIGN KEY (event_id) REFERENCES event (event_id),
     CONSTRAINT game_sport_id_fk FOREIGN KEY (sport_id) REFERENCES sport (sport_id)
 );
 
 CREATE TABLE eventHasSport (
-    event_id int NOT NULL,
-    sport_id int NOT NULL,
+    event_id int NOT NULL ON DELETE CASCADE,
+    sport_id int NOT NULL ON DELETE CASCADE,
     CONSTRAINT eventHasSport_event_id_fk FOREIGN KEY (event_id) REFERENCES event (event_id),
     CONSTRAINT eventHasSport_sport_id_fk FOREIGN KEY (sport_id) REFERENCES sport (sport_id)
 );
@@ -85,20 +85,20 @@ CREATE TABLE eventHasSport (
 CREATE TABLE team (
     team_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(20) NOT NULL,
-    event_id_key int NOT NULL,
+    event_id_key int NOT NULL ON DELETE CASCADE,
     CONSTRAINT team_event_id_key_fk FOREIGN KEY (event_id_key) REFERENCES event (event_id)
 );
 
 CREATE TABLE teamIsComposedOfUser (
-    team_player_id int NOT NULL,
-    user_player_id int NOT NULL,
+    team_player_id int NOT NULL ON DELETE CASCADE,
+    user_player_id int NOT NULL ON DELETE CASCADE,
     CONSTRAINT isComposedOf_team_player_id_fk FOREIGN KEY (team_player_id) REFERENCES team (team_id),
     CONSTRAINT isComposedOf_user_player_id_fk FOREIGN KEY (user_player_id) REFERENCES user (user_id)
 );
 
 CREATE TABLE teamPlaysGame (
-    team_id_play int NOT NULL,
-    game_id_play int NOT NULL,
+    team_id_play int NOT NULL ON DELETE CASCADE,
+    game_id_play int NOT NULL ON DELETE CASCADE,
     record ENUM('WIN','LOSE','DRAW') default NULL,
     score float default 0,
     CONSTRAINT plays_game_id_play_fk FOREIGN KEY (game_id_play) REFERENCES game (game_id),
@@ -106,8 +106,8 @@ CREATE TABLE teamPlaysGame (
 );
 
 CREATE TABLE sportIsJoinedByUser (
-  user_id int NOT NULL,
-  sport_id int NOT NULL,
+  user_id int NOT NULL ON DELETE CASCADE,
+  sport_id int NOT NULL ON DELETE CASCADE,
   CONSTRAINT sportIsJoinedByUser_user_id_fk FOREIGN KEY (user_id) REFERENCES user(user_id),
   CONSTRAINT sportIsJoinedByUser_sport_id_fk FOREIGN KEY (sport_id) REFERENCES sport(sport_id)
 );
@@ -122,22 +122,13 @@ CREATE TABLE userlog (
 
 CREATE TABLE gameUpdateLog (
     gameUpdateLog_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    team_id int NOT NULL,
-    game_id int NOT NULL,
+    team_id int NOT NULL ON DELETE CASCADE,
+    game_id int NOT NULL ON DELETE CASCADE,
     score float default 0,
     time timestamp NOT NULL,
     CONSTRAINT gameUpdateLog_team_id_fk FOREIGN KEY (team_id) REFERENCES team (team_id),
     CONSTRAINT gameUpdateLog_game_id_fk FOREIGN KEY (game_id) REFERENCES game (game_id)
 );
-
-delimiter //
-create procedure deleteGame(in id int)
-BEGIN
-delete from teamPlaysGame where game_id_play = id;
-delete from game where game_id = id;
-END;
-//
-delimiter ;
 
 delimiter //
 create procedure gameAdd(in team_id int, game_id int)
