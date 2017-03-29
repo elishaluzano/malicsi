@@ -1,6 +1,5 @@
 #score-bg{
 	background-image: url('../images/bg2.jpg');
-
 }
 
 #user-img{
@@ -19,4 +18,10 @@
 
 .vs{
 	margin-top: 100px;
+}
+
+.modal-size{
+    
+    height: 70%;
+    width: 55%;
 }
