@@ -1,0 +1,82 @@
+        <div class="container row">
+            <h3>Search Events</h3>
+            <!-- Filters: subject to change -->
+            <div class="col s4" id = "filters">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Filters</span>
+                        <form action="#">
+                            <p>
+                                <input type="checkbox" id="event-no-filter" checked />
+                                <label for="event-no-filter">No filter</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" id="event-sponsor" />
+                                <label for="event-sponsor">Event Sponsor</label>
+                            <p>
+                            <p>
+                                <input type="checkbox" id="event-venue" />
+                                <label for="event-venue">Event Venue</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" id="event-date" />
+                                <label for="event-date">Event Duration</label>
+                            </p>
+
+                            <br>
+                            <div class="divider"></div>
+
+                            <strong>For checked criteria:</strong>
+                            <br>
+                            <p class="input-field">
+                                <input type="text" id="event-sponsor-name" />
+                                <label for="event-sponsor-name">Event Sponsor</label>
+                            </p>
+                            <p class="input-field">
+                                <input type="text" id="event-venue-name" />
+                                <label for="event-venue-name">Event Venue</label>
+                            </p>
+
+                            <!-- Until there is a different type of date picker, use default -->
+                            <p>
+                                <strong>Event Start Date: </strong>
+                                <br>
+                                <input type=date id="event-start-date" />
+                            </p>
+                            <p>
+                                <strong>Event End Date: </strong>
+                                <br>
+                                <input type=date id="event-end-date" />
+                            </p>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results: holds the Collection of events with filters applied -->
+            <div class="col s8" id = "results">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Results</span>
+                        <ul class="collection" ng-repeat="">
+                            <!-- One Event -->
+                            <li class="collection-item avatar">
+                                <!-- Event logo -->
+                                <a href="#">
+                                    <img src="../images/person-flat.png" alt="" class="circle">
+                                </a>
+                                <!-- Event name -->
+                                <a href="#">
+                                    <span class="title">Event 1</span>
+                                </a>
+                                <!-- Event details -->
+                                <p>
+                                    <strong>Venue: </strong><span>Place 1</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
