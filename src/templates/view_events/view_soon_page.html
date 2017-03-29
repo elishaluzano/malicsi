@@ -491,7 +491,7 @@
     </div> <!-- end Div for day 3 -->
 
     <div id = "new_game" class = "tabcontent">
-      No sports yet. Add a sport? <div class = "chip green white-text">+</div>
+      No sports yet. Add a sport?<a href="#add-sport-modal" class="chip blue white-text">+</a>
     </div>
 
     <div id = "teams" class = "tabcontent">
@@ -502,7 +502,7 @@
       <tr>
         <td>UPLB SELES</td>
         <td>
-          <a href ="#join-modal" data-target="join-modal"><div class = "chip green white-text tooltipped" data-delay= "50" data-tooltip ="If player does not have a team">Join</div></a>
+          <a href ="#join-modal"><div class = "chip green white-text tooltipped" data-delay= "50" data-tooltip ="If player does not have a team">Join</div></a>
           <div class = "chip grey white-text tooltipped" data-delay= "50" data-tooltip ="Grey-ed out">Cancel</div>
           <div class = "chip orange white-text tooltipped" data-delay= "50" data-tooltip ="For admin only">Edit</div>
           <div class = "chip red white-text  tooltipped" data-delay= "50" data-tooltip ="For admin only">Delete</div>
@@ -542,14 +542,30 @@
 
     <div id="join-modal" class="modal">
       <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+        <h4>Join Team</h4>
+        <p>Are you sure you would like to join this team?</p>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">No</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
       </div>
     </div>
 
+    <div id="add-sport-modal" class="modal">
+      <div class="modal-content">
+        <h4>Add a Sport</h4>
+        <p>Please enter the name of the sport you wish to add.</p>
+        <form>
+          <div class="input-field">
+            <input type="text" placeholder="New Sport Name" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+      </div>
+    </div>
 
     <!-- ADD GAME SCHEDULE MODAL -->
     <div id="add-game-schedule" class="modal">
