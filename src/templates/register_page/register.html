@@ -70,43 +70,159 @@
             <div><a id="dropdown-links" href = "../view_sponsors/view_sponsors.html">Sponsors</a></div>
         </div>
 
+        
+        <div class = "row">
+        <div style = "container">
+            <form class = "col s12 l8 m12 offset-l2">
+                <fieldset>
+                    <legend style = "padding:5px">Personal Information</legend>
+                    <div class = "row">
+                        <div class = "input-field">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id = "name" type = "text" class = "validate" required placeholder = "eg. Juan A. Dela Cruz">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class = "input-field col s8">
+                            <i class = "material-icons prefix">event</i>
+                            <input id = "birthday" type = "date" class = "validate" required>
+                            <!-- <label for="birthday">Birthday</label> -->  
+                        </div>
+                        <div class = "input-field col s4">
+                            <select>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                            <label>Sex</label>
+                        </div>
+                        <div class = "input-field col s12">
+                            <i class="material-icons prefix">phone</i>
+                            <input id = "contact_number" type = "text" class = "validate" required maxlength = "11" placeholder = "e.g. 09xxxxxxxxx">
+                            <label for="contact_number">Contact number</label>
+                        </div>
+                    </div>
+                </fieldset>
+            
+                    <fieldset>
+                        <legend style = "padding:5px">Account Information</legend>
+                        <div class = "row">
+                            <div class = "input-field">
+                                <i class = "material-icons prefix">perm_contact_calendar</i>
+                                <input id = "username" type = "text" class = "validate" required placeholder = "Username">
+                                <label for="username">Username</label>
+                            </div>
+                            <div class = "input-field col s6">
+                                <i class = "material-icons prefix">lock</i>
+                                <input id = "password" type = "password" class = "validate" required placeholder = "Password">
+                                <label for="password">Password</label>
+                            </div>
+                            <div class = "input-field col s6">
+                                <!-- <i class = "material-icons prefix">lock</i> -->
+                                <input id = "password" type = "password" class = "validate" required placeholder = "Re-type password">
+                                <label for="password">Password confirmation</label>
+                            </div>
+                            <div class = "input-field col s12">
+                                <i class="material-icons prefix">email</i>
+                                <input id = "contact_number" type = "email" class = "validate" required maxlength = "11" placeholder = "e.g. jbguiao@up.edu.ph">
+                                <label for="contact_number">Email address</label>
+                            </div>
+                        </div>
+                    </fieldset>
 
-        <div id="register-part"> 
+                    <fieldset>
+                        <legend style = "padding:5px">Additional Details</legend>
+                            <div class = "row">
+
+
+                                <div class = "input-field">
+                                    <i class = "material-icons prefix">perm_contact_calendar</i>
+                                    <input id = "username" type = "text" class = "validate" required placeholder = "eg. Pedro B. Dela Silva">
+                                    <label for="username">Person to contact in case of emergency</label>
+                                </div>
+                                <div class = "input-field col s6">
+                                    <i class="material-icons prefix">phone</i>
+                                    <input id = "emergency_number" type = "text" class = "validate" required maxlength = "11" placeholder = "e.g. 09xxxxxxxxx">
+                                    <label for="emergency_number">Contact number</label>
+                                </div>
+                                
+                                <div class = "input-field col s6">
+                                    <!-- <i class = "material-icons prefix">lock</i> -->
+                                    <input id = "relationship" type = "text" class = "validate" required placeholder = "eg. Mother">
+                                    <label for="relationship">Relationship to contact person</label>
+                                </div>
+                                <div class = "input-field col s12">
+                                    <i class="material-icons prefix">accessibility</i>
+                                    <input id = "affiliation_1" type = "email" class = "validate" placeholder = "e.g. UPLB Alliance of Young Computer Science Engineers Society">
+                                    <label for="affiliation_1">Affiliation</label>
+                                </div>
+                                <br><br><br><br><br><br>
+                                <div class = "file-field input-field">
+                                    <div class = "btn">
+                                        <span>upload a picture</span>
+                                        <input type ="file">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                    </fieldset>
+            </form>
+        </div>
+        </div>
+              
+                
+            
+        <!-- <div id="register-part"> 
             <div id="register" class="col s12">
                 <h4 id="join-header">Join the Malicsi Movement!</h4>
                 <form class="col s12">
                     <div class="form-container">
                         <div class="row">
-                            <div class="input-field col s6">
-                                <input id="last_name" type="text" class="validate">
+                            <div class="input-field col s7">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="last_name" type="text" class="validate" required>
                                 <label for="last_name">First Name</label>
                             </div>
-                            <div class="input-field col s6">
-                                <input id="last_name" type="text" class="validate">
+                            <div class="input-field col s5">
+                                <input id="last_name" type="text" class="validate" required>
                                 <label for="last_name">Last Name</label>
                             </div>
+
+                        </div>
+                        <div class = "row">
+                            <div class="input-field col s12 offset">
+                                <input id="birthday" type="date" class="validate" name="birthday" required>
+                                <label for = "icon_prefix"></label>
+                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
+                                <i class="material-icons prefix">email</i>
                                 <input id="email" type="email" class="validate">
-                                <label for="email">Email</label>
+                                <label for="email" data-error= "wrong" data-sucess= "right">Email</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="email-confirm" type="email" class="validate">
+                                <input id="email-confirm" type="email" class="validate"  required>
                                 <label for="email-confirm">Email Confirmation</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="password" type="password" class="validate">
+                                <input id="password" type="password" class="validate"  required>
                                 <label for="password">Password</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="password-confirm" type="password" class="validate">
+                                <input id="password-confirm" type="password" class="validate"  required>
+                                <label for="password-confirm">Password Confirmation</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="password-confirm" type="password" class="validate"  required>
                                 <label for="password-confirm">Password Confirmation</label>
                             </div>
                         </div>
@@ -116,7 +232,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> -->
 
         <footer class="red page-footer">
             <div class="container">
@@ -149,6 +265,10 @@
         <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.js"></script>
         <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
         <script src="../index_page/index.js"></script>   
-        
+        <script>
+            $(document).ready(function() {
+                $('select').material_select();
+            });
+        </script>
     </body>
 </html>
