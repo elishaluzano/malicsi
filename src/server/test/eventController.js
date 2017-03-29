@@ -43,7 +43,7 @@ describe ('Event', function () {
         .end(function(err, res) {
           if (err) throw err;
           res.should.have.status(200);
-          res.body.should.be.an.instanceOf(Array);
+          res.body.should.be.an.instanceOf(Object);
           done();
         });
     });
@@ -56,7 +56,7 @@ describe ('Event', function () {
         .end(function(err, res) {
           if (err) throw err;
           res.should.have.status(200);
-          res.body.should.be.an.instanceOf(Array);
+          res.body.should.be.an.instanceOf(Object);
           done();
         });
     });

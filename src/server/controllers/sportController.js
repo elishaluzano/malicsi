@@ -7,7 +7,7 @@ const connection = require('./../database.js');
 
 exports.addSport = (req,res) => {
 	var info = {
-		name: req.body.name,
+		name: req.body.name
 	};
 	connection.query('INSERT INTO sport SET ?', info, function(err, rows, fields) {
 		if (!err) {
