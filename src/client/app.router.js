@@ -26,7 +26,6 @@
                 component: 'schedulePage',
                 resolve: {
                     games: function(sportService){
-                        console.log(sportService.getAll());
                         return sportService.getAll();
                     }
                 
