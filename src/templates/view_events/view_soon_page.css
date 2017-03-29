@@ -1,0 +1,20 @@
+footer {
+	/*
+	position: relative;
+	bottom: 0px;
+	width: 100%;
+	*/
+	clear: both;
+	position: relative;
+	bottom: 0px;
+	width: 100%;
+}
+
+body {
+	height: 100%;
+	min-height: 1000px;
+}
+
+#timer {
+	margin: 10px 0px 0px 0px;
+}
