@@ -10,7 +10,8 @@ exports.addGame = (req,res) => {
 		min_num_of_players: req.body.min_num_of_players,
 		max_num_of_players: req.body.max_num_of_players,
 		status: req.body.status,
-		sport_id_key: req.body.sport_id_key,
+		event_id: req.body.event_id,
+		sport_id: req.body.sport_id,
 	};
 	connection.query('INSERT INTO game SET ?', info, function(err, rows, fields) {
 		if (!err) {
