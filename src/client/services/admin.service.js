@@ -39,7 +39,7 @@
 						console.log("Error in getting admin!");
 						console.log(err.status + ': ' + err.statusText);
 					});
-			}
+			},
 
 			create: function(body) {
 				return $http.post(api, body)

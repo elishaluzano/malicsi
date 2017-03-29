@@ -46,6 +46,19 @@ describe ('Sport', function () {
     });
   });
 
+  describe('searchSport()', function () {
+    it('search sport by name', function (done) {
+      request(url)
+        .get('/api/sports/search' + 'basketball')
+        .end(function(err, res) {
+          if (err) throw err;
+          res.should.have.status(200);
+          res.body.should.be.an.instanceOf(Object);
+          done();
+        });
+    });
+  });
+
   describe('updateSport()', function () {
     it('update sport', function (done) {
       request(url)

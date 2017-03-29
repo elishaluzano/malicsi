@@ -12,7 +12,6 @@
             getAll: function() {
                 return $http.get(api)
                     .then(function(response) {
-                        console.log(response);
                         return response.data
                     })
                     .catch(function(err) {
@@ -24,7 +23,6 @@
             getOne: function(id) {
                 return $http.get(api + id)
                     .then(function(response) {
-                        console.log(response);
                         return response.data;
                     })
                     .catch(function(err) {
@@ -36,7 +34,6 @@
             getUsers: function(id) {
                 return $http.get(api + id + '/users')
                     .then(function(response) {
-                        console.log(response);
                         return response.data;
                     })
                     .catch(function(err) {
@@ -46,9 +43,8 @@
             },
 
             getGames: function(id) {
-                return $http.get(api + id + '/games')
+                return $http.get(api + id + '/plays')
                     .then(function(response) {
-                        console.log(response);
                         return response.data;
                     })
                     .catch(function(err) {
@@ -71,7 +67,6 @@
             update: function(id, body) {
                 return $http.put(api + id, body)
                     .then(function(response) {
-                        console.log(response);
                         return response.data
                     })
                     .catch(function(err) {
@@ -83,7 +78,6 @@
             delete: function(id) {
                 return $http.delete(api + id)
                     .then(function(response) {
-                        console.log(response);
                         return response.data
                     })
                     .catch(function(err) {

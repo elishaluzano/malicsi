@@ -29,6 +29,19 @@ describe('Venue', function(){
 		 });
 	 });
 
+    describe('searchVenue()', function () {
+		 it('search venue by name', function (done) {
+			 request(url)
+				 .get('/api/venues/search' + 'B')
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
+					 	res.body.should.be.an.instanceOf(Object);
+					 done();
+				 });
+		 });
+	 });
+
 	 describe('addVenue()', function () {
 		 it('creates a new venue', function (done) {
 			 var venue = {

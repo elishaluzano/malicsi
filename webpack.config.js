@@ -3,7 +3,6 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CompressionPlugin = require('compression-webpack-plugin');
-
 module.exports = function(env) {
     return {
         entry: {
@@ -67,6 +66,6 @@ module.exports = function(env) {
                 minRatio: 0.8
             })
         ],
-        devtool: 'cheap-module-source-map'
+        devtool: 'eval'
     }
 }

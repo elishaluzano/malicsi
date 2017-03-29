@@ -1,24 +1,25 @@
 'use strict'
 
+const crypt = require('../crypt');
 const mysql = require('mysql');
 const connection = require(__dirname + '/../database.js');
 
 // get current user
 exports.getAccount = (req, res) => {
   res.send(req.session.user);
-}
+};
 // login
 exports.loginUser = (req, res) => {
-	connection.query('SELECT * FROM user WHERE username = ?',[req.body.username], function(err, rows, fields) {
+	connection.query('SELECT * FROM user WHERE username = ? and password = ?',[req.body.username, req.body.password], function(err, rows, fields) {
 		if (!err){
-			if (req.body.password == rows[0].password) {
+			if (rows.length === 0) {
+				res.send(false);
+				console.log("Login unsuccessful");
+			}
+			else if(req.body.password == crypt.decrypt(req.body.password)){
 				req.session.user = rows[0];
 				console.log("Successfully logged in user");
 				res.send(rows[0]);
-			}
-			else {
-				res.send(false);
-				console.log("Login unsuccessful");
 			}
 		}
 		else {
@@ -26,14 +27,14 @@ exports.loginUser = (req, res) => {
 			res.send(err);
 		}
 	});
-}
+};
 
 // signup
 exports.addUser = (req, res) => {
 	var newUser = {
 		name : req.body.name,
 		username : req.body.username,
-		password : req.body.password,
+		password : crypt.encrypt(req.body.password),
 		gender : req.body.gender,
 		birthday : req.body.birthday,
 		email : req.body.email,
@@ -53,13 +54,13 @@ exports.addUser = (req, res) => {
 			console.log("Error in adding user");
 		}
 	});
-}
+};
 
 // logout
 exports.logout = (req, res) => {
     req.session.user = {};
     res.send({});
-}
+};
 
 // GET all users
 exports.getUsers = (req, res) => {
@@ -73,7 +74,7 @@ exports.getUsers = (req, res) => {
 			console.log("Error in retrieving all users");
 		}
 	});
-}
+};
 
 // GET specific user
 exports.getUser = (req, res) => {
@@ -87,11 +88,11 @@ exports.getUser = (req, res) => {
 			console.log("Error in retrieving user");
 		}
 	});
-}
+};
 
 // PUT specific user
 exports.updateUser = (req, res) => {
-	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, req.body.password, req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, req.body.profile_pic, req.params.id], function(err, rows, fields) {
+	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, crypt.encrypt(req.body.password), req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, req.body.profile_pic, req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
 			res.send(rows[0]);
@@ -101,7 +102,7 @@ exports.updateUser = (req, res) => {
 			console.log("Error in editing user");
 		}
 	});
-}
+};
 
 // DELETE specific user
 exports.deleteUser = (req, res) => {
@@ -115,7 +116,21 @@ exports.deleteUser = (req, res) => {
 			console.log("Error in deleting user");
 		}
 	});
-}
+};
+
+// SEARCH a user
+exports.searchUser = (req,res) => {
+	connection.query('SELECT * FROM user WHERE name LIKE ? or username LIKE ?', [ '%' + req.params.search + '%' , '%' + req.params.search + '%'], function(err, rows, fields){
+		if (err) {
+            console.log(err);
+            res.send(err);
+         }
+        else {
+            res.send(rows);
+            console.log("Successfully viewed a user.");
+        }
+	});
+};
 
 //Admin
 
@@ -137,7 +152,7 @@ exports.checkAdmin = (req, res) => {
             console.log("Error in checking admin");
         }
     });
-}
+};
 
 // GET all admins
 exports.getAdmins = (req, res) => {
@@ -151,7 +166,7 @@ exports.getAdmins = (req, res) => {
             console.log("Error in retrieving all admins");
         }
     });
-}
+};
 
 // GET all admins under specific institution
 exports.getAdmin = (req, res) => {
@@ -165,14 +180,14 @@ exports.getAdmin = (req, res) => {
             console.log("Error in retrieving all admins under an institution");
         }
     });
-}
+};
 
 // POST an admin
 exports.addAdmin = (req, res) => {
     var newAdmin = {
         institution_no : req.body.institution_no,
         user_no : req.body.user_no
-    }
+    };
     connection.query('INSERT INTO institutionHasAdmin set ?', newAdmin, function(err, rows, fields){
         if (!err){
             res.send(rows[0]);
@@ -184,7 +199,7 @@ exports.addAdmin = (req, res) => {
         }
         
     });
-}
+};
 
 // DELETE an admin
 exports.deleteAdmin = (req, res) => {
@@ -198,4 +213,4 @@ exports.deleteAdmin = (req, res) => {
             console.log("Error in deleting an admin");
         }
     });
-}
+};

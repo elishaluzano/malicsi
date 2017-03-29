@@ -2,8 +2,8 @@ DROP DATABASE IF EXISTS malicsi;
 CREATE DATABASE malicsi;
 USE malicsi;
 CREATE TABLE contactPersonInCaseOfEmergency (
-  contact_person_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  contact_person_name varchar(50) NOT NULL,
+    contact_person_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    contact_person_name varchar(50) NOT NULL,
     contact_person_relationship varchar(20) NOT NULL,
     contact_person_number varchar(15) NOT NULL
 );
@@ -14,12 +14,12 @@ CREATE TABLE user (
     username varchar(20) NOT NULL,
     password varchar(20) NOT NULL,
     gender varchar(6) NOT NULL,
-  birthday date NOT NULL,
+    birthday date NOT NULL,
     email varchar(30),
     contact_number varchar(15),
     contact_person int,
     profile_pic text,
-  constraint user_contact_person_fk foreign key (contact_person) references contactPersonInCaseOfEmergency(contact_person_id)
+    constraint user_contact_person_fk foreign key (contact_person) references contactPersonInCaseOfEmergency(contact_person_id)
 );
 
 CREATE TABLE userAffiliation (
@@ -42,37 +42,37 @@ CREATE TABLE institutionHasAdmin (
 );
 
 CREATE TABLE venue (
-  venue_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name varchar(50) NOT NULL
+    venue_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name varchar(50) NOT NULL
 );
 
 CREATE TABLE event (
-  event_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    event_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     event_title varchar(50) NOT NULL,
     venue varchar(50) NOT NULL,
     start_date date NOT NULL,
     end_date date NOT NULL,
     institution_id_key int NOT NULL,
-  constraint event_institution_key_fk foreign key(institution_id_key) references sponsoringInstitution(institution_id)
+    constraint event_institution_key_fk foreign key(institution_id_key) references sponsoringInstitution(institution_id)
 );
 
 CREATE TABLE sport (
     sport_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(20) NOT NULL,
-  event_id_key int NOT NULL,
+    event_id_key int NOT NULL,
     CONSTRAINT sport_event_id_key_fk FOREIGN KEY (event_id_key) REFERENCES event (event_id)
 );
 
 CREATE TABLE game (
-  game_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    game_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     time datetime NOT NULL,
     min_num_of_players int NOT NULL,
     max_num_of_players int NOT NULL,
     status varchar(10) NOT NULL,
-  venue int NOT NULL,
+    venue int NOT NULL,
     sport_id_key int NOT NULL,
-  CONSTRAINT game_venue_fk FOREIGN KEY (venue) REFERENCES venue (venue_id),
-  CONSTRAINT game_sport_id_key_fk FOREIGN KEY (sport_id_key) REFERENCES sport (sport_id)
+    CONSTRAINT game_venue_fk FOREIGN KEY (venue) REFERENCES venue (venue_id),
+    CONSTRAINT game_sport_id_key_fk FOREIGN KEY (sport_id_key) REFERENCES sport (sport_id)
 );
 
 CREATE TABLE team (
@@ -92,15 +92,10 @@ CREATE TABLE teamIsComposedOfUser (
 CREATE TABLE teamPlaysGame (
     team_id_play int NOT NULL,
     game_id_play int NOT NULL,
+    record ENUM('WIN','LOSE','DRAW') default NULL,
+    score float default 0,
     CONSTRAINT plays_game_id_play_fk FOREIGN KEY (game_id_play) REFERENCES game (game_id),
     CONSTRAINT plays_team_id_play_fk FOREIGN KEY (team_id_play) REFERENCES team (team_id)
-);
-
-CREATE TABLE teamWinsGame (
-    team_id_key int NOT NULL,
-    game_id_key int NOT NULL,
-    CONSTRAINT wins_game_id_key_fk FOREIGN KEY (game_id_key) REFERENCES game (game_id),
-    CONSTRAINT wins_team_id_key_fk FOREIGN KEY (team_id_key) REFERENCES team (team_id)
 );
 
 CREATE TABLE sportIsJoinedByUser (
@@ -113,16 +108,44 @@ CREATE TABLE sportIsJoinedByUser (
 CREATE TABLE userlog (
   log_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id int NOT NULL,
+  username varchar(20) NOT NULL,
   action varchar(100) NOT NULL,
   activity_time timestamp NOT NULL
+);
+
+CREATE TABLE gameUpdateLog (
+    gameUpdateLog_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    team_id int NOT NULL,
+    game_id int NOT NULL,
+    score float default 0,
+    time timestamp NOT NULL,
+    CONSTRAINT gameUpdateLog_team_id_fk FOREIGN KEY (team_id) REFERENCES team (team_id),
+    CONSTRAINT gameUpdateLog_game_id_fk FOREIGN KEY (game_id) REFERENCES game (game_id)
 );
 
 delimiter //
 create procedure deleteGame(in id int)
 BEGIN
 delete from teamPlaysGame where game_id_play = id;
-delete from teamWinsGame where game_id_key = id;
 delete from game where game_id = id;
+END;
+//
+delimiter ;
+
+delimiter //
+create procedure gameAdd(in team_id int, game_id int)
+BEGIN
+insert into teamPlaysGame (team_id_play, game_id_play) values (team_id, game_id);
+insert into gameUpdateLog (team_id, game_id) values (team_id, game_id);
+END;
+//
+delimiter ;
+
+delimiter //
+create procedure gameUpdate(in team_id int, game_id int, score float)
+BEGIN
+update teamPlaysGame set score=score where team_id_play=team_id and game_id_play=game_id;
+insert into gameUpdateLog (team_id, game_id, score) values (team_id, game_id, score);
 END;
 //
 delimiter ;
@@ -252,36 +275,38 @@ insert into teamIsComposedOfUser values (2, 7);
 insert into teamIsComposedOfUser values (2, 8);
 insert into teamIsComposedOfUser values (3, 9);
 insert into teamIsComposedOfUser values (4, 10);
-insert into teamPlaysGame values (1, 1);
-insert into teamPlaysGame values (2, 1);
-insert into teamPlaysGame values (3, 4);
-insert into teamPlaysGame values (4, 4);
-insert into teamPlaysGame values (5, 5);
-insert into teamPlaysGame values (4, 5);
-insert into teamPlaysGame values (6, 3);
-insert into teamPlaysGame values (7, 3);
-insert into teamPlaysGame values (8, 6);
-insert into teamPlaysGame values (9, 6);
-insert into teamPlaysGame values (10, 8);
-insert into teamPlaysGame values (9, 8);
-insert into teamPlaysGame values (3, 2);
-insert into teamPlaysGame values (4, 2);
-insert into teamPlaysGame values (1, 7);
-insert into teamPlaysGame values (5, 7);
-insert into teamPlaysGame values (10, 9);
-insert into teamPlaysGame values (8, 9);
-insert into teamPlaysGame values (9, 10);
-insert into teamPlaysGame values (7, 10);
-insert into teamWinsGame values (1, 1);
-insert into teamWinsGame values (3, 4);
-insert into teamWinsGame values (5, 5);
-insert into teamWinsGame values (6, 3);
-insert into teamWinsGame values (8, 6);
-insert into teamWinsGame values (10, 8);
-insert into teamWinsGame values (3, 2);
-insert into teamWinsGame values (1, 7);
-insert into teamWinsGame values (10, 9);
-insert into teamWinsGame values (9, 10);
+call gameAdd(1,1);
+call gameUpdate(1,1,60);
+call gameAdd(2,1);
+call gameUpdate(2, 1, 58);
+call gameAdd(3,4);
+call gameUpdate(3, 4, 25);
+call gameAdd(4,4);
+call gameUpdate(4, 4, 20);
+call gameAdd(5,5);
+call gameUpdate(5, 5, 25);
+call gameAdd(4,5);
+call gameUpdate(4, 5, 20);
+call gameAdd(6,3);
+call gameAdd(7,3);
+call gameAdd(8,6);
+call gameAdd(9,6);
+call gameAdd(10,8);
+call gameAdd(9,8);
+call gameAdd(3,2);
+call gameUpdate(3, 2, 50);
+call gameAdd(4,2);
+call gameUpdate(4, 2, 21);
+call gameAdd(1,7);
+call gameUpdate(1, 7, 10);
+call gameAdd(5,7);
+call gameUpdate(5, 7, 7);
+call gameAdd(10,9);
+call gameAdd(8,9);
+call gameAdd(9,10);
+call gameUpdate(9, 10, 70);
+call gameAdd(7,10);
+call gameUpdate(7, 10, 57);
 insert into sportIsJoinedByUser values (1, 1);
 insert into sportIsJoinedByUser values (1, 2);
 insert into sportIsJoinedByUser values (1, 3);

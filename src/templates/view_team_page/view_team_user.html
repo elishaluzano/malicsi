@@ -156,7 +156,7 @@
                             <li>Coach:</li>
                             <li>Last Opponent:</li>
                         </ul>
-                        <button class="red btn" data-target="edit-modal">Edit Team</button> <!-- hide if not admin-->
+                        <button class="red btn" data-target="join-team-modal">Join Team</button> <!-- hide if not admin-->
                     </div>
                     <div class="col l3" style="font-size: 17px;">
                         <ul>
@@ -167,13 +167,12 @@
                             <li>Phil Jackson</li>
                             <li>Dream Team</li>
                         </ul>
-                        <button class="red btn" data-target="delete-modal">Delete Team</button> <!-- hide if not admin-->
                     </div>
 
-                    <div id="delete-modal" class="modal">
+                    <div id="join-team-modal" class="modal">
                         <div class="modal-content">
-                            <h4>Delete Team</h4>
-                            <p>Are you sure you want to delete Red Rangers?</p>
+                            <h4>Join Team</h4>
+                            <p>Are you sure you want to join Red Rangers?</p>
                         </div>
                         <div class="modal-footer">
                             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
@@ -395,43 +394,6 @@
                 </div>
             </div>
         </footer>
-
-        <div id="edit-modal" class="modal">
-            <div class="modal-content">
-              <h4>Edit Team</h4>
-                <div class="row">
-                    <div class="input-field col l8">
-                        <i class="material-icons prefix">mode_edit</i>
-                        <input value="Red Rangers" id="team-name-new" type="text">
-                        <label class="active" for="team-name-new">Team name</label>
-
-
-                        <form action="#">
-                            <div class="file-field input-field">
-                                
-                                <div class="file-path-wrapper col l7" id="modal-edit-logo">
-                                    <i class="material-icons prefix">mode_edit</i>
-                                    <input id="team-logo" value="" class="file-path validate" type="text">
-                                    <label class="active" for="team-logo">Upload new logo</label>
-                                </div>
-                                <div class="btn col l4">
-                                    <span>File</span>
-                                    <input type="file">
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-
-                  
-            </div>
-            <div class="modal-footer">
-              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
-            </div>
-          </div>
-
         
         <script src="../../../node_modules/jquery/dist/jquery.js"></script>
         <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js">

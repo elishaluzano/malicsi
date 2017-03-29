@@ -15,15 +15,21 @@
             },
 
             login: function(username, password) {
-                return $http.post('/api/login')
+                let credentials = {
+                    username: username,
+                    password: password
+                };
+
+                return $http.post('/api/login', credentials)
                     .then(function(response) {
                         if (response.data) {
-                            user = response.data;
+                            currentUser = response.data;
                         }
                         return response.data;
                     })
                     .catch(function(err) {
                         console.log('Error in loggin in');
+                        console.log(err);
                         console.log(err.status + ': ' + err.statusText);
                     });
             },
@@ -31,8 +37,8 @@
             logout: function() {
                 return $http.post('/api/logout')
                     .then(function(response) {
-                        user = null;
-                        return response.data;
+                        currentUser = null;
+                        return currentUser;
                     })
                     .catch(function(err) {
                         console.log('Error in logging out');
@@ -43,7 +49,7 @@
             session: function() {
                 return $http.post('/api/sessions')
                     .then(function(response) {
-                        user = response.data;
+                        currentUser = response.data;
                         return response.data;
                     })
                     .catch(function(err) {

@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>MalICSi - View Sponsor</title>
+        <title>MalICSi - Search Sponsors</title>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"/>
-        <link rel="stylesheet" type="text/css" href="sponsor.css">
         <link href="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.css" rel="stylesheet" />
         <!-- FOR NAVIGATION CSS -->
         <link type="text/css" rel="stylesheet" href="../index_page/index.css" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        </style>
     </head>
     <body>
-        <div class ="navbar-fixed">
+       <div class ="navbar-fixed">
    <nav id="top" class="white">
             <div class="nav-wrapper">
                 <a class="left" id="malicsi-logo-link" href="../index_page/index_logged_in.html"><img src="../images/malicsi-logo.png"></a>
@@ -74,96 +75,111 @@
 
         <!-- End of Navigation-->
 
-        <div id="additional-links" class="webui-popover-content" style="margin: 10px 0px 20px 0px; width: 200px; height: 50px">
-            <div><a id="dropdown-links">Events</a></div>
-            <div><a id="dropdown-links">Players</a></div>
-            <div><a id="dropdown-links">About</a></div>
-            <div><a id="dropdown-links">Contact us</a></div>
+        <div class="container row">
+            <h3>Search Sponsors</h3>
+            <!-- Filters: subject to change -->
+            <div class="col s4" id = "filters">
+                <div class="card">
+                    <div class="card-content">
+                        <form action="#">
+                            <!-- Filters with checkboxes for specific criteria -->
+                            <span class="card-title">Filters</span>
+                            <p>
+                                <input type="checkbox" id="sponsor-no-filter" checked />
+                                <label for="sponsor-no-filter">No filter</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" id="sponsor-event-sponsored" />
+                                <label for="sponsor-event-sponsored">Event Sponsored</label>
+                            </p>
+
+                            <!-- Sort the results by one category -->
+                            <br>
+                            <span class="card-title">Sort by...</span>
+                            <p>
+                                <input class="with-gap" name="sort-sponsor" type="radio" id="sort-sponsor-no-sort" checked />
+                                <label for="sort-sponsor-no-sort">None</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="sort-sponsor" type="radio" id="sort-sponsor-name" />
+                                <label for="sort-sponsor-name">Name</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="sort-sponsor" type="radio" id="sort-sponsor-event-sponsored" />
+                                <label for="sort-sponsor-event-sponsored">Event Sponsored</label>
+                            </p>
+                            
+                            <br>
+                            <div class="divider"></div>
+
+                            <strong>For checked criteria:</strong>
+                            <br>
+                            
+                            <p class="input-field">
+                                <input type="text" id="sponsor-event-sponsored" />
+                                <label for="sponsor-event-sponsored">Event Sponsored</label>
+                            </p>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results: holds the Collection of sponsors with filters applied -->
+            <div class="col s8" id = "results">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Results</span>
+                        <ul class="collection">
+                            <!-- One Sponsor -->
+                            <li class="collection-item avatar">
+                                <!-- Sponsor logo -->
+                                <a href="#">
+                                    <img src="../images/person-flat.png" alt="" class="circle">
+                                </a>
+                                <!-- Sponsor name -->
+                                <a href="#">
+                                    <span class="title">Sponsor 1</span>
+                                </a>
+                                <!-- Sponsor details -->
+                                <p>
+                                    <strong>Description: </strong><span>Sponsor 1 is [description over here].</span>
+                                </p>
+                            </li>
+                            <li class="collection-item avatar">
+                                <!-- Sponsor logo -->
+                                <a href="#">
+                                    <img src="../images/person-flat.png" alt="" class="circle">
+                                </a>
+                                <!-- Sponsor name -->
+                                <a href="#">
+                                    <span class="title">Sponsor 2</span>
+                                </a>
+                                <!-- Sponsor details -->
+                                <p>
+                                    <strong>Description: </strong><span>Sponsor 2 is [description 2 over here].</span>
+                                </p>
+                            </li>
+                            <li class="collection-item avatar">
+                                <!-- Sponsor logo -->
+                                <a href="#">
+                                    <img src="../images/person-flat.png" alt="" class="circle">
+                                </a>
+                                <!-- Sponsor name -->
+                                <a href="#">
+                                    <span class="title">Sponsor 3</span>
+                                </a>
+                                <!-- Sponsor details -->
+                                <p>
+                                    <strong>Description: </strong><span>Sponsor 3 is [description 333 over here].</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <ul id="slide-out" class="side-nav">
-            <li><div class="userView">
-                <div class="background">
-                    <img src="../images/background.jpg">
-                </div>
-                <a href="#!user"><img class="circle" src="../images/person-flat.png"></a>
-                <a href="#!name"><span class="white-text name">Donn Jerico Belmonte</span></a>
-                <a href="#!email"><span class="white-text email">djbelmonte</span></a>
-            </div></li>
-            <li><a href="#!">Notifications<i class="material-icons">notifications</i></a></li>
-            <li><a href="#!">Stats<i class="material-icons">equalizer</i></a></li>
-            <li><a href="#!">Events<i class="material-icons">subject</i></a></li>
-            <li><a href="#!">Edit Profile<i class="material-icons">settings</i></a></li>
-            <li><a href="#!">Sign out<i class="material-icons">power_settings_new</i></a></li>
-        </ul>
 
-        <!-- End of Navigation-->
-
-        <div class="container z-depth-1">
-            <div id="sponsor-big" style="background-image: url(../images/temp-bg-2.jpg)">
-                <!--Change the background-image url to the logo of the sponsor-->
-                <div class="center row">
-                    <h4>Dig Delis</h4>
-                    <p>SPONSOR</p>
-                </div>
-            </div>
-
-            <!--Holds the sponsor's information-->
-            <div class="center row" id="sponsor-info">
-                <p>We are a company that delivers the best cuisines right to your doorstep.</p>
-            </div>
-
-            <div class="divider"></div>
-
-            <div id="sponsor-info">
-                <h5 class="center">SPONSORED EVENTS</h5>
-                <div class="container">
-                    <table class="striped">
-                        <thead>
-                            <tr>
-                                <th>Event Title</th>
-                                <th>Venue</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>PalICSihan 2018</td>
-                                <td>Copeland Gym</td>
-                                <td>February 12, 2018</td>
-                                <td>February 16, 2018</td>
-                            </tr>
-                            <tr>
-                                <td>PalICSihan 2018</td>
-                                <td>Copeland Gym</td>
-                                <td>February 12, 2018</td>
-                                <td>February 16, 2018</td>
-                            </tr>
-                            <tr>
-                                <td>PalICSihan 2018</td>
-                                <td>Copeland Gym</td>
-                                <td>February 12, 2018</td>
-                                <td>February 16, 2018</td>
-                            </tr>
-                            <tr>
-                                <td>PalICSihan 2018</td>
-                                <td>Copeland Gym</td>
-                                <td>February 12, 2018</td>
-                                <td>February 16, 2018</td>
-                            </tr>
-                            <tr>
-                                <td>PalICSihan 2018</td>
-                                <td>Copeland Gym</td>
-                                <td>February 12, 2018</td>
-                                <td>February 16, 2018</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        
         <footer class="red page-footer">
             <div class="container">
                 <div class="row">
@@ -190,7 +206,6 @@
             </div>
         </footer>
 
-        
         <script src="../../../node_modules/jquery/dist/jquery.js"></script>
         <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js">
         </script>
