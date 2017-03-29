@@ -27,7 +27,7 @@
                 resolve: {
                     events: function(eventService) {
                         return eventService.getAll();
-                    } 
+                    }
                 }
             })
             .state({
