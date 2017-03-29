@@ -8,26 +8,29 @@
             bindings: {
                 events: '<'
             }
-        })
+        });
+        /*
         .directive('collapsibleDirective', collapsibleDirective);
 
-    function collapsibleDirective() {
-        var directive = {
-            link: link,
-            restrict: 'EA'
-        };
-        return directive;
-        
-        function link(scope, element, attrs) {
-            $(element).collapsible();
-        }
+        function collapsibleDirective() {
+            var directive = {
+                link: link,
+                restrict: 'EA'
+            };
+            return directive;
+            
+            function link(scope, element, attrs) {
+                $(element).collapsible();
+            }
 
-    }
+        }
+        */
 
     function landingPageController(eventService, teamService) {
         var vm = this;
         
         vm.$onInit = function() {
+            $('.collapsible').collapsible();
             console.log(vm.events);
         }
     }
