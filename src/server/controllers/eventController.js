@@ -98,10 +98,11 @@ exports.viewSportsInEvent = (req, res) => {
     connection.query('SELECT * FROM sport WHERE event_id_key = ?', [req.params.id], function(err, rows, fields){
         if (!err) {
             console.log("Success");
+            console.log(rows);
             res.send(rows);
         }
         else {
-            console.log("Error");
+            console.log(err);
             res.send(err);
         }
     });
@@ -121,7 +122,7 @@ exports.viewTeamsInEvent = (req, res) => {
 };
 
 exports.viewGamesInEvent = (req, res) => {
-    connection.query('SELECT * FROM game WHERE sport_id_key IN (SELECT sport_id FROM sport WHERE event_id_key = ?)', [req.params.id], function(err, rows, fields){
+    connection.query('SELECT * FROM game WHERE sport_id IN (SELECT sport_id FROM eventHasSport WHERE event_id = ?)', [req.params.id], function(err, rows, fields){
         if (!err) {
             console.log("Success");
             res.send(rows);
@@ -134,7 +135,7 @@ exports.viewGamesInEvent = (req, res) => {
 };
 
 exports.viewGamesInSportInEvent = (req, res) => {
-    connection.query('SELECT * FROM game where sport_id_key = (select sport_id from sport where event_id_key = ? and sport_id = ?)', [req.params.event_id, req.params.sport_id], function(err, rows, fields){
+    connection.query('SELECT * FROM game where sport_id = (select sport_id from eventHasSport where event_id = ? and sport_id = ?)', [req.params.event_id, req.params.sport_id], function(err, rows, fields){
         if (!err) {
             console.log("Success");
             res.send(rows);
@@ -147,7 +148,7 @@ exports.viewGamesInSportInEvent = (req, res) => {
 };
 
 exports.viewGeneralInformation = (req, res) => {
-    connection.query('select s.name as sport, g.time, g.game_id, e.event_title as event, t.name as team, si.description as institution, v.name as venue from event e join game g join sport s join team t join sponsoringInstitution si join venue v join teamPlaysGame tpg where e.event_id = ? and s.event_id_key = e.event_id and g.sport_id_key = s.sport_id and e.institution_id_key = si.institution_id and g.venue = v.venue_id and tpg.game_id_play = g.game_id and tpg.team_id_play = t.team_id and t.event_id_key = e.event_id', [req.params.id], function(err, rows, fields){
+    connection.query('select s.name as sport, g.time, g.game_id, e.event_title as event, t.name as team, si.description as institution, v.name as venue from event e join game g join sport s join team t join sponsoringInstitution si join venue v join teamPlaysGame tpg where e.event_id = ? and g.event_id = e.event_id and g.sport_id = s.sport_id and e.institution_id_key = si.institution_id and g.venue = v.venue_id and tpg.game_id_play = g.game_id and tpg.team_id_play = t.team_id and t.event_id_key = e.event_id', [req.params.id], function(err, rows, fields){
         if (!err) {
             console.log("Success");
             res.send(rows);

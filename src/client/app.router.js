@@ -50,6 +50,16 @@
 
                     }
                 }
+            })
+            .state({
+                name: 'eventPage',
+                url: '/event/{eventId}',
+                component: 'eventPage',
+                resolve: {
+                    event: function(eventService, $transition$) {
+                        return eventService.getOne($transition$.params().eventId);
+                    }
+                }
             });
 
         $urlRouterProvider.otherwise('/');
