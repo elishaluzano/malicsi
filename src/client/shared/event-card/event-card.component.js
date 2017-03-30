@@ -21,8 +21,6 @@
             text: ''
         };
 
-        vm.trial = false;
-
         vm.$onInit = function() {
             institutionService.getOne(vm.event.institution_id_key)
                 .then(function(institution) {
