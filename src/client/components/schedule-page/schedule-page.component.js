@@ -17,10 +17,7 @@
         vm.$onInit = function() {
            sportService.getAll()
                 .then(function(data) {
-                    if(data){
-                        vm.sports.push(data);
-                    }
-                    console.log(vm.sports);
+                    console.log(data);
                 })
         }
     }
