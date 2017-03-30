@@ -5,9 +5,9 @@
         .component('schedulePage',{
             template: require('./schedule-page.html'),
             controller: schedulePageController,
-            /*bindings: {
-                games: '<'
-            }*/
+            bindings: {
+                sports: '<'
+            }
         });
 
     function schedulePageController(sportService, gameService) {

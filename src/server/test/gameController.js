@@ -11,7 +11,8 @@ describe ('Game', function () {
         'max_num_of_players': '4',
         'status': 'Ongoing',
         'venue': '1',
-        'sport_id_key': '1'
+        'event_id': '1',
+        'sport_id': '1'
       };
       request(url)
         .post('/api/games')
