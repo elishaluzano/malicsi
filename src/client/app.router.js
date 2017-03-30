@@ -10,6 +10,7 @@
                 url: '/log',
                 component: 'userLogPage'
             })
+
             .state({
                 name: 'userPage',
                 url: '/user/{userId}',
@@ -65,7 +66,10 @@
                         return eventService.getOne($transition$.params().eventId);
                     }
                 }
-            });
+                
+                name: 'gameHistoryPage',
+                url: '/gameHistory',
+                component: 'gameHistoryPage'
 
         $urlRouterProvider.otherwise('/');
     }
