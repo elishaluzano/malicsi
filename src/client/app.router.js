@@ -51,6 +51,19 @@
 
                     }
                 }
+            })
+            .state({
+                name: 'doneEventPage',
+                url: '/done-event/{eventId}',
+                component: 'doneEventPage',
+                bindings: {
+                    event: 'event'            
+                },
+                resolve: {
+                    event: function($stateParams, eventService) {
+                        return eventService.getGeneralInformation($stateParams.eventId);
+                    }
+                }
             });
 
         $urlRouterProvider.otherwise('/');

@@ -31,6 +31,17 @@
                     });
             },
 
+            getTeamsInGame: function(id) {
+                return $http.get(api + id + '/teams')
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(error) {
+                        console.log('Error in getting teams in game');
+                        console.log(error.status + ': ' + error.statusText);
+                    });
+            },
+
             create: function(body) {
                 return $http.post(api, body)
                     .then(function(response) {
