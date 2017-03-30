@@ -4,15 +4,27 @@ const password    = 'sir regi da best'; // arbitrary string
 
 exports.encrypt = (text) => {
     var cipher = crypto.createCipher(algorithm, password);
-    var crypted = cipher.update(text, 'utf8', 'hex');
-    crypted += cipher.final('hex');
-    return crypted;
+    try{
+    	var crypted = cipher.update(text, 'utf8', 'hex');
+    	crypted += cipher.final('hex');
+    	return crypted;
+    }catch(e){
+    	console.log('failed');
+    	return;
+    }
+    
 }
 
 exports.decrypt = (text) => {
     var decipher = crypto.createDecipher(algorithm, password);
-    var decrypted = decipher.update(text, 'hex', 'utf8');
-    decrypted += decipher.final('utf8');
-    return decrypted;
+    try{
+    	var decrypted = decipher.update(text, 'hex', 'utf8');
+    	decrypted += decipher.final('utf8');
+    	return decrypted;
+    }catch(e){
+    	console.log('failed');
+    	return;
+    }
+    
 }
 

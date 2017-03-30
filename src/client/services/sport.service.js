@@ -5,7 +5,7 @@
 
     function sportService($http) {
      
-        var api = '/sport/';
+        var api = '/sports/';
     
         var service = {    
 

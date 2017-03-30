@@ -34,12 +34,6 @@
                 name: 'schedulePage',
                 url: '/schedule',
                 component: 'schedulePage',
-                resolve: {
-                    games: function(gameService){
-                        return gameService.getAll();
-                    }
-                
-                }
             })
             .state({
                 name: 'landingPage',
@@ -59,6 +53,16 @@
                     events: function(eventService) {
                         return eventService.getAll();
 
+                    }
+                }
+            })
+            .state({
+                name: 'eventPage',
+                url: '/event/{eventId}',
+                component: 'eventPage',
+                resolve: {
+                    event: function(eventService, $transition$) {
+                        return eventService.getOne($transition$.params().eventId);
                     }
                 }
             });
