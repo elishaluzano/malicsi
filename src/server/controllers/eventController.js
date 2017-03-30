@@ -95,9 +95,10 @@ exports.deleteEvent = (req,res) => {
 };
 
 exports.viewSportsInEvent = (req, res) => {
-    connection.query('SELECT * FROM eventHasSport WHERE event_id = ?', [req.params.id], function(err, rows, fields){
+    connection.query('SELECT * FROM sport WHERE event_id_key = ?', [req.params.id], function(err, rows, fields){
         if (!err) {
             console.log("Success");
+            console.log(rows);
             res.send(rows);
         }
         else {
