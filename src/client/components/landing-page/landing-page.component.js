@@ -10,7 +10,7 @@
             }
         });
 
-    function landingPageController(eventService, teamService) {
+    function landingPageController(eventService, teamService, sportService) {
         var vm = this;
         
         var teams = [];
@@ -21,9 +21,25 @@
             // }
         ];
 
-        vm.$onInit = function() {
-            for (let event of vm.events) {
+        vm.sports = [];
 
+        vm.$onInit = function() {
+            
+            sportService.getAll()
+                .then(function(sports) {
+                    vm.sports = sports;
+                    /*
+                    for (let sport of sports) {
+                        eventService.getGeneralInformation(sport.event_id_key)
+                            .then(function(data) {
+                                console.log(data);
+                                vm.sports.push({ })
+                            })
+                    }
+                    */
+                });
+
+            for (let event of vm.events) {
                 eventService.getTeams(event.event_id)
                     .then(function(teams) {
                         for (let team of teams) {
@@ -47,7 +63,7 @@
                         vm.objects.push({ eventName: event, eventTeams: teams })
                     });
 
-                console.log(vm.objects);
+                //console.log(vm.objects);
             }
 
             $('.collapsible').collapsible();

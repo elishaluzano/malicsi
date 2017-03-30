@@ -25,18 +25,17 @@
                 vm.modalOpen = true; 
 
                 /* check the current user if admin */
-                //vm.user = sessionService.user();
+                vm.user = sessionService.user();
 
-                //hardcoded yung 3
-                //if (vm.user) {
+                if (vm.user) {
                     adminService.checkAdmin(3)
                         .then(function (user) {
-                            //if (vm.user) {
+                            if (vm.user) {
                                 vm.isAdmin = true;
                                 console.log(vm.isAdmin);
-                            //}
+                            }
                         });
-                //}
+                }
             }
 
             vm.addEvent = function() {

@@ -2,10 +2,10 @@
     <div class = "col l3">
         <ul class="collapsible" data-collapsible="expandable">
             <!-- TEAM STANDING CARD -->
-            <li ng-repeat="x in $ctrl.events">
+            <li ng-repeat="x in $ctrl.objects">
                 <div class="collapsible-header">
                     <div class="chip green white-text">Live</div>
-                    {{ x.event_title }}
+                    {{ x.eventName.event_title }}
                     <br>Standing
                 </div>
                 <div class="collapsible-body">
@@ -17,7 +17,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="team in $ctrl.teams">
+                            <tr ng-repeat="team in x.eventTeams">
                                 <td ui-sref="teamPage({ teamId: team.team_id })">
                                     {{ team.name }}
                                 </td>
@@ -34,36 +34,8 @@
 
     <div class = "col l9">
         <div class = "row">
-            <div class = "col l12">
-                <ul class = "collection">
-                    <li class = "collection-header"><h5>&nbsp<div class = "chip green white-text">Live</div>&nbsp Basketball-Mens</h5></li>
-                    <li class = "collection-item"> <table class = "highlight">
-                    
-                    <thead>
-                        <tr>
-                            <th data-field="id">Date</th>
-                            <th data-field="name">Time</th>
-                            <th data-field="price">Matchup</th>
-                            <th data-field="price">Event name</th>
-                            <th data-field="sponsor">Sponsor</th>
-                            <th data-field="price">Venue</th>
-                        </tr>
-                    </thead>
-
-                    <tbody> <!-- ng-repeat --> 
-                        <tr>
-                            <td>04/21/2018</td>
-                            <td>07:00</td>
-                            <td><a href = "#">Team 1</a> vs <a href="">Team 2</a></td>
-                            <td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
-                            <td><a href = "#">Institute of Computer Science</a></td>
-                            <td>Copeland Gym</td>
-                        </tr>
-                    </tbody>
-                </table></li>
-
-                </ul> 
-            </div>
+            <!-- SPORT CARD -->
+            <sport-card ng-repeat="s in $ctrl.sports" information="s"></sport-card>
 
             <!-- EVENT-CARD -->
             <event-card ng-repeat="each in $ctrl.events" event="each">  <!-- FILTER dapat soon lang -->
