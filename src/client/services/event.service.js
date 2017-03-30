@@ -85,7 +85,7 @@
                         console.log(err.status + ': ' + err.statusText);
                     }); 
             },
-
+            
             create: function(body) {
                 return $http.post(api, body)        
                     .then(function(response) {  
@@ -121,6 +121,5 @@
         };
 
         return service;
-    
     };
 })();

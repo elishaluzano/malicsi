@@ -10,7 +10,6 @@
                 url: '/log',
                 component: 'userLogPage'
             })
-
             .state({
                 name: 'userPage',
                 url: '/user/{userId}',
@@ -25,6 +24,12 @@
                 name: 'schedulePage',
                 url: '/schedule',
                 component: 'schedulePage',
+                resolve: {
+                    games: function(gameService){
+                        return gameService.getAll();
+                    }
+                
+                }
             })
             .state({
                 name: 'landingPage',
@@ -57,20 +62,11 @@
                 resolve: {
                     event: function($stateParams, eventService) {
                         return eventService.getGeneralInformation($stateParams.eventId);
-
-                name: 'eventPage',
-                url: '/event/{eventId}',
-                component: 'eventPage',
-                resolve: {
-                    event: function(eventService, $transition$) {
-                        return eventService.getOne($transition$.params().eventId);
                     }
                 }
-                
-                name: 'gameHistoryPage',
-                url: '/gameHistory',
-                component: 'gameHistoryPage'
+            });
 
         $urlRouterProvider.otherwise('/');
     }
+
 })();
