@@ -66,6 +66,9 @@ exports.logout = (req, res) => {
 exports.getUsers = (req, res) => {
 	connection.query('SELECT * FROM user', [], function(err, rows, fields) {
 		if (!err) {
+			for(var i=0; i<rows.length; i++){
+				rows[i].password = crypt.decrypt(rows[i].password);
+			}
 			res.send(rows);
 			console.log("Successfully retrieved all users");
 		}
@@ -80,6 +83,7 @@ exports.getUsers = (req, res) => {
 exports.getUser = (req, res) => {
 	connection.query('SELECT * FROM user where user_id = ?', [req.params.id], function(err, rows, fields) {
 		if (!err) {
+			rows[0].password = crypt.decrypt(rows[0].password);
 			res.send(rows[0]);
 			console.log("Successfully retrieved user");
 		}

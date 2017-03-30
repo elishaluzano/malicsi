@@ -5,15 +5,24 @@
         .component('schedulePage',{
             template: require('./schedule-page.html'),
             controller: schedulePageController,
-            bindings: {
-                games: '<'
-            }
         });
 
-    function schedulePageController(sportService, gameService) {
+    function schedulePageController(sportService, eventService) {
         var vm = this;
-        vm.onInit = function(){
-            console.log(games);
+
+        vm.$onInit = function() {
+           eventService.getAll()
+                .then(function(events) {
+                    console.log(events);
+                    for(let event of events) {
+                        eventService.getSports(event.event_id)
+                            .then(function(data) {
+                                console.log(data);
+                            }).catch(function(err) {
+                                console.log("Error:"+err);
+                            })
+                    }
+                })
         }
     }
 })();

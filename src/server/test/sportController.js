@@ -7,7 +7,6 @@ describe ('Sport', function () {
     it('adds sport', function (done) {
       var sport = {
         'name': 'Bridge',
-        'event_id_key': '1'
       };
       request(url)
         .post('/api/sports')

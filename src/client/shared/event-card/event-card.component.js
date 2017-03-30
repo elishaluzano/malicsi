@@ -36,12 +36,15 @@
                     }
                 });
 
-            let newDate = new Date().getTime();
-            if (newDate >= new Date(vm.event.start_date).getTime() && newDate <= new Date(vm.event.end_date).getTime()) {
+            let toDate = new Date().getTime();
+            let startDate = new Date(vm.event.start_date).getTime();
+            let endDate = new Date(vm.event.end_date).getTime();
+
+            if (toDate >= startDate && toDate <= endDate) {
                 vm.eventStatus.color = 'green';
                 vm.eventStatus.text = 'Live';
             }
-            else if (newDate < new Date(event.start_date).getTime()) {
+            else if (toDate < startDate) {
                 vm.eventStatus.color = 'red';
                 vm.eventStatus.text = 'Soon';
             }
