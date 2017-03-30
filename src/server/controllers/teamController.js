@@ -191,3 +191,15 @@ exports.deletePlays = (req, res) => {
 		}
 	});
 };
+
+exports.updatePlays = (req, res) => {
+    connection.query('UPDATE teamPlaysGame SET record = ? where team_id_play = ? and game_id_play = ?', [ req.body.record, req.params.team_id, req.params.game_id ], function(err, rows, fields) {
+        if(!err) {
+			res.send(rows[0]);
+			console.log("Successfully updated the record");
+		} else {
+			res.send(err);
+			console.log("Failed in updating the record");
+		}
+    });
+};

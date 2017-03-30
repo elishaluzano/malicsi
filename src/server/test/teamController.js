@@ -212,5 +212,21 @@ describe('Team Relation (playsGame)', function(){
 				 });
 		 });
 	 });
+
+    describe('updatePlays()', function () {
+		 it('updates a the record of a team', function (done) {
+            var team = {
+				 'record': 'WIN'
+			 };
+			 request(url)
+				 .put('/api/teams/plays/' + '2/1')
+				 .send(team)
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
+					 done();
+				 });
+		 });
+	 });
 });
 
