@@ -28,7 +28,6 @@
                     games: function(sportService){
                         return sportService.getAll();
                     }
-                
                 }
             })
             .state({

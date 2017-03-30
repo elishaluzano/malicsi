@@ -9,37 +9,57 @@
 
     function registrationCardController(userService) {
         var vm = this;
-        vm.first_name = '';
-        vm.last_name = '';
-        vm.email = '';
-        vm.email_confirm = '';
+        vm.name = '';
+        vm.username = '';
+        vm.password = '';
         vm.password_confirm = '';
+        vm.email = '';
+        vm.gender = '';
+        vm.birthday = '';
+        vm.female = false;
+        vm.male = false;
 
         vm.register = function() {
-            if (vm.email != vm.email_confirm || vm.password != vm.password_confirm) {
-                console.log('Emails do not match'); // should be a toast
+            var sex;
+            if(vm.female == true){
+                sex = "Female";
             }
-            else if (vm.password != vm.password_confirm) {
-                console.log("Passwords do not match!"); // should be a toast;
+            else{
+                sex = "Male";
+            }
+            if (vm.password != vm.password_confirm) {
+                Materialize.toast("Passwords do not match!", 3000, 'red');
             }
             else {
                 vm.body = {
-                    name : vm.last_name + ' ' + vm.first_name,
-                    username : "username", //hardcoded waiting for ui team
+                    name : vm.name,
+                    username : vm.username,
                     password : vm.password,
-                    gender : 'F', //hardcoded waiting for ui team
-                    birthday : '1111-11-11', //hardcoded waiting for ui team
+                    gender : sex,
+                    birthday : (new Date(vm.birthday)).toISOString().substring(0, 10),
                     email : vm.email,
                     contact_number : null,
                     contact_person : null,
                     profile_pic : null
                 }
-                console.log(vm.body);
             }
             userService.create(vm.body)
                 .then(function(data) {
                     if(data) {
                         console.log(data);
+                        vm.name = '';
+                        vm.username = '';
+                        vm.password = '';
+                        vm.password_confirm = '';
+                        vm.email = '';
+                        vm.gender = '';
+                        vm.birthday = '';
+                        vm.female = false;
+                        vm.male = false;
+                        Materialize.toast("Successfully registered!", 3000, 'red');
+                    }
+                    else{
+                        Materialize.toast("Register unsuccessful!", 3000, 'red');
                     }
                 });
         }
