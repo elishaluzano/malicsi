@@ -16,6 +16,16 @@
                 component: 'userPage'
             })
             .state({
+                name: 'sponsorPage',
+                url: '/sponsor/{sponsorId}',
+                component: 'sponsorPage',
+                resolve: {
+                    institution: function(institutionService, $transition$) {
+                        return institutionService.getOne($transition$.params().sponsorId);
+                    }
+                }
+            })
+            .state({
                 name: 'registrationPage',
                 url: '/register',
                 component: 'registrationCard'
