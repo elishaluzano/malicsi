@@ -58,7 +58,7 @@
             <br>
 
             <div class="center row user-row">
-                <h5>CONTACT PERSON IN CASE OF EMERGENCY</h5>
+                <!-- <h5>CONTACT PERSON IN CASE OF EMERGENCY</h5>
                 <div class="right-align col s6">
                     <p>Name of contact person</p>
                 </div>
@@ -76,10 +76,10 @@
                 </div>
                 <div class="left-align col s6">
                     <p>09XXXXXXXXX</p>
-                </div>
+                </div> -->
 
                 <div class="col s4 offset-s4">
-                    <a class = "red btn" ng-click="$ctrl.toggleEdit()">Edit</a>
+                    <a class = "red btn" ng-click="$ctrl.toggleEdit()" ng-if="$ctrl.isSameUser">Edit</a>
                 </div>
             </div>
         </div>
@@ -167,7 +167,7 @@
             <div class="divider"></div>
             <br>
 
-            <h5>CONTACT PERSON IN CASE OF EMERGENCY</h5>
+            <!-- <h5>CONTACT PERSON IN CASE OF EMERGENCY</h5>
             <div class="input-field center row user-row">
                 <div class="right-align col s6">
                     <p>Name of contact person</p>
@@ -191,7 +191,7 @@
                 <div class="left-align col s6">
                     <input type="text" id="icoe-mobile" placeholder="09XXXXXXXXX">
                 </div>
-            </div>
+            </div> -->
 
             <div class="center row user-row">
                 <a id="save-changes-btn" data-target="save-changes" class="green btn waves-effect waves-light" modal>Save Changes</a>
