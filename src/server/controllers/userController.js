@@ -99,6 +99,7 @@ exports.updateUser = (req, res) => {
 		}
 		else {
 			res.send(err);
+            console.log(err);
 			console.log("Error in editing user");
 		}
 	});
@@ -113,6 +114,7 @@ exports.deleteUser = (req, res) => {
 		}
 		else {
 			res.send(err);
+            console.log(err);
 			console.log("Error in deleting user");
 		}
 	});
