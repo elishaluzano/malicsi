@@ -17,15 +17,21 @@
             vm.isAdmin = false;
 
             vm.$onInit = function() {
-                /* check the current user 
-                if (sessionService.user().user_id) {
-                    //vm.loggedUser = sessionService.user().user_id;
+                $('.modal').modal();
 
-                    if (adminService.checkAdmin(sessionService.user().user_id)) {
-                        isAdmin = true;
-                    }
-                }
-                */
+                /* check the current user if admin */
+                //let user = sessionService.user();
+
+                //hardcoded yung 3
+                //if (user) {
+                    adminService.checkAdmin(3)
+                        .then(function (user) {
+                            if (user) {
+                                vm.isAdmin = true;
+                                console.log(vm.isAdmin);
+                            }
+                        });
+                //}
             }
         }
 })();

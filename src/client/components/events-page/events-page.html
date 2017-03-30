@@ -1,4 +1,52 @@
 <div class="row">
     <event-card ng-repeat="eachEvent in $ctrl.events" event="eachEvent">
     </event-card>
+
+    <!-- ============================== FAB ===============================-->
+	<!-- ==================== ONLY AVAILABLE TO ADMIN =====================-->
+  	<div class = "fixed-action-btn" ng-if="$ctrl.isAdmin">
+    	<a class="btn-floating btn-large waves-effect waves-light red tooltipped" data-target="#modal-add-event" data-position="left" data-tooltip="Add event"><i class="material-icons">note_add</i></a>
+  	</div>
+
+<!-- ============================= MODAL FOR ADD EVENT ==================================-->
+  	<div id="modal-add-event" class="modal">
+    	<div class="modal-content">
+      		<h5>ADD EVENT</h5>
+      		<div class="divider"></div>
+      		<div class = " container row">
+        		<form>
+        			<div class ="input-field">
+          				<i class ="material-icons prefix">turned_in</i>
+          				<input id = "icon_prefix" type = "text" name = "searchinput">
+          				<label for = "icon_prefix">Event name</label>
+        			</div>
+        
+        			<div class ="input-field">
+          				<i class ="material-icons prefix">today</i>
+          				<input id = "icon_prefix" type = "text" name = "searchinput">
+          				<label for = "icon_prefix">Event start date</label>
+        			</div>
+        
+        			<div class ="input-field">
+          				<i class ="material-icons prefix">event</i>
+          				<input id = "icon_prefix" type = "text" name = "searchinput">
+          				<label for = "icon_prefix">Event end date</label>
+        			</div>
+        
+        			<div class="file-field input-field">
+          				<div class="btn">
+            				<span>Upload Logo</span>
+            				<input type="file">
+          				</div>
+          			
+          				<div class="file-path-wrapper">
+            				<input class="file-path validate" type="text">
+          				</div>
+          			</div>
+
+          			<input type ="submit" value = "Submit" class = "btn right modal-action modal-close">
+      			</form>
+      		</div>
+    	</div>
+  	</div>
 </div>
