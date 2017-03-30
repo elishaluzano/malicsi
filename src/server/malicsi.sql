@@ -38,8 +38,6 @@ CREATE TABLE sponsoringInstitution (
 CREATE TABLE institutionHasAdmin (
     institution_no int NOT NULL,
     user_no int NOT NULL,
-    CONSTRAINT institutionHasAdmin_user_no_fk FOREIGN KEY (user_no) REFERENCES user (user_id)  ON DELETE CASCADE,
-    CONSTRAINT institutionHas_institution_no_fk FOREIGN KEY (institution_no) REFERENCES sponsoringInstitution (institution_id)  ON DELETE CASCADE
     CONSTRAINT institutionHasAdmin_user_no_fk FOREIGN KEY (user_no) REFERENCES user (user_id) ON DELETE CASCADE,
     CONSTRAINT institutionHas_institution_no_fk FOREIGN KEY (institution_no) REFERENCES sponsoringInstitution (institution_id)
     ON DELETE CASCADE
@@ -114,7 +112,6 @@ CREATE TABLE sportIsJoinedByUser (
   user_id int NOT NULL,
   sport_id int NOT NULL,
   CONSTRAINT sportIsJoinedByUser_user_id_fk FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE,
-  CONSTRAINT sportIsJoinedByUser_sport_id_fk FOREIGN KEY (sport_id) REFERENCES sport(sport_id)ON DELETE CASCADE
   CONSTRAINT sportIsJoinedByUser_sport_id_fk FOREIGN KEY (sport_id) REFERENCES sport(sport_id) ON DELETE CASCADE
 );
 
