@@ -15,23 +15,47 @@
         function eventsPageController(eventService, sessionService, adminService) {
             var vm = this;
             vm.isAdmin = false;
+            vm.user = null;
+            vm.event_title = '';
+            vm.venue = '';
+            vm.start_date = null;
+            vm.end_date = null;
 
             vm.$onInit = function() {
-                $('.modal').modal();
+                vm.modalOpen = true; 
 
                 /* check the current user if admin */
-                //let user = sessionService.user();
+                //vm.user = sessionService.user();
 
                 //hardcoded yung 3
-                //if (user) {
+                //if (vm.user) {
                     adminService.checkAdmin(3)
                         .then(function (user) {
-                            if (user) {
+                            //if (vm.user) {
                                 vm.isAdmin = true;
                                 console.log(vm.isAdmin);
-                            }
+                            //}
                         });
                 //}
             }
+
+            vm.addEvent = function() {
+                const body = {
+                    event_title: vm.event_title,
+                    venue: vm.venue,
+                    start_date: (new Date(vm.start_date)).toISOString().substring(0, 10),
+                    end_date: (new Date(vm.end_date)).toISOString().substring(0, 10),
+                    institution_id_key: 1
+                }
+
+                console.log(body);
+
+                eventService.create(body)
+                    .then(function(data) {
+                        console.log(data);
+                        Materialize.toast("Successfully added an event!", 3000);
+                    })
+            }
+
         }
 })();
