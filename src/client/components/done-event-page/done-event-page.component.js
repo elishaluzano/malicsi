@@ -49,44 +49,6 @@
                     return temp; 
                 }, temp);
             });
-
-            
-
-            // vm.information.forEach(function(information){
-            //     if(vm.sports.indexOf(information.sport) < 0){
-            //         vm.sports.push(information.sport);
-            //         vm.sportsAndGames.push({name: information.sport, games: [information]});
-            //     }
-            //     else{
-            //         vm.sportsAndGames.forEach(function(sportAndGame){
-            //             if(sportAndGame.name == information.sport){
-            //                 sportAndGame.games.push(information);
-            //             }
-            //         });
-            //     }
-            // });
-
-            // vm.sportsAndGames.forEach(function(sportAndGame){
-            //     var games = [];
-            //     var gamesPerSport = [];
-
-            //     (sportAndGame.games).forEach(function(game){
-            //         if(games.indexOf(game.game_id) < 0){
-            //             games.push(game.game_id);
-            //             game.team = [game.team];
-            //             gamesPerSport.push(game);
-            //         }
-            //         else{
-            //             gamesPerSport.forEach(function(gamePerSport){
-            //                 if(gamePerSport.game_id == game.game_id){
-            //                     gamePerSport.team.push(game.team);
-            //                 }
-            //             });
-            //         }
-            //     });
-
-            //     sportAndGame.games = gamesPerSport;
-            // });
         }
 
         vm.getTeamsInGame = function(id) {
