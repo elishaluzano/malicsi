@@ -10,13 +10,13 @@ exports.getAccount = (req, res) => {
 };
 // login
 exports.loginUser = (req, res) => {
-	connection.query('SELECT * FROM user WHERE username = ? and password = ?',[req.body.username, req.body.password], function(err, rows, fields) {
+	connection.query('SELECT * FROM user WHERE username = ? and password = ?',[req.body.username, crypt.encrypt(req.body.password)], function(err, rows, fields) {
 		if (!err){
 			if (rows.length === 0) {
 				res.send(false);
 				console.log("Login unsuccessful");
 			}
-			else if(req.body.password == crypt.decrypt(req.body.password)){
+			else {
 				req.session.user = rows[0];
 				console.log("Successfully logged in user");
 				res.send(rows[0]);
@@ -103,6 +103,7 @@ exports.updateUser = (req, res) => {
 		}
 		else {
 			res.send(err);
+            console.log(err);
 			console.log("Error in editing user");
 		}
 	});
@@ -117,6 +118,7 @@ exports.deleteUser = (req, res) => {
 		}
 		else {
 			res.send(err);
+            console.log(err);
 			console.log("Error in deleting user");
 		}
 	});

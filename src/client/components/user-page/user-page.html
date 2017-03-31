@@ -1,6 +1,6 @@
-<div class="container z-depth-1">
+<div class="container z-depth-1" ng-if="!($ctrl.isBeingEdited)">
     <div id="user-big">
-        <img id="user-image" class="responsive-img" ng-src="{{ $ctrl.user.profile_pic }}">
+        <img id="user-image" class="responsive-img" ng-src="{{ $ctrl.user.profile_pic }}" alt="profile pic">
         <div class="center row">
             <h5>{{ $ctrl.user.name }}</h5>
             <h6>{{ $ctrl.user.username }}</h6>
@@ -14,13 +14,13 @@
                 <div class="right-align col s3">
                     <p>Birthday</p>
                 </div>
-                <div class="left-align col s3" ng-if="!($ctrl.isBeingEdited)">
-                    <p>{{ $ctrl.user.birthday }}</p>
+                <div class="left-align col s3">
+                    <p>{{ $ctrl.user.birthday | date: fullDate }}</p>
                 </div>
                 <div class="right-align col s3">
                     <p>Gender</p>
                 </div>
-                <div class="left-align col s3" ng-if="!($ctrl.isBeingEdited)">
+                <div class="left-align col s3">
                     <p>{{ $ctrl.user.gender }}</p>
                 </div>
             </div>
@@ -28,13 +28,13 @@
                 <div class="right-align col s3">
                     <p>Email Address</p>
                 </div>
-                <div class="left-align col s3" ng-if="!($ctrl.isBeingEdited)">
+                <div class="left-align col s3">
                     <p>{{ $ctrl.user.email }}</p>
                 </div>
                 <div class="right-align col s3">
                     <p>Mobile Number</p>
                 </div>
-                <div class="left-align col s3" ng-if="!($ctrl.isBeingEdited)">
+                <div class="left-align col s3">
                     <p>{{ $ctrl.user.contact_number }}</p>
                 </div>
             </div>
@@ -58,7 +58,7 @@
             <br>
 
             <div class="center row user-row">
-                <h5>CONTACT PERSON IN CASE OF EMERGENCY</h5>
+                <!-- <h5>CONTACT PERSON IN CASE OF EMERGENCY</h5>
                 <div class="right-align col s6">
                     <p>Name of contact person</p>
                 </div>
@@ -76,12 +76,149 @@
                 </div>
                 <div class="left-align col s6">
                     <p>09XXXXXXXXX</p>
-                </div>
+                </div> -->
 
                 <div class="col s4 offset-s4">
-                    <a class = "red btn" ng-click="$ctrl.toggleEdit()">Edit</a>
+                    <a class = "red btn" ng-click="$ctrl.toggleEdit()" ng-if="$ctrl.isSameUser">Edit</a>
                 </div>
             </div>
         </div>
+    </div>
+
+</div>
+
+<div class="container z-depth-1" ng-if="($ctrl.isBeingEdited)">
+    <div id="edit-user-big">
+        <!-- A static image was used for now. This is meant to show the user's profile picture. If there was none uploaded, this is what will show. -->
+        <img id="user-image" class="responsive-img" ng-src="{{ $ctrl.user.profile_pic }}">
+        <div class="center row">
+            <!--Holds the person's username and name-->
+            <div class="col s10 offset-s1">
+                <div class="col s8 offset-s2 input-field">
+                    <input type="text" id="change-name" class="center" ng-model="$ctrl.user.name">
+                    <label class="center" for="change-name">Full Name</label>
+                </div>
+                <div class="col s8 offset-s2 input-field">
+                    <input type="text" id="change-username" class="center" ng-model="$ctrl.user.username">
+                    <label class="center" for="change-username">Username</label>
+                </div>
+                <div class="col s8 offset-s2 input-field">
+                    <input type="password" id="change-password" class="center" ng-model="$ctrl.user.password">
+                    <label class="center" for="change-password">Password</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="divider"></div>
+    <br>
+
+    <!--Holds the user's information-->
+    <div class="row" id="user-info">
+        <div class="col s10 offset-s1">
+            <div class="center row user-row">
+                <div class="input-field right-align col s3">
+                    <p>Birthday</p>
+                </div>
+                <div class="col s3">
+                    <input type="date" ng-model="$ctrl.user.birthday">
+                </div>
+                <div class = "input-field">
+                    <div class="right-align col s3">
+                        <p>Gender</p>
+                    </div>
+                    <div id="sex" class="left-align col s3">
+                        <input type="radio" id="male" ng-model="$ctrl.isMale" ng-value="true"/> <label for="male">Male</label>
+                        <input type="radio" id="female" ng-model="$ctrl.isMale" ng-value="false"/> <label for="female">Female</label>
+                    </div>
+                </div>
+            </div>
+            <div class="input-field center row user-row">
+                <div class="input-field">
+                    <div class="right-align col s3">
+                        <p>Email Address</p>
+                    </div>
+                    <div class="left-align col s3">
+                        <input type="text" id="change-email" placeholder="youremail@example.com" ng-model="$ctrl.user.email">
+                    </div>
+                </div>
+                <div class="right-align col s3">
+                    <p>Mobile Number</p>
+                </div>
+                <div class="left-align col s3">
+                    <input type="text" id="change-mobile-number" placeholder="09XXXXXXXXX" ng-model="$ctrl.user.contact_number">
+                </div>
+            </div>
+            <div class="center row user-row" id="affiliations">
+                <div class="input-field right-align col s6">
+                    <p>Affiliations</p>
+                </div>
+                <div class="affiliation-row">
+                    <div class="input-field left-align col s6 change-affiliations">
+                        <input type="text" class="col s8" placeholder="Affiliation">
+                        <a class="red waves-effect btn-floating tooltipped add-affiliation" data-position="top" data-delay="10" data-tooltip="Add another affiliation"><i class="material-icons">add</i></a>
+                        <a class="red disabled waves-effect  btn-floating tooltipped remove-affiliation" data-position="top" data-delay="10" data-tooltip="Remove affiliation"><i class="material-icons">delete</i></a>
+                    </div>
+                    <div class="left-align col s6"></div>
+                </div>
+            </div>
+
+            <br>
+            <div class="divider"></div>
+            <br>
+
+            <!-- <h5>CONTACT PERSON IN CASE OF EMERGENCY</h5>
+            <div class="input-field center row user-row">
+                <div class="right-align col s6">
+                    <p>Name of contact person</p>
+                </div>
+                <div class="left-align col s6">
+                    <input type="text" id="icoe-name" placeholder="">
+                </div>
+            </div>
+            <div class="input-field center row user-row">
+                <div class="right-align col s6">
+                    <p>Relation to contact person</p>
+                </div>
+                <div class="left-align col s6">
+                    <input type="text" id="icoe-relation" placeholder="Parent/Guardian/Etc">
+                </div>
+            </div>
+            <div class="input-field center row user-row">
+                <div class="right-align col s6">
+                    <p>Mobile number of contact person</p>
+                </div>
+                <div class="left-align col s6">
+                    <input type="text" id="icoe-mobile" placeholder="09XXXXXXXXX">
+                </div>
+            </div> -->
+
+            <div class="center row user-row">
+                <a id="save-changes-btn" data-target="save-changes" class="green btn waves-effect waves-light" modal>Save Changes</a>
+                <a id="delete-account-btn" data-target="delete-account" class="red btn waves-effect waves-light" modal>Delete Account</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="save-changes" class="modal">
+    <div class="modal-content">
+        <h4>Save Changes</h4>
+        <p>Are you sure you want to make these changes to your profile?</p>
+    </div>
+    <div class="modal-footer">
+        <a  ui-sref="userPage({ userId: $ctrl.user.user_id })" class="btn-flat modal-action modal-close waves-effect waves-red">No</a>
+        <a class="btn-flat modal-action modal-close waves-effect waves-green" ng-click="$ctrl.toggleEdit()">Yes</a>
+    </div>
+</div>
+<div id="delete-account" class="modal">
+    <div class="modal-content">
+        <h4>Delete Account</h4>
+        <p>Are you sure you want to delete your account?</p>
+    </div>
+    <div class="modal-footer">
+        <a ui-sref="userPage({ userId: $ctrl.user.user_id })" class="btn-flat modal-action modal-close waves-effect waves-red">No</a>
+        <a  ui-sref="landingPage" class="btn-flat modal-action modal-close waves-effect waves-green" ng-click="$ctrl.deleteUser()">Yes</a>
     </div>
 </div>

@@ -69,8 +69,13 @@
                 <div class="left">
                     <input type="text" class="left black-text"
                         placeholder="Search"
-                        ng-model="$ctrl.searchInput">
-                    <i class="black-text material-icons" id="search-icon">search</i>
+                        ng-model="$ctrl.searchInput"
+                        ng-keydown="$ctrl.searchEnter($event)">
+                    <i class="black-text material-icons" 
+                        id="search-icon"
+                        ng-click="$ctrl.search()">
+                        search
+                    </i>
                 </div>
             </form>
 
@@ -130,7 +135,7 @@
     </li>
 
     <li>
-        <a ui-sref="">
+        <a ui-sref="userPage({ userId: $ctrl.user.user_id })">
             Notifications
             <i class="material-icons">
                 notifications
@@ -166,7 +171,7 @@
     </li>
 
     <li>
-        <a ui-sref="landingPage" ng-click="$ctrl.logout()">
+        <a ng-click="$ctrl.logout()">
             Sign out
             <i class="material-icons">
                 power_settings_new
