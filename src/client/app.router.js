@@ -60,6 +60,25 @@
                         return eventService.getOne($transition$.params().eventId);
                     }
                 }
+            })
+            .state({
+                name: 'searchAllPage',
+                url: '/search-all/{query}',
+                component: 'searchAllPage',
+                resolve: {
+                    users: function(searchService, $transition$) {
+                        return searchService.users($transition$.params().query);
+                    },
+                    institutions: function(searchService, $transition$) {
+                        return searchService.institutions($transition$.params().query);
+                    },
+                    events: function(searchService, $transition$) {
+                        return searchService.events($transition$.params().query);
+                    },
+                    teams: function(searchService, $transition$) {
+                        return searchService.teams($transition$.params().query);
+                    }
+                }
             });
 
         $urlRouterProvider.otherwise('/');

@@ -69,8 +69,13 @@
                 <div class="left">
                     <input type="text" class="left black-text"
                         placeholder="Search"
-                        ng-model="$ctrl.searchInput">
-                    <i class="black-text material-icons" id="search-icon">search</i>
+                        ng-model="$ctrl.searchInput"
+                        ng-keydown="$ctrl.searchEnter($event)">
+                    <i class="black-text material-icons" 
+                        id="search-icon"
+                        ng-click="$ctrl.search()">
+                        search
+                    </i>
                 </div>
             </form>
 

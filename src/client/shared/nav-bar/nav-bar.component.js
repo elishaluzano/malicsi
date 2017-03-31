@@ -8,7 +8,7 @@
             controller: navBarController
         });
 
-    function navBarController(sessionService, adminService, $state) {
+    function navBarController(sessionService, adminService, $state, $location) {
         var vm = this;
 
         vm.isAdmin = false;
@@ -66,6 +66,20 @@
                     vm.user = user;
                     $state.reload();
                 });
+        }
+
+        vm.searchEnter = function(e) {
+            if (e.keyCode === 13) {
+                vm.search();
+            }
+        }
+
+        vm.search = function() {
+            if (vm.searchInput.length < 3) {
+                return Materialize.toast('Search query must be at least 3 characters long', 3000);
+            } else {
+                $location.url('/search-' + vm.searchCategory + '/' + vm.searchInput);
+            }
         }
     }
 

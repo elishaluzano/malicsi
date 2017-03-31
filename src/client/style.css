@@ -196,3 +196,6 @@ div.tab-custom button.active {
     to {opacity: 1;}
 }
 
+.pointer {
+    cursor: pointer;
+}
