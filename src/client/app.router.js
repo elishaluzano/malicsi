@@ -52,12 +52,12 @@
                 }
             })
             .state({
-                name: 'eventPage',
-                url: '/event/{eventId}',
-                component: 'eventPage',
+                name: 'teamPage',
+                url: '/teampage/{teamId}',
+                component: 'teamPage',
                 resolve: {
-                    event: function(eventService, $transition$) {
-                        return eventService.getOne($transition$.params().eventId);
+                    team: function(teamService, $transition$) {
+                        return teamService.getOne($transition$.params().teamId);
                     }
                 }
             });
