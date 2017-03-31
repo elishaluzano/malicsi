@@ -78,8 +78,11 @@
                     <p>09XXXXXXXXX</p>
                 </div> -->
 
-                <div class="col s4 offset-s4">
+                <!-- <div class="col s4 offset-s4">
                     <a class = "red btn" ng-click="$ctrl.toggleEdit()" ng-if="$ctrl.isSameUser">Edit</a>
+                </div> -->
+                <div class="col s4 offset-s4">
+                    <a class = "red btn" ng-click="$ctrl.toggleEdit()">Edit</a>
                 </div>
             </div>
         </div>
@@ -124,12 +127,21 @@
                 <div class="col s3">
                     <input type="date" ng-model="$ctrl.user.birthday">
                 </div>
-                <div class="input-field">
+                <!-- <div class="input-field">
                     <div class="right-align col s3">
-                        <p>Gender</p>
+                        <p>Sex</p>
                     </div>
                     <div class="left-align col s3">
                         <input type="text" id="change-gender" placeholder="Male/Female/Other" ng-model="$ctrl.user.gender">
+                    </div>
+                </div> -->
+                <div class = "input-field">
+                    <div class="right-align col s3">
+                        <p>Sex</p>
+                    </div>
+                    <div id="sex" class="left-align col s3">
+                        <input type="radio" id="male" ng-model="$ctrl.isMale" ng-value="true"/> <label for="male">Male</label>
+                        <input type="radio" id="female" ng-model="$ctrl.isMale" ng-value="false"/> <label for="female">Female</label>
                     </div>
                 </div>
             </div>
