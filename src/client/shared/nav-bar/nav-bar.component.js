@@ -8,7 +8,7 @@
             controller: navBarController
         });
 
-    function navBarController(sessionService, adminService) {
+    function navBarController(sessionService, adminService, $state) {
         var vm = this;
 
         vm.isAdmin = false;
@@ -28,6 +28,11 @@
                 edge: 'right',
                 closeOnClick: true
             });
+            
+            sessionService.session()
+                .then(function(user) {
+                    vm.user = user;
+                });
         }
 
         vm.focusLogin = function() {
@@ -48,6 +53,7 @@
                                 }
                             });
                         WebuiPopovers.hide('#login');
+                        $state.reload();
                     } else { // if wrong credentials
                         Materialize.toast('Wrong credentials!', 2000, 'red');
                     }
@@ -58,6 +64,7 @@
             sessionService.logout()
                 .then(function(user) {
                     vm.user = user;
+                    $state.reload();
                 });
         }
     }

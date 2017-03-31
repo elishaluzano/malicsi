@@ -15,11 +15,12 @@
         var vm = this;
         vm.isSameUser = false;
         vm.isBeingEdited = false;
-        vm.isMale;
+        vm.isMale = false;
 
         vm.toggleEdit = function() {
             if (vm.isBeingEdited) {
                 vm.user.birthday = (new Date(vm.user.birthday)).toISOString().substring(0,10);
+                console.log(vm.user.birthday);
                 if (vm.isMale == true) {
                     vm.user.gender = 'male';
                 }
@@ -28,9 +29,10 @@
                 }
                 userService.update(vm.user.user_id, vm.user)
                     .then(function(user) {
-                        vm.user = user;
+                        // vm.user = user; // <- error pa, backend isnt returning what its supposed to
+                        // vm.user.birthday = new Date(vm.user.birthday); // comment out because of above
+                        vm.isBeingEdited = false;
                     });
-                vm.isBeingEdited = false;
             }
             else {
                 vm.isBeingEdited = true;
@@ -56,7 +58,7 @@
             else {
                 vm.isMale = true;
             }
-    }
+        }
 
     };
 
