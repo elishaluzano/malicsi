@@ -95,13 +95,14 @@ exports.deleteEvent = (req,res) => {
 };
 
 exports.viewSportsInEvent = (req, res) => {
-    connection.query('SELECT * FROM eventHasSport WHERE event_id = ?', [req.params.id], function(err, rows, fields){
+    connection.query('SELECT * FROM sport NATURAL JOIN eventHasSport where event_id = ?', [req.params.id], function(err, rows, fields){
         if (!err) {
             console.log("Success");
+            console.log(rows);
             res.send(rows);
         }
         else {
-            console.log("Error");
+            console.log(err);
             res.send(err);
         }
     });
@@ -121,7 +122,7 @@ exports.viewTeamsInEvent = (req, res) => {
 };
 
 exports.viewGamesInEvent = (req, res) => {
-    connection.query('SELECT * FROM game WHERE sport_id IN (SELECT sport_id FROM eventHasSport WHERE event_id = ?)', [req.params.id], function(err, rows, fields){
+    connection.query('SELECT * FROM game WHERE event_id = ?', [req.params.id], function(err, rows, fields){
         if (!err) {
             console.log("Success");
             res.send(rows);
