@@ -22,17 +22,19 @@
         vm.sportsFilter = {};
 
         vm.statusFilter = {
-            done: true,
-            ongoing: true,
-            upcoming: true
+            Upcoming: true,
+            Ongoing: true,
+            Done: true
         };
 
         vm.toggleDate = function(toggle) {
-            for (let info of vm.dates) {
-                if (info.date.getTime() === toggle.getTime()) {
-                    info.show = true;
+            for (let i = 0; i < vm.dates.length; ++i) {
+                if (new Date(vm.filtered[i].date).getTime() === new Date(toggle).getTime()) {
+                    vm.filtered[i].show = true;
+                    vm.dates[i].show = true;
                 } else {
-                    info.show = false;
+                    vm.filtered[i].show = false;
+                    vm.dates[i].show = false;
                 }
             }
         }
@@ -62,12 +64,9 @@
                     
                     let startDate = new Date(vm.event.start_date);
                     let endDate = new Date(vm.event.end_date);
-                    // startDate = new Date(startDate.setDate(startDate.getDate()));
-                    // endDate = new Date(endDate.setDate(endDate.getDate()));
+                    startDate = new Date(startDate.setDate(startDate.getDate()-1));
 
                     while (startDate.getTime() < endDate.getTime()) {
-                        // console.log('Start: ' + startDate.getDate());
-                        // console.log('End: ' + endDate.getDate());
                         vm.dates.push({
                             show: false,
                             date: startDate,
@@ -75,10 +74,7 @@
                                 return {
                                     sport: sport.name,
                                     games: games.filter(function(game) {
-                                            console.log('Game date: ' + new Date(game.time).getDate());
-                                            console.log(startDate.getDate());
-                                            if (game.sport_id === sport.sport_id && new Date(game.time).getDate() === startDate.getDate()) {
-                                                console.log('pasok');
+                                            if (game.sport_id === sport.sport_id && new Date(game.time).getDate() === addDate(startDate, 1).getDate()) {
                                                 return true;
                                             } else {
                                                 return false;
@@ -86,13 +82,13 @@
                                         }).map(function(game) {
                                             switch (game.status) {
                                                 case 'PENDING':
-                                                    game.status = { color: 'red', text: 'upcoming' };
+                                                    game.status = { color: 'red', text: 'UPCOMING' };
                                                     break;
                                                 case 'ONGOING':
-                                                    game.status = { color: 'green', text: 'ongoing' };
+                                                    game.status = { color: 'green', text: 'ONGOING' };
                                                     break;
                                                 case 'FINISHED':
-                                                    game.status = { color: 'black', text: 'done' };
+                                                    game.status = { color: 'black', text: 'DONE' };
                                                     break;
                                             }
                                             game.teamsPlaying = [];
@@ -123,23 +119,23 @@
                         startDate = new Date(startDate.setDate(startDate.getDate() + 1));
                     }
 
-                    console.log(vm.dates);
                     vm.dates[0].show = true;
+                    vm.filtered = $.extend(true, [], vm.dates)
                     $('.collapsible').collapsible();
-                    vm.filtered = $.extend(true, [], vm.dates);
-
                 });
             });
         }
 
         vm.filterList = function() {
-            vm.filtered = vm.dates.map(function(info) {
+            let dates = $.extend(true, [], vm.dates);
+
+            vm.filtered = dates.map(function(info) {
                 info.sports = info.sports.filter(function(sport) {
                     if (!vm.sportsFilter[sport.sport]) return false;
 
                     sport.games = sport.games.filter(function(game) {
                         for (let status in vm.statusFilter) {
-                            if (vm.statusFilter[status] && game.status.text === status) {
+                            if (vm.statusFilter[status] && game.status.text.toLowerCase() === status.toLowerCase()) {
                                 return true;
                             }
                         }
@@ -153,31 +149,14 @@
                 return info;
             });
             $('.collapsible').collapsible();
-            console.log(vm.filtered);
+        }
+
+        function addDate(date, days) {
+            var result = new Date(date);
+            result.setDate(result.getDate() + days);
+            return result;
         }
     }
 
 })();
-
-
-
-
-/*
-[
-    {
-        date:
-        sports: [
-            {
-                sport: 
-                games: []
-            }
-        ]
-    }
-]
-
-
-
-
-
- */
 

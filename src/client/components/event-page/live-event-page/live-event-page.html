@@ -42,7 +42,7 @@
         <div class="row">
             <div class="tab-custom">
                 <button class="tablinks" 
-                    ng-repeat="info in $ctrl.dates"
+                    ng-repeat="info in $ctrl.filtered"
                     ng-class="{ active: info.show }"
                     ng-click="$ctrl.toggleDate(info.date)">
                     {{ info.date | date: 'MMMM d' }}
@@ -51,7 +51,7 @@
 
             <div ng-show="info.show"
                 class="tabcontent"
-                ng-repeat="info in $ctrl.dates">
+                ng-repeat="info in $ctrl.filtered">
 
                 <ul class="collapsible"
                     data-collapsible="expandable">
@@ -101,7 +101,7 @@
                                         <td>
                                             {{ game.venue }}
                                         </td>
-                                        <td ng-if="game.status.text === 'ongoing'">
+                                        <td ng-if="game.status.text === 'ONGOING'">
                                             <a ui-sref="gamePage({ gameId: game.game_id })"
                                                 style="cursor: pointer;">
                                                 <div class="chip orange white-text">
