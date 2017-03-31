@@ -14,10 +14,13 @@
     function liveEventPageController(eventService) {
         var vm = this;
 
+        vm.sports = [];
+        vm.games = [];
+        vm.dates = [];
 
-        vm.sports = {};
+        vm.sportsFilter = {};
 
-        vm.status = {
+        vm.statusFilter = {
             done: false,
             ongoing: false,
             upcoming: false
@@ -26,8 +29,39 @@
         vm.$onInit = function() {
             eventService.getSports(vm.event.event_id)
                 .then(function(sports) {
-                    console.log(sports);
+                    for (let sport of sports) {
+                        vm.sportsFilter[sport.name] = false;
+                    }
+                    vm.sports = sports;
                 });
+            
+            eventService.getGames(vm.event.event_id)
+                .then(function(games) {
+
+                    let startDate = new Date(vm.event.start_date);
+                    let endDate = new Date(vm.event.end_date);
+                    
+                    console.log(startDate);
+                    console.log(endDate);
+
+                    startDate = new Date(startDate.setDate(startDate.getDate() - 1));
+                    endDate = new Date(endDate.setDate(endDate.getDate() - 1));
+
+                    while (startDate.getTime() !== endDate.getTime()) {
+                        vm.dates.push({
+                            date: startDate
+                        });
+                        startDate = new Date(startDate.setDate(startDate.getDate() + 1));
+                    }
+
+                    vm.dates.push({
+                        date: new Date(startDate.setDate(startDate.getDate() + 1))
+                    });
+                    console.log(vm.dates);
+
+                    
+                });
+            
         }
     }
 
