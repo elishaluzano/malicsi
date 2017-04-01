@@ -71,7 +71,7 @@ exports.deleteSport = (req,res) => {
 	connection.query('DELETE FROM sport WHERE sport_id = ?', [req.params.id], function(err, rows, fields){
 		if(!err) {
 			console.log("Success");
-			res.send({});
+			res.send(null);
 		}else{
 			console.log(err);
 			res.send(err);
@@ -128,7 +128,7 @@ exports.deleteJoin = (req, res) => {
 	connection.query('DELETE FROM sportIsJoinedByUser WHERE user_id = ? and sport_id = ?', [req.params.user_id, req.params.sport_id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Success");
-			res.send({});
+			res.send(null);
 		}
 		else {
 			console.log("Error");
