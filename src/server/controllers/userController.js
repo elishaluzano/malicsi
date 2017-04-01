@@ -10,7 +10,7 @@ exports.getAccount = (req, res) => {
 };
 // login
 exports.loginUser = (req, res) => {
-	connection.query('SELECT * FROM user WHERE username = ? and password = ?',[req.body.username, req.body.password], function(err, rows, fields) {
+	connection.query('SELECT * FROM user WHERE username = ? and password = ?',[req.body.username, crypt.encrypt(req.body.password)], function(err, rows, fields) {
 		if (!err){
 			if (rows.length === 0) {
 				res.send(false);
@@ -44,9 +44,16 @@ exports.addUser = (req, res) => {
 	};
 	connection.query('INSERT INTO user SET ?', newUser, function(err, rows, fields) {
 		if (!err) {
-			req.session.user = newUser;
-			res.send(rows[0]);
-			console.log("Successfully added user");
+		    if(req.body.profile_pic === null) {
+		        req.session.user = newUser;
+    			res.send(rows[0]);
+    			console.log("Successfully added user");
+		    }
+			else {
+    			req.session.user = newUser;
+    			res.send(rows[0]);
+    			console.log("Successfully added user");
+			}
 		}
 		else {
 			console.log(err);
@@ -218,3 +225,5 @@ exports.deleteAdmin = (req, res) => {
         }
     });
 };
+
+
