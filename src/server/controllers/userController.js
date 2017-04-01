@@ -58,8 +58,8 @@ exports.addUser = (req, res) => {
 
 // logout
 exports.logout = (req, res) => {
-    req.session.user = {};
-    res.send({});
+    req.session.user = null;
+    res.send(null);
 };
 
 // GET all users
