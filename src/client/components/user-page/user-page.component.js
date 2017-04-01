@@ -20,7 +20,7 @@
         vm.toggleEdit = function() {
             if (vm.isBeingEdited) {
                 vm.user.birthday = (new Date(vm.user.birthday)).toISOString().substring(0,10);
-                console.log(vm.user.birthday);
+                
                 if (vm.isMale == true) {
                     vm.user.gender = 'male';
                 }

@@ -82,13 +82,14 @@
                 name : vm.name,
                 username : vm.username,
                 password : vm.password,
-                gender : sex,
+                gender : vm.gender,
                 birthday : (new Date(vm.birthday)).toISOString().substring(0, 10),
                 email : vm.email,
                 contact_number : null,
                 contact_person : null,
-                profile_pic : null
-            }
+                profile_pic : (vm.gender === 'male')? 'default-boy.png' : 'default-girl.png'
+            };
+            
             userService.create(vm.body)
                 .then(function(data) {
                     vm.name = '';
