@@ -58,8 +58,8 @@ exports.addUser = (req, res) => {
 
 // logout
 exports.logout = (req, res) => {
-    req.session.user = {};
-    res.send({});
+    req.session.user = null;
+    res.send(null);
 };
 
 // GET all users
@@ -112,7 +112,7 @@ exports.updateUser = (req, res) => {
 exports.deleteUser = (req, res) => {
 	connection.query('DELETE FROM user WHERE user_id = ?',[req.params.id], function(err, rows, fields) {
 		if (!err) {
-			res.send({});
+			res.send(null);
 			console.log("Successfully deleted user");
 		}
 		else {
@@ -209,7 +209,7 @@ exports.addAdmin = (req, res) => {
 exports.deleteAdmin = (req, res) => {
     connection.query('DELETE FROM institutionHasAdmin where institution_no = ? and user_no = ?',[req.params.institution_id, req.params.user_id],function(err, rows, fields){
         if (!err){
-            res.send({});
+            res.send(null);
             console.log("Successfully deleted an admin");
         }
         else {

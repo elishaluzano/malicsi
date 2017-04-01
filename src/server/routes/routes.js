@@ -4,7 +4,7 @@ var express = require('express');
 var router = express.Router();
 
 //uploader
-var uploadCtrl = require('../controllers/UploadController.js');
+var uploadCtrl = require('../controllers/uploadController.js');
 
 var userCtrl = require('../controllers/userController.js');
 //user account routes

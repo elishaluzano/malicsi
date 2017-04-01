@@ -78,7 +78,7 @@ exports.deleteSponsoringInstitution = (req,res) => {
             res.send(err);
          }
         else {
-            res.send({});
+            res.send(null);
         }
 	});
 };

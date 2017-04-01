@@ -58,7 +58,7 @@ exports.searchTeam = (req,res) => {
 };
 
 exports.updateTeam = (req,res) => {
-	connection.query('UPDATE team SET name = ?, event_id_key = ? WHERE team_id = ?', [ req.body.name, req.body.event_id_key, req.params.team_id ], function(err, rows, fields){
+	connection.query('UPDATE team SET name = ?, event_id_key = ? WHERE team_id = ?', [ req.body.name, req.body.event_id_key, req.params.id ], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
@@ -77,7 +77,7 @@ exports.deleteTeam = (req,res) => {
             res.send(err);
          }
         else {
-            res.send({});
+            res.send(null);
             console.log("Successfully deleted a team.");
         }
 	});
@@ -133,7 +133,7 @@ exports.deleteIsComposedOf = (req,res) => {
             res.send(err);
          }
         else {
-            res.send({});
+            res.send(null);
             console.log("Successfully delete isComposedOf relation.");
         }
 	});
@@ -183,7 +183,7 @@ exports.addPlays = (req, res) => {
 exports.deletePlays = (req, res) => {
 	connection.query('DELETE FROM teamPlaysGame where team_id_play = ? and game_id_play = ?', [ req.params.id, req.params.game ], function(err, rows, fields) {
 		if(!err) {
-			res.send({});
+			res.send(null);
 			console.log("Successfully deleted plays");
 		} else {
 			res.send(err);
