@@ -86,7 +86,7 @@ exports.deleteEvent = (req,res) => {
 	connection.query('DELETE FROM event WHERE event_id = ?', [req.params.id], function(err, rows, fields){
 		if(!err) {
 			console.log("Success");
-			res.send({});
+			res.send(null);
 		}else{
 			console.log(err);
 			res.send(err);
