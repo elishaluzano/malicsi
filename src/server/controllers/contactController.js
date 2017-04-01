@@ -66,7 +66,7 @@ exports.deleteContact = (req,res) => {
     connection.query('DELETE FROM contactPersonInCaseOfEmergency WHERE contact_person_id = ?', [req.params.id], function(err, rows, fields){
         if(!err) {
             console.log("Success");
-            res.send({});
+            res.send(null);
         }else{
             console.log(err);
             res.send(err);

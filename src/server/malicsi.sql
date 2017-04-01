@@ -19,6 +19,7 @@ CREATE TABLE user (
     contact_number varchar(11),
     contact_person int,
     profile_pic text,
+    constraint user_username_uk unique key (username),
     constraint user_contact_person_fk foreign key (contact_person) references contactPersonInCaseOfEmergency(contact_person_id) 
     ON DELETE SET NULL
 );
