@@ -20,7 +20,7 @@ var CountdownImageExt = "png";
 var CountdownImagePhysicalWidth = 41;
 var CountdownImagePhysicalHeight = 60;
 
-var CountdownWidth = 400;
+var CountdownWidth = 280;
 var CountdownHeight = 60;
 
 var CountdownLabels = {
