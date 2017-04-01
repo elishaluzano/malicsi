@@ -19,6 +19,7 @@ CREATE TABLE user (
     contact_number varchar(11),
     contact_person int,
     profile_pic text,
+    constraint user_username_uk unique key (username),
     constraint user_contact_person_fk foreign key (contact_person) references contactPersonInCaseOfEmergency(contact_person_id) 
     ON DELETE SET NULL
 );
@@ -38,6 +39,7 @@ CREATE TABLE sponsoringInstitution (
 CREATE TABLE institutionHasAdmin (
     institution_no int NOT NULL,
     user_no int NOT NULL,
+    CONSTRAINT institutionHasAdmin_pk PRIMARY KEY (institution_no, user_no),
     CONSTRAINT institutionHasAdmin_user_no_fk FOREIGN KEY (user_no) REFERENCES user (user_id) ON DELETE CASCADE,
     CONSTRAINT institutionHas_institution_no_fk FOREIGN KEY (institution_no) REFERENCES sponsoringInstitution (institution_id)
     ON DELETE CASCADE
@@ -81,6 +83,7 @@ CREATE TABLE game (
 CREATE TABLE eventHasSport (
     event_id int NOT NULL,
     sport_id int NOT NULL,
+    CONSTRAINT eventHasSport_pk PRIMARY KEY (event_id, sport_id),
     CONSTRAINT eventHasSport_event_id_fk FOREIGN KEY (event_id) REFERENCES event (event_id) ON DELETE CASCADE,
     CONSTRAINT eventHasSport_sport_id_fk FOREIGN KEY (sport_id) REFERENCES sport (sport_id) ON DELETE CASCADE
 );
@@ -95,6 +98,7 @@ CREATE TABLE team (
 CREATE TABLE teamIsComposedOfUser (
     team_player_id int NOT NULL,
     user_player_id int NOT NULL,
+    CONSTRAINT teamIsComposedOfUser_pk PRIMARY KEY (team_player_id, user_player_id),
     CONSTRAINT isComposedOf_team_player_id_fk FOREIGN KEY (team_player_id) REFERENCES team (team_id) ON DELETE CASCADE,
     CONSTRAINT isComposedOf_user_player_id_fk FOREIGN KEY (user_player_id) REFERENCES user (user_id) ON DELETE CASCADE
 );
@@ -104,6 +108,7 @@ CREATE TABLE teamPlaysGame (
     game_id_play int NOT NULL,
     record ENUM('WIN','LOSE','DRAW') default NULL,
     score float default 0,
+    CONSTRAINT teamPlaysGame_pk PRIMARY KEY (team_id_play, game_id_play),
     CONSTRAINT plays_game_id_play_fk FOREIGN KEY (game_id_play) REFERENCES game (game_id) ON DELETE CASCADE,
     CONSTRAINT plays_team_id_play_fk FOREIGN KEY (team_id_play) REFERENCES team (team_id) ON DELETE CASCADE
 );
@@ -111,6 +116,7 @@ CREATE TABLE teamPlaysGame (
 CREATE TABLE sportIsJoinedByUser (
   user_id int NOT NULL,
   sport_id int NOT NULL,
+  CONSTRAINT sportIsJoinedByUser_pk PRIMARY KEY (user_id, sport_id),
   CONSTRAINT sportIsJoinedByUser_user_id_fk FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE,
   CONSTRAINT sportIsJoinedByUser_sport_id_fk FOREIGN KEY (sport_id) REFERENCES sport(sport_id) ON DELETE CASCADE
 );
