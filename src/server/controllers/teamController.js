@@ -58,7 +58,7 @@ exports.searchTeam = (req,res) => {
 };
 
 exports.updateTeam = (req,res) => {
-	connection.query('UPDATE team SET name = ?, event_id_key = ? WHERE team_id = ?', [ req.body.name, req.body.event_id_key, req.params.team_id ], function(err, rows, fields){
+	connection.query('UPDATE team SET name = ?, event_id_key = ? WHERE team_id = ?', [ req.body.name, req.body.event_id_key, req.params.id ], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
