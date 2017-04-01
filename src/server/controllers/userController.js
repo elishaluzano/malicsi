@@ -58,7 +58,7 @@ exports.addUser = (req, res) => {
 
 // logout
 exports.logout = (req, res) => {
-    req.session.user = {};
+    req.session.user = null;
     res.send(null);
 };
 
