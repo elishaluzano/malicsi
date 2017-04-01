@@ -1,0 +1,289 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+#news {
+    margin: 0px 0px 50px 0px;
+}
+
+#dropdown-links {
+    cursor: pointer;
+    font-size: 14px;
+    color: #616161;
+    margin-bottom: 2px;
+    width: 50%;
+    float: left;
+}
+
+#dropdown-links:hover {
+    color: #ff0000;
+}
+
+#login-form {
+    padding: 10px 10px;
+}
+
+#login-button {
+    margin: 0px 0px 20px 0px;
+}
+
+#forgot-password-link {
+    cursor: pointer; 
+    font-size: 12px;
+}
+
+#additional-links {
+    margin: 10px 0px 20px 0px; 
+    width: 200px; 
+    height: 50px;
+}
+
+#drop-links {
+    cursor: pointer;
+}
+
+#malicsi-logo-link {
+    height: 64px;
+}
+
+#search-bar-div {
+    height: 64px; margin: 0px 10px; padding: 8px 0px 0px 0px;
+}
+
+#input {
+    float: left;
+}
+
+#register-link {
+    width: 100px; text-align: center;
+}
+
+#latest-news-header {
+    padding-left: 90px; color: red;
+}
+
+#news-grid {
+    text-align: center; margin: 40px 0px;
+}
+
+#register-part {
+    padding: 30px 0px 50px 35%; border-top: 2px solid #c1c1c1;
+}
+
+#register {
+    width: 50%;
+}
+
+#join-header {
+    text-align: center; color: red;
+}
+
+#search-icon {
+    cursor: pointer;
+}
+
+#sidenav-icon {
+    margin: 0px 15px;
+}
+
+<<<<<<< HEAD
+th, td{
+    padding: 10px 5px;
+}
+
+#side-nav-teams {
+    overflow-y: scroll; 
+    min-height: 1000px; 
+    height: 1000px; 
+    bottom: 0; 
+    z-index: 11; 
+    padding: 0;
+}
+
+#side-nav-teams-search {
+    padding: 0px 5px;
+}
+
+#right-team-page {
+    margin-top: 10px;
+}
+
+#team-name {
+    font-size: 36px;
+} 
+
+#team-stats {
+    font-size: 17px;
+}
+
+#upcoming-game {
+    font-weight: bold;
+}
+
+#upcoming-game-inner-div {
+    padding: 0px;
+}
+
+#upcoming-game-inner-inner-div {
+    padding: 0px; transform: translateY(50%);
+}
+
+#vs {
+    color: #717171; font-size: 14px;
+}
+
+#opponent-logo {
+    padding: 0px;
+}
+
+#upcoming-game-details {
+    padding-top: 5px; padding-bottom: 5px;
+}
+
+#last-five-games-div {
+    margin: 15px 0px;
+}
+
+#last-five-games-header {
+    font-size: 18px;
+}
+
+#last-five-games-table {
+    font-size: 14px; margin-bottom: 10px;
+}
+
+#players-header {
+    font-size: 18px;
+}
+
+#player-card {
+    padding: 10px;
+}
+
+#modal-edit-logo {
+    padding-left: 0px; margin-right: 5px;
+}
+
+#user-image {
+    height: 100px;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#user-big {
+    border-radius: 5px;
+    padding-top: 15px;
+}
+
+.user-row .right-align {
+    font-weight: bold;
+}
+
+.user-row {
+    margin: 1px;
+}
+
+.container {
+    margin-bottom: 10px;
+}
+
+
+.input-field input[type=text]:focus + label {
+    color: red;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid red;
+    box-shadow: 0 1px 0 0 red;
+}
+
+
+.field-row {
+    margin-top: 5px;
+    margin-bottom: 10px;    
+}
+
+.user-row {
+    margin: 1px;
+    padding-bottom: 2px;
+}
+
+.affiliations-header {
+    font-weight: bold;
+}
+
+#edit-user-big {
+    border-radius: 5px;
+    padding-top: 15px;
+    background-color: white;
+}
+
+#change-name {
+    font-size: 2em;
+}
+
+#save-changes-btn {
+    margin: 5px;
+}
+
+/* Style the tab */
+div.tab-custom {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+div.tab-custom button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+div.tab-custom button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab-custom button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.tabcontent {
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.pointer {
+    cursor: pointer;
+}
