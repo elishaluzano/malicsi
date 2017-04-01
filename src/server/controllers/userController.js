@@ -40,20 +40,13 @@ exports.addUser = (req, res) => {
 		email : req.body.email,
 		contact_number : req.body.contact_number,
 		contact_person : req.body.contact_person,
-		profile_pic : req.body.profile_pic
+		profile_pic : (req.file)? req.file.path.substring(req.file.path.indexOf('../dist')).replace('../dist', '') : '',
 	};
 	connection.query('INSERT INTO user SET ?', newUser, function(err, rows, fields) {
 		if (!err) {
-		    if(req.body.profile_pic === null) {
-		        req.session.user = newUser;
-    			res.send(rows[0]);
-    			console.log("Successfully added user");
-		    }
-			else {
-    			req.session.user = newUser;
-    			res.send(rows[0]);
-    			console.log("Successfully added user");
-			}
+    		req.session.user = newUser;
+    		res.send(rows[0]);
+    		console.log("Successfully added user");
 		}
 		else {
 			console.log(err);
@@ -103,7 +96,7 @@ exports.getUser = (req, res) => {
 
 // PUT specific user
 exports.updateUser = (req, res) => {
-	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, crypt.encrypt(req.body.password), req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, req.body.profile_pic, req.params.id], function(err, rows, fields) {
+	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, crypt.encrypt(req.body.password), req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, req.file.path.substring(req.file.path.indexOf('../dist')).replace('../dist', ''), req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
 			res.send(rows[0]);
