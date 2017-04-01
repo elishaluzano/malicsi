@@ -1,0 +1,46 @@
+<div class="container row">
+    <h3>Search Teams</h3>
+    <!-- Filters: subject to change -->
+    <div class="col s4" id = "filters">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Filters</span>
+                <form action="#">
+                    <p>
+                        <input type="checkbox" id="team-no-filter" checked />
+                        <label for="team-no-filter">No filter</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="team-event-attended"  />
+                        <label for="team-event-attended">Event Attended</label>
+                    </p>
+
+                    <br>
+                    <div class="divider"></div>
+
+                    <strong>For checked criteria:</strong>
+                    <br>
+                    <p class="input-field">
+                        <input type="text" id="team-event-name" />
+                        <label for="team-event-name">Event Attended</label>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results: holds the Collection of teams with filters applied -->
+    <div class="col s8" id = "results">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Results</span>
+                <ul class="collection">
+                    <a class="collection-item red white-text">Team One</a>
+                    <a class="collection-item grey darken-3 white-text">Team Two</a>
+                    <a class="collection-item blue darken-2 white-text">Team Three</a>
+                    <a class="collection-item yellow black-text">Team Four</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
