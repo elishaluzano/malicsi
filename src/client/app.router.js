@@ -39,6 +39,11 @@
                 name: 'schedulePage',
                 url: '/schedule',
                 component: 'schedulePage',
+                resolve: {
+                    games: function(sportService){
+                        return sportService.getAll();
+                    }
+                }
             })
             .state({
                 name: 'landingPage',
