@@ -23,8 +23,9 @@
   <body>
 
   <!--========================================================== NAVIGATION =========================================================-->
+    <div id="top"></div>
     <div class ="navbar-fixed">
-      <nav id="top" class="white">
+      <nav class="white">
       <div class="nav-wrapper">
         <a class="left" id="malicsi-logo-link" href="#">
           <img src="../images/malicsi-logo.png">
@@ -88,7 +89,7 @@
 
     <!--========================================================== END OF NAVIGATION =========================================================-->
 
-    <div class = "row">
+    <div class = "row" id="main-content">
       <div class = "col m3 l3 hide-on-small-only">
           <div class="card">
               <div class="card-content">
@@ -147,7 +148,7 @@
               </div>
          </div>
         <!-- TIMER -->
-        <div class="container row" id="timer">
+        <div class=" col l12 container row" id="timer">
           <script type="application/javascript" src="soon_event.js"></script>
         </div>
       </div>
@@ -165,7 +166,7 @@
     <div class="row">
       <div class = "tab-custom" id = "addhere">
         <button onClick = "openData(event, 'teams')" class = "white-text black">Teams</button>
-        <button onClick = "createDate()" class="red lighten-1 white-text">Add date</button>
+        <button data-target="add-date-modal" class="red lighten-1 white-text">Add date</button>
         <button class = "tablinks active" onclick="openData(event,'June_12_game')" id ="defaultOpen">June 12</button>
         <button class = "tablinks" onclick="openData(event,'June_13_game')">June 13</button>
         <button class = "tablinks" onclick="openData(event,'June_14_game')">June 14</button>
@@ -488,7 +489,7 @@
           </div>
         </li>
       </ul>
-    </div> <!-- end Div for day 3 -->modal
+    </div> <!-- end Div for day 3 -->
 
     <div id = "new_game" class = "tabcontent">
       No sports yet. Add a sport?<a href="#add-sport-modal" class="chip blue white-text">+</a>
@@ -575,6 +576,25 @@
           <div class="input-field">
             <input type="text" placeholder="New Team Name" />
           </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+      </div>
+    </div>
+
+    <div id="add-date-modal" class="modal">
+      <div class="modal-content">
+        <h4>Add date</h4>
+        <p>Please enter the date you wish to add.</p>
+        <form>
+          <div class="row">
+            <div class="input-field col l8">
+              <i class="material-icons prefix">date_range</i><input type="date" class="datepicker" placeholder="Choose Date">
+            </div>
+          </div>
+          
         </form>
       </div>
       <div class="modal-footer">
