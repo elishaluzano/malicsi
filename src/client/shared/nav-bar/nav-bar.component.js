@@ -36,7 +36,7 @@
         }
 
         vm.focusLogin = function() {
-            $('#username').focus();
+            $('#login-username').focus();
         }
 
         vm.login = function() {
