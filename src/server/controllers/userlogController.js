@@ -34,11 +34,13 @@ exports.getUserlogs = (req, res) => {
 exports.addLog = (req, res) => {
     var newLog = {
         user_id : req.body.user_id,
+        username: req.body.username,
+        institution_id : req.body.institution_id,
         action : req.body.action
     }
     connection.query('INSERT INTO userlog SET ?', newLog, function(err, rows, fields){
         if (!err) {
-            res.send(rows[0]);
+            res.send(newLog);
             console.log("Successfully added new log");
         }
         else {
