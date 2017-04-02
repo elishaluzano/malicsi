@@ -13,7 +13,7 @@
     <div class="card-content hide-on-medium-only">
       <ul>
         <li><i class = "material-icons">date_range</i> {{ $ctrl.event.start_date | date : fullDate}} - {{ $ctrl.event.end_date | date : fullDate}}</li>
-        <li><i class = "material-icons">supervisor_account</i><a href = "../view_sponsor_page/view_sponsor.html"> {{ $ctrl.institution.name }}</a></li>
+        <li><i class = "material-icons">supervisor_account</i><a ui-sref="sponsorPage({ sponsorId: $ctrl.institution.institution_id })" }}</a></li>
       </ul>
     </div>
     <div class="card-action">
