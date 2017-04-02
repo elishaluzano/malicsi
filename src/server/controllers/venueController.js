@@ -11,6 +11,7 @@ exports.addVenue = (req,res) =>{
             res.send(err);
          }
         else {
+            venue.venue_id = rows.insertId;
             res.send(venue);
             console.log("Successfully added a venue");
         }

@@ -11,6 +11,7 @@ exports.addSport = (req,res) => {
 	};
 	connection.query('INSERT INTO sport SET ?', info, function(err, rows, fields) {
 		if (!err) {
+		    info.sport_id = rows.insertId;
 			res.send(info);
 			console.log("Successfully added sport");
 		}

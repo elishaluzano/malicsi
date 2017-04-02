@@ -16,6 +16,7 @@ exports.addSponsoringInstitution = (req,res) => {
             res.send(err);
          }
         else {
+            institution.institution_id = rows.insertId;
             res.send('Successfully added an institution.');
             res.send(institution);
         }
@@ -60,6 +61,7 @@ exports.searchSponsoringInstitution = (req,res) => {
 
 exports.updateSponsoringInstitution = (req,res) => {
     var institution = {
+        institution_id : req.params.id,
 		name : req.body.name,
 		description : req.body.description
 	};

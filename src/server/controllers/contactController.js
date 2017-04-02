@@ -13,6 +13,7 @@ exports.addContact = (req,res) => {
     };
     connection.query('INSERT INTO contactPersonInCaseOfEmergency SET ?', info, function(err, rows, fields) {
         if (!err) {
+            info.contact_person_id = rows.insertId;
             res.send(info);
             console.log("Successfully added contact");
         }
@@ -51,6 +52,7 @@ exports.viewAllContact = (req,res) => {
 // UPDATE specific contact
 exports.updateContact = (req,res) => {
     var info = {
+        contact_person_id: req.params.id,
         contact_person_name: req.body.contact_person_name,
         contact_person_relationship: req.body.contact_person_relationship,
         contact_person_number: req.body.contact_person_number
