@@ -45,9 +45,9 @@ exports.addUser = (req, res) => {
 	};
 	connection.query('INSERT INTO user SET ?', newUser, function(err, rows, fields) {
 		if (!err) {
-		    rows[0].password = crypt.decrypt(rows[0].password);
+		    newUser.password = crypt.decrypt(newUser.password);
     		req.session.user = newUser;
-    		res.send(rows[0]);
+    		res.send(newUser);
     		console.log("Successfully added user");
 		}
 		else {

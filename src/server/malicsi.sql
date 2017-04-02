@@ -17,11 +17,11 @@ CREATE TABLE user (
     birthday date NOT NULL,
     email varchar(30),
     contact_number varchar(11),
-    contact_person int default NULL,
+    contact_person int NULL,
     profile_pic text,
     isOverallAdmin boolean default false,
     constraint user_username_uk unique key (username),
-    constraint user_contact_person_fk foreign key (contact_person) references contactPersonInCaseOfEmergency(contact_person_id)
+    no check constraint user_contact_person_fk foreign key (contact_person) references contactPersonInCaseOfEmergency(contact_person_id)
     ON DELETE SET NULL
 );
 
