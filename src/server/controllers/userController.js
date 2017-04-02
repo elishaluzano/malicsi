@@ -83,7 +83,9 @@ exports.getUsers = (req, res) => {
 exports.getUser = (req, res) => {
 	connection.query('SELECT * FROM user where user_id = ?', [req.params.id], function(err, rows, fields) {
 		if (!err) {
-			rows[0].password = crypt.decrypt(rows[0].password);
+            if (rows[0]) {
+			    rows[0].password = crypt.decrypt(rows[0].password);
+            }
 			res.send(rows[0]);
 			console.log("Successfully retrieved user");
 		}
