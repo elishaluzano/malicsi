@@ -9,21 +9,19 @@
                                 Sports
                             </h5>
                         </legend>
-                        <div class="row">
-                            <div class="input-field col s9">
-                                <input type="text" 
-                                    id="new-sport"
-                                    ng-model="$ctrl.newSport"
-                                    ng-keydown="$ctrl.checkEnterSport($event)">
-                                <label for="new-sport">New sport</label>
-                            </div>
-                            <br>
-                            <div class="col s3">
-                                <a class="btn-floating"
-                                    ng-click="$ctrl.addSport()">
-                                    <i class="material-icons red">add</i>
-                                </a>
-                            </div>
+                        <div class="input-field col s9">
+                            <input type="text" 
+                                id="new-sport"
+                                ng-model="$ctrl.newSport"
+                                ng-keydown="$ctrl.checkEnterSport($event)">
+                            <label for="new-sport">New sport</label>
+                        </div>
+                        <br>
+                        <div class="col s3">
+                            <a class="btn-floating"
+                                ng-click="$ctrl.addSport()">
+                                <i class="material-icons red">add</i>
+                            </a>
                         </div>
                         <ul class="collection col s12">
                             <li class="collection-item"
@@ -58,46 +56,42 @@
                                 Venues
                             </h5>
                         </legend>
-                        <div class="row">
-                            <div class="input-field col s9">
-                                <input type="text" 
-                                    id="new-venue"
-                                    ng-model="$ctrl.newVenue"
-                                    ng-keydown="$ctrl.checkEnterVenue($event)">
-                                <label for="new-venue">New venue</label>
-                            </div>
-                            <br>
-                            <div class="col s3">
-                                <a class="btn-floating"
-                                    ng-click="$ctrl.addVenue()">
-                                    <i class="material-icons red">add</i>
-                                </a>
-                            </div>
+                        <div class="input-field col s9">
+                            <input type="text" 
+                                id="new-venue"
+                                ng-model="$ctrl.newVenue"
+                                ng-keydown="$ctrl.checkEnterVenue($event)">
+                            <label for="new-venue">New venue</label>
                         </div>
-                        <div class="row">
-                            <ul class="collection col s12">
-                                <li class="collection-item"
-                                    ng-repeat="venue in $ctrl.venues">
-                                    <div>
-                                        {{ venue.name }}
-                                        <span class="pointer secondary-content"
-                                            ng-click="$ctrl.promptVenueDelete(venue)"
-                                            data-target="delete-venue-modal">
-                                            <i class="material-icons red-text">
-                                                delete
-                                            </i>
-                                        </span>
-                                        <span class="pointer secondary-content"
-                                            ng-click="$ctrl.promptVenueEdit(venue)"
-                                            data-target="edit-venue-modal">
-                                            <i class="material-icons red-text">
-                                                edit
-                                            </i>
-                                        </span>
-                                    </div>
-                                </li>
-                            </ul>
+                        <br>
+                        <div class="col s3">
+                            <a class="btn-floating"
+                                ng-click="$ctrl.addVenue()">
+                                <i class="material-icons red">add</i>
+                            </a>
                         </div>
+                        <ul class="collection col s12">
+                            <li class="collection-item"
+                                ng-repeat="venue in $ctrl.venues">
+                                <div>
+                                    {{ venue.name }}
+                                    <span class="pointer secondary-content"
+                                        ng-click="$ctrl.promptVenueDelete(venue)"
+                                        data-target="delete-venue-modal">
+                                        <i class="material-icons red-text">
+                                            delete
+                                        </i>
+                                    </span>
+                                    <span class="pointer secondary-content"
+                                        ng-click="$ctrl.promptVenueEdit(venue)"
+                                        data-target="edit-venue-modal">
+                                        <i class="material-icons red-text">
+                                            edit
+                                        </i>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
                     </fieldset>
                 </div>
 
