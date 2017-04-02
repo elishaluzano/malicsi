@@ -9,6 +9,32 @@ describe('UserMockData', function() {
     var url = 'http://localhost:8000';
     describe('addUser()', function() {
        var newUser = {
+            'name' : 'Overall Admin',
+            'username' : 'admin',
+            'password' : 'adminpowers',
+            'gender' : 'female',
+            'birthday' : '2017-04-06',
+            'email' : 'admin@up.edu.ph',
+            'contact_number' : '09983765412',
+            'contact_person' : null,
+            'profile_pic' : null,
+            'isOverallAdmin' : true
+       };
+       it('Creates a new user', function(done){
+           request(url)
+           .post('/api/users')
+           .send(newUser)
+           .end(function(err, res) {
+               if (err) throw err;
+               res.should.have.status(200);
+                    res.body.should.be.an.instanceOf(Object);
+               done();
+           });
+       });
+    });
+    
+    describe('addUser()', function() {
+       var newUser = {
             'name' : 'Rusty Magorian',
             'username' : 'rustymagorian',
             'password' : 'rmagorian',
@@ -17,7 +43,8 @@ describe('UserMockData', function() {
             'email' : 'rmagorian@up.edu.ph',
             'contact_number' : '09123456789',
             'contact_person' : 1,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
@@ -41,7 +68,8 @@ describe('UserMockData', function() {
             'email' : 'ckaufer@up.edu.ph',
             'contact_number' : '09987654321',
             'contact_person' : 2,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
@@ -65,7 +93,8 @@ describe('UserMockData', function() {
             'email' : 'slinton@up.edu.ph',
             'contact_number' : '09102938475',
             'contact_person' : 3,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
@@ -89,7 +118,8 @@ describe('UserMockData', function() {
             'email' : 'hwest@up.edu.ph',
             'contact_number' : '09564738291',
             'contact_person' : 4,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
@@ -113,7 +143,8 @@ describe('UserMockData', function() {
             'email' : 'dgofe@up.edu.ph',
             'contact_number' : '09132435467',
             'contact_person' : 5,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
@@ -137,7 +168,8 @@ describe('UserMockData', function() {
             'email' : 'maran@up.edu.ph',
             'contact_number' : '09988776654',
             'contact_person' : 6,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
@@ -161,7 +193,8 @@ describe('UserMockData', function() {
             'email' : 'aadriactico@up.edu.ph',
             'contact_number' : '09267009739',
             'contact_person' : 7,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
@@ -185,7 +218,8 @@ describe('UserMockData', function() {
             'email' : 'aaleta@up.edu.ph',
             'contact_number' : '09111112234',
             'contact_person' : 8,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
@@ -209,7 +243,8 @@ describe('UserMockData', function() {
             'email' : 'amorgan@up.edu.ph',
             'contact_number' : '09229933884',
             'contact_person' : 9,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
@@ -233,7 +268,8 @@ describe('UserMockData', function() {
             'email' : 'smoran@up.edu.ph',
             'contact_number' : '09124356785',
             'contact_person' : 10,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
@@ -257,7 +293,8 @@ describe('UserMockData', function() {
             'email' : 'ksaludo@up.edu.ph',
             'contact_number' : '09201703170',
             'contact_person' : 11,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
@@ -281,7 +318,8 @@ describe('UserMockData', function() {
             'email' : 'cplaton@up.edu.ph',
             'contact_number' : '09222223145',
             'contact_person' : 12,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
@@ -305,7 +343,8 @@ describe('UserMockData', function() {
             'email' : 'gmangilin@up.edu.ph',
             'contact_number' : '09666555778',
             'contact_person' : 13,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
@@ -329,7 +368,8 @@ describe('UserMockData', function() {
             'email' : 'jsorilla@up.edu.ph',
             'contact_number' : '09099887765',
             'contact_person' : 14,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
@@ -353,7 +393,8 @@ describe('UserMockData', function() {
             'email' : 'kgonzales@up.edu.ph',
             'contact_number' : '09236512875',
             'contact_person' : 15,
-            'profile_pic' : null
+            'profile_pic' : null,
+            'isOverallAdmin' : false
        };
        it('Creates a new user', function(done){
            request(url)
