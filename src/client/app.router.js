@@ -43,6 +43,22 @@
                 resolve: {
                     institution: function(institutionService, $transition$) {
                         return institutionService.getOne($transition$.params().sponsorId);
+                    },
+                    componentName: function($state) {
+                        return $state.current.name;
+                    },
+                    params: function($state) {
+                        console.log($state.params);
+                        return $state.params;
+                    }
+                },
+                onEnter: function(institution, componentName, params, $state) {
+                    if (!institution) {
+                        Materialize.toast('Institution does not exist', 3000, 'red');
+                        if (!componentName) {
+                            componentName = 'landingPage';
+                        }
+                        $state.go(componentName, params);
                     }
                 }
             })
