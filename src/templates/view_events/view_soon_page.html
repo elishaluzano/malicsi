@@ -585,11 +585,14 @@
     <div id="add-date-modal" class="modal">
       <div class="modal-content">
         <h4>Add date</h4>
-        <p>Please enter the date you wish to add.</p>
+        <p>Please enter the start and end dates for the event.</p>
         <form>
           <div class="row">
-            <div class="input-field col l8">
-              <i class="material-icons prefix">date_range</i><input type="date" class="datepicker" placeholder="Choose Date">
+            <div class="input-field col l6">
+              <i class="material-icons prefix">date_range</i><input type="date" class="datepicker" placeholder="Choose Start Date">
+            </div>
+            <div class="input-field col l6">
+              <i class="material-icons prefix">date_range</i><input type="date" class="datepicker" placeholder="Choose End Date">
             </div>
           </div>
           
@@ -597,7 +600,7 @@
       </div>
       <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="createDate()">Done</a>
       </div>
     </div>
 
