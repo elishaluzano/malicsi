@@ -86,6 +86,28 @@
                     });
             },
 
+            getAllGameInfo: function(id) {
+                return $http.get(api + id + '/allgameinfo')
+                    .then(function(response) {
+                        return response.data
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting last five games information');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
+            getPlayers: function(id) {
+                return $http.get(api + id + '/users')
+                    .then(function(response) {
+                        return response.data
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting players of team');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
         }
 
         return service;
