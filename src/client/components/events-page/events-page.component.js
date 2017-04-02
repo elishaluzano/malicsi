@@ -12,7 +12,7 @@
         });
 
         /* ADD sessionService, userService as parameter */
-        function eventsPageController(eventService, sessionService, adminService) {
+        function eventsPageController(eventService, sessionService, adminService, institutionService) {
             var vm = this;
             vm.isAdmin = false;
             vm.user = null;
@@ -20,19 +20,27 @@
             vm.venue = '';
             vm.start_date = null;
             vm.end_date = null;
+            vm.institutions = [];
 
             vm.$onInit = function() {
                 vm.modalOpen = true; 
+
+                institutionService.getAll()
+                    .then(function(data) {
+                        for (let institutions of data) {
+                            
+                        }
+                    })
 
                 /* check the current user if admin */
                 vm.user = sessionService.user();
 
                 if (vm.user) {
-                    adminService.checkAdmin(3)
+                    adminService.checkAdmin(user.user_id)
                         .then(function (user) {
-                            if (vm.user) {
+                           if (vm.user) {
                                 vm.isAdmin = true;
-                                console.log(vm.isAdmin);
+                                console.log(vm.events);
                             }
                         });
                 }
