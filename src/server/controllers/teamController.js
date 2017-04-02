@@ -14,6 +14,7 @@ exports.addTeam = (req,res) => {
             res.send(err);
          }
         else {
+            team.team_id = rows.insertId;
             res.send(team);
             console.log("Successfully added a team");
         }
@@ -215,6 +216,7 @@ exports.getAllGameInfo = (req, res) => {
 
 exports.updatePlays = (req, res) => {
     var newPlay = {
+        record: req.body.record,
 		team_id_play: req.params.team_id,
 		game_id_play: req.params.game_id
 	};

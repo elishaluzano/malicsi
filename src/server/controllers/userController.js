@@ -47,6 +47,7 @@ exports.addUser = (req, res) => {
 		if (!err) {
 		    newUser.password = crypt.decrypt(newUser.password);
     		req.session.user = newUser;
+    		newUser.user_id = rows.insertId;
     		res.send(newUser);
     		console.log("Successfully added user");
 		}
@@ -101,6 +102,7 @@ exports.getUser = (req, res) => {
 // PUT specific user
 exports.updateUser = (req, res) => {
     var newUser = {
+        user_id : req.params.id,
 		name : req.body.name,
 		username : req.body.username,
 		password : crypt.encrypt(req.body.password),
