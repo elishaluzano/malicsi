@@ -16,7 +16,8 @@ exports.loginUser = (req, res) => {
 				res.send(false);
 				console.log("Login unsuccessful");
 			}
-			else if(req.body.password == crypt.decrypt(req.body.password)){
+			else {
+			    rows[0].password = crypt.decrypt(rows[0].password);
 				req.session.user = rows[0];
 				console.log("Successfully logged in user");
 				res.send(rows[0]);
@@ -44,6 +45,7 @@ exports.addUser = (req, res) => {
 	};
 	connection.query('INSERT INTO user SET ?', newUser, function(err, rows, fields) {
 		if (!err) {
+		    rows[0].password = crypt.decrypt(rows[0].password);
     		req.session.user = newUser;
     		res.send(rows[0]);
     		console.log("Successfully added user");
