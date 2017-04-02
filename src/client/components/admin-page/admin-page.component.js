@@ -7,11 +7,11 @@
             template: require('./admin-page.html'),
             controller: adminPageController,
             bindings: {
-                user: '<'
+                user: '<',
             }
         });
     
-    function adminPageController($state, venueService, sportService) {
+    function adminPageController($state, venueService, sportService, institutionService, userService) {
         var vm = this;
 
         vm.sports = [];
@@ -22,6 +22,9 @@
         vm.venueToEdit = null;
         vm.venueToDelete = null;
         vm.newVenue = '';
+
+        vm.institutions = [];
+        vm.admins = [];
 
         vm.$onInit = function() {
             $('.modal').modal();
@@ -34,6 +37,16 @@
             venueService.getAll()
                 .then(function(venues) {
                     vm.venues = venues;
+                });
+
+            institutionService.getAll()
+                .then(function(institutions) {
+                    vm.institutions = institutions;
+                });
+
+            userService.getAdmins()
+                .then(function(admins) {
+                    vm.admins = admins;
                 });
         }
 

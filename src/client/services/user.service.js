@@ -31,6 +31,17 @@
                     });
             },
 
+            getAdmins: function() {
+                return $http.get('/api/admins')
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting all admins!');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
             create: function(body) {
                 return $http.post(api, body)
                     .then(function(response) {
