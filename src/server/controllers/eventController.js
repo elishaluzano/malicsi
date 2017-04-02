@@ -86,7 +86,7 @@ exports.deleteEvent = (req,res) => {
 	connection.query('DELETE FROM event WHERE event_id = ?', [req.params.id], function(err, rows, fields){
 		if(!err) {
 			console.log("Success");
-			res.send({});
+			res.send(null);
 		}else{
 			console.log(err);
 			res.send(err);
@@ -148,7 +148,7 @@ exports.viewGamesInSportInEvent = (req, res) => {
 };
 
 exports.viewGeneralInformation = (req, res) => {
-    connection.query('select s.name as sport, g.time, g.game_id, e.event_title as event, t.name as team, si.description as institution, v.name as venue from event e join game g join sport s join team t join sponsoringInstitution si join venue v join teamPlaysGame tpg where e.event_id = ? and s.event_id_key = e.event_id and g.sport_id_key = s.sport_id and e.institution_id_key = si.institution_id and g.venue = v.venue_id and tpg.game_id_play = g.game_id and tpg.team_id_play = t.team_id and t.event_id_key = e.event_id', [req.params.id], function(err, rows, fields){
+    connection.query('select s.name as sport, g.time, g.game_id, e.event_title as event, t.name as team, si.description as institution, v.name as venue from event e join game g join sport s join team t join sponsoringInstitution si join venue v join teamPlaysGame tpg where e.event_id = ? and g.event_id = e.event_id and g.sport_id = s.sport_id and e.institution_id_key = si.institution_id and g.venue = v.venue_id and tpg.game_id_play = g.game_id and tpg.team_id_play = t.team_id and t.event_id_key = e.event_id', [req.params.id], function(err, rows, fields){
         if (!err) {
             console.log("Success");
             res.send(rows);

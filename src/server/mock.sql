@@ -1,3 +1,4 @@
+use malicsi;
 insert into userAffiliation values(1, 'UPLB ASTROSOC');
 insert into userAffiliation values(2, 'UPLB ASTROSOC');
 insert into userAffiliation values(3, 'CHORAL ENSEMBLE');

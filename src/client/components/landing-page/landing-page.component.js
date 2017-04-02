@@ -76,15 +76,11 @@
                                         teams.push(team);
 
                                     });
-                                
                             }
 
                             vm.objects.push({ eventName: event, eventTeams: teams })
                         });
                 }
-
-
-                //console.log(vm.objects);
             }
 
             $('.collapsible').collapsible();

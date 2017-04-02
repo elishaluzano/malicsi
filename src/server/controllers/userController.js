@@ -10,13 +10,13 @@ exports.getAccount = (req, res) => {
 };
 // login
 exports.loginUser = (req, res) => {
-	connection.query('SELECT * FROM user WHERE username = ? and password = ?',[req.body.username, req.body.password], function(err, rows, fields) {
+	connection.query('SELECT * FROM user WHERE username = ? and password = ?',[req.body.username, crypt.encrypt(req.body.password)], function(err, rows, fields) {
 		if (!err){
 			if (rows.length === 0) {
 				res.send(false);
 				console.log("Login unsuccessful");
 			}
-			else if(req.body.password == crypt.decrypt(req.body.password)){
+			else {
 				req.session.user = rows[0];
 				console.log("Successfully logged in user");
 				res.send(rows[0]);
@@ -58,8 +58,8 @@ exports.addUser = (req, res) => {
 
 // logout
 exports.logout = (req, res) => {
-    req.session.user = {};
-    res.send({});
+    req.session.user = null;
+    res.send(null);
 };
 
 // GET all users
@@ -103,6 +103,7 @@ exports.updateUser = (req, res) => {
 		}
 		else {
 			res.send(err);
+            console.log(err);
 			console.log("Error in editing user");
 		}
 	});
@@ -112,11 +113,12 @@ exports.updateUser = (req, res) => {
 exports.deleteUser = (req, res) => {
 	connection.query('DELETE FROM user WHERE user_id = ?',[req.params.id], function(err, rows, fields) {
 		if (!err) {
-			res.send({});
+			res.send(null);
 			console.log("Successfully deleted user");
 		}
 		else {
 			res.send(err);
+            console.log(err);
 			console.log("Error in deleting user");
 		}
 	});
@@ -209,7 +211,7 @@ exports.addAdmin = (req, res) => {
 exports.deleteAdmin = (req, res) => {
     connection.query('DELETE FROM institutionHasAdmin where institution_no = ? and user_no = ?',[req.params.institution_id, req.params.user_id],function(err, rows, fields){
         if (!err){
-            res.send({});
+            res.send(null);
             console.log("Successfully deleted an admin");
         }
         else {

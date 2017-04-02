@@ -77,7 +77,7 @@ exports.deleteTeam = (req,res) => {
             res.send(err);
          }
         else {
-            res.send({});
+            res.send(null);
             console.log("Successfully deleted a team.");
         }
 	});
@@ -133,7 +133,7 @@ exports.deleteIsComposedOf = (req,res) => {
             res.send(err);
          }
         else {
-            res.send({});
+            res.send(null);
             console.log("Successfully delete isComposedOf relation.");
         }
 	});
@@ -183,7 +183,7 @@ exports.addPlays = (req, res) => {
 exports.deletePlays = (req, res) => {
 	connection.query('DELETE FROM teamPlaysGame where team_id_play = ? and game_id_play = ?', [ req.params.id, req.params.game ], function(err, rows, fields) {
 		if(!err) {
-			res.send({});
+			res.send(null);
 			console.log("Successfully deleted plays");
 		} else {
 			res.send(err);
