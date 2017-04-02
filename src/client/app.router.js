@@ -13,7 +13,12 @@
             .state({
                 name: 'userPage',
                 url: '/user/{userId}',
-                component: 'userPage'
+                component: 'userPage',
+                resolve: {
+                    user: function(userService, $transition$){
+                        return userService.getOne($transition$.params().userId);
+                    }
+                }
             })
             .state({
                 name: 'registrationPage',
@@ -25,10 +30,9 @@
                 url: '/schedule',
                 component: 'schedulePage',
                 resolve: {
-                    games: function(gameService){
-                        return gameService.getAll();
+                    games: function(sportService){
+                        return sportService.getAll();
                     }
-                
                 }
             })
             .state({
@@ -53,6 +57,16 @@
                 }
             })
             .state({
+                name: 'eventPage',
+                url: '/event/{eventId}',
+                component: 'eventPage',
+                resolve: {
+                    event: function(eventService, $transition$) {
+                        return eventService.getOne($transition$.params().eventId);
+                    }
+                }
+            })
+            .state({
                 name: 'doneEventPage',
                 url: '/done-event/{eventId}',
                 component: 'doneEventPage',
@@ -62,6 +76,25 @@
                 resolve: {
                     event: function($stateParams, eventService) {
                         return eventService.getGeneralInformation($stateParams.eventId);
+                    }
+                }
+            })
+            .state({
+                name: 'searchAllPage',
+                url: '/search-all/{query}',
+                component: 'searchAllPage',
+                resolve: {
+                    users: function(searchService, $transition$) {
+                        return searchService.users($transition$.params().query);
+                    },
+                    institutions: function(searchService, $transition$) {
+                        return searchService.institutions($transition$.params().query);
+                    },
+                    events: function(searchService, $transition$) {
+                        return searchService.events($transition$.params().query);
+                    },
+                    teams: function(searchService, $transition$) {
+                        return searchService.teams($transition$.params().query);
                     }
                 }
             });

@@ -12,7 +12,6 @@
 
     function doneEventPageController(eventService, gameService) {
         var vm = this;
-       //vm.getInfo = vm.$onInit;
         vm.allSports = [];
         vm.allGamesInSport = [];
 
@@ -44,7 +43,6 @@
                                 }
                             });  
                     }
-                    console.log("All Sports: ", vm.allSports);
                 });
             
         }
