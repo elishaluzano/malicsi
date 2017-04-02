@@ -40,6 +40,7 @@ exports.addLog = (req, res) => {
     }
     connection.query('INSERT INTO userlog SET ?', newLog, function(err, rows, fields){
         if (!err) {
+            newLog.log_id = rows.insertId;
             res.send(newLog);
             console.log("Successfully added new log");
         }

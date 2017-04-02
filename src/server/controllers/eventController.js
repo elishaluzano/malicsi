@@ -16,6 +16,7 @@ exports.addEvent = (req,res) => {
 	};
 	connection.query('INSERT INTO event SET ?', info, function(err, rows, fields) {
 		if (!err) {
+		    info.event_id = rows.insertId;
 			res.send(info);
 			console.log("Successfully added event");
 		}
@@ -73,6 +74,7 @@ exports.viewEventDetails = (req,res) => {
 
 exports.updateEvent = (req,res) => {
     var info = {
+        event_id : req.params.id,
 		event_title: req.body.event_title,
 		venue: req.body.venue,
 		start_date: req.body.start_date,

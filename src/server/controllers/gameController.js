@@ -15,6 +15,7 @@ exports.addGame = (req,res) => {
 	};
 	connection.query('INSERT INTO game SET ?', info, function(err, rows, fields) {
 		if (!err) {
+		    info.game_id = rows.insertId;
 			res.send(info);
 			console.log("Successfully added game");
 		}
