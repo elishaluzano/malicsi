@@ -208,7 +208,7 @@ exports.addAdmin = (req, res) => {
     };
     connection.query('INSERT INTO institutionHasAdmin set ?', newAdmin, function(err, rows, fields){
         if (!err){
-            res.send(rows[0]);
+            res.send(newAdmin);
             console.log("Successfully added new admin");
         }
         else {
