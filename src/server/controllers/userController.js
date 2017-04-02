@@ -17,6 +17,7 @@ exports.loginUser = (req, res) => {
 				console.log("Login unsuccessful");
 			}
 			else {
+			    rows[0].password = crypt.decrypt(rows[0].password);
 				req.session.user = rows[0];
 				console.log("Successfully logged in user");
 				res.send(rows[0]);
@@ -44,9 +45,11 @@ exports.addUser = (req, res) => {
 	};
 	connection.query('INSERT INTO user SET ?', newUser, function(err, rows, fields) {
 		if (!err) {
-			req.session.user = newUser;
-			res.send(rows[0]);
-			console.log("Successfully added user");
+		    newUser.password = crypt.decrypt(newUser.password);
+    		req.session.user = newUser;
+    		newUser.user_id = rows.insertId;
+    		res.send(newUser);
+    		console.log("Successfully added user");
 		}
 		else {
 			console.log(err);
@@ -83,7 +86,9 @@ exports.getUsers = (req, res) => {
 exports.getUser = (req, res) => {
 	connection.query('SELECT * FROM user where user_id = ?', [req.params.id], function(err, rows, fields) {
 		if (!err) {
-			rows[0].password = crypt.decrypt(rows[0].password);
+            if (rows[0]) {
+			    rows[0].password = crypt.decrypt(rows[0].password);
+            }
 			res.send(rows[0]);
 			console.log("Successfully retrieved user");
 		}
@@ -96,10 +101,23 @@ exports.getUser = (req, res) => {
 
 // PUT specific user
 exports.updateUser = (req, res) => {
+    var newUser = {
+        user_id : req.params.id,
+		name : req.body.name,
+		username : req.body.username,
+		password : crypt.encrypt(req.body.password),
+		gender : req.body.gender,
+		birthday : req.body.birthday,
+		email : req.body.email,
+		contact_number : req.body.contact_number,
+		contact_person : req.body.contact_person,
+		profile_pic : req.body.profile_pic
+	};
 	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, crypt.encrypt(req.body.password), req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, req.body.profile_pic, req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
-			res.send(rows[0]);
+			newUser.password = crypt.decrypt(newUser.password);
+			res.send(newUser);
 		}
 		else {
 			res.send(err);
@@ -144,12 +162,12 @@ exports.searchUser = (req,res) => {
 exports.checkAdmin = (req, res) => {
     connection.query('SELECT * FROM user JOIN institutionHasAdmin ON user.user_id = institutionHasAdmin.user_no where user.user_id = ?', [req.params.id], function(err, rows, fields) {
         if (!err){
-            if (rows[0] !== null){
+            if (rows.length !== 0){
                 res.send(rows[0]);
                 console.log("User is an admin");
             }
             else {
-                res.send(false);
+                res.send({});
                 console.log("User is not an admin");
             }
         }
@@ -196,7 +214,7 @@ exports.addAdmin = (req, res) => {
     };
     connection.query('INSERT INTO institutionHasAdmin set ?', newAdmin, function(err, rows, fields){
         if (!err){
-            res.send(rows[0]);
+            res.send(newAdmin);
             console.log("Successfully added new admin");
         }
         else {
@@ -220,3 +238,5 @@ exports.deleteAdmin = (req, res) => {
         }
     });
 };
+
+

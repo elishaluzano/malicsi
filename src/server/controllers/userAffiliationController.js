@@ -3,17 +3,17 @@ const connection = require('./../database.js');
 
 
 exports.addUserAffiliation = (req,res) =>{
-	var user_affilitaion = {
+	var user_affiliation = {
 		user_no: req.body.user_no,
 		affiliation : req.body.affiliation
 	};
-	connection.query('INSERT INTO userAffiliation SET ?', user_affilitaion, function(err, rows, fields){
+	connection.query('INSERT INTO userAffiliation SET ?', user_affiliation, function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
          }
         else {
-            res.send(rows);
+            res.send(user_affilitaion);
             console.log("Successfully added a user affiliaton");
         }
 	});
@@ -39,20 +39,24 @@ exports.viewUserAffiliation = (req,res) => {
             res.send(err);
          }
         else {
-            res.send(rows[0]);
+            res.send(rows);
             console.log("Successfully viewed a useraffiliation.");
         }
 	});
 };
 
 exports.updateUserAffiliation = (req,res) => {
-	connection.query('UPDATE userAffiliation SET affiliation = ? WHERE user_no = ?', [ req.body.affiliation, req.body.user_no ], function(err, rows, fields){
+    var user_affiliation = {
+		user_no: req.params.id,
+		affiliation : req.body.affiliation
+	};
+	connection.query('UPDATE userAffiliation SET affiliation = ? WHERE user_no = ?', [ req.body.affiliation, req.params.id ], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
          }
         else {
-            res.send(rows);
+            res.send(user_affiliation);
             console.log("Successfully updated useraffiliation.");
         }
 	});

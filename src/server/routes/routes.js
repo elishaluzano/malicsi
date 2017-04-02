@@ -3,6 +3,9 @@
 var express = require('express');
 var router = express.Router();
 
+//uploader
+var uploadCtrl = require('../controllers/uploadController.js');
+
 var userCtrl = require('../controllers/userController.js');
 //user account routes
 router.post('/api/login', userCtrl.loginUser);
@@ -114,6 +117,7 @@ router.get('/api/teams/:id', teamCtrl.viewTeam);
 router.get('/api/teams/search/:search', teamCtrl.searchTeam);
 router.put('/api/teams/:id', teamCtrl.updateTeam);
 router.delete('/api/teams/:id', teamCtrl.deleteTeam);
+router.get('/api/teams/:id/allgameinfo', teamCtrl.getAllGameInfo);
 
 //team isComposedOf routes
 router.get('/api/teams/composedOf', teamCtrl.getAllIsComposedOf);
