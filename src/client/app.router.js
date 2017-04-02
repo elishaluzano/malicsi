@@ -17,6 +17,21 @@
                 resolve: {
                     user: function(userService, $transition$){
                         return userService.getOne($transition$.params().userId);
+                    },
+                    componentName: function($state) {
+                        return $state.current.name;
+                    },
+                    params: function($state) {
+                        return $state.params;
+                    }
+                },
+                onEnter: function(user, componentName, params, $state) {
+                    if (!user) {
+                        Materialize.toast('User does not exist', 3000, 'red');
+                        if (!componentName) {
+                            componentName = 'landingPage';
+                        }
+                        $state.go(componentName, params);
                     }
                 }
             })
@@ -63,6 +78,21 @@
                 resolve: {
                     event: function(eventService, $transition$) {
                         return eventService.getOne($transition$.params().eventId);
+                    },
+                    componentName: function($state) {
+                        return $state.current.name;
+                    },
+                    params: function($state) {
+                        return $state.params;
+                    }
+                },
+                onEnter: function(event, componentName, params, $state) {
+                    if (!event) {
+                        Materialize.toast('Event does not exist', 3000, 'red');
+                        if (!componentName) {
+                            componentName = 'landingPage';
+                        }
+                        $state.go(componentName, params);
                     }
                 }
             })
@@ -86,7 +116,8 @@
                 }
             });
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/')
+
     }
 
 })();
