@@ -17,7 +17,7 @@ CREATE TABLE user (
     birthday date NOT NULL,
     email varchar(30),
     contact_number varchar(11),
-    contact_person int,
+    contact_person int default NULL,
     profile_pic text,
     isOverallAdmin boolean default false,
     constraint user_username_uk unique key (username),
@@ -93,6 +93,7 @@ CREATE TABLE eventHasSport (
 CREATE TABLE team (
     team_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(20) NOT NULL,
+    picture text default NULL,
     event_id_key int NOT NULL,
     CONSTRAINT team_event_id_key_fk FOREIGN KEY (event_id_key) REFERENCES event (event_id) ON DELETE CASCADE
 );
