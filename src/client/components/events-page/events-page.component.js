@@ -25,13 +25,6 @@
             vm.$onInit = function() {
                 vm.modalOpen = true; 
 
-                institutionService.getAll()
-                    .then(function(data) {
-                        for (let institutions of data) {
-                            
-                        }
-                    })
-
                 /* check the current user if admin */
                 vm.user = sessionService.user();
 
