@@ -98,10 +98,22 @@ exports.getUser = (req, res) => {
 
 // PUT specific user
 exports.updateUser = (req, res) => {
+    var newUser = {
+		name : req.body.name,
+		username : req.body.username,
+		password : crypt.encrypt(req.body.password),
+		gender : req.body.gender,
+		birthday : req.body.birthday,
+		email : req.body.email,
+		contact_number : req.body.contact_number,
+		contact_person : req.body.contact_person,
+		profile_pic : req.body.profile_pic
+	};
 	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, crypt.encrypt(req.body.password), req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, req.body.profile_pic, req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
-			res.send(rows[0]);
+			newUser.password = crypt.decrypt(newUser.password);
+			res.send(newUser);
 		}
 		else {
 			res.send(err);
@@ -144,7 +156,7 @@ exports.searchUser = (req,res) => {
 exports.checkAdmin = (req, res) => {
     connection.query('SELECT * FROM user JOIN institutionHasAdmin ON user.user_id = institutionHasAdmin.user_no where user.user_id = ?', [req.params.id], function(err, rows, fields) {
         if (!err){
-            if (rows[0] !== null){
+            if (rows.length !== 0){
                 res.send(rows[0]);
                 console.log("User is an admin");
             }
