@@ -19,8 +19,9 @@ CREATE TABLE user (
     contact_number varchar(11),
     contact_person int,
     profile_pic text,
+    isOverallAdmin boolean default false,
     constraint user_username_uk unique key (username),
-    constraint user_contact_person_fk foreign key (contact_person) references contactPersonInCaseOfEmergency(contact_person_id) 
+    constraint user_contact_person_fk foreign key (contact_person) references contactPersonInCaseOfEmergency(contact_person_id)
     ON DELETE SET NULL
 );
 
@@ -56,6 +57,7 @@ CREATE TABLE event (
     venue varchar(50) NOT NULL,
     start_date date NOT NULL,
     end_date date NOT NULL,
+    picture text,
     institution_id_key int NOT NULL,
     constraint event_institution_key_fk foreign key(institution_id_key) references sponsoringInstitution(institution_id)
     ON DELETE CASCADE
@@ -125,6 +127,7 @@ CREATE TABLE userlog (
   log_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id int NOT NULL,
   username varchar(20) NOT NULL,
+  institution_id int NOT NULL,
   action varchar(100) NOT NULL,
   activity_time timestamp NOT NULL
 );
