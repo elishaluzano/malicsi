@@ -92,6 +92,84 @@ main {
     margin: 0px 15px;
 }
 
+th, td{
+    padding: 10px 5px;
+}
+
+#side-nav-teams {
+    overflow-y: scroll; 
+    min-height: 1000px; 
+    height: 1000px; 
+    bottom: 0; 
+    z-index: 11; 
+    padding: 0;
+}
+
+#side-nav-teams-search {
+    padding: 0px 5px;
+}
+
+#right-team-page {
+    margin-top: 10px;
+}
+
+#team-name {
+    font-size: 36px;
+} 
+
+#team-stats {
+    font-size: 17px;
+}
+
+#upcoming-game {
+    font-weight: bold;
+}
+
+#upcoming-game-inner-div {
+    padding: 0px;
+}
+
+#upcoming-game-inner-inner-div {
+    padding: 0px; transform: translateY(50%);
+}
+
+#vs {
+    color: #717171; font-size: 14px;
+}
+
+#opponent-logo {
+    padding: 0px;
+}
+
+#upcoming-game-details {
+    padding-top: 5px; padding-bottom: 5px;
+}
+
+#last-five-games-div {
+    margin: 15px 0px;
+}
+
+#last-five-games-header {
+    font-size: 18px;
+}
+
+#last-five-games-table {
+    font-size: 14px; margin-bottom: 10px;
+}
+
+#players-header {
+    font-size: 18px;
+}
+
+#player-card {
+    padding: 10px;
+}
+
+#modal-edit-logo {
+    padding-left: 0px; margin-right: 5px;
+}
+
+
 #user-image {
     height: 100px;
     width: 100px;
@@ -209,3 +287,4 @@ div.tab-custom button.active {
 .pointer {
     cursor: pointer;
 }
+

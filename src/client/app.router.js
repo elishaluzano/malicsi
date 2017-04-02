@@ -22,6 +22,7 @@
                         return $state.current.name;
                     },
                     params: function($state) {
+                        console.log($state.params);
                         return $state.params;
                     }
                 },
@@ -89,6 +90,41 @@
                 onEnter: function(event, componentName, params, $state) {
                     if (!event) {
                         Materialize.toast('Event does not exist', 3000, 'red');
+                        if (!componentName) {
+                            componentName = 'landingPage';
+                        }
+                        $state.go(componentName, params);
+                    }
+                }
+            })
+            .state({
+                name: 'teamPage',
+                url: '/team/{teamId}',
+                component: 'teamPage',
+                resolve: {
+                    allGameInfo: function(teamService, $transition$) {
+                        return teamService.getAllGameInfo($transition$.params().teamId);
+                    },
+                    players: function(teamService, $transition$) {
+                        return teamService.getPlayers($transition$.params().teamId);
+                    },
+                    allGames: function(teamService, $transition$) {
+                        return teamService.getGames($transition$.params().teamId);
+                    },
+                    currentTeam: function(teamService, $transition$) {
+                        return teamService.getOne($transition$.params().teamId);
+                    },
+                    componentName: function($state) {
+                        return $state.current.name;
+                    },
+                    params: function($state) {
+                        console.log($state);
+                        return $state.params;
+                    }
+                },
+                onEnter: function(currentTeam, componentName, params, $state) {
+                    if (!currentTeam) {
+                        Materialize.toast('Team does not exist', 3000, 'red');
                         if (!componentName) {
                             componentName = 'landingPage';
                         }

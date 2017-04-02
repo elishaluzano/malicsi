@@ -114,6 +114,7 @@ router.get('/api/teams/:id', teamCtrl.viewTeam);
 router.get('/api/teams/search/:search', teamCtrl.searchTeam);
 router.put('/api/teams/:id', teamCtrl.updateTeam);
 router.delete('/api/teams/:id', teamCtrl.deleteTeam);
+router.get('/api/teams/:id/allgameinfo', teamCtrl.getAllGameInfo);
 
 //team isComposedOf routes
 router.get('/api/teams/composedOf', teamCtrl.getAllIsComposedOf);
