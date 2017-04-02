@@ -92,7 +92,6 @@ main {
     margin: 0px 15px;
 }
 
-<<<<<<< HEAD
 th, td{
     padding: 10px 5px;
 }
@@ -169,6 +168,7 @@ th, td{
 #modal-edit-logo {
     padding-left: 0px; margin-right: 5px;
 }
+
 
 #user-image {
     height: 100px;
@@ -287,3 +287,4 @@ div.tab-custom button.active {
 .pointer {
     cursor: pointer;
 }
+
