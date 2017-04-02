@@ -11,16 +11,21 @@
     <!-- FOR NAVIGATION CSS -->
     <link type="text/css" rel="stylesheet" href="../index_page/index.css" />
 
+    <!-- FOR SOON PAGE CSS -->
+    <link type="text/css" rel="stylesheet" href="view_soon_page.css" />
+
     <!-- FOR CUST TABS-->
     <link type = "text/css" rel = "stylesheet" href="custtabs.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="countdown.js" type="text/javascript"></script>
   </head>
   <body>
 
   <!--========================================================== NAVIGATION =========================================================-->
+    <div id="top"></div>
     <div class ="navbar-fixed">
-      <nav id="top" class="white">
+      <nav class="white">
       <div class="nav-wrapper">
         <a class="left" id="malicsi-logo-link" href="#">
           <img src="../images/malicsi-logo.png">
@@ -84,8 +89,7 @@
 
     <!--========================================================== END OF NAVIGATION =========================================================-->
 
-
-    <div class = "row">
+    <div class = "row" id="main-content">
       <div class = "col m3 l3 hide-on-small-only">
           <div class="card">
               <div class="card-content">
@@ -143,7 +147,12 @@
                   </form>
               </div>
          </div>
+        <!-- TIMER -->
+        <div class=" col l12 container row" id="timer">
+          <script type="application/javascript" src="soon_event.js"></script>
+        </div>
       </div>
+
 
 
     <!--
@@ -157,7 +166,7 @@
     <div class="row">
       <div class = "tab-custom" id = "addhere">
         <button onClick = "openData(event, 'teams')" class = "white-text black">Teams</button>
-        <button onClick = "createDate()" class="red lighten-1 white-text">Add date</button>
+        <button data-target="add-date-modal" class="red lighten-1 white-text">Add date</button>
         <button class = "tablinks active" onclick="openData(event,'June_12_game')" id ="defaultOpen">June 12</button>
         <button class = "tablinks" onclick="openData(event,'June_13_game')">June 13</button>
         <button class = "tablinks" onclick="openData(event,'June_14_game')">June 14</button>
@@ -483,7 +492,7 @@
     </div> <!-- end Div for day 3 -->
 
     <div id = "new_game" class = "tabcontent">
-      No sports yet. Add a sport? <div class = "chip green white-text">+</div>
+      No sports yet. Add a sport?<a href="#add-sport-modal" class="chip blue white-text">+</a>
     </div>
 
     <div id = "teams" class = "tabcontent">
@@ -494,7 +503,7 @@
       <tr>
         <td>UPLB SELES</td>
         <td>
-          <a href ="#join-modal" data-target="join-modal"><div class = "chip green white-text tooltipped" data-delay= "50" data-tooltip ="If player does not have a team">Join</div></a>
+          <a href ="#join-modal"><div class = "chip green white-text tooltipped" data-delay= "50" data-tooltip ="If player does not have a team">Join</div></a>
           <div class = "chip grey white-text tooltipped" data-delay= "50" data-tooltip ="Grey-ed out">Cancel</div>
           <div class = "chip orange white-text tooltipped" data-delay= "50" data-tooltip ="For admin only">Edit</div>
           <div class = "chip red white-text  tooltipped" data-delay= "50" data-tooltip ="For admin only">Delete</div>
@@ -513,14 +522,14 @@
       </tbody>
       </table>
       </div>
-      Add a team? <div class = "chip blue white-text">+</div>
+      Add a team? <a class = "chip blue white-text" href="#add-team-modal">+</a>
     </div>
 
     <div id = "June_15_game" class = "tabcontent">
       <ul class="collapsible" data-collapsible="expandable" id = "test1">
      <li class="active">
           <div class="collapsible-header active"><h5>Basketball - Men's</h5></div>
-          <div class="collapsible-body ">Add a game schedule <div class = "chip blue white-text">+</div></div>
+          <div class="collapsible-body ">Add a game schedule<a class="blue chip white-text" href="#add-game-schedule">+</a></div>
         </li>
         
       </ul>
@@ -533,14 +542,148 @@
         </div>
 
     <div id="join-modal" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
+      <div class="modal-content">
+        <h4>Join Team</h4>
+        <p>Are you sure you would like to join this team?</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">No</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+      </div>
     </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+
+    <div id="add-sport-modal" class="modal">
+      <div class="modal-content">
+        <h4>Add a Sport</h4>
+        <p>Please enter the name of the sport you wish to add.</p>
+        <form>
+          <div class="input-field">
+            <input type="text" placeholder="New Sport Name" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+      </div>
     </div>
-  </div>
+
+    <div id="add-team-modal" class="modal">
+      <div class="modal-content">
+        <h4>Add a Sport</h4>
+        <p>Please enter the name of the team you wish to add.</p>
+        <form>
+          <div class="input-field">
+            <input type="text" placeholder="New Team Name" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+      </div>
+    </div>
+
+    <div id="add-date-modal" class="modal">
+      <div class="modal-content">
+        <h4>Add date</h4>
+        <p>Please enter the date you wish to add.</p>
+        <form>
+          <div class="row">
+            <div class="input-field col l8">
+              <i class="material-icons prefix">date_range</i><input type="date" class="datepicker" placeholder="Choose Date">
+            </div>
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+      </div>
+    </div>
+
+    <!-- ADD GAME SCHEDULE MODAL -->
+    <div id="add-game-schedule" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Add Game Schedule</h4>
+        <div class="divider"></div>
+        <br>
+        <form>
+          <!-- Choose which two teams will play against each other -->
+          <div class="row container">
+            <div class="input-field col m4 l4">
+              <h5>TEAM 1</h5>
+              <select>
+                <option value="UP SELES">UP SELES</option>
+                <option value="RED RANGERS">RED RANGERS</option>
+                <option value="BLUE TIGERS">BLUE TIGERS</option>
+              </select>
+            </div>
+
+            <div class="col m2 l2 offset-l1 offset-m1">
+              <br>
+              <h4>VS</h4>
+            </div>
+
+            <div class="input-field col m4 l4 offset-m1 offset-l1">
+              <h5>TEAM 2</h5>
+              <select>
+                <option value="UP SELES">UP SELES</option>
+                <option value="RED RANGERS">RED RANGERS</option>
+                <option value="BLUE TIGERS">BLUE TIGERS</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Set the time of the event -->
+          <div class="row container">
+            <form>
+              <div class="col m6 l6">
+                <h5>Event Start Time</h5>
+                <div class="input-field col m6 l6">
+                  <input type="text" id="hour"/>
+                  <label for="hour">HH</label>
+                </div>
+                <div class="input-field col m6 l6">
+                  <input type="text" id="minute">
+                  <label for="minute">MM</label>
+                </div>
+              </div>
+
+              <div class="col m6 l6">
+                <h5>Event End Time</h5>
+                <div class="input-field col m6 l6">
+                  <input type="text" id="hour"/>
+                  <label for="hour">HH</label>
+                </div>
+                <div class="input-field col m6 l6">
+                  <input type="text" id="minute">
+                  <label for="minute">MM</label>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Set the venue of the event -->
+          <div class="row container">
+            <form>
+              <div class="col m12 l12">
+                <h5>Venue</h5>
+                <input type="text"/>
+              </div>
+            </form>
+          </div>
+        </form>
+      </div>
+      
+      <div class="modal-footer">
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-red">Cancel</a>
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-green">Done</a>
+      </div>
+    </div>
+    <!-- END GAME SCHEDULE MODAL-->
+
     <!-- footer -->
 
     <footer class="red page-footer">
@@ -570,7 +713,6 @@
     </footer>
 
 
-  </body>
 
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.js"></script>
@@ -580,33 +722,35 @@
     <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
 
     <!--NAVIGATION JS-->
-    <script src="../index_page/index.js"></script>
+    <script src="view_events.js"></script>
 
     <!--Customize tabs-->
     <script type="text/javascript" src = "custtab.js"></script>
     <script>
-    var n = 16;
-    function createDate(){
-      
-      var para = document.createElement("BUTTON");
-      var t = document.createTextNode("June " + n);
-      para.className = "tablinks";
-      para.setAttribute("onClick","openData(event,'new_game')");
-      para.appendChild(t);
-      document.getElementById("addhere").appendChild(para);
+      var n = 16;
+      function createDate(){
+        
+        var para = document.createElement("BUTTON");
+        var t = document.createTextNode("June " + n);
+        para.className = "tablinks";
+        para.setAttribute("onClick","openData(event,'new_game')");
+        para.appendChild(t);
+        document.getElementById("addhere").appendChild(para);
 
-      var content = document.createElement("div");
-      var s = document.createTextNode("HEHEE");
-      
-      content.className = "tabcontent";
-      // content.setAttribute("id","June_"+n+ "_game");
-      content.setAttribute("id","new_game");
+        var content = document.createElement("div");
+        var s = document.createTextNode("HEHEE");
+        
+        content.className = "tabcontent";
+        // content.setAttribute("id","June_"+n+ "_game");
+        content.setAttribute("id","new_game");
 
-       content.appendChild(s);
-      document.getElementById("game_container").appendChild(content);
-      n++;
-      Materialize.toast('Added new day!', 3000)
-    }
-    $('.tooltipped').tooltip('remove')
+         content.appendChild(s);
+        document.getElementById("game_container").appendChild(content);
+        n++;
+        Materialize.toast('Added new day!', 3000)
+      }
+      $('.tooltipped').tooltip('remove');
     </script>
+  </body>
+    
 </html>
