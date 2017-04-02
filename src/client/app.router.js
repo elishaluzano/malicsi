@@ -58,7 +58,7 @@
                 resolve: {
                     events: function(eventService) {
                         return eventService.getAll();
-                    } 
+                    }
                 }
             })
             .state({
@@ -68,7 +68,6 @@
                 resolve: {
                     events: function(eventService) {
                         return eventService.getAll();
-
                     }
                 }
             })
