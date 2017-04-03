@@ -17,7 +17,7 @@ exports.addSponsoringInstitution = (req,res) => {
          }
         else {
             institution.institution_id = rows.insertId;
-            res.send('Successfully added an institution.');
+            console.log('Successfully added an institution.');
             res.send(institution);
         }
 	});
@@ -71,7 +71,7 @@ exports.updateSponsoringInstitution = (req,res) => {
             res.send(err);
          }
         else {
-            res.send('Successfully updated an institution.');
+            console.log('Successfully updated an institution.');
             res.send(institution);
         }
 	});
