@@ -38,6 +38,7 @@ router.delete('/api/contacts/:id',contactCtrl.deleteContact);
 //admin routes
 router.get('/api/checkAdmin/:id', userCtrl.checkAdmin);
 router.get('/api/checkAdminOfTeam/:user_id/:team_id', userCtrl.checkAdminOfTeam);
+router.get('/api/admins/:id/institutions', userCtrl.getInstitutionByAdmin);
 router.get('/api/admins', userCtrl.getAdmins);
 router.get('/api/admins/:id', userCtrl.getAdmin);
 router.post('/api/admins', userCtrl.addAdmin);
