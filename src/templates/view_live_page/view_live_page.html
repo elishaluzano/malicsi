@@ -156,13 +156,28 @@
             
             <div class="card-tabs">
             <ul class="tabs tabs-fixed-width">
-                <li class="tab col s2 disabled"><a class="black-text" href="#history">HISTORY</a></li>
-                <li class="tab col s2 disabled"><a class="black-text" href="#stat">STAT</a></li>
+                <li class="tab col s2"><a class="black-text" href="#history">HISTORY</a></li>
+                <li class="tab col s2"><a class="black-text" href="#stat">STAT</a></li>
                 <li class="tab col s2"><a class="black-text" href="#players">PLAYERS</a></li>
             </ul>
             </div>
 
-            <div id="history" class="col s12">HISTORY</div>
+            <div id="history" class="col s12">
+                <div class="row">
+                    <div class="col l7 left">
+                        <div class="card-panel" id="live-update-left">
+                            <p>Timestamp</p>
+                            <p>What happened</p>
+                        </div>
+                    </div>
+                    <div class="col l7 right">
+                        <div class="card-panel" id="live-update-right">
+                            <p>Timestamp</p>
+                            <p>What happened</p>
+                        </div>
+                    </div>
+                </div>
+            </div>  
             <div id="stat" class="col s12">STATISTICS</div>
            
            <!-- list of all players played on the game -->
