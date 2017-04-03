@@ -270,6 +270,22 @@
                         </button>
                     </div>
                 </div>
+
+                <div ng-if="$ctrl.deletingInstitution">
+                    <div class="col s6 center-align">
+                        <button class="btn green"
+                            ng-click="$ctrl.confirmDeleteInstitution()">
+                            Confirm
+                        </button>
+                    </div>
+
+                    <div class="col s6 center-align">
+                        <button class="btn red"
+                            ng-click="$ctrl.cancelDeleteInstitution()">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
                 
 
 

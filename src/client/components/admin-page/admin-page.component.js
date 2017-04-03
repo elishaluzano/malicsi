@@ -238,7 +238,12 @@
         vm.confirmDeleteInstitution = function() {
             institutionService.delete(vm.selectedInstitution.institution_id)
                 .then(function() {
-                    
+                    vm.institutions = vm.institutions.filter(function(institution) {
+                        if (vm.selectInstitution.institution_id == institution.institution_id) {
+                            return false;
+                        }
+                        return true;
+                    });
                 });
         }
 
