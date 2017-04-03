@@ -23,7 +23,7 @@ describe('Institution', function () {
 	describe('viewSponsoringInstitution()', function () {
 		 it('view institution by id', function (done) {
 			 request(url)
-				 .get('/api/institutions/' + '1')
+				 .get('/api/institutions/' + '7')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);
@@ -49,7 +49,7 @@ describe('Institution', function () {
 	describe('searchSponsoringInstitution()', function () {
 		 it('search institution by name', function (done) {
 			 request(url)
-				 .get('/api/institutions/search' + 'cas')
+				 .get('/api/institutions/search/' + 'CAS')
 				 .end(function(err, res) {
 					 if (err) throw err;
 					 res.should.have.status(200);

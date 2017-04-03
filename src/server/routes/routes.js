@@ -52,11 +52,11 @@ router.get('/api/userlogs/:id', userlogCtrl.getUserlog);
 
 var institutionCtrl = require('../controllers/institutionController.js');
 //institution routes
-router.post('/api/institutions',institutionCtrl.addSponsoringInstitution);
+router.post('/api/institutions',uploadCtrl.upload.single('picture'),institutionCtrl.addSponsoringInstitution);
 router.get('/api/institutions/:id',institutionCtrl.viewSponsoringInstitution);
 router.get('/api/institutions',institutionCtrl.viewAllSponsoringInstitution);
 router.get('/api/institutions/search/:search', institutionCtrl.searchSponsoringInstitution);
-router.put('/api/institutions/:id',institutionCtrl.updateSponsoringInstitution);
+router.put('/api/institutions/:id',uploadCtrl.upload.single('picture'),institutionCtrl.updateSponsoringInstitution);
 router.delete('/api/institutions/:id',institutionCtrl.deleteSponsoringInstitution);
 
 //get all events from an institution
