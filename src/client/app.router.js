@@ -158,6 +158,19 @@
                 }
             })
             .state({
+                name: 'doneEventsPage',
+                url: '/done-events/{eventId}',
+                component: 'doneEventsPage',
+                bindings: {
+                    event: 'event'            
+                },
+                resolve: {
+                    event: function($stateParams, eventService) {
+                        return eventService.getDoneEventInfo($stateParams.eventId);
+                    }
+                }
+            })
+            .state({
                 name: 'searchAllPage',
                 url: '/search-all/{query}',
                 component: 'searchAllPage',
