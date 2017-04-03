@@ -165,9 +165,13 @@
                     event: 'event'            
                 },
                 resolve: {
-                    event: function($stateParams, eventService) {
+                    allGames: function($stateParams, eventService) {
                         return eventService.getDoneEventInfo($stateParams.eventId);
+                    },
+                    event: function($stateParams, eventService) {
+                        return eventService.getOne($stateParams.eventId);
                     }
+
                 }
             })
             .state({
@@ -184,6 +188,29 @@
                     events: function(searchService, $transition$) {
                         return searchService.events($transition$.params().query);
                     },
+                    teams: function(searchService, $transition$) {
+                        return searchService.teams($transition$.params().query);
+                    }
+                }
+            })
+            .state({
+                name: 'searchInstitutionPage',
+                url: '/search-institution/{query}',
+                component: 'searchInstitutionPage',
+                resolve: {
+                    institutions: function(searchService, $transition$) {
+                        return searchService.institutions($transition$.params().query);
+                    },
+                    events: function(eventService) {
+                        return 
+                    }
+                }
+            })
+            .state({
+                name: 'searchTeamPage',
+                url: '/search-team/{query}',
+                component: 'searchTeamPage',
+                resolve: {
                     teams: function(searchService, $transition$) {
                         return searchService.teams($transition$.params().query);
                     }
