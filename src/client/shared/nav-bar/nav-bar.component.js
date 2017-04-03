@@ -21,7 +21,7 @@
 
         vm.$onInit = function() {
             $('#login').webuiPopover({ url:'#login-form' });
-            $('#drop-links').webuiPopover({ url:'#additional-links' });
+            $('#drop-link').webuiPopover({ url:'#additional-links' });
 
             $('.side-nav-button').sideNav({
                 menuWidth: 300,

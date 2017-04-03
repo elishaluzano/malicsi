@@ -12,7 +12,7 @@ main {
     margin: 0px 0px 50px 0px;
 }
 
-#dropdown-links {
+.dropdown-links {
     cursor: pointer;
     font-size: 14px;
     color: #616161;
@@ -21,7 +21,7 @@ main {
     float: left;
 }
 
-#dropdown-links:hover {
+.dropdown-links:hover {
     color: #ff0000;
 }
 

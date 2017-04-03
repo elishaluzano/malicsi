@@ -4,8 +4,8 @@
         .factory('sportService', sportService);
 
     function sportService($http) {
-     
-        var api = '/sports/';
+
+        var api = 'api/sports/';
     
         var service = {    
 

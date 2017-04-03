@@ -89,7 +89,7 @@
       <div class = "col m3 l3 hide-on-small-only">
           <div class="card">
               <div class="card-content">
-                  <span class="card-title">ENGINEERING MEET 2017</span>
+                  <span class="card-title">MALICSI 2018</span>
                   <div class = "divider"></div>
                   <form action="#">
                   <strong>Filter by status</strong>
@@ -161,6 +161,7 @@
         <button class = "tablinks active" onclick="openData(event,'June_12_game')" id ="defaultOpen">June 12</button>
         <button class = "tablinks" onclick="openData(event,'June_13_game')">June 13</button>
         <button class = "tablinks" onclick="openData(event,'June_14_game')">June 14</button>
+        <button class = "tablinks" onclick="openData(event,'June_15_game')">June 15</button>
 
       </div>
 
@@ -175,7 +176,6 @@
             <table>
               <thead>
                 <tr>
-                <th>Status</th>
                 <th>Match-up</th>
                 <th>Score</th>
                 <th>Time</th>
@@ -184,33 +184,48 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><div class = "chip black white-text">done</div></td>
+
                   <td><a href = "../view_team_page/view_team.html">UPCES</a>vs<a href = "../view_team_page/view_team.html">SELES</a></td>
                   <td>100 - 99</td>
                   <td>07:00AM - 08:30AM</td>
                   <td>Copeland Gym</td>
+                  <td>
+                    <div class = "chip orange white-text">Edit</div>
+                    <div class = "chip red lighten-1 white-text">Delete</div>
+                  </td>
                 </tr>
                 <tr>
-                  <td><div class = "chip green white-text">ongoing</div></td>
+                  
                   <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
                   <td>20 - 11</td>
                   <td>10:00AM - 11:30PM</td>
                   <td>Copeland Gym</td>
-                  <td><a href ="view_live_game.html"><div class = "chip orange white-text">View game</div></a></td>
+                  <td>
+                    
+                    <div class = "chip orange white-text">Edit</div>
+                    <div class = "chip red lighten-1 white-text">Delete</div>
+                  </td>
                 </tr>
                 <tr>
-                  <td><div class = "chip green white-text">ongoing</div></td>
+                  
                   <td><a href = "../view_team_page/view_team.html">BUYES</a>vs<a href = "../view_team_page/view_team.html">UPSAID</a></td>
                   <td>99 - 100</td>
                   <td>10:00AM - 11:30PM</td>
                   <td>LBNHS Court</td>
-                  <td><a href ="view_live_game.html"><div class = "chip orange white-text">View game</div></a></td>
+                  <td>
+                    
+                    <div class = "chip orange white-text">Edit</div>
+                    <div class = "chip red lighten-1 white-text">Delete</div>
+                  </td>
                 </tr>
-                <tr><td><div class = "chip red white-text">upcoming</div></td>
+                <tr>
                   <td><a href = "../view_team_page/view_team.html">UP INGINEER</a>vs<a href = "../view_team_page/view_team.html">UP ENGE</a></td>
                   <td>-</td>
                   <td>1:00PM - 2:30PM</td>
                   <td>Copeland Gym</td>
+                  <td>
+                    <div class = "chip orange white-text">Edit</div>
+                    <div class = "chip red lighten-1 white-text">Delete</div></td>
                 </tr>                         
               </tbody>
             </table>
@@ -468,7 +483,7 @@
     </div> <!-- end Div for day 3 -->
 
     <div id = "new_game" class = "tabcontent">
-      No sports yet. Add a sport?
+      No sports yet. Add a sport? <div class = "chip green white-text">+</div>
     </div>
 
     <div id = "teams" class = "tabcontent">
@@ -479,10 +494,10 @@
       <tr>
         <td>UPLB SELES</td>
         <td>
-          <a href ="#join-modal" data-target="join-modal"><div class = "chip green white-text">Join</div></a>
-          <div class = "chip grey white-text">Cancel</div>
-          <div class = "chip orange white-text">Edit</div>
-          <div class = "chip red white-text">Delete</div>
+          <a href ="#join-modal" data-target="join-modal"><div class = "chip green white-text tooltipped" data-delay= "50" data-tooltip ="If player does not have a team">Join</div></a>
+          <div class = "chip grey white-text tooltipped" data-delay= "50" data-tooltip ="Grey-ed out">Cancel</div>
+          <div class = "chip orange white-text tooltipped" data-delay= "50" data-tooltip ="For admin only">Edit</div>
+          <div class = "chip red white-text  tooltipped" data-delay= "50" data-tooltip ="For admin only">Delete</div>
         </td>
 
       </tr>
@@ -498,15 +513,26 @@
       </tbody>
       </table>
       </div>
-      No teams yet. Add a team? <button class = "btn"> Add a team</button>
+      Add a team? <div class = "chip blue white-text">+</div>
     </div>
+
+    <div id = "June_15_game" class = "tabcontent">
+      <ul class="collapsible" data-collapsible="expandable" id = "test1">
+     <li class="active">
+          <div class="collapsible-header active"><h5>Basketball - Men's</h5></div>
+          <div class="collapsible-body ">Add a game schedule <div class = "chip blue white-text">+</div></div>
+        </li>
+        
+      </ul>
+
     </div>
     </div>
     </div>
       </div>
         </div>
+        </div>
 
-        <div id="join-modal" class="modal">
+    <div id="join-modal" class="modal">
     <div class="modal-content">
       <h4>Modal Header</h4>
       <p>A bunch of text</p>
@@ -544,7 +570,7 @@
     </footer>
 
 
-
+  </body>
 
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.js"></script>
@@ -559,7 +585,7 @@
     <!--Customize tabs-->
     <script type="text/javascript" src = "custtab.js"></script>
     <script>
-    var n = 15;
+    var n = 16;
     function createDate(){
       
       var para = document.createElement("BUTTON");
@@ -581,12 +607,6 @@
       n++;
       Materialize.toast('Added new day!', 3000)
     }
+    $('.tooltipped').tooltip('remove')
     </script>
-    <script>
-$(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-  });
-    </script>
-  </body>
 </html>
