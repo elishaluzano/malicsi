@@ -14,6 +14,8 @@
     function searchTeamPageController() {
         var vm = this;
         vm.filters = {};
-        
+        vm.$onInit = function() {
+        	console.log(vm.teams);
+        }
     }
 })();
