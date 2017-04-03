@@ -7,12 +7,11 @@
 -teams should be linked to team_page.html
 -->
 <div class="container">
-	<sport-card></sport-card>
-<table ng-init = "getInfo()">
+<table>
 	<thead>
 		<div class="row">
 			<div class="col s12">
-			  <ul id="tabz" tabs class="tabs-fixed-width red">
+			  <ul tabs class="tabs-fixed-width red">
 				<li class="tab col s3" ng-repeat="sport in $ctrl.allSports track by $index" ><a class="white-text" href="#{{$index}}" >{{ sport.sport }}</a></li>
 			  </ul>
 			</div>
