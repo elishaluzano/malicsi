@@ -23,7 +23,7 @@
                     <td>{{game.time | date: 'HH:mm:ss'}}</td>
                     <td><p ng-repeat="team in game.team"><a href="#">{{team}}</a></p></td>
                     <td><a href="#"><div class="chip">{{game.event}}</div></a></td>
-                    <td><a href="#">{{game.institution}}</a></td>
+                    <td><a ui-sref="sponsorPage({ sponsorId: $ctrl.institution.institution_id })">{{game.institution}}</a></td>
                     <td>{{game.venue}}</td>
                 </tr>
 
