@@ -86,7 +86,9 @@ exports.getUsers = (req, res) => {
 exports.getUser = (req, res) => {
 	connection.query('SELECT * FROM user where user_id = ?', [req.params.id], function(err, rows, fields) {
 		if (!err) {
-			rows[0].password = crypt.decrypt(rows[0].password);
+            if (rows[0]) {
+			    rows[0].password = crypt.decrypt(rows[0].password);
+            }
 			res.send(rows[0]);
 			console.log("Successfully retrieved user");
 		}
@@ -119,6 +121,7 @@ exports.updateUser = (req, res) => {
 		}
 		else {
 			res.send(err);
+            console.log(err);
 			console.log("Error in editing user");
 		}
 	});
@@ -133,6 +136,7 @@ exports.deleteUser = (req, res) => {
 		}
 		else {
 			res.send(err);
+            console.log(err);
 			console.log("Error in deleting user");
 		}
 	});
@@ -163,7 +167,7 @@ exports.checkAdmin = (req, res) => {
                 console.log("User is an admin");
             }
             else {
-                res.send(false);
+                res.send({});
                 console.log("User is not an admin");
             }
         }
