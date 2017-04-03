@@ -14,11 +14,14 @@
         var vm = this;
         vm.allSports = [];
         vm.allGamesInSport = [];
+        vm.institution;
 
         vm.$onInit = function() {
             //$('ul').tabs('select_tab', '0');
+            $('.collapsible').collapsible();
             eventService.getSports(vm.event[0].event_id) 
                 .then(function(sports) {
+                   vm.institution = vm.event[0].institution;
                     vm.allSports = sports.map(function(sport) {
                         return {
                             sport_id: sport.sport_id,
@@ -43,7 +46,6 @@
                                 }
                             });  
                     }
-                    console.log("All Sports: ", vm.allSports);
                 });
             
         }
