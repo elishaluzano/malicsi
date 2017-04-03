@@ -21,10 +21,8 @@
             },
 
             getOne: function(id) {
-                console.log(id);
                 return $http.get(api + id)
                     .then(function(response) {
-                        console.log(response.data);
                         return response.data;
                     })
                     .catch(function(err) {

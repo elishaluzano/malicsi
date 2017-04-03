@@ -1,46 +1,67 @@
-<div id="register-part"> 
-    <div id="register" class="col s12">
-        <h4 id="join-header">Join our Community!</h4>
-        <form class="col s12">
-            <div class="form-container">
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input ng-model="$ctrl.first_name" id="last_name" type="text" class="validate">
-                        <label for="last_name">First Name</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input ng-model="$ctrl.last_name" id="last_name" type="text" class="validate">
-                        <label for="last_name">Last Name</label>
+<div class = "row">
+    <form class = "col s12 l8 m12 offset-l2">
+        <fieldset>
+            <legend style = "padding:5px">Personal Information</legend>
+            <div class = "row">
+                <div class = "input-field">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input ng-model="$ctrl.name" id = "name" type = "text" class = "validate" placeholder = "eg. Juan A. Dela Cruz">
+                    <label for="name">Name</label>
+                </div>
+
+                <div class = "input-field col s8">
+                    <i class = "material-icons prefix">event</i>
+                    <input ng-model="$ctrl.birthday" id = "birthday" type = "date" class = "validate">
+                    <!-- <label for="birthday">Birthday</label> -->  
+                </div>
+
+                <div class = "input-field col s4">
+                    <div id="sex">
+                        <input type="radio" id="male" ng-model="$ctrl.gender" value="male"/> <label for="male">Male</label>
+                        <input type="radio" id="female" ng-model="$ctrl.gender" value="female"/> <label for="female">Female</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input ng-model="$ctrl.email" id="email" type="email" class="validate">
-                        <label for="email">Email</label>
-                    </div>
+
+                <div class = "input-field col s12">
+                    <i class="material-icons prefix">phone</i>
+                    <input ng-model="$ctrl.contact_number" id = "contact_number" type = "text" class = "validate" maxlength = "11" placeholder = "e.g. 09xxxxxxxxx">
+                    <label for="contact_number">Contact number</label>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input  ng-model="$ctrl.email_confirm" id="email-confirm" type="email" class="validate">
-                        <label for="email-confirm">Email Confirmation</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input ng-model="$ctrl.password" id="password" type="password" class="validate">
-                        <label for="password">Password</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input ng-model="$ctrl.password_confirm" id="password-confirm" type="password" class="validate">
-                        <label for="password-confirm">Password Confirmation</label>
-                    </div>
-                </div>
-                <center>
-                    <button class="red btn waves-effect waves-light teal" type="submit" name="action" ng-click="$ctrl.register()">Register</button>
-                </center>
             </div>
-        </form>
-    </div>
+        </fieldset>
+    
+        <fieldset>
+            <legend style = "padding:5px">Account Information</legend>
+            <div class = "row">
+
+                <div class = "input-field">
+                    <i class = "material-icons prefix">perm_contact_calendar</i>
+                    <input ng-model="$ctrl.username" id = "username" type = "text" class = "validate" placeholder = "Username">
+                    <label for="username">Username</label>
+                </div>
+
+                <div class = "input-field col s6">
+                    <i class = "material-icons prefix">lock</i>
+                    <input ng-model="$ctrl.password" id = "password" type = "password" class = "validate" placeholder = "Password">
+                    <label for="password">Password</label>
+                </div>
+
+                <div class = "input-field col s6">
+                    <!-- <i class = "material-icons prefix">lock</i> -->
+                    <input ng-model="$ctrl.password_confirm" id = "password_confirm" type = "password" class = "validate" placeholder = "Re-type password">
+                    <label for="password">Password confirmation</label>
+                </div>
+
+                <div class = "input-field col s12">
+                    <i class="material-icons prefix">email</i>
+                    <input ng-model="$ctrl.email" id = "contact_number" type = "email" class = "validate" placeholder = "e.g. jbguiao@up.edu.ph">
+                    <label for="contact_number">Email address</label>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="center-align">
+            <button class="btn green" style = "margin:5px" ng-click = "$ctrl.register()">Register</button>
+        </div>
+    </form>
 </div>

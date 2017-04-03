@@ -2,21 +2,21 @@
     'use strict';
     angular
         .module('app')
-        .component('doneEventPage',{
-            template: require('./done-event-page.html'),
-            controller: doneEventPageController,
+        .component('doneEventsPage',{
+            template: require('./done-events-page.html'),
+            controller: doneEventsPageController,
             bindings: {
                 event: '<'
             }
         });
 
-    function doneEventPageController(eventService, gameService) {
+    function doneEventsPageController(eventService, gameService) {
         var vm = this;
         vm.allSports = [];
         vm.allGamesInSport = [];
 
         vm.$onInit = function() {
-            // $('ul.tabs').tabs();
+            //$('ul').tabs('select_tab', '0');
             eventService.getSports(vm.event[0].event_id) 
                 .then(function(sports) {
                     vm.allSports = sports.map(function(sport) {
@@ -43,8 +43,10 @@
                                 }
                             });  
                     }
+                    console.log("All Sports: ", vm.allSports);
                 });
             
         }
     }
 })();
+

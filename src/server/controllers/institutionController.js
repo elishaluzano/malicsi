@@ -16,8 +16,9 @@ exports.addSponsoringInstitution = (req,res) => {
             res.send(err);
          }
         else {
+            institution.institution_id = rows.insertId;
             res.send('Successfully added an institution.');
-            res.send(rows[0]);
+            res.send(institution);
         }
 	});
 };
@@ -59,14 +60,19 @@ exports.searchSponsoringInstitution = (req,res) => {
 };
 
 exports.updateSponsoringInstitution = (req,res) => {
-	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ? WHERE institution_id= ?', [req.body.name, req.body.description, req.params.id], function(err, rows, fields){
+    var institution = {
+        institution_id : req.params.id,
+		name : req.body.name,
+		description : req.body.description
+	};
+	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ? WHERE institution_id = ?', [req.body.name, req.body.description, req.params.id], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
          }
         else {
             res.send('Successfully updated an institution.');
-            res.send(rows[0]);
+            res.send(institution);
         }
 	});
 };
@@ -78,7 +84,7 @@ exports.deleteSponsoringInstitution = (req,res) => {
             res.send(err);
          }
         else {
-            res.send({});
+            res.send(null);
         }
 	});
 };

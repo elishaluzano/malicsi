@@ -41,7 +41,7 @@
                         console.log(error.status + ': ' + error.statusText);
                     });
             },
-
+            
             create: function(body) {
                 return $http.post(api, body)
                     .then(function(response) {

@@ -1,52 +1,136 @@
 (function() {
     'use strict';
+
     angular
         .module('app')
-        .component('doneEventPage',{
-            template: require('./done-event-page.html'),
-            controller: doneEventPageController,
-            bindings: {
-                event: '<'
-            }
-        });
+        .factory('eventService', eventService);
 
-    function doneEventPageController(eventService, gameService) {
-        var vm = this;
-       //vm.getInfo = vm.$onInit;
-        vm.allSports = [];
-        vm.allGamesInSport = [];
+    function eventService($http) {
+        var api = '/api/events/';
 
-        vm.$onInit = function() {
-            // $('ul.tabs').tabs();
-            eventService.getSports(vm.event[0].event_id) 
-                .then(function(sports) {
-                    vm.allSports = sports.map(function(sport) {
-                        return {
-                            sport_id: sport.sport_id,
-                            sport: sport.name,
-                            games: []
-                        };
+        var service = {     
+            getAll: function() {
+                return $http.get(api)       
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting all events.');
+                        console.log(err.status + ': ' + err.statusText);
                     });
-                    for(let sport of vm.allSports) {
-                        eventService.getGamesOfSport(vm.event[0].event_id, sport.sport_id)
-                            .then(function(games) {
-                                vm.allGamesInSport = games;
-                                for(let gamesOfSport of vm.allGamesInSport) {
-                                    if(gamesOfSport.sport_id === sport.sport_id && gamesOfSport.status != "PENDING") {
-                                        gameService.getTeamsInGame(gamesOfSport.game_id) 
-                                            .then(function(teams) {
-                                                gamesOfSport.teams = teams;
-                                            })
+            },
 
+            getOne: function(id) {
+                return $http.get(api + id)      
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting one event.');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
 
-                                        sport.games.push(gamesOfSport);
-                                    }
-                                }
-                            });  
-                    }
-                    console.log("All Sports: ", vm.allSports);
+            getSports: function(id) {
+                return $http.get(api + id + '/sports')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting sports of an event.');
+                        console.log(err.status + ': ' + err.statusText);
+                    }); 
+            },
+
+            getTeams: function(id) {
+                return $http.get(api + id + '/teams')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting teams of an event.');
+                        console.log(err.status + ': ' + err.statusText);
+                    });  
+            },
+
+            getGames: function(id) {
+                return $http.get(api + id + '/games')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting games of an event.');
+                        console.log(err.status + ': ' + err.statusText);
+                    }); 
+            },
+
+            getGamesOfSport: function(eventId, sportId) {
+                return $http.get(api + eventId + '/sports/' + sportId + '/games')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting games of an event of a sport.');
+                        console.log(err.status + ': ' + err.statusText);
+                    }); 
+            },
+
+            getGeneralInformation: function(id) {
+                return $http.get(api + id + '/info')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting general information of an event of a sport.');
+                        console.log(err.status + ': ' + err.statusText);
+                    }); 
+            },
+
+            getDoneEventInfo: function(id) {
+                return $http.get(api + id + '/eventinfo')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting general information of an event of a sport.');
+                        console.log(err.status + ': ' + err.statusText);
+                    }); 
+            },
+
+            create: function(body) {
+                return $http.post(api, body)        
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in creating event.');
+                        console.log(err.status + ': ' + err.statusText);
                 });
-            
-        }
-    }
+            },
+
+            update: function(id, body) {
+                return $http.put(api + id, body)        
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in updating event.');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
+            delete: function(id) {
+                return $http.delete(api + id)       
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in deleting an event.');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            }
+        };
+
+        return service;
+    };
 })();
