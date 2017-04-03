@@ -1,4 +1,4 @@
-  qDROP DATABASE IF EXISTS malicsi;
+DROP DATABASE IF EXISTS malicsi;
 CREATE DATABASE malicsi;
 USE malicsi;
 CREATE TABLE contactPersonInCaseOfEmergency (
@@ -34,7 +34,8 @@ CREATE TABLE userAffiliation (
 CREATE TABLE sponsoringInstitution (
     institution_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(50) NOT NULL,
-    description varchar(1000) NOT NULL
+    description varchar(1000) NOT NULL,
+    picture text default NULL
 );
 
 CREATE TABLE institutionHasAdmin (
