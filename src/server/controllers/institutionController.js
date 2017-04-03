@@ -17,8 +17,8 @@ exports.addSponsoringInstitution = (req,res) => {
          }
         else {
             institution.institution_id = rows.insertId;
-            console.log('Successfully added an institution.');
             res.send(institution);
+            console.log("Successfully added an institution");
         }
 	});
 };
@@ -31,6 +31,7 @@ exports.viewSponsoringInstitution = (req,res) => {
          }
         else {
             res.send(rows[0]);
+            console.log("View an institution");
         }
 	});
 };
@@ -43,6 +44,7 @@ exports.viewAllSponsoringInstitution = (req,res) => {
          }
         else {
             res.send(rows);
+            console.log("View all institutions");
         }
 	});
 };
@@ -55,6 +57,7 @@ exports.searchSponsoringInstitution = (req,res) => {
          }
         else {
             res.send(rows);
+            console.log("Searched an institution");
         }
     });
 };
@@ -71,8 +74,8 @@ exports.updateSponsoringInstitution = (req,res) => {
             res.send(err);
          }
         else {
-            console.log('Successfully updated an institution.');
             res.send(institution);
+            console.log("Successfully updated an institution");
         }
 	});
 };
@@ -85,6 +88,7 @@ exports.deleteSponsoringInstitution = (req,res) => {
          }
         else {
             res.send(null);
+            console.log("Successfully deleted an institution");
         }
 	});
 };
@@ -94,10 +98,10 @@ exports.viewEventsInInstitution = (req, res) => {
         if (err) {
             console.log(err);
             res.send(err);
-        }
+         }
         else {
             res.send(rows);
-            console.log("Success");
+            console.log("Viewed institutions in event");
         }
     });
 };
