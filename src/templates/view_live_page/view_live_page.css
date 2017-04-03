@@ -25,3 +25,13 @@
     height: 70%;
     width: 55%;
 }
+
+#live-update-left {
+    text-align: left;
+    padding: 5px 5px 5px 20px;
+}
+
+#live-update-right {
+    text-align: right;
+    padding: 5px 20px 5px 5px;
+}
