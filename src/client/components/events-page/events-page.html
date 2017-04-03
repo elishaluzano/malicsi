@@ -23,7 +23,7 @@
         			</div>
 
         			<div class="input-field">
-          				<i class="material-icons prefix">turned_in</i>
+          				<i class="material-icons prefix">room</i>
           				<input id="icon_prefix" type="text" name="searchinput" ng-model="$ctrl.venue">
           				<label for="icon_prefix">Venue</label>
         			</div>
@@ -40,15 +40,13 @@
           				<!-- <label for = "icon_prefix">Event end date</label> -->
         			</div>
 
-<!--
-              <div class = "input-field">
-               <i class="material-icons prefix">assignment_ind</i>
-                <select>
-                  <option value = "" disabled selected ng-repeat="">Sponsoring Institution</option>
+              <div class="input-field col s12">
+                <select id="select-dropdown" class="left black-text browser-default" ng-model="$ctrl.ins">
+                  <option value="" selected disabled>Sponsoring Institution</option>
+                  <option ng-repeat="ins in $ctrl.institutions" value="{{ ins.institution_no }}">{{ ins.name }}</option>
                 </select>
--->
               </div>
-              <br><br>
+              <br><br><br>
 
         			<div class="file-field input-field">
           				<div class="btn">

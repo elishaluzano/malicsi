@@ -44,11 +44,11 @@
                     institution: function(institutionService, $transition$) {
                         return institutionService.getOne($transition$.params().sponsorId);
                     },
+                    
                     componentName: function($state) {
                         return $state.current.name;
                     },
                     params: function($state) {
-                        console.log($state.params);
                         return $state.params;
                     }
                 },
@@ -72,7 +72,7 @@
                 url: '/schedule',
                 component: 'schedulePage',
                 resolve: {
-                    games: function(sportService){
+                    sports: function(sportService){
                         return sportService.getAll();
                     }
                 }
