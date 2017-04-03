@@ -51,6 +51,16 @@
 
                     }
                 }
+            })
+            .state({
+                name: 'searchPlayerPage',
+                url: '/searchPlayers',
+                component: 'searchPlayerPage',
+                resolve: {
+                    users: function(userService) {
+                        return userService.getAll();
+                    }
+                }
             });
 
         $urlRouterProvider.otherwise('/');
