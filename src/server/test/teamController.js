@@ -46,6 +46,7 @@ describe('Team', function(){
 		 it('creates a new team', function (done) {
 			 var team = {
 				 'name': 'Team Test 2',
+				 'picture' : null,
 				 'event_id_key': 1
 			 };
 			 request(url)
@@ -63,6 +64,7 @@ describe('Team', function(){
 		 it('updates a team', function (done) {
 			 var team = {
 				 'name': 'Team Test Update',
+				 'picture': null,
 				 'event_id_key': 2
 			 };
 			 request(url)
