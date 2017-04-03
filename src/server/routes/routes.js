@@ -10,13 +10,13 @@ var userCtrl = require('../controllers/userController.js');
 //user account routes
 router.post('/api/login', userCtrl.loginUser);
 router.post('/api/sessions', userCtrl.getAccount);
-router.post('/api/users', userCtrl.addUser);
+router.post('/api/users', uploadCtrl.upload.single('profile_pic'), userCtrl.addUser);
 router.post('/api/logout', userCtrl.logout);
 //user routes
 router.get('/api/users', userCtrl.getUsers);
 router.get('/api/users/:id', userCtrl.getUser);
 router.get('/api/users/search/:search', userCtrl.searchUser);
-router.put('/api/users/:id', userCtrl.updateUser);
+router.put('/api/users/:id', uploadCtrl.upload.single('profile_pic'), userCtrl.updateUser);
 router.delete('/api/users/:id', userCtrl.deleteUser);
 
 var userAffiliationCtrl = require('../controllers/userAffiliationController.js');
@@ -64,11 +64,11 @@ router.get('/api/institutions/:id/events',institutionCtrl.viewEventsInInstitutio
 
 var eventCtrl = require('../controllers/eventController.js');
 //event routes
-router.post('/api/events',eventCtrl.addEvent);
+router.post('/api/events',uploadCtrl.upload.single('picture'), eventCtrl.addEvent);
 router.get('/api/events/:id',eventCtrl.viewEvent);
 router.get('/api/events',eventCtrl.viewAllEvent);
 router.get('/api/events/search/:search', eventCtrl.searchEvent);
-router.put('/api/events/:id',eventCtrl.updateEvent);
+router.put('/api/events/:id',uploadCtrl.upload.single('picture'), eventCtrl.updateEvent);
 router.delete('/api/events/:id',eventCtrl.deleteEvent);
 
 //get all event details from an event
@@ -113,11 +113,11 @@ router.get('/api/games/:id/teams',gameCtrl.viewTeamsInGame);
 
 var teamCtrl = require('../controllers/teamController.js');
 //team routes
-router.post('/api/teams', teamCtrl.addTeam);
+router.post('/api/teams', uploadCtrl.upload.single('picture'), teamCtrl.addTeam);
 router.get('/api/teams', teamCtrl.viewAllTeam);
 router.get('/api/teams/:id', teamCtrl.viewTeam);
 router.get('/api/teams/search/:search', teamCtrl.searchTeam);
-router.put('/api/teams/:id', teamCtrl.updateTeam);
+router.put('/api/teams/:id', uploadCtrl.upload.single('picture'), teamCtrl.updateTeam);
 router.delete('/api/teams/:id', teamCtrl.deleteTeam);
 router.get('/api/teams/:id/allgameinfo', teamCtrl.getAllGameInfo);
 
