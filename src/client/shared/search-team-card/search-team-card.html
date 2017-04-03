@@ -1,1 +1,4 @@
-<a class="collection-item white-text" ng-class="$ctrl.color">{{ $ctrl.team.name }}</a>
+<a ui-sref="teamPage({ teamId: $ctrl.team.team_id })"
+    class="collection-item white-text {{ $ctrl.color }}">
+    {{ $ctrl.team.name }}
+</a>

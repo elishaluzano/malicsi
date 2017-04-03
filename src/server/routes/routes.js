@@ -3,6 +3,9 @@
 var express = require('express');
 var router = express.Router();
 
+//uploader
+var uploadCtrl = require('../controllers/uploadController.js');
+
 var userCtrl = require('../controllers/userController.js');
 //user account routes
 router.post('/api/login', userCtrl.loginUser);
