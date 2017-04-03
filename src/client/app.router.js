@@ -124,7 +124,7 @@
             })
             .state({
                 name: 'teamPage',
-                url: '/team',
+                url: '/team/{teamId}',
                 component: 'teamPage',
                 resolve: {
                     allGameInfo: function(teamService, $transition$) {
@@ -148,8 +148,11 @@
                     },
                     allTeams: function(teamService) {
                         return teamService.getAll();
+                    },
+                    teamPlaysGame: function(teamService, $transition$) {
+                        return teamService.getOneTeamPlaysGame($transition$.params().teamId);
                     }
-                },/*
+                },
                 onEnter: function(currentTeam, componentName, params, $state) {
                     if (!currentTeam) {
                         Materialize.toast('Team does not exist', 3000, 'red');
@@ -158,16 +161,21 @@
                         }
                         $state.go(componentName, params);
                     }
-                }*/
+                }
             })
             .state({
-                name: 'teamPage.teamCard',
-                url: '/{teamId}',
-                component: 'teamCard',
+                name: 'teamLandingPage',
+                url: '/teams',
+                component: 'teamLandingPage',
                 resolve: {
-                    currentTeam: function($state, $transition$) {
-                        //console.log(teamPage);
-                        console.log($state);
+                    events: function(eventService, $transition$) {
+                        return eventService.getAll();
+                    },
+                    teams: function(teamService, $transition$) {
+                        return teamService.getAll();
+                    },
+                    teamPlaysGame: function(teamService, $transition$) {
+                        return teamService.getAllTeamPlaysGame();
                     },
                 }
             })

@@ -114,6 +114,8 @@ var teamCtrl = require('../controllers/teamController.js');
 //team routes
 router.post('/api/teams', teamCtrl.addTeam);
 router.get('/api/teams', teamCtrl.viewAllTeam);
+router.get('/api/teams/:id/oneteamplaysgame', teamCtrl.viewOneTeamPlaysGame);
+router.get('/api/teams/teamplaysgame', teamCtrl.viewAllTeamPlaysGame);
 router.get('/api/teams/:id', teamCtrl.viewTeam);
 router.get('/api/teams/search/:search', teamCtrl.searchTeam);
 router.put('/api/teams/:id', teamCtrl.updateTeam);
@@ -124,8 +126,9 @@ router.get('/api/teams/:id/allgameinfo', teamCtrl.getAllGameInfo);
 router.get('/api/teams/composedOf', teamCtrl.getAllIsComposedOf);
 //get all users from a specific team
 router.get('/api/teams/:id/users', teamCtrl.getIsComposedOf);
+router.get('/api/teams/:user_id/userofteam/:team_id', teamCtrl.getIsUserOfTeam);
 router.post('/api/teams/composedOf', teamCtrl.addIsComposedOf);
-router.delete('/api/teams/composedOf/:id', teamCtrl.deleteIsComposedOf);
+router.delete('/api/teams/composedOf/:team_id/:user_id', teamCtrl.deleteIsComposedOf);
 
 //team-plays routes
 router.get('/api/teams/plays', teamCtrl.getAllPlays);
