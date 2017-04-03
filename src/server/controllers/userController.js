@@ -41,7 +41,8 @@ exports.addUser = (req, res) => {
 		email : req.body.email,
 		contact_number : req.body.contact_number,
 		contact_person : req.body.contact_person,
-		profile_pic : (req.file)? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : ''
+		profile_pic : (req.file)? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : '',
+		isOverallAdmin : req.body.isOverallAdmin
 	};
 	connection.query('INSERT INTO user SET ?', newUser, function(err, rows, fields) {
 		if (!err) {
@@ -111,9 +112,10 @@ exports.updateUser = (req, res) => {
 		email : req.body.email,
 		contact_number : req.body.contact_number,
 		contact_person : req.body.contact_person,
-		profile_pic : (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file
+		profile_pic : (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file,
+	    	isOverallAdmin : req.body.isOverallAdmin
 	};
-	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, crypt.encrypt(req.body.password), req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file, req.params.id], function(err, rows, fields) {
+	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, crypt.encrypt(req.body.password), req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file, req.body.isOverallAdmin, req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
 			newUser.password = crypt.decrypt(newUser.password);
