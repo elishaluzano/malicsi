@@ -21,21 +21,24 @@
             vm.start_date = null;
             vm.end_date = null;
             vm.institutions = [];
+            vm.ins = null;
 
             vm.$onInit = function() {
-                vm.modalOpen = true; 
+                vm.modalOpen = true;
+                 $('select').material_select();
 
                 /* check the current user if admin */
                 vm.user = sessionService.user();
-
+                
                 if (vm.user) {
-                    adminService.checkAdmin(user.user_id)
+                     adminService.getInstitutionsByAdmin(vm.user.user_id)
                         .then(function (user) {
-                           if (vm.user) {
+                            if (user) {
+                                vm.institutions.push(user);
                                 vm.isAdmin = true;
-                                console.log(vm.events);
                             }
                         });
+                    
                 }
             }
 
@@ -52,7 +55,6 @@
 
                 eventService.create(body)
                     .then(function(data) {
-                        console.log(data);
                         Materialize.toast("Successfully added an event!", 3000);
                     })
             }

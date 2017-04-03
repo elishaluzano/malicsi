@@ -19,6 +19,17 @@
 					});
 			},
 
+			getInstitutionsByAdmin: function(id) {
+				return $http.get(api + 'getInstitutions/' + id)
+					.then(function(response) {
+						return response.data
+					})
+					.catch(function(err) {
+						console.log("Error in checking admin!");
+						console.log(err.status + ': ' + err.statusText);
+					});
+			},
+
 			getAdmins: function() {
 				return $http.get(api + '/admins')
 					.then(function(response) {
