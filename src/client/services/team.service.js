@@ -108,6 +108,61 @@
                     });
             },
 
+            getAllTeamPlaysGame: function() {
+                return $http.get(api + 'teamplaysgame')
+                    .then(function(response) {
+                        return response.data
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting team plays game');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
+            getOneTeamPlaysGame: function(id) {
+                return $http.get(api + id + '/oneteamplaysgame')
+                    .then(function(response) {
+                        return response.data
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting one team plays game');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
+            addIsComposedOf: function(body) {
+                return $http.post(api + 'composedOf', body)
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in adding team is composed of user!');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
+            deleteIsComposedOf: function(team_id, user_id) {
+                return $http.delete(api + 'composedOf/' + team_id + '/' + user_id)
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in deleting user from team!');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
+            getIsUserOfTeam: function(team_id, user_id) {
+                return $http.get(api + user_id + '/userofteam/' + team_id)
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error checking if team is composed of user!');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
         }
 
         return service;
