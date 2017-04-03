@@ -1,0 +1,124 @@
+<div class="row">
+    <div class="col m3 l3 hide-on-small-only">
+        <div class="card">
+            <div class="card-content">
+
+                <span class="card-title"> 
+                    {{ $ctrl.event.event_title }} 
+                </span>
+
+                <div class="divider"></div>
+
+                <form>
+                    <strong>Filter by status</strong>
+                    <p ng-repeat="(key, value) in $ctrl.statusFilter">
+
+                        <input type="checkbox" 
+                            id="status-{{key}}"
+                            ng-model="$ctrl.statusFilter[key]"
+                            ng-change="$ctrl.filterList()">
+
+                        <label for="status-{{key}}">{{ key }}</label>
+                    </p>
+
+                    <div class="divider"></div>
+
+                    <strong>Filter by sport</strong>
+
+                    <p ng-repeat="(key, value) in $ctrl.sportsFilter">
+                        <input type="checkbox"
+                            id="sport-{{key}}"
+                            ng-model="$ctrl.sportsFilter[key]"
+                            ng-change="$ctrl.filterList()">
+
+                        <label for="sport-{{key}}">{{ key }}</label>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12 m8 l9">
+        <div class="row">
+            <div class="tab-custom">
+                <button class="tablinks" 
+                    ng-repeat="info in $ctrl.filtered"
+                    ng-class="{ active: info.show }"
+                    ng-click="$ctrl.toggleDate(info.date)">
+                    {{ info.date | date: 'MMMM d' }}
+                </button>
+            </div>
+
+            <div ng-show="info.show"
+                class="tabcontent"
+                ng-repeat="info in $ctrl.filtered">
+
+                <ul class="collapsible"
+                    data-collapsible="expandable">
+
+                    <li ng-repeat="sport in info.sports"
+                        ng-if="sport.games.length">
+                        
+                        <div class="collapsible-header">
+                            <h5>{{ sport.sport }}</h5>
+                        </div>
+
+                        <div class="collapsible-body">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Match-Up</th>
+                                        <th>Score</th>
+                                        <th>Time</th>
+                                        <th>Venue</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="game in sport.games track by $index">
+                                        <td>
+                                            <div class="chip white-text {{ game.status.color }}">
+                                                {{ game.status.text }}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a ui-sref="teamPage({ teamId: game.teamsPlaying[0].team_id })"
+                                                style="cursor: pointer;">
+                                                {{ game.teamsPlaying[0].name }}
+                                            </a>
+                                            vs
+                                            <a ui-sref="teamPage({ teamId: game.teamsPlaying[1].team_id })"
+                                                style="cursor: pointer;">
+                                                {{ game.teamsPlaying[1].name }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {{ game.teamsPlaying[0].score }} - {{ game.teamsPlaying[1].score }}
+                                        </td>
+                                        <td>
+                                            {{ game.time | date: 'HH:mma' }}
+                                        </td>
+                                        <td>
+                                            {{ game.venue }}
+                                        </td>
+                                        <td ng-if="game.status.text === 'ONGOING'">
+                                            <a ui-sref="gamePage({ gameId: game.game_id })"
+                                                style="cursor: pointer;">
+                                                <div class="chip orange white-text">
+                                                    View Game
+                                                </div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

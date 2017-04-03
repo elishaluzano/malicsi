@@ -41,7 +41,7 @@ exports.addUser = (req, res) => {
 		email : req.body.email,
 		contact_number : req.body.contact_number,
 		contact_person : req.body.contact_person,
-		profile_pic : req.body.profile_pic
+		profile_pic : (req.file)? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : ''
 	};
 	connection.query('INSERT INTO user SET ?', newUser, function(err, rows, fields) {
 		if (!err) {
@@ -86,7 +86,9 @@ exports.getUsers = (req, res) => {
 exports.getUser = (req, res) => {
 	connection.query('SELECT * FROM user where user_id = ?', [req.params.id], function(err, rows, fields) {
 		if (!err) {
-			rows[0].password = crypt.decrypt(rows[0].password);
+            if (rows[0]) {
+			    rows[0].password = crypt.decrypt(rows[0].password);
+            }
 			res.send(rows[0]);
 			console.log("Successfully retrieved user");
 		}
@@ -109,9 +111,9 @@ exports.updateUser = (req, res) => {
 		email : req.body.email,
 		contact_number : req.body.contact_number,
 		contact_person : req.body.contact_person,
-		profile_pic : req.body.profile_pic
+		profile_pic : (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file
 	};
-	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, crypt.encrypt(req.body.password), req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, req.body.profile_pic, req.params.id], function(err, rows, fields) {
+	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, crypt.encrypt(req.body.password), req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file, req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
 			newUser.password = crypt.decrypt(newUser.password);
@@ -119,6 +121,7 @@ exports.updateUser = (req, res) => {
 		}
 		else {
 			res.send(err);
+            console.log(err);
 			console.log("Error in editing user");
 		}
 	});
@@ -133,6 +136,7 @@ exports.deleteUser = (req, res) => {
 		}
 		else {
 			res.send(err);
+            console.log(err);
 			console.log("Error in deleting user");
 		}
 	});
@@ -163,7 +167,7 @@ exports.checkAdmin = (req, res) => {
                 console.log("User is an admin");
             }
             else {
-                res.send(false);
+                res.send({});
                 console.log("User is not an admin");
             }
         }

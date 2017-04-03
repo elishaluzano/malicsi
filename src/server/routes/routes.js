@@ -10,13 +10,13 @@ var userCtrl = require('../controllers/userController.js');
 //user account routes
 router.post('/api/login', userCtrl.loginUser);
 router.post('/api/sessions', userCtrl.getAccount);
-router.post('/api/users', userCtrl.addUser);
+router.post('/api/users', uploadCtrl.upload.single('profile_pic'), userCtrl.addUser);
 router.post('/api/logout', userCtrl.logout);
 //user routes
 router.get('/api/users', userCtrl.getUsers);
 router.get('/api/users/:id', userCtrl.getUser);
 router.get('/api/users/search/:search', userCtrl.searchUser);
-router.put('/api/users/:id', userCtrl.updateUser);
+router.put('/api/users/:id', uploadCtrl.upload.single('profile_pic'), userCtrl.updateUser);
 router.delete('/api/users/:id', userCtrl.deleteUser);
 
 var userAffiliationCtrl = require('../controllers/userAffiliationController.js');
@@ -62,7 +62,7 @@ router.get('/api/institutions/:id/events',institutionCtrl.viewEventsInInstitutio
 
 var eventCtrl = require('../controllers/eventController.js');
 //event routes
-router.post('/api/events',eventCtrl.addEvent);
+router.post('/api/events',uploadCtrl.upload.single('picture'), eventCtrl.addEvent);
 router.get('/api/events/:id',eventCtrl.viewEvent);
 router.get('/api/events',eventCtrl.viewAllEvent);
 router.get('/api/events/search/:search', eventCtrl.searchEvent);
@@ -80,6 +80,8 @@ router.get('/api/events/:id/teams', eventCtrl.viewTeamsInEvent);
 router.get('/api/events/:id/games', eventCtrl.viewGamesInEvent);
 //get all games from a sport from an event
 router.get('/api/events/:event_id/sports/:sport_id/games', eventCtrl.viewGamesInSportInEvent);
+//get general information of an event
+router.get('/api/events/:id/info', eventCtrl.viewGeneralInformation);
 
 var sportCtrl = require('../controllers/sportController.js');
 //sport routes
@@ -115,6 +117,7 @@ router.get('/api/teams/:id', teamCtrl.viewTeam);
 router.get('/api/teams/search/:search', teamCtrl.searchTeam);
 router.put('/api/teams/:id', teamCtrl.updateTeam);
 router.delete('/api/teams/:id', teamCtrl.deleteTeam);
+router.get('/api/teams/:id/allgameinfo', teamCtrl.getAllGameInfo);
 
 //team isComposedOf routes
 router.get('/api/teams/composedOf', teamCtrl.getAllIsComposedOf);

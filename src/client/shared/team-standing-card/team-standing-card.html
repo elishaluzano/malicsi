@@ -1,0 +1,27 @@
+<li>
+    <div class="collapsible-header">
+        <div class="chip green white-text">Live</div>
+        {{ $ctrl.event.event_title }}
+        <br>Standing
+    </div>
+    <div class="collapsible-body">
+        <table>
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Standing</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="team in $ctrl.teams">
+                    <td ui-sref="teamPage({ teamId: team.team_id })">
+                        {{ team.name }}
+                    </td>
+                    <td>
+                        {{ team.wins }} - {{ team.loses }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</li>
