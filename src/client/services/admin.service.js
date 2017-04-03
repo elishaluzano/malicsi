@@ -31,7 +31,7 @@
 			},
 
 			getInstitutionsByAdmin: function(id) {
-				return $http.get(api + 'admin/' + id + '/institutions')
+				return $http.get(api + 'admins/' + id + '/institutions')
 					.then(function(response) {
 						return response.data
 					})
