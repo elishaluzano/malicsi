@@ -2,7 +2,7 @@
   <div class="hoverable card">
     <div class="card-image">
        <a ui-sref="eventPage({ eventId: $ctrl.event.event_id })"><img ng-src="/images/engmeet2017.jpg"></a>
-      <span class="card-title black-text">{{ $ctrl.event.event_title }}</span>
+        <span class="card-title black-text">{{ $ctrl.event.event_title }}</span>
 
       <!-- Settings button is available only for Admin-->
       <!-- Settings button is either gray or not visible to guest and normal user-->
@@ -13,7 +13,7 @@
     <div class="card-content hide-on-medium-only">
       <ul>
         <li><i class = "material-icons">date_range</i> {{ $ctrl.event.start_date | date : fullDate}} - {{ $ctrl.event.end_date | date : fullDate}}</li>
-        <li><i class = "material-icons">supervisor_account</i><a href = "../view_sponsor_page/view_sponsor.html"> {{ $ctrl.institution.name }}</a></li>
+        <li><i class = "material-icons">supervisor_account</i><a ui-sref="sponsorPage({ sponsorId: $ctrl.institution.institution_id })" }}</a></li>
       </ul>
     </div>
     <div class="card-action">
