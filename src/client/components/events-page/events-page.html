@@ -41,9 +41,9 @@
         			</div>
 
               <div class="input-field col s12">
-                <select id="select-dropdown" class="left black-text browser-default">
+                <select id="select-dropdown" class="left black-text browser-default" ng-model="$ctrl.ins">
                   <option value="" selected disabled>Sponsoring Institution</option>
-                  <option value="" ng-repeat="ins in $ctrl.institutions">{{ ins.name }}</option>
+                  <option ng-repeat="ins in $ctrl.institutions" value="{{ ins.institution_no }}">{{ ins.name }}</option>
                 </select>
               </div>
               <br><br><br>

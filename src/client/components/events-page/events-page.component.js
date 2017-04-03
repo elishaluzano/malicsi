@@ -48,11 +48,9 @@
                     venue: vm.venue,
                     start_date: (new Date(vm.start_date)).toISOString().substring(0, 10),
                     end_date: (new Date(vm.end_date)).toISOString().substring(0, 10),
-                    institution_id_key: 1
+                    institution_id_key: vm.ins
                 }
-
-                console.log(body);
-
+                
                 eventService.create(body)
                     .then(function(data) {
                         Materialize.toast("Successfully added an event!", 3000);
