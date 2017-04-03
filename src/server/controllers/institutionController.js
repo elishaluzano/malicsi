@@ -65,13 +65,14 @@ exports.updateSponsoringInstitution = (req,res) => {
 		name : req.body.name,
 		description : req.body.description
 	};
+    console.log(institution);
 	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ? WHERE institution_id = ?', [req.body.name, req.body.description, req.params.id], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
          }
         else {
-            res.send('Successfully updated an institution.');
+            console.log('Successfully updated an institution.');
             res.send(institution);
         }
 	});

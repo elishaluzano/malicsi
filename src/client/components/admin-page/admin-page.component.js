@@ -200,7 +200,7 @@
 
 
         vm.confirmEditInstitution = function() {
-            if (!vm.selectInstitution.name) {
+            if (!vm.selectedInstitution.name) {
                 return Materialize.toast('Enter institution name', 3000, 'red');
             }
 
@@ -208,16 +208,16 @@
                 return Materialize.toast('Enter institution description', 3000, 'red');
             }
 
-            let id = vm.selectInstitution.institution_id;
+            let id = vm.selectedInstitution.institution_id;
             let body = {
-                name: vm.selectInstitution.name,
-                description: vm.selectInstitution.description
+                name: vm.selectedInstitution.name,
+                description: vm.selectedInstitution.description
             };
 
             institutionService.update(id, body)
                 .then(function(newInstitution) {
                     vm.institutions = vm.institutions.map(function(institution) {
-                        if (institution.institution_id === vm.selectedInstitution.institution_id) {
+                        if (institution.institution_id == vm.selectedInstitution.institution_id) {
                             institution.name = newInstitution.name;
                             institution.description = newInstitution.description;
                         }
@@ -235,7 +235,14 @@
             vm.deletingInstitution = true;
         }
 
-        
+        vm.confirmDeleteInstitution = function() {
+            institutionService.delete(vm.selectedInstitution.institution_id)
+                .then(function() {
+                    
+                });
+        }
+
+
 
 
 
