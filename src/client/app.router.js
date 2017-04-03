@@ -72,7 +72,7 @@
                 url: '/schedule',
                 component: 'schedulePage',
                 resolve: {
-                    games: function(sportService){
+                    sports: function(sportService){
                         return sportService.getAll();
                     }
                 }
