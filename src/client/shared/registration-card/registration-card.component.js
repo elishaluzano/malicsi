@@ -32,7 +32,7 @@
             }
 
             if (!vm.gender) {
-                return Materialize.toast('Are you male of female', 3000, 'red');
+                return Materialize.toast('Are you male of female?', 3000, 'red');
             }
 
             if (!vm.contact_number.length) {
@@ -87,7 +87,8 @@
                 email : vm.email,
                 contact_number : null,
                 contact_person : null,
-                profile_pic : (vm.gender === 'male')? 'default-boy.png' : 'default-girl.png'
+                profile_pic : (vm.gender === 'male')? 'default-boy.png' : 'default-girl.png',
+                isOverallAdmin : 0
             };
             
             userService.create(vm.body)
