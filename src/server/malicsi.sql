@@ -129,7 +129,7 @@ CREATE TABLE userlog (
   log_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id int NOT NULL,
   username varchar(20) NOT NULL,
-  institution_id int NOT NULL,
+  institution_id int default NULL,
   action varchar(100) NOT NULL,
   activity_time timestamp NOT NULL
 );
