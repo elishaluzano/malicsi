@@ -19,6 +19,17 @@
 					});
 			},
 
+			checkAdminOfTeam: function(userId, teamId) {
+				return $http.get(api + 'checkAdminOfTeam/' + userId + '/' + teamId)
+					.then(function(response) {
+						return response.data
+					})
+					.catch(function(err) {
+						console.log("Error in checking admin!");
+						console.log(err.status + ': ' + err.statusText);
+					});
+			},
+
 			getAdmins: function() {
 				return $http.get(api + '/admins')
 					.then(function(response) {

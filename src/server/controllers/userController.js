@@ -178,6 +178,25 @@ exports.checkAdmin = (req, res) => {
     });
 };
 
+exports.checkAdminOfTeam = (req, res) => {
+    connection.query('select * from user u join institutionHasAdmin iha join event e join team t on u.user_id = iha.user_no and iha.institution_no = e.institution_id_key and t.event_id_key = e.event_id and u.user_id = ? and t.team_id = ?', [req.params.user_id, req.params.team_id], function(err, rows, fields) {
+        if (!err){
+            if (rows[0] !== null){
+                res.send(rows[0]);
+                console.log("User is an admin");
+            }
+            else {
+                res.send(false);
+                console.log("User is not an admin");
+            }
+        }
+        else {
+            res.send(err);
+            console.log("Error in checking admin");
+        }
+    });
+};
+
 // GET all admins
 exports.getAdmins = (req, res) => {
     connection.query('SELECT * FROM user JOIN institutionHasAdmin on user.user_id = institutionHasAdmin.user_no',[], function (err, rows, fields){
