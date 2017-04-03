@@ -186,7 +186,7 @@ exports.checkAdminOfTeam = (req, res) => {
                 console.log("User is an admin");
             }
             else {
-                res.send(false);
+                res.send({});
                 console.log("User is not an admin");
             }
         }
