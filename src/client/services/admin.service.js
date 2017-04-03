@@ -31,7 +31,7 @@
 			},
 
 			getAdmins: function() {
-				return $http.get(api + '/admins')
+				return $http.get(api + 'admins')
 					.then(function(response) {
 						return response.data
 					})
@@ -61,8 +61,20 @@
 						console.log("Error in creating an admin!");
 						console.log(err.status + ': ' + err.statusText);
 					});
+			},
+
+			deleteAsAdmin: function(institution_id, user_id) {
+				return $http.delete(api + "admins/" + institution_id + "/" + user_id)
+					.then(function(response) {
+						console.log(data);
+						return response.data;
+					})
+					.catch(function(error) {
+						console.log("Error in deleting as admin!");
+						console.log(error.status + ": " + + error.statusText);
+					});
 			}
-		}
+		};
 
 		return service;
 	}
