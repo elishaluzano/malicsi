@@ -5,7 +5,7 @@ const connection = require('./../database.js');
 exports.addTeam = (req,res) => {
 	var team = {
 		name : req.body.name,
-		picture : req.body.picture,
+		picture : (req.file)? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : '',
 		event_id_key : req.body.event_id_key
 	};
 	connection.query('INSERT INTO team SET ?', team, function(err, rows, fields){
@@ -63,10 +63,10 @@ exports.updateTeam = (req,res) => {
     	var team = {
     	team_id : req.params.id,
 		name : req.body.name,
-		picture : req.body.picture,
+		picture : (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file,
 		event_id_key : req.body.event_id_key
 	};
-	connection.query('UPDATE team SET name = ?, picture = ?, event_id_key = ? WHERE team_id = ?', [ req.body.name, req.body.picture, req.body.event_id_key, req.params.id ], function(err, rows, fields){
+	connection.query('UPDATE team SET name = ?, picture = ?, event_id_key = ? WHERE team_id = ?', [ req.body.name, (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file, req.body.event_id_key, req.params.id ], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);

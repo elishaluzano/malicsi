@@ -79,10 +79,10 @@ exports.updateEvent = (req,res) => {
 		venue: req.body.venue,
 		start_date: req.body.start_date,
 		end_date: req.body.end_date,
-		picture: req.body.picture,
+		picture: (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file,
 		institution_id_key: req.body.institution_id_key
 	};
-	connection.query('UPDATE event SET event_title = ?, venue = ?, start_date = ?, end_date = ?, picture = ? WHERE event_id = ?', [req.body.event_title, req.body.venue, req.body.start_date, req.body.end_date, req.params.id], function(err, rows, fields){
+	connection.query('UPDATE event SET event_title = ?, venue = ?, start_date = ?, end_date = ?, picture = ? WHERE event_id = ?', [req.body.event_title, req.body.venue, req.body.start_date, req.body.end_date, (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file, req.params.id], function(err, rows, fields){
 		if(!err) {
 			res.send(info);
 			console.log("Success");

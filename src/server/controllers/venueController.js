@@ -67,7 +67,7 @@ exports.updateVenue = (req,res) => {
             res.send(err);
          }
         else {
-            res.send(rows[0]);
+            res.send(venue);
             console.log("Successfully updated a venue.");
         }
 	});
