@@ -11,15 +11,18 @@
             }
         });
     
-    function adminPageController($state, venueService, sportService, institutionService, userService, $q) {
+    function adminPageController($state, venueService, sportService, 
+        institutionService, userService, adminService, searchService) {
         var vm = this;
 
         vm.selectedSport = null;
+        vm.creatingSport = false;
         vm.editingSport = false;
         vm.deletingSport = false;
         vm.sports = [];
 
         vm.selectedVenue = null;
+        vm.creatingVenue = false;
         vm.editingVenue = false;
         vm.deletingVenue = false;
         vm.venues = [];
@@ -29,6 +32,7 @@
         vm.deletingInstitution = false;
         vm.institutions = [];
 
+        vm.newAdmin = '';
         vm.admins = [];
         vm.seletecAdmins = [];
 
@@ -63,8 +67,36 @@
         }
 
         vm.selectSport = function(sport) {
+            vm.newSport = '';
+            vm.creatingSport = false;
             vm.selectedSport = angular.copy(sport);
             vm.selectedSport.originalName = vm.selectedSport.name;
+        }
+
+        vm.createSport = function() {
+            vm.creatingSport = true;
+            vm.selectedSport = null;
+        }
+
+        vm.checkEnterCreateSport = function(e) {
+            if (e.keyCode === 13) {
+                vm.confirmCreateSport();
+            }
+        }
+
+        vm.confirmCreateSport = function() {
+            if (!vm.newSport) {
+                return Materialize.toast('Enter a new sport', 3000, 'red');
+            }
+
+            let body = {
+                name: vm.newSport
+            };
+
+            sportService.create(body)
+                .then(function(sport) {
+                    vm.sports.push(sport);
+                });
         }
 
         vm.editSport = function() {
@@ -196,6 +228,7 @@
 
 
         vm.selectInstitution = function(institution) {
+            vm.newAdmin = '';
             vm.selectedInstitution = angular.copy(institution);
             vm.selectedInstitution.originalName = institution.name;
 
@@ -274,24 +307,69 @@
             vm.deletingInstitution = false;
         }
 
+        vm.checkEnterAddAdmin = function(e) {
+            if (e.keyCode === 13) {
+                vm.addAdmin();
+            }
+        }
+
+        vm.addAdmin = function() {
+            if (!vm.newAdmin) {
+                return Materialize.toast('Enter a username', 3000, 'red');
+            }
+
+            let adminExists = vm.selectedAdmins.find(function(admin) {
+                return admin.username === vm.newAdmin;
+            });
+            
+            if (adminExists) {
+                return Materialize.toast(vm.newAdmin + ' is already an admin', 3000, 'red');
+            }
+
+            searchService.users(vm.newAdmin)
+                .then(function(users) {
+                    if (users.length !== 1) {
+                        Materialize.toast(vm.newAdmin + ' does not exist', 3000, 'red');
+                    } else {
+
+                        let admin = users[0];
+                        admin.institution_no = vm.selectedInstitution.institution_id;
+
+                        let body = {
+                            institution_no: admin.institution_no,
+                            user_no: admin.user_id
+                        };
+
+                        adminService.create(body)
+                            .then(function() {
+                                vm.admins.push(admin);
+                                vm.selectedAdmins.push(admin); 
+                                Materialize.toast(admin.username + ' has been added as an admin', 3000, 'red');
+                                vm.newAdmin = '';
+                            });
+                    }
+                });
+        }
+
         vm.deleteAdmin = function(deletedAdmin) {
-            
-            
-            vm.selectedAdmins = vm.selectedAdmins.filter(function(admin) {
-                if (admin.user_id == deletedAdmin.user_id) {
-                    return false;
-                }
-                return true;
-            });
+            adminService.deleteAsAdmin(deletedAdmin.institution_no, deletedAdmin.user_id)
+                .then(function() {
+                    vm.selectedAdmins = vm.selectedAdmins.filter(function(admin) {
+                        if (admin.user_id == deletedAdmin.user_id) {
+                            return false;
+                        }
+                        return true;
+                    });
 
-            vm.admins = vm.admins.filter(function(admin) {
-                if (admin.user_id == deletedAdmin.user_id) {
-                    return false;
-                }
-                return true;
-            });
+                    vm.admins = vm.admins.filter(function(admin) {
+                        if (admin.user_id == deletedAdmin.user_id) {
+                            return false;
+                        }
+                        return true;
+                    });
 
-            
+                    Materialize.toast(deletedAdmin.name + ' has been removed as admin from ' + vm.selectedInstitution.name, 3000, 'red');
+                });
         }
     }
 
