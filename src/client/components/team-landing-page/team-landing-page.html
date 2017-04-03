@@ -1,0 +1,72 @@
+<div class = "row">
+            <div class = "col l3 m12 hide-on-small-only">
+            <!-- FOR FILTERS -->
+                <div class="card">
+                    <div class="card-content">
+                        <form action="#" class = "center">
+                            <strong>Filter by Status</strong>
+                            <div class = "divider"></div>
+                            <br>
+
+                                <p ng-repeat="(key, value) in $ctrl.filters">
+                                    <input type="checkbox" 
+                                        id="all-{{key}}" 
+                                        ng-model="$ctrl.filters[key]"/>
+                                    <label for="all-{{key}}">
+                                        {{ key }}
+                                    </label>
+                                </p>
+                            
+                            <br>
+                           
+                        </form>
+                        <div class="card"> 
+        </div>
+                    </div>
+                </div>
+       
+
+
+            </div>
+
+            <div class = "col l9 s12">
+                
+
+            <ul class="collapsible z-depth-0 popout" data-collapsible="expandable">
+
+                <li ng-repeat="event in $ctrl.events | orderBy: '-status'"
+                    ng-if="($ctrl.filters.Live == true && event.status == 'Live') ||
+                            ($ctrl.filters.Soon == true && event.status == 'Soon') ||
+                            ($ctrl.filters.Done == true && event.status == 'Done')">
+                    <div class="collapsible-header white-text active"
+                    ng-class="event.status == 'Live' ? 'green' : (event.status == 'Soon' ? 'red lighten-1' : 'grey lighten-1')">
+
+
+                    <div ng-show="event.status == 'Live'" class = "white chip">live</div>
+                    <div ng-show="event.status == 'Soon'" class = "white chip">soon</div>
+                    <div ng-show="event.status == 'Done'" class = "white chip">done</div>
+                    
+                    &nbsp{{event.event_title}}<i class = "right material-icons">view_list</i></div>
+                    <div class="collapsible-body">
+                        <table class = "team-table" >
+                                <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>Standing</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="team in event.teams">
+                                        <td><a ui-sref="teamPage({ teamId: team.team_id })"><img class = "team-logo" ng-src ="{{team.picture}}">&nbsp{{team.name}}</a></td>
+                                        <td>{{team.win}} - {{team.lose}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                    </div>
+                </li>
+            </ul>
+
+
+            </div>
+        </div>
