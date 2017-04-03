@@ -24,6 +24,7 @@
         vm.sports = [];
         vm.soonEvents = [];
         vm.liveEvents = [];
+        var hasDuplicate = false;
 
         vm.$onInit = function() {
 /*           
@@ -73,15 +74,20 @@
                                                 team.loses++;
                                             }
                                         }
-                                        teams.push(team);
 
                                     });
-                            }
 
-                            vm.objects.push({ eventName: event, eventTeams: teams })
+                                if (teams.indexOf(team) < 0) {
+                                    teams.push(team);
+                                }
+                            }
+                            
+                            vm.objects.push({ eventName: event, eventTeams: teams });
                         });
                 }
             }
+
+            console.log(vm.objects);
             
             $('.collapsible').collapsible();
         }
