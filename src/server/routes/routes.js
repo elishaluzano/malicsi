@@ -66,7 +66,7 @@ router.post('/api/events',uploadCtrl.upload.single('picture'), eventCtrl.addEven
 router.get('/api/events/:id',eventCtrl.viewEvent);
 router.get('/api/events',eventCtrl.viewAllEvent);
 router.get('/api/events/search/:search', eventCtrl.searchEvent);
-router.put('/api/events/:id',eventCtrl.updateEvent);
+router.put('/api/events/:id',uploadCtrl.upload.single('picture'), eventCtrl.updateEvent);
 router.delete('/api/events/:id',eventCtrl.deleteEvent);
 
 //get all event details from an event
@@ -111,11 +111,11 @@ router.get('/api/games/:id/teams',gameCtrl.viewTeamsInGame);
 
 var teamCtrl = require('../controllers/teamController.js');
 //team routes
-router.post('/api/teams', teamCtrl.addTeam);
+router.post('/api/teams', uploadCtrl.upload.single('picture'), teamCtrl.addTeam);
 router.get('/api/teams', teamCtrl.viewAllTeam);
 router.get('/api/teams/:id', teamCtrl.viewTeam);
 router.get('/api/teams/search/:search', teamCtrl.searchTeam);
-router.put('/api/teams/:id', teamCtrl.updateTeam);
+router.put('/api/teams/:id', uploadCtrl.upload.single('picture'), teamCtrl.updateTeam);
 router.delete('/api/teams/:id', teamCtrl.deleteTeam);
 router.get('/api/teams/:id/allgameinfo', teamCtrl.getAllGameInfo);
 
