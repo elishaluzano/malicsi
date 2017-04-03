@@ -1,8 +1,7 @@
 <div class = "row">
     <div class = "col l3">
         <ul class="collapsible" data-collapsible="expandable">
-            
-            <!-- TEAM STANDING CARD -->
+            <!-- TEAM STANDING CARD --> 
             <li ng-repeat="x in $ctrl.objects">
                 <div class="collapsible-header">
                     <div class="chip green white-text">Live</div>
@@ -40,8 +39,8 @@
              -->
             
             <!-- EVENT-CARD -->
-            <event-card ng-repeat="each in $ctrl.soonEvents" event="each">
-            </event-card> 
+            <search-event-card ng-repeat="each in $ctrl.soonEvents" event="each">
+            </search-event-card>
         </div>
         
         <div class = "row"> </div>
