@@ -99,7 +99,7 @@
             })
             .state({
                 name: 'teamPage',
-                url: '/team/{teamId}',
+                url: '/team',
                 component: 'teamPage',
                 resolve: {
                     allGameInfo: function(teamService, $transition$) {
@@ -120,8 +120,11 @@
                     params: function($state) {
                         console.log($state);
                         return $state.params;
+                    },
+                    allTeams: function(teamService) {
+                        return teamService.getAll();
                     }
-                },
+                },/*
                 onEnter: function(currentTeam, componentName, params, $state) {
                     if (!currentTeam) {
                         Materialize.toast('Team does not exist', 3000, 'red');
@@ -130,6 +133,17 @@
                         }
                         $state.go(componentName, params);
                     }
+                }*/
+            })
+            .state({
+                name: 'teamPage.teamCard',
+                url: '/{teamId}',
+                component: 'teamCard',
+                resolve: {
+                    currentTeam: function($state, $transition$) {
+                        //console.log(teamPage);
+                        console.log($state);
+                    },
                 }
             })
             .state({
