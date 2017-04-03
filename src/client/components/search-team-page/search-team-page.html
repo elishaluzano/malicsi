@@ -1,0 +1,34 @@
+    <div class="container row">
+    <h3>Search Teams</h3>
+    <!-- Filters: subject to change -->
+    <div class="col s4" id = "filters">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Filters</span>
+                <form action="#">
+                    <div class="divider"></div>
+                    <strong>Event</strong>
+                    <select id="dropdwn" class="left black-text browser-default">
+                        <option value="" selected disabled>Event Name</option>
+                        <option ng-repeat="one in $ctrl.events" value="{{ each.event_id }}">{{ one.event_name }}</option>
+                    </select>
+                    
+                    <br><br><br>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results: holds the Collection of teams with filters applied -->
+    <div class="col s8" id = "results">
+        <div class="card" ng-repeat="each in $teams">
+            <div class="card-content">
+                <span class="card-title">Results</span>
+                <ul class="collection">
+                    <a ng-repeat="instance in $ctrl.teams" class="collection-item red white-text">{{instance.name}}</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
