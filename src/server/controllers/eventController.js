@@ -11,7 +11,7 @@ exports.addEvent = (req,res) => {
 		venue: req.body.venue,
 		start_date: req.body.start_date,
 		end_date: req.body.end_date,
-		picture: req.body.picture,
+		picture: (req.file)? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : '',
 		institution_id_key: req.body.institution_id_key
 	};
 	connection.query('INSERT INTO event SET ?', info, function(err, rows, fields) {
