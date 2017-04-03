@@ -13,7 +13,6 @@
 
     function searchTeamPageController() {
         var vm = this;
-
         vm.filters = {};
         
     }
