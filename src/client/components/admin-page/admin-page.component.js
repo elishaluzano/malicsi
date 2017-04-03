@@ -30,6 +30,7 @@
         vm.institutions = [];
 
         vm.admins = [];
+        vm.seletecAdmins = [];
 
         vm.$onInit = function() {
             sportService.getAll()
@@ -41,15 +42,23 @@
                 .then(function(venues) {
                     vm.venues = venues;
                 });
+            
+            userService.getAll()
+                .then(function(users) {
+                    vm.users = users;
+                });
 
-            $q.all([
-                institutionService.getAll(),
-                userService.getAdmins()
-            ]).then(function(data) {
-                vm.institutions = data[0];
-                vm.admins = data[1];
-                console.log(vm.admins);
-            });
+            
+            institutionService.getAll()
+                .then(function(institutions) {
+                    vm.institutions = institutions;
+                });
+            
+            userService.getAdmins()
+                .then(function(admins) {
+                    vm.admins = admins;
+                    console.log(vm.admins);
+                });
             
         }
 
@@ -150,7 +159,7 @@
                     });
                     Materialize.toast(vm.selectedVenue.originalName + ' has been updated', 3000, 'red');
                     vm.selectedVenue.originalName = newVenue.name;
-                    vm.editingvenue = false;
+                    vm.editingVenue = false;
                 }); 
         }
 
@@ -189,6 +198,15 @@
         vm.selectInstitution = function(institution) {
             vm.selectedInstitution = angular.copy(institution);
             vm.selectedInstitution.originalName = institution.name;
+
+            vm.selectedAdmins = angular.copy(vm.admins).filter(function(admin) {
+                console.log(vm.selectedInstitution.institution_id);
+                console.log(admin.institution_no);
+                if (vm.selectedInstitution.institution_id == admin.institution_no) {
+                    return true;
+                }
+                return false;
+            });
         }
 
 
@@ -223,6 +241,9 @@
                         }
                         return institution;
                     });
+                    Materialize.toast(vm.selectedInstitution.originalName + ' has been updated', 3000, 'red');
+                    vm.selectedInstitution.originalName = newInstitution.name;
+                    vm.editingInstitution = false;
                 });
         }
 
@@ -239,76 +260,39 @@
             institutionService.delete(vm.selectedInstitution.institution_id)
                 .then(function() {
                     vm.institutions = vm.institutions.filter(function(institution) {
-                        if (vm.selectInstitution.institution_id == institution.institution_id) {
+                        if (vm.selectedInstitution.institution_id == institution.institution_id) {
                             return false;
                         }
                         return true;
                     });
+                    Materialize.toast(vm.selectedInstitution.name + ' has been deleted', 3000, 'red');vm.selectedInstitution = null;
+                    vm.deletingInstitution = false;
                 });
         }
 
+        vm.cancelDeleteInstitution = function() {
+            vm.deletingInstitution = false;
+        }
 
+        vm.deleteAdmin = function(deletedAdmin) {
+            
+            
+            vm.selectedAdmins = vm.selectedAdmins.filter(function(admin) {
+                if (admin.user_id == deletedAdmin.user_id) {
+                    return false;
+                }
+                return true;
+            });
 
+            vm.admins = vm.admins.filter(function(admin) {
+                if (admin.user_id == deletedAdmin.user_id) {
+                    return false;
+                }
+                return true;
+            });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
+        }
     }
 
 })();
