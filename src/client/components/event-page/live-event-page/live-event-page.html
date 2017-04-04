@@ -7,6 +7,13 @@
                     {{ $ctrl.event.event_title }} 
                 </span>
 
+                <a class="chip orange white-text pointer"
+                    id="edit-event"
+                    data-target="edit-event-modal"
+                    modal>
+                    Edit Event Details
+                </a>
+
                 <div class="divider"></div>
 
                 <form>
@@ -46,10 +53,7 @@
                     ng-click="$ctrl.toggleToTeams()">
                     Teams
                 </button>
-                <button ng-if="$ctrl.status === 'Soon'"
-                    class="tablinks red white-text">
-                    Add date
-                </button>
+                
                 <button class="tablinks" 
                     ng-repeat="info in $ctrl.filtered"
                     ng-class="{ active: info.show }"
@@ -137,4 +141,11 @@
         </div>
     </div>
 
+</div>
+
+
+<div id="edit-event-modal" class="modal">
+    <div class="modal-content">
+        hello
+    </div>
 </div>

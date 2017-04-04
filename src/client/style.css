@@ -305,3 +305,18 @@ th,td{
 .filter{
     position:fixed;
 }
+
+#timer {
+	margin: 10px 0px 20px 0px;
+}
+
+#add-game-schedule {
+	height: 100%;
+}
+
+#main-content {
+	min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -270px;
+}
