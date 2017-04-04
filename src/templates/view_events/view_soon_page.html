@@ -174,37 +174,18 @@
             <a data-target="add-date-modal" class="red lighten-1 white-text">Add date</a>
           </li>
 
-          <li>
-            <a><i class="material-icons" onclick="prevTab()">chevron_left</i></a>
-          </li>
           <!-- DAYS -->
-
           <ul class="tabs" id="soon-tabs-tabs">
             <!-- PAGES -->
-            <li class="tab"><a href="#day-page-1">TAB 1</a></li>
+            <li class="tab"><a href="#day-page-1">PAGE 1</a></li>
           </ul>
 
           <div id="day-page-1">
             <!-- PUT DAYS HERE -->
             <div class="addhere">
-              <li>
-                <a class = "tablinks active" onclick="openData(event,'June_12_game')" id ="defaultOpen">June 12</a>
-              </li>
-              <li>
-                <a class = "tablinks" onclick="openData(event,'June_13_game')">June 13</a>
-              </li>
-              <li>
-                <a class = "tablinks" onclick="openData(event,'June_14_game')">June 14</a>
-              </li>
-              <li>
-                <a class = "tablinks" onclick="openData(event,'June_15_game')">June 15</a>
-              </li>
             </div>
             <!-- END DAYS -->
           </div>
-          <li>
-            <a onclick="nextTab()"><i class="material-icons">chevron_right</i></a>
-          </li>
         </ul>
       </div>
 
@@ -1045,11 +1026,14 @@
         var countTabs = $("#soon-tabs-tabs").children().length;
         console.log(countDates);
 
-        if (countDates%5 == 0) {
+        if (countDates%5 == 0 && countDates > 0) {
           // Create a new tab and div
           var newTab = document.createElement("LI");
           var newA = document.createElement("A");
           var newText = document.createTextNode("PAGE " + countTabs);
+          var newAddHere = document.createElement("DIV");
+          var newBigDiv = document.createElement("DIV");
+          
           newA.setAttribute("href","#day-page-"+(countDates+1));
           newA.appendChild(newText);
           newTab.appendChild(newA);
@@ -1059,20 +1043,11 @@
           document.getElementById("soon-tabs-tabs").appendChild(newTab);
 
           // Add new tab content to soon-tabs -> day-page-x -> addhere
-          /*
-          <div id="day-page-2">
-            <!-- PUT DAYS HERE -->
-            <div class="addhere">
-            </div>
-            <!-- END DAYS -->
-          </div>
-          */
-          var newAddHere = document.createElement("DIV");
-          var newBigDiv = document.createElement("DIV");
           newAddHere.setAttribute("class","addhere");
           newBigDiv.setAttribute("id","day-page-" + (countDates+1));
           newBigDiv.appendChild(newAddHere);
           document.getElementById("soon-tabs").appendChild(newBigDiv);
+          console.log("NEW PAGE STUFF ADDED");
         }
 
         //replace june as a variable of the month
@@ -1088,6 +1063,7 @@
         lastAddhere = lastAddhere[lastAddhere.length - 1];
         console.log(lastAddhere);
         lastAddhere.appendChild(newLi);
+        console.log("NEWWWWM");
 
         var text = document.createTextNode("+ Add a sport ");
         var chip = document.createElement("div");
