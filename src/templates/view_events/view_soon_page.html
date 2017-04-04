@@ -165,7 +165,7 @@
     
     <div class = "col s12 m8 l9">
     <div class="row">
-      <div class = "tab-custom" id = "addhere">
+      <div class = "tab-custom">
         <ul class="pagination" id="soon-tabs">
           <li>
             <a onclick="openData(event, 'teams')" class = "white-text black">Teams</a>
@@ -178,18 +178,20 @@
             <a><i class="material-icons" onclick="prevTab()">chevron_left</i></a>
           </li>
           <!-- DAYS -->
-          <li class="kjhkahdfjahsg">
-            <a class = "tablinks active" onclick="openData(event,'June_12_game')" id ="defaultOpen">June 12</a>
-          </li>
-          <li class="adjfgadhjfs">
-            <a class = "tablinks" onclick="openData(event,'June_13_game')">June 13</a>
-          </li>
-          <li>
-            <a class = "tablinks" onclick="openData(event,'June_14_game')">June 14</a>
-          </li>
-          <li>
-            <a class = "tablinks" onclick="openData(event,'June_15_game')">June 15</a>
-          </li>
+          <div id="addhere">
+            <!--li>
+              <a class = "tablinks active" onclick="openData(event,'June_12_game')" id ="defaultOpen">June 12</a>
+            </li>
+            <li>
+              <a class = "tablinks" onclick="openData(event,'June_13_game')">June 13</a>
+            </li>
+            <li>
+              <a class = "tablinks" onclick="openData(event,'June_14_game')">June 14</a>
+            </li>
+            <li>
+              <a class = "tablinks" onclick="openData(event,'June_15_game')">June 15</a>
+            </li-->
+          </div>
           <!-- END DAYS -->
 
           <li>
@@ -1027,23 +1029,63 @@
     <script>
       var n = 16;
       function createDate(){
-        
-        var para = document.createElement("BUTTON");
+        //this function simply adds a button on top for date navigation        
+        // created button on top must be dynamic
+        var para = document.createElement("A");
+        var newLi = document.createElement("LI");
+
+        //replace june as a variable of the month
+        //n is the date
         var t = document.createTextNode("June " + n);
         para.className = "tablinks";
-        para.setAttribute("onClick","openData(event,'new_game')");
+
+        //in openData(event,'new_game'), new_game must be the date in this format => Month_Date_'game' eg. June_14_game
+        para.setAttribute("onClick","openData(event,'June_"+n+"_game')");
+        newLi.appendChild(para);
         para.appendChild(t);
-        document.getElementById("addhere").appendChild(para);
+        document.getElementById("addhere").appendChild(newLi);
 
-        var content = document.createElement("div");
-        var s = document.createTextNode("HEHEE");
-        
-        content.className = "tabcontent";
-        // content.setAttribute("id","June_"+n+ "_game");
-        content.setAttribute("id","new_game");
+        var text = document.createTextNode("+ Add a sport ");
+        var chip = document.createElement("div");
+        chip.setAttribute("class","chip blue white-text");
 
-         content.appendChild(s);
-        document.getElementById("game_container").appendChild(content);
+        chip.appendChild(text);
+
+        var link = document.createElement("a");
+        link.setAttribute("href","#add-sport-modal");
+
+        link.appendChild(chip);
+
+        var header = document.createElement("h5");
+
+        header.appendChild(link);
+
+        var div_collapsible_header = document.createElement("div");
+        div_collapsible_header.setAttribute("class","collapsible-header active");
+
+        div_collapsible_header.appendChild(header);
+
+        var list = document.createElement("li");
+
+        list.appendChild(div_collapsible_header);
+
+        var setlist = document.createElement("ul");
+        setlist.setAttribute("class","collapsible");
+        setlist.setAttribute("data-collapsible","expandable");
+
+        setlist.appendChild(list);
+
+        //june must be replaced by a variable para dynamic siya
+        //tulad sa taas, n is the date
+        var div_month_game = document.createElement("div");
+        div_month_game.setAttribute("id","June_"+ n +"_game");
+        div_month_game.className= "tabcontent";
+
+        div_month_game.appendChild(setlist);
+
+        document.getElementById("game_container").appendChild(div_month_game);
+
+
         n++;
         Materialize.toast('Added new day!', 3000)
       }
