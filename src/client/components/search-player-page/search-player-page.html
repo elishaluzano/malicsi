@@ -8,12 +8,12 @@
                 <form action="#">
                     <!-- Events that the searched profile/s has/have attended, if there are any -->
                     <p>
-                        <input type="checkbox" id="profile-event-attended" ng-model="$ctrl.eventChecked"/>
+                        <input type="checkbox" id="profile-event-attended" ng-model="$ctrl.eventChecked" ng-change="$ctrl.$onInit()"/>
                         <label for="profile-event-attended">Event Attended</label>
                     </p>
                     <!-- Teams the searched profile/s has/have played for, if there are any -->
                     <p>
-                        <input type="checkbox" id="profile-team" ng-model="$ctrl.teamChecked"/>
+                        <input type="checkbox" id="profile-team" ng-model="$ctrl.teamChecked" ng-change="$ctrl.$onInit()"/>
                         <label for="profile-team">Team</label>
                     </p>
                     
@@ -33,11 +33,12 @@
                     <!-- Text inputs for the checked criteria -->
                     <strong>For checked criteria:</strong>
                     <br>
-                    <p class="input-field" ng-show = "{{ $ctrl.eventChecked }}">
+                    <br>
+                    <p class="input-field" ng-show = "$ctrl.eventChecked">
                         <input type="text" id="event-attended-name" />
                         <label for="event-attended-name">Event Name</label>
                     </p>
-                    <p class="input-field" ng-show = "{{ $ctrl.teamChecked }}">
+                    <p class="input-field" ng-show = "$ctrl.teamChecked">
                         <input type="text" id="team-name" />
                         <label for="team-name">Team Name</label>
                     </p>

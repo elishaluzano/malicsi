@@ -11,10 +11,11 @@
 			}
 		});
 
-		function searchPlayerPageController(userService) {
+		function searchPlayerPageController(sportService) {
 			var vm = this;
 
 			vm.tempUsers = [];
+			vm.sports = [];
 
 			vm.genderStatus = {
 				male: true,
@@ -26,8 +27,11 @@
 
 			vm.$onInit = function() {
 				vm.tempUsers = $.extend(true, [], vm.users);
-				console.log(vm.eventChecked);
-				console.log(vm.teamChecked);
+				sportService.getAll()
+					.then(function(sports) {
+						vm.sports = sports;
+					});
+					console.log(vm.sports);
         	}
 
         	vm.filter = function() {
