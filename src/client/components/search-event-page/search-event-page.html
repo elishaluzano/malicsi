@@ -22,7 +22,8 @@
                                 <option value="all">All Venues</option>
                                 <option 
                                 ng-repeat="each in $ctrl.allVenues" 
-                                value="{{ each.venue_id }}"
+                                value="{{ each.venue_id_key }}"
+
                                 >{{ each.name }}</option>
                             </select>
                             <br><br><br>
@@ -41,7 +42,8 @@
                 <ul class="collection">
                     <search-event-card
                         ng-repeat="event in $ctrl.events"
-                        ng-if="$ctrl.eventSponsor == event.institution_id_key || $ctrl.eventSponsor == 'all'" event="event" >
+                        ng-if="($ctrl.eventSponsor == event.institution_id_key || $ctrl.eventSponsor == 'all')||($ctrl.eventVenue == event.venue_id_key || $ctrl.eventVenue == 'all')" 
+                        event="event">
                     </search-event-card>
                 </ul>
             </div>
