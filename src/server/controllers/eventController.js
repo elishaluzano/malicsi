@@ -49,7 +49,7 @@ exports.viewAllEvent = (req,res) => {
 };
 
 exports.searchEvent = (req,res) => {
-	connection.query('SELECT * FROM event WHERE event_title LIKE ?', [ '%' + req.params.search + '%'], function(err, rows, fields){
+	connection.query('SELECT * FROM event WHERE event_title LIKE ? order by event_title', [ '%' + req.params.search + '%'], function(err, rows, fields){
 		if(!err) {
 			res.send(rows);
 		}else{
@@ -172,7 +172,7 @@ exports.viewGeneralInformation = (req, res) => {
 };
 
 exports.viewDoneEventInfo = (req, res) => {
-    connection.query('select distinct s.name as sport, s.sport_id as sport_id, g.time, g.game_id, e.event_id as event_id, e.event_title as event, t.name as team, si.description as institution, v.name as venue, tpg.score as score, tpg.record as record from event e join game g join sport s join team t join sponsoringInstitution si join venue v join teamPlaysGame tpg join eventHasSport ehs where e.event_id = ? and s.sport_id = ehs.sport_id and g.sport_id = s.sport_id and e.institution_id_key = si.institution_id and g.venue = v.venue_id and tpg.game_id_play = g.game_id and tpg.team_id_play = t.team_id and t.event_id_key = e.event_id', [req.params.id], function(err, rows, fields){
+    connection.query('select distinct s.name as sport, s.sport_id as sport_id, g.time, g.game_id, e.event_id as event_id, e.event_title as event, t.team_id, t.name as team, si.description as institution, v.name as venue, tpg.score as score, tpg.record as record from event e join game g join sport s join team t join sponsoringInstitution si join venue v join teamPlaysGame tpg join eventHasSport ehs where e.event_id = ? and s.sport_id = ehs.sport_id and g.sport_id = s.sport_id and e.institution_id_key = si.institution_id and g.venue = v.venue_id and tpg.game_id_play = g.game_id and tpg.team_id_play = t.team_id and t.event_id_key = e.event_id', [req.params.id], function(err, rows, fields){
         if (!err) {
             console.log("Success");
             res.send(rows);

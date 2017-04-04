@@ -221,6 +221,19 @@
                 }
             })
             .state({
+                name: 'searchInstitutionPage',
+                url: '/search-institution/{query}',
+                component: 'searchInstitutionPage',
+                resolve: {
+                    institutions: function(searchService, $transition$) {
+                        return searchService.institutions($transition$.params().query);
+                    },
+                    allEvents: function(eventService) {
+                        return eventService.getAll();
+                    }
+                }
+            })
+            .state({
                 name: 'searchTeamPage',
                 url: '/search-team/{query}',
                 component: 'searchTeamPage',
