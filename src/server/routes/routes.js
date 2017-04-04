@@ -119,6 +119,8 @@ var teamCtrl = require('../controllers/teamController.js');
 router.post('/api/teams', uploadCtrl.upload.single('picture'), teamCtrl.addTeam);
 router.get('/api/teams', teamCtrl.viewAllTeam);
 router.get('/api/teams/:id/oneteamplaysgame', teamCtrl.viewOneTeamPlaysGame);
+router.get('/api/teams/:id/getTeamsofUser', teamCtrl.getTeamsOfUser);
+router.get('/api/teams/:id/getTeamStats', teamCtrl.getTeamStats);
 router.get('/api/teams/teamplaysgame', teamCtrl.viewAllTeamPlaysGame);
 router.get('/api/teams/:id', teamCtrl.viewTeam);
 router.get('/api/teams/search/:search', teamCtrl.searchTeam);
