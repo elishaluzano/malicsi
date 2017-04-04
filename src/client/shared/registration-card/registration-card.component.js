@@ -83,7 +83,7 @@
                 username : vm.username,
                 password : vm.password,
                 gender : vm.gender,
-                birthday : (new Date(vm.birthday)).toISOString().substring(0, 10),
+                birthday : (new Date(vm.birthday.setDate(vm.birthday.getDate()+1))).toISOString().substring(0, 10), // for some reason kailangan +1
                 email : vm.email,
                 contact_number : null,
                 contact_person : null,
