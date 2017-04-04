@@ -6,6 +6,27 @@
     function routerConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state({
+                name: 'adminPage',     
+                url: '/admin',     
+                component: 'adminPage',        
+                resolve: {     
+                    name: function($state) {       
+                        return $state.current.name;        
+                    },     
+                    params: function($state) {     
+                        return $state.params;      
+                    }      
+                },     
+                onEnter: function(name, params, $state, sessionService) {      
+                    let user = sessionService.user();      
+                    if (!user || !user.isOverallAdmin) {       
+                        Materialize.toast('Unauthorized access!', 2000, 'red');        
+                        name = (!name || name === 'adminPage')? 'landingPage' : name;      
+                        $state.go(name, params);       
+                    }      
+                }      
+            })     
+            .state({
                 name: 'userLogPage',
                 url: '/log',
                 component: 'userLogPage'
