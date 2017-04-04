@@ -81,6 +81,10 @@
                 $location.url('/search-' + vm.searchCategory + '/' + vm.searchInput);
             }
         }
+
+        vm.closeMenu = function() {
+            WebuiPopovers.hide('#drop-link');
+        }
     }
 
 })();

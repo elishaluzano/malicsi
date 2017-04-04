@@ -107,13 +107,13 @@
 </div>
 
 <div id="additional-links" class="webui-popover-content">
-    <a class="dropdown-links" ui-sref="#">Live</a>
-    <a class="dropdown-links" ui-sref="eventsPage">Events</a>
-    <a class="dropdown-links" ui-sref="teamsPage">Teams</a>
-    <a class="dropdown-links" ui-sref="schedulesPage">Schedules</a>
-    <a class="dropdown-links" ui-sref="sponsorsPage">Sponsors</a>
-    <a class="dropdown-links" ui-sref="userLogsPage" ng-if="$ctrl.isAdmin">Logs</a>
-    <a class="dropdown-links" ui-sref="adminPage" ng-if="$ctrl.user.isOverallAdmin">Admin</a>
+    <a class="dropdown-links" ui-sref="landingPage" ng-click="$ctrl.closeMenu()">Live</a>
+    <a class="dropdown-links" ui-sref="eventsPage" ng-click="$ctrl.closeMenu()">Events</a>
+    <a class="dropdown-links" ui-sref="teamsPage" ng-click="$ctrl.closeMenu()">Teams</a>
+    <a class="dropdown-links" ui-sref="schedulesPage" ng-click="$ctrl.closeMenu()">Schedules</a>
+    <a class="dropdown-links" ui-sref="sponsorsPage" ng-click="$ctrl.closeMenu()">Sponsors</a>
+    <a class="dropdown-links" ui-sref="userLogsPage" ng-if="$ctrl.isAdmin || $ctrl.user.isOverallAdmin" ng-click="$ctrl.closeMenu()">Logs</a>
+    <a class="dropdown-links" ui-sref="adminPage" ng-if="$ctrl.user.isOverallAdmin" ng-click="$ctrl.closeMenu()">Admin</a>
 </div>
 
 
