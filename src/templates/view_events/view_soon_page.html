@@ -166,13 +166,36 @@
     <div class = "col s12 m8 l9">
     <div class="row">
       <div class = "tab-custom" id = "addhere">
-        <button onClick = "openData(event, 'teams')" class = "white-text black">Teams</button>
-        <button data-target="add-date-modal" class="red lighten-1 white-text">Add date</button>
-        <button class = "tablinks active" onclick="openData(event,'June_12_game')" id ="defaultOpen">June 12</button>
-        <button class = "tablinks" onclick="openData(event,'June_13_game')">June 13</button>
-        <button class = "tablinks" onclick="openData(event,'June_14_game')">June 14</button>
-        <button class = "tablinks" onclick="openData(event,'June_15_game')">June 15</button>
+        <ul class="pagination" id="soon-tabs">
+          <li>
+            <a onclick="openData(event, 'teams')" class = "white-text black">Teams</a>
+          </li>
+          <li>
+            <a data-target="add-date-modal" class="red lighten-1 white-text">Add date</a>
+          </li>
 
+          <li>
+            <a><i class="material-icons" onclick="prevTab()">chevron_left</i></a>
+          </li>
+          <!-- DAYS -->
+          <li class="kjhkahdfjahsg">
+            <a class = "tablinks active" onclick="openData(event,'June_12_game')" id ="defaultOpen">June 12</a>
+          </li>
+          <li class="adjfgadhjfs">
+            <a class = "tablinks" onclick="openData(event,'June_13_game')">June 13</a>
+          </li>
+          <li>
+            <a class = "tablinks" onclick="openData(event,'June_14_game')">June 14</a>
+          </li>
+          <li>
+            <a class = "tablinks" onclick="openData(event,'June_15_game')">June 15</a>
+          </li>
+          <!-- END DAYS -->
+
+          <li>
+            <a onclick="nextTab()"><i class="material-icons">chevron_right</i></a>
+          </li>
+        </ul>
       </div>
 
 
