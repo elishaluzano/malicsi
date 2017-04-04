@@ -108,6 +108,12 @@
                 resolve: {
                     events: function(eventService) {
                         return eventService.getAll();
+                    },
+                    sports: function(sportService){
+                        return sportService.getAll();
+                    },
+                    allGamesInformation: function(gameService){
+                        return gameService.getAllGamesInformation();
                     }
                 }
             })
