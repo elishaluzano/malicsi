@@ -3,4 +3,13 @@
     show soon, live, done event page depending on status
     pass $ctrl.event on to that component
 -->
-<live-event-page event="$ctrl.event"></live-event-page>
+
+<live-event-page 
+    ng-if="$ctrl.status === 'Live'"
+    event="$ctrl.event">
+</live-event-page>
+
+<done-event-page
+    ng-if="$ctrl.status === 'Done'"
+    event="$ctrl.event">
+</done-event-page>

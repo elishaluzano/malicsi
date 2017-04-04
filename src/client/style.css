@@ -205,7 +205,6 @@ th, td{
     box-shadow: 0 1px 0 0 red;
 }
 
-
 .field-row {
     margin-top: 5px;
     margin-bottom: 10px;    
@@ -288,3 +287,19 @@ div.tab-custom button.active {
     cursor: pointer;
 }
 
+.tabs {
+    overflow-x: hidden;
+}
+
+th,td{
+    padding-top:3px;
+}
+
+.team-logo{
+    width:10%;
+    vertical-align:middle;
+}
+
+.filter{
+    position:fixed;
+}

@@ -24,9 +24,17 @@ app.use(session({
 }));
 
 app.use('/', routes);
-
-app.get('/*', function(req, res) {
+//index page
+app.get('/', function(req, res) {
 	res.sendFile(path.resolve('./../../dist/index.html'));
+});
+//about page
+app.get('/about', function(req, res) {
+	res.sendFile(path.resolve('./../../dist/about.html'));
+});
+//404 error page
+app.get('/*', function(req, res) {
+	res.sendFile(path.resolve('./../../dist/404.html'));
 });
 
 //listening on port 8000

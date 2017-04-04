@@ -19,7 +19,7 @@ CREATE TABLE user (
     contact_number varchar(11),
     contact_person int default NULL,
     profile_pic text,
-    isOverallAdmin boolean default false,
+    isOverallAdmin int default 0,
     constraint user_username_uk unique key (username),
     constraint user_contact_person_fk foreign key (contact_person) references contactPersonInCaseOfEmergency(contact_person_id)
     ON DELETE SET NULL
@@ -34,7 +34,8 @@ CREATE TABLE userAffiliation (
 CREATE TABLE sponsoringInstitution (
     institution_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(50) NOT NULL,
-    description varchar(1000) NOT NULL
+    description varchar(1000) NOT NULL,
+    picture text default NULL
 );
 
 CREATE TABLE institutionHasAdmin (

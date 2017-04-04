@@ -18,7 +18,7 @@ describe('UserMockData', function() {
             'contact_number' : '09123456789',
             'contact_person' : 1,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -43,7 +43,7 @@ describe('UserMockData', function() {
             'contact_number' : '09987654321',
             'contact_person' : 2,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -68,7 +68,7 @@ describe('UserMockData', function() {
             'contact_number' : '09102938475',
             'contact_person' : 3,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -93,7 +93,7 @@ describe('UserMockData', function() {
             'contact_number' : '09564738291',
             'contact_person' : 4,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -118,7 +118,7 @@ describe('UserMockData', function() {
             'contact_number' : '09132435467',
             'contact_person' : 5,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -143,7 +143,7 @@ describe('UserMockData', function() {
             'contact_number' : '09988776654',
             'contact_person' : 6,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -168,7 +168,7 @@ describe('UserMockData', function() {
             'contact_number' : '09267009739',
             'contact_person' : 7,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -193,7 +193,7 @@ describe('UserMockData', function() {
             'contact_number' : '09111112234',
             'contact_person' : 8,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -218,7 +218,7 @@ describe('UserMockData', function() {
             'contact_number' : '09229933884',
             'contact_person' : 9,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -243,7 +243,7 @@ describe('UserMockData', function() {
             'contact_number' : '09124356785',
             'contact_person' : 10,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -268,7 +268,7 @@ describe('UserMockData', function() {
             'contact_number' : '09201703170',
             'contact_person' : 11,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -293,7 +293,7 @@ describe('UserMockData', function() {
             'contact_number' : '09222223145',
             'contact_person' : 12,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -318,7 +318,7 @@ describe('UserMockData', function() {
             'contact_number' : '09666555778',
             'contact_person' : 13,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -343,7 +343,7 @@ describe('UserMockData', function() {
             'contact_number' : '09099887765',
             'contact_person' : 14,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -368,7 +368,7 @@ describe('UserMockData', function() {
             'contact_number' : '09236512875',
             'contact_person' : 15,
             'profile_pic' : null,
-            'isOverallAdmin' : false
+            'isOverallAdmin' : 0
        };
        it('Creates a new user', function(done){
            request(url)
@@ -384,16 +384,16 @@ describe('UserMockData', function() {
     });
      describe('addUser()', function() {
        var newUser = {
-            'name' : 'Overall Admin',
+            'name' : 'admin',
             'username' : 'admin',
-            'password' : 'adminpowers',
+            'password' : 'admin',
             'gender' : 'female',
             'birthday' : '2017-04-06',
             'email' : 'admin@up.edu.ph',
             'contact_number' : '09983765412',
             'contact_person' : null,
             'profile_pic' : null,
-            'isOverallAdmin' : true
+            'isOverallAdmin' : 1
        };
        it('Creates a new user', function(done){
            request(url)

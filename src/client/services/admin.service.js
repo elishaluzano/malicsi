@@ -19,13 +19,24 @@
 					});
 			},
 
+			checkAdminOfTeam: function(userId, teamId) {
+				return $http.get(api + 'checkAdminOfTeam/' + userId + '/' + teamId)
+                    .then(function(response) {
+						return response.data
+					})
+					.catch(function(err) {
+						console.log("Error in checking of admin!");
+						console.log(err.status + ': ' + err.statusText);
+					});
+			},
+
 			getInstitutionsByAdmin: function(id) {
-				return $http.get(api + 'getInstitutions/' + id)
+				return $http.get(api + 'admins/' + id + '/institutions')
 					.then(function(response) {
 						return response.data
 					})
 					.catch(function(err) {
-						console.log("Error in checking admin!");
+						console.log("Error in getting institutions of admin!");
 						console.log(err.status + ': ' + err.statusText);
 					});
 			},
@@ -53,7 +64,7 @@
 			},
 
 			create: function(body) {
-				return $http.post(api, body)
+				return $http.post(api + 'admins', body)
 					.then(function(response) {
 						return response.data
 					})

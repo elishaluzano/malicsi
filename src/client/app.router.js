@@ -6,6 +6,28 @@
     function routerConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state({
+                name: 'adminPage',
+                url: '/admin',
+                component: 'adminPage',
+                resolve: {
+                    name: function($state) {
+                        return $state.current.name;
+                    },
+                    params: function($state) {
+                        return $state.params;
+                    }
+                },
+                onEnter: function(name, params, $state, sessionService) {
+                    let user = sessionService.user();
+
+                    if (!user || !user.isOverallAdmin) {
+                        Materialize.toast('Unauthorized access!', 2000, 'red');
+                        name = (!name || name === 'adminPage')? 'landingPage' : name;
+                        $state.go(name, params);
+                    }
+                }
+            })
+            .state({
                 name: 'userLogPage',
                 url: '/log',
                 component: 'userLogPage'
@@ -145,6 +167,12 @@
                     params: function($state) {
                         console.log($state);
                         return $state.params;
+                    },
+                    allTeams: function(teamService) {
+                        return teamService.getAll();
+                    },
+                    teamPlaysGame: function(teamService, $transition$) {
+                        return teamService.getOneTeamPlaysGame($transition$.params().teamId);
                     }
                 },
                 onEnter: function(currentTeam, componentName, params, $state) {
@@ -155,6 +183,22 @@
                         }
                         $state.go(componentName, params);
                     }
+                }
+            })
+            .state({
+                name: 'teamsPage',
+                url: '/teams',
+                component: 'teamsPage',
+                resolve: {
+                    events: function(eventService, $transition$) {
+                        return eventService.getAll();
+                    },
+                    teams: function(teamService, $transition$) {
+                        return teamService.getAll();
+                    },
+                    teamPlaysGame: function(teamService, $transition$) {
+                        return teamService.getAllTeamPlaysGame();
+                    },
                 }
             })
             .state({

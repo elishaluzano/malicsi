@@ -24,13 +24,14 @@
         vm.sports = [];
         vm.soonEvents = [];
         vm.liveEvents = [];
+        var hasDuplicate = false;
 
         vm.$onInit = function() {
-            
+/*           
             sportService.getAll()
                 .then(function(sports) {
                     vm.sports = sports;
-                    /*
+                    
                     for (let sport of sports) {
                         eventService.getGeneralInformation(sport.event_id_key)
                             .then(function(data) {
@@ -38,8 +39,8 @@
                                 vm.sports.push({ })
                             })
                     }
-                    */
                 });
+*/
 
             for (let event of vm.events) {
                 let toDate = new Date().getTime();
@@ -73,16 +74,21 @@
                                                 team.loses++;
                                             }
                                         }
-                                        teams.push(team);
 
                                     });
-                            }
 
-                            vm.objects.push({ eventName: event, eventTeams: teams })
+                                if (teams.indexOf(team) < 0) {
+                                    teams.push(team);
+                                }
+                            }
+                            
+                            vm.objects.push({ eventName: event, eventTeams: teams });
                         });
                 }
             }
 
+            console.log(vm.objects);
+            
             $('.collapsible').collapsible();
         }
     }

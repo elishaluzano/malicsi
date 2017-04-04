@@ -78,8 +78,11 @@
                     <p>09XXXXXXXXX</p>
                 </div> -->
 
-                <div class="col s4 offset-s4">
+                <!-- <div class="col s4 offset-s4">
                     <a class = "red btn" ng-click="$ctrl.toggleEdit()" ng-if="$ctrl.isSameUser">Edit</a>
+                </div> -->
+                <div class="col s4 offset-s4" ng-if="$ctrl.isSameUser">
+                    <a class = "red btn" ng-click="$ctrl.toggleEdit()">Edit</a>
                 </div>
             </div>
         </div>
@@ -129,8 +132,8 @@
                         <p>Gender</p>
                     </div>
                     <div id="sex" class="left-align col s3">
-                        <input type="radio" id="male" ng-model="$ctrl.isMale" ng-value="true"/> <label for="male">Male</label>
-                        <input type="radio" id="female" ng-model="$ctrl.isMale" ng-value="false"/> <label for="female">Female</label>
+                        <input type="radio" id="male" ng-model="$ctrl.user.gender" value="male"/> <label for="male">Male</label>
+                        <input type="radio" id="female" ng-model="$ctrl.user.gender" value="female"/> <label for="female">Female</label>
                     </div>
                 </div>
             </div>
