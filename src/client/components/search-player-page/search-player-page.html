@@ -8,39 +8,34 @@
                 <form action="#">
                     <!-- Events that the searched profile/s has/have attended, if there are any -->
                     <p>
-                        <input type="checkbox" id="profile-event-attended" ng-model="$ctrl.eventChecked" ng-change="$ctrl.$onInit()"/>
-                        <label for="profile-event-attended">Event Attended</label>
+                        <select ng-model="$ctrl.eventParticipated" id="dropdown" class="left black-text browser-default" ng-change="$ctrl.filter()">
+                            <option value="all">All Events</option>
+                            <option ng-repeat="each in $ctrl.events" value="{{ each.event_id }}" event="each">
+                                {{ each.event_title }}
+                            </option>
+                        </select>
                     </p>
                     <!-- Teams the searched profile/s has/have played for, if there are any -->
+                    <br><br><br>
                     <p>
-                        <input type="checkbox" id="profile-team" ng-model="$ctrl.teamChecked" ng-change="$ctrl.$onInit()"/>
-                        <label for="profile-team">Team</label>
+                        <select ng-model="$ctrl.teamBelong" id="dropdown" class="left black-text browser-default" ng-change="$ctrl.filter()">
+                            <option value="all">All Teams</option>
+                            <option ng-repeat="each in $ctrl.teams" value="{{ each.team_id }}" team="each">
+                                {{ each.name }}
+                            </option>
+                        </select>
                     </p>
-                    
-                    <br>
+                    <br><br><br>
                     <strong>Gender</strong>
+                    <br><br>
                     <p>
                         <input type="checkbox" id="profile-gender-male" ng-model="$ctrl.genderStatus.male" ng-change="$ctrl.filter()"/>
                         <label for="profile-gender-male">Male</label>
                     </p>
+                    <br>
                     <p>
                         <input type="checkbox" id="profile-gender-female" ng-model="$ctrl.genderStatus.female" ng-change="$ctrl.filter()"/>
                         <label for="profile-gender-female">Female</label> 
-                    </p>
-                    <br>
-                    <div class="divider"></div>
-
-                    <!-- Text inputs for the checked criteria -->
-                    <strong>For checked criteria:</strong>
-                    <br>
-                    <br>
-                    <p class="input-field" ng-show = "$ctrl.eventChecked">
-                        <input type="text" id="event-attended-name" />
-                        <label for="event-attended-name">Event Name</label>
-                    </p>
-                    <p class="input-field" ng-show = "$ctrl.teamChecked">
-                        <input type="text" id="team-name" />
-                        <label for="team-name">Team Name</label>
                     </p>
                 </form>
             </div>

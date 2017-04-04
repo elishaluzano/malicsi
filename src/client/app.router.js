@@ -240,6 +240,12 @@
                 resolve: {
                     users: function(userService) {
                         return userService.getAll();
+                    },
+                    teams: function(teamService) {
+                        return teamService.getAll();
+                    },
+                    events: function(eventService) {
+                        return eventService.getAll();
                     }
                 }
             });

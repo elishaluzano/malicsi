@@ -7,15 +7,22 @@
 			template: require('./search-player-page.html'),
 			controller: searchPlayerPageController,
 			bindings: {
-				users: '<'
+				users: '<',
+				teams: '<',
+				events: '<'
 			}
 		});
 
-		function searchPlayerPageController(sportService) {
+		function searchPlayerPageController(eventService) {
 			var vm = this;
 
+			vm.eventParticipated = 'all';
+
+			vm.teamBelong = 'all';
+
+			vm.filterEvent = [];
+
 			vm.tempUsers = [];
-			vm.sports = [];
 
 			vm.genderStatus = {
 				male: true,
@@ -27,15 +34,19 @@
 
 			vm.$onInit = function() {
 				vm.tempUsers = $.extend(true, [], vm.users);
-				sportService.getAll()
-					.then(function(sports) {
-						vm.sports = sports;
-					});
-					console.log(vm.sports);
+				console.log(vm.sports);
+				console.log(vm.users);
         	}
 
         	vm.filter = function() {
         		let users = $.extend(true, [], vm.users);
+
+        		console.log(vm.eventParticipated);
+
+        		eventService.getSports(vm.eventParticipated)
+        			.then(function(filterSports) {
+        				vm.filterEvent = filterSports;
+        			});
 
 				vm.tempUsers = users.filter(function(user) {
 					if (vm.genderStatus.male && user.gender === 'male'){
@@ -45,6 +56,8 @@
 						return true;
 					}
 				});
+
+				console.log(vm.filterEvent);
 			}
 
 		}
