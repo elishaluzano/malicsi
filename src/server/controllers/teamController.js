@@ -92,7 +92,7 @@ exports.updateTeam = (req,res) => {
 		picture : (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file,
 		event_id_key : req.body.event_id_key
 	};
-	connection.query('UPDATE team SET name = ?, picture = ?, event_id_key = ? WHERE team_id = ?', [ req.body.name, (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file, req.body.event_id_key, req.params.id ], function(err, rows, fields){
+	connection.query('UPDATE team SET name = ?, picture = ?, event_id_key = ? WHERE team_id = ?', [ req.body.name, team.picture, req.body.event_id_key, req.params.id ], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
