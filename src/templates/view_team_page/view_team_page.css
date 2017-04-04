@@ -1,0 +1,15 @@
+th,td{
+	padding-top:3px;
+}
+
+
+.team-logo{
+	width:10%;
+	vertical-align:middle;
+}
+
+.filter{
+	position:fixed;
+}
+/*
+style = "width:10%;vertical-align:middle;"*/
