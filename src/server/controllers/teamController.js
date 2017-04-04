@@ -142,6 +142,30 @@ exports.getIsComposedOf = (req,res) => {
 	});
 };
 
+exports.getTeamsOfUser = (req,res) => {
+	connection.query('SELECT team_player_id FROM teamIsComposedOfUser WHERE user_player_id = ?',[ req.params.id ], function(err, rows, fields){
+		if (err) {
+            console.log(err);
+            res.send(err);
+         }
+        else {
+            res.send(rows);
+        }
+	});
+};
+
+exports.getTeamsStats = (req,res) => {
+	connection.query('select distinct event_title, team.name, (select count(record) from teamPlaysGame where record = "WIN" and team_id_play = ?) as wins, (select count(record) from teamPlaysGame where record = "LOSE" and team_id_play = ?) as losses, ((select count(record) from teamPlaysGame where record = "WIN" and team_id_play = ?)/(select count(record) from teamPlaysGame where team_id_play = ?)) as percentage from event join team join teamPlaysGame on event_id = event_id_key and team_id = team_id_play where team_id = ?',[ req.params.id,req.params.id,req.params.id,req.params.id,req.params.id ], function(err, rows, fields){
+		if (err) {
+            console.log(err);
+            res.send(err);
+         }
+        else {
+            res.send(rows);
+        }
+	});
+};
+
 exports.getIsUserOfTeam = (req,res) => {
 	connection.query('SELECT * FROM teamIsComposedOfUser WHERE team_player_id = ? AND user_player_id = ?',[ req.params.team_id, req.params.user_id ], function(err, rows, fields){
 		if (err) {
