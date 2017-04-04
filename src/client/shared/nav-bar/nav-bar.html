@@ -33,6 +33,9 @@
 
             <ul class="left hide-on-med-and-down">
                 <li>
+                    <a ui-sref="landingPage" class="black-text">Live</a>
+                </li>
+                <li>
                     <a ui-sref="eventsPage" class="black-text">Events</a>
                 </li>
                 <li>
@@ -57,11 +60,11 @@
                         ng-model="$ctrl.searchCategory"
                         class="left black-text browser-default">
 
-                        <option value="all" selected>Search All</option>
-                        <option value="user" selected>Player</option> 
-                        <option value="team" selected>Team</option> 
-                        <option value="event" selected>Event</option> 
-                        <option value="institution" selected>Sponsoring Institution</option> 
+                        <option value="all">Search All</option>
+                        <option value="user">Player</option> 
+                        <option value="team">Team</option> 
+                        <option value="event">Event</option> 
+                        <option value="institution">Sponsoring Institution</option> 
                     </select>
                 </div>
 
@@ -104,6 +107,7 @@
 </div>
 
 <div id="additional-links" class="webui-popover-content">
+    <a class="dropdown-links" ui-sref="landingPage" ng-click="$ctrl.closeMenu()">Live</a>
     <a class="dropdown-links" ui-sref="eventsPage" ng-click="$ctrl.closeMenu()">Events</a>
     <a class="dropdown-links" ui-sref="teamsPage" ng-click="$ctrl.closeMenu()">Teams</a>
     <a class="dropdown-links" ui-sref="schedulePage" ng-click="$ctrl.closeMenu()">Schedules</a>

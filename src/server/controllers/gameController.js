@@ -88,3 +88,13 @@ exports.viewTeamsInGame = (req,res) => {
 		}
 	});
 };
+
+exports.viewGamesInformation = (req,res) => {
+	connection.query('select g.game_id, g.status, g.time, e.event_title, sp.name as sport, sp.sport_id as sport_id, s.name as sponsor, v.name as venue, s.institution_id as sponsor_id from game g join event e join sport sp join sponsoringInstitution s join venue v on sp.sport_id = g.sport_id and g.event_id = e.event_id and s.institution_id = e.institution_id_key and v.venue_id = g.venue', [], function(err, rows, fields){
+		if(!err) {
+			res.send(rows);
+		}else{
+			console.log(err);
+		}
+	});
+};

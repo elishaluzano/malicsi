@@ -28,7 +28,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="event in $ctrl.events">
-                        <td>{{ event.event_title }}</td>
+                        <td><a ui-sref="eventPage({ eventId: event.event_id })">{{ event.event_title }}</a></td>
                         <td>{{ event.venue }}</td>
                         <td>{{ event.start_date | date: fullDate }}</td>
                         <td>{{ event.end_date | date: fullDate }}</td>

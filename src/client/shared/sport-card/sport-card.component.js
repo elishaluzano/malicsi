@@ -10,13 +10,24 @@
             }
         });
 
-    function sportCardController(eventService) {
+    function sportCardController(gameService) {
         var vm = this;
         vm.sports = [];
         vm.sportsAndGames = [];
 
         vm.$onInit = function(){
             console.log(vm.information);
+            for(let game of vm.information.games){
+                gameService.getTeamsInGame(game.game_id)
+                    .then(function(data){
+                        game.teams = data;
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    })
+            }
+
+            /*console.log(vm.information);
             vm.information.forEach(function(information){
                 if(vm.sports.indexOf(information.sport) < 0){
                     vm.sports.push(information.sport);
@@ -51,7 +62,7 @@
                 });
 
                 sportAndGame.games = gamesPerSport;
-            });
+            });*/
         }
         
     }

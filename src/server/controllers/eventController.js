@@ -49,7 +49,7 @@ exports.viewAllEvent = (req,res) => {
 };
 
 exports.searchEvent = (req,res) => {
-	connection.query('SELECT * FROM event WHERE event_title LIKE ?', [ '%' + req.params.search + '%'], function(err, rows, fields){
+	connection.query('SELECT * FROM event WHERE event_title LIKE ? order by event_title', [ '%' + req.params.search + '%'], function(err, rows, fields){
 		if(!err) {
 			res.send(rows);
 		}else{
@@ -76,13 +76,13 @@ exports.updateEvent = (req,res) => {
     var info = {
         event_id : req.params.id,
 		event_title: req.body.event_title,
-		venue: req.body.venue,
+		venue_id_key: req.body.venue_id_key,
 		start_date: req.body.start_date,
 		end_date: req.body.end_date,
-		picture: (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file,
+		picture: (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.body.picture,
 		institution_id_key: req.body.institution_id_key
 	};
-	connection.query('UPDATE event SET event_title = ?, venue = ?, start_date = ?, end_date = ?, picture = ? WHERE event_id = ?', [req.body.event_title, req.body.venue, req.body.start_date, req.body.end_date, (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file, req.params.id], function(err, rows, fields){
+	connection.query('UPDATE event SET event_title = ?, venue_id_key = ?, start_date = ?, end_date = ?, picture = ? WHERE event_id = ?', [req.body.event_title, req.body.venue_id_key, req.body.start_date, req.body.end_date, info.picture, req.params.id], function(err, rows, fields){
 		if(!err) {
 			res.send(info);
 			console.log("Success");
@@ -172,7 +172,7 @@ exports.viewGeneralInformation = (req, res) => {
 };
 
 exports.viewDoneEventInfo = (req, res) => {
-    connection.query('select distinct s.name as sport, s.sport_id as sport_id, g.time, g.game_id, e.event_id as event_id, e.event_title as event, t.name as team, si.description as institution, v.name as venue, tpg.score as score, tpg.record as record from event e join game g join sport s join team t join sponsoringInstitution si join venue v join teamPlaysGame tpg join eventHasSport ehs where e.event_id = ? and s.sport_id = ehs.sport_id and g.sport_id = s.sport_id and e.institution_id_key = si.institution_id and g.venue = v.venue_id and tpg.game_id_play = g.game_id and tpg.team_id_play = t.team_id and t.event_id_key = e.event_id', [req.params.id], function(err, rows, fields){
+    connection.query('select distinct s.name as sport, s.sport_id as sport_id, g.time, g.game_id, e.event_id as event_id, e.event_title as event, t.team_id, t.name as team, e.institution_id_key, si.description as institution, v.name as venue, tpg.score as score, tpg.record as record from event e join game g join sport s join team t join sponsoringInstitution si join venue v join teamPlaysGame tpg join eventHasSport ehs where e.event_id = ? and s.sport_id = ehs.sport_id and g.sport_id = s.sport_id and e.institution_id_key = si.institution_id and g.venue = v.venue_id and tpg.game_id_play = g.game_id and tpg.team_id_play = t.team_id and t.event_id_key = e.event_id', [req.params.id], function(err, rows, fields){
         if (!err) {
             console.log("Success");
             res.send(rows);
@@ -183,6 +183,3 @@ exports.viewDoneEventInfo = (req, res) => {
         }
     });
 };
-
-
-

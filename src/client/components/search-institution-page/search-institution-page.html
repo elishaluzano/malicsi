@@ -1,5 +1,5 @@
 <div class="container row">
-    <h3>Search Teams</h3>
+    <h3>Search Sponsoring Institution</h3>
 
     <div class="col m4 l4 hide-on-small-only"
         id="filters">
@@ -15,10 +15,8 @@
                                 <option value="all">All Events</option>
                                 <option 
                                 ng-repeat="each in $ctrl.allEvents" 
-                                value="{{ each.event_id }}"
-                                >
-                                    {{ each.event_title }}
-                                </option>
+                                value="{{ each.institution_id_key }}"
+                                >{{ each.event_title }}</option>
                             </select>
                             
                             <br><br><br>
@@ -33,13 +31,13 @@
     <div class="col m8 l8" id="results">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">Teams</span>   
+                <span class="card-title">Institutions</span>
                 <ul class="collection">
-                    <search-team-card  
-                        ng-repeat="team in $ctrl.teams"
-                        ng-if="$ctrl.eventSponsored == team.event_id_key || $ctrl.eventSponsored == 'all' "
-                        team="team">
-                    </search-team-card>
+                    <search-institution-card  
+                        ng-repeat="institution in $ctrl.institutions"
+                        ng-if="$ctrl.eventSponsored == institution.institution_id || $ctrl.eventSponsored == 'all' "
+                        institution="institution">
+                    </search-institution-card>
                 </ul>
             </div>
         </div>
