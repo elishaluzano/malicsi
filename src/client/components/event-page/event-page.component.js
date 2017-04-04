@@ -11,7 +11,7 @@
             }
         });
 
-    function eventPageController() {
+    function eventPageController(eventService) {
         var vm = this;
 
         vm.status = '';
@@ -28,8 +28,16 @@
                 vm.status = 'Soon';
             }
             else {
-                vm.status = 'Done';
+                vm.status = 'Done sana'; // <- temporary
             }
+
+            if (vm.status === 'Done sana') {
+                eventService.getDoneEventInfo(vm.event.event_id)
+                    .then(function(event) {
+                        vm.event = event;
+                        vm.status = 'Done';
+                    });
+            }       
         }
 
     }

@@ -1,6 +1,6 @@
 <div class="container z-depth-1" ng-if="!($ctrl.isBeingEdited)">
     <div id="user-big">
-        <img id="user-image" class="responsive-img" ng-src="/images/{{ $ctrl.user.profile_pic }}" alt="profile pic">
+        <img id="user-image" class="responsive-img" ng-src="{{ $ctrl.user.profile_pic }}" alt="profile pic">
         <div class="center row">
             <h5>{{ $ctrl.user.name }}</h5>
             <h6>{{ $ctrl.user.username }}</h6>
@@ -81,7 +81,7 @@
                 <!-- <div class="col s4 offset-s4">
                     <a class = "red btn" ng-click="$ctrl.toggleEdit()" ng-if="$ctrl.isSameUser">Edit</a>
                 </div> -->
-                <div class="col s4 offset-s4">
+                <div class="col s4 offset-s4" ng-if="$ctrl.isSameUser">
                     <a class = "red btn" ng-click="$ctrl.toggleEdit()">Edit</a>
                 </div>
             </div>
@@ -164,6 +164,17 @@
                         <a class="red disabled waves-effect  btn-floating tooltipped remove-affiliation" data-position="top" data-delay="10" data-tooltip="Remove affiliation"><i class="material-icons">delete</i></a>
                     </div>
                     <div class="left-align col s6"></div>
+                </div>
+            </div>
+
+
+            <div class="file-field input-field">
+                <div class="btn red">
+                    <span>File</span>
+                    <input type="file" file-input="$ctrl.files">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
                 </div>
             </div>
 

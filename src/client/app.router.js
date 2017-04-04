@@ -6,6 +6,28 @@
     function routerConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state({
+                name: 'adminPage',
+                url: '/admin',
+                component: 'adminPage',
+                resolve: {
+                    name: function($state) {
+                        return $state.current.name;
+                    },
+                    params: function($state) {
+                        return $state.params;
+                    }
+                },
+                onEnter: function(name, params, $state, sessionService) {
+                    let user = sessionService.user();
+
+                    if (!user || !user.isOverallAdmin) {
+                        Materialize.toast('Unauthorized access!', 2000, 'red');
+                        name = (!name || name === 'adminPage')? 'landingPage' : name;
+                        $state.go(name, params);
+                    }
+                }
+            })
+            .state({
                 name: 'userLogPage',
                 url: '/log',
                 component: 'userLogPage'
@@ -164,9 +186,9 @@
                 }
             })
             .state({
-                name: 'teamLandingPage',
+                name: 'teamsPage',
                 url: '/teams',
-                component: 'teamLandingPage',
+                component: 'teamsPage',
                 resolve: {
                     events: function(eventService, $transition$) {
                         return eventService.getAll();
@@ -177,19 +199,6 @@
                     teamPlaysGame: function(teamService, $transition$) {
                         return teamService.getAllTeamPlaysGame();
                     },
-                }
-            })
-            .state({
-                name: 'doneEventsPage',
-                url: '/done-events/{eventId}',
-                component: 'doneEventsPage',
-                bindings: {
-                    event: 'event'            
-                },
-                resolve: {
-                    event: function($stateParams, eventService) {
-                        return eventService.getDoneEventInfo($stateParams.eventId);
-                    }
                 }
             })
             .state({
@@ -208,6 +217,19 @@
                     },
                     teams: function(searchService, $transition$) {
                         return searchService.teams($transition$.params().query);
+                    }
+                }
+            })
+            .state({
+                name: 'searchTeamPage',
+                url: '/search-team/{query}',
+                component: 'searchTeamPage',
+                resolve: {
+                    teams: function(searchService, $transition$) {
+                        return searchService.teams($transition$.params().query);
+                    },
+                    allEvents: function(eventService) {
+                        return eventService.getAll();
                     }
                 }
             });

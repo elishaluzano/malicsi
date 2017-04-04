@@ -64,7 +64,7 @@
 			},
 
 			create: function(body) {
-				return $http.post(api, body)
+				return $http.post(api + 'admins', body)
 					.then(function(response) {
 						return response.data
 					})

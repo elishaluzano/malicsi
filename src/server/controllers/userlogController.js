@@ -34,7 +34,6 @@ exports.getUserlogs = (req, res) => {
 exports.addLog = (req, res) => {
     var newLog = {
         user_id : req.body.user_id,
-        username: req.body.username,
         institution_id : req.body.institution_id,
         action : req.body.action
     }

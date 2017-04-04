@@ -3,9 +3,9 @@
 
     angular
         .module('app')
-        .component('teamLandingPage', {
-            template: require('./team-landing-page.html'),
-            controller: teamLandingPageController,
+        .component('teamsPage', {
+            template: require('./teams-page.html'),
+            controller: teamsPageController,
             bindings: {
                 events: '<',
                 teams: '<',
@@ -13,7 +13,7 @@
             }
         });
 
-    function teamLandingPageController() {
+    function teamsPageController() {
         var vm = this;
 
         vm.filters = {
