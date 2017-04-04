@@ -35,7 +35,8 @@ CREATE TABLE sponsoringInstitution (
     institution_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(50) NOT NULL,
     description varchar(1000) NOT NULL,
-    picture text default NULL
+    picture text default NULL,
+    constraint sponsoringInstitution_name_uk unique key (name)
 );
 
 CREATE TABLE institutionHasAdmin (
@@ -49,7 +50,8 @@ CREATE TABLE institutionHasAdmin (
 
 CREATE TABLE venue (
     venue_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name varchar(50) NOT NULL
+    name varchar(50) NOT NULL,
+    constraint venue_name_uk unique key (name)
 );
 
 CREATE TABLE event (
@@ -60,13 +62,15 @@ CREATE TABLE event (
     end_date date NOT NULL,
     picture text,
     institution_id_key int NOT NULL,
+    constraint event_event_title_uk unique key (event_title),
     constraint event_institution_key_fk foreign key(institution_id_key) references sponsoringInstitution(institution_id) ON DELETE CASCADE,
     constraint event_venue_key_fk foreign key(venue_id_key) references venue(venue_id) ON DELETE SET NULL
 );
 
 CREATE TABLE sport (
     sport_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name varchar(20) NOT NULL
+    name varchar(20) NOT NULL,
+    constraint sport_name_uk unique key (name)
 );
 
 CREATE TABLE game (
