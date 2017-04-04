@@ -30,6 +30,22 @@
                 name: 'userLogPage',
                 url: '/log',
                 component: 'userLogPage'
+            })     
+            .state({
+                name: 'liveGamePage',
+                url: '/game/{gameId}',
+                component: 'liveGamePage',
+                resolve: {
+                    game: function(gameService, $transition$){
+                        return gameService.getOne($transition$.params().gameId);
+                    },
+                    teamsInGame: function(gameService, $transition$){
+                        return gameService.getTeamsInGame($transition$.params().gameId);
+                    },
+                    scores: function(gameService, $transition$){
+                        return [];
+                    }
+                }
             })
             .state({
                 name: 'userPage',
