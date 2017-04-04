@@ -33,6 +33,9 @@
 
             <ul class="left hide-on-med-and-down">
                 <li>
+                    <a ui-sref="landingPage" class="black-text">Live</a>
+                </li>
+                <li>
                     <a ui-sref="eventsPage" class="black-text">Events</a>
                 </li>
                 <li>
@@ -104,6 +107,7 @@
 </div>
 
 <div id="additional-links" class="webui-popover-content">
+    <a class="dropdown-links" ui-sref="landingPage" ng-click="$ctrl.closeMenu()">Live</a>
     <a class="dropdown-links" ui-sref="eventsPage" ng-click="$ctrl.closeMenu()">Events</a>
     <a class="dropdown-links" ui-sref="teamsPage" ng-click="$ctrl.closeMenu()">Teams</a>
     <a class="dropdown-links" ui-sref="schedulePage" ng-click="$ctrl.closeMenu()">Schedules</a>
