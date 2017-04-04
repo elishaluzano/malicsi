@@ -12,7 +12,7 @@
             }
         });
 
-    function liveEventPageController($q, eventService, venueService, teamService) {
+    function liveEventPageController($q, eventService, venueService, teamService, institutionService) {
         var vm = this;
 
         vm.sports = [];
@@ -30,6 +30,37 @@
             Done: true
         };
 
+        vm.institutions = [];
+
+        vm.editedEvent = {};
+        vm.files = [];
+
+        vm.editEvent = function() {
+            vm.editedEvent = angular.copy(vm.event);
+            vm.editedEvent.start_date = new Date(vm.editedEvent.start_date);
+            vm.editedEvent.end_date = new Date(vm.editedEvent.end_date);
+            console.log(vm.editedEvent);
+        }
+
+        vm.confirmEditEvent = function() {
+            var fd = new FormData();
+            fd.append('event_title', vm.editedEvent.event_title);
+            fd.append('institution_id_key', vm.editedEvent.institution_id_key);
+            fd.append('start_date', (new Date(vm.editedEvent.start_date)).toISOString().substring(0,10));
+            fd.append('end_date', (new Date(vm.editedEvent.end_date)).toISOString().substring(0,10));
+            fd.append('picture', (vm.files[0])? vm.files[0] : vm.editedEvent.picture);
+            fd.append('venue_id_key', vm.editedEvent.venue_id_key);
+
+            eventService.update(vm.editedEvent.event_id, fd)
+                .then(function(event) {
+                    vm.event = event;
+                    vm.event.start_date = new Date(vm.event.start_date);
+                    vm.event.end_date = new Date(vm.event.end_date);
+                    Materialize.toast('Successfully updated event', 3000, 'red');
+                });
+
+        }
+        
         vm.toggleToTeams = function() {
             vm.isTeamsTab = true;
             for (let i = 0; i < vm.dates.length; ++i) {
@@ -52,7 +83,13 @@
         }
 
         vm.$onInit = function() {
-            console.log(vm.event);
+            if (vm.status === 'Soon') {
+                institutionService.getAll()
+                    .then(function(institutions) {
+                        vm.institutions = institutions;
+                    });
+            }
+
             $q.all([
                 eventService.getSports(vm.event.event_id),
                 eventService.getGames(vm.event.event_id),
@@ -62,7 +99,7 @@
                 let sports = data[0];
                 let games = data[1];
                 let teams = data[2];
-                let venues = data[3];
+                vm.venues = data[3];
 
                 $q.all(teams.map(function(team) {
                     return teamService.getGames(team.team_id)
@@ -117,7 +154,7 @@
                                                 }
                                             });
                                             game.time = new Date(game.time);
-                                            for (let venue of venues) {
+                                            for (let venue of vm.venues) {
                                                 if (game.venue === venue.venue_id) {
                                                     game.venue = venue.name;
                                                 }
