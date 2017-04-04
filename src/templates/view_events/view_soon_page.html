@@ -918,15 +918,17 @@
     <div id="add-date-modal" class="modal modal-fixed-footer">
       <div class="modal-content">
         <h4>Add date</h4>
-        <p>Please enter the start and end dates for the event.</p>
+        <p>Please enter a date</p>
         <form>
           <div class="row">
             <div class="input-field col l6">
-              <i class="material-icons prefix">date_range</i><input type="date" class="datepicker" placeholder="Choose Start Date">
+              <i class="material-icons prefix">date_range</i><input type="date" class="datepicker" placeholder="Choose Date">
             </div>
+            
+            <!--             
             <div class="input-field col l6">
               <i class="material-icons prefix">date_range</i><input type="date" class="datepicker" placeholder="Choose End Date">
-            </div>
+            </div> -->
           </div>
           
         </form>
@@ -983,23 +985,78 @@
     <script>
       var n = 16;
       function createDate(){
-        
+        //this function simply adds a button on top for date navigation        
+        // created button on top must be dynamic
         var para = document.createElement("BUTTON");
+
+        //replace june as a variable of the month
+        //n is the date
         var t = document.createTextNode("June " + n);
         para.className = "tablinks";
-        para.setAttribute("onClick","openData(event,'new_game')");
+
+        //in openData(event,'new_game'), new_game must be the date in this format => Month_Date_'game' eg. June_14_game
+        para.setAttribute("onClick","openData(event,'June_"+n+"_game')");
         para.appendChild(t);
         document.getElementById("addhere").appendChild(para);
 
-        var content = document.createElement("div");
-        var s = document.createTextNode("HEHEE");
-        
-        content.className = "tabcontent";
-        // content.setAttribute("id","June_"+n+ "_game");
-        content.setAttribute("id","new_game");
 
-         content.appendChild(s);
-        document.getElementById("game_container").appendChild(content);
+        // var content = document.createElement("div");
+        // content.className = "tabcontent";
+        // content.setAttribute("id","new_game");
+
+        
+        // var chip = document.createElement("div");
+        // chip.setAttribute("class","chip blue white-text");
+        
+        // var s = document.createTextNode("+ Add a sport");
+        
+        // chip.appendChild(s);
+        // // content.setAttribute("id","June_"+n+ "_game");
+        // content.appendChild(chip);
+        // document.getElementById("game_container").appendChild(content);
+        
+
+        var text = document.createTextNode("+ Add a sport ");
+        var chip = document.createElement("div");
+        chip.setAttribute("class","chip blue white-text");
+
+        chip.appendChild(text);
+
+        var link = document.createElement("a");
+        link.setAttribute("href","#add-sport-modal");
+
+        link.appendChild(chip);
+
+        var header = document.createElement("h5");
+
+        header.appendChild(link);
+
+        var div_collapsible_header = document.createElement("div");
+        div_collapsible_header.setAttribute("class","collapsible-header active");
+
+        div_collapsible_header.appendChild(header);
+
+        var list = document.createElement("li");
+
+        list.appendChild(div_collapsible_header);
+
+        var setlist = document.createElement("ul");
+        setlist.setAttribute("class","collapsible");
+        setlist.setAttribute("data-collapsible","expandable");
+
+        setlist.appendChild(list);
+
+        //june must be replaced by a variable para dynamic siya
+        //tulad sa taas, n is the date
+        var div_month_game = document.createElement("div");
+        div_month_game.setAttribute("id","June_"+ n +"_game");
+        div_month_game.className= "tabcontent";
+
+        div_month_game.appendChild(setlist);
+
+        document.getElementById("game_container").appendChild(div_month_game);
+
+
         n++;
         Materialize.toast('Added new day!', 3000)
       }
