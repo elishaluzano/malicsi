@@ -216,6 +216,7 @@
                         return searchService.events($transition$.params().query);
                     },
                     teams: function(searchService, $transition$) {
+                        console.log("in");
                         return searchService.teams($transition$.params().query);
                     }
                 }
