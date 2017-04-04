@@ -305,6 +305,26 @@ th,td{
 .filter{
     position:fixed;
 }
+<<<<<<< HEAD
+/*
+style = "width:10%;vertical-align:middle;"*/
+
+#sponsor-link {
+    color: #ff4d4d;
+}
+
+#sponsor-link:hover {
+    color: red;
+}
+
+#sponsor-name {
+    font-weight: bold;
+}   
+
+#sponsors-info{
+    height: 150px;
+    overflow-y: scroll;
+}
 
 #timer {
 	margin: 10px 0px 20px 0px;
