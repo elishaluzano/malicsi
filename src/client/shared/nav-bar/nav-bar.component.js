@@ -76,13 +76,9 @@
         }
 
         vm.search = function() {
-            if (vm.searchInput.length < 3) {
-                return Materialize.toast('Search query must be at least 3 characters long', 3000);
-            } else {
-                let category = vm.searchCategory;
-                category = category.charAt(0).toUpperCase() + category.slice(1);
-                $state.go('search' + category + 'Page', { query: vm.searchInput });
-            }
+            let category = vm.searchCategory;
+            category = category.charAt(0).toUpperCase() + category.slice(1);
+            $state.go('search' + category + 'Page', { query: vm.searchInput });
         }
 
         vm.closeMenu = function() {
