@@ -4,7 +4,7 @@
     angular
         .module('app')
         .component('adminPage', {
-            template: require('./admin-page.html')
+            template: require('./admin-page.html'),
         });
 
 })();

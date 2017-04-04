@@ -2,15 +2,15 @@
     'use strict';
     angular
         .module('app')
-        .component('doneEventsPage',{
-            template: require('./done-events-page.html'),
-            controller: doneEventsPageController,
+        .component('doneEventPage',{
+            template: require('./done-event-page.html'),
+            controller: doneEventPageController,
             bindings: {
                 event: '<'
             }
         });
 
-    function doneEventsPageController(eventService, gameService) {
+    function doneEventPageController(eventService, gameService) {
         var vm = this;
         vm.allSports = [];
         vm.allGamesInSport = [];

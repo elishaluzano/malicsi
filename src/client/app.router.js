@@ -22,7 +22,7 @@
 
                     if (!user || !user.isOverallAdmin) {
                         Materialize.toast('Unauthorized access!', 2000, 'red');
-                        name = (!name)? 'landingPage' : name;
+                        name = (!name || name === 'adminPage')? 'landingPage' : name;
                         $state.go(name, params);
                     }
                 }
@@ -199,19 +199,6 @@
                     teamPlaysGame: function(teamService, $transition$) {
                         return teamService.getAllTeamPlaysGame();
                     },
-                }
-            })
-            .state({
-                name: 'doneEventsPage',
-                url: '/done-events/{eventId}',
-                component: 'doneEventsPage',
-                bindings: {
-                    event: 'event'            
-                },
-                resolve: {
-                    event: function($stateParams, eventService) {
-                        return eventService.getDoneEventInfo($stateParams.eventId);
-                    }
                 }
             })
             .state({

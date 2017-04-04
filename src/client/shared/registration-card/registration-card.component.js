@@ -7,7 +7,7 @@
             controller: registrationCardController,
         });
 
-    function registrationCardController(userService, searchService) {
+    function registrationCardController(userService, searchService, $state) {
         var vm = this;
         vm.name = '';
         vm.username = '';
@@ -91,17 +91,12 @@
                 isOverallAdmin : 0
             };
             
-            userService.create(vm.body)
+            userService.create(body)
                 .then(function(data) {
-                    vm.name = '';
-                    vm.username = '';
-                    vm.password = '';
-                    vm.password_confirm = '';
-                    vm.email = '';
-                    vm.gender = '';
-                    vm.birthday = '';
-                    vm.gender = '';
-                    Materialize.toast("Successfully registered!", 3000, 'red');
+                    if (data) {
+                        Materialize.toast("Successfully registered!", 3000, 'red');
+                        $state.go('landingPage');
+                    }
                 });           
         }
 

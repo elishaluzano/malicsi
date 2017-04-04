@@ -47,9 +47,11 @@
                 <li>
                     <a ui-sref="sponsorsPage" class="black-text">Sponsors</a>
                 </li>
-
-                <li ng-if="$ctrl.isAdmin">
+                <li ng-if="$ctrl.isAdmin || $ctrl.user.isOverallAdmin">
                     <a ui-sref="userLogPage" class="black-text">Logs</a>
+                </li>
+                <li ng-if="$ctrl.user.isOverallAdmin">
+                    <a ui-sref="adminPage" class="black-text">Admin</a>
                 </li>
             </ul>
             <form class="left hide-on-small-only">
@@ -110,7 +112,8 @@
     <a class="dropdown-links" ui-sref="teamsPage">Teams</a>
     <a class="dropdown-links" ui-sref="schedulesPage">Schedules</a>
     <a class="dropdown-links" ui-sref="sponsorsPage">Sponsors</a>
-    <a class="dropdown-links" ui-sref="userLogsPage">Logs</a>
+    <a class="dropdown-links" ui-sref="userLogsPage" ng-if="$ctrl.isAdmin">Logs</a>
+    <a class="dropdown-links" ui-sref="adminPage" ng-if="$ctrl.user.isOverallAdmin">Admin</a>
 </div>
 
 
