@@ -7,20 +7,20 @@
             template: require('./search-team-page.html'),
             controller: searchTeamPageController,
             bindings: {
-                teams: '<'
+                teams: '<',
+                allEvents: '<'
             }
         });
 
-    function searchAllTeamController() {
+    function searchTeamPageController() {
         var vm = this;
-
-        vm.filters = {
-            Teams: true,
-        };
+        vm.eventSponsored = 'all';
 
         vm.$onInit = function() {
             console.log(vm.teams);
+            console.log(vm.allEvents);
         }
+
     }
 
 })();   
