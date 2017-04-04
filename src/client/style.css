@@ -305,7 +305,6 @@ th,td{
 .filter{
     position:fixed;
 }
-<<<<<<< HEAD
 /*
 style = "width:10%;vertical-align:middle;"*/
 
@@ -339,4 +338,12 @@ style = "width:10%;vertical-align:middle;"*/
     height: auto !important;
     height: 100%;
     margin: 0 auto -270px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;  /* remove scrollbar space */
+    background: 1;  /* optional: just make scrollbar invisible */
+}
+::-webkit-scrollbar-thumb {
+    background: #fc9948;
 }

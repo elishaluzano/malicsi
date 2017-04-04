@@ -156,15 +156,6 @@ END;
 //
 delimiter ;
 
-delimiter //
-create procedure gameUpdate(in team_id int, game_id int, score float)
-BEGIN
-update teamPlaysGame set score=score where team_id_play=team_id and game_id_play=game_id;
-insert into gameUpdateLog (team_id, game_id, score) values (team_id, game_id, score);
-END;
-//
-delimiter ;
-
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Ryan Magorian','Father','09987898765');
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Cath Kaufer','Mother', '09192969040');
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Sheerrie Linton','Sister', '09296004019');

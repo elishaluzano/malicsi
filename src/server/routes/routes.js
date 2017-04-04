@@ -153,4 +153,11 @@ router.get('/api/venues/search/:search', venueCtrl.searchVenue);
 router.put('/api/venues/:id', venueCtrl.updateVenue);
 router.delete('/api/venues/:id', venueCtrl.deleteVenue);
 
+var gameLogCtrl = require('../controllers/gameUpdateController.js');
+//game update log routes
+router.get('/api/gamelogs', gameLogCtrl.viewAllGamelogs);
+router.get('/api/gamelogs/:id', gameLogCtrl.viewGamelogsOfGame);
+router.post('/api/gamelogs', gameLogCtrl.addGameLog);
+router.put('/api/gamelogs/:id', gameLogCtrl.updateGameLog);
+router.delete('/api/gamelogs/:id', gameLogCtrl.deleteGameLog);
 module.exports = router;
