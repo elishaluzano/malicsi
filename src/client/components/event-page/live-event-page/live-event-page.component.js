@@ -44,19 +44,18 @@
 
         vm.confirmEditEvent = function() {
             var fd = new FormData();
+            console.log(vm.editedEvent);
             fd.append('event_title', vm.editedEvent.event_title);
             fd.append('institution_id_key', vm.editedEvent.institution_id_key);
-            fd.append('start_date', (new Date(vm.editedEvent.start_date)).toISOString().substring(0,10));
-            fd.append('end_date', (new Date(vm.editedEvent.end_date)).toISOString().substring(0,10));
+            fd.append('start_date', (new Date(vm.editedEvent.start_date.setDate(vm.editedEvent.start_date.getDate()+1))).toISOString().substring(0, 10));
+            fd.append('end_date', (new Date(vm.editedEvent.end_date.setDate(vm.editedEvent.end_date.getDate()+1))).toISOString().substring(0, 10));
             fd.append('picture', (vm.files[0])? vm.files[0] : vm.editedEvent.picture);
             fd.append('venue_id_key', vm.editedEvent.venue_id_key);
 
             eventService.update(vm.editedEvent.event_id, fd)
                 .then(function(event) {
-                    vm.event = event;
-                    vm.event.start_date = new Date(vm.event.start_date);
-                    vm.event.end_date = new Date(vm.event.end_date);
                     Materialize.toast('Successfully updated event', 3000, 'red');
+                    $state.reload();
                 });
         }
 
