@@ -25,6 +25,11 @@
             }
         }
 
+        vm.discardChanges = function() {
+            Materialize.toast('Changes were discarded', 3000, 'red');
+            vm.isBeingEdited = false;
+        }
+
         vm.toggleEdit = function() {
             if (vm.isBeingEdited) {
                 if (!vm.user.name) {
@@ -51,8 +56,8 @@
                     return Materialize.toast('Username should only consist of alphanumeric characters and underscores', 3000, 'red');
                 }
 
-                if (vm.user.password.length < 8) {
-                    return Materialize.toast('Your password should be at least 8 characters long', 3000, 'red');
+                if (vm.user.password.length < 6) {
+                    return Materialize.toast('Your password should be at least 6 characters long', 3000, 'red');
                 }
 
                 if (!/^\w+@[a-zA-Z]+\.[a-zA-Z]+/.exec(vm.user.email)) {
