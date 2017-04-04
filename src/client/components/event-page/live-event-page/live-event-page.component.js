@@ -7,8 +7,7 @@
             template: require('./live-event-page.html'),
             controller: liveEventPageController,
             bindings: {
-                event: '<',
-                status: '<'
+                event: '<'
             }
         });
 
@@ -21,6 +20,7 @@
         vm.filtered = [];
 
         vm.isTeamsTab = false;
+        vm.isSportsTab = false;
 
         vm.sportsFilter = {};
 
@@ -54,7 +54,7 @@
 
             eventService.update(vm.editedEvent.event_id, fd)
                 .then(function(event) {
-                    Materialize.toast('Successfully updated event', 3000, 'red');
+                    Materialize.toast('Successfully updated ' + vm.editedEvent.event_title, 3000, 'red');
                     $state.reload();
                 });
         }
@@ -70,6 +70,16 @@
         
         vm.toggleToTeams = function() {
             vm.isTeamsTab = true;
+            vm.isSportsTab = false;
+            for (let i = 0; i < vm.dates.length; ++i) {
+                vm.filtered[i].show = false;
+                vm.dates[i].show = false;
+            }
+        }
+
+        vm.toggleToSports = function() {
+            vm.isTeamsTab = false;
+            vm.isSportsTab = true;
             for (let i = 0; i < vm.dates.length; ++i) {
                 vm.filtered[i].show = false;
                 vm.dates[i].show = false;
@@ -87,15 +97,14 @@
                 }
             }
             vm.isTeamsTab = false;
+            vm.isSportsTab = false;
         }
 
         vm.$onInit = function() {
-            if (vm.status === 'Soon') {
-                institutionService.getAll()
-                    .then(function(institutions) {
-                        vm.institutions = institutions;
-                    });
-            }
+            institutionService.getAll()
+                .then(function(institutions) {
+                    vm.institutions = institutions;
+                });
 
             $q.all([
                 eventService.getSports(vm.event.event_id),
