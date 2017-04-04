@@ -12,7 +12,7 @@
             }
         });
 
-    function liveEventPageController($q, eventService, venueService, teamService, institutionService) {
+    function liveEventPageController($q, eventService, venueService, teamService, institutionService, $state) {
         var vm = this;
 
         vm.sports = [];
@@ -58,7 +58,15 @@
                     vm.event.end_date = new Date(vm.event.end_date);
                     Materialize.toast('Successfully updated event', 3000, 'red');
                 });
+        }
 
+        vm.deleteEvent = function() {
+            let title = vm.event.event_title;
+            eventService.delete(vm.event.event_id)
+                .then(function() {
+                    Materialize.toast(title + ' has been deleted', 3000, 'red');
+                    $state.go('landingPage');
+                });
         }
         
         vm.toggleToTeams = function() {
