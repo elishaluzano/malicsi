@@ -41,6 +41,15 @@
     <div class="col s12 m8 l9">
         <div class="row">
             <div class="tab-custom">
+                <button ng-if="$ctrl.status === 'Soon'"
+                    class="tablinks black white-text"
+                    ng-click="$ctrl.toggleToTeams()">
+                    Teams
+                </button>
+                <button ng-if="$ctrl.status === 'Soon'"
+                    class="tablinks red white-text">
+                    Add date
+                </button>
                 <button class="tablinks" 
                     ng-repeat="info in $ctrl.filtered"
                     ng-class="{ active: info.show }"
@@ -48,6 +57,13 @@
                     {{ info.date | date: 'MMMM d' }}
                 </button>
             </div>
+
+            <div ng-show="$ctrl.isTeamsTab"
+                class="tabcontent">
+                hello
+            </div>
+
+
 
             <div ng-show="info.show"
                 class="tabcontent"

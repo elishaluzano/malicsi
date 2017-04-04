@@ -20,6 +20,8 @@
         vm.dates = [];
         vm.filtered = [];
 
+        vm.isTeamsTab = false;
+
         vm.sportsFilter = {};
 
         vm.statusFilter = {
@@ -27,6 +29,14 @@
             Ongoing: true,
             Done: true
         };
+
+        vm.toggleToTeams = function() {
+            vm.isTeamsTab = true;
+            for (let i = 0; i < vm.dates.length; ++i) {
+                vm.filtered[i].show = false;
+                vm.dates[i].show = false;
+            }
+        }
 
         vm.toggleDate = function(toggle) {
             for (let i = 0; i < vm.dates.length; ++i) {
@@ -38,6 +48,7 @@
                     vm.dates[i].show = false;
                 }
             }
+            vm.isTeamsTab = false;
         }
 
         vm.$onInit = function() {
