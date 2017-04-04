@@ -210,6 +210,7 @@
                         return searchService.events($transition$.params().query);
                     },
                     teams: function(searchService, $transition$) {
+                        console.log("in");
                         return searchService.teams($transition$.params().query);
                     }
                 }
@@ -221,6 +222,19 @@
                 resolve: {
                     sponsors: function(institutionService) {
                         return institutionService.getAll();
+                    }
+                }
+            })
+            .state({
+                name: 'searchInstitutionPage',
+                url: '/search-institution/{query}',
+                component: 'searchInstitutionPage',
+                resolve: {
+                    institutions: function(searchService, $transition$) {
+                        return searchService.institutions($transition$.params().query);
+                    },
+                    allEvents: function(eventService) {
+                        return eventService.getAll();
                     }
                 }
             })

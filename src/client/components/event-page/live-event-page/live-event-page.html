@@ -7,6 +7,13 @@
                     {{ $ctrl.event.event_title }} 
                 </span>
 
+                <a class="chip orange white-text pointer"
+                    id="edit-event"
+                    data-target="edit-event-modal"
+                    modal>
+                    Edit Event Details
+                </a>
+
                 <div class="divider"></div>
 
                 <form>
@@ -41,6 +48,12 @@
     <div class="col s12 m8 l9">
         <div class="row">
             <div class="tab-custom">
+                <button ng-if="$ctrl.status === 'Soon'"
+                    class="tablinks black white-text"
+                    ng-click="$ctrl.toggleToTeams()">
+                    Teams
+                </button>
+                
                 <button class="tablinks" 
                     ng-repeat="info in $ctrl.filtered"
                     ng-class="{ active: info.show }"
@@ -48,6 +61,13 @@
                     {{ info.date | date: 'MMMM d' }}
                 </button>
             </div>
+
+            <div ng-show="$ctrl.isTeamsTab"
+                class="tabcontent">
+                hello
+            </div>
+
+
 
             <div ng-show="info.show"
                 class="tabcontent"
@@ -121,4 +141,11 @@
         </div>
     </div>
 
+</div>
+
+
+<div id="edit-event-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        hello
+    </div>
 </div>

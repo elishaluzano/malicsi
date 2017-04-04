@@ -29,9 +29,10 @@
             <div class="card-content">
                 <span class="card-title">Profiles</span>
                 <ul class="collection">
-                    <search-team-card ng-repeat="profile in $ctrl.profiles"
-                    team="team">
-                    </search-team-card>
+                    <search-profile-card
+                        ng-repeat="profile in $ctrl.profiles"
+                        profile="profile">
+                    </search-profile-card>
                 </ul>
             </div>
         </div>
@@ -51,8 +52,15 @@
             <div class="card-content">
                 <span class="card-title">Events</span>
                 <ul class="collection">
+<<<<<<< HEAD
                     <search-event-card ng-repeat="event in $ctrl.events"
                     event="event">
+=======
+                    <search-event-card
+                        ng-repeat="event in $ctrl.events"
+                        event="event">
+
+>>>>>>> 87aeabdb89dc47e2b99917078c4c01f483d0fa6d
                     </search-event-card>
                 </ul>
             </div>
