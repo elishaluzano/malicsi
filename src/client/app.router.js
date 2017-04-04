@@ -219,6 +219,19 @@
                         return searchService.teams($transition$.params().query);
                     }
                 }
+            })
+            .state({
+                name: 'searchTeamPage',
+                url: '/search-team/{query}',
+                component: 'searchTeamPage',
+                resolve: {
+                    teams: function(searchService, $transition$) {
+                        return searchService.teams($transition$.params().query);
+                    },
+                    allEvents: function(eventService) {
+                        return eventService.getAll();
+                    }
+                }
             });
 
         $urlRouterProvider.otherwise('/')
