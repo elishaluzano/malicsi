@@ -85,6 +85,24 @@
                     </div>
                 </div>
 
+                <div class="col s12">
+                    <img ng-src="{{ $ctrl.selectedInstitution.picture }}" 
+                        alt="Sponsoring Institution Logo"
+                        class="responsive-img">
+                </div>
+
+                <div class="col s12">
+                    <div class="file-field input-field">
+                        <div class="btn red">
+                            <span>File</span>
+                            <input type="file" file-input="$ctrl.files">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                </div>
+
 
                 <div ng-if="!$ctrl.editingInstitution && !$ctrl.deletingInstitution">
                     <div class="col s6 center-align">

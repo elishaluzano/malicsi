@@ -17,6 +17,7 @@
         vm.institutions = [];
         vm.newInstitutionName = '';
         vm.newInstitutionDescription = ''
+        vm.files = [];
 
         vm.newAdmin = '';
         vm.admins = [];
@@ -103,23 +104,24 @@
                 return Materialize.toast('Enter institution description', 3000, 'red');
             }
 
-            let id = vm.selectedInstitution.institution_id;
-            let body = {
-                name: vm.selectedInstitution.name,
-                description: vm.selectedInstitution.description
-            };
 
-            institutionService.update(id, body)
+            let id = vm.selectedInstitution.institution_id;
+            
+            let fd = new FormData();
+
+            fd.append('name', vm.selectedInstitution.name);
+            fd.append('description', vm.selectedInstitution.description);
+            fd.append('picture', (vm.files[0])? vm.files[0] : vm.selectedInstitution.picture);
+
+            institutionService.update(id, fd)
                 .then(function(newInstitution) {
                     vm.institutions = vm.institutions.map(function(institution) {
                         if (institution.institution_id == vm.selectedInstitution.institution_id) {
-                            institution.name = newInstitution.name;
-                            institution.description = newInstitution.description;
+                            Materialize.toast(vm.selectedInstitution.originalName + ' has been updated', 3000, 'red');
+                            vm.selectedInstitution = institution = angular.copy(newInstitution);
                         }
                         return institution;
                     });
-                    Materialize.toast(vm.selectedInstitution.originalName + ' has been updated', 3000, 'red');
-                    vm.selectedInstitution.originalName = newInstitution.name;
                     vm.editingInstitution = false;
                 });
         }
