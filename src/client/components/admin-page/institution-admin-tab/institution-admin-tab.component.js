@@ -183,7 +183,8 @@
 
                         let body = {
                             institution_no: admin.institution_no,
-                            user_no: admin.user_id
+                            user_no: admin.user_id,
+                            picture: '/images/temp-bg-2.jpg'
                         };
 
                         adminService.create(body)
