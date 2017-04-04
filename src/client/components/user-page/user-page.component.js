@@ -25,6 +25,11 @@
             }
         }
 
+        vm.discardChanges = function() {
+            Materialize.toast('Changes were discarded', 3000, 'red');
+            vm.isBeingEdited = false;
+        }
+
         vm.toggleEdit = function() {
             if (vm.isBeingEdited) {
                 if (!vm.user.name) {
