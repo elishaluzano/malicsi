@@ -1,15 +1,10 @@
-<li class="collection-item avatar">
-    <!-- Event logo -->
-    <a ui-sref="eventPage({ eventId: $ctrl.event.event_id })">
-        <img ng-src="../images/person-flat.png" alt="" class="circle">
-    </a>
-    
-    <!-- Event name -->
-    <a ui-sref="eventPage({ eventId: $ctrl.event.event_id })">
-        <span class="title">{{ $ctrl.event.event_title }}</span>
-    </a>
-    <!-- Event details -->
-    <p>
-        <strong>Venue: </strong><span>{{ $ctrl.event.venue }}</span>
-    </p>
-</li>
+<a ui-sref="eventPage({ eventId: $ctrl.event.event_id })" class="black black-text">
+    <li class="collection-item avatar orange lighten-5" style="margin: 0px 0px 3px 0px; border:2px solid">
+        <img ng-src="../images/person-flat.png" alt="img" class="circle">
+        <strong><span class="title">{{ $ctrl.event.event_title }}</span></strong>
+        <br>
+        <i style="font-size:12px;">
+            <strong>@ </strong><span>{{ $ctrl.event.venue }}</span>
+        </i>
+    </li>
+</a>
