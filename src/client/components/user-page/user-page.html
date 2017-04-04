@@ -78,10 +78,7 @@
                     <p>09XXXXXXXXX</p>
                 </div> -->
 
-                <!-- <div class="col s4 offset-s4">
-                    <a class = "red btn" ng-click="$ctrl.toggleEdit()" ng-if="$ctrl.isSameUser">Edit</a>
-                </div> -->
-                <div class="col s4 offset-s4" ng-if="$ctrl.isSameUser">
+                <div class="col s4 offset-s4">
                     <a class = "red btn" ng-click="$ctrl.toggleEdit()">Edit</a>
                 </div>
             </div>
@@ -210,12 +207,23 @@
             </div> -->
 
             <div class="center row user-row">
+                <a id="discard-changes-btn" data-target="discard-changes" class="red btn waves-effect waves-light" modal>Discard Changes</a>
                 <a id="save-changes-btn" data-target="save-changes" class="green btn waves-effect waves-light" modal>Save Changes</a>
                 <a id="delete-account-btn" data-target="delete-account" class="red btn waves-effect waves-light" modal>Delete Account</a>
             </div>
         </div>
     </div>
 
+</div>
+<div id="discard-changes" class="modal">
+    <div class="modal-content">
+        <h4>Discard Changes</h4>
+        <p>Are you sure you want to discard these changes to your profile?</p>
+    </div>
+    <div class="modal-footer">
+        <a  ui-sref="userPage({ userId: $ctrl.user.user_id })" class="btn-flat modal-action modal-close waves-effect waves-red">No</a>
+        <a class="btn-flat modal-action modal-close waves-effect waves-green" ng-click="$ctrl.discardChanges()">Yes</a>
+    </div>
 </div>
 <div id="save-changes" class="modal">
     <div class="modal-content">

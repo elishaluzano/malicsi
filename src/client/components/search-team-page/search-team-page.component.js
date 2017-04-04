@@ -19,7 +19,7 @@
         vm.$onInit = function() {
             console.log(vm.teams);
             console.log(vm.allEvents);
-        }
+        }   
 
     }
 

@@ -55,13 +55,13 @@ CREATE TABLE venue (
 CREATE TABLE event (
     event_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     event_title varchar(50) NOT NULL,
-    venue varchar(50) NOT NULL,
+    venue_id_key int default NULL,
     start_date date NOT NULL,
     end_date date NOT NULL,
     picture text,
     institution_id_key int NOT NULL,
-    constraint event_institution_key_fk foreign key(institution_id_key) references sponsoringInstitution(institution_id)
-    ON DELETE CASCADE
+    constraint event_institution_key_fk foreign key(institution_id_key) references sponsoringInstitution(institution_id) ON DELETE CASCADE,
+    constraint event_venue_key_fk foreign key(venue_id_key) references venue(venue_id) ON DELETE SET NULL
 );
 
 CREATE TABLE sport (
@@ -128,7 +128,6 @@ CREATE TABLE sportIsJoinedByUser (
 CREATE TABLE userlog (
   log_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id int NOT NULL,
-  username varchar(20) NOT NULL,
   institution_id int default NULL,
   action varchar(100) NOT NULL,
   activity_time timestamp NOT NULL

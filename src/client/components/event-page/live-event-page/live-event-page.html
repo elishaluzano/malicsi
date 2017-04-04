@@ -2,10 +2,30 @@
     <div class="col m3 l3 hide-on-small-only">
         <div class="card">
             <div class="card-content">
+                <div class="card-image">
+                    <img ng-src="{{ $ctrl.event.picture }}" 
+                        alt="event logo"
+                        class="responsive-img">
+                </div>
 
                 <span class="card-title"> 
                     {{ $ctrl.event.event_title }} 
                 </span>
+
+                <a class="chip orange white-text pointer"
+                    id="edit-event"
+                    data-target="edit-event-modal"
+                    ng-click="$ctrl.editEvent()"
+                    modal>
+                    Edit Event Details
+                </a>
+                
+                <a class="chip red white-text pointer"
+                    id="delete-event"
+                    data-target="delete-event-modal"
+                    modal>
+                    Delete Event
+                </a>
 
                 <div class="divider"></div>
 
@@ -41,6 +61,18 @@
     <div class="col s12 m8 l9">
         <div class="row">
             <div class="tab-custom">
+                <button
+                    class="tablinks black white-text"
+                    ng-click="$ctrl.toggleToTeams()">
+                    Teams
+                </button>
+
+                <button
+                    class="tablinks red white-text"
+                    ng-click="$ctrl.toggleToSports()">
+                    Sports
+                </button>
+                
                 <button class="tablinks" 
                     ng-repeat="info in $ctrl.filtered"
                     ng-class="{ active: info.show }"
@@ -48,6 +80,21 @@
                     {{ info.date | date: 'MMMM d' }}
                 </button>
             </div>
+
+            <div ng-show="$ctrl.isTeamsTab"
+                id="teams"
+                class="tabcontent">
+                <div class="row">
+                    
+                </div>
+            </div>
+
+            <div ng-show="$ctrl.isSportsTab"
+                class="tabcontent">
+                fuck
+            </div>
+
+
 
             <div ng-show="info.show"
                 class="tabcontent"
@@ -113,12 +160,103 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </li>
-
                 </ul>
             </div>
         </div>
     </div>
 
+</div>
+
+<div id="delete-event-modal" class="modal">
+    <div class="modal-content">
+        <h5>Delete {{ $ctrl.event.event_title }}</h5>
+        <p>
+            Deleting this event will also delete all games and teams under this event. 
+        </p>
+        <p>
+            Are you sure you want to continue?
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
+        <a class="btn-flat modal-action modal-close waves-effect waves-green pointer"
+            ng-click="$ctrl.deleteEvent()">
+            Delete Event
+        </a>
+    </div>
+</div>
+
+<div id="edit-event-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>Edit Event Modal</h4>
+        <div class="divider"></div>
+        <div class="container">
+            <form>
+                <div class="row">
+                    <div class="input-field">
+                        <h5>Event Name</h5>
+                        <input type="text"
+                            ng-model="$ctrl.editedEvent.event_title"
+                            placeholder="Event title">
+                    </div>
+                </div>
+                <div class="row">
+                    <div input-field>
+                        <h5>Event Sponsor</h5>
+                        <select class="browser-default" ng-model="$ctrl.editedEvent.institution_id_key">
+                            <option ng-repeat="institution in $ctrl.institutions"
+                                ng-value="{{ institution.institution_id }}">
+                                {{ institution.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div input-field>
+                        <h5>Event Venue</h5>
+                        <select class="browser-default" ng-model="$ctrl.editedEvent.venue_id_key">
+                            <option ng-repeat="venue in $ctrl.venues"
+                                ng-value="{{ venue.venue_id }}">
+                                {{ venue.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <h5>Event Duration</h5>
+                    <div class="col l6 input-field">
+                        <i class="material-icons prefix">date_range</i>
+                        <input type="date"
+                            placeholder="Choose start date"
+                            ng-model="$ctrl.editedEvent.start_date">
+                    </div>
+                    <div class="col l6 input-field">
+                        <i class="material-icons prefix">date_range</i>
+                        <input type="date"
+                            placeholder="Choose end date"
+                            ng-model="$ctrl.editedEvent.end_date">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="file-field input-field">
+                        <div class="btn red">
+                            <span>File</span>
+                            <input type="file" file-input="$ctrl.files">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
+        <a class="btn-flat modal-action modal-close waves-effect waves-green pointer"
+            ng-click="$ctrl.confirmEditEvent()">
+            Save Changes
+        </a>
+      </div>
 </div>

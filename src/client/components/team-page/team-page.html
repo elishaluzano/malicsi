@@ -3,7 +3,7 @@
         <div id="side-nav-teams-search">
         <input placeholder="Search"
             ng-model="$ctrl.searchInput"
-            ng-keydown="$ctrl.searchEnter($event)">
+            ng-change="$ctrl.searchEnter()">
         </div>
         <a ng-repeat="team in $ctrl.allTeams" ui-sref="teamPage({ teamId: team.team_id })" class="collection-item">{{team.name}}</a>
     </div>
@@ -146,7 +146,7 @@
 	        <div class="row">
 	            <div class="input-field col l8">
 	                <i class="material-icons prefix">mode_edit</i>
-	                <input ng-model="$ctrl.currentTeam.name" id="team-name-new" type="text">
+	                <input ng-model="$ctrl.sampleName" id="team-name-new" type="text">
 	                <label class="active" for="team-name-new">Team name</label>
 
 
