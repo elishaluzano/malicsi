@@ -9,6 +9,31 @@ describe('UserMockData', function() {
     var url = 'http://localhost:8000';
     describe('addUser()', function() {
        var newUser = {
+            'name' : 'admin',
+            'username' : 'admin',
+            'password' : 'admin',
+            'gender' : 'female',
+            'birthday' : '2017-04-06',
+            'email' : 'admin@up.edu.ph',
+            'contact_number' : '09999999999',
+            'contact_person' : null,
+            'profile_pic' : null,
+            'isOverallAdmin' : true
+       };
+       it('Creates a new user', function(done){
+           request(url)
+           .post('/api/users')
+           .send(newUser)
+           .end(function(err, res) {
+               if (err) throw err;
+               res.should.have.status(200);
+                    res.body.should.be.an.instanceOf(Object);
+               done();
+           });
+       });
+    });
+    describe('addUser()', function() {
+       var newUser = {
             'name' : 'Rusty Magorian',
             'username' : 'rustymagorian',
             'password' : 'rmagorian',
@@ -369,31 +394,6 @@ describe('UserMockData', function() {
             'contact_person' : 15,
             'profile_pic' : null,
             'isOverallAdmin' : 0
-       };
-       it('Creates a new user', function(done){
-           request(url)
-           .post('/api/users')
-           .send(newUser)
-           .end(function(err, res) {
-               if (err) throw err;
-               res.should.have.status(200);
-                    res.body.should.be.an.instanceOf(Object);
-               done();
-           });
-       });
-    });
-     describe('addUser()', function() {
-       var newUser = {
-            'name' : 'admin',
-            'username' : 'admin',
-            'password' : 'admin',
-            'gender' : 'female',
-            'birthday' : '2017-04-06',
-            'email' : 'admin@up.edu.ph',
-            'contact_number' : '09983765412',
-            'contact_person' : null,
-            'profile_pic' : null,
-            'isOverallAdmin' : 1
        };
        it('Creates a new user', function(done){
            request(url)
