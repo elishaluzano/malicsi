@@ -1,0 +1,46 @@
+<div class="container row">
+    <h3>Search Sponsoring Institution</h3>
+
+    <div class="col m4 l4 hide-on-small-only"
+        id="filters">
+
+        <div class="card">
+            <div class="card-content">
+                <form>
+                    <span class="card-title">Filters</span>
+                    <div>
+                        <form action="#">
+                            <div class="divider"></div>
+                            <select ng-model="$ctrl.eventSponsored" id="dropdown" class="left black-text browser-default">
+                                <option value="all">All Events</option>
+                                <option 
+                                ng-repeat="each in $ctrl.allEvents" 
+                                value="{{ each.institution_id_key }}"
+                                >{{ each.event_title }}</option>
+                            </select>
+                            
+                            <br><br><br>
+                        </form>
+                    </div>
+
+                </form>    
+            </div>    
+        </div>    
+    </div>
+
+    <div class="col m8 l8" id="results">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Institutions</span>
+                <ul class="collection">
+                    <search-institution-card  
+                        ng-repeat="institution in $ctrl.institutions"
+                        ng-if="$ctrl.eventSponsored == institution.institution_id || $ctrl.eventSponsored == 'all' "
+                        institution="institution">
+                    </search-institution-card>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>  

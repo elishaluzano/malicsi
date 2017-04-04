@@ -6,27 +6,26 @@
     function routerConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state({
-                name: 'adminPage',
-                url: '/admin',
-                component: 'adminPage',
-                resolve: {
-                    name: function($state) {
-                        return $state.current.name;
-                    },
-                    params: function($state) {
-                        return $state.params;
-                    }
-                },
-                onEnter: function(name, params, $state, sessionService) {
-                    let user = sessionService.user();
-
-                    if (!user || !user.isOverallAdmin) {
-                        Materialize.toast('Unauthorized access!', 2000, 'red');
-                        name = (!name || name === 'adminPage')? 'landingPage' : name;
-                        $state.go(name, params);
-                    }
-                }
-            })
+                name: 'adminPage',     
+                url: '/admin',     
+                component: 'adminPage',        
+                resolve: {     
+                    name: function($state) {       
+                        return $state.current.name;        
+                    },     
+                    params: function($state) {     
+                        return $state.params;      
+                    }      
+                },     
+                onEnter: function(name, params, $state, sessionService) {      
+                    let user = sessionService.user();      
+                    if (!user || !user.isOverallAdmin) {       
+                        Materialize.toast('Unauthorized access!', 2000, 'red');        
+                        name = (!name || name === 'adminPage')? 'landingPage' : name;      
+                        $state.go(name, params);       
+                    }      
+                }      
+            })     
             .state({
                 name: 'userLogPage',
                 url: '/log',
@@ -96,6 +95,9 @@
                 resolve: {
                     sports: function(sportService){
                         return sportService.getAll();
+                    },
+                    allGamesInformation: function(gameService){
+                        return gameService.getAllGamesInformation();
                     }
                 }
             })
@@ -202,6 +204,19 @@
                 }
             })
             .state({
+                name: 'doneEventsPage',
+                url: '/done-events/{eventId}',
+                component: 'doneEventsPage',
+                bindings: {
+                    event: 'event'            
+                },
+                resolve: {
+                    event: function($stateParams, eventService) {
+                        return eventService.getDoneEventInfo($stateParams.eventId);
+                    }
+                }
+            })
+            .state({
                 name: 'searchAllPage',
                 url: '/search-all/{query}',
                 component: 'searchAllPage',
@@ -216,7 +231,31 @@
                         return searchService.events($transition$.params().query);
                     },
                     teams: function(searchService, $transition$) {
+                        console.log("in");
                         return searchService.teams($transition$.params().query);
+                    }
+                }
+            })
+            .state({
+                name: 'sponsorsPage',
+                url: '/sponsors',
+                component: 'sponsorsPage',
+                resolve: {
+                    sponsors: function(institutionService) {
+                        return institutionService.getAll();
+                    }
+                }
+            })
+            .state({
+                name: 'searchInstitutionPage',
+                url: '/search-institution/{query}',
+                component: 'searchInstitutionPage',
+                resolve: {
+                    institutions: function(searchService, $transition$) {
+                        return searchService.institutions($transition$.params().query);
+                    },
+                    allEvents: function(eventService) {
+                        return eventService.getAll();
                     }
                 }
             })
