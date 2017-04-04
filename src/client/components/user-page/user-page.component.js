@@ -11,10 +11,11 @@
             }
         });
 
-    function userPageController(userService, sessionService, searchService, $location) {
+    function userPageController(userService, sessionService, searchService, $state) {
         var vm = this;
         vm.isSameUser = false;
         vm.isBeingEdited = false;
+        vm.files = [];
 
         vm.$onInit = function() {
             $('.modal').modal();
@@ -27,12 +28,22 @@
         vm.toggleEdit = function() {
             if (vm.isBeingEdited) {
                 check();
-                let body = angular.copy(vm.user);
-                body.birthday = (new Date(vm.user.birthday)).toISOString().substring(0,10);
-                userService.update(vm.user.user_id, body)
+                var fd = new FormData();
+                fd.append('name', vm.user.name);
+                fd.append('username', vm.user.username);
+                fd.append('password', vm.user.password);
+                fd.append('email', vm.user.email);
+                fd.append('contact_number', vm.user.contact_number);
+                fd.append('birthday', (new Date(vm.user.birthday)).toISOString().substring(0,10));
+                fd.append('isOverallAdmin', vm.user.isOverallAdmin);
+                fd.append('contact_person', vm.user.contact_person);
+                fd.append('gender', vm.user.gender);
+                fd.append('profile_pic', (vm.files[0])? vm.files[0] : vm.user.profile_pic);
+                console.log(fd);
+                userService.update(vm.user.user_id, fd)
                     .then(function(user) {
-                        vm.user = user; // <- error pa, backend isnt returning what its supposed to
-                        vm.user.birthday = new Date(vm.user.birthday); // comment out because of above
+                        vm.user = user;
+                        vm.user.birthday = new Date(vm.user.birthday);
                         console.log(vm.user);
                         vm.isBeingEdited = false;
                     });
@@ -44,8 +55,9 @@
 
         vm.deleteUser = function() {
             userService.delete(vm.user.user_id)
-                .then(function(data) {
-                    
+                .then(function() {
+                    Materialize.toast('You account has been deleted', 3000, 'red');
+                    $state.go('landingPage');
                 });
         }
 
