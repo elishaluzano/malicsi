@@ -11,13 +11,16 @@
             }
         });
 
-    function searchTeamPageController() {
+    function searchAllTeamController() {
         var vm = this;
 
-        vm.filters = {};
-        
+        vm.filters = {
+            Teams: true,
+        };
+
         vm.$onInit = function() {
-        	console.log(vm.teams);
+            console.log(vm.teams);
         }
     }
-})();
+
+})();   
