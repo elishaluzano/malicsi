@@ -1,0 +1,48 @@
+<div class="container row">
+    <h3>Search Teams</h3>
+
+    <div class="col m4 l4 hide-on-small-only"
+        id="filters">
+
+        <div class="card">
+            <div class="card-content">
+                <form>
+                    <span class="card-title">Filters</span>
+                    <div>
+                        <form action="#">
+                            <div class="divider"></div>
+                            <select ng-model="$ctrl.eventSponsored" id="dropdwn" class="left black-text browser-default">
+                                <option value="all">All Events</option>
+                                <option 
+                                ng-repeat="each in $ctrl.allEvents" 
+                                value="{{ each.event_id }}"
+                                >
+                                    {{ each.event_title }}
+                                </option>
+                            </select>
+                            
+                            <br><br><br>
+                        </form>
+                    </div>
+
+                </form>    
+            </div>    
+        </div>    
+    </div>
+
+    <div class="col m8 l8" id="results">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Teams</span>
+                <ul class="collection">
+                    <search-team-card  
+                        ng-repeat="team in $ctrl.teams"
+                        ng-if="$ctrl.eventSponsored == team.event_id_key || $ctrl.eventSponsored == 'all' "
+                        team="team">
+                    </search-team-card>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>  

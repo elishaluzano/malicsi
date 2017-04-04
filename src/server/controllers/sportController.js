@@ -11,7 +11,8 @@ exports.addSport = (req,res) => {
 	};
 	connection.query('INSERT INTO sport SET ?', info, function(err, rows, fields) {
 		if (!err) {
-			res.send(rows[0]);
+		    info.sport_id = rows.insertId;
+			res.send(info);
 			console.log("Successfully added sport");
 		}
 		else {
@@ -56,10 +57,14 @@ exports.searchSport = (req,res) => {
 };
 
 exports.updateSport = (req,res) => {
+    var info = {
+        sport_id : req.params.id,
+        name : req.body.name
+    };
 	connection.query('UPDATE sport SET name = ? WHERE sport_id = ?', [req.body.name,req.params.id], function(err, rows, fields){
 		if(!err) {
 			console.log("Success");
-			res.send(rows[0]);
+			res.send(info);
 		}else{
 			console.log(err);
 			res.send(err);
@@ -71,7 +76,7 @@ exports.deleteSport = (req,res) => {
 	connection.query('DELETE FROM sport WHERE sport_id = ?', [req.params.id], function(err, rows, fields){
 		if(!err) {
 			console.log("Success");
-			res.send({});
+			res.send(null);
 		}else{
 			console.log(err);
 			res.send(err);
@@ -88,7 +93,7 @@ exports.addJoin = (req, res) => {
 	connection.query('INSERT into SportIsJoinedByUser SET ?', info, function(err, rows, fields) {
 		if (!err) {
 			console.log("Success");
-			res.send(rows[0]);
+			res.send(info);
 		}
 		else {
 			console.log("Error");
@@ -128,7 +133,7 @@ exports.deleteJoin = (req, res) => {
 	connection.query('DELETE FROM sportIsJoinedByUser WHERE user_id = ? and sport_id = ?', [req.params.user_id, req.params.sport_id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Success");
-			res.send({});
+			res.send(null);
 		}
 		else {
 			console.log("Error");

@@ -7,41 +7,97 @@
             controller: registrationCardController,
         });
 
-    function registrationCardController(userService) {
+    function registrationCardController(userService, searchService, $state) {
         var vm = this;
-        vm.first_name = '';
-        vm.last_name = '';
-        vm.email = '';
-        vm.email_confirm = '';
+        vm.name = '';
+        vm.username = '';
+        vm.password = '';
         vm.password_confirm = '';
+        vm.email = '';
+        vm.gender = '';
+        vm.birthday = '';
+        vm.gender = '';
+
+        vm.$onInit = function() {
+            setTimeout(Materialize.updateTextFields, 1);
+        }
 
         vm.register = function() {
-            if (vm.email != vm.email_confirm || vm.password != vm.password_confirm) {
-                console.log('Emails do not match'); // should be a toast
+            if (!vm.name) {
+                return Materialize.toast("What's your name?", 3000, 'red');
             }
-            else if (vm.password != vm.password_confirm) {
-                console.log("Passwords do not match!"); // should be a toast;
+
+            if (!vm.birthday) {
+                return Materialize.toast('When is your birthday?', 3000, 'red');
             }
-            else {
-                vm.body = {
-                    name : vm.last_name + ' ' + vm.first_name,
-                    username : "username", //hardcoded waiting for ui team
-                    password : vm.password,
-                    gender : 'F', //hardcoded waiting for ui team
-                    birthday : '1111-11-11', //hardcoded waiting for ui team
-                    email : vm.email,
-                    contact_number : null,
-                    contact_person : null,
-                    profile_pic : null
-                }
-                console.log(vm.body);
+
+            if (!vm.gender) {
+                return Materialize.toast('Are you male of female?', 3000, 'red');
             }
-            userService.create(vm.body)
-                .then(function(data) {
-                    if(data) {
-                        console.log(data);
+
+            if (!vm.contact_number.length) {
+                return Materialize.toast('Can I get your digits?', 3000, 'red');
+            }
+
+            if (isNaN(vm.contact_number)) {
+                return Materialize.toast('Is that really your contact number?', 3000, 'red');
+            }
+
+            if (/[\W]/.exec(vm.username)) {
+                return Materialize.toast('Username should only consist of alphanumeric characters and underscores', 3000, 'red');
+            }
+
+            if (vm.password.length < 8) {
+                return Materialize.toast('Your password should be at least 8 characters long', 3000, 'red');
+            }
+
+            if (vm.password !== vm.password_confirm) {
+                return Materialize.toast("Passwords do not match!", 3000, 'red');
+            }
+
+            if (!/^\w+@[a-zA-Z]+\.[a-zA-Z]+/.exec(vm.email)) {
+                return Materialize.toast('Is that a real email address?', 3000, 'red');
+            }
+
+            searchService.users(vm.username)
+                .then(function(users) {
+                    let found = false;
+                    for (let user of users) {
+                        if (user.username === vm.username) {
+                            found = true;
+                            Materialize.toast('Username has already been taken', 3000, 'red');
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        register();
                     }
                 });
+
+
+        }
+
+        function register() {
+            let body = {
+                name : vm.name,
+                username : vm.username,
+                password : vm.password,
+                gender : vm.gender,
+                birthday : (new Date(vm.birthday.setDate(vm.birthday.getDate()+1))).toISOString().substring(0, 10), // for some reason kailangan +1
+                email : vm.email,
+                contact_number : null,
+                contact_person : null,
+                profile_pic : (vm.gender === 'male')? 'default-boy.png' : 'default-girl.png',
+                isOverallAdmin : 0
+            };
+            
+            userService.create(body)
+                .then(function(data) {
+                    if (data) {
+                        Materialize.toast("Successfully registered!", 3000, 'red');
+                        $state.go('landingPage');
+                    }
+                });           
         }
 
     }

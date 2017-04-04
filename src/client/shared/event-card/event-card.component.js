@@ -21,21 +21,20 @@
             text: ''
         };
 
-        vm.trial = false;
-
         vm.$onInit = function() {
             institutionService.getOne(vm.event.institution_id_key)
                 .then(function(institution) {
                     vm.institution = institution;
                     let user = sessionService.user();
-                    if (user) {
-                        adminService.checkAdmin(user.user_id)
+                    //if (user) {
+                        //hardcoded yung 3 (user.user_id)
+                        adminService.checkAdmin(3)
                             .then(function(admin) {
-                                if (admin) {
+                                //if (admin) {
                                     vm.isAdmin = true;
-                                }
+                                //}
                             });
-                    }
+                    //}
                 });
 
             let toDate = new Date().getTime();

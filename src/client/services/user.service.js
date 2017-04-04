@@ -21,14 +21,23 @@
             },
 
             getOne: function(id) {
-                console.log(id);
                 return $http.get(api + id)
                     .then(function(response) {
-                        console.log(response.data);
                         return response.data;
                     })
                     .catch(function(err) {
                         console.log('Error in getting one user!');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
+            getAdmins: function() {
+                return $http.get('/api/admins')
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting all admins!');
                         console.log(err.status + ': ' + err.statusText);
                     });
             },
@@ -45,7 +54,14 @@
             },
 
             update: function(id, body) {
-                return $http.put(api + id, body)
+                let options = {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                    }
+                };
+
+                return $http.put(api + id, body, options)
                     .then(function(response) {
                         return response.data;
                     })

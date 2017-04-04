@@ -13,7 +13,8 @@ exports.addContact = (req,res) => {
     };
     connection.query('INSERT INTO contactPersonInCaseOfEmergency SET ?', info, function(err, rows, fields) {
         if (!err) {
-            res.send(rows[0]);
+            info.contact_person_id = rows.insertId;
+            res.send(info);
             console.log("Successfully added contact");
         }
         else {
@@ -26,7 +27,7 @@ exports.addContact = (req,res) => {
 
 // VIEW specific contact
 exports.viewContact = (req,res) => {
-    connection.query('SELECT * FROM contactPersonInCaseOfEmergency WHERE contact_person_name = ?', [req.params.id], function(err, rows, fields){
+    connection.query('SELECT * FROM contactPersonInCaseOfEmergency WHERE contact_person_id = ?', [req.params.id], function(err, rows, fields){
         if(!err) {
             res.send(rows[0]);
         }else{
@@ -50,10 +51,16 @@ exports.viewAllContact = (req,res) => {
 
 // UPDATE specific contact
 exports.updateContact = (req,res) => {
-    connection.query('UPDATE contactPersonInCaseOfEmergency SET contact_person_relationship = ?, contact_person_number = ? WHERE contact_person_name = ?', [req.body.contact_person_relationship,req.body.contact_person_number,req.params.id], function(err, rows, fields){
+    var info = {
+        contact_person_id: req.params.id,
+        contact_person_name: req.body.contact_person_name,
+        contact_person_relationship: req.body.contact_person_relationship,
+        contact_person_number: req.body.contact_person_number
+    };
+    connection.query('UPDATE contactPersonInCaseOfEmergency SET contact_person_name = ?, contact_person_relationship = ?, contact_person_number = ? WHERE contact_person_id = ?', [req.body.contact_person_name, req.body.contact_person_relationship,req.body.contact_person_number,req.params.id], function(err, rows, fields){
         if(!err) {
             console.log("Success");
-            res.send(rows[0]);
+            res.send(info);
         }else{
             console.log(err);
             res.send(err);
@@ -66,7 +73,7 @@ exports.deleteContact = (req,res) => {
     connection.query('DELETE FROM contactPersonInCaseOfEmergency WHERE contact_person_id = ?', [req.params.id], function(err, rows, fields){
         if(!err) {
             console.log("Success");
-            res.send({});
+            res.send(null);
         }else{
             console.log(err);
             res.send(err);

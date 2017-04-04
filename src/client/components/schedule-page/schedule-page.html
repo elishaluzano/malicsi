@@ -4,8 +4,7 @@
 
     </div>
 
-    <div class = "col s12 m8" ng-repeat="each in games">
-       <p> content:{{each.status}} </p>
-       <!--temporary-->
+    <div class = "col s12 m8" ng-repeat="each in $ctrl.sports">
+       <sport-card information="each"></sport-card>
     </div>
 </div>

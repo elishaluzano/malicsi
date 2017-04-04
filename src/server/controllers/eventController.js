@@ -11,11 +11,13 @@ exports.addEvent = (req,res) => {
 		venue: req.body.venue,
 		start_date: req.body.start_date,
 		end_date: req.body.end_date,
-		institution_id_key: req.body.institution_id_key,
+		picture: (req.file)? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : '',
+		institution_id_key: req.body.institution_id_key
 	};
 	connection.query('INSERT INTO event SET ?', info, function(err, rows, fields) {
 		if (!err) {
-			res.send(rows[0]);
+		    info.event_id = rows.insertId;
+			res.send(info);
 			console.log("Successfully added event");
 		}
 		else {
@@ -60,7 +62,7 @@ exports.viewEventDetails = (req,res) => {
 	connection.query('SELECT e.event_title AS event, s.name AS sport, g.time, g.game_id, t.name AS team, si.name AS institution, \
 		v.name AS venue FROM event e JOIN game g JOIN sport s JOIN team t JOIN sponsoringInstitution si JOIN venue v JOIN teamPlaysGame tpg \
 		WHERE e.event_id = ? AND s.event_id_key = e.event_id AND g.sport_id_key = s.sport_id AND e.institution_id_key = si.institution_id \
-		AND g.venue = v.venue_id AND tpg.game_id_play = g.game_id AND tpg.team_id_play = t.team_id AND t.event_id_key = e.event_id', 
+		AND g.venue = v.venue_id AND tpg.game_id_play = g.game_id AND tpg.team_id_play = t.team_id AND t.event_id_key = e.event_id',
 		[ req.params.id ], function(err, rows, fields){
 		if(!err) {
 			res.send(rows);
@@ -71,9 +73,18 @@ exports.viewEventDetails = (req,res) => {
 };
 
 exports.updateEvent = (req,res) => {
-	connection.query('UPDATE event SET event_title = ?, venue = ?, start_date = ?, end_date = ? WHERE event_id = ?', [req.body.event_title, req.body.venue, req.body.start_date, req.body.end_date, req.params.id], function(err, rows, fields){
+    var info = {
+        event_id : req.params.id,
+		event_title: req.body.event_title,
+		venue: req.body.venue,
+		start_date: req.body.start_date,
+		end_date: req.body.end_date,
+		picture: (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file,
+		institution_id_key: req.body.institution_id_key
+	};
+	connection.query('UPDATE event SET event_title = ?, venue = ?, start_date = ?, end_date = ?, picture = ? WHERE event_id = ?', [req.body.event_title, req.body.venue, req.body.start_date, req.body.end_date, (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file, req.params.id], function(err, rows, fields){
 		if(!err) {
-			res.send(rows[0]);
+			res.send(info);
 			console.log("Success");
 		}else{
 			console.log(err);
@@ -86,7 +97,7 @@ exports.deleteEvent = (req,res) => {
 	connection.query('DELETE FROM event WHERE event_id = ?', [req.params.id], function(err, rows, fields){
 		if(!err) {
 			console.log("Success");
-			res.send({});
+			res.send(null);
 		}else{
 			console.log(err);
 			res.send(err);
@@ -95,13 +106,14 @@ exports.deleteEvent = (req,res) => {
 };
 
 exports.viewSportsInEvent = (req, res) => {
-    connection.query('SELECT * FROM eventHasSport WHERE event_id = ?', [req.params.id], function(err, rows, fields){
+    connection.query('SELECT * FROM sport NATURAL JOIN eventHasSport where event_id = ?', [req.params.id], function(err, rows, fields){
         if (!err) {
             console.log("Success");
+            console.log(rows);
             res.send(rows);
         }
         else {
-            console.log("Error");
+            console.log(err);
             res.send(err);
         }
     });
@@ -121,7 +133,7 @@ exports.viewTeamsInEvent = (req, res) => {
 };
 
 exports.viewGamesInEvent = (req, res) => {
-    connection.query('SELECT * FROM game WHERE sport_id IN (SELECT sport_id FROM eventHasSport WHERE event_id = ?)', [req.params.id], function(err, rows, fields){
+    connection.query('SELECT * FROM game WHERE event_id = ?', [req.params.id], function(err, rows, fields){
         if (!err) {
             console.log("Success");
             res.send(rows);
@@ -147,7 +159,7 @@ exports.viewGamesInSportInEvent = (req, res) => {
 };
 
 exports.viewGeneralInformation = (req, res) => {
-    connection.query('select s.name as sport, g.time, g.game_id, e.event_title as event, t.name as team, si.description as institution, v.name as venue from event e join game g join sport s join team t join sponsoringInstitution si join venue v join teamPlaysGame tpg where e.event_id = ? and s.event_id_key = e.event_id and g.sport_id_key = s.sport_id and e.institution_id_key = si.institution_id and g.venue = v.venue_id and tpg.game_id_play = g.game_id and tpg.team_id_play = t.team_id and t.event_id_key = e.event_id', [req.params.id], function(err, rows, fields){
+    connection.query('select s.name as sport, g.time, g.game_id, e.event_title as event, t.name as team, si.description as institution, v.name as venue from event e join game g join sport s join team t join sponsoringInstitution si join venue v join teamPlaysGame tpg where e.event_id = ? and g.event_id = e.event_id and g.sport_id = s.sport_id and e.institution_id_key = si.institution_id and g.venue = v.venue_id and tpg.game_id_play = g.game_id and tpg.team_id_play = t.team_id and t.event_id_key = e.event_id', [req.params.id], function(err, rows, fields){
         if (!err) {
             console.log("Success");
             res.send(rows);
@@ -158,3 +170,19 @@ exports.viewGeneralInformation = (req, res) => {
         }
     });
 };
+
+exports.viewDoneEventInfo = (req, res) => {
+    connection.query('select distinct s.name as sport, s.sport_id as sport_id, g.time, g.game_id, e.event_id as event_id, e.event_title as event, t.name as team, si.description as institution, v.name as venue, tpg.score as score, tpg.record as record from event e join game g join sport s join team t join sponsoringInstitution si join venue v join teamPlaysGame tpg join eventHasSport ehs where e.event_id = ? and s.sport_id = ehs.sport_id and g.sport_id = s.sport_id and e.institution_id_key = si.institution_id and g.venue = v.venue_id and tpg.game_id_play = g.game_id and tpg.team_id_play = t.team_id and t.event_id_key = e.event_id', [req.params.id], function(err, rows, fields){
+        if (!err) {
+            console.log("Success");
+            res.send(rows);
+        }
+        else {
+            console.log("Error");
+            res.send(err);
+        }
+    });
+};
+
+
+

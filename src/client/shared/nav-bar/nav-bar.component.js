@@ -8,7 +8,7 @@
             controller: navBarController
         });
 
-    function navBarController(sessionService, adminService) {
+    function navBarController(sessionService, adminService, $state) {
         var vm = this;
 
         vm.isAdmin = false;
@@ -21,17 +21,22 @@
 
         vm.$onInit = function() {
             $('#login').webuiPopover({ url:'#login-form' });
-            $('#drop-links').webuiPopover({ url:'#additional-links' });
+            $('#drop-link').webuiPopover({ url:'#additional-links' });
 
             $('.side-nav-button').sideNav({
                 menuWidth: 300,
                 edge: 'right',
                 closeOnClick: true
             });
+            
+            sessionService.session()
+                .then(function(user) {
+                    vm.user = user;
+                });
         }
 
         vm.focusLogin = function() {
-            $('#username').focus();
+            $('#login-username').focus();
         }
 
         vm.login = function() {
@@ -47,7 +52,9 @@
                                     vm.isAdmin = true;
                                 }
                             });
+                        console.log('hello');
                         WebuiPopovers.hide('#login');
+                        $state.reload();
                     } else { // if wrong credentials
                         Materialize.toast('Wrong credentials!', 2000, 'red');
                     }
@@ -58,7 +65,28 @@
             sessionService.logout()
                 .then(function(user) {
                     vm.user = user;
+                    $state.reload();
                 });
+        }
+
+        vm.searchEnter = function(e) {
+            if (e.keyCode === 13) {
+                vm.search();
+            }
+        }
+
+        vm.search = function() {
+            if (vm.searchInput.length < 3) {
+                return Materialize.toast('Search query must be at least 3 characters long', 3000);
+            } else {
+                let category = vm.searchCategory;
+                category = category.charAt(0).toUpperCase() + category.slice(1);
+                $state.go('search' + category + 'Page', { query: vm.searchInput });
+            }
+        }
+
+        vm.closeMenu = function() {
+            WebuiPopovers.hide('#drop-link');
         }
     }
 

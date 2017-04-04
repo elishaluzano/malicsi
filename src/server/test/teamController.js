@@ -46,6 +46,7 @@ describe('Team', function(){
 		 it('creates a new team', function (done) {
 			 var team = {
 				 'name': 'Team Test 2',
+				 'picture' : null,
 				 'event_id_key': 1
 			 };
 			 request(url)
@@ -63,6 +64,7 @@ describe('Team', function(){
 		 it('updates a team', function (done) {
 			 var team = {
 				 'name': 'Team Test Update',
+				 'picture': null,
 				 'event_id_key': 2
 			 };
 			 request(url)
@@ -208,6 +210,22 @@ describe('Team Relation (playsGame)', function(){
 					 if (err) throw err;
 					 res.should.have.status(200);
 					 	res.body.should.be.an.instanceOf(Object);
+					 done();
+				 });
+		 });
+	 });
+
+    describe('updatePlays()', function () {
+		 it('updates a the record of a team', function (done) {
+            var team = {
+				 'record': 'WIN'
+			 };
+			 request(url)
+				 .put('/api/teams/plays/' + '2/1')
+				 .send(team)
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
 					 done();
 				 });
 		 });

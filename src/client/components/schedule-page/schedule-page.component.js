@@ -6,14 +6,15 @@
             template: require('./schedule-page.html'),
             controller: schedulePageController,
             bindings: {
-                games: '<'
+                sports: '<'
             }
         });
 
-    function schedulePageController(sportService, gameService) {
+    function schedulePageController(sportService, eventService) {
         var vm = this;
-        vm.onInit = function(){
-            console.log(games);
+
+        vm.$onInit = function() {
+           console.log(vm.sports);
         }
     }
 })();
