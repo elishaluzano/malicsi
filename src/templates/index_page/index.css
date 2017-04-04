@@ -1,0 +1,89 @@
+#news {
+    margin: 0px 0px 50px 0px;
+}
+
+#dropdown-links {
+    cursor: pointer;
+    font-size: 14px;
+    color: #616161;
+    margin-bottom: 2px;
+    width: 50%;
+    float: left;
+}
+
+#dropdown-links:hover {
+    color: #ff0000;
+}
+
+#login-form {
+    padding: 10px 10px;
+}
+
+#login-button {
+    margin: 0px 0px 20px 0px;
+}
+
+#forgot-password-link {
+    cursor: pointer; 
+    font-size: 12px;
+}
+
+#additional-links {
+    margin: 10px 0px 20px 0px; 
+    width: 200px; 
+    height: 50px;
+}
+
+#drop-links {
+    cursor: pointer;
+}
+
+#malicsi-logo-link {
+    height: 64px;
+}
+
+#search-bar-div {
+    height: 64px; margin: 0px 10px; padding: 8px 0px 0px 0px;
+}
+
+#input {
+    float: left;
+}
+
+#register-link {
+    width: 100px; text-align: center;
+}
+
+#latest-news-header {
+    padding-left: 90px; color: red;
+}
+
+#news-grid {
+    text-align: center; margin: 40px 0px;
+}
+
+#register-part {
+    padding: 30px 0px 50px 35%; border-top: 2px solid #c1c1c1;
+}
+
+#register {
+    width: 50%;
+}
+
+#join-header {
+    text-align: center; color: red;
+}
+
+#search-icon {
+    cursor: pointer;
+}
+
+#sidenav-icon {
+    margin: 0px 15px;
+}
+
+.slider .slides {
+    background-color: #ffffff;
+    margin: 0;
+    height: 400px;
+}
