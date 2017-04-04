@@ -74,6 +74,9 @@
                 resolve: {
                     sports: function(sportService){
                         return sportService.getAll();
+                    },
+                    allGamesInformation: function(gameService){
+                        return gameService.getAllGamesInformation();
                     }
                 }
             })
@@ -208,6 +211,16 @@
                     },
                     teams: function(searchService, $transition$) {
                         return searchService.teams($transition$.params().query);
+                    }
+                }
+            })
+            .state({
+                name: 'sponsorsPage',
+                url: '/sponsors',
+                component: 'sponsorsPage',
+                resolve: {
+                    sponsors: function(institutionService) {
+                        return institutionService.getAll();
                     }
                 }
             });

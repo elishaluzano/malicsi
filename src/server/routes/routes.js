@@ -112,6 +112,7 @@ router.delete('/api/games/:id',gameCtrl.deleteGame);
 
 //get all teams from specific game
 router.get('/api/games/:id/teams',gameCtrl.viewTeamsInGame);
+router.get('/api/games/:id/gameinfo',gameCtrl.viewGamesInformation);
 
 var teamCtrl = require('../controllers/teamController.js');
 //team routes
