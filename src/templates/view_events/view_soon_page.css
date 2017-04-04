@@ -15,6 +15,20 @@ html, body {
 	height: 100%;
 }
 
+#soon-tabs li {
+	cursor: pointer;
+}
+
+#soon-tabs li.tablinks {
+	border-left: 1px solid #D0D0D0;
+	border-right: 1px solid #D0D0D0;
+}
+
+#soon-tabs li .active {
+	background-color: #A0A0A0;
+	color: white;
+}
+
 #timer {
 	margin: 10px 0px 20px 0px;
 }
