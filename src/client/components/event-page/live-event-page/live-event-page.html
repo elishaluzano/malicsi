@@ -2,6 +2,11 @@
     <div class="col m3 l3 hide-on-small-only">
         <div class="card">
             <div class="card-content">
+                <div class="card-image">
+                    <img ng-src="{{ $ctrl.event.picture }}" 
+                        alt="event logo"
+                        class="responsive-img">
+                </div>
 
                 <span class="card-title"> 
                     {{ $ctrl.event.event_title }} 
@@ -149,7 +154,7 @@
 
 </div>
 
-<div id="delete-event-modal" class="modal modal-fixed-footer">
+<div id="delete-event-modal" class="modal">
     <div class="modal-content">
         <h5>Delete {{ $ctrl.event.event_title }}</h5>
         <p>
