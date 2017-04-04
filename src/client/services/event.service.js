@@ -22,7 +22,7 @@
 
             getOne: function(id) {
                 return $http.get(api + id)      
-                    .then(function(response) {  
+                    .then(function(response) {   
                         return response.data;
                     })
                     .catch(function(err) {
