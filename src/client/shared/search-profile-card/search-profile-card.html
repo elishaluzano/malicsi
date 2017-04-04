@@ -1,0 +1,17 @@
+<li class="collection-item avatar">
+    <!-- Profile picture -->
+    <a href="../profile_page/profile.html">
+        <img src="../../../templates/images/person-flat.png" alt="" class="circle">
+    </a>
+    <!-- Name -->
+    <a href="../profile_page/profile.html">
+        <span class="title">{{ $ctrl.user.name }}</span>
+    </a>
+    <!-- Affiliations -->
+    <p>
+        <strong>Affiliations:</strong>
+        <ul class="profile-affiliations">
+            <li ng-repeat = "affiliation in $ctrl.affiliations">{{affiliation.affiliation}}</li>
+        </ul>
+    </p>
+</li>

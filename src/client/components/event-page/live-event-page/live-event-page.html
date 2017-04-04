@@ -2,6 +2,11 @@
     <div class="col m3 l3 hide-on-small-only">
         <div class="card">
             <div class="card-content">
+                <div class="card-image">
+                    <img ng-src="{{ $ctrl.event.picture }}" 
+                        alt="event logo"
+                        class="responsive-img">
+                </div>
 
                 <span class="card-title"> 
                     {{ $ctrl.event.event_title }} 
@@ -56,10 +61,16 @@
     <div class="col s12 m8 l9">
         <div class="row">
             <div class="tab-custom">
-                <button ng-if="$ctrl.status === 'Soon'"
+                <button
                     class="tablinks black white-text"
                     ng-click="$ctrl.toggleToTeams()">
                     Teams
+                </button>
+
+                <button
+                    class="tablinks red white-text"
+                    ng-click="$ctrl.toggleToSports()">
+                    Sports
                 </button>
                 
                 <button class="tablinks" 
@@ -71,8 +82,26 @@
             </div>
 
             <div ng-show="$ctrl.isTeamsTab"
+                id="teams"
                 class="tabcontent">
-                hello
+                <div class="row">
+                    <table class="col s12">
+                        <tbody>
+                            <tr ng-repeat="team in $ctrl.teams"
+                                ng-if="team.event_id_key === $ctrl.event.event_id">
+                                <td>{{ team.name }}</td>
+                                <td>
+                                    <a href=""></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div ng-show="$ctrl.isSportsTab"
+                class="tabcontent">
+                fuck
             </div>
 
 
@@ -149,7 +178,7 @@
 
 </div>
 
-<div id="delete-event-modal" class="modal modal-fixed-footer">
+<div id="delete-event-modal" class="modal">
     <div class="modal-content">
         <h5>Delete {{ $ctrl.event.event_title }}</h5>
         <p>

@@ -1,0 +1,62 @@
+<div class="container row">
+    <h3>Search Profiles</h3>
+    <!-- Filters: subject to change -->
+    <div class="col s4" id = "filters">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Filters</span>
+                <form action="#">
+                    <!-- Events that the searched profile/s has/have attended, if there are any -->
+                    <p>
+                        <input type="checkbox" id="profile-event-attended" ng-model="$ctrl.eventChecked"/>
+                        <label for="profile-event-attended">Event Attended</label>
+                    </p>
+                    <!-- Teams the searched profile/s has/have played for, if there are any -->
+                    <p>
+                        <input type="checkbox" id="profile-team" ng-model="$ctrl.teamChecked"/>
+                        <label for="profile-team">Team</label>
+                    </p>
+                    
+                    <br>
+                    <strong>Gender</strong>
+                    <p>
+                        <input type="checkbox" id="profile-gender-male" ng-model="$ctrl.genderStatus.male" ng-change="$ctrl.filter()"/>
+                        <label for="profile-gender-male">Male</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="profile-gender-female" ng-model="$ctrl.genderStatus.female" ng-change="$ctrl.filter()"/>
+                        <label for="profile-gender-female">Female</label> 
+                    </p>
+                    <br>
+                    <div class="divider"></div>
+
+                    <!-- Text inputs for the checked criteria -->
+                    <strong>For checked criteria:</strong>
+                    <br>
+                    <p class="input-field" ng-show = "{{ $ctrl.eventChecked }}">
+                        <input type="text" id="event-attended-name" />
+                        <label for="event-attended-name">Event Name</label>
+                    </p>
+                    <p class="input-field" ng-show = "{{ $ctrl.teamChecked }}">
+                        <input type="text" id="team-name" />
+                        <label for="team-name">Team Name</label>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results: holds the Collection of profiles with filters applied -->
+    <div class="col s8" id = "results">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Results</span>
+                <ul class="collection">
+                    <!-- One profile -->
+                    <search-profile-card ng-repeat="each in $ctrl.tempUsers" user="each">
+                    </search-profile-card>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

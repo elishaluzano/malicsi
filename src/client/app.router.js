@@ -108,6 +108,12 @@
                 resolve: {
                     events: function(eventService) {
                         return eventService.getAll();
+                    },
+                    sports: function(sportService){
+                        return sportService.getAll();
+                    },
+                    allGamesInformation: function(gameService){
+                        return gameService.getAllGamesInformation();
                     }
                 }
             })
@@ -269,6 +275,16 @@
                     },
                     allEvents: function(eventService) {
                         return eventService.getAll();
+                    }
+                }
+            })
+            .state({
+                name: 'searchPlayerPage',
+                url: '/searchPlayers',
+                component: 'searchPlayerPage',
+                resolve: {
+                    users: function(userService) {
+                        return userService.getAll();
                     }
                 }
             });
