@@ -20,7 +20,6 @@
             console.log(vm.institutions);
             console.log(vm.allEvents);
         }
-
     }
 
 })();   
