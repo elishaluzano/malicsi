@@ -178,22 +178,30 @@
             <a><i class="material-icons" onclick="prevTab()">chevron_left</i></a>
           </li>
           <!-- DAYS -->
-          <div id="addhere">
-            <!--li>
-              <a class = "tablinks active" onclick="openData(event,'June_12_game')" id ="defaultOpen">June 12</a>
-            </li>
-            <li>
-              <a class = "tablinks" onclick="openData(event,'June_13_game')">June 13</a>
-            </li>
-            <li>
-              <a class = "tablinks" onclick="openData(event,'June_14_game')">June 14</a>
-            </li>
-            <li>
-              <a class = "tablinks" onclick="openData(event,'June_15_game')">June 15</a>
-            </li-->
-          </div>
-          <!-- END DAYS -->
 
+          <ul class="tabs" id="soon-tabs-tabs">
+            <!-- PAGES -->
+            <li class="tab"><a href="#day-page-1">TAB 1</a></li>
+          </ul>
+
+          <div id="day-page-1">
+            <!-- PUT DAYS HERE -->
+            <div class="addhere">
+              <li>
+                <a class = "tablinks active" onclick="openData(event,'June_12_game')" id ="defaultOpen">June 12</a>
+              </li>
+              <li>
+                <a class = "tablinks" onclick="openData(event,'June_13_game')">June 13</a>
+              </li>
+              <li>
+                <a class = "tablinks" onclick="openData(event,'June_14_game')">June 14</a>
+              </li>
+              <li>
+                <a class = "tablinks" onclick="openData(event,'June_15_game')">June 15</a>
+              </li>
+            </div>
+            <!-- END DAYS -->
+          </div>
           <li>
             <a onclick="nextTab()"><i class="material-icons">chevron_right</i></a>
           </li>
@@ -1033,6 +1041,39 @@
         // created button on top must be dynamic
         var para = document.createElement("A");
         var newLi = document.createElement("LI");
+        var countDates = $(".tablinks").length;
+        var countTabs = $("#soon-tabs-tabs").children().length;
+        console.log(countDates);
+
+        if (countDates%5 == 0) {
+          // Create a new tab and div
+          var newTab = document.createElement("LI");
+          var newA = document.createElement("A");
+          var newText = document.createTextNode("PAGE " + countTabs);
+          newA.setAttribute("href","#day-page-"+(countDates+1));
+          newA.appendChild(newText);
+          newTab.appendChild(newA);
+          newTab.setAttribute("class","tab");
+          
+          // Add new tab to soon-tabs-tabs
+          document.getElementById("soon-tabs-tabs").appendChild(newTab);
+
+          // Add new tab content to soon-tabs -> day-page-x -> addhere
+          /*
+          <div id="day-page-2">
+            <!-- PUT DAYS HERE -->
+            <div class="addhere">
+            </div>
+            <!-- END DAYS -->
+          </div>
+          */
+          var newAddHere = document.createElement("DIV");
+          var newBigDiv = document.createElement("DIV");
+          newAddHere.setAttribute("class","addhere");
+          newBigDiv.setAttribute("id","day-page-" + (countDates+1));
+          newBigDiv.appendChild(newAddHere);
+          document.getElementById("soon-tabs").appendChild(newBigDiv);
+        }
 
         //replace june as a variable of the month
         //n is the date
@@ -1043,7 +1084,10 @@
         para.setAttribute("onClick","openData(event,'June_"+n+"_game')");
         newLi.appendChild(para);
         para.appendChild(t);
-        document.getElementById("addhere").appendChild(newLi);
+        var lastAddhere = document.getElementsByClassName("addhere");
+        lastAddhere = lastAddhere[lastAddhere.length - 1];
+        console.log(lastAddhere);
+        lastAddhere.appendChild(newLi);
 
         var text = document.createTextNode("+ Add a sport ");
         var chip = document.createElement("div");
