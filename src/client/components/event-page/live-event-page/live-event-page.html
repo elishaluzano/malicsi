@@ -85,7 +85,17 @@
                 id="teams"
                 class="tabcontent">
                 <div class="row">
-                    
+                    <table class="col s12">
+                        <tbody>
+                            <tr ng-repeat="team in $ctrl.teams"
+                                ng-if="team.event_id_key === $ctrl.event.event_id">
+                                <td>{{ team.name }}</td>
+                                <td>
+                                    <a href=""></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
