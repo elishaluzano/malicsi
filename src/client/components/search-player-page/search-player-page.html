@@ -1,26 +1,27 @@
 <div class="container row">
     <h3>Search Profiles</h3>
-    <!-- Filters: subject to change -->
+
     <div class="col s4" id = "filters">
         <div class="card">
             <div class="card-content">
                 <span class="card-title">Filters</span>
                 <form action="#">
-                    <!-- Events that the searched profile/s has/have attended, if there are any -->
+                    <!--
                     <p>
-                        <select ng-model="$ctrl.eventParticipated" id="dropdown" class="left black-text browser-default" ng-change="$ctrl.filter()">
+                        <select ng-model="$ctrl.eventSelected" id="dropdown" class="left black-text browser-default" ng-change="$ctrl.filter()">
                             <option value="all">All Events</option>
-                            <option ng-repeat="each in $ctrl.events" value="{{ each.event_id }}" event="each">
+                            <option ng-repeat="each in $ctrl.allEvents" value="{{ each.event_id }}" event="each">
                                 {{ each.event_title }}
                             </option>
                         </select>
                     </p>
-                    <!-- Teams the searched profile/s has/have played for, if there are any -->
+
                     <br><br><br>
+                    -->
                     <p>
-                        <select ng-model="$ctrl.teamBelong" id="dropdown" class="left black-text browser-default" ng-change="$ctrl.filter()">
+                        <select ng-model="$ctrl.teamSelected" id="dropdown" class="left black-text browser-default" ng-change="$ctrl.filter()">
                             <option value="all">All Teams</option>
-                            <option ng-repeat="each in $ctrl.teams" value="{{ each.team_id }}" team="each">
+                            <option ng-repeat="each in $ctrl.allTeams" value="{{ each.team_id }}" team="each">
                                 {{ each.name }}
                             </option>
                         </select>
@@ -42,7 +43,7 @@
         </div>
     </div>
 
-    <!-- Results: holds the Collection of profiles with filters applied -->
+
     <div class="col s8" id = "results">
         <div class="card">
             <div class="card-content">

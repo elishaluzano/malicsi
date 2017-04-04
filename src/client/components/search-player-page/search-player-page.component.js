@@ -8,19 +8,19 @@
 			controller: searchPlayerPageController,
 			bindings: {
 				users: '<',
-				teams: '<',
-				events: '<'
+				allTeams: '<',
+				allEvents: '<'
 			}
 		});
 
-		function searchPlayerPageController(eventService) {
+		function searchPlayerPageController(teamService) {
 			var vm = this;
 
-			vm.eventParticipated = 'all';
+			vm.eventSelected = 'all';
 
-			vm.teamBelong = 'all';
+			vm.teamSelected = 'all';
 
-			vm.filterEvent = [];
+			vm.teamComposedOf = [];
 
 			vm.tempUsers = [];
 
@@ -29,35 +29,37 @@
 				female: true
 			};
 
-			vm.eventChecked = false;
-			vm.teamChecked = false;
-
 			vm.$onInit = function() {
 				vm.tempUsers = $.extend(true, [], vm.users);
-				console.log(vm.sports);
-				console.log(vm.users);
+				console.log(vm.allTeams);
+				console.log(vm.allEvents);
         	}
 
         	vm.filter = function() {
-        		let users = $.extend(true, [], vm.users);
+        		vm.tempUsers = [];
+        		let users = angular.copy(vm.users);
 
-        		console.log(vm.eventParticipated);
+        		teamService.getUsers(vm.teamSelected)
+        			.then(function(teamUsers) {;
+        				vm.teamComposedOf = [];
+        				for(let user of teamUsers){
+        					vm.teamComposedOf.push(user.user_id);
+        				}
 
-        		eventService.getSports(vm.eventParticipated)
-        			.then(function(filterSports) {
-        				vm.filterEvent = filterSports;
+        				vm.tempUsers = users.filter(function(user) {
+							if (vm.genderStatus.male && user.gender === 'male'){
+								if (vm.teamComposedOf.indexOf(user.user_id) !== -1 || vm.teamSelected === 'all') {
+									return true;
+								}
+								
+							}
+							else if (vm.genderStatus.female && user.gender === 'female') {
+								if (vm.teamComposedOf.indexOf(user.user_id) !== -1 || vm.teamSelected === 'all') {
+									return true;
+								}
+							}
+						});
         			});
-
-				vm.tempUsers = users.filter(function(user) {
-					if (vm.genderStatus.male && user.gender === 'male'){
-						return true;
-					}
-					else if (vm.genderStatus.female && user.gender === 'female') {
-						return true;
-					}
-				});
-
-				console.log(vm.filterEvent);
 			}
 
 		}

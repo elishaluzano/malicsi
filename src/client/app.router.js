@@ -280,16 +280,16 @@
             })
             .state({
                 name: 'searchPlayerPage',
-                url: '/searchPlayers',
+                url: '/search-players/{query}',
                 component: 'searchPlayerPage',
                 resolve: {
-                    users: function(userService) {
-                        return userService.getAll();
+                    users: function(searchService, $transition$) {
+                        return searchService.users($transition$.params().query);
                     },
-                    teams: function(teamService) {
+                    allTeams: function(teamService) {
                         return teamService.getAll();
                     },
-                    events: function(eventService) {
+                    allEvents: function(eventService) {
                         return eventService.getAll();
                     }
                 }
