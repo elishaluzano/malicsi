@@ -27,5 +27,9 @@ $('#login').webuiPopover({url:'#login-form'});
 $('#drop-links').webuiPopover({url:'#additional-links'});
 
   $(document).ready(function(){
-      $('.slider').slider();
-    });
+      $('.slider').slider({
+		  height: 300,
+		  transition: 1000, 
+		  interval: 3000,
+	  });
+  });
