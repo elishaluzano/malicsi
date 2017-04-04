@@ -37,10 +37,12 @@
         vm.event = '';
         vm.isMember = false
         vm.files = [];
+        vm.sampleName = '';
         var game;
         
         vm.$onInit = function() {
             setTimeout(function(){ $('.modal').modal(); }, 1);
+            vm.sampleName = vm.currentTeam.name;
             var min;
 
             vm.currentUser = sessionService.user();
@@ -146,9 +148,13 @@
 
         }
 
+        vm.reset = function(){
+            vm.sampleName = vm.currentTeam.name;
+        }
+
         vm.editTeam = function(){
             var fd = new FormData();
-            fd.append('name', vm.currentTeam.name);
+            fd.append('name', vm.sampleName);
             fd.append('event_id_key', vm.currentTeam.event_id_key);
             fd.append('picture', (vm.files[0])? vm.files[0] : vm.currentTeam.picture);
 
@@ -225,10 +231,8 @@
             return lastFiveGames;
         }
 
-        vm.searchEnter = function(e) {
-            if (e.keyCode === 13) {
+        vm.searchEnter = function() {
                 search();
-            }
         }
 
         function search(){

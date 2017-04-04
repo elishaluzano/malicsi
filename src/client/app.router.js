@@ -167,9 +167,9 @@
                 }
             })
             .state({
-                name: 'teamLandingPage',
+                name: 'teamsPage',
                 url: '/teams',
-                component: 'teamLandingPage',
+                component: 'teamsPage',
                 resolve: {
                     events: function(eventService, $transition$) {
                         return eventService.getAll();

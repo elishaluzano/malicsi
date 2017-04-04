@@ -74,6 +74,18 @@
                         console.log('Error in deleting game');
                         console.log(error.status + ': ' + error.statusText);
                     });
+            },
+
+
+            getAllGamesInformation: function() {
+                return $http.get(api + 3 + '/gameinfo')
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(error) {
+                        console.log('Error in getting game information');
+                        console.log(error.status + ': ' + error.statusText);
+                    });
             }
         };
 
