@@ -16,9 +16,11 @@
         vm.isSameUser = false;
         vm.isBeingEdited = false;
         vm.files = [];
+        vm.usercopy = null;
 
         vm.$onInit = function() {
             $('.modal').modal();
+            vm.usercopy = angular.copy(vm.user);
             vm.user.birthday = new Date(vm.user.birthday);
             if (sessionService.user() && vm.user.user_id === sessionService.user().user_id) {
                 vm.isSameUser = true;
@@ -27,6 +29,7 @@
 
         vm.discardChanges = function() {
             Materialize.toast('Changes were discarded', 3000, 'red');
+            vm.user = vm.usercopy;
             vm.isBeingEdited = false;
         }
 
@@ -92,6 +95,7 @@
                                     vm.user.birthday = new Date(vm.user.birthday);
                                     vm.isBeingEdited = false;
                                 });
+                            vm.usercopy = vm.user;
                         }
                     });
 
