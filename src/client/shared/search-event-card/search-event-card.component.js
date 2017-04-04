@@ -7,13 +7,13 @@
         	template: require('./search-event-card.html'),
         	controller: searchEventCardController,
         	bindings: {
-        		event: '<'
+        	       event: '<'
         	}
         });
 
         function searchEventCardController() {
-        	var vm = this;
-        	
+            var vm = this;
+        	console.log(vm.event);
         }
 
 })();

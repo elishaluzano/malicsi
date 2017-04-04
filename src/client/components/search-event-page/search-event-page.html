@@ -1,0 +1,50 @@
+<div class="container row">
+    <h3>Search Events</h3>
+    <!-- Filters: subject to change -->
+    <div class="col s4" id = "filters">
+        <div class="card">
+            <div class="card-content">
+                <form>
+                    <span class="card-title">Filters</span>
+                    <div>
+                        <form action="#">
+                            <div class="divider"></div>
+                            <select ng-model="$ctrl.eventSponsor" id="dropdown" class="left black-text browser-default">
+                                <option value="all">All Sponsors</option>
+                                <option 
+                                ng-repeat="each in $ctrl.allSponsors" 
+                                value="{{ each.institution_id }}"
+                                >{{ each.name }}</option>
+                            </select>
+                            
+                            <br><br><br>
+                             <select ng-model="$ctrl.eventVenue" id="dropdown" class="left black-text browser-default">
+                                <option value="all">All Venues</option>
+                                <option 
+                                ng-repeat="each in $ctrl.allVenues" 
+                                value="{{ each.venue_id }}"
+                                >{{ each.name }}</option>
+                            </select>
+                            <br><br><br>
+                        </form>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results: holds the Collection of events with filters applied -->
+    <div class="col s8" id = "results">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Events</span>
+                <ul class="collection">
+                    <search-event-card
+                        ng-repeat="event in $ctrl.events"
+                        ng-if="$ctrl.eventSponsor == event.institution_id_key || $ctrl.eventSponsor == 'all'" event="event" >
+                    </search-event-card>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

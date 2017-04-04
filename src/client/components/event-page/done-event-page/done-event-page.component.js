@@ -6,7 +6,7 @@
             template: require('./done-event-page.html'),
             controller: doneEventPageController,
             bindings: {
-                event: '<',
+                event: '<'
             }
         });
         

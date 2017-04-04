@@ -1,0 +1,32 @@
+<div id="user-info">
+    <h5 class="center">PLAYER STATS</h5>
+    <div class="container">
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Team</th>
+                    <th>Game</th>
+                    <th>Opponent/s</th>
+                    <th>Overall</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="game in $ctrl.games">
+                    <td>{{ game.event }}</td>
+                    <td>{{ game.team }}</td>
+                    <td>{{ game.sport }} {{ game.type }} {{ game.round }}round</td>
+                    <td>{{ game.opponent }}</td>
+                    <td>{{ game.status }}</td>
+                </tr>
+                <tr>
+                    <td>[Sports Event]</td>
+                    <td>[Team Name/Color]</td>
+                    <td>[Sport] (Male/Female) (X Round)</td>
+                    <td>[Opponent Team]</td>
+                    <td>[Status]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
