@@ -15,16 +15,21 @@ html, body {
 	height: 100%;
 }
 
-#soon-tabs li {
+#addhere {
+	float: right;
+}
+
+#soon-tabs li,
+#addhere li {
 	cursor: pointer;
 }
 
-#soon-tabs li.tablinks {
+#addhere li.tablinks {
 	border-left: 1px solid #D0D0D0;
 	border-right: 1px solid #D0D0D0;
 }
 
-#soon-tabs li .active {
+#addhere li .active {
 	background-color: #A0A0A0;
 	color: white;
 }
