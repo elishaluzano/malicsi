@@ -6,7 +6,9 @@
             template: require('./landing-page.html'),
             controller: landingPageController,
             bindings: {
-                events: '<'
+                events: '<',
+                sports: '<',
+                allGamesInformation: '<'
             }
         });
 
@@ -21,12 +23,30 @@
             // }
         ];
 
+        vm.live = [];
         vm.sports = [];
         vm.soonEvents = [];
         vm.liveEvents = [];
         var hasDuplicate = false;
 
         vm.$onInit = function() {
+            for(let sport of vm.sports){
+                sport.games = [];
+            }
+            for(let game of vm.allGamesInformation){
+                for(let sport of vm.sports){
+                    if(game.sport_id === sport.sport_id && game.status === "FINISHED"){
+                        sport.games.push(game);
+                    }
+                }
+            }
+            for(let sport of vm.sports){
+                if(sport.games.length != 0){
+                    vm.live.push(sport);
+                }
+            }
+
+
 /*           
             sportService.getAll()
                 .then(function(sports) {
