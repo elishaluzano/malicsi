@@ -11,10 +11,12 @@
             }
         });
 
-    function searchTeamCardController(teamService) {
+    function searchTeamCardController(teamService, eventService) {
         var vm = this;
+        vm.event = '';
         //need to get color from team name ? (dunno how)
-        vm.color = "black";
+        vm.color = "Black";
+        vm.textcolor = "White";
         vm.colorList = [
             "Red",
             "Orange",
@@ -23,7 +25,8 @@
             "Green",
             "Violet",
             "Purple",
-            "Pink"
+            "Pink",
+            "White"
         ];
         
         vm.$onInit = function() {
@@ -33,6 +36,15 @@
                     vm.color = vm.colorList[i];
                 }
             }
+
+            if(vm.color == "White" || vm.color == "Yellow"){
+                vm.textcolor = "black"
+            }
+
+            eventService.getOne(vm.team.event_id_key)
+                .then(function(ev) {
+                    vm.event = ev;
+                })
         }
     };
 

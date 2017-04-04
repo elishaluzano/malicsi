@@ -34,9 +34,9 @@
         <ul class="left hide-on-med-and-down">
           <li><a class="black-text" href="#">Live</a></li>
           <li class = "active"><a class="black-text" href="../view_events/view_events.html">Events</a></li>
-          <li><a class="black-text" href="../view_team_page/view_team.html">Teams</a></li>
+          <li><a class="black-text" href="../view_team_page/view_team_page.html">Teams</a></li>
           <li><a class="black-text" href="../view_schedule_page/view_schedule.html">Schedules</a></li>
-          <li><a class="black-text" href="../view_sponsors_page/view_sponsors.html">Sponsors</a></li>
+          <li><a class="black-text" href="../view_sponsor_page/view_sponsor_page.html">Sponsors</a></li>
         </ul>
         <form class = "left hide-on-small-only">
           <div class="left" id="search-bar-div">
@@ -94,6 +94,7 @@
           <div class="card">
               <div class="card-content">
                   <span class="card-title">MALICSI 2018</span>
+                  <a class="chip orange white-text" id="edit-event" href="#edit-event-modal">Edit Event Details</a>
                   <div class = "divider"></div>
                   <form action="#">
                   <strong>Filter by status</strong>
@@ -176,325 +177,377 @@
 
 
       <!--=====================================================  DAY ONE GAMES ==================================================================-->
-   <div id = "game_container">
-      <div id = "June_12_game" class = "tabcontent">
-        <ul class="collapsible" data-collapsible="expandable" id = "test1">
-        <li class="active">
-          <div class="collapsible-header active"><h5>Basketball - Men's</h5></div>
-          <div class="collapsible-body ">
-            <table>
-              <thead>
-                <tr>
-                <th>Match-up</th>
-                <th>Score</th>
-                <th>Time</th>
-                <th>Venue</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-
-                  <td><a href = "../view_team_page/view_team.html">UPCES</a>vs<a href = "../view_team_page/view_team.html">SELES</a></td>
-                  <td>100 - 99</td>
-                  <td>07:00AM - 08:30AM</td>
-                  <td>Copeland Gym</td>
-                  <td>
-                    <div class = "chip orange white-text">Edit</div>
-                    <div class = "chip red lighten-1 white-text">Delete</div>
-                  </td>
-                </tr>
-                <tr>
-                  
-                  <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
-                  <td>20 - 11</td>
-                  <td>10:00AM - 11:30PM</td>
-                  <td>Copeland Gym</td>
-                  <td>
-                    
-                    <div class = "chip orange white-text">Edit</div>
-                    <div class = "chip red lighten-1 white-text">Delete</div>
-                  </td>
-                </tr>
-                <tr>
-                  
-                  <td><a href = "../view_team_page/view_team.html">BUYES</a>vs<a href = "../view_team_page/view_team.html">UPSAID</a></td>
-                  <td>99 - 100</td>
-                  <td>10:00AM - 11:30PM</td>
-                  <td>LBNHS Court</td>
-                  <td>
-                    
-                    <div class = "chip orange white-text">Edit</div>
-                    <div class = "chip red lighten-1 white-text">Delete</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href = "../view_team_page/view_team.html">UP INGINEER</a>vs<a href = "../view_team_page/view_team.html">UP ENGE</a></td>
-                  <td>-</td>
-                  <td>1:00PM - 2:30PM</td>
-                  <td>Copeland Gym</td>
-                  <td>
-                    <div class = "chip orange white-text">Edit</div>
-                    <div class = "chip red lighten-1 white-text">Delete</div></td>
-                </tr>                         
-              </tbody>
-            </table>
-          </div>
-        </li>
-        <li class="active">
-          <div class="collapsible-header active"><h5>Basketball - Women's</h5></div>
-          <div class="collapsible-body ">
-            <table>
-              <thead>
-                <tr>
-                <th>Status</th>
-                <th>Match-up</th>
-                <th>Score</th>
-                <th>Time</th>
-                <th>Venue</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><div class = "chip black white-text">done</div></td>
-                  <td><a href = "../view_team_page/view_team.html">UPCES</a>vs<a href = "../view_team_page/view_team.html">SELES</a></td>
-                  <td>100 - 99</td>
-                  <td>08:30AM - 10:00AM</td>
-                  <td>Copeland Gym</td>
-                </tr>
-                <tr>
-                  <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
-                  <td>20 - 11</td>
-                  <td>11:30AM - 1:00PM</td>
-                  <td>Copeland Gym</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">BUYES</a>vs<a href = "../view_team_page/view_team.html">UPSAID</a></td>
-                  <td>99 - 100</td>
-                  <td>11:30AM - 1:00PM</td>
-                  <td>LBNHS Court</td>
-                  <td></td>
-                </tr>
-                <tr><td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">UP INGINEER</a>vs<a href = "../view_team_page/view_team.html">UP ENGE</a></td>
-                  <td>-</td>
-                  <td>2:30PM - 4:00PM</td>
-                  <td>Copeland Gym</td>
-                </tr>                         
-              </tbody>
-            </table>
-          </div>
-        </li>
-        </ul>
+ <div id = "game_container">
+  <div id = "June_12_game" class = "tabcontent">
+  <ul class="collapsible" data-collapsible="expandable" id = "test1">
+  <li>
+    <div class="collapsible-header active"><h5>Basketball - Men's</h5></div>
+    <div class="collapsible-body ">
+      <table>
+        <thead>
+          <tr>
+            <th>Match-up</th>
+            <th>Time</th>
+            <th>Venue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">UPCES</a>vs<a href = "../view_team_page/view_team.html">SELES</a></td>
+            <td>07:00AM - 08:30AM</td>
+            <td>Copeland Gym</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
+            <td>10:00AM - 11:30PM</td>
+            <td>Copeland Gym</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">BUYES</a>vs<a href = "../view_team_page/view_team.html">UPSAID</a></td>
+            <td>10:00AM - 11:30PM</td>
+            <td>LBNHS Court</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">UP INGINEER</a>vs<a href = "../view_team_page/view_team.html">UP ENGE</a></td>
+            <td>1:00PM - 2:30PM</td>
+            <td>Copeland Gym</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="blue chip white-text" href="#add-game-schedule">+ Add a game</a>
+            </td>
+          </tr>                         
+        </tbody>
+      </table>
     </div>
+  </li>
+  <li>
+    <div class="collapsible-header active"><h5>Basketball - Women's</h5></div>
+    <div class="collapsible-body ">
+      <table>
+        <thead>
+          <tr>
+            <th>Match-up</th>
+            <th>Time</th>
+            <th>Venue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">UPCES</a>vs<a href = "../view_team_page/view_team.html">SELES</a></td>
+            <td>08:30AM - 10:00AM</td>
+            <td>Copeland Gym</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+        <tr>
+          <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
+          <td>11:30AM - 1:00PM</td>
+          <td>Copeland Gym</td>
+          <td>
+            <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+            <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+          </td>
+        </tr>
+        <tr>
+          <td><a href = "../view_team_page/view_team.html">BUYES</a>vs<a href = "../view_team_page/view_team.html">UPSAID</a></td>
+          <td>11:30AM - 1:00PM</td>
+          <td>LBNHS Court</td>
+          <td>
+            <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+            <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+          </td>
+        </tr>
+        <tr>
+          <td><a href = "../view_team_page/view_team.html">UP INGINEER</a>vs<a href = "../view_team_page/view_team.html">UP ENGE</a></td>
+          <td>2:30PM - 4:00PM</td>
+          <td>Copeland Gym</td>
+          <td>
+            <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+            <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="blue chip white-text" href="#add-game-schedule">+ Add a game</a> 
+          </td>
+        </tr>                         
+        </tbody>
+    </table>
+  </div>
+  </li>
+  <li>
+    <div class = "collapsible-header"><a href="#add-sport-modal" class="chip blue white-text">+ Add Sport</a></div>
+  </li>
+</ul>
+  </div>
 
 
     <!--=====================================================  DAY TWO GAMES ==================================================================-->
-    <div class = "game_container">
+   
     <div id = "June_13_game" class = "tabcontent">
-      <ul class="collapsible" data-collapsible="expandable" id = "test1">
-        <li class="active">
-          <div class="collapsible-header active"><h5>Basketball - Men's</h5></div>
-          <div class="collapsible-body ">
-            <table>
-              <thead>
-                <tr>
-                <th>Status</th>
-                <th>Match-up</th>
-                <th>Score</th>
-                <th>Time</th>
-                <th>Venue</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">UPCES</a>vs<a href = "../view_team_page/view_team.html">SELES</a></td>
-                  <td>100 - 99</td>
-                  <td>07:00AM - 08:30AM</td>
-                  <td>Copeland Gym</td>
-                </tr>
-                <tr>
-                  <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
-                  <td>20 - 11</td>
-                  <td>10:00AM - 11:30PM</td>
-                  <td>Copeland Gym</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">BUYES</a>vs<a href = "../view_team_page/view_team.html">UPSAID</a></td>
-                  <td>99 - 100</td>
-                  <td>10:00AM - 11:30PM</td>
-                  <td>LBNHS Court</td>
-                  <td></td>
-                </tr>
-                <tr><td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">UP INGINEER</a>vs<a href = "../view_team_page/view_team.html">UP ENGE</a></td>
-                  <td>-</td>
-                  <td>1:00PM - 2:30PM</td>
-                  <td>Copeland Gym</td>
-                </tr>                         
-              </tbody>
-            </table>
-          </div>
-        </li>
-        <li class="active">
-          <div class="collapsible-header active"><h5>Basketball - Women's</h5></div>
-          <div class="collapsible-body ">
-            <table>
-              <thead>
-                <tr>
-                <th>Status</th>
-                <th>Match-up</th>
-                <th>Score</th>
-                <th>Time</th>
-                <th>Venue</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">UPCES</a>vs<a href = "../view_team_page/view_team.html">SELES</a></td>
-                  <td>100 - 99</td>
-                  <td>08:30AM - 10:00AM</td>
-                  <td>Copeland Gym</td>
-                </tr>
-                <tr>
-                  <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
-                  <td>20 - 11</td>
-                  <td>11:30AM - 1:00PM</td>
-                  <td>Copeland Gym</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">BUYES</a>vs<a href = "../view_team_page/view_team.html">UPSAID</a></td>
-                  <td>99 - 100</td>
-                  <td>11:30AM - 1:00PM</td>
-                  <td>LBNHS Court</td>
-                  <td></td>
-                </tr>
-                <tr><td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">UP INGINEER</a>vs<a href = "../view_team_page/view_team.html">UP ENGE</a></td>
-                  <td>-</td>
-                  <td>2:30PM - 4:00PM</td>
-                  <td>Copeland Gym</td>
-                </tr>                         
-              </tbody>
-            </table>
-          </div>
-        </li>
-      </ul>
+  <ul class="collapsible" data-collapsible="expandable" id = "test1">
+  <li>
+    <div class="collapsible-header active"><h5>Basketball - Men's</h5></div>
+    <div class="collapsible-body ">
+      <table>
+        <thead>
+          <tr>
+            <th>Match-up</th>
+            <th>Time</th>
+            <th>Venue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">UPCES</a>vs<a href = "../view_team_page/view_team.html">SELES</a></td>
+            <td>07:00AM - 08:30AM</td>
+            <td>Copeland Gym</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
+            <td>10:00AM - 11:30PM</td>
+            <td>Copeland Gym</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">BUYES</a>vs<a href = "../view_team_page/view_team.html">UPSAID</a></td>
+            <td>10:00AM - 11:30PM</td>
+            <td>LBNHS Court</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">UP INGINEER</a>vs<a href = "../view_team_page/view_team.html">UP ENGE</a></td>
+            <td>1:00PM - 2:30PM</td>
+            <td>Copeland Gym</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="blue chip white-text" href="#add-game-schedule">+ Add a game</a>
+            </td>
+          </tr>                         
+        </tbody>
+      </table>
     </div>
+  </li>
+  <li>
+    <div class="collapsible-header active"><h5>Basketball - Women's</h5></div>
+    <div class="collapsible-body ">
+      <table>
+        <thead>
+          <tr>
+            <th>Match-up</th>
+            <th>Time</th>
+            <th>Venue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">UPCES</a>vs<a href = "../view_team_page/view_team.html">SELES</a></td>
+            <td>08:30AM - 10:00AM</td>
+            <td>Copeland Gym</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+        <tr>
+          <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
+          <td>11:30AM - 1:00PM</td>
+          <td>Copeland Gym</td>
+          <td>
+            <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+            <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+          </td>
+        </tr>
+        <tr>
+          <td><a href = "../view_team_page/view_team.html">BUYES</a>vs<a href = "../view_team_page/view_team.html">UPSAID</a></td>
+          <td>11:30AM - 1:00PM</td>
+          <td>LBNHS Court</td>
+          <td>
+            <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+            <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+          </td>
+        </tr>
+        <tr>
+          <td><a href = "../view_team_page/view_team.html">UP INGINEER</a>vs<a href = "../view_team_page/view_team.html">UP ENGE</a></td>
+          <td>2:30PM - 4:00PM</td>
+          <td>Copeland Gym</td>
+          <td>
+            <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+            <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="blue chip white-text" href="#add-game-schedule">+ Add a game</a> 
+          </td>
+        </tr>                         
+        </tbody>
+    </table>
+  </div>
+  </li>
+  <li>
+    <div class = "collapsible-header"><a href="#add-sport-modal" class="chip blue white-text">+ Add Sport</a></div>
+  </li>
+</ul>
+  </div>
   <!--=====================================================  DAY THREE GAMES ==================================================================-->
     <div id = "June_14_game" class = "tabcontent">
-    <ul class="collapsible" data-collapsible="expandable" id = "test1">
-     <li class="active">
-          <div class="collapsible-header active"><h5>Basketball - Men's</h5></div>
-          <div class="collapsible-body ">
-            <table>
-              <thead>
-                <tr>
-                <th>Status</th>
-                <th>Match-up</th>
-                <th>Score</th>
-                <th>Time</th>
-                <th>Venue</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">UPCES</a>vs<a href = "../view_team_page/view_team.html">SELES</a></td>
-                  <td>100 - 99</td>
-                  <td>07:00AM - 08:30AM</td>
-                  <td>Copeland Gym</td>
-                </tr>
-                <tr>
-                  <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
-                  <td>20 - 11</td>
-                  <td>10:00AM - 11:30PM</td>
-                  <td>Copeland Gym</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
-                  <td>99 - 100</td>
-                  <td>10:00AM - 11:30PM</td>
-                  <td>LBNHS Court</td>
-                  <td></td>
-                </tr>
-                <tr><td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
-                  <td>-</td>
-                  <td>1:00PM - 2:30PM</td>
-                  <td>Copeland Gym</td>
-                </tr>                         
-              </tbody>
-            </table>
-          </div>
-        </li>
-        <li class="active">
-          <div class="collapsible-header active"><h5>Basketball - Women's</h5></div>
-          <div class="collapsible-body ">
-            <table>
-              <thead>
-                <tr>
-                <th>Status</th>
-                <th>Match-up</th>
-                <th>Score</th>
-                <th>Time</th>
-                <th>Venue</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">UPCES</a>vs<a href = "../view_team_page/view_team.html">SELES</a></td>
-                  <td>100 - 99</td>
-                  <td>08:30AM - 10:00AM</td>
-                  <td>Copeland Gym</td>
-                </tr>
-                <tr>
-                  <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
-                  <td>20 - 11</td>
-                  <td>11:30AM - 1:00PM</td>
-                  <td>Copeland Gym</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">BUYES</a>vs<a href = "../view_team_page/view_team.html">UPSAID</a></td>
-                  <td>99 - 100</td>
-                  <td>11:30AM - 1:00PM</td>
-                  <td>LBNHS Court</td>
-                  <td></td>
-                </tr>
-                <tr><td><div class = "chip red white-text">upcoming</div></td>
-                  <td><a href = "../view_team_page/view_team.html">UP INGINEER</a>vs<a href = "../view_team_page/view_team.html">UP ENGE</a></td>
-                  <td>-</td>
-                  <td>2:30PM - 4:00PM</td>
-                  <td>Copeland Gym</td>
-                </tr>                         
-              </tbody>
-            </table>
-          </div>
-        </li>
-      </ul>
-    </div> <!-- end Div for day 3 -->
-
-    <div id = "new_game" class = "tabcontent">
-      No sports yet. Add a sport?<a href="#add-sport-modal" class="chip blue white-text">+</a>
+  <ul class="collapsible" data-collapsible="expandable" id = "test1">
+  <li>
+    <div class="collapsible-header active"><h5>Basketball - Men's</h5></div>
+    <div class="collapsible-body ">
+      <table>
+        <thead>
+          <tr>
+            <th>Match-up</th>
+            <th>Time</th>
+            <th>Venue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">UPCES</a>vs<a href = "../view_team_page/view_team.html">SELES</a></td>
+            <td>07:00AM - 08:30AM</td>
+            <td>Copeland Gym</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
+            <td>10:00AM - 11:30PM</td>
+            <td>Copeland Gym</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">BUYES</a>vs<a href = "../view_team_page/view_team.html">UPSAID</a></td>
+            <td>10:00AM - 11:30PM</td>
+            <td>LBNHS Court</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">UP INGINEER</a>vs<a href = "../view_team_page/view_team.html">UP ENGE</a></td>
+            <td>1:00PM - 2:30PM</td>
+            <td>Copeland Gym</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="blue chip white-text" href="#add-game-schedule">+ Add a game</a>
+            </td>
+          </tr>                         
+        </tbody>
+      </table>
     </div>
+  </li>
+  <li>
+    <div class="collapsible-header active"><h5>Basketball - Women's</h5></div>
+    <div class="collapsible-body ">
+      <table>
+        <thead>
+          <tr>
+            <th>Match-up</th>
+            <th>Time</th>
+            <th>Venue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href = "../view_team_page/view_team.html">UPCES</a>vs<a href = "../view_team_page/view_team.html">SELES</a></td>
+            <td>08:30AM - 10:00AM</td>
+            <td>Copeland Gym</td>
+            <td>
+              <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+              <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+            </td>
+          </tr>
+        <tr>
+          <td><a href = "../view_team_page/view_team.html">ERG</a>vs<a href = "../view_team_page/view_team.html">UP EES</a></td>
+          <td>11:30AM - 1:00PM</td>
+          <td>Copeland Gym</td>
+          <td>
+            <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+            <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+          </td>
+        </tr>
+        <tr>
+          <td><a href = "../view_team_page/view_team.html">BUYES</a>vs<a href = "../view_team_page/view_team.html">UPSAID</a></td>
+          <td>11:30AM - 1:00PM</td>
+          <td>LBNHS Court</td>
+          <td>
+            <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+            <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+          </td>
+        </tr>
+        <tr>
+          <td><a href = "../view_team_page/view_team.html">UP INGINEER</a>vs<a href = "../view_team_page/view_team.html">UP ENGE</a></td>
+          <td>2:30PM - 4:00PM</td>
+          <td>Copeland Gym</td>
+          <td>
+            <a class = "chip orange white-text edit-button" href="#edit-game-modal">Edit</a>
+            <a class = "chip red lighten-1 white-text" href="#delete-game-modal">Delete</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="blue chip white-text" href="#add-game-schedule">+ Add a game</a> 
+          </td>
+        </tr>                         
+        </tbody>
+    </table>
+  </div>
+  </li>
+  <li>
+    <div class = "collapsible-header"><a href="#add-sport-modal" class="chip blue white-text">+ Add Sport</a></div>
+  </li>
+</ul>
+  </div>
 
+<!-- TEAMS TAB -->
     <div id = "teams" class = "tabcontent">
       <div class = "row">
 
@@ -504,19 +557,19 @@
         <td>UPLB SELES</td>
         <td>
           <a href ="#join-modal"><div class = "chip green white-text tooltipped" data-delay= "50" data-tooltip ="If player does not have a team">Join</div></a>
-          <div class = "chip grey white-text tooltipped" data-delay= "50" data-tooltip ="Grey-ed out">Cancel</div>
-          <div class = "chip orange white-text tooltipped" data-delay= "50" data-tooltip ="For admin only">Edit</div>
-          <div class = "chip red white-text  tooltipped" data-delay= "50" data-tooltip ="For admin only">Delete</div>
+          <a class = "chip grey white-text tooltipped" data-delay= "50" data-tooltip ="Grey-ed out">Cancel</a>
+          <a class = "chip orange white-text edit-button-admin tooltipped" href="#edit-team-modal" data-delay= "50" data-tooltip ="For admin only">Edit</a>
+          <a class = "chip red white-text  tooltipped" data-delay= "50" data-tooltip ="For admin only" href="#delete-team-modal">Delete</a>
         </td>
 
       </tr>
       <tr>
         <td>UPCES</td>
         <td>
-          <div class = "chip grey white-text">Join</div>
-          <div class = "chip green white-text">Cancel</div>
-          <div class = "chip orange white-text">Edit</div>
-          <div class = "chip red white-text">Delete</div>
+          <a class = "chip grey white-text">Join</a>
+          <a href="#cancel-modal" class = "chip green white-text">Cancel</a>
+          <a class = "chip orange white-text edit-button-admin" href="#edit-team-modal">Edit</a>
+          <a class = "chip red white-text" href="#delete-team-modal">Delete</a>
         </td>
       </tr>
       </tbody>
@@ -527,82 +580,54 @@
 
     <div id = "June_15_game" class = "tabcontent">
       <ul class="collapsible" data-collapsible="expandable" id = "test1">
-     <li class="active">
+        <li class="active">
           <div class="collapsible-header active"><h5>Basketball - Men's</h5></div>
-          <div class="collapsible-body ">Add a game schedule<a class="blue chip white-text" href="#add-game-schedule">+</a></div>
+          <div class="collapsible-body "><a class="blue chip white-text" href="#add-game-schedule"> + Add a game</a></div>
         </li>
-        
       </ul>
+    </div>
 
-    </div>
-    </div>
     </div>
       </div>
         </div>
-        </div>
 
-    <div id="join-modal" class="modal">
+<!-- MODALS BEGIN -->
+    <div id="edit-event-modal" class="modal modal-fixed-footer">
       <div class="modal-content">
-        <h4>Join Team</h4>
-        <p>Are you sure you would like to join this team?</p>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">No</a>
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
-      </div>
-    </div>
-
-    <div id="add-sport-modal" class="modal">
-      <div class="modal-content">
-        <h4>Add a Sport</h4>
-        <p>Please enter the name of the sport you wish to add.</p>
-        <form>
-          <div class="input-field">
-            <input type="text" placeholder="New Sport Name" />
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
-      </div>
-    </div>
-
-    <div id="add-team-modal" class="modal">
-      <div class="modal-content">
-        <h4>Add a Sport</h4>
-        <p>Please enter the name of the team you wish to add.</p>
-        <form>
-          <div class="input-field">
-            <input type="text" placeholder="New Team Name" />
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
-      </div>
-    </div>
-
-    <div id="add-date-modal" class="modal">
-      <div class="modal-content">
-        <h4>Add date</h4>
-        <p>Please enter the date you wish to add.</p>
-        <form>
-          <div class="row">
-            <div class="input-field col l8">
-              <i class="material-icons prefix">date_range</i><input type="date" class="datepicker" placeholder="Choose Date">
+        <h4>Edit Event Details</h4>
+        <div class="divider"></div>
+        <div class="container">
+          <form>
+            <div class="row">
+              <div class="input-field">
+                <h5>Event Name</h5>
+                <input type="text" placeholder="Event Name">
+              </div>
             </div>
-          </div>
-          
-        </form>
+            <div class="row">
+              <div class="input-field">
+                <h5>Event Sponsor</h5>
+                <input type="text" placeholder="Event Sponsor">
+              </div>
+            </div>
+            <div class="row">
+              <h5>Event Duration</h5>
+              <div class="input-field col l6">
+                <i class="material-icons prefix">date_range</i><input type="date" class="datepicker" placeholder="Choose Start Date">
+              </div>
+              <div class="input-field col l6">
+                <i class="material-icons prefix">date_range</i><input type="date" class="datepicker" placeholder="Choose End Date">
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-red">Cancel</a>
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-green">Save Changes</a>
       </div>
     </div>
-
+    
     <!-- ADD GAME SCHEDULE MODAL -->
     <div id="add-game-schedule" class="modal modal-fixed-footer">
       <div class="modal-content">
@@ -684,32 +709,263 @@
     </div>
     <!-- END GAME SCHEDULE MODAL-->
 
+    <!-- Edit Game Schedule -->
+    <div id="edit-game-modal" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Edit Game Schedule</h4>
+        <div class="divider"></div>
+        <br>
+        <form>
+          <!-- Choose which two teams will play against each other -->
+          <div class="row container">
+            <div class="input-field col m4 l4">
+              <h5>TEAM 1</h5>
+              <select>
+                <option value="UP SELES">UP SELES</option>
+                <option value="RED RANGERS">RED RANGERS</option>
+                <option value="BLUE TIGERS">BLUE TIGERS</option>
+              </select>
+            </div>
+
+            <div class="col m2 l2 offset-l1 offset-m1">
+              <br>
+              <h4>VS</h4>
+            </div>
+
+            <div class="input-field col m4 l4 offset-m1 offset-l1">
+              <h5>TEAM 2</h5>
+              <select>
+                <option value="UP SELES">UP SELES</option>
+                <option value="RED RANGERS">RED RANGERS</option>
+                <option value="BLUE TIGERS">BLUE TIGERS</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Set the time of the event -->
+          <div class="row container">
+            <form>
+              <div class="col m6 l6">
+                <h5>Event Start Time</h5>
+                <div class="input-field col m6 l6">
+                  <input type="text" id="hour"/>
+                  <label for="hour">HH</label>
+                </div>
+                <div class="input-field col m6 l6">
+                  <input type="text" id="minute">
+                  <label for="minute">MM</label>
+                </div>
+              </div>
+
+              <div class="col m6 l6">
+                <h5>Event End Time</h5>
+                <div class="input-field col m6 l6">
+                  <input type="text" id="hour"/>
+                  <label for="hour">HH</label>
+                </div>
+                <div class="input-field col m6 l6">
+                  <input type="text" id="minute">
+                  <label for="minute">MM</label>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Set the venue of the event -->
+          <div class="row container">
+            <form>
+              <div class="col m12 l12">
+                <h5>Venue</h5>
+                <input type="text"/>
+              </div>
+            </form>
+          </div>
+        </form>
+      </div>
+      
+      <div class="modal-footer">
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-red"><div class = "chip red white-text">Cancel</div></a>
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-green"><div class = "chip green white-text">Done</div></a>
+      </div>
+    </div>
+
+    <!-- Delete game -->
+    <div id="delete-game-modal" class="modal">
+      <div class="modal-content">
+        <h4>Delete Game</h4>
+        <p>Are you sure you want to delete this game?</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat"><div class = "chip red white-text">No</div></a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><div class = "chip green white-text">Yes</div></a>
+      </div>
+    </div>
+
+    <!-- Join Team Modal -->
+    <div id="join-modal" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Join Team</h4>
+        <p>Are you sure you would like to join this team?</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat"><div class = "chip red white-text">No</div></a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><div class = "chip green white-text">Yes</div></a>
+      </div>
+    </div>
+
+    <!-- Cancel Team Modal -->
+        <div id="cancel-modal" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Cancel Team Application</h4>
+        <p>Are you sure you would like to cancel joining this team?</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat"><div class = "chip red white-text">No</div></a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><div class = "chip green white-text">Yes</div></a>
+      </div>
+    </div>
+
+    <!-- Add Sport modal -->
+    <div id="add-sport-modal" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Add a Sport</h4>
+        <p>Please enter the name of the sport you wish to add.</p>
+        <form>
+          <div class="input-field">
+            <input type="text" placeholder="New Sport Name" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-red"><div class = "chip red white-text">Cancel</div></a>
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-green"><div class = "chip green white-text">Done</div></a>
+      </div>
+    </div>
+
+    <!-- Add Team modal -->
+    <div id="add-team-modal" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Add a Team</h4>
+        <div class="container">
+          <form>
+          <p>Please enter the name of the team you wish to add.</p>
+            <div class="input-field">
+              <input type="text" placeholder="New Team Name" />
+            </div>
+          <!-- Team logo -->
+            <h5>Team Logo</h5>
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>Choose File</span>
+                <input type="file">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-red"><div class = "chip red white-text">Cancel</div></a>
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-green"><div class = "chip green white-text">Done</div></a>
+      </div>
+    </div>
+
+    <!-- Edit Team Modal -->
+    <div id="edit-team-modal" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Add a Team</h4>
+        <div class="container">
+          <form>
+          <p>Please enter the edited name of the team.</p>
+            <div class="input-field">
+              <input type="text" placeholder="Edited Team Name" />
+            </div>
+          <!-- Team logo -->
+            <h5>Team Logo</h5>
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>Choose File</span>
+                <input type="file">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-red"><div class = "chip red white-text">Cancel</div></a>
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-green"><div class = "chip green white-text">Save Changes</div></a>
+      </div>
+    </div>
+
+    <!-- Delete Team Modal -->
+    <div id="delete-team-modal" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Delete Team</h4>
+        <p>Are you sure you want to delete this team?</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-red"><div class = "chip red white-text">No</div></a>
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-green"><div class = "chip green white-text">Yes</div></a>
+      </div>
+    </div>
+
+    <!-- Add Date Modal -->
+    <div id="add-date-modal" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Add date</h4>
+        <p>Please enter a date</p>
+        <form>
+          <div class="row">
+            <div class="input-field col l6">
+              <i class="material-icons prefix">date_range</i><input type="date" class="datepicker" placeholder="Choose Date">
+            </div>
+            
+            <!--             
+            <div class="input-field col l6">
+              <i class="material-icons prefix">date_range</i><input type="date" class="datepicker" placeholder="Choose End Date">
+            </div> -->
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat"><div class = "chip red white-text">Cancel</div></a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="createDate()"><div class = "chip green white-text">Done</div></a>
+      </div>
+    </div>
+  </div>
+
     <!-- footer -->
 
     <footer class="red page-footer">
-    <div class="container">
-    <div class="row">
-    <div class="col l6 s12">
-    <h5 class="white-text">Footer Content</h5>
-    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-    </div>
-    <div class="col l4 offset-l2 s12">
-    <h5 class="white-text">Links</h5>
-    <ul>
-    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-    </ul>
-    </div>
-    </div>
-    </div>
-    <div class="footer-copyright">
-    <div class="container">
-    BETELOG 2017 Copyright 
-    <a class="grey-text text-lighten-4 right" href="#top">Back to top</a>
-    </div>
-    </div>
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Footer Content</h5>
+            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        BETELOG 2017 Copyright 
+          <a class="grey-text text-lighten-4 right" href="#top">Back to top</a>
+        </div>
+      </div>
     </footer>
 
 
@@ -729,23 +985,78 @@
     <script>
       var n = 16;
       function createDate(){
-        
+        //this function simply adds a button on top for date navigation        
+        // created button on top must be dynamic
         var para = document.createElement("BUTTON");
+
+        //replace june as a variable of the month
+        //n is the date
         var t = document.createTextNode("June " + n);
         para.className = "tablinks";
-        para.setAttribute("onClick","openData(event,'new_game')");
+
+        //in openData(event,'new_game'), new_game must be the date in this format => Month_Date_'game' eg. June_14_game
+        para.setAttribute("onClick","openData(event,'June_"+n+"_game')");
         para.appendChild(t);
         document.getElementById("addhere").appendChild(para);
 
-        var content = document.createElement("div");
-        var s = document.createTextNode("HEHEE");
-        
-        content.className = "tabcontent";
-        // content.setAttribute("id","June_"+n+ "_game");
-        content.setAttribute("id","new_game");
 
-         content.appendChild(s);
-        document.getElementById("game_container").appendChild(content);
+        // var content = document.createElement("div");
+        // content.className = "tabcontent";
+        // content.setAttribute("id","new_game");
+
+        
+        // var chip = document.createElement("div");
+        // chip.setAttribute("class","chip blue white-text");
+        
+        // var s = document.createTextNode("+ Add a sport");
+        
+        // chip.appendChild(s);
+        // // content.setAttribute("id","June_"+n+ "_game");
+        // content.appendChild(chip);
+        // document.getElementById("game_container").appendChild(content);
+        
+
+        var text = document.createTextNode("+ Add a sport ");
+        var chip = document.createElement("div");
+        chip.setAttribute("class","chip blue white-text");
+
+        chip.appendChild(text);
+
+        var link = document.createElement("a");
+        link.setAttribute("href","#add-sport-modal");
+
+        link.appendChild(chip);
+
+        var header = document.createElement("h5");
+
+        header.appendChild(link);
+
+        var div_collapsible_header = document.createElement("div");
+        div_collapsible_header.setAttribute("class","collapsible-header active");
+
+        div_collapsible_header.appendChild(header);
+
+        var list = document.createElement("li");
+
+        list.appendChild(div_collapsible_header);
+
+        var setlist = document.createElement("ul");
+        setlist.setAttribute("class","collapsible");
+        setlist.setAttribute("data-collapsible","expandable");
+
+        setlist.appendChild(list);
+
+        //june must be replaced by a variable para dynamic siya
+        //tulad sa taas, n is the date
+        var div_month_game = document.createElement("div");
+        div_month_game.setAttribute("id","June_"+ n +"_game");
+        div_month_game.className= "tabcontent";
+
+        div_month_game.appendChild(setlist);
+
+        document.getElementById("game_container").appendChild(div_month_game);
+
+
         n++;
         Materialize.toast('Added new day!', 3000)
       }

@@ -34,9 +34,8 @@
             if (vm.status === 'Done sana') {
                 eventService.getDoneEventInfo(vm.event.event_id)
                     .then(function(event) {
-                        vm.event = event;
                         vm.status = 'Done';
-                    });
+                    }); 
             }       
         }
 

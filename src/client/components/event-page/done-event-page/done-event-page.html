@@ -21,7 +21,7 @@
 				  <tbody ng-repeat="game in sport.games">
 				    <tr>
 				      <td>{{ game.game_id }}</td>
-				      <td><a href="#">{{ game.teams[0].name }}</a> vs <a href="#">{{ game.teams[1].name }}</a></td>
+				      <td><a ui-sref="teamPage({ teamId: game.teams[0].team_id })">{{ game.teams[0].name }}</a> vs <a ui-sref="teamPage({ teamId: game.teams[1].team_id })">{{ game.teams[1].name }}</a></td>
 				      <td>{{ game.teams[0].score }}-{{ game.teams[1].score }}</td>
 				      <td>{{ game.teams[0].record === "WIN" ? game.teams[0].name : game.teams[1].name }}</td>
 				    </tr>
