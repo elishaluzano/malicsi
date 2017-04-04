@@ -19,7 +19,7 @@ CREATE TABLE user (
     contact_number varchar(11),
     contact_person int default NULL,
     profile_pic text,
-    isOverallAdmin boolean default false,
+    isOverallAdmin int default 0,
     constraint user_username_uk unique key (username),
     constraint user_contact_person_fk foreign key (contact_person) references contactPersonInCaseOfEmergency(contact_person_id)
     ON DELETE SET NULL
@@ -34,7 +34,8 @@ CREATE TABLE userAffiliation (
 CREATE TABLE sponsoringInstitution (
     institution_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(50) NOT NULL,
-    description varchar(1000) NOT NULL
+    description varchar(1000) NOT NULL,
+    picture text default NULL
 );
 
 CREATE TABLE institutionHasAdmin (
@@ -128,7 +129,7 @@ CREATE TABLE userlog (
   log_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id int NOT NULL,
   username varchar(20) NOT NULL,
-  institution_id int NOT NULL,
+  institution_id int default NULL,
   action varchar(100) NOT NULL,
   activity_time timestamp NOT NULL
 );

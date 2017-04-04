@@ -41,7 +41,8 @@ exports.addUser = (req, res) => {
 		email : req.body.email,
 		contact_number : req.body.contact_number,
 		contact_person : req.body.contact_person,
-		profile_pic : (req.file)? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : ''
+		profile_pic : (req.file)? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : '',
+		isOverallAdmin : req.body.isOverallAdmin
 	};
 	connection.query('INSERT INTO user SET ?', newUser, function(err, rows, fields) {
 		if (!err) {
@@ -111,9 +112,10 @@ exports.updateUser = (req, res) => {
 		email : req.body.email,
 		contact_number : req.body.contact_number,
 		contact_person : req.body.contact_person,
-		profile_pic : (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file
+		profile_pic : (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file,
+	    	isOverallAdmin : req.body.isOverallAdmin
 	};
-	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, crypt.encrypt(req.body.password), req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file, req.params.id], function(err, rows, fields) {
+	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ? where user_id = ?',[req.body.name, req.body.username, crypt.encrypt(req.body.password), req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file, req.body.isOverallAdmin, req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
 			newUser.password = crypt.decrypt(newUser.password);
@@ -168,6 +170,44 @@ exports.checkAdmin = (req, res) => {
             }
             else {
                 res.send({});
+                console.log("User is not an admin");
+            }
+        }
+        else {
+            res.send(err);
+            console.log("Error in checking admin");
+        }
+    });
+};
+
+exports.checkAdminOfTeam = (req, res) => {
+    connection.query('select * from user u join institutionHasAdmin iha join event e join team t on u.user_id = iha.user_no and iha.institution_no = e.institution_id_key and t.event_id_key = e.event_id and u.user_id = ? and t.team_id = ?', [req.params.user_id, req.params.team_id], function(err, rows, fields) {
+        if (!err){
+            if (rows[0] !== null){
+                res.send(rows[0]);
+                console.log("User is an admin");
+            }
+            else {
+                res.send(null);
+                console.log("User is not an admin");
+            }
+        }
+        else {
+            res.send(err);
+            console.log("Error in checking admin");
+        }
+    });
+}
+
+exports.getInstitutionByAdmin = (req, res) => {
+    connection.query('SELECT * FROM user JOIN institutionHasAdmin JOIN sponsoringInstitution ON user.user_id = institutionHasAdmin.user_no AND institutionHasAdmin.institution_no = sponsoringInstitution.institution_id where user.user_id = ?', [req.params.id], function(err, rows, fields) {
+        if (!err){
+            if (rows[0] !== null){
+                res.send(rows[0]);
+                console.log("User is an admin");
+            }
+            else {
+                res.send(null);
                 console.log("User is not an admin");
             }
         }

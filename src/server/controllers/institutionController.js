@@ -8,7 +8,8 @@ const connection = require('./../database.js');
 exports.addSponsoringInstitution = (req,res) => {
 	var institution = {
 		name : req.body.name,
-		description : req.body.description
+		description : req.body.description,
+		picture : (req.file)? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : ''
 	};
 	connection.query('INSERT INTO sponsoringInstitution SET ?', institution, function(err, rows, fields){
 		if (err) {
@@ -66,9 +67,10 @@ exports.updateSponsoringInstitution = (req,res) => {
     var institution = {
         institution_id : req.params.id,
 		name : req.body.name,
-		description : req.body.description
+		description : req.body.description,
+		picture : (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file
 	};
-	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ? WHERE institution_id = ?', [req.body.name, req.body.description, req.params.id], function(err, rows, fields){
+	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ? WHERE institution_id = ?', [req.body.name, req.body.description, (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file, req.params.id], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);

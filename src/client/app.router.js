@@ -44,11 +44,11 @@
                     institution: function(institutionService, $transition$) {
                         return institutionService.getOne($transition$.params().sponsorId);
                     },
+                    
                     componentName: function($state) {
                         return $state.current.name;
                     },
                     params: function($state) {
-                        console.log($state.params);
                         return $state.params;
                     }
                 },
@@ -72,7 +72,7 @@
                 url: '/schedule',
                 component: 'schedulePage',
                 resolve: {
-                    games: function(sportService){
+                    sports: function(sportService){
                         return sportService.getAll();
                     }
                 }
@@ -145,6 +145,12 @@
                     params: function($state) {
                         console.log($state);
                         return $state.params;
+                    },
+                    allTeams: function(teamService) {
+                        return teamService.getAll();
+                    },
+                    teamPlaysGame: function(teamService, $transition$) {
+                        return teamService.getOneTeamPlaysGame($transition$.params().teamId);
                     }
                 },
                 onEnter: function(currentTeam, componentName, params, $state) {
@@ -154,6 +160,35 @@
                             componentName = 'landingPage';
                         }
                         $state.go(componentName, params);
+                    }
+                }
+            })
+            .state({
+                name: 'teamLandingPage',
+                url: '/teams',
+                component: 'teamLandingPage',
+                resolve: {
+                    events: function(eventService, $transition$) {
+                        return eventService.getAll();
+                    },
+                    teams: function(teamService, $transition$) {
+                        return teamService.getAll();
+                    },
+                    teamPlaysGame: function(teamService, $transition$) {
+                        return teamService.getAllTeamPlaysGame();
+                    },
+                }
+            })
+            .state({
+                name: 'doneEventsPage',
+                url: '/done-events/{eventId}',
+                component: 'doneEventsPage',
+                bindings: {
+                    event: 'event'            
+                },
+                resolve: {
+                    event: function($stateParams, eventService) {
+                        return eventService.getDoneEventInfo($stateParams.eventId);
                     }
                 }
             })

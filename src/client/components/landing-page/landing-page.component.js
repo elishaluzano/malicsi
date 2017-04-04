@@ -26,11 +26,11 @@
         vm.liveEvents = [];
 
         vm.$onInit = function() {
-            
+/*           
             sportService.getAll()
                 .then(function(sports) {
                     vm.sports = sports;
-                    /*
+                    
                     for (let sport of sports) {
                         eventService.getGeneralInformation(sport.event_id_key)
                             .then(function(data) {
@@ -38,8 +38,8 @@
                                 vm.sports.push({ })
                             })
                     }
-                    */
                 });
+*/
 
             for (let event of vm.events) {
                 let toDate = new Date().getTime();
@@ -82,7 +82,7 @@
                         });
                 }
             }
-
+            
             $('.collapsible').collapsible();
         }
     }
