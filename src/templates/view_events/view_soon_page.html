@@ -1026,16 +1026,24 @@
         var countTabs = $("#soon-tabs-tabs").children().length;
         console.log(countDates);
 
-        if (countDates%5 == 0 && countDates > 0) {
+        if (countDates == 0) {
+          var first = $('#soon-tabs-tabs li a');
+          first.html("June " + n); // Dynamic
+        }
+
+        if (countDates%7 == 0 && countDates > 0) {
+          var toUpdate = $("#soon-tabs-tabs li:last-child a");
+          var orText = toUpdate.text();
+          toUpdate.text(orText + "-" + "June " + n); // Dynamic
+
           // Create a new tab and div
           var newTab = document.createElement("LI");
           var newA = document.createElement("A");
-          var newText = document.createTextNode("PAGE " + countTabs);
           var newAddHere = document.createElement("DIV");
           var newBigDiv = document.createElement("DIV");
-          
+
+          newA.innerHTML = "June " + n; // Dynamic
           newA.setAttribute("href","#day-page-"+(countDates+1));
-          newA.appendChild(newText);
           newTab.appendChild(newA);
           newTab.setAttribute("class","tab");
           
