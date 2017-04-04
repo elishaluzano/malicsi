@@ -6,6 +6,28 @@
     function routerConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state({
+                name: 'adminPage',
+                url: '/admin',
+                component: 'adminPage',
+                resolve: {
+                    name: function($state) {
+                        return $state.current.name;
+                    },
+                    params: function($state) {
+                        return $state.params;
+                    }
+                },
+                onEnter: function(name, params, $state, sessionService) {
+                    let user = sessionService.user();
+
+                    if (!user || !user.isOverallAdmin) {
+                        Materialize.toast('Unauthorized access!', 2000, 'red');
+                        name = (!name || name === 'adminPage')? 'landingPage' : name;
+                        $state.go(name, params);
+                    }
+                }
+            })
+            .state({
                 name: 'userLogPage',
                 url: '/log',
                 component: 'userLogPage'
@@ -145,6 +167,12 @@
                     params: function($state) {
                         console.log($state);
                         return $state.params;
+                    },
+                    allTeams: function(teamService) {
+                        return teamService.getAll();
+                    },
+                    teamPlaysGame: function(teamService, $transition$) {
+                        return teamService.getOneTeamPlaysGame($transition$.params().teamId);
                     }
                 },
                 onEnter: function(currentTeam, componentName, params, $state) {
@@ -158,20 +186,19 @@
                 }
             })
             .state({
-                name: 'doneEventsPage',
-                url: '/done-events/{eventId}',
-                component: 'doneEventsPage',
-                bindings: {
-                    event: 'event'            
-                },
+                name: 'teamsPage',
+                url: '/teams',
+                component: 'teamsPage',
                 resolve: {
-                    allGames: function($stateParams, eventService) {
-                        return eventService.getDoneEventInfo($stateParams.eventId);
+                    events: function(eventService, $transition$) {
+                        return eventService.getAll();
                     },
-                    event: function($stateParams, eventService) {
-                        return eventService.getOne($stateParams.eventId);
-                    }
-
+                    teams: function(teamService, $transition$) {
+                        return teamService.getAll();
+                    },
+                    teamPlaysGame: function(teamService, $transition$) {
+                        return teamService.getAllTeamPlaysGame();
+                    },
                 }
             })
             .state({
@@ -201,8 +228,8 @@
                     institutions: function(searchService, $transition$) {
                         return searchService.institutions($transition$.params().query);
                     },
-                    events: function(eventService) {
-                        return 
+                    allEvents: function(eventService) {
+                        return eventService.getAll();
                     }
                 }
             })
@@ -213,6 +240,9 @@
                 resolve: {
                     teams: function(searchService, $transition$) {
                         return searchService.teams($transition$.params().query);
+                    },
+                    allEvents: function(eventService) {
+                        return eventService.getAll();
                     }
                 }
             });

@@ -8,7 +8,7 @@
             controller: navBarController
         });
 
-    function navBarController(sessionService, adminService, $state, $location) {
+    function navBarController(sessionService, adminService, $state) {
         var vm = this;
 
         vm.isAdmin = false;
@@ -52,6 +52,7 @@
                                     vm.isAdmin = true;
                                 }
                             });
+                        console.log('hello');
                         WebuiPopovers.hide('#login');
                         $state.reload();
                     } else { // if wrong credentials
@@ -78,8 +79,14 @@
             if (vm.searchInput.length < 3) {
                 return Materialize.toast('Search query must be at least 3 characters long', 3000);
             } else {
-                $location.url('/search-' + vm.searchCategory + '/' + vm.searchInput);
+                let category = vm.searchCategory;
+                category = category.charAt(0).toUpperCase() + category.slice(1);
+                $state.go('search' + category + 'Page', { query: vm.searchInput });
             }
+        }
+
+        vm.closeMenu = function() {
+            WebuiPopovers.hide('#drop-link');
         }
     }
 

@@ -33,23 +33,22 @@
 
             <ul class="left hide-on-med-and-down">
                 <li>
-                    <a ui-sref="" class="black-text">Live</a>
-                </li>
-                <li>
                     <a ui-sref="eventsPage" class="black-text">Events</a>
                 </li>
                 <li>
                     <a ui-sref="teamsPage" class="black-text">Teams</a>
                 </li>
                 <li>
-                    <a ui-sref="schedulesPage" class="black-text">Schedules</a>
+                    <a ui-sref="schedulePage" class="black-text">Schedules</a>
                 </li>
                 <li>
                     <a ui-sref="sponsorsPage" class="black-text">Sponsors</a>
                 </li>
-
-                <li ng-if="$ctrl.isAdmin">
+                <li ng-if="$ctrl.isAdmin || $ctrl.user.isOverallAdmin">
                     <a ui-sref="userLogPage" class="black-text">Logs</a>
+                </li>
+                <li ng-if="$ctrl.user.isOverallAdmin">
+                    <a ui-sref="adminPage" class="black-text">Admin</a>
                 </li>
             </ul>
             <form class="left hide-on-small-only">
@@ -105,12 +104,12 @@
 </div>
 
 <div id="additional-links" class="webui-popover-content">
-    <a class="dropdown-links" ui-sref="#">Live</a>
-    <a class="dropdown-links" ui-sref="eventsPage">Events</a>
-    <a class="dropdown-links" ui-sref="teamsPage">Teams</a>
-    <a class="dropdown-links" ui-sref="schedulesPage">Schedules</a>
-    <a class="dropdown-links" ui-sref="sponsorsPage">Sponsors</a>
-    <a class="dropdown-links" ui-sref="userLogsPage">Logs</a>
+    <a class="dropdown-links" ui-sref="eventsPage" ng-click="$ctrl.closeMenu()">Events</a>
+    <a class="dropdown-links" ui-sref="teamsPage" ng-click="$ctrl.closeMenu()">Teams</a>
+    <a class="dropdown-links" ui-sref="schedulePage" ng-click="$ctrl.closeMenu()">Schedules</a>
+    <a class="dropdown-links" ui-sref="sponsorsPage" ng-click="$ctrl.closeMenu()">Sponsors</a>
+    <a class="dropdown-links" ui-sref="userLogsPage" ng-if="$ctrl.isAdmin || $ctrl.user.isOverallAdmin" ng-click="$ctrl.closeMenu()">Logs</a>
+    <a class="dropdown-links" ui-sref="adminPage" ng-if="$ctrl.user.isOverallAdmin" ng-click="$ctrl.closeMenu()">Admin</a>
 </div>
 
 
@@ -121,7 +120,7 @@
                 <img ng-src="/images/parallaxsampsquaresmall.jpg" alt="background">
             </div>
             
-            <img ng-src="/images/{{$ctrl.user.profile_pic}}" 
+            <img ng-src="{{$ctrl.user.profile_pic}}" 
                 alt="profile pic" class="circle">
             
             <span class="white-text name">

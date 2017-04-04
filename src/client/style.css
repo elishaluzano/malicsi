@@ -196,14 +196,15 @@ th, td{
 }
 
 
-.input-field input[type=text]:focus + label {
+.input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label, .input-field input[type=date]:focus + label, .input-field input[type=email]:focus + label {
     color: red;
 }
 
-.input-field input[type=text]:focus {
+.input-field input[type=text]:focus, .input-field input[type=password]:focus, .input-field input[type=date]:focus, .input-field input[type=email]:focus {
     border-bottom: 1px solid red;
     box-shadow: 0 1px 0 0 red;
 }
+
 
 
 .field-row {
@@ -288,3 +289,19 @@ div.tab-custom button.active {
     cursor: pointer;
 }
 
+.tabs {
+    overflow-x: hidden;
+}
+
+th,td{
+    padding-top:3px;
+}
+
+.team-logo{
+    width:10%;
+    vertical-align:middle;
+}
+
+.filter{
+    position:fixed;
+}
