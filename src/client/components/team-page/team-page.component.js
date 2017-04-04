@@ -36,6 +36,7 @@
         vm.percentage = 0;
         vm.event = '';
         vm.isMember = false
+        vm.files = [];
         var game;
         
         vm.$onInit = function() {
@@ -146,9 +147,15 @@
         }
 
         vm.editTeam = function(){
-            teamService.update(vm.currentTeam.team_id, vm.currentTeam)
-                .then(function(data) {
+            var fd = new FormData();
+            fd.append('name', vm.currentTeam.name);
+            fd.append('event_id_key', vm.currentTeam.event_id_key);
+            fd.append('picture', (vm.files[0])? vm.files[0] : vm.currentTeam.picture);
+
+            teamService.update(vm.currentTeam.team_id, fd)
+                .then(function(team) {
                     Materialize.toast('Successfully updated team', 2000, 'red');
+                    vm.currentTeam = team;
                 })
                 .catch(function(e){
                     Materialize.toast('Unsuccessfully updated team', 2000, 'red');

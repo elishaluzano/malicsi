@@ -7,7 +7,7 @@
             controller: registrationCardController,
         });
 
-    function registrationCardController(userService, searchService) {
+    function registrationCardController(userService, searchService, $state) {
         var vm = this;
         vm.name = '';
         vm.username = '';
@@ -32,7 +32,7 @@
             }
 
             if (!vm.gender) {
-                return Materialize.toast('Are you male of female', 3000, 'red');
+                return Materialize.toast('Are you male of female?', 3000, 'red');
             }
 
             if (!vm.contact_number.length) {
@@ -83,24 +83,20 @@
                 username : vm.username,
                 password : vm.password,
                 gender : vm.gender,
-                birthday : (new Date(vm.birthday)).toISOString().substring(0, 10),
+                birthday : (new Date(vm.birthday.setDate(vm.birthday.getDate()+1))).toISOString().substring(0, 10), // for some reason kailangan +1
                 email : vm.email,
                 contact_number : null,
                 contact_person : null,
-                profile_pic : (vm.gender === 'male')? 'default-boy.png' : 'default-girl.png'
+                profile_pic : (vm.gender === 'male')? 'default-boy.png' : 'default-girl.png',
+                isOverallAdmin : 0
             };
             
-            userService.create(vm.body)
+            userService.create(body)
                 .then(function(data) {
-                    vm.name = '';
-                    vm.username = '';
-                    vm.password = '';
-                    vm.password_confirm = '';
-                    vm.email = '';
-                    vm.gender = '';
-                    vm.birthday = '';
-                    vm.gender = '';
-                    Materialize.toast("Successfully registered!", 3000, 'red');
+                    if (data) {
+                        Materialize.toast("Successfully registered!", 3000, 'red');
+                        $state.go('landingPage');
+                    }
                 });           
         }
 

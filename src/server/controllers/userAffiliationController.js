@@ -13,7 +13,7 @@ exports.addUserAffiliation = (req,res) =>{
             res.send(err);
          }
         else {
-            res.send(user_affilitaion);
+            res.send(user_affiliation);
             console.log("Successfully added a user affiliaton");
         }
 	});

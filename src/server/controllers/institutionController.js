@@ -8,7 +8,8 @@ const connection = require('./../database.js');
 exports.addSponsoringInstitution = (req,res) => {
 	var institution = {
 		name : req.body.name,
-		description : req.body.description
+		description : req.body.description,
+		picture : (req.file)? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : ''
 	};
 	connection.query('INSERT INTO sponsoringInstitution SET ?', institution, function(err, rows, fields){
 		if (err) {
@@ -17,8 +18,8 @@ exports.addSponsoringInstitution = (req,res) => {
          }
         else {
             institution.institution_id = rows.insertId;
-            console.log('Successfully added an institution.');
             res.send(institution);
+            console.log("Successfully added an institution");
         }
 	});
 };
@@ -31,6 +32,7 @@ exports.viewSponsoringInstitution = (req,res) => {
          }
         else {
             res.send(rows[0]);
+            console.log("View an institution");
         }
 	});
 };
@@ -43,6 +45,7 @@ exports.viewAllSponsoringInstitution = (req,res) => {
          }
         else {
             res.send(rows);
+            console.log("View all institutions");
         }
 	});
 };
@@ -55,24 +58,27 @@ exports.searchSponsoringInstitution = (req,res) => {
          }
         else {
             res.send(rows);
+            console.log("Searched an institution");
         }
     });
 };
 
 exports.updateSponsoringInstitution = (req,res) => {
+    console.log(req.file);
     var institution = {
         institution_id : req.params.id,
 		name : req.body.name,
-		description : req.body.description
+		description : req.body.description,
+		picture : (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.body.picture
 	};
-	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ? WHERE institution_id = ?', [req.body.name, req.body.description, req.params.id], function(err, rows, fields){
+	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ?, picture = ? WHERE institution_id = ?', [req.body.name, req.body.description, institution.picture, req.params.id], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
          }
         else {
-            console.log('Successfully updated an institution.');
             res.send(institution);
+            console.log("Successfully updated an institution");
         }
 	});
 };
@@ -85,6 +91,7 @@ exports.deleteSponsoringInstitution = (req,res) => {
          }
         else {
             res.send(null);
+            console.log("Successfully deleted an institution");
         }
 	});
 };
@@ -94,10 +101,10 @@ exports.viewEventsInInstitution = (req, res) => {
         if (err) {
             console.log(err);
             res.send(err);
-        }
+         }
         else {
             res.send(rows);
-            console.log("Success");
+            console.log("Viewed institutions in event");
         }
     });
 };

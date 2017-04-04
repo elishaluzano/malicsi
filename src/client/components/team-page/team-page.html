@@ -11,7 +11,7 @@
 
     <div class="col l10 s12 m9" id="right-team-page">
 	    <div class="col l3">
-	        <img src="/images/engmeet2017.jpg" width="256px" height="256px">
+	        <img ng-src="{{ $ctrl.currentTeam.picture }}" width="256px" height="256px">
 	    </div>
 
 	    <div class="col l9">
@@ -128,7 +128,7 @@
 	        <div class="col l2 s12 m6" ng-repeat="player in $ctrl.players">
 	            <div class=" card">
 	                <div class="card-image">
-	                    <img ng-src="/images/{{ player.profile_pic }}" alt="profile pic">
+	                    <img ng-src="{{ player.profile_pic }}" alt="profile pic">
 	                </div>
 	                <div class="card-content" id="player-card">
 	                    <a ui-sref="userPage({ userId: player.user_id })" class="center-align">{{player.name}}</a>
@@ -150,20 +150,15 @@
 	                <label class="active" for="team-name-new">Team name</label>
 
 
-	                <form action="#">
-	                    <div class="file-field input-field">
-	                        
-	                        <div class="file-path-wrapper col l7" id="modal-edit-logo">
-	                            <i class="material-icons prefix">mode_edit</i>
-	                            <input id="team-logo" value="" class="file-path validate" type="text">
-	                            <label class="active" for="team-logo">Upload new logo</label>
-	                        </div>
-	                        <div class="btn col l4">
-	                            <span>File</span>
-	                            <input type="file">
-	                        </div>
-	                    </div>
-	                </form>
+	                <div class="file-field input-field">
+                        <div class="btn red">
+                            <span>File</span>
+                            <input type="file" file-input="$ctrl.files">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
 
 	            </div>
 	        </div>

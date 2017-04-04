@@ -7,7 +7,8 @@
             template: require('./live-event-page.html'),
             controller: liveEventPageController,
             bindings: {
-                event: '<'
+                event: '<',
+                status: '<'
             }
         });
 
@@ -40,7 +41,7 @@
         }
 
         vm.$onInit = function() {
-
+            console.log(vm.event);
             $q.all([
                 eventService.getSports(vm.event.event_id),
                 eventService.getGames(vm.event.event_id),
