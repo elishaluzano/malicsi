@@ -64,13 +64,14 @@ exports.searchSponsoringInstitution = (req,res) => {
 };
 
 exports.updateSponsoringInstitution = (req,res) => {
+    console.log(req.file);
     var institution = {
         institution_id : req.params.id,
 		name : req.body.name,
 		description : req.body.description,
-		picture : (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file
+		picture : (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.body.picture
 	};
-	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ? WHERE institution_id = ?', [req.body.name, req.body.description, (typeof req.file != 'undefined') ? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : req.file, req.params.id], function(err, rows, fields){
+	connection.query('UPDATE sponsoringInstitution SET name = ?, description = ?, picture = ? WHERE institution_id = ?', [req.body.name, req.body.description, institution.picture, req.params.id], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
