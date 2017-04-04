@@ -156,14 +156,223 @@
             
             <div class="card-tabs">
             <ul class="tabs tabs-fixed-width">
-                <li class="tab col s2 disabled"><a class="black-text" href="#history">HISTORY</a></li>
-                <li class="tab col s2 disabled"><a class="black-text" href="#stat">STAT</a></li>
+                <li class="tab col s2"><a class="black-text" href="#history">HISTORY</a></li>
+                <li class="tab col s2"><a class="black-text" href="#stat">STAT</a></li>
                 <li class="tab col s2"><a class="black-text" href="#players">PLAYERS</a></li>
             </ul>
             </div>
 
-            <div id="history" class="col s12">HISTORY</div>
-            <div id="stat" class="col s12">STATISTICS</div>
+            <div id="history" class="col s12">
+                <div class="row">
+                    <div class="col l7 left">
+                        <div class="card-panel" id="live-update-left">
+                            <p>Timestamp</p>
+                            <p>What happened</p>
+                        </div>
+                    </div>
+                    <div class="col l7 right">
+                        <div class="card-panel" id="live-update-right">
+                            <p>Timestamp</p>
+                            <p>What happened</p>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+
+            <!--*********************Statistics******************-->
+            <div id="stat" class="col s12">
+
+                <table class = "centered">
+                        <thead>
+                          <tr>
+                              <th>                    
+                                Red Lion  
+                            </th>
+                            <th>
+                                <div>
+                                <a class="modal-trigger" href="#add_player">
+                                    <div class = "chip green white-text">Add Player</div>
+                                </a>
+                                <a class="modal-trigger" href="#delete_player">
+                                    <div class = "chip red white-text">Delete Player</div>
+                                </a>
+                            </div>
+                            </th>
+
+                            <th>Score</th>
+                            <th> </th>
+                              <th>
+                                Blue Tigers  
+                            </th>
+                            <th>
+                                <div class="right">
+                                    <a class="modal-trigger" href="#add_player">
+                                        <div class = "chip green white-text">Add Player</div>
+                                    </a>
+                                    <a class="modal-trigger" href="#delete_player">
+                                        <div class = "chip red white-text">Delete Player</div>
+                                    </a>
+                                </div>
+                            </th>
+                            <th>Score</th>
+                            <th> </th>
+
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr>
+                            <td><a class="black-text" href="../profile_page/profile.html">Player 1</a></td>
+                            <td> </td>
+                            <td>25</td>
+                            <td>
+                                <div class="right">
+                                <a class="modal-trigger" href="#edit_score_player">
+                                    <div class = "chip green white-text">Edit</div>
+                                </a>
+                                <a class="modal-trigger" href="#delete_score_player">
+                                    <div class = "chip red white-text">Delete</div>
+                                </a>
+                            </div>
+                            </td>
+                            
+                            <td><a class="black-text" href="../profile_page/profile.html">Player 1</a></td>
+                            <td> </td>
+                            <td>20</td>
+                            <td>
+                                 <div class="right">
+                                <a class="modal-trigger" href="#edit_score_player">
+                                    <div class = "chip green white-text">Edit</div>
+                                </a>
+                                <a class="modal-trigger" href="#delete_score_player">
+                                    <div class = "chip red white-text">Delete</div>
+                                </a>
+                            </div>
+                            </td>
+                          </tr>
+                         <tr>
+                            <td><a class="black-text" href="../profile_page/profile.html">Player 2</a></td>
+                            <td> </td>
+                            <td>25</td>
+                            <td>
+                                <div class="right">
+                                <a class="modal-trigger" href="#edit_score_player">
+                                    <div class = "chip green white-text">Edit</div>
+                                </a>
+                                <a class="modal-trigger" href="#delete_score_player">
+                                    <div class = "chip red white-text">Delete</div>
+                                </a>
+                            </div>
+                            </td>
+                            
+                            <td><a class="black-text" href="../profile_page/profile.html">Player 2</a></td>
+                            <td> </td>
+                            <td>20</td>
+                            <td>
+                                 <div class="right">
+                                <a class="modal-trigger" href="#edit_score_player">
+                                    <div class = "chip green white-text">Edit</div>
+                                </a>
+                                <a class="modal-trigger" href="#delete_score_player">
+                                    <div class = "chip red white-text">Delete</div>
+                                </a>
+                            </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="black-text" href="../profile_page/profile.html">Player 3</a></td>
+                            <td> </td>
+                            <td>25</td>
+                            <td>
+                                <div class="right">
+                                <a class="modal-trigger" href="#edit_score_player">
+                                    <div class = "chip green white-text">Edit</div>
+                                </a>
+                                <a class="modal-trigger" href="#delete_score_player">
+                                    <div class = "chip red white-text">Delete</div>
+                                </a>
+                            </div>
+                            </td>
+                            
+                            <td><a class="black-text" href="../profile_page/profile.html">Player 3</a></td>
+                            <td> </td>
+                            <td>20</td>
+                            <td>
+                                 <div class="right">
+                                <a class="modal-trigger" href="#edit_score_player">
+                                    <div class = "chip green white-text">Edit</div>
+                                </a>
+                                <a class="modal-trigger" href="#delete_score_player">
+                                    <div class = "chip red white-text">Delete</div>
+                                </a>
+                            </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="black-text" href="../profile_page/profile.html">Player 4</a></td>
+                            <td> </td>
+                            <td>25</td>
+                            <td>
+                                <div class="right">
+                                <a class="modal-trigger" href="#edit_score_player">
+                                    <div class = "chip green white-text">Edit</div>
+                                </a>
+                                <a class="modal-trigger" href="#delete_score_player">
+                                    <div class = "chip red white-text">Delete</div>
+                                </a>
+                            </div>
+                            </td>
+                            
+                            <td><a class="black-text" href="../profile_page/profile.html">Player 4</a></td>
+                            <td> </td>
+                            <td>20</td>
+                            <td>
+                                 <div class="right">
+                                <a class="modal-trigger" href="#edit_score_player">
+                                    <div class = "chip green white-text">Edit</div>
+                                </a>
+                                <a class="modal-trigger" href="#delete_score_player">
+                                    <div class = "chip red white-text">Delete</div>
+                                </a>
+                            </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="black-text" href="../profile_page/profile.html">Player 5</a></td>
+                            <td> </td>
+                            <td>25</td>
+                            <td>
+                                <div class="right">
+                                <a class="modal-trigger" href="#edit_score_player">
+                                    <div class = "chip green white-text">Edit</div>
+                                </a>
+                                <a class="modal-trigger" href="#delete_score_player">
+                                    <div class = "chip red white-text">Delete</div>
+                                </a>
+                            </div>
+                            </td>
+                            
+                            <td><a class="black-text" href="../profile_page/profile.html">Player 5</a></td>
+                            <td> </td>
+                            <td>20</td>
+                            <td>
+                                 <div class="right">
+                                <a class="modal-trigger" href="#edit_score_player">
+                                    <div class = "chip green white-text">Edit</div>
+                                </a>
+                                <a class="modal-trigger" href="#delete_score_player">
+                                    <div class = "chip red white-text">Delete</div>
+                                </a>
+                            </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+            </div>
+           
+
+
            
            <!-- list of all players played on the game -->
             <div id="players" class="col s12 center">
@@ -171,31 +380,62 @@
                       <table class = "centered">
                         <thead>
                           <tr>
-                              <th>Red Lion</th>
-                              <th>Blue Tigers</th>
+                            <th> Red Lion </th>
+                              <th>
+                                <div class="right">
+                                <a class="modal-trigger" href="#add_player">
+                                    <div class = "chip green white-text">Add</div>
+                                </a>
+                                <a class="modal-trigger" href="#delete_player">
+                                    <div class = "chip red white-text">Delete</div>
+                                </a>
+                            </div>
+                              </th>
+
+                              <th> Blue Tigers </th>
+                              <th>
+                                <div class="right">
+                                <a class="modal-trigger" href="#add_player">
+                                    <div class = "chip green white-text">Add</div>
+                                </a>
+                                <a class="modal-trigger" href="#delete_player">
+                                    <div class = "chip red white-text">Delete</div>
+                                </a>
+                            </div>
+                         </th>
                           </tr>
                         </thead>
 
                         <tbody>
                           <tr>
                             <td><a class="black-text" href="../profile_page/profile.html">Player 1</a></td>
+                            <td> </td>
                             <td><a class="black-text" href="../profile_page/profile.html">Player 1</a></td>
+                            <td> </td>
                           </tr>
                           <tr>
                             <td><a class="black-text" href="../profile_page/profile.html">Player 2</a></td>
+                            <td> </td>
                             <td><a class="black-text" href="../profile_page/profile.html">Player 2</a></td>
+                            <td> </td>
                           </tr>
                           <tr>
                             <td><a class="black-text" href="../profile_page/profile.html">Player 3</a></td>
+                            <td> </td>
                             <td><a class="black-text" href="../profile_page/profile.html">Player 3</a></td>
+                            <td> </td>
                           </tr>
                           <tr>
                             <td><a class="black-text" href="../profile_page/profile.html">Player 4</a></td>
+                            <td> </td>
                             <td><a class="black-text" href="../profile_page/profile.html">Player 4</a></td>
+                            <td> </td>
                           </tr>
                           <tr>
                             <td><a class="black-text" href="../profile_page/profile.html">Player 5</a></td>
+                            <td> </td>
                             <td><a class="black-text" href="../profile_page/profile.html">Player 5</a></td>
+                            <td> </td>
                           </tr>
                         </tbody>
                       </table>      
@@ -204,9 +444,79 @@
 
                 </div>  
             </div>
+
+            <!--*********************** modals *************************-->
+             <!-- ************ modal of adding players **************** -->
+                            <div id="add_player" class="modal modal-fixed-footer modal-size">
+                                <div class="modal-content">
+                                    <div class="row">
+                                        <form class="col s12 center">
+                                            <div class="container">
+                                            
+                                            <div class="row">
+                                                <div class="input-field">
+                                                    <input type="text" id="teamplayer" placeholder=""></input>
+                                                    <label for="teamplayer">Player Name</label>  
+                                                </div>
+                                            </div>
+                                            
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer"> 
+                                    <div class="right">
+                                        <a href="#!" class="modal-action modal-close waves-effect waves-green">
+                                            <div class="chip green white-text"> OK </div>
+                                        </a>
+                                    </div>
+
+                                    <div class="right">
+                                        <a href="#!" class="modal-action modal-close waves-effect waves-red">
+                                            <div class="chip red white-text"> Cancel </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+             <!-- ************ modal of editing a player's score**************** -->
+                            <div id="edit_score_player" class="modal modal-fixed-footer modal-size">
+                                <div class="modal-content">
+                                    <div class="row">
+                                        <form class="col s12 center">
+                                            <div class="container">
+                                            
+                                            <div class="row">
+                                                <div class="input-field">
+                                                    <input type="text" id="teamplayer_score" placeholder="15"></input>
+                                                    <label for="teamplayer_score">Player Score</label>  
+                                                </div>
+                                            </div>
+                                            
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer"> 
+                                    <div class="right">
+                                        <a href="#!" class="modal-action modal-close waves-effect waves-green">
+                                            <div class="chip green white-text"> OK </div>
+                                        </a>
+                                    </div>
+
+                                    <div class="right">
+                                        <a href="#!" class="modal-action modal-close waves-effect waves-red">
+                                            <div class="chip red white-text"> Cancel </div>
+                                        </a>
+                                    </div>
+                                </div>  
+                                </div>               
             
 
-
+            <!--************** footer ********************************-->
         <footer class="red page-footer">
             <div class="container">
                 <div class="row">
