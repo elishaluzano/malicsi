@@ -43,7 +43,19 @@ function nextTab() {
     console.log(activeTab[0].innerHTML);
     // Get next sibling
     nextActive = activeTab[0];
-    nextActive = nextActive.parentElement.nextSibling.nextSibling.children[0];
+    console.log("next1: ");
+    console.log(nextActive.parentElement.nextSibling);
+    console.log("next2: ");
+    console.log(nextActive.parentElement.nextSibling.nextSibling);
+    
+    /*
+    if (nextActive.parentElement.nextSibling.nextSibling == null) {
+        nextActive = nextActive.parentElement.nextSibling.children[0];
+    } else {
+        */
+        nextActive = nextActive.parentElement.nextSibling.children[0];
+    //}
+
     date = nextActive.innerHTML;
     console.log("date " + date);
     date = date.replace(" ", "_");
@@ -55,6 +67,7 @@ function nextTab() {
     // Show data of next sibling
     // Unset active tablink class
     activeTab[0].className = "tablinks";
+    console.log("homaygulay may pamileee " + nextActive.className);
 }
 
 function prevTab() {
@@ -65,7 +78,9 @@ function prevTab() {
     console.log(activeTab[0].innerHTML);
     // Get previous sibling
     previousActive = activeTab[0];
-    previousActive = previousActive.parentElement.previousSibling.previousSibling.children[0];
+      //previousActive = previousActive.parentElement.previousSibling.children[0];
+    previousActive = previousActive.parentElement.previousSibling.children[0];
+
     date = previousActive.innerHTML;
     console.log("date " + date);
     date = date.replace(" ", "_");
