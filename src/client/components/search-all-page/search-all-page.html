@@ -1,0 +1,82 @@
+<div class="container row">
+    <h3>Search All</h3>
+
+    <div class="col m4 l4 hide-on-small-only"
+        id="filters">
+
+        <div class="card">
+            <div class="card-content">
+                <form>
+                    <span class="card-title">Filters</span>
+
+                    <p ng-repeat="(key, value) in $ctrl.filters">
+                        <input type="checkbox" 
+                            id="all-{{key}}" 
+                            ng-model="$ctrl.filters[key]"/>
+                        <label for="all-{{key}}">
+                            {{ key }}
+                        </label>
+                    </p>
+                </form>    
+            </div>    
+        </div>    
+    </div>
+
+    <div class="col m8 l8" id="results">
+        <!-- USERS -->
+        <div class="card" 
+            ng-if="$ctrl.users.length && $ctrl.filters['Profiles']">
+            <div class="card-content">
+                <span class="card-title">Profiles</span>
+                <ul class="collection">
+                    <search-profile-card
+                        ng-repeat="profile in $ctrl.profiles"
+                        profile="profile">
+                    </search-profile-card>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TEAMS -->
+        <div class="card"
+            ng-if="$ctrl.teams.length && $ctrl.filters['Teams']">
+            <div class="card-content">
+                <span class="card-title">Teams</span>
+                <ul class="collection">
+                    <search-team-card ng-repeat="team in $ctrl.teams"       
+-                    team="team">       
+-                    </search-team-card>
+                </ul>
+            </div>
+        </div>
+
+        <!-- EVENTS -->
+        <div class="card" ng-if="$ctrl.events.length && $ctrl.filters['Events']">
+            <div class="card-content">
+                <span class="card-title">Events</span>
+                <ul class="collection">
+                    <search-event-card
+                        ng-repeat="event in $ctrl.events"
+                        event="event">
+                    </search-event-card>
+                </ul>
+            </div>
+        </div>
+
+        <!-- INSTITUTIONS -->
+        <div class="card" ng-if="$ctrl.institutions.length && $ctrl.filters['Sponsors']">
+            <div class="card-content">
+                <span class="card-title">Sponsors</span>
+                <ul class="collection">
+                    <search-institution-card
+                        ng-repeat="institution in $ctrl.institutions"
+                        institution="institution">
+
+                    </search-institution-card>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</div>  

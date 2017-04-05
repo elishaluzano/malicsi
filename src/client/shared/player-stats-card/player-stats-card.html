@@ -1,0 +1,25 @@
+<div id="user-info" class = "center">
+    <h5>PLAYER STATS</h5>
+    <div class="container">
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Event</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Winning Percentage of Team</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="each in $ctrl.objects">
+                <tr>
+                    <td>{{ each.name }}</td>
+                    <td>{{ each.event_title }}</td>
+                    <td>{{ each.wins }}</td>
+                    <td>{{ each.losses }}</td>
+                    <td>{{ each.percentage }}%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
