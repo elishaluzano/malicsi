@@ -42,7 +42,11 @@
                 <ul class="collection">
                     <search-event-card
                         ng-repeat="event in $ctrl.events"
+<<<<<<< HEAD
                         ng-if="($ctrl.eventSponsor == event.institution_id_key || $ctrl.eventSponsor == 'all')||($ctrl.eventVenue == event.venue_id_key || $ctrl.eventVenue == 'all')" 
+=======
+                        ng-if="($ctrl.eventSponsor == event.institution_id_key || $ctrl.eventSponsor == 'all')&&($ctrl.eventVenue == event.venue_id_key || $ctrl.eventVenue == 'all')" 
+>>>>>>> 1f5b097043e02587f86c03a666e914638d5bfe0d
                         event="event">
                     </search-event-card>
                 </ul>
