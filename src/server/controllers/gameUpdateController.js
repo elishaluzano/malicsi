@@ -23,6 +23,17 @@ exports.viewGamelogsOfGame = (req,res) => {
 	});
 };
 
+exports.viewGamelog = (req,res) => {
+	connection.query('SELECT * FROM gameUpdateLog join team on gameUpdateLog.team_id = team.team_id where gameUpdateLog_id = ?', [req.params.id], function(err, rows, fields){
+		if(!err) {
+			res.send(rows);
+		}else{
+			console.log(err);
+		}
+	});
+};
+
+
 exports.addGameLog = (req, res) => {
     var gamelog = {
         team_id : req.body.team_id,
@@ -31,7 +42,6 @@ exports.addGameLog = (req, res) => {
     };
     connection.query('call gameUpdate(?,?,?)', [req.body.team_id, req.body.game_id, req.body.score], function(err, rows, fields){
 		if(!err) {
-		    gamelog.gameUpdateLog_id = rows.insertId;
 			res.send(gamelog);
 		}else{
 			console.log(err);
