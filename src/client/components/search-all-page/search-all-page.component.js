@@ -23,10 +23,6 @@
             Events: true,
             Sponsors: true,
         };
-
-        vm.$onInit = function() {
-            console.log(vm.institutions);
-        }
     }
 
 })();

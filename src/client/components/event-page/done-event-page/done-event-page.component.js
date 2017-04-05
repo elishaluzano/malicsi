@@ -16,6 +16,8 @@
         vm.allGamesInSport = [];
 
         vm.$onInit = function() {
+            console.log(vm.event.event_title);
+            $('.parallax').parallax();
             $('.collapsible').collapsible();
             console.log(vm.event.event_id);
             eventService.getOne(vm.event.event_id)

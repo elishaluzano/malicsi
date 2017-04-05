@@ -64,12 +64,14 @@ router.get('/api/institutions/:id/events',institutionCtrl.viewEventsInInstitutio
 
 var eventCtrl = require('../controllers/eventController.js');
 //event routes
+router.post('/api/events/sports/', eventCtrl.addSportToEvent);
 router.post('/api/events',uploadCtrl.upload.single('picture'), eventCtrl.addEvent);
 router.get('/api/events/:id',eventCtrl.viewEvent);
 router.get('/api/events',eventCtrl.viewAllEvent);
 router.get('/api/events/search/:search', eventCtrl.searchEvent);
 router.put('/api/events/:id',uploadCtrl.upload.single('picture'), eventCtrl.updateEvent);
 router.delete('/api/events/:id',eventCtrl.deleteEvent);
+router.delete('/api/events/:event_id/sports/:sport_id', eventCtrl.deleteSportOfEvent);
 
 //get all event details from an event
 router.get('/api/events/:id/generalnformation', eventCtrl.viewEventDetails);

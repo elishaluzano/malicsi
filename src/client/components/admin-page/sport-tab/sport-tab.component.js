@@ -8,7 +8,7 @@
             controller: sportTabController
         });
 
-    function sportTabController(sportService) {
+    function sportTabController(sportService, searchService) {
         var vm = this;
 
         vm.selectedSport = null;
@@ -49,17 +49,27 @@
                 return Materialize.toast('Enter a new sport', 3000, 'red');
             }
 
-            let body = {
-                name: vm.newSport
-            };
+            searchService.sports(vm.newSport)
+                .then(function(sports) {
+                    if (!sports.find(function(sport) {
+                        return sport.name.toLowerCase() === vm.newSport.toLowerCase();
+                    })) {
+                        let body = {
+                            name: vm.newSport
+                        };
 
-            sportService.create(body)
-                .then(function(sport) {
-                    vm.sports.push(sport);
-                    vm.creatingSport = false;
-                    vm.selectSport(sport);
-                    Materialize.toast(sport.name + ' has been created', 3000, 'red');
+                        sportService.create(body)
+                            .then(function(sport) {
+                                vm.sports.push(sport);
+                                vm.creatingSport = false;
+                                vm.selectSport(sport);
+                                Materialize.toast(sport.name + ' has been created', 3000, 'red');
+                            });
+                    } else {
+                        Materialize.toast(vm.newSport + ' already created', 3000, 'red');
+                    }
                 });
+
         }
 
         vm.editSport = function() {
@@ -72,23 +82,35 @@
                 return Materialize.toast('Enter sport name', 3000, 'red');
             }
 
-            let id = vm.selectedSport.sport_id;
-            let body = {
-                name: vm.selectedSport.name
-            };
+            searchService.sports(vm.selectedSport.name)
+                .then(function(sports) {
+                    if (sports.find(function(sport) {
+                        return sport.name.toLowerCase() === vm.selectedSport.name.toLowerCase()
+                            && sport.sport_id != vm.selectedSport.sport_id;
+                    })) {
+                        return Materialize.toast(vm.selectedSport.name + ' is already taken', 3000, 'red');
+                    }
 
-            sportService.update(id, body)
-                .then(function(newSport) {
-                    vm.sports = vm.sports.map(function(sport) {
-                        if (sport.sport_id == newSport.sport_id) {
-                            sport.name = newSport.name;
-                        }
-                        return sport;
-                    });
-                    Materialize.toast(vm.selectedSport.originalName + ' has been updated', 3000, 'red');
-                    vm.selectedSport.originalName = newSport.name;
-                    vm.editingSport = false;
-                }); 
+                    let id = vm.selectedSport.sport_id;
+                    let body = {
+                        name: vm.selectedSport.name
+                    };
+
+                    sportService.update(id, body)
+                        .then(function(newSport) {
+                            vm.sports = vm.sports.map(function(sport) {
+                                if (sport.sport_id == newSport.sport_id) {
+                                    sport.name = newSport.name;
+                                }
+                                return sport;
+                            });
+                            Materialize.toast(vm.selectedSport.originalName + ' has been updated', 3000, 'red');
+                            vm.selectedSport.originalName = newSport.name;
+                            vm.editingSport = false;
+                        }); 
+
+                });
+
         }
 
         vm.cancelEditSport = function() {

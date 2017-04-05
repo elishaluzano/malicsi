@@ -7,12 +7,12 @@
         	template: require('./search-event-card.html'),
         	controller: searchEventCardController,
         	bindings: {
-        		event: '<'
+        	   event: '<'
         	}
         });
 
         function searchEventCardController(venueService) {
-            var vm = this;
+          var vm = this;
         	vm.venue = '';
 
             vm.$onInit = function() {
@@ -23,5 +23,6 @@
                     })
             }
         }
-
+    }
+    
 })();
