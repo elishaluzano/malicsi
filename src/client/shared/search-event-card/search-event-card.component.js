@@ -11,9 +11,17 @@
         	}
         });
 
-        function searchEventCardController() {
-        	var vm = this;
-        	
+        function searchEventCardController(venueService) {
+            var vm = this;
+        	vm.venue = '';
+
+            vm.$onInit = function() {
+                venueService.getOne(vm.event.venue_id_key)
+                    .then(function(v) {
+                        console.log(v);
+                        vm.venue = v.name;
+                    })
+            }
         }
 
 })();

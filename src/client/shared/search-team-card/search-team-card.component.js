@@ -31,7 +31,6 @@
         
         vm.$onInit = function() {
             for(let i=0; i<vm.colorList.length;i++){
-                console.log(vm.colorList[i]);
                 if(vm.team.name.indexOf(vm.colorList[i]) >= 0) {
                     vm.color = vm.colorList[i];
                 }
