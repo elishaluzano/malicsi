@@ -17,7 +17,6 @@
             vm.$onInit = function() {
                 venueService.getOne(vm.event.venue_id_key)
                     .then(function(venue) {
-                        console.log(venue.name);
                         vm.venue = venue.name;
                     });
             }
