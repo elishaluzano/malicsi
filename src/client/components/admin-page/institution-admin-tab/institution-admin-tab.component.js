@@ -8,7 +8,7 @@
             controller: institutionAdminTabController
         });
 
-    function institutionAdminTabController(institutionService, userService, adminService, searchService) {
+    function institutionAdminTabController($scope, institutionService, userService, adminService, searchService) {
         var vm = this;
 
         vm.selectedInstitution = null;
@@ -41,6 +41,7 @@
             vm.creatingInstitution = false;
             vm.newAdmin = '';
             vm.selectedInstitution = angular.copy(institution);
+            console.log(vm.selectedInstitution);
             vm.selectedInstitution.originalName = institution.name;
 
             vm.selectedAdmins = angular.copy(vm.admins).filter(function(admin) {
@@ -74,17 +75,26 @@
                 return Materialize.toast('Enter a new institution description', 3000, 'red');
             }
 
-            let body = {
-                name: vm.newInstitutionName,
-                description: vm.newInstitutionDescription
-            };
+            searchService.institutions(vm.newInstitutionName)
+                .then(function(institutions) {
+                    if (!institutions.find(function(institution) {
+                        return institution.name === vm.newInstitutionName;
+                    })) {
+                        let body = {
+                            name: vm.newInstitutionName,
+                            description: vm.newInstitutionDescription
+                        };
 
-            institutionService.create(body)
-                .then(function(institution) {
-                    vm.institutions.push(institution);
-                    vm.creatingInstitution = false;
-                    vm.selectInstitution(institution);
-                    Materialize.toast(institution.name + ' has been created', 3000, 'red');
+                        institutionService.create(body)
+                            .then(function(institution) {
+                                vm.institutions.push(institution);
+                                vm.creatingInstitution = false;
+                                vm.selectInstitution(institution);
+                                Materialize.toast(institution.name + ' has been created', 3000, 'red');
+                            });
+                    } else {
+                        Materialize.toast(vm.newInstitutionName + ' is already taken', 3000, 'red');
+                    }
                 });
         }
 
