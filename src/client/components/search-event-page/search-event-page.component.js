@@ -21,14 +21,6 @@
         vm.eventSponsor = 'all';
         vm.eventVenue = 'all';
 
-
-        vm.$onInit = function() {
-            console.log(vm.events);
-            console.log(vm.allEvents);
-            console.log(vm.allSponsors);
-            console.log(vm.allVenues);
-        }
-
     }
 
 })();   
