@@ -1258,7 +1258,7 @@ describe('UserMockData', function() {
     });
     describe('addUser()', function() {
        var newUser = {
-            'name' : 'Ted Mosby,
+            'name' : 'Ted Mosby',
             'username' : 'tedmosby',
             'password' : 'tmosby',
             'gender' : 'male',

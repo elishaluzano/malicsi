@@ -280,7 +280,7 @@
             })
             .state({
                 name: 'searchPlayerPage',
-                url: '/search-players/{query}',
+                url: '/search-player/{query}',
                 component: 'searchPlayerPage',
                 resolve: {
                     users: function(searchService, $transition$) {
@@ -293,7 +293,27 @@
                         return eventService.getAll();
                     }
                 }
+            })
+            .state({
+                name: 'searchEventPage',
+                url: '/search-event/{query}',
+                component: 'searchEventPage',
+                resolve: {
+                    events: function(searchService, $transition$) {
+                        return searchService.events($transition$.params().query);
+                    },
+                    allEvents: function(eventService) {
+                        return eventService.getAll();
+                    },
+                    allSponsors: function(institutionService) {
+                        return institutionService.getAll();
+                    },
+                    allVenues: function(venueService) {
+                        return venueService.getAll();
+                    }
+                }
             });
+
 
         $urlRouterProvider.otherwise('/')
 
