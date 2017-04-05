@@ -52,7 +52,7 @@
             searchService.sports(vm.newSport)
                 .then(function(sports) {
                     if (!sports.find(function(sport) {
-                        return sport.name === vm.newSport
+                        return sport.name.toLowerCase() === vm.newSport.toLowerCase();
                     })) {
                         let body = {
                             name: vm.newSport

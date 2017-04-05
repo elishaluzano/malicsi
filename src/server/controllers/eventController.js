@@ -183,3 +183,23 @@ exports.viewDoneEventInfo = (req, res) => {
         }
     });
 };
+
+exports.addSportToEvent = (req, res) => {
+    let info = {
+        event_id: req.body.eventId,
+        sport_id: req.body.sportId
+    };
+
+    connection.query('INSERT INTO evantHasSport VALUES (?, ?)', 
+        [req.body.eventId, req.body.sportId],
+        (err, rows, fields) => {
+
+            if (!err) {
+                console.log("Success");
+                res.send(info);
+            } else {
+                res.send(err);
+            }
+        });
+
+}

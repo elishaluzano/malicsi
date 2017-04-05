@@ -64,6 +64,7 @@ router.get('/api/institutions/:id/events',institutionCtrl.viewEventsInInstitutio
 
 var eventCtrl = require('../controllers/eventController.js');
 //event routes
+router.post('/api/events/sports/', eventCtrl.addSportToEvent);
 router.post('/api/events',uploadCtrl.upload.single('picture'), eventCtrl.addEvent);
 router.get('/api/events/:id',eventCtrl.viewEvent);
 router.get('/api/events',eventCtrl.viewAllEvent);

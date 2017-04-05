@@ -78,7 +78,7 @@
             searchService.institutions(vm.newInstitutionName)
                 .then(function(institutions) {
                     if (!institutions.find(function(institution) {
-                        return institution.name === vm.newInstitutionName;
+                        return institution.name.toLowerCase() === vm.newInstitutionName.toLowerCase();
                     })) {
                         let body = {
                             name: vm.newInstitutionName,

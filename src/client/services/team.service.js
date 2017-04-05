@@ -53,8 +53,15 @@
                     });
             },
 
-            create: function (body) {
-                return $http.post(api, body)
+            create: function(body) {
+                let options = {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                    }
+                };
+
+                return $http.post(api, body, options)
                     .then(function(response) {
                         return response.data;
                     })

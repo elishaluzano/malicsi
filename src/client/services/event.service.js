@@ -97,6 +97,18 @@
                     }); 
             },
 
+            
+            createSport: function(body) {
+                return $http.post('/api/events/sports')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in creating sport for event.');
+                        console.log(err.status + ': ' + err.statusText);
+                });
+            },
+
             create: function(body) {
                 return $http.post(api, body)        
                     .then(function(response) {  

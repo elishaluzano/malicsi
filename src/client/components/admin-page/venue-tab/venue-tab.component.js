@@ -8,7 +8,7 @@
             controller: venueTabController
         });
 
-    function venueTabController(venueService) {
+    function venueTabController(venueService, searchService) {
         var vm = this;
 
         vm.selectedVenue = null;
@@ -48,17 +48,27 @@
                 return Materialize.toast('Enter a new venue', 3000, 'red');
             }
 
-            let body = {
-                name: vm.newVenue
-            };
+            searchService.venues(vm.newVenue)
+                .then(function(venues) {
+                    if (!venues.find(function(venue) {
+                        return venue.name.toLowerCase() === vm.newVenue.toLowerCase();
+                    })) {
+                        let body = {
+                            name: vm.newVenue
+                        };
 
-            venueService.create(body)
-                .then(function(venue) {
-                    vm.venues.push(venue);
-                    vm.creatingVenue = false;
-                    vm.selectVenue(venue);
-                    Materialize.toast(venue.name + ' has been created', 3000, 'red');
+                        venueService.create(body)
+                            .then(function(venue) {
+                                vm.venues.push(venue);
+                                vm.creatingVenue = false;
+                                vm.selectVenue(venue);
+                                Materialize.toast(venue.name + ' has been created', 3000, 'red');
+                            });
+                    } else {
+                        Materialize.toast(vm.newVenue + ' already created', 3000, 'red');
+                    }
                 });
+
         }
 
         vm.editVenue = function() {

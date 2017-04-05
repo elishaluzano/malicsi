@@ -91,17 +91,68 @@
                                 ng-if="team.event_id_key === $ctrl.event.event_id">
                                 <td>{{ team.name }}</td>
                                 <td>
-                                    <a href=""></a>
+                                    <a class="chip green white-text pointer">
+                                        Join
+                                    </a>
+                                    <a class="chip grey white-text pointer">
+                                        Cancel
+                                    </a>
+                                    <a class="chip grey white-text pointer">
+                                        Edit
+                                    </a>
+                                    <a class="chip red white-text pointer">
+                                        Delete
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                
+                <a class="chip blue white-text pointer"
+                    modal
+                    data-target="add-team"
+                    ng-click="$ctrl.createTeam()">
+                    Add a team?
+                </a>
             </div>
 
             <div ng-show="$ctrl.isSportsTab"
                 class="tabcontent">
-                fuck
+                <div class="row">
+
+                    <div class="col s6">
+                        <ul class="collection">
+                            <li class="collection-item"
+                                ng-repeat="sport in $ctrl.sports">
+                                {{ sport.name }}
+                                <a class="secondary-content pointer"
+                                    modal data-target="delete-sport-modal"
+                                    ng-click="$ctrl.deleteSport(sport)">
+                                    <i class="material-icons red-text">
+                                        close
+                                    </i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col s4 input-field">
+                        <select ng-model="$ctrl.newSportId" 
+                            material-select
+                            id="new-sport">
+                            <option ng-repeat="sport in $ctrl.allSports"
+                                ng-value="sport.sport_id">
+                                {{ sport.name }}
+                            </option>
+                        </select>
+                        <label for="new-sport">New sport</label>
+                        <a class="chip blue white-text right"
+                            ng-click="$ctrl.createSport($ctrl.newSportId)">
+                            Add Sport
+                        </a>
+                    </div>
+                </div>
             </div>
 
 
@@ -269,4 +320,64 @@
             Save Changes
         </a>
       </div>
+</div>
+
+<div id="add-team" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12">
+                <h5>
+                    Add Team
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text"
+                    ng-model="$ctrl.newTeamName"
+                    id="new-team-name">
+                <label for="new-team-name">New Team Name</label>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="file-field input-field">
+                <div class="btn red">
+                    <span>File</span>
+                    <input type="file" file-input="$ctrl.teamFiles">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
+        <a class="btn-flat modal-action waves-effect waves-green pointer"
+            ng-click="$ctrl.confirmCreateTeam()">
+            Add Team
+        </a>
+      </div>
+</div>
+
+<div id="delete-sport-modal" class="modal">
+    <div class="modal-content">
+        <h5>
+            Deleting {{ $ctrl.selectedSport.name }} from {{ $ctrl.event.event_title }}
+        </h5>
+        <p>
+            Deleting this sport from the event will also delete all games associated with it.
+        </p>
+        <p>
+            Are you sure you want delete {{ $ctrl.selectecSport.name }}?
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
+        <a class="btn-flat modal-action waves-effect waves-green pointer"
+            ng-click="$ctrl.confirmDeleteSport()">
+            Delete
+        </a>
+    </div>
 </div>

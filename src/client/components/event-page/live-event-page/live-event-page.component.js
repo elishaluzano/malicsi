@@ -11,7 +11,7 @@
             }
         });
 
-    function liveEventPageController($q, eventService, venueService, teamService, institutionService, $state) {
+    function liveEventPageController($q, eventService, venueService, teamService, institutionService, $state, searchService, sportService) {
         var vm = this;
 
         vm.sports = [];
@@ -34,12 +34,19 @@
 
         vm.editedEvent = {};
         vm.files = [];
+        vm.teamFiles = [];
+        vm.newTeamName = '';
+        vm.teams = [];
+
+        vm.allSports = [];
+        vm.selectedSport = null;
+        vm.newSportId = 1;
+
 
         vm.editEvent = function() {
             vm.editedEvent = angular.copy(vm.event);
             vm.editedEvent.start_date = new Date(vm.editedEvent.start_date);
             vm.editedEvent.end_date = new Date(vm.editedEvent.end_date);
-            console.log(vm.editedEvent);
         }
 
         vm.confirmEditEvent = function() {
@@ -59,6 +66,55 @@
                 });
         }
 
+        vm.createTeam = function() {
+            vm.newTeamName = '';
+            vm.teamFiles = [];
+        }
+
+        vm.createSport = function(sportId) {
+            let exists = false;
+            for (let sport of vm.sports) {
+                if (sport.sport_id === sportId) {
+                    return Materialize.toast('Sport is already in the event', 3000, 'red');
+                }
+            }
+            if (!exists) {
+                let body = {
+                    event_id: vm.event.event_id,
+                    sport_id: sportId
+                };
+
+                eventService.createSport(body)
+                    .then(function(eventHasSport) {
+                        vm.$onInit();
+                    });
+            }
+        }
+
+        vm.confirmCreateTeam = function() {
+            searchService.teams(vm.newTeamName)
+                .then(function(teams) {
+                    if (teams.find(function(team) { return team.name === vm.newTeamName })) {
+                        return Materialize.toast(team.name + ' is already made', 3000, 'red');
+                    }
+
+                    if (!vm.teamFiles[0]) {
+                        return Materialize.toast('Input team logo', 3000, 'red');
+                    }
+
+                    var fd = new FormData();
+                    fd.append('name', vm.newTeamName);
+                    fd.append('event_id_key', vm.event.event_id);
+                    fd.append('picture', (vm.teamFiles[0])? vm.teamFiles[0] : vm.editedEvent.picture);
+
+                    teamService.create(fd)
+                        .then(function(team) {
+                            $('#add-team').modal('close');
+                            $state.reload();
+                        });
+                });
+        }
+
         vm.deleteEvent = function() {
             let title = vm.event.event_title;
             eventService.delete(vm.event.event_id)
@@ -66,6 +122,10 @@
                     Materialize.toast(title + ' has been deleted', 3000, 'red');
                     $state.go('landingPage');
                 });
+        }
+
+        vm.deleteSport = function(sport) {
+            vm.selectedSport = angular.copy(sport);
         }
         
         vm.toggleToTeams = function() {
@@ -106,6 +166,11 @@
                     vm.institutions = institutions;
                 });
 
+            sportService.getAll()
+                .then(function(sports) {
+                    vm.allSports = sports;
+                });
+
             $q.all([
                 eventService.getSports(vm.event.event_id),
                 eventService.getGames(vm.event.event_id),
@@ -113,11 +178,12 @@
                 venueService.getAll(),
             ]).then(function(data) {
                 let sports = data[0];
+                vm.eventSports = angular.copy(sports);
                 let games = data[1];
-                let teams = data[2];
+                vm.teams = data[2];
                 vm.venues = data[3];
 
-                $q.all(teams.map(function(team) {
+                $q.all(vm.teams.map(function(team) {
                     return teamService.getGames(team.team_id)
                 })).then(function(data) {
                     let allTeamsPlaying = data;
@@ -160,7 +226,7 @@
                                             allTeamsPlaying.forEach(function(team) {
                                                 for (let gamePlaying of team) {
                                                     if (gamePlaying.game_id === game.game_id) {
-                                                        for (let t of teams) {
+                                                        for (let t of vm.teams) {
                                                             if (t.team_id === gamePlaying.team_id_play) {
                                                                 t.score = gamePlaying.score;
                                                                 game.teamsPlaying.push(t);
@@ -187,6 +253,7 @@
                     vm.dates[0].show = true;
                     vm.filtered = $.extend(true, [], vm.dates)
                     $('.collapsible').collapsible();
+                    console.log(vm.sports);
                 });
             });
         }
