@@ -31,6 +31,17 @@
                     });
             },
 
+            getEvents: function(id) {
+                return $http.get(api + id + '/events')
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(error) {
+                        console.log('Error in finding events of an institution');
+                        console.log(error.status + ': ' + error.statusText);
+                    });
+            },
+
             create: function(body) {
                 return $http.post(api, body)
                     .then(function(response) {
@@ -43,7 +54,14 @@
             },
             
             update: function(id, body) {
-                return $http.put(api + id, body) 
+                let options = {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                    }
+                };
+
+                return $http.put(api + id, body, options) 
                     .then(function(response) {
                         return response.data;
                     })

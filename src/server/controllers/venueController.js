@@ -11,7 +11,8 @@ exports.addVenue = (req,res) =>{
             res.send(err);
          }
         else {
-            res.send(rows[0]);
+            venue.venue_id = rows.insertId;
+            res.send(venue);
             console.log("Successfully added a venue");
         }
 	});
@@ -41,30 +42,46 @@ exports.viewVenue = (req,res) => {
             console.log("Successfully viewed a venue.");
         }
 	});
-}
+};
 
-exports.updateVenue = (req,res) => {
-	connection.query('UPDATE venue SET name = ? WHERE venue_id = ?', [ req.body.name, req.params.id ], function(err, rows, fields){
-		if (err) {
-            console.log(err)
+exports.searchVenue = (req,res) => {
+    connection.query('SELECT * FROM venue WHERE name LIKE ?', ['%' + req.params.search + '%'], function(err, rows, fields){
+        if (err) {
+            console.log(err);
             res.send(err);
          }
         else {
-            res.send(rows[0]);
+            res.send(rows);
+        }
+    });
+};
+
+exports.updateVenue = (req,res) => {
+    var venue = {
+        venue_id: req.params.id,
+        name: req.body.name,
+    };
+	connection.query('UPDATE venue SET name = ? WHERE venue_id = ?', [ req.body.name, req.params.id ], function(err, rows, fields){
+		if (err) {
+            console.log(err);
+            res.send(err);
+         }
+        else {
+            res.send(venue);
             console.log("Successfully updated a venue.");
         }
 	});
-}
+};
 
 exports.deleteVenue = (req,res) => {
 	connection.query('DELETE FROM venue WHERE venue_id = ?', [ req.params.id ], function(err, rows, fields){
 		if (err) {
-            console.log(err)
+            console.log(err);
             res.send(err);
          }
         else {
-            res.send({});
-            console.log("Successfully deleted a team.");
+            res.send(null);
+            console.log("Successfully deleted a venue.");
         }
 	});
-}
+};

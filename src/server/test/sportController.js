@@ -7,10 +7,9 @@ describe ('Sport', function () {
     it('adds sport', function (done) {
       var sport = {
         'name': 'Bridge',
-        'event_id_key': '1'
       };
       request(url)
-        .post('/api/sports/addSport')
+        .post('/api/sports')
         .send(sport)
         .end(function(err, res) {
           if (err) throw err;
@@ -46,13 +45,25 @@ describe ('Sport', function () {
     });
   });
 
+  describe('searchSport()', function () {
+    it('search sport by name', function (done) {
+      request(url)
+        .get('/api/sports/search' + 'basketball')
+        .end(function(err, res) {
+          if (err) throw err;
+          res.should.have.status(200);
+          res.body.should.be.an.instanceOf(Object);
+          done();
+        });
+    });
+  });
+
   describe('updateSport()', function () {
     it('update sport', function (done) {
       request(url)
-        .put('/api/sports/updateSport')
+        .put('/api/sports/' + '11')
         .send({
-            'name': "Poker",
-            'sport_id': "11" 
+            'name': "Poker"
             })
         .end(function(err, res) {
           if (err) throw err;

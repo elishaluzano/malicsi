@@ -29,13 +29,26 @@ describe('Venue', function(){
 		 });
 	 });
 
+    describe('searchVenue()', function () {
+		 it('search venue by name', function (done) {
+			 request(url)
+				 .get('/api/venues/search' + 'B')
+				 .end(function(err, res) {
+					 if (err) throw err;
+					 res.should.have.status(200);
+					 	res.body.should.be.an.instanceOf(Object);
+					 done();
+				 });
+		 });
+	 });
+
 	 describe('addVenue()', function () {
 		 it('creates a new venue', function (done) {
 			 var venue = {
 				 'name': 'Venue Test 1'
 			 };
 			 request(url)
-				 .post('/api/venues/addVenue')
+				 .post('/api/venues')
 				 .send(venue)
 				 .end(function(err, res) {
 					 if (err) throw err;
@@ -48,11 +61,10 @@ describe('Venue', function(){
 	 describe('updateVenue()', function () {
 		 it('updates a venue', function (done) {
 			 var venue = {
-				 'name': 'Venue Test Update',
-				 'venue_id' : 1
+				 'name': 'Venue Test Update'
 			 };
 			 request(url)
-				 .put('/api/venues/updateVenue')
+				 .put('/api/venues/' + '1')
 				 .send(venue)
 				 .end(function(err, res) {
 					 if (err) throw err;

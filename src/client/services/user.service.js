@@ -31,6 +31,17 @@
                     });
             },
 
+            getAdmins: function() {
+                return $http.get('/api/admins')
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting all admins!');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
             create: function(body) {
                 return $http.post(api, body)
                     .then(function(response) {
@@ -43,7 +54,14 @@
             },
 
             update: function(id, body) {
-                return $http.put(api + id, body)
+                let options = {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                    }
+                };
+
+                return $http.put(api + id, body, options)
                     .then(function(response) {
                         return response.data;
                     })

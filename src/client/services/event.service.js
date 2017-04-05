@@ -22,13 +22,79 @@
 
             getOne: function(id) {
                 return $http.get(api + id)      
-                    .then(function(response) {  
+                    .then(function(response) {   
                         return response.data;
                     })
                     .catch(function(err) {
                         console.log('Error in getting one event.');
                         console.log(err.status + ': ' + err.statusText);
                     });
+            },
+
+            getSports: function(id) {
+                return $http.get(api + id + '/sports')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting sports of an event.');
+                        console.log(err.status + ': ' + err.statusText);
+                    }); 
+            },
+
+            getTeams: function(id) {
+                return $http.get(api + id + '/teams')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting teams of an event.');
+                        console.log(err.status + ': ' + err.statusText);
+                    });  
+            },
+
+            getGames: function(id) {
+                return $http.get(api + id + '/games')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting games of an event.');
+                        console.log(err.status + ': ' + err.statusText);
+                    }); 
+            },
+
+            getGamesOfSport: function(eventId, sportId) {
+                return $http.get(api + eventId + '/sports/' + sportId + '/games')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting games of an event of a sport.');
+                        console.log(err.status + ': ' + err.statusText);
+                    }); 
+            },
+
+            getGeneralInformation: function(id) {
+                return $http.get(api + id + '/info')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting general information of an event of a sport.');
+                        console.log(err.status + ': ' + err.statusText);
+                    }); 
+            },
+
+            getDoneEventInfo: function(id) {
+                return $http.get(api + id + '/eventinfo')
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting general information of an event of a sport.');
+                        console.log(err.status + ': ' + err.statusText);
+                    }); 
             },
 
             create: function(body) {
@@ -43,7 +109,14 @@
             },
 
             update: function(id, body) {
-                return $http.put(api + id, body)        
+                let options = {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                    }
+                };
+
+                return $http.put(api + id, body, options)        
                     .then(function(response) {  
                         return response.data;
                     })

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <a ui-sref="eventPage({ eventId: $ctrl.event.event_id })" class="black black-text" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='black'">
     <li class="collection-item avatar orange lighten-5" style="margin: 0px 0px 3px 0px; border:2px solid">
         <img ng-src="../images/person-flat.png" alt="img" class="circle">
@@ -8,3 +9,20 @@
         </i>
     </li>
 </a>
+=======
+<li class="collection-item avatar">
+    <!-- Event logo -->
+    <a ui-sref="eventPage({ eventId: $ctrl.event.event_id })">
+        <img ng-src="../images/person-flat.png" alt="" class="circle">
+    </a>
+    
+    <!-- Event name -->
+    <a ui-sref="eventPage({ eventId: $ctrl.event.event_id })">
+        <span class="title">{{ $ctrl.event.event_title }}</span>
+    </a>
+    <!-- Event details -->
+    <p>
+        <strong>Venue: </strong><span>{{ $ctrl.event.venue }}</span>
+    </p>
+</li>
+>>>>>>> 76ff8c29280f1ae3b0fd26dacf31c2d671ed83ad

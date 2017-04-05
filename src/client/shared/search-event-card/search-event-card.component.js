@@ -11,6 +11,7 @@
         	}
         });
 
+<<<<<<< HEAD
         function searchEventCardController(venueService) {
             var vm = this;
         	vm.venue = '';
@@ -22,6 +23,11 @@
                         vm.venue = v.name;
                     })
             }
+=======
+        function searchEventCardController() {
+        	var vm = this;
+        	
+>>>>>>> 76ff8c29280f1ae3b0fd26dacf31c2d671ed83ad
         }
 
 })();
