@@ -398,7 +398,7 @@ insert into teamIsComposedOfUser values (16, 128);
 insert into teamIsComposedOfUser values (17, 129);
 insert into teamIsComposedOfUser values (17, 130);
 insert into teamIsComposedOfUser values (18, 131);
-call gameAdd(1,1);              //basketball
+call gameAdd(1,1);            
 call gameUpdate(1,1,3);
 call gameUpdate(1,1,3);
 call gameUpdate(1,1,3);
@@ -484,7 +484,7 @@ call gameUpdate(4,6,2);
 call gameUpdate(4,6,2);
 call gameUpdate(4,6,1);
 
-call gameAdd(1,7);          //volleyball
+call gameAdd(1,7);          
 call gameUpdate(1,7,1);
 call gameUpdate(1,7,1);
 call gameUpdate(1,7,1);
@@ -752,7 +752,7 @@ call gameUpdate(4,12,1);
 call gameUpdate(4,12,1);
 call gameUpdate(4,12,1);
 
-call gameAdd(1,13);             //table tennis
+call gameAdd(1,13);            
 call gameUpdate(1,13,1);
 call gameUpdate(1,13,1);
 call gameUpdate(1,13,1);
@@ -874,7 +874,7 @@ call gameUpdate(4,18,1);
 call gameUpdate(4,18,1);
 call gameUpdate(4,18,1);
 
-call gameAdd(5,19);             //bridge
+call gameAdd(5,19);            
 call gameUpdate(5,19,30);
 call gameUpdate(5,19,20);
 call gameUpdate(5,19,40);
@@ -919,7 +919,7 @@ call gameUpdate(8,23,20);
 call gameAdd(7,24);
 call gameAdd(8,24);
 
-call gameAdd(5,25);             //scrabble
+call gameAdd(5,25);            
 call gameUpdate(5,25,100);
 call gameAdd(6,25);
 call gameUpdate(6,25,90);
@@ -942,7 +942,7 @@ call gameUpdate(8,29,30);
 call gameAdd(7,30);
 call gameAdd(8,30);
 
-call gameAdd(5,31);         //chess
+call gameAdd(5,31);         
 call gameUpdate(5,31,1);
 call gameAdd(6,31);
 call gameUpdate(6,31,0);
@@ -965,7 +965,7 @@ call gameUpdate(8,35,0);
 call gameAdd(7,36);
 call gameAdd(8,36);
 
-call gameAdd(9,37);             //beach volleyball
+call gameAdd(9,37);             
 call gameUpdate(9,37,25);
 call gameAdd(10,37);
 call gameUpdate(10,37,20);
@@ -990,7 +990,7 @@ call gameUpdate(11,42,25);
 call gameAdd(12,42);
 call gameUpdate(12,42,21);
 
-call gameAdd(9,43);                 //badminton
+call gameAdd(9,43);                
 call gameUpdate(9,43,21);
 call gameAdd(10,43);
 call gameUpdate(10,43,19);
@@ -1015,7 +1015,7 @@ call gameUpdate(11,48,21);
 call gameAdd(12,48);
 call gameUpdate(12,48,11);
 
-call gameAdd(9,49);             //table tennis
+call gameAdd(9,49);            
 call gameUpdate(9,49,11);
 call gameAdd(10,49);
 call gameUpdate(10,49,9);
@@ -1040,7 +1040,7 @@ call gameUpdate(11,54,11);
 call gameAdd(12,54);
 call gameUpdate(12,54,5);
 
-call gameAdd(13,73);                //basketball
+call gameAdd(13,73);                
 call gameUpdate(13,73,55);
 call gameAdd(14,73);
 call gameUpdate(14,73,44);
@@ -1065,7 +1065,7 @@ call gameUpdate(15,78,33);
 call gameAdd(16,78);
 call gameUpdate(16,78,22);
 
-call gameAdd(13,79);                //bridge
+call gameAdd(13,79);                
 call gameUpdate(13,79,100);
 call gameAdd(14,79);
 call gameUpdate(14,79,90);
@@ -1090,7 +1090,7 @@ call gameUpdate(15,84,22);
 call gameAdd(16,84);
 call gameUpdate(16,84,11);
 
-call gameAdd(13,85);                //table tennis
+call gameAdd(13,85);                
 call gameUpdate(13,85,11);
 call gameAdd(14,85);
 call gameUpdate(14,85,9);
@@ -1115,7 +1115,7 @@ call gameUpdate(15,90,11);
 call gameAdd(16,90);
 call gameUpdate(16,90,2);
 
-call gameAdd(17,91);                //chess
+call gameAdd(17,91);               
 call gameUpdate(17,91,1);
 call gameAdd(18,91);
 call gameUpdate(18,91,0);
@@ -1140,7 +1140,7 @@ call gameUpdate(19,96,1);
 call gameAdd(20,96);
 call gameUpdate(20,96,0);
 
-call gameAdd(17,97);                //badminton
+call gameAdd(17,97);               
 call gameUpdate(17,97,21);
 call gameAdd(18,97);
 call gameUpdate(18,97,9);
@@ -1165,7 +1165,7 @@ call gameUpdate(19,102,21);
 call gameAdd(20,102);
 call gameUpdate(20,102,17);
 
-call gameAdd(21,103);               //soccer
+call gameAdd(21,103);               
 call gameUpdate(21,103,5);
 call gameAdd(22,103);
 call gameUpdate(22,103,4);
@@ -1190,7 +1190,7 @@ call gameUpdate(23,108,5);
 call gameAdd(24,108);
 call gameUpdate(24,108,2);
 
-call gameAdd(21,109);               //tennis
+call gameAdd(21,109);              
 call gameUpdate(21,109,7);
 call gameAdd(22,109);
 call gameUpdate(22,109,4);
@@ -1215,7 +1215,7 @@ call gameUpdate(23,114,6);
 call gameAdd(24,114);
 call gameUpdate(24,114,4);
 
-call gameAdd(25,127);               //basketball
+call gameAdd(25,127);               
 call gameUpdate(25,127,100);
 call gameAdd(26,127);
 call gameUpdate(26,127,70);
@@ -1240,7 +1240,7 @@ call gameUpdate(27,132,60);
 call gameAdd(28,132);
 call gameUpdate(28,132,43);
 
-call gameAdd(25,133);               //volleyball
+call gameAdd(25,133);              
 call gameUpdate(25,133,25);
 call gameAdd(26,133);
 call gameUpdate(26,133,23);
@@ -1265,7 +1265,7 @@ call gameUpdate(27,138,25);
 call gameAdd(28,138);
 call gameUpdate(28,138,23);
 
-call gameAdd(25,139);               //badminton
+call gameAdd(25,139);               
 call gameUpdate(25,139,21);
 call gameAdd(26,139);
 call gameUpdate(26,139,19);
