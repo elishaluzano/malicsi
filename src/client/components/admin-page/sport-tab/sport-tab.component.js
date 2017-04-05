@@ -8,7 +8,7 @@
             controller: sportTabController
         });
 
-    function sportTabController(sportService) {
+    function sportTabController(sportService, searchService) {
         var vm = this;
 
         vm.selectedSport = null;
@@ -49,17 +49,27 @@
                 return Materialize.toast('Enter a new sport', 3000, 'red');
             }
 
-            let body = {
-                name: vm.newSport
-            };
+            searchService.sports(vm.newSport)
+                .then(function(sports) {
+                    if (!sports.find(function(sport) {
+                        return sport.name === vm.newSport
+                    })) {
+                        let body = {
+                            name: vm.newSport
+                        };
 
-            sportService.create(body)
-                .then(function(sport) {
-                    vm.sports.push(sport);
-                    vm.creatingSport = false;
-                    vm.selectSport(sport);
-                    Materialize.toast(sport.name + ' has been created', 3000, 'red');
+                        sportService.create(body)
+                            .then(function(sport) {
+                                vm.sports.push(sport);
+                                vm.creatingSport = false;
+                                vm.selectSport(sport);
+                                Materialize.toast(sport.name + ' has been created', 3000, 'red');
+                            });
+                    } else {
+                        Materialize.toast(vm.newSport + ' already created', 3000, 'red');
+                    }
                 });
+
         }
 
         vm.editSport = function() {
