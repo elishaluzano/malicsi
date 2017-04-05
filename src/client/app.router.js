@@ -280,11 +280,17 @@
             })
             .state({
                 name: 'searchPlayerPage',
-                url: '/searchPlayers',
+                url: '/search-players/{query}',
                 component: 'searchPlayerPage',
                 resolve: {
-                    users: function(userService) {
-                        return userService.getAll();
+                    users: function(searchService, $transition$) {
+                        return searchService.users($transition$.params().query);
+                    },
+                    allTeams: function(teamService) {
+                        return teamService.getAll();
+                    },
+                    allEvents: function(eventService) {
+                        return eventService.getAll();
                     }
                 }
             });
