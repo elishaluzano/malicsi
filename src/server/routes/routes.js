@@ -71,6 +71,7 @@ router.get('/api/events',eventCtrl.viewAllEvent);
 router.get('/api/events/search/:search', eventCtrl.searchEvent);
 router.put('/api/events/:id',uploadCtrl.upload.single('picture'), eventCtrl.updateEvent);
 router.delete('/api/events/:id',eventCtrl.deleteEvent);
+router.delete('/api/events/:event_id/sports/:sport_id', eventCtrl.deleteSportOfEvent);
 
 //get all event details from an event
 router.get('/api/events/:id/generalnformation', eventCtrl.viewEventDetails);

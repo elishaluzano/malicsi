@@ -81,23 +81,35 @@
                 return Materialize.toast('Enter venue name', 3000, 'red');
             }
 
-            let id = vm.selectedVenue.venue_id;
-            let body = {
-                name: vm.selectedVenue.name
-            };
+            searchService.venues(vm.selectedVenue.name)
+                .then(function(venues) {
+                    if (venues.find(function(venue) {
+                        return venue.name.toLowerCase() === vm.selectedVenue.name.toLowerCase()
+                            && venue.venue_id != vm.selectedVenue.venue_id;
+                    })) {
+                        return Materialize.toast(vm.selectedVenue.name + ' is already taken', 3000, 'red');
+                    }
 
-            venueService.update(id, body)
-                .then(function(newVenue) {
-                    vm.venues = vm.venues.map(function(venue) {
-                        if (venue.venue_id == newVenue.venue_id) {
-                            venue.name = newVenue.name;
-                        }
-                        return venue;
-                    });
-                    Materialize.toast(vm.selectedVenue.originalName + ' has been updated', 3000, 'red');
-                    vm.selectedVenue.originalName = newVenue.name;
-                    vm.editingVenue = false;
-                }); 
+                    let id = vm.selectedVenue.venue_id;
+                    let body = {
+                        name: vm.selectedVenue.name
+                    };
+
+                    venueService.update(id, body)
+                        .then(function(newVenue) {
+                            vm.venues = vm.venues.map(function(venue) {
+                                if (venue.venue_id == newVenue.venue_id) {
+                                    venue.name = newVenue.name;
+                                }
+                                return venue;
+                            });
+                            Materialize.toast(vm.selectedVenue.originalName + ' has been updated', 3000, 'red');
+                            vm.selectedVenue.originalName = newVenue.name;
+                            vm.editingVenue = false;
+                        }); 
+
+                })
+
         }
 
         vm.cancelEditVenue = function() {

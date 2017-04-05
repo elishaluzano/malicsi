@@ -116,24 +116,34 @@
 
 
             let id = vm.selectedInstitution.institution_id;
-            
-            let fd = new FormData();
 
-            fd.append('name', vm.selectedInstitution.name);
-            fd.append('description', vm.selectedInstitution.description);
-            fd.append('picture', (vm.files[0])? vm.files[0] : vm.selectedInstitution.picture);
+            searchService.institutions(vm.selectedInstitution.name)
+                .then(function(institutions) {
+                    if (institutions.find(function(institution) {
+                        return institution.name.toLowerCase() === vm.selectInstitution.name.toLowerCase() 
+                            && institution.institution_id != vm.selectInstitution.institution_id;
+                    })) {
+                        return Materialize.toast(vm.selectInstitution.name + ' is already taken', 3000, 'red');
+                    }
+                    let fd = new FormData();
 
-            institutionService.update(id, fd)
-                .then(function(newInstitution) {
-                    vm.institutions = vm.institutions.map(function(institution) {
-                        if (institution.institution_id == vm.selectedInstitution.institution_id) {
-                            Materialize.toast(vm.selectedInstitution.originalName + ' has been updated', 3000, 'red');
-                            vm.selectedInstitution = institution = angular.copy(newInstitution);
-                        }
-                        return institution;
-                    });
-                    vm.editingInstitution = false;
+                    fd.append('name', vm.selectedInstitution.name);
+                    fd.append('description', vm.selectedInstitution.description);
+                    fd.append('picture', (vm.files[0])? vm.files[0] : vm.selectedInstitution.picture);
+
+                    institutionService.update(id, fd)
+                        .then(function(newInstitution) {
+                            vm.institutions = vm.institutions.map(function(institution) {
+                                if (institution.institution_id == vm.selectedInstitution.institution_id) {
+                                    Materialize.toast(vm.selectedInstitution.originalName + ' has been updated', 3000, 'red');
+                                    vm.selectedInstitution = institution = angular.copy(newInstitution);
+                                }
+                                return institution;
+                            });
+                            vm.editingInstitution = false;
+                        });
                 });
+
         }
 
         vm.cancelEditInstitution = function() {

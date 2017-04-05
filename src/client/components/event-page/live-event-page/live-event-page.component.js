@@ -41,6 +41,7 @@
         vm.allSports = [];
         vm.selectedSport = null;
         vm.newSportId = 1;
+        vm.selectedTeam = null;
 
 
         vm.editEvent = function() {
@@ -50,25 +51,69 @@
         }
 
         vm.confirmEditEvent = function() {
-            var fd = new FormData();
-            console.log(vm.editedEvent);
-            fd.append('event_title', vm.editedEvent.event_title);
-            fd.append('institution_id_key', vm.editedEvent.institution_id_key);
-            fd.append('start_date', (new Date(vm.editedEvent.start_date.setDate(vm.editedEvent.start_date.getDate()+1))).toISOString().substring(0, 10));
-            fd.append('end_date', (new Date(vm.editedEvent.end_date.setDate(vm.editedEvent.end_date.getDate()+1))).toISOString().substring(0, 10));
-            fd.append('picture', (vm.files[0])? vm.files[0] : vm.editedEvent.picture);
-            fd.append('venue_id_key', vm.editedEvent.venue_id_key);
+            searchService.events(vm.editedEvent.event_title)
+                .then(function(events) {
+                    if (events.find(function(event) {
+                        return event.event_title.toLowerCase() === vm.editedEvent.event_title.toLowerCase()
+                            && event.event_id != vm.editedEvent.event_id;
+                    })) {
+                        return Materialize.toast(vm.editedEvent.event_title + ' is already taken', 3000, 'red');
+                    }
 
-            eventService.update(vm.editedEvent.event_id, fd)
-                .then(function(event) {
-                    Materialize.toast('Successfully updated ' + vm.editedEvent.event_title, 3000, 'red');
-                    $state.reload();
+                    var fd = new FormData();
+                    fd.append('event_title', vm.editedEvent.event_title);
+                    fd.append('institution_id_key', vm.editedEvent.institution_id_key);
+                    fd.append('start_date', (new Date(vm.editedEvent.start_date.setDate(vm.editedEvent.start_date.getDate()+1))).toISOString().substring(0, 10));
+                    fd.append('end_date', (new Date(vm.editedEvent.end_date.setDate(vm.editedEvent.end_date.getDate()+1))).toISOString().substring(0, 10));
+                    fd.append('picture', (vm.files[0])? vm.files[0] : vm.editedEvent.picture);
+                    fd.append('venue_id_key', vm.editedEvent.venue_id_key);
+
+                    eventService.update(vm.editedEvent.event_id, fd)
+                        .then(function(event) {
+                            Materialize.toast('Successfully updated ' + vm.editedEvent.event_title, 3000, 'red');
+                            $state.reload();
+                        });
+
                 });
+
         }
 
         vm.createTeam = function() {
             vm.newTeamName = '';
             vm.teamFiles = [];
+        }
+
+        vm.editTeam = function(team) {
+            vm.selectedTeam = angular.copy(team);
+            vm.selectedTeam.originalName = vm.selectedTeam.name;
+            vm.teamFiles = [];
+        }
+
+        vm.confirmEditTeam = function() {
+            if (!vm.selectedTeam.name) {
+                return Materialize.toast('Enter new team name', 3000, 'red');
+            }
+
+            searchService.teams(vm.selectedTeam.name)
+                .then(function(teams) {
+                    if (teams.find(function(team) {
+                        return team.name.toLowerCase() === vm.selectedTeam.name.toLowerCase()
+                            && team.team_id != vm.selectedTeam.team_id
+                    })) {
+                        return Materialize.toast(vm.selectedTeam.name + ' is already taken', 3000, 'red');
+                    }
+
+                    let fd = new FormData();
+
+                    fd.append('name', vm.selectedTeam.name);
+                    fd.append('event_id_key', vm.selectedTeam.event_id_key);
+                    fd.append('picture', (vm.teamFiles[0])? vm.teamFiles[0] : vm.selectedTeam.picture);
+
+                    teamService.update(vm.selectedTeam.team_id, fd)
+                        .then(function(newInstitution) {
+
+                        });
+                }); 
         }
 
         vm.createSport = function(sportId) {
@@ -78,17 +123,33 @@
                     return Materialize.toast('Sport is already in the event', 3000, 'red');
                 }
             }
-            if (!exists) {
-                let body = {
-                    event_id: vm.event.event_id,
-                    sport_id: sportId
-                };
 
-                eventService.createSport(body)
-                    .then(function(eventHasSport) {
-                        vm.$onInit();
+            let body = {
+                event_id: vm.event.event_id,
+                sport_id: sportId
+            };
+
+            eventService.createSport(body)
+                .then(function(eventHasSport) {
+                    let name = '';
+                    for (let sport of vm.allSports) {
+                        if (sport.sport_id === eventHasSport.sport_id) {
+                            name = sport.name;
+                        }
+                    }
+
+                    for (let date of vm.dates) {
+                        date.sports.push({
+                            games: [],
+                            sport: name
+                        });
+                    }
+
+                    vm.sports.push({
+                        sport_id: eventHasSport.sport_id,
+                        name: name
                     });
-            }
+                });
         }
 
         vm.confirmCreateTeam = function() {
@@ -126,6 +187,25 @@
 
         vm.deleteSport = function(sport) {
             vm.selectedSport = angular.copy(sport);
+        }
+
+        vm.confirmDeleteSport = function() {
+            eventService.deleteSport(vm.event.event_id, vm.selectedSport.sport_id)
+                .then(function() {
+                    vm.sports = vm.sports.filter(function(sport) {
+                        return sport.sport_id !== vm.selectedSport.sport_id;
+                    });
+
+                    vm.dates = vm.dates.map(function(date) {
+                        date.sports = date.sports.filter(function(sport) {
+                            return sport.sport !== vm.selectedSport.name;
+                        });
+
+                        return date;
+                    });
+
+                    console.log(vm.dates);
+                });
         }
         
         vm.toggleToTeams = function() {
@@ -253,7 +333,7 @@
                     vm.dates[0].show = true;
                     vm.filtered = $.extend(true, [], vm.dates)
                     $('.collapsible').collapsible();
-                    console.log(vm.sports);
+                    console.log(vm.dates);
                 });
             });
         }

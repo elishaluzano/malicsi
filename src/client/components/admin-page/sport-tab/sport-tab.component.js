@@ -82,23 +82,35 @@
                 return Materialize.toast('Enter sport name', 3000, 'red');
             }
 
-            let id = vm.selectedSport.sport_id;
-            let body = {
-                name: vm.selectedSport.name
-            };
+            searchService.sports(vm.selectedSport.name)
+                .then(function(sports) {
+                    if (sports.find(function(sport) {
+                        return sport.name.toLowerCase() === vm.selectedSport.name.toLowerCase()
+                            && sport.sport_id != vm.selectedSport.sport_id;
+                    })) {
+                        return Materialize.toast(vm.selectedSport.name + ' is already taken', 3000, 'red');
+                    }
 
-            sportService.update(id, body)
-                .then(function(newSport) {
-                    vm.sports = vm.sports.map(function(sport) {
-                        if (sport.sport_id == newSport.sport_id) {
-                            sport.name = newSport.name;
-                        }
-                        return sport;
-                    });
-                    Materialize.toast(vm.selectedSport.originalName + ' has been updated', 3000, 'red');
-                    vm.selectedSport.originalName = newSport.name;
-                    vm.editingSport = false;
-                }); 
+                    let id = vm.selectedSport.sport_id;
+                    let body = {
+                        name: vm.selectedSport.name
+                    };
+
+                    sportService.update(id, body)
+                        .then(function(newSport) {
+                            vm.sports = vm.sports.map(function(sport) {
+                                if (sport.sport_id == newSport.sport_id) {
+                                    sport.name = newSport.name;
+                                }
+                                return sport;
+                            });
+                            Materialize.toast(vm.selectedSport.originalName + ' has been updated', 3000, 'red');
+                            vm.selectedSport.originalName = newSport.name;
+                            vm.editingSport = false;
+                        }); 
+
+                });
+
         }
 
         vm.cancelEditSport = function() {
