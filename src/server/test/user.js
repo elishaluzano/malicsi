@@ -665,7 +665,7 @@ describe('UserMockData', function() {
             'gender' : 'male',
             'birthday' : '1996-03-05',
             'email' : 'hstyles@up.edu.ph',
-            'contact_number' : '092365128784',
+            'contact_number' : '09236512878',
             'contact_person' : 26,
             'profile_pic' : null,
             'isOverallAdmin' : 0
