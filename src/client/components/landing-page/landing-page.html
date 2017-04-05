@@ -37,9 +37,9 @@
 
     <div class = "col l9">
         <div class = "row">
-            <!-- SPORT CARD
-            <sport-card ng-repeat="s in $ctrl.sports" information="s"></sport-card>
-             -->
+            <div ng-repeat="each in $ctrl.live"> <!-- class = "col s12 m8" -->
+               <sport-card information="each"></sport-card>
+            </div>
             
             <!-- EVENT-CARD -->
             <event-card ng-repeat="each in $ctrl.soonEvents" event="each">

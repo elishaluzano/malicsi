@@ -109,7 +109,14 @@
             },
 
             update: function(id, body) {
-                return $http.put(api + id, body)        
+                let options = {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                    }
+                };
+
+                return $http.put(api + id, body, options)        
                     .then(function(response) {  
                         return response.data;
                     })

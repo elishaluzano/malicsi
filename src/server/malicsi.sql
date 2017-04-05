@@ -35,7 +35,8 @@ CREATE TABLE sponsoringInstitution (
     institution_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(50) NOT NULL,
     description varchar(1000) NOT NULL,
-    picture text default NULL
+    picture text default NULL,
+    constraint sponsoringInstitution_name_uk unique key (name)
 );
 
 CREATE TABLE institutionHasAdmin (
@@ -49,24 +50,27 @@ CREATE TABLE institutionHasAdmin (
 
 CREATE TABLE venue (
     venue_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name varchar(50) NOT NULL
+    name varchar(50) NOT NULL,
+    constraint venue_name_uk unique key (name)
 );
 
 CREATE TABLE event (
     event_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     event_title varchar(50) NOT NULL,
-    venue varchar(50) NOT NULL,
+    venue_id_key int default NULL,
     start_date date NOT NULL,
     end_date date NOT NULL,
     picture text,
     institution_id_key int NOT NULL,
-    constraint event_institution_key_fk foreign key(institution_id_key) references sponsoringInstitution(institution_id)
-    ON DELETE CASCADE
+    constraint event_event_title_uk unique key (event_title),
+    constraint event_institution_key_fk foreign key(institution_id_key) references sponsoringInstitution(institution_id) ON DELETE CASCADE,
+    constraint event_venue_key_fk foreign key(venue_id_key) references venue(venue_id) ON DELETE SET NULL
 );
 
 CREATE TABLE sport (
     sport_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name varchar(20) NOT NULL
+    name varchar(20) NOT NULL,
+    constraint sport_name_uk unique key (name)
 );
 
 CREATE TABLE game (
@@ -152,15 +156,6 @@ END;
 //
 delimiter ;
 
-delimiter //
-create procedure gameUpdate(in team_id int, game_id int, score float)
-BEGIN
-update teamPlaysGame set score=score where team_id_play=team_id and game_id_play=game_id;
-insert into gameUpdateLog (team_id, game_id, score) values (team_id, game_id, score);
-END;
-//
-delimiter ;
-
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Ryan Magorian','Father','09987898765');
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Cath Kaufer','Mother', '09192969040');
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Sheerrie Linton','Sister', '09296004019');
@@ -176,3 +171,29 @@ insert into contactPersonInCaseOfEmergency values (contact_person_id,'Mar Platon
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Sam Mangilin', 'Father', '09456278569');
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Annie Sorilla', 'Mother', '09126573487');
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Francis Gonzales', 'Mother', '09126573487');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Karl Abuda', 'Brother', '09126573424');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Joven Binamera', 'Father', '09126573425');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Mark Diokno', 'Father', '09126573426');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Jim Gonzales', 'Brother', '09126573427');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Delvin Hernandez', 'Brother', '09126573428');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Neil Manzanilla', 'Father', '09126573429');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Arnold Natanauan', 'Father', '09126573430');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Christian Seda', 'Father', '09126573431');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Noah Laurel', 'Brother', '09126573432');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Kae Alo', 'Sister', '09126573434');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Gezelle Angeles', 'Sister', '09126573435');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Jeremie Bilog', 'Mother', '09126573436');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Allana Buno', 'Mother', '09126573437');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Jenneth Castillo', 'Sister', '09126573438');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Ronalyn Collado', 'Sister', '09126573439');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Rachell Cordero', 'Mother', '09126573440');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Racquel Cordero', 'Mother', '09126573441');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Herlyn Dela Rosa', 'Sister', '09126573442');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Lara Escol', 'Mother', '09126573443');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Jenalyn Escalante', 'Sister', '09126573444');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Danna Quilloy', 'Mother', '09126573445');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Gracielle Trinidad', 'Sister', '09126573446');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Cherry Jimena', 'Mother', '09126573447');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Rochelle Opulencia', 'Sister', '09126573448');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Marlou Herrero', 'Brother', '09126573449');
+insert into contactPersonInCaseOfEmergency values (contact_person_id,'Angelica Ramirez', 'Sister', '09126573450');

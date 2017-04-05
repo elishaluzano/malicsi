@@ -112,12 +112,15 @@ router.delete('/api/games/:id',gameCtrl.deleteGame);
 
 //get all teams from specific game
 router.get('/api/games/:id/teams',gameCtrl.viewTeamsInGame);
+router.get('/api/games/:id/gameinfo',gameCtrl.viewGamesInformation);
 
 var teamCtrl = require('../controllers/teamController.js');
 //team routes
 router.post('/api/teams', uploadCtrl.upload.single('picture'), teamCtrl.addTeam);
 router.get('/api/teams', teamCtrl.viewAllTeam);
 router.get('/api/teams/:id/oneteamplaysgame', teamCtrl.viewOneTeamPlaysGame);
+router.get('/api/teams/:id/getTeamsofUser', teamCtrl.getTeamsOfUser);
+router.get('/api/teams/:id/getTeamStats', teamCtrl.getTeamStats);
 router.get('/api/teams/teamplaysgame', teamCtrl.viewAllTeamPlaysGame);
 router.get('/api/teams/:id', teamCtrl.viewTeam);
 router.get('/api/teams/search/:search', teamCtrl.searchTeam);
@@ -150,4 +153,11 @@ router.get('/api/venues/search/:search', venueCtrl.searchVenue);
 router.put('/api/venues/:id', venueCtrl.updateVenue);
 router.delete('/api/venues/:id', venueCtrl.deleteVenue);
 
+var gameLogCtrl = require('../controllers/gameUpdateController.js');
+//game update log routes
+router.get('/api/gamelogs', gameLogCtrl.viewAllGamelogs);
+router.get('/api/gamelogs/:id', gameLogCtrl.viewGamelogsOfGame);
+router.post('/api/gamelogs', gameLogCtrl.addGameLog);
+router.put('/api/gamelogs/:id', gameLogCtrl.updateGameLog);
+router.delete('/api/gamelogs/:id', gameLogCtrl.deleteGameLog);
 module.exports = router;
