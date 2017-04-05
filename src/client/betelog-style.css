@@ -1,0 +1,123 @@
+html { 
+  background: url(assets/coffee_sample.gif) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;    
+  -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+::-webkit-scrollbar {
+    width: 5px;  /* remove scrollbar space */
+    background: 1;  /* optional: just make scrollbar invisible */
+}
+::-webkit-scrollbar-thumb {
+    background: #fc9948;
+}
+/*html{
+	background-color: black;
+
+}*/
+
+.indent{
+	font-style:italic;
+}
+/*FONTS*/
+@font-face{
+	font-family:FFF;
+	src:url(assets/FFF.ttf);
+}
+
+.FFF-font{
+	font-family:FFF;
+}
+
+@font-face{
+	font-family:Bebas;
+	src:url(assets/BEBAS.ttf);
+}
+
+.Bebas-font{
+	font-family:Bebas;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.red-border {
+    background-color: transparent; 
+    color: red; 
+    border: 2px solid red;
+
+}
+
+.pink-border {
+    background-color: transparent; 
+    color: #ed6f75; 
+    border: 2px solid #ed6f75;
+}
+
+.orange-border {
+    background-color: transparent; 
+    color:orange;
+    border: 2px solid orange;
+}
+
+.button-hoverable:hover{
+	background-color:orange;
+	color:white;
+}
+
+.button-hoverable-red:hover{
+	background-color:red;
+	color:white;
+}
+
+.button-hoverable-pink:hover{
+	background-color:#ed6f75;
+	color:white;
+}
+.button-hoverable-orange:hover{
+	background-color:orange;
+	color:white;
+}
+
+.button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.collapsible {
+    border:none;
+    margin: 0.5rem 0 1rem 0;
+}
+
+nav {
+    color: #fff;
+    background-color: rgba(0,0,0,0.3) !important;
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+}
