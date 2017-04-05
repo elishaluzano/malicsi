@@ -20,7 +20,6 @@
         vm.end_date = '';
         vm.eventSponsor = 'all';
         vm.eventVenue = 'all';
-
     }
 
 })();   

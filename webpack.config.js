@@ -3,6 +3,8 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CompressionPlugin = require('compression-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+
 module.exports = function(env) {
     return {
         entry: {
@@ -48,17 +50,16 @@ module.exports = function(env) {
             }),
             new webpack.optimize.AggressiveMergingPlugin(),
             new webpack.optimize.CommonsChunkPlugin({
-                name: ['vendor', 'manifest', 'betelog']
+                name: ['betelog', 'vendor', 'manifest',]
             }),
             new ExtractTextPlugin('[name].css'),
             new HtmlWebpackPlugin({
-                template: './src/client/index.html',
-                excludeChunks: ['betelog']
+                filename: 'index.html',
+                template: './src/client/index.html'
             }),
             new HtmlWebpackPlugin({
                 filename: 'betelog.html',
-                template: './src/client/betelog.html',
-                chunks: ['betelog']
+                template: './src/client/betelog.html'
             }),
             new webpack.ProvidePlugin({
                 $: 'jquery',

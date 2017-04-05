@@ -1,4 +1,4 @@
-html { 
+#betelog { 
   background: url(assets/coffee_sample.gif) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -53,7 +53,7 @@ html {
 	font-family:Bebas;
 }
 
-.button {
+#betelog .button {
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
@@ -66,55 +66,55 @@ html {
     cursor: pointer;
 }
 
-.red-border {
+#betelog .red-border {
     background-color: transparent; 
     color: red; 
     border: 2px solid red;
 
 }
 
-.pink-border {
+#betelog .pink-border {
     background-color: transparent; 
     color: #ed6f75; 
     border: 2px solid #ed6f75;
 }
 
-.orange-border {
+#betelog .orange-border {
     background-color: transparent; 
     color:orange;
     border: 2px solid orange;
 }
 
-.button-hoverable:hover{
+#betelog .button-hoverable:hover{
 	background-color:orange;
 	color:white;
 }
 
-.button-hoverable-red:hover{
+#betelog .button-hoverable-red:hover{
 	background-color:red;
 	color:white;
 }
 
-.button-hoverable-pink:hover{
+#betelog .button-hoverable-pink:hover{
 	background-color:#ed6f75;
 	color:white;
 }
-.button-hoverable-orange:hover{
+#betelog .button-hoverable-orange:hover{
 	background-color:orange;
 	color:white;
 }
 
-.button {
+#betelog .button {
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
 }
 
-.collapsible {
+#betelog .collapsible {
     border:none;
     margin: 0.5rem 0 1rem 0;
 }
 
-nav {
+#betelog nav {
     color: #fff;
     background-color: rgba(0,0,0,0.3) !important;
     width: 100%;

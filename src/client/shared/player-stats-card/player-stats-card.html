@@ -4,27 +4,20 @@
         <table class="striped">
             <thead>
                 <tr>
-                    <th>Event</th>
                     <th>Team</th>
-                    <th>Game</th>
-                    <th>Opponent/s</th>
-                    <th>Overall</th>
+                    <th>Event</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Winning Percentage of Team</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr ng-repeat="game in $ctrl.games">
-                    <td>{{ game.event }}</td>
-                    <td>{{ game.team }}</td>
-                    <td>{{ game.sport }} {{ game.type }} {{ game.round }}round</td>
-                    <td>{{ game.opponent }}</td>
-                    <td>{{ game.status }}</td>
-                </tr>
+            <tbody ng-repeat="each in $ctrl.objects">
                 <tr>
-                    <td>[Sports Event]</td>
-                    <td>[Team Name/Color]</td>
-                    <td>[Sport] (Male/Female) (X Round)</td>
-                    <td>[Opponent Team]</td>
-                    <td>[Status]</td>
+                    <td>{{ each.name }}</td>
+                    <td>{{ each.event_title }}</td>
+                    <td>{{ each.wins }}</td>
+                    <td>{{ each.losses }}</td>
+                    <td>{{ each.percentage }}%</td>
                 </tr>
             </tbody>
         </table>
