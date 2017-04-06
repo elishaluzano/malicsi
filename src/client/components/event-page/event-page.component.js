@@ -18,14 +18,10 @@
         
         vm.$onInit = function() {
             let toDate = new Date().getTime();
-            let startDate = new Date(vm.event.start_date)//.getTime();
-            let endDate = new Date(vm.event.end_date)//.getTime();
-            console.log("startDate");
-            console.log(startDate);
-            console.log("endDate");
-            endDate = addDate(endDate, 1)
-            console.log(end_date);
-
+            let startDate = new Date(vm.event.start_date);//.getTime();
+            let endDate = new Date(vm.event.end_date);//.getTime();
+            endDate = addDate(endDate, 1);
+    
 
             if (toDate >= startDate && toDate <= endDate) {
                 vm.status = 'Live';
