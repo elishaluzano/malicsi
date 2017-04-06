@@ -86,6 +86,30 @@
                         console.log('Error in getting game information');
                         console.log(error.status + ': ' + error.statusText);
                     });
+            },
+
+
+            endGame: function(id) {
+                return $http.put(api + id + '/endgame')
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(error) {
+                        console.log('Error in ending game');
+                        console.log(error.status + ': ' + error.statusText);
+                    });
+            },
+
+
+            openGame: function(id) {
+                return $http.put(api + id + '/opengame')
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(error) {
+                        console.log('Error in re-opening game');
+                        console.log(error.status + ': ' + error.statusText);
+                    });
             }
         };
 
