@@ -154,6 +154,20 @@ insert into teamPlaysGame (team_id_play, game_id_play) values (team_id, game_id)
 insert into gameUpdateLog (team_id, game_id) values (team_id, game_id);
 END;
 //
+
+create procedure gameUpdate(in team_id int, game_id int, point float)
+BEGIN
+insert gameUpdateLog (team_id, game_id, score) values (team_id, game_id, point);
+update teamPlaysGame set score = score + point where team_id_play = team_id and game_id_play = game_id;
+END;
+//
+
+create procedure editGameLog(in id int, team_id int, game_id int, point float, prev_score float)
+BEGIN
+update gameUpdateLog set score = point and team_id = team_id and game_id = game_id where gameUpdateLog_id = id;
+update teamPlaysGame set score = (score - prev_score) + point where team_id_play = team_id and game_id_play = game_id;
+END;
+//
 delimiter ;
 
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Ryan Magorian','Father','09987898765');
