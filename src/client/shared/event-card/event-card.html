@@ -5,7 +5,7 @@
            <img ng-src="{{ $ctrl.event.picture }}" alt="event logo"
             style="height: 63vh;">
         </a>
-        <span class="card-title black-text">{{ $ctrl.event.event_title }}</span>
+        <a class="card-title black-text" ui-sref="eventPage({ eventId: $ctrl.event.event_id })">{{ $ctrl.event.event_title }}</a>
 
       <!-- Settings button is available only for Admin-->
       <!-- Settings button is either gray or not visible to guest and normal user-->
