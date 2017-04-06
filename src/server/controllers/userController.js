@@ -41,7 +41,7 @@ exports.addUser = (req, res) => {
 		email : req.body.email,
 		contact_number : req.body.contact_number,
 		contact_person : req.body.contact_person,
-		profile_pic : (req.file)? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : '',
+		profile_pic : req.body.profile_pic,
 		isOverallAdmin : req.body.isOverallAdmin
 	};
 	connection.query('INSERT INTO user SET ?', newUser, function(err, rows, fields) {

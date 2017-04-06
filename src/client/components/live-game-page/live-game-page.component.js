@@ -24,6 +24,7 @@
         vm.idToBeChanged  = '';
         vm.scoreUpdate = '';
         vm.isAdmin = false;
+        vm.isOverallAdmin = false;
         vm.scoreToBeChanged = '';
         var ids = [];
         var vals = {};
@@ -38,8 +39,9 @@
             console.log(vm.scores);
 
 
-
             vm.currentUser = sessionService.user();
+
+            
 
             for(let event of vm.events){
                 if(event.event_id == vm.game.event_id){
@@ -48,6 +50,7 @@
             }
 
             if(vm.currentUser){
+                vm.isOverallAdmin = vm.currentUser.isOverallAdmin;
                 adminService.checkAdminOfGame(vm.currentUser.user_id, vm.game.game_id)
                     .then(function(game){
                         if(game){
@@ -82,6 +85,10 @@
                     vm.scores.splice(i, 1);
                     break;
                 }
+            }
+
+            var params = {
+                prev_score: vm.scoreToBeChanged
             }
 
             console.log(vm.scores);
@@ -203,6 +210,28 @@
                     Materialize.toast('Unsuccessfully added a score!', 2000, 'red');
                 })
             vm.reset();
+        }
+
+        vm.endGame = function(){
+            gameService.endGame(vm.game.game_id)
+                .then(function(data){
+                    vm.game.status = 'FINISHED';
+                    Materialize.toast('Successfully ended game!', 2000, 'red');
+                })
+                .catch(function(data){
+                    Materialize.toast('Unsuccessfully ended game!', 2000, 'red');
+                })
+        }
+
+        vm.openGame = function(){
+            gameService.openGame(vm.game.game_id)
+                .then(function(data){
+                    vm.game.status = 'ONGOING';
+                    Materialize.toast('Successfully opened game!', 2000, 'red');
+                })
+                .catch(function(data){
+                    Materialize.toast('Unsuccessfully opened game!', 2000, 'red');
+                })
         }
         
     }
