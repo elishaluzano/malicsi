@@ -26,9 +26,13 @@
 			let user = sessionService.user();
 			adminService.checkAdmin(user.user_id)
 				.then(function(admin) {
-					if (admin.institution_no && vm.institution.institution_id == admin.institution_no) {
-						vm.admin = admin;
+					for(let x of admin){
+						if (x.institution_no && vm.institution.institution_id == x.institution_no) {
+							vm.admin = admin;
+							break;
+						}
 					}
+					
 				});
 		}
 

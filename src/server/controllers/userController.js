@@ -165,7 +165,7 @@ exports.checkAdmin = (req, res) => {
     connection.query('SELECT * FROM user JOIN institutionHasAdmin ON user.user_id = institutionHasAdmin.user_no where user.user_id = ?', [req.params.id], function(err, rows, fields) {
         if (!err){
             if (rows.length !== 0){
-                res.send(rows[0]);
+                res.send(rows);
                 console.log("User is an admin");
             }
             else {

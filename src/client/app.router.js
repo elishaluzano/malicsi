@@ -42,8 +42,11 @@
                     teamsInGame: function(gameService, $transition$){
                         return gameService.getTeamsInGame($transition$.params().gameId);
                     },
-                    scores: function(gameService, $transition$){
-                        return [];
+                    scores: function(gameLogService, $transition$){
+                        return gameLogService.getOne($transition$.params().gameId);
+                    },
+                    events: function(eventService){
+                        return eventService.getAll();
                     }
                 }
             })

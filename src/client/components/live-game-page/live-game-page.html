@@ -18,8 +18,8 @@
     <div class="col s12">
       <div class="container">
       <ul class="tabs">
-        <li class="tab col s4"><a href="#test1" class="active"><div class="chip black white-text">Players</div></a></li>
-        <li class="tab col s4"><a href="#test2" ><div class="chip black white-text">History</div></a></li>
+        <li class="tab col s4 disabled"><a href="#test1"><div class="chip grey white-text">Players</div></a></li>
+        <li class="tab col s4 disabled"><a href="#test2" class="active"><div class="chip black white-text">History</div></a></li>
         <li class="tab col s4 disabled"><a href="#test3"><div class="chip grey white-text">Stat</div></a></li>
       </ul>
     </div>
@@ -49,19 +49,23 @@
 
 
     </div>
+
     <div id="test2" class="col s12 l12">
       <div class = "container" style = "max-height:200px;overflow-y:scroll;background-color:#f4f4f4;">
         <br>
-        <div ng-repeat="score in $ctrl.scores" ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'" style="width:100%"><span ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'"><div ng-class = "(score.teamVal % 2) == 0 ? 'red' : 'blue'" class = "chip white-text">{{score.team_id}} scores {{score.score}} points</div>
-        <a href="#delete-history"><i class = "material-icons" style = "top:5px;position:relative;">delete</i></a>
-        <a href="#edit-history"><i class = "material-icons" style = "top:5px;position:relative;">edit</i></a>
-        <p class = "center-align grey-text" style ="margin-top:0em;">{{score.time}}</p></span>
+        <div ng-repeat="score in $ctrl.scores" ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'" style="width:100%"><span ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'"><div ng-class = "(score.teamVal % 2) == 0 ? 'red' : 'blue'" class = "chip white-text">{{score.name}} scores {{score.score}} points</div>
+
+        <a href="" modal data-target="delete-history" ng-click="$ctrl.getId(score.gameUpdateLog_id)" ng-if="$ctrl.isAdmin && $ctrl.game.status != 'ONGOING'"><i class = "material-icons" style = "top:5px;position:relative;">delete</i></a>
+
+        <a href="" modal data-target="edit-history" ng-click="$ctrl.getId(score.gameUpdateLog_id, score.score)" ng-if="$ctrl.isAdmin &&  $ctrl.game.status != 'ONGOING'"><i class = "material-icons" style = "top:5px;position:relative;">edit</i></a>
+
+        <p class = "center-align grey-text" style ="margin-top:0em;">{{score.time | date: "MM-dd-yyyy hh:mm a"}}</p></span>
         </div> 
 
       </div>
       <div class = "container">
       <br>
-      <a class = "chip orange white-text right" href="#update-history-modal" >Update live</a>
+      <a class = "chip orange white-text right" data-target="update-history-modal" href="" modal ng-if="$ctrl.isAdmin && $ctrl.game.status!= 'ONGOING'">Update live</a>
      </div>
     </div>
     
@@ -77,56 +81,37 @@
 
 <!-- update-history-modal -->
 <div id="update-history-modal" class="modal">
-    <div class="modal-content">
-      <h5>Update history</h5>
-      <div class="divider"></div>
-      <div class = "container">
-        <form>
-          <br>
-          <div class = "row">
-            <div class = "col s12 l12">
-              <div class="input-field">
-                <select>
-                  <option value="" disabled selected>Select Team</option>
-                  <option value="1" data-icon="" class = "right circle">Red Lions</option>
-                  <option value="2" data-icon="" class = "right circle">Blue Tigers</option>
-                </select>
-                <label>Team Select</label>
-              </div>
-              <div class ="input-field">
-                <input id = "icon_prefix" type = "number" placeholder="" >
-              </div>
+  <div class="modal-content">
+    <h5>Update history</h5>
+    <div class="divider"></div>
+    <div class = "container">
+      <form>
+        <br>
+        <div class = "row">
+          <div class = "col s12 l12">
+            <div input-field>
+              <select class="" ng-model="$ctrl.teamToBeUpdated" material-select watch>
+
+                <option value="" disabled selected>Select Team</option>
+
+                <option ng-repeat="team in $ctrl.teamsInGame" ng-value="team.team_id">{{team.name}}</option>
+              </select>
+
+              <label>Team Select</label>
+            </div>
+            <div class ="input-field">
+              <input id = "icon_prefix" type = "number" placeholder="" ng-model="$ctrl.score" >
             </div>
           </div>
-          <div class="modal-footer">
-          <input type ="submit" value = "Submit" class = "btn right modal-action modal-close">
-          </div>
-        </form>
-      </div>
+        </div>
+        <div class="modal-footer">
+        <button ng-click="$ctrl.addLog()" class = "btn right modal-action modal-close">Submit</button>
+        <button ng-click="$ctrl.reset()" class = "btn right modal-action modal-close">Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
-
-
-<!-- EDIT SCORE MODAL-->
-  <div id="edit-score" class="modal">
-    <div class="modal-content">
-      <h5>Update score</h5>
-      <div class="divider"></div>
-      <div class = "container">
-        <form>
-          <div class ="input-field">
-            <img src ="" style="width:10%;">
-            <input id = "icon_prefix" type = "number" placeholder="12">
-          </div>
-          <div class ="input-field">
-            <img src ="" style="width:10%;">
-            <input id = "icon_prefix" type = "number" placeholder="13">
-          </div>
-          <input type ="submit" value = "Submit" class = "btn right modal-action modal-close">
-        </form>
-      </div>
-    </div>
-  </div>
+</div>
 
 <!-- Edit history log -->
 <div id="edit-history" class="modal">
@@ -135,28 +120,29 @@
       <div class="divider"></div>
       <div class = "container">
         <form>
-          <br>
-          <div class = "row">
-            <div class = "col s12 l12">
-              <div class="input-field">
-                <select>
-                  <option value="" disabled selected>Select Team</option>
-                  <option value="1" data-icon="" class = "right circle">Red Lions</option>
-                  <option value="2" data-icon="" class = "right circle">Blue Tigers</option>
-                </select>
-                <label>Team Select</label>
-              </div>
-              <div class ="input-field">
-                <input id = "icon_prefix" type = "number" placeholder="" >
-              </div>
+        <br>
+        <div class = "row">
+          <div class = "col s12 l12">
+            <div input-field>
+              <select class="" ng-model="$ctrl.teamToBeEdited" material-select watch>
+
+                <option value="" disabled selected>Select Team</option>
+
+                <option ng-repeat="team in $ctrl.teamsInGame" ng-value="team.team_id">{{team.name}}</option>
+              </select>
+
+              <label>Team Select</label>
+            </div>
+            <div class ="input-field">
+              <input id = "icon_prefix" type = "number" placeholder="" ng-model="$ctrl.scoreUpdate" >
             </div>
           </div>
-          <div class="modal-footer">
-          <a class = "right modal-action modal-close" value = "submit" type = "submit"><div class = "chip green white-text">Confirm</div></a>
-          <a class = "right modal-action modal-close" value = "submit" type = "submit"><div class = "chip red white-text">Cancel</div></a>
-
-          </div>
-        </form>
+        </div>
+        <div class="modal-footer">
+        <button ng-click="$ctrl.editLog()" class = "btn right modal-action modal-close">Submit</button>
+        <button ng-click="$ctrl.reset()" class = "btn right modal-action modal-close">Cancel</button>
+        </div>
+      </form>
       </div>
     </div>
   </div>
@@ -170,7 +156,8 @@
         <p>Are you sure you want to delete this history log?</p>
           <div class="modal-footer">
           <!-- <input type ="submit" value = "Submit" class = " right modal-action modal-close"> -->
-          <a class = "right modal-action modal-close" value = "submit" type = "submit"><div class = "chip green white-text">Confirm</div></a>
+          <a class = "right modal-action modal-close" value = "submit" type = "submit" ng-click="$ctrl.deleteLog($ctrl.idToBeChanged)"><div class = "chip green white-text">Confirm</div></a>
+
           <a class = "right modal-action modal-close" value = "submit" type = "submit"><div class = "chip red white-text">Cancel</div></a>
           </div>
 
