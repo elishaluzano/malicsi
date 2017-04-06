@@ -32,9 +32,11 @@
                 
                 if (vm.user) {
                      adminService.getInstitutionsByAdmin(vm.user.user_id)
-                        .then(function (user) {
-                            if (user) {
-                                vm.institutions.push(user);
+                        .then(function (institutions) {
+                            if (institutions) {
+                                for(let inst of institutions){
+                                    vm.institutions.push(inst);
+                                }
                                 vm.isAdmin = true;
                             }
                         });
@@ -45,15 +47,20 @@
             vm.addEvent = function() {
                 const body = {
                     event_title: vm.event_title,
-                    venue: vm.venue,
+                    venue_id_key: vm.venue,
                     start_date: (new Date(vm.start_date)).toISOString().substring(0, 10),
                     end_date: (new Date(vm.end_date)).toISOString().substring(0, 10),
                     institution_id_key: vm.ins
                 }
+
                 
                 eventService.create(body)
                     .then(function(data) {
+                        vm.events.push(data);
                         Materialize.toast("Successfully added an event!", 3000);
+                    })
+                    .catch(function(data){
+                        Materialize.toast("Unsuccessfully added an event!", 3000);
                     })
             }
 

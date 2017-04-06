@@ -180,21 +180,79 @@ exports.checkAdmin = (req, res) => {
     });
 };
 
+exports.checkAdminOfInstitution = (req, res) => {
+    connection.query('SELECT * FROM institutionHasAdmin WHERE user_no = ? AND institution_no = ?', [req.params.user_id, req.params.institution_id], function(err, rows, fields) {
+        if (!err){
+            if (rows[0] !== null){
+                res.send(rows[0]);
+                console.log("User is an admin of sponsoring institution");
+            }
+            else {
+                res.send(null);
+                console.log("User is not an admin of sponsoring institution");
+            }
+        }
+        else {
+            res.send(err);
+            console.log("Error in checking admin of sponsoring institution");
+        }
+    });  
+};
+
+exports.checkAdminOfEvent = (req, res) => {
+    connection.query('SELECT * FROM event, institutionHasAdmin WHERE institution_id_key = institution_no and user_no = ? and event_id = ?', [req.params.user_id, req.params.event_id], function(err, rows, fields) {
+        if (!err){
+            if (rows[0] !== null){
+                res.send(rows[0]);
+                console.log("User is an admin of event");
+            }
+            else {
+                res.send(null);
+                console.log("User is not an admin of event");
+            }
+        }
+        else {
+            res.send(err);
+            console.log("Error in checking admin of event");
+        }
+    });  
+};
+
+
 exports.checkAdminOfTeam = (req, res) => {
     connection.query('select * from user u join institutionHasAdmin iha join event e join team t on u.user_id = iha.user_no and iha.institution_no = e.institution_id_key and t.event_id_key = e.event_id and u.user_id = ? and t.team_id = ?', [req.params.user_id, req.params.team_id], function(err, rows, fields) {
         if (!err){
             if (rows[0] !== null){
                 res.send(rows[0]);
-                console.log("User is an admin");
+                console.log("User is an admin of team");
             }
             else {
                 res.send(null);
-                console.log("User is not an admin");
+                console.log("User is not an admin of team");
             }
         }
         else {
             res.send(err);
-            console.log("Error in checking admin");
+            console.log("Error in checking admin of team");
+        }
+    });
+}
+
+exports.checkAdminOfGame = (req, res) => {
+    connection.query('SELECT * FROM event e, institutionHasAdmin, game g WHERE institution_id_key = institution_no and g.event_id = e.event_id and user_no = ? and game_id = ?;', [req.params.user_id, req.params.game_id], function(err, rows, fields) {
+        if (!err){
+            if (rows[0] !== null){
+                res.send(rows[0]);
+                console.log("User is an admin of game");
+            }
+            else {
+                res.send(null);
+                console.log("User is not an admin of game");
+            }
+        }
+        else {
+            res.send(err);
+            console.log("Error in checking admin of game");
         }
     });
 }
@@ -203,7 +261,7 @@ exports.getInstitutionByAdmin = (req, res) => {
     connection.query('SELECT * FROM user JOIN institutionHasAdmin JOIN sponsoringInstitution ON user.user_id = institutionHasAdmin.user_no AND institutionHasAdmin.institution_no = sponsoringInstitution.institution_id where user.user_id = ?', [req.params.id], function(err, rows, fields) {
         if (!err){
             if (rows[0] !== null){
-                res.send(rows[0]);
+                res.send(rows);
                 console.log("User is an admin");
             }
             else {

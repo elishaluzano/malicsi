@@ -48,15 +48,10 @@
             }
 
             if(vm.currentUser){
-                adminService.checkAdmin(vm.currentUser.user_id)
-                    .then(function(data){
-                        if(data){
-                            for(let x of data){
-                                if(x.institution_no == vm.institutionId){
-                                    vm.isAdmin = true;
-                                    break;
-                                }
-                            }
+                adminService.checkAdminOfGame(vm.currentUser.user_id, vm.game.game_id)
+                    .then(function(game){
+                        if(game){
+                            vm.isAdmin = true;
                         }
                     })
                     .catch(function(e){
