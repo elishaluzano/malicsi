@@ -1,5 +1,4 @@
 window.onload = function(){
-    
     var d = new Date();
     var month_name = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     var month = d.getMonth();   //0-11
@@ -17,16 +16,82 @@ window.onload = function(){
 
 
     document.getElementById("calendar-month-year").innerHTML = month_name[month]+" "+year;
-    document.getElementById("calendar-dates").appendChild(calendar);
+
+     document.getElementById("calendar-dates").appendChild(calendar);
 }
 
 function prevMonth(){
+    // var r = document.getElementById("calendar-month-year").innerHTML.split(" ");
+    // var month = r[0];   //get month
+    // var year = r[1];    //get year
 
+    // console.log(month);
+    // console.log(year);
+
+    var d = document.getElementById("calendar-month-year").innerHTML;
+    d = new Date(d);
+    d.setMonth(d.getMonth() -1 );
+    console.log(d);
+    var month_name = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var month = d.getMonth();   //0-11
+    var year = d.getFullYear(); //2014
+    var first_date = month_name[month] + " " + 1 + " " + year;
+    //September 1 2014
+    var tmp = new Date(first_date).toDateString();
+    //Mon Sep 01 2014 ...
+    var first_day = tmp.substring(0, 3);    //Mon
+    var day_name = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var day_no = day_name.indexOf(first_day);   //1
+    var days = new Date(year, month+1, 0).getDate();    //30
+    //Tue Sep 30 2014 ...
+    var calendar = get_calendar(day_no, days);
+    document.getElementById("calendar-month-year").innerHTML = month_name[month]+" "+year;
+    // console.log(document.getElementById("calendar-dates"));
+    // document.getElementById("calendar-dates").innerHTML = calendar;
+    // console.log(calendar);
+    var list = document.getElementById("calendar-dates");
+
+    list.innerHTML = " ";
+    console.log(calendar);
+    list.appendChild(calendar);
+    console.log(list);
+    
 }
 
 function nextMonth(){
+    var d = document.getElementById("calendar-month-year").innerHTML;
+    d = new Date(d);
+    d.setMonth(d.getMonth() + 1 );
+    console.log(d);
+    var month_name = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var month = d.getMonth();   //0-11
+    var year = d.getFullYear(); //2014
+    var first_date = month_name[month] + " " + 1 + " " + year;
+    //September 1 2014
+    var tmp = new Date(first_date).toDateString();
+    //Mon Sep 01 2014 ...
+    var first_day = tmp.substring(0, 3);    //Mon
+    var day_name = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var day_no = day_name.indexOf(first_day);   //1
+    var days = new Date(year, month+1, 0).getDate();    //30
+    //Tue Sep 30 2014 ...
+    var calendar = get_calendar(day_no, days);
+    document.getElementById("calendar-month-year").innerHTML = month_name[month]+" "+year;
+    // console.log(document.getElementById("calendar-dates"));
+    // document.getElementById("calendar-dates").innerHTML = calendar;
+    // console.log(calendar);
+    var list = document.getElementById("calendar-dates");
+
+    list.innerHTML = " ";
+    console.log(calendar);
+    list.appendChild(calendar);
+    console.log(list);
 
 }
+
+
+
+
 
 function get_calendar(day_no, days){
 
@@ -99,4 +164,3 @@ function get_calendar(day_no, days){
     }
 	return table;
 }
-
