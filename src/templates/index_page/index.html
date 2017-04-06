@@ -131,7 +131,7 @@
  -->
             <br>
             <div class = "row">
-			<div class = "col l3 s12 m3">
+			<div class = "col l3 m3 hide-on-small-only">
 				<ul class="collapsible" data-collapsible="expandable">
 					<li>
 						<div class="collapsible-header active"><div class = "chip green white-text">Live</div>Malicsi 2018 Intergames Standing</div>
@@ -203,18 +203,19 @@
 
 
 
-			<div class = "col l9">
+			<div class = "col l9 s12 m9">
 				<div class = "row">
 					<div class="slider">
 						<ul class="slides">
 							<li>
-								<div class="row">
-									<div class="col l12">
-										<div class="card"">
+								<div class="card" id="slide-cards">
+									<div class="row">
+										<div class="col l1"><button id="prev" onclick="prevFunction()">prev</button></div>
+										<div class="col l10">
 											<div class="card-header">
 												<h5>&nbsp<div class = "chip green white-text">Live</div>&nbsp Basketball-Mens</h5>
 											</div>
-											<div class="card-content">
+											<div class="card-content" id="chepar">
 												<table class = "highlight">
 													<thead>
 														<tr>
@@ -234,8 +235,29 @@
 															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
 															<td><a href = "#">Institute of Computer Science</a></td>
 															<td>Copeland Gym</td>
-															</tr>
-															<tr>
+														</tr>
+														<tr>
+															<td><a href = "#">Team 3</a> vs <a href="">Team 4</a></td>
+															<td>30 - 45</td>
+															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
+															<td><a href = "#">Institute of Computer Science</a></td>
+															<td>Copeland Gym</td>
+														</tr>
+														<tr>
+															<td><a href = "#">Team 3</a> vs <a href="">Team 4</a></td>
+															<td>30 - 45</td>
+															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
+															<td><a href = "#">Institute of Computer Science</a></td>
+															<td>Copeland Gym</td>
+														</tr>
+														<tr>
+															<td><a href = "#">Team 3</a> vs <a href="">Team 4</a></td>
+															<td>30 - 45</td>
+															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
+															<td><a href = "#">Institute of Computer Science</a></td>
+															<td>Copeland Gym</td>
+														</tr>
+														<tr>
 															<td><a href = "#">Team 3</a> vs <a href="">Team 4</a></td>
 															<td>30 - 45</td>
 															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
@@ -246,16 +268,18 @@
 												</table>
 											</div>
 										</div>
+										<div class="col l1"><button id="next" onclick="nextFunction()">next</button></div>
 									</div>
 								</div>
 							</li>
 							
 							<li>
-								<div class="row">
-									<div class="col l12">
-										<div class="card">
+								<div class="card" id="slide-cards">
+									<div class="row">
+										<div class="col l1"><button id="prev" onclick="prevFunction()">prev</button></div>
+										<div class="col l10">
 											<div class="card-header">
-												<h5>&nbsp<div class = "chip green white-text">Live</div>&nbsp Volleyball</h5>
+												<h5>&nbsp<div class = "chip green white-text">Live</div>&nbsp Volleyball-Mens</h5>
 											</div>
 											<div class="card-content">
 												<table class = "highlight">
@@ -273,14 +297,14 @@
 													<tbody>
 														<tr>
 															<td><a href = "#">Team 1</a> vs <a href="">Team 2</a></td>
-															<td>50 - 20</td>
+															<td>2 - 2</td>
 															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
 															<td><a href = "#">Institute of Computer Science</a></td>
 															<td>Copeland Gym</td>
 															</tr>
 															<tr>
 															<td><a href = "#">Team 3</a> vs <a href="">Team 4</a></td>
-															<td>30 - 45</td>
+															<td>2018 - 1</td>
 															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
 															<td><a href = "#">Institute of Computer Science</a></td>
 															<td>Copeland Gym</td>
@@ -289,14 +313,16 @@
 												</table>
 											</div>
 										</div>
+										<div class="col l1"><button id="next" onclick="nextFunction()">next</button></div>
 									</div>
 								</div>
 							</li>
 							
 							<li>
-								<div class="row">
-									<div class="col l12">
-										<div class="card">
+								<div class="card" id="slide-cards" >
+									<div class="row">
+										<div class="col l1"><button id="prev" onclick="prevFunction()">prev</button></div>
+										<div class="col l10">
 											<div class="card-header">
 												<h5>&nbsp<div class = "chip green white-text">Live</div>&nbsp Table Tennis</h5>
 											</div>
@@ -316,14 +342,49 @@
 													<tbody>
 														<tr>
 															<td><a href = "#">Team 1</a> vs <a href="">Team 2</a></td>
-															<td>50 - 20</td>
+															<td>17 - 20</td>
 															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
 															<td><a href = "#">Institute of Computer Science</a></td>
 															<td>Copeland Gym</td>
-															</tr>
-															<tr>
+														</tr>
+														<tr>
 															<td><a href = "#">Team 3</a> vs <a href="">Team 4</a></td>
-															<td>30 - 45</td>
+															<td>18 - 19</td>
+															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
+															<td><a href = "#">Institute of Computer Science</a></td>
+															<td>Copeland Gym</td>
+														</tr>
+														<tr>
+															<td><a href = "#">Team 3</a> vs <a href="">Team 4</a></td>
+															<td>18 - 19</td>
+															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
+															<td><a href = "#">Institute of Computer Science</a></td>
+															<td>Copeland Gym</td>
+														</tr>
+														<tr>
+															<td><a href = "#">Team 3</a> vs <a href="">Team 4</a></td>
+															<td>18 - 19</td>
+															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
+															<td><a href = "#">Institute of Computer Science</a></td>
+															<td>Copeland Gym</td>
+														</tr>
+														<tr>
+															<td><a href = "#">Team 3</a> vs <a href="">Team 4</a></td>
+															<td>18 - 19</td>
+															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
+															<td><a href = "#">Institute of Computer Science</a></td>
+															<td>Copeland Gym</td>
+														</tr>
+														<tr>
+															<td><a href = "#">Team 3</a> vs <a href="">Team 4</a></td>
+															<td>18 - 19</td>
+															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
+															<td><a href = "#">Institute of Computer Science</a></td>
+															<td>Copeland Gym</td>
+														</tr>
+														<tr>
+															<td><a href = "#">Team 3</a> vs <a href="">Team 4</a></td>
+															<td>18 - 19</td>
 															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
 															<td><a href = "#">Institute of Computer Science</a></td>
 															<td>Copeland Gym</td>
@@ -332,16 +393,18 @@
 												</table>
 											</div>
 										</div>
+										<div class="col l1"><button id="next" onclick="nextFunction()">next</button></div>
 									</div>
 								</div>
 							</li>
 							
 							<li>
-								<div class="row">
-									<div class="col l12">
-										<div class="card">
+								<div class="card" id="slide-cards">
+									<div class="row">
+										<div class="col l1"><button id="prev" onclick="prevFunction()">prev</button></div>
+										<div class="col l10">
 											<div class="card-header">
-												<h5>&nbsp<div class = "chip green white-text">Live</div>&nbsp Philippine Games</h5>
+												<h5>&nbsp<div class = "chip green white-text">Live</div>&nbsp Badminton</h5>
 											</div>
 											<div class="card-content">
 												<table class = "highlight">
@@ -359,14 +422,14 @@
 													<tbody>
 														<tr>
 															<td><a href = "#">Team 1</a> vs <a href="">Team 2</a></td>
-															<td>50 - 20</td>
+															<td>6-12</td>
 															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
 															<td><a href = "#">Institute of Computer Science</a></td>
 															<td>Copeland Gym</td>
 															</tr>
 															<tr>
 															<td><a href = "#">Team 3</a> vs <a href="">Team 4</a></td>
-															<td>30 - 45</td>
+															<td>4-4</td>
 															<td><a href = "#"><div class = "chip">Malicsi Intergames 2018</div></a></td>
 															<td><a href = "#">Institute of Computer Science</a></td>
 															<td>Copeland Gym</td>
@@ -375,12 +438,14 @@
 												</table>
 											</div>
 										</div>
+										<div class="col l1"><button id="next" onclick="nextFunction()">next</button></div>
 									</div>
 								</div>
 							</li>
 						</ul>
 					</div>
-					
+
+					<br>
 
 					<div class="col l4">
 						<div class="hoverable card" >

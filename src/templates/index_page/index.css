@@ -85,5 +85,32 @@
 .slider .slides {
     background-color: #ffffff;
     margin: 0;
+    height: 500px;
+}
+
+#slide-cards {
+    overflow-y: scroll;
+}
+
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+::-webkit-scrollbar {
+    width: 5px;  /* remove scrollbar space */
+    background: 1;  /* optional: just make scrollbar invisible */
+}
+::-webkit-scrollbar-thumb {
+    background: #fc9948;
+}
+
+#chepar {
+    overflow-y: scroll;
     height: 400px;
 }
