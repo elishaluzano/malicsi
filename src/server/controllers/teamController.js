@@ -155,7 +155,7 @@ exports.getTeamsOfUser = (req,res) => {
 };
 
 exports.getTeamStats = (req,res) => {
-	connection.query('select distinct event_title, team.name, (select count(record) from teamPlaysGame where record = "WIN" and team_id_play = ?) as wins, (select count(record) from teamPlaysGame where record = "LOSE" and team_id_play = ?) as losses, ((select count(record) from teamPlaysGame where record = "WIN" and team_id_play = ?)/(select count(record) from teamPlaysGame where team_id_play = ?)) as percentage from event join team join teamPlaysGame on event_id = event_id_key and team_id = team_id_play where team_id = ?',[ req.params.id,req.params.id,req.params.id,req.params.id,req.params.id ], function(err, rows, fields){
+	connection.query('select distinct event_title, team.name, (select count(record) from teamPlaysGame where record = "WIN" and team_id_play = ?) as wins, (select count(record) from teamPlaysGame where record = "LOSE" and team_id_play = ?) as losses, (((select count(record) from teamPlaysGame where record = "WIN" and team_id_play = ?)/(select count(record) from teamPlaysGame where team_id_play = ?)) * 100) as percentage from event join team join teamPlaysGame on event_id = event_id_key and team_id = team_id_play where team_id = ?',[ req.params.id,req.params.id,req.params.id,req.params.id,req.params.id ], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
@@ -173,7 +173,11 @@ exports.getIsUserOfTeam = (req,res) => {
             res.send(err);
          }
         else {
-            res.send(rows);
+            if (rows.length) {
+                res.send(rows[0]);
+            } else {
+                res.send(null);
+            }
         }
 	});
 };

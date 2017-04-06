@@ -97,6 +97,18 @@
                     }); 
             },
 
+            
+            createSport: function(body) {
+                return $http.post('/api/events/sports', body)
+                    .then(function(response) {  
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in creating sport for event.');
+                        console.log(err.status + ': ' + err.statusText);
+                });
+            },
+
             create: function(body) {
                 return $http.post(api, body)        
                     .then(function(response) {  
@@ -133,6 +145,17 @@
                     })
                     .catch(function(err) {
                         console.log('Error in deleting an event.');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
+            deleteSport: function(eventId, sportId) {
+                return $http.delete(api + eventId + '/sports/' + sportId)
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in deleting a sport of the event.');
                         console.log(err.status + ': ' + err.statusText);
                     });
             }

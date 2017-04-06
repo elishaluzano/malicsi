@@ -1,8 +1,11 @@
 <div class="col s12 m6 l3">
   <div class="hoverable card">
     <div class="card-image">
-       <a ui-sref="eventPage({ eventId: $ctrl.event.event_id })"><img ng-src="/images/engmeet2017.jpg"></a>
-        <span class="card-title black-text">{{ $ctrl.event.event_title }}</span>
+       <a ui-sref="eventPage({ eventId: $ctrl.event.event_id })">
+           <img ng-src="{{ $ctrl.event.picture }}" alt="event logo"
+            style="height: 63vh;">
+        </a>
+        <a class="card-title black-text" ui-sref="eventPage({ eventId: $ctrl.event.event_id })">{{ $ctrl.event.event_title }}</a>
 
       <!-- Settings button is available only for Admin-->
       <!-- Settings button is either gray or not visible to guest and normal user-->

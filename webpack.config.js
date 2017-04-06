@@ -3,11 +3,13 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CompressionPlugin = require('compression-webpack-plugin');
+
 module.exports = function(env) {
     return {
         entry: {
             main: './src/client/app.module.js',
-            vendor: './src/vendor.js'
+            vendor: './src/vendor.js',
+            betelog: './src/betelog.js'
         },
         output: {
             filename: '[name].js',
@@ -30,7 +32,7 @@ module.exports = function(env) {
                     use: "file-loader" 
                 }, 
                 {
-                    test: /\.(jpg|gif|png)$/,
+                    test: /\.(jpg|gif|png|ico)$/i,
                     use: 'file-loader?name=images/[name].[ext]'
                 },
                 {
@@ -47,11 +49,16 @@ module.exports = function(env) {
             }),
             new webpack.optimize.AggressiveMergingPlugin(),
             new webpack.optimize.CommonsChunkPlugin({
-                name: ['vendor', 'manifest']
+                name: ['betelog', 'vendor', 'manifest',]
             }),
-            new ExtractTextPlugin('style.css'),
+            new ExtractTextPlugin('[name].css'),
             new HtmlWebpackPlugin({
+                filename: 'index.html',
                 template: './src/client/index.html'
+            }),
+            new HtmlWebpackPlugin({
+                filename: 'betelog.html',
+                template: './src/client/betelog.html'
             }),
             new webpack.ProvidePlugin({
                 $: 'jquery',

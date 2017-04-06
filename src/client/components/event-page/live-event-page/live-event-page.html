@@ -13,6 +13,7 @@
                 </span>
 
                 <a class="chip orange white-text pointer"
+                    ng-if="$ctrl.isAdmin"
                     id="edit-event"
                     data-target="edit-event-modal"
                     ng-click="$ctrl.editEvent()"
@@ -21,6 +22,7 @@
                 </a>
                 
                 <a class="chip red white-text pointer"
+                    ng-if="$ctrl.isAdmin"
                     id="delete-event"
                     data-target="delete-event-modal"
                     modal>
@@ -84,24 +86,105 @@
             <div ng-show="$ctrl.isTeamsTab"
                 id="teams"
                 class="tabcontent">
-                <div class="row">
-                    <table class="col s12">
-                        <tbody>
-                            <tr ng-repeat="team in $ctrl.teams"
-                                ng-if="team.event_id_key === $ctrl.event.event_id">
-                                <td>{{ team.name }}</td>
-                                <td>
-                                    <a href=""></a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="row" ng-repeat="team in $ctrl.teams">
+                    <div class="col s1 center-align">
+                        <img class="responsive-img" 
+                            ng-src="{{ team.picture }}" 
+                            alt="Team logo">
+                    </div>
+                    <div class="col s3 center-align">
+                        <a ui-sref="teamPage({ teamId: team.team_id })"
+                            class="pointer">
+                                {{ team.name }}
+                        </a>
+                    </div>
+                    <div class="col s1 center-align"
+                        ng-if="!$ctrl.joinedTeamId && $ctrl.user && !$ctrl.isAdmin">
+                        <a class="chip white-text green pointer"
+                            ng-click="$ctrl.selectTeam(team)"
+                            modal
+                            data-target="join-team-modal">
+                            Join
+                        </a>
+                    </div>
+                    <div class="col s1 center-align"
+                        ng-if="$ctrl.user && $ctrl.joinedTeamId && !$ctrl.isAdmin">
+                        <a ng-if="$ctrl.joinedTeamId == team.team_id"
+                            class="chip red white-text pointer"
+                            ng-click="$ctrl.selectTeam(team)"
+                            modal
+                            data-target="quit-team-modal">
+                            Quit
+                        </a>
+                    </div>
+                    <div class="col s1 center-align"
+                        ng-if="$ctrl.isAdmin">
+                        <a class="chip grey white-text pointer"
+                            ng-click="$ctrl.selectTeam(team)"
+                            modal
+                            data-target="edit-team-modal">
+                            Edit
+                        </a>
+                    </div>
+                    <div class="col s1 center-align"
+                        ng-if="$ctrl.isAdmin">
+                        <a class="chip red white-text pointer"
+                            ng-click="$ctrl.selectTeam(team)"
+                            modal
+                            data-target="delete-team-modal">
+                            Delete
+                        </a>
+                    </div>
                 </div>
+                
+                <a class="chip blue white-text pointer"
+                    ng-if="$ctrl.isAdmin"
+                    modal
+                    data-target="add-team-modal"
+                    ng-click="$ctrl.createTeam()">
+                    Add a team?
+                </a>
             </div>
 
             <div ng-show="$ctrl.isSportsTab"
                 class="tabcontent">
-                fuck
+                <div class="row">
+
+
+                    <div class="col s4 input-field">
+                        <select ng-model="$ctrl.newSportId" 
+                            material-select
+                            id="new-sport">
+                            <option ng-repeat="sport in $ctrl.allSports"
+                                ng-value="sport.sport_id">
+                                {{ sport.name }}
+                            </option>
+                        </select>
+                        <label for="new-sport">New sport</label>
+                        <a class="chip blue white-text right"
+                            ng-click="$ctrl.createSport($ctrl.newSportId)">
+                            Add Sport
+                        </a>
+                    </div>
+                    <div class="col s6">
+                        <ul class="collection" ng-if="$ctrl.sports.length">
+                            <li class="collection-item"
+                                ng-repeat="sport in $ctrl.sports">
+                                {{ sport.name }}
+                                <a class="secondary-content pointer"
+                                    modal data-target="delete-sport-modal"
+                                    ng-click="$ctrl.deleteSport(sport)">
+                                    <i class="material-icons red-text">
+                                        close
+                                    </i>
+                                </a>
+                            </li>
+                        </ul>
+                        <p ng-if="!$ctrl.sports.length">
+                            Currently no sports in {{ $ctrl.event.event_title }} :(
+                        </p>
+                    </div>
+                </div>
             </div>
 
 
@@ -113,15 +196,14 @@
                 <ul class="collapsible"
                     data-collapsible="expandable">
 
-                    <li ng-repeat="sport in info.sports"
-                        ng-if="sport.games.length">
+                    <li ng-repeat="sport in info.sports">
                         
                         <div class="collapsible-header">
                             <h5>{{ sport.sport }}</h5>
                         </div>
 
                         <div class="collapsible-body">
-                            <table>
+                            <table ng-show="sport.games.length">
                                 <thead>
                                     <tr>
                                         <th>Status</th>
@@ -269,4 +351,158 @@
             Save Changes
         </a>
       </div>
+</div>
+
+<div id="add-team-modal" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12">
+                <h5>
+                    Add Team
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text"
+                    ng-model="$ctrl.newTeamName"
+                    id="new-team-name">
+                <label for="new-team-name">New Team Name</label>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="file-field input-field">
+                <div class="btn red">
+                    <span>File</span>
+                    <input type="file" file-input="$ctrl.teamFiles">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
+        <a class="btn-flat modal-action waves-effect waves-green pointer"
+            ng-click="$ctrl.confirmCreateTeam()">
+            Add Team
+        </a>
+      </div>
+</div>
+
+<div id="edit-team-modal" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12">
+                <h5>
+                    Edit {{ $ctrl.selectedTeam.originalName }}
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text"
+                    ng-model="$ctrl.selectedTeam.name"
+                    id="edit-team-name">
+                <label for="edit-team-name">Edit Team Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="file-field input-field">
+                <div class="btn red">
+                    <span>File</span>
+                    <input type="file" file-input="$ctrl.teamFiles">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
+        <a class="btn-flat modal-action waves-effect waves-green pointer"
+            ng-click="$ctrl.confirmEditTeam()">
+            Edit Team
+        </a>
+    </div>
+</div>
+
+
+<div id="delete-sport-modal" class="modal">
+    <div class="modal-content">
+        <h5>
+            Deleting {{ $ctrl.selectedSport.name }} from {{ $ctrl.event.event_title }}
+        </h5>
+        <p>
+            Deleting this sport from the event will also delete all games associated with it.
+        </p>
+        <p>
+            Are you sure you want delete {{ $ctrl.selectecSport.name }}?
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
+        <a class="btn-flat modal-action modal-close waves-effect waves-green pointer"
+            ng-click="$ctrl.confirmDeleteSport()">
+            Delete
+        </a>
+    </div>
+</div>
+
+
+<div id="delete-team-modal" class="modal">
+    <div class="modal-content">
+        <h5>
+            Deleting {{ $ctrl.selectedTeam.name }} from {{ $ctrl.event.name }}
+        </h5>
+        <p>
+            Are you sure you want to delete {{ $ctrl.selectedTeam.name }}?
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
+        <a class="btn-flat modal-action modal-close waves-effect waves-green pointer"
+            ng-click="$ctrl.confirmDeleteTeam()">
+            Delete
+        </a>
+    </div>
+</div>
+
+<div id="join-team-modal" class="modal">
+    <div class="modal-content">
+        <h5>
+            Joining {{ $ctrl.selectedTeam.name }}
+        </h5>
+        <p>
+            Are you sure you want to join {{ $ctrl.selectedTeam.name }}?
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
+        <a class="btn-flat modal-action modal-close waves-effect waves-green pointer"
+            ng-click="$ctrl.confirmJoinTeam()">
+            Join Team
+        </a>
+    </div>
+</div>
+
+<div id="quit-team-modal" class="modal">
+    <div class="modal-content">
+        <h5>
+            Quiting {{ $ctrl.selectedTeam.name }}
+        </h5>
+        <p>
+            Are you sure you want to quit {{ $ctrl.selectedTeam.name }}?
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
+        <a class="btn-flat modal-action modal-close waves-effect waves-green pointer"
+            ng-click="$ctrl.confirmQuitTeam()">
+            Quit Team
+        </a>
+    </div>
 </div>

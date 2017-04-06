@@ -183,3 +183,35 @@ exports.viewDoneEventInfo = (req, res) => {
         }
     });
 };
+
+exports.addSportToEvent = (req, res) => {
+    let info = {
+        event_id: req.body.event_id,
+        sport_id: req.body.sport_id
+    };
+
+    connection.query('INSERT INTO eventHasSport VALUES (?, ?)', 
+        [req.body.event_id, req.body.sport_id],
+        (err, rows, fields) => {
+
+            if (!err) {
+                console.log("Success in adding a sport to event");
+                res.send(info);
+            } else {
+                res.send(err);
+                console.log(err);
+            }
+        });
+}
+
+exports.deleteSportOfEvent = (req, res) => {
+    connection.query('DELETE FROM eventHasSport WHERE event_id = ? AND sport_id = ?', [req.params.event_id, req.params.sport_id], (err, rows, fields) => {
+        if (!err) {
+            console.log('Success in deleting a sport from an event');
+            res.send(null);
+        } else {
+            res.send(err);
+            console.log(err);
+        }
+    });
+}

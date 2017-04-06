@@ -1,12 +1,13 @@
 <div style="margin: 0px 0px 3px 0px; border:2px solid">
 	<a
 		ui-sref="teamPage({ teamId: $ctrl.team.team_id })"
-	    class="collection-item {{$ctrl.textcolor}}-text {{ $ctrl.color }}"
+	    class="collection-item avatar {{$ctrl.textcolor}}-text {{ $ctrl.color }}"
 	    style="font-size:14px; text-shadow: .5px .5px #000000;">
-	    
+        
+        <img ng-src="{{ $ctrl.team.picture }}" alt="team logo" class="circle">
+
 	    <strong>{{ $ctrl.team.name }}</strong>
 	    <br>
 	    <i style="font-size:10px; text-align:right;">{{$ctrl.event.event_title}}</i>
-
 	</a>
 </div>
