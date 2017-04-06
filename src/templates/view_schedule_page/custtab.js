@@ -1,3 +1,5 @@
+
+
 function openData(dt, game_date) {
     // Declare all variables
     var i, tabcontent, tablinks;
@@ -19,4 +21,3 @@ function openData(dt, game_date) {
     dt.currentTarget.className += " active";
 }
 
-document.getElementById("defaultOpen").click();
