@@ -1,0 +1,15 @@
+button { /* Green */
+    border: 1px solid orange;
+    color: white;
+    background-color:transparent;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+button:hover{
+    background-color:orange;
+    color:white;
+}
