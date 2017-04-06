@@ -17,6 +17,7 @@
             vm.isAdmin = false;
             vm.user = null;
             vm.event_title = '';
+            vm.picture = '';
             vm.venue = '';
             vm.start_date = null;
             vm.end_date = null;
@@ -33,7 +34,7 @@
                 
                 venueService.getAll()
                     .then(function(v) {
-                        console.log(v);
+                        console.log(v); 
                         for(let data of v) {
                             vm.venues.push(data);
                         }
@@ -43,14 +44,23 @@
                     })
 
                 if (vm.user) {
-                     adminService.getInstitutionsByAdmin(vm.user.user_id)
-                        .then(function (user) {
-                            if (user) {
-                                vm.institutions.push(user);
-                                vm.isAdmin = true;
-                            }
-                        });
-                    
+                    if(vm.user.user_id == 1) {
+                        institutionService.getAll()
+                            .then(function(data) {
+                                for(let each of data) {
+                                    vm.institutions.push(each);
+                                }
+                            })
+                        vm.isAdmin = true;
+                    }else{
+                        adminService.getInstitutionsByAdmin(vm.user.user_id)
+                            .then(function (user) {
+                                if (user) {
+                                    vm.institutions.push(user);
+                                    vm.isAdmin = true;
+                                }
+                            });
+                    }
                 }
             }
 
@@ -60,7 +70,7 @@
                     venue_id_key: vm.venue,
                     start_date: (new Date(vm.start_date)).toISOString().substring(0, 10),
                     end_date: (new Date(vm.end_date)).toISOString().substring(0, 10),
-                    picture: '',
+                    picture: vm.picture,
                     institution_id_key: vm.ins
                 }
                 
@@ -73,9 +83,9 @@
                 else if(vm.start_date == null || vm.end_date == null) {
                     Materialize.toast("Date details incomplete.", 3000);
                 }
-                else if(picture == '') {
+                /*else if(vm.picture == '') {
                     Materialize.toast("Please upload a logo", 3000);
-                }
+                }*/
                 else if(vm.ins == null) {
                     Materialize.toast("Please add an Institution", 3000);
                 }
