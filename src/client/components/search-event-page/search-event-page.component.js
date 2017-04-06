@@ -8,7 +8,6 @@
             controller: searchEventPageController,
             bindings: {
                 events: '<',
-                allEvents: '<',
                 allSponsors: '<',
                 allVenues: '<'
             }
