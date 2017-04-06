@@ -8,7 +8,7 @@
             controller: institutionAdminTabController
         });
 
-    function institutionAdminTabController(institutionService, userService, adminService, searchService) {
+    function institutionAdminTabController($scope, institutionService, userService, adminService, searchService) {
         var vm = this;
 
         vm.selectedInstitution = null;
@@ -41,6 +41,7 @@
             vm.creatingInstitution = false;
             vm.newAdmin = '';
             vm.selectedInstitution = angular.copy(institution);
+            console.log(vm.selectedInstitution);
             vm.selectedInstitution.originalName = institution.name;
 
             vm.selectedAdmins = angular.copy(vm.admins).filter(function(admin) {
@@ -74,17 +75,26 @@
                 return Materialize.toast('Enter a new institution description', 3000, 'red');
             }
 
-            let body = {
-                name: vm.newInstitutionName,
-                description: vm.newInstitutionDescription
-            };
+            searchService.institutions(vm.newInstitutionName)
+                .then(function(institutions) {
+                    if (!institutions.find(function(institution) {
+                        return institution.name.toLowerCase() === vm.newInstitutionName.toLowerCase();
+                    })) {
+                        let body = {
+                            name: vm.newInstitutionName,
+                            description: vm.newInstitutionDescription
+                        };
 
-            institutionService.create(body)
-                .then(function(institution) {
-                    vm.institutions.push(institution);
-                    vm.creatingInstitution = false;
-                    vm.selectInstitution(institution);
-                    Materialize.toast(institution.name + ' has been created', 3000, 'red');
+                        institutionService.create(body)
+                            .then(function(institution) {
+                                vm.institutions.push(institution);
+                                vm.creatingInstitution = false;
+                                vm.selectInstitution(institution);
+                                Materialize.toast(institution.name + ' has been created', 3000, 'red');
+                            });
+                    } else {
+                        Materialize.toast(vm.newInstitutionName + ' is already taken', 3000, 'red');
+                    }
                 });
         }
 
@@ -106,24 +116,34 @@
 
 
             let id = vm.selectedInstitution.institution_id;
-            
-            let fd = new FormData();
 
-            fd.append('name', vm.selectedInstitution.name);
-            fd.append('description', vm.selectedInstitution.description);
-            fd.append('picture', (vm.files[0])? vm.files[0] : vm.selectedInstitution.picture);
+            searchService.institutions(vm.selectedInstitution.name)
+                .then(function(institutions) {
+                    if (institutions.find(function(institution) {
+                        return institution.name.toLowerCase() === vm.selectInstitution.name.toLowerCase() 
+                            && institution.institution_id != vm.selectInstitution.institution_id;
+                    })) {
+                        return Materialize.toast(vm.selectInstitution.name + ' is already taken', 3000, 'red');
+                    }
+                    let fd = new FormData();
 
-            institutionService.update(id, fd)
-                .then(function(newInstitution) {
-                    vm.institutions = vm.institutions.map(function(institution) {
-                        if (institution.institution_id == vm.selectedInstitution.institution_id) {
-                            Materialize.toast(vm.selectedInstitution.originalName + ' has been updated', 3000, 'red');
-                            vm.selectedInstitution = institution = angular.copy(newInstitution);
-                        }
-                        return institution;
-                    });
-                    vm.editingInstitution = false;
+                    fd.append('name', vm.selectedInstitution.name);
+                    fd.append('description', vm.selectedInstitution.description);
+                    fd.append('picture', (vm.files[0])? vm.files[0] : vm.selectedInstitution.picture);
+
+                    institutionService.update(id, fd)
+                        .then(function(newInstitution) {
+                            vm.institutions = vm.institutions.map(function(institution) {
+                                if (institution.institution_id == vm.selectedInstitution.institution_id) {
+                                    Materialize.toast(vm.selectedInstitution.originalName + ' has been updated', 3000, 'red');
+                                    vm.selectedInstitution = institution = angular.copy(newInstitution);
+                                }
+                                return institution;
+                            });
+                            vm.editingInstitution = false;
+                        });
                 });
+
         }
 
         vm.cancelEditInstitution = function() {

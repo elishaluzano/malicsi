@@ -1,9 +1,9 @@
-
-<li class="collection-item avatar">
-    <a ui-sref="sponsorPage({ sponsorId: $ctrl.institution.institution_id })">
-        <img ng-src="/images/malicsi-logo.png" alt="profile pic" class="circle">
+<a ui-sref="sponsorPage({ sponsorId: $ctrl.institution.institution_id })" class="black black-text">
+    <li style="margin: 0px 0px 3px 0px; border:2px solid" class="collection-item avatar blue lighten-5" >
+        <img ng-src="{{ $ctrl.institution.picture }}" alt="sponsor logo" class="circle">
         <strong class="title">{{ $ctrl.institution.name }}</strong>
         <br>
         <i style="font-size:10px;">{{ $ctrl.institution.description }}.</i>
-    </a>    
-</li>
+    </li>
+</a>    
+

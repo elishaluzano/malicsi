@@ -26,15 +26,15 @@ app.use(session({
 app.use('/', routes);
 //index page
 app.get('/', function(req, res) {
-	res.sendFile(path.resolve('./../../dist/index.html'));
+	res.sendFile(path.resolve('./dist/index.html'));
 });
 //about page
-app.get('/about', function(req, res) {
-	res.sendFile(path.resolve('./../../dist/about.html'));
+app.get('/betelog', function(req, res) {
+	res.sendFile(path.resolve('./dist/betelog.html'));
 });
 //404 error page
-app.get('/*', function(req, res) {
-	res.sendFile(path.resolve('./../../dist/404.html'));
+app.get('*', function(req, res) {
+	res.sendFile(path.resolve('./dist/404.html'));
 });
 
 //listening on port 8000

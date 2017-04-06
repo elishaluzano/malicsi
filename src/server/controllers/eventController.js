@@ -8,7 +8,7 @@ const connection = require('./../database.js');
 exports.addEvent = (req,res) => {
 	var info = {
 		event_title: req.body.event_title,
-		venue: req.body.venue,
+		venue_id_key: req.body.venue_id_key,
 		start_date: req.body.start_date,
 		end_date: req.body.end_date,
 		picture: (req.file)? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : '',
@@ -183,3 +183,35 @@ exports.viewDoneEventInfo = (req, res) => {
         }
     });
 };
+
+exports.addSportToEvent = (req, res) => {
+    let info = {
+        event_id: req.body.event_id,
+        sport_id: req.body.sport_id
+    };
+
+    connection.query('INSERT INTO eventHasSport VALUES (?, ?)', 
+        [req.body.event_id, req.body.sport_id],
+        (err, rows, fields) => {
+
+            if (!err) {
+                console.log("Success in adding a sport to event");
+                res.send(info);
+            } else {
+                res.send(err);
+                console.log(err);
+            }
+        });
+}
+
+exports.deleteSportOfEvent = (req, res) => {
+    connection.query('DELETE FROM eventHasSport WHERE event_id = ? AND sport_id = ?', [req.params.event_id, req.params.sport_id], (err, rows, fields) => {
+        if (!err) {
+            console.log('Success in deleting a sport from an event');
+            res.send(null);
+        } else {
+            res.send(err);
+            console.log(err);
+        }
+    });
+}
