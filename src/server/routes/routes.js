@@ -37,6 +37,9 @@ router.delete('/api/contacts/:id',contactCtrl.deleteContact);
 
 //admin routes
 router.get('/api/checkAdmin/:id', userCtrl.checkAdmin);
+router.get('/api/checkAdminOfInstitution/:user_id/:institutiont_id', userCtrl.checkAdminOfInstitution);
+router.get('/api/checkAdminOfEvent/:user_id/:event_id', userCtrl.checkAdminOfEvent);
+router.get('/api/checkAdminOfGame/:user_id/:game_id', userCtrl.checkAdminOfGame);
 router.get('/api/checkAdminOfTeam/:user_id/:team_id', userCtrl.checkAdminOfTeam);
 router.get('/api/admins/:id/institutions', userCtrl.getInstitutionByAdmin);
 router.get('/api/admins', userCtrl.getAdmins);
@@ -115,6 +118,10 @@ router.delete('/api/games/:id',gameCtrl.deleteGame);
 //get all teams from specific game
 router.get('/api/games/:id/teams',gameCtrl.viewTeamsInGame);
 router.get('/api/games/:id/gameinfo',gameCtrl.viewGamesInformation);
+
+
+router.put('/api/games/:id/endgame',gameCtrl.endGame);
+router.put('/api/games/:id/opengame',gameCtrl.openGame);
 
 var teamCtrl = require('../controllers/teamController.js');
 //team routes

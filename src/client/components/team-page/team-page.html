@@ -25,7 +25,7 @@
 	                <li>Last Opponent:</li>
 	            </ul>
 	            <button ng-if="$ctrl.isAdminOfTeam" class="red btn" data-target="edit-modal" modal>Edit Team</button> <!-- hide if not admin-->
-	            <button  ng-if="$ctrl.isLoggedIn && $ctrl.isSoon" ng-disabled="$ctrl.isMember" class="red btn" data-target="join-modal">Join</button>
+	            <button  ng-if="$ctrl.isLoggedIn && $ctrl.isSoon && !$ctrl.isAdminOfTeam" ng-disabled="$ctrl.isMember" class="red btn" data-target="join-modal">Join</button>
 	        </div>
 	        <div class="col l3" style="font-size: 17px;">
 	            <ul>
@@ -35,7 +35,7 @@
 	                <li>{{$ctrl.lastOpponent}}</li>
 	            </ul>
 	            <button  ng-if="$ctrl.isAdminOfTeam" class="red btn" data-target="delete-modal">Delete Team</button> <!-- hide if not admin-->
-	            <button  ng-if="$ctrl.isLoggedIn && $ctrl.isSoon" ng-disabled="!$ctrl.isMember" class="red btn" data-target="leave-modal">Leave</button>
+	            <button  ng-if="$ctrl.isLoggedIn && $ctrl.isSoon && !$ctrl.isAdminOfTeam" ng-click="$ctrl.print($ctrl.isMember)" ng-disabled="!$ctrl.isMember" class="red btn" data-target="leave-modal">Leave</button>
 	        </div>
 
 	        <div id="delete-modal" class="modal">

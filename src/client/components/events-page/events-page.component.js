@@ -43,23 +43,26 @@
                         console.log(err);
                     })
 
-                if (vm.user) {
-                    if(vm.user.user_id == 1) {
-                        institutionService.getAll()
-                            .then(function(data) {
-                                for(let each of data) {
-                                    vm.institutions.push(each);
-                                }
-                            })
-                        vm.isAdmin = true;
-                    }else{
+               
+                    if(vm.user){
                         adminService.getInstitutionsByAdmin(vm.user.user_id)
-                            .then(function (user) {
-                                if (user) {
-                                    vm.institutions.push(user);
+                            .then(function (institutions) {
+                                if (institutions) {
+                                    for(let inst of institutions){
+                                        vm.institutions.push(inst);
+                                    }
                                     vm.isAdmin = true;
                                 }
                             });
+                        
+                        if(vm.user.user_id == 1) {
+                            institutionService.getAll()
+                                .then(function(data) {
+                                    for(let each of data) {
+                                        vm.institutions.push(each);
+                                    }
+                                })
+                            vm.isAdmin = true;
                     }
                 }
             }
@@ -73,7 +76,7 @@
                     picture: vm.picture,
                     institution_id_key: vm.ins
                 }
-                
+
                 if(vm.event_title == '') {
                     Materialize.toast("Please add an Event Title", 3000);
                 }
@@ -92,6 +95,7 @@
                 else{
                     eventService.create(body)
                         .then(function(data) {
+                            vm.events.push(data);
                             Materialize.toast("Successfully added an event!", 3000);
                         })
                         .catch(function(err) {
