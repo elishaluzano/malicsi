@@ -8,7 +8,7 @@ const connection = require('./../database.js');
 exports.addEvent = (req,res) => {
 	var info = {
 		event_title: req.body.event_title,
-		venue: req.body.venue,
+		venue_id_key: req.body.venue_id_key,
 		start_date: req.body.start_date,
 		end_date: req.body.end_date,
 		picture: (req.file)? req.file.path.substring(req.file.path.indexOf('dist/')).replace('dist', '') : '',
