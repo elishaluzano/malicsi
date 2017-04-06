@@ -130,7 +130,15 @@
 
             gameService.update(vm.selectedGame.game_id, body)
                 .then(function(game) {
-                    
+                    teamService.getGames()
+                });
+        }
+
+        vm.deleteGame = function() {
+            gameService.delete(vm.selectedGame.game_id)
+                .then(function() {
+                    Materialize.toast('Game has been delete', 3000, 'red');
+                    $state.reload();
                 });
         }
 
