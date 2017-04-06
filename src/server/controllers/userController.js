@@ -164,12 +164,12 @@ exports.searchUser = (req,res) => {
 exports.checkAdmin = (req, res) => {
     connection.query('SELECT * FROM user JOIN institutionHasAdmin ON user.user_id = institutionHasAdmin.user_no where user.user_id = ?', [req.params.id], function(err, rows, fields) {
         if (!err){
-            if (rows.length !== 0){
+            if (rows.length){
                 res.send(rows);
                 console.log("User is an admin");
             }
             else {
-                res.send({});
+                res.send(null);
                 console.log("User is not an admin");
             }
         }
