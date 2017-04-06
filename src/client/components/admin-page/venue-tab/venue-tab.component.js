@@ -8,7 +8,7 @@
             controller: venueTabController
         });
 
-    function venueTabController(venueService) {
+    function venueTabController(venueService, searchService) {
         var vm = this;
 
         vm.selectedVenue = null;
@@ -48,17 +48,27 @@
                 return Materialize.toast('Enter a new venue', 3000, 'red');
             }
 
-            let body = {
-                name: vm.newVenue
-            };
+            searchService.venues(vm.newVenue)
+                .then(function(venues) {
+                    if (!venues.find(function(venue) {
+                        return venue.name.toLowerCase() === vm.newVenue.toLowerCase();
+                    })) {
+                        let body = {
+                            name: vm.newVenue
+                        };
 
-            venueService.create(body)
-                .then(function(venue) {
-                    vm.venues.push(venue);
-                    vm.creatingVenue = false;
-                    vm.selectVenue(venue);
-                    Materialize.toast(venue.name + ' has been created', 3000, 'red');
+                        venueService.create(body)
+                            .then(function(venue) {
+                                vm.venues.push(venue);
+                                vm.creatingVenue = false;
+                                vm.selectVenue(venue);
+                                Materialize.toast(venue.name + ' has been created', 3000, 'red');
+                            });
+                    } else {
+                        Materialize.toast(vm.newVenue + ' already created', 3000, 'red');
+                    }
                 });
+
         }
 
         vm.editVenue = function() {
@@ -71,23 +81,35 @@
                 return Materialize.toast('Enter venue name', 3000, 'red');
             }
 
-            let id = vm.selectedVenue.venue_id;
-            let body = {
-                name: vm.selectedVenue.name
-            };
+            searchService.venues(vm.selectedVenue.name)
+                .then(function(venues) {
+                    if (venues.find(function(venue) {
+                        return venue.name.toLowerCase() === vm.selectedVenue.name.toLowerCase()
+                            && venue.venue_id != vm.selectedVenue.venue_id;
+                    })) {
+                        return Materialize.toast(vm.selectedVenue.name + ' is already taken', 3000, 'red');
+                    }
 
-            venueService.update(id, body)
-                .then(function(newVenue) {
-                    vm.venues = vm.venues.map(function(venue) {
-                        if (venue.venue_id == newVenue.venue_id) {
-                            venue.name = newVenue.name;
-                        }
-                        return venue;
-                    });
-                    Materialize.toast(vm.selectedVenue.originalName + ' has been updated', 3000, 'red');
-                    vm.selectedVenue.originalName = newVenue.name;
-                    vm.editingVenue = false;
-                }); 
+                    let id = vm.selectedVenue.venue_id;
+                    let body = {
+                        name: vm.selectedVenue.name
+                    };
+
+                    venueService.update(id, body)
+                        .then(function(newVenue) {
+                            vm.venues = vm.venues.map(function(venue) {
+                                if (venue.venue_id == newVenue.venue_id) {
+                                    venue.name = newVenue.name;
+                                }
+                                return venue;
+                            });
+                            Materialize.toast(vm.selectedVenue.originalName + ' has been updated', 3000, 'red');
+                            vm.selectedVenue.originalName = newVenue.name;
+                            vm.editingVenue = false;
+                        }); 
+
+                })
+
         }
 
         vm.cancelEditVenue = function() {

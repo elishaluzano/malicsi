@@ -229,39 +229,6 @@
                 }
             })
             .state({
-                name: 'doneEventsPage',
-                url: '/done-events/{eventId}',
-                component: 'doneEventsPage',
-                bindings: {
-                    event: 'event'            
-                },
-                resolve: {
-                    event: function($stateParams, eventService) {
-                        return eventService.getDoneEventInfo($stateParams.eventId);
-                    }
-                }
-            })
-            .state({
-                name: 'searchAllPage',
-                url: '/search-all/{query}',
-                component: 'searchAllPage',
-                resolve: {
-                    users: function(searchService, $transition$) {
-                        return searchService.users($transition$.params().query);
-                    },
-                    institutions: function(searchService, $transition$) {
-                        return searchService.institutions($transition$.params().query);
-                    },
-                    events: function(searchService, $transition$) {
-                        return searchService.events($transition$.params().query);
-                    },
-                    teams: function(searchService, $transition$) {
-                        console.log("in");
-                        return searchService.teams($transition$.params().query);
-                    }
-                }
-            })
-            .state({
                 name: 'sponsorsPage',
                 url: '/sponsors',
                 component: 'sponsorsPage',
@@ -272,12 +239,56 @@
                 }
             })
             .state({
+                name: 'searchAllPage',
+                url: '/search-all/{query}',
+                component: 'searchAllPage',
+                resolve: {
+                    users: function(searchService, userService, $transition$) {
+                        let query = $transition$.params().query;
+                        if (!query) {
+                            return userService.getAll();
+                        } else {
+                            return searchService.users(query);
+                        }
+                    },
+                    institutions: function(searchService, institutionService, $transition$) {
+                        let query = $transition$.params().query;
+                        if (!query) {
+                            return institutionService.getAll();
+                        } else {
+                            return searchService.institutions(query);
+                        }
+                    },
+                    events: function(searchService, eventService, $transition$) {
+                        let query = $transition$.params().query;
+                        if (!query) {
+                            return eventService.getAll();
+                        } else {
+                            return searchService.events(query);
+                        }
+                    },
+                    teams: function(searchService, teamService, $transition$) {
+                        let query = $transition$.params().query;
+                        if (!query) {
+                            return teamService.getAll();
+                        } else {
+                            return searchService.teams(query);
+                        }
+                    }
+                }
+            })
+            .state({
                 name: 'searchInstitutionPage',
                 url: '/search-institution/{query}',
                 component: 'searchInstitutionPage',
                 resolve: {
-                    institutions: function(searchService, $transition$) {
-                        return searchService.institutions($transition$.params().query);
+                    institutions: function(searchService, institutionService, $transition$) {
+                        let query = $transition$.params().query;
+                        if (!query) {
+                            return institutionService.getAll();
+                        } else {
+                            return searchService.institutions(query);
+                        }
                     },
                     allEvents: function(eventService) {
                         return eventService.getAll();
@@ -289,8 +300,13 @@
                 url: '/search-team/{query}',
                 component: 'searchTeamPage',
                 resolve: {
-                    teams: function(searchService, $transition$) {
-                        return searchService.teams($transition$.params().query);
+                    teams: function(searchService, teamService, $transition$) {
+                        let query = $transition$.params().query;
+                        if (!query) {
+                            return teamService.getAll();
+                        } else {
+                            return searchService.teams(query);
+                        }
                     },
                     allEvents: function(eventService) {
                         return eventService.getAll();
@@ -299,14 +315,47 @@
             })
             .state({
                 name: 'searchPlayerPage',
-                url: '/searchPlayers',
+                url: '/search-player/{query}',
                 component: 'searchPlayerPage',
                 resolve: {
-                    users: function(userService) {
-                        return userService.getAll();
+                    users: function(searchService, userService, $transition$) {
+                        let query = $transition$.params().query;
+                        if (!query) {
+                            return userService.getAll();
+                        } else {
+                            return searchService.users(query);
+                        }
+                    },
+                    allTeams: function(teamService) {
+                        return teamService.getAll();
+                    },
+                    allEvents: function(eventService) {
+                        return eventService.getAll();
+                    }
+                }
+            })
+            .state({
+                name: 'searchEventPage',
+                url: '/search-event/{query}',
+                component: 'searchEventPage',
+                resolve: {
+                    events: function(searchService, eventService, $transition$) {
+                        let query = $transition$.params().query;
+                        if (!query) {
+                            return eventService.getAll();
+                        } else {
+                            return searchService.events(query);
+                        }
+                    },
+                    allSponsors: function(institutionService) {
+                        return institutionService.getAll();
+                    },
+                    allVenues: function(venueService) {
+                        return venueService.getAll();
                     }
                 }
             });
+
 
         $urlRouterProvider.otherwise('/')
 

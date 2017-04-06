@@ -1,3 +1,4 @@
+require('./client/index.html');
 require('materialize-css/dist/css/materialize.css');
 require('webui-popover/dist/jquery.webui-popover.css');
 require('material-design-icons/iconfont/material-icons.css');

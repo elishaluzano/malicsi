@@ -53,8 +53,15 @@
                     });
             },
 
-            create: function (body) {
-                return $http.post(api, body)
+            create: function(body) {
+                let options = {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                    }
+                };
+
+                return $http.post(api, body, options)
                     .then(function(response) {
                         return response.data;
                     })
@@ -169,6 +176,30 @@
                         console.log(err.status + ': ' + err.statusText);
                     });
             },
+            getTeamId: function(id){
+                return $http.get(api + id + '/getTeamsofUser')
+                    .then(function(response){
+                        return response.data
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting team ID!');
+                         console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
+            getTeamStats: function(id){
+                return $http.get(api + id + '/getTeamStats')
+                    .then(function(response){
+                        console.log(response.data);
+                        return response.data
+                    })
+                    .catch(function(err) {
+                        console.log('Error in getting team stats!');
+                         console.log(err.status + ': ' + err.statusText);
+                    });
+
+                    
+            }
 
         }
 
