@@ -142,7 +142,7 @@
                     modal
                     data-target="add-team-modal"
                     ng-click="$ctrl.createTeam()">
-                    Add a team?
+                    + Add a team
                 </a>
             </div>
 
@@ -203,6 +203,9 @@
                         </div>
 
                         <div class="collapsible-body">
+                            <h5 ng-show="!sport.games.length">
+                                Currently no games :(
+                            </h5>
                             <table ng-show="sport.games.length">
                                 <thead>
                                     <tr>
@@ -235,22 +238,41 @@
                                             {{ game.teamsPlaying[0].score }} - {{ game.teamsPlaying[1].score }}
                                         </td>
                                         <td>
-                                            {{ game.time | date: 'HH:mma' }}
+                                            {{ game.time | date: 'hh:mma' }}
                                         </td>
                                         <td>
                                             {{ game.venue }}
                                         </td>
                                         <td ng-if="game.status.text === 'ONGOING'">
                                             <a ui-sref="gamePage({ gameId: game.game_id })"
-                                                style="cursor: pointer;">
-                                                <div class="chip orange white-text">
-                                                    View Game
-                                                </div>
+                                                class="chip orange white-text pointer">
+                                                View Game
+                                            </a>
+                                        </td>
+                                        <td ng-if="$ctrl.isAdmin">
+                                            <a class="chip orange white-text pointer"
+                                                ng-click="$ctrl.selectGame(game.game_id, game.teamsPlaying[0].team_id, game.teamsPlaying[1].team_id, info.date)"
+                                                modal
+                                                data-target="edit-game-modal">
+                                                Edit
+                                            </a>
+                                            <a class="chip red white-text pointer">
+                                                Delete
                                             </a>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                            <a class="chip blue white-text pointer"
+                                ng-if="$ctrl.teams.length > 1 && $ctrl.isAdmin"
+                                ng-click="$ctrl.createGame(sport.sport, info.date)"
+                                modal
+                                data-target="add-game-modal">
+                                + Add a Game
+                            </a>
+                            <p ng-if="$ctrl.isAdmin && $ctrl.teams.length < 2">
+                                Add more teams to {{ $ctrl.event.event_title }}!
+                            </p>
                         </div>
                     </li>
                 </ul>
@@ -362,6 +384,7 @@
                 </h5>
             </div>
         </div>
+        <div class="divider"></div>
         <div class="row">
             <div class="input-field col s12">
                 <input type="text"
@@ -401,6 +424,7 @@
                 </h5>
             </div>
         </div>
+        <div class="divider"></div>
         <div class="row">
             <div class="input-field col s12">
                 <input type="text"
@@ -436,6 +460,7 @@
         <h5>
             Deleting {{ $ctrl.selectedSport.name }} from {{ $ctrl.event.event_title }}
         </h5>
+        <div class="divider"></div>
         <p>
             Deleting this sport from the event will also delete all games associated with it.
         </p>
@@ -458,6 +483,7 @@
         <h5>
             Deleting {{ $ctrl.selectedTeam.name }} from {{ $ctrl.event.name }}
         </h5>
+        <div class="divider"></div>
         <p>
             Are you sure you want to delete {{ $ctrl.selectedTeam.name }}?
         </p>
@@ -476,6 +502,7 @@
         <h5>
             Joining {{ $ctrl.selectedTeam.name }}
         </h5>
+        <div class="divider"></div>
         <p>
             Are you sure you want to join {{ $ctrl.selectedTeam.name }}?
         </p>
@@ -494,6 +521,7 @@
         <h5>
             Quiting {{ $ctrl.selectedTeam.name }}
         </h5>
+        <div class="divider"></div>
         <p>
             Are you sure you want to quit {{ $ctrl.selectedTeam.name }}?
         </p>
@@ -506,3 +534,173 @@
         </a>
     </div>
 </div>
+
+<div id="add-game-modal" class="modal">
+    <div class="modal-content">
+        <h4>Add Game Schedule</h4>
+        <div class="divider"></div>
+        <br>
+        <form>
+            <div class="row container">
+                <div input-field class="col m4 l4">
+                    <h5>TEAM 1</h5>
+                    <select watch class="browser-default"
+                        material-select
+                        ng-model="$ctrl.newGame.team1_id">
+                        <option ng-repeat="team in $ctrl.teams"
+                            ng-value="team.team_id">
+                            {{ team.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col m2 l2 offset-l1 offset-m1">
+                    <br>
+                    <h4>VS</h4>
+                </div>
+
+                <div input-field class="col m4 l4 offset-m1 offset-l1">
+                    <h5>TEAM 2</h5>
+                    <select watch class="browser-default"
+                        material-select
+                        ng-model="$ctrl.newGame.team2_id">
+                        <option ng-repeat="team in $ctrl.teams"
+                            ng-value="team.team_id">
+                            {{ team.name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row container">
+                <form>
+                    <div class="col m6 l6">
+                        <h5>Event Start Time</h5>
+                        <div class="input-field col m6 l6">
+                            <input type="number"
+                                ng-model="$ctrl.newGame.start_hour"
+                                id="start-hour">
+                            <label for="start-hour">
+                                HH
+                            </label>
+                        </div>
+                        <div class="input-field col m6 l6">
+                            <input type="number"
+                                ng-model="$ctrl.newGame.start_minute"
+                                id="start-minute">
+                            <label for="start-minute">
+                                MM
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col m6 l6">
+                        <h5>Venue</h5>
+                        <select watch class="browser-default"
+                            material-select
+                            ng-model="$ctrl.newGame.venue_id">
+                            <option ng-repeat="venue in $ctrl.venues"
+                                ng-value="venue.venue_id">
+                                {{ venue.name }}
+                            </option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red">
+            Cancel
+        </a>
+        <a class="btn-flat modal-action waves-effect waves-green"
+            ng-click="$ctrl.confirmCreateGame()">
+            Done
+        </a>
+    </div>
+</div>
+
+
+<div id="edit-game-modal" class="modal">
+    <div class="modal-content">
+        <h4>Edit Game Schedule</h4>
+        <div class="divider"></div>
+        <br>
+        <form>
+            <div class="row container">
+                <div input-field class="col m4 l4">
+                    <h5>TEAM 1</h5>
+                    <select watch class="browser-default"
+                        material-select
+                        ng-model="$ctrl.selectedGame.team1_id">
+                        <option ng-repeat="team in $ctrl.teams"
+                            ng-value="team.team_id">
+                            {{ team.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col m2 l2 offset-l1 offset-m1">
+                    <br>
+                    <h4>VS</h4>
+                </div>
+
+                <div input-field class="col m4 l4 offset-m1 offset-l1">
+                    <h5>TEAM 2</h5>
+                    <select watch class="browser-default"
+                        material-select
+                        ng-model="$ctrl.selectedGame.team2_id">
+                        <option ng-repeat="team in $ctrl.teams"
+                            ng-value="team.team_id">
+                            {{ team.name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row container">
+                <form>
+                    <div class="col m6 l6">
+                        <h5>Event Start Time</h5>
+                        <div class="input-field col m6 l6">
+                            <input type="number"
+                                ng-model="$ctrl.selectedGame.start_hour"
+                                id="start-hour">
+                            <label for="start-hour">
+                                HH
+                            </label>
+                        </div>
+                        <div class="input-field col m6 l6">
+                            <input type="number"
+                                ng-model="$ctrl.selectedGame.start_minute"
+                                id="start-minute">
+                            <label for="start-minute">
+                                MM
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col m6 l6">
+                        <h5>Venue</h5>
+                        <select watch class="browser-default"
+                            material-select
+                            ng-model="$ctrl.selectedGame.venue">
+                            <option ng-repeat="venue in $ctrl.venues"
+                                ng-value="venue.venue_id">
+                                {{ venue.name }}
+                            </option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red">
+            Cancel
+        </a>
+        <a class="btn-flat modal-action waves-effect waves-green"
+            ng-click="$ctrl.confirmCreateGame()">
+            Done
+        </a>
+    </div>
+</div>
+

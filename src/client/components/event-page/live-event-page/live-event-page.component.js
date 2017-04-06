@@ -11,7 +11,7 @@
             }
         });
 
-    function liveEventPageController($q, eventService, venueService, teamService, institutionService, $state, searchService, sportService, sessionService) {
+    function liveEventPageController($q, eventService, venueService, teamService, institutionService, $state, searchService, sportService, sessionService, gameService) {
         var vm = this;
 
         vm.sports = [];
@@ -31,7 +31,7 @@
         };
 
         vm.institutions = [];
-
+        vm.newGame = null;
         vm.editedEvent = {};
         vm.files = [];
         vm.teamFiles = [];
@@ -46,14 +46,21 @@
         vm.newSportId = 1;
         vm.selectedTeam = null;
 
+        vm.selectedGame = null;
 
-        vm.editEvent = function() {
+
+        vm.d = function() {
             vm.editedEvent = angular.copy(vm.event);
             vm.editedEvent.start_date = new Date(vm.editedEvent.start_date);
             vm.editedEvent.end_date = new Date(vm.editedEvent.end_date);
+            console.log(vm.editedEvent);
         }
 
-        vm.confirmEditEvent = function() {
+        vm.confirmd = function() {
+            if (vm.editedEvent.start_date.getTime() > vm.editedEvent.end_date.getTime()) {
+                return Materialize.toast('Start date should be before the end date', 3000, 'red');
+            }
+
             searchService.events(vm.editedEvent.event_title)
                 .then(function(events) {
                     if (events.find(function(event) {
@@ -78,7 +85,113 @@
                         });
 
                 });
+        }
 
+        vm.editGame = function() {
+            if (vm.selectedGame.team1_id === vm.selectedGame.team2_id) {
+                return Materialize.toast('Two same teams cannot play in the same game', 3000, 'red');
+            }
+
+            if (vm.selectedGame.start_hour < 0 || vm.selectedGame.start_hour > 23) {
+                return Materialize.toast('Start hour should in 24-hr format (00-23)', 3000, 'red');
+            }
+
+            if (vm.selectedGame.start_minute < 0 || vm.selectedGame.start_minute > 59) {
+                return Materialize.toast('Start minute should be in (00-59) format', 3000, 'red');
+            }
+
+            let time = (new Date(vm.selectedGame.date.setDate(vm.selectedGame.date.getDate()+1))).toISOString().substring(0, 10) + ' ' + ((vm.selectedGame.start_hour < 10)? ('0' + vm.selectedGame.start_hour) : (vm.selectedGame.start_hour)) + ':' + ((vm.selectedGame.start_minute < 10)? ('0' + vm.selectedGame.start_minute) : (vm.selectedGame.start_minute)) + ':00';
+        }
+
+        vm.createGame = function(selectedSport, date) {
+            let sport_id = vm.sports.find(function(sport) {
+                return selectedSport === sport.name;
+            }).sport_id;
+
+            vm.newGame = {
+                venue_id: vm.venues[0].venue_id,
+                sport_id: sport_id,
+                team1_id: vm.teams[0].team_id,
+                team2_id: (vm.teams[1])? vm.teams[1].team_id : vm.teams[0].team_id,
+                start_hour: 0,
+                start_minute: 0,
+                date: angular.copy(date)
+            };
+
+            let body = {
+                min_num_of_players: 0,
+                max_num_of_players: 0,
+                status: 'PENDING',
+                venue: vm.selectedGame.venue_id,
+                event_id: vm.event.event_id,
+                sport_id: vm.selectedGame.sport_id,
+                time: time
+            };
+
+            gameService.update(vm.selectedGame.game_id, body)
+                .then(function(game) {
+                    
+                });
+        }
+
+        vm.confirmCreateGame = function() {
+            if (vm.newGame.team1_id === vm.newGame.team2_id) {
+                return Materialize.toast('Two same teams cannot play in the same game', 3000, 'red');
+            }
+
+            if (vm.newGame.start_hour < 0 || vm.newGame.start_hour > 23) {
+                return Materialize.toast('Start hour should in 24-hr format (00-23)', 3000, 'red');
+            }
+
+            if (vm.newGame.start_minute < 0 || vm.newGame.start_minute > 59) {
+                return Materialize.toast('Start minute should be in (00-59) format', 3000, 'red');
+            }
+
+            let time = (new Date(vm.newGame.date.setDate(vm.newGame.date.getDate()+1))).toISOString().substring(0, 10) + ' ' + ((vm.newGame.start_hour < 10)? ('0' + vm.newGame.start_hour) : (vm.newGame.start_hour)) + ':' + ((vm.newGame.start_minute < 10)? ('0' + vm.newGame.start_minute) : (vm.newGame.start_minute)) + ':00';
+
+            let body = {
+                min_num_of_players: 0,
+                max_num_of_players: 0,
+                status: 'PENDING',
+                venue: vm.newGame.venue_id,
+                event_id: vm.event.event_id,
+                sport_id: vm.newGame.sport_id,
+                time: time
+            };
+
+            gameService.create(body)
+                .then(function(game) {
+                    console.log(game);
+                    teamService.createGame({
+                        team_id_play: vm.newGame.team1_id,
+                        game_id_play: game.game_id
+                    }).then(function(teamGame) {
+                        console.log(teamGame);
+                    });
+                    teamService.createGame({
+                        team_id_play: vm.newGame.team2_id,
+                        game_id_play: game.game_id
+                    }).then(function(teamGame) {
+                        console.log(teamGame);
+                    });
+                    $('#add-game-modal').modal('close');
+                    Materialize.toast('Successfully created the game', 3000, 'red');
+                });
+                
+        }
+
+        vm.selectGame = function(game_id, team1_id, team2_id, date) {
+            gameService.getOne(game_id)
+                .then(function(game) {
+                    vm.selectedGame = angular.copy(game);
+                    vm.selectedGame.team1_id = team1_id;
+                    vm.selectedGame.team2_id = team2_id;
+                    console.log(vm.selectedGame);
+                    let time = vm.selectedGame.time.split('T')[1].split(':');
+                    vm.selectedGame.start_hour = +time[0];
+                    vm.selectedGame.start_minute = +time[1];
+                    vm.selectedGame.date = date;
+                });
         }
 
         vm.createTeam = function() {

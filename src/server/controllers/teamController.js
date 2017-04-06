@@ -239,8 +239,8 @@ exports.getPlays = (req, res) => {
 
 exports.addPlays = (req, res) => {
 	var newPlay = {
-		team_id_play: req.body.team_id,
-		game_id_play: req.body.game_id
+		team_id_play: req.body.team_id_play,
+		game_id_play: req.body.game_id_play
 	};
 	connection.query('INSERT INTO teamPlaysGame SET ?', newPlay, function(err, rows, fields) {
 		if(!err) {
@@ -249,6 +249,7 @@ exports.addPlays = (req, res) => {
 		} else {
 			res.send(err);
 			console.log("Failed in adding plays");
+            console.log(err);
 		}
 	});
 };

@@ -21,7 +21,7 @@ exports.addGame = (req,res) => {
 		}
 		else {
 			console.log(err);
-			res.send(false);
+			res.send(null);
 			console.log("Error in adding game");
 		}
 	});

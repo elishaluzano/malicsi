@@ -42,6 +42,17 @@
                     });
             },
 
+            createGame: function(body) {
+                return $http.post(api + 'plays', body)
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in creating game of a team');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
             getGames: function(id) {
                 return $http.get(api + id + '/plays')
                     .then(function(response) {
