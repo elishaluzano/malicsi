@@ -11,7 +11,7 @@
             }
         });
 
-    function liveEventPageController($q, eventService, venueService, teamService, institutionService, $state, searchService, sportService) {
+    function liveEventPageController($q, eventService, venueService, teamService, institutionService, $state, searchService, sportService, sessionService) {
         var vm = this;
 
         vm.sports = [];
@@ -19,7 +19,7 @@
         vm.dates = [];
         vm.filtered = [];
 
-        vm.isTeamsTab = false;
+        vm.isTeamsTab = true;
         vm.isSportsTab = false;
 
         vm.sportsFilter = {};
@@ -37,7 +37,10 @@
         vm.teamFiles = [];
         vm.newTeamName = '';
         vm.teams = [];
+        vm.user = null;
 
+        vm.isAdmin = false;
+        vm.joinedTeamId = 0;
         vm.allSports = [];
         vm.selectedSport = null;
         vm.newSportId = 1;
@@ -83,7 +86,7 @@
             vm.teamFiles = [];
         }
 
-        vm.editTeam = function(team) {
+        vm.selectTeam = function(team) {
             vm.selectedTeam = angular.copy(team);
             vm.selectedTeam.originalName = vm.selectedTeam.name;
             vm.teamFiles = [];
@@ -98,7 +101,7 @@
                 .then(function(teams) {
                     if (teams.find(function(team) {
                         return team.name.toLowerCase() === vm.selectedTeam.name.toLowerCase()
-                            && team.team_id != vm.selectedTeam.team_id
+                            && team.team_id != vm.selectedTeam.team_id && team.event_id == vm.event.event_id;
                     })) {
                         return Materialize.toast(vm.selectedTeam.name + ' is already taken', 3000, 'red');
                     }
@@ -110,10 +113,41 @@
                     fd.append('picture', (vm.teamFiles[0])? vm.teamFiles[0] : vm.selectedTeam.picture);
 
                     teamService.update(vm.selectedTeam.team_id, fd)
-                        .then(function(newInstitution) {
-
+                        .then(function(newTeam) {
+                            Materialize.toast(vm.selectedTeam.name + ' has been updated', 3000, 'red');
+                            $('#edit-team-modal').modal('close');
+                            $state.reload();
                         });
                 }); 
+        }
+
+        vm.confirmDeleteTeam = function() {
+            teamService.delete(vm.selectedTeam.team_id)
+                .then(function() {
+                    Materialize.toast(vm.selectedTeam.name + ' has been deleted', 3000, 'red');
+                    $state.reload();
+                });
+        }
+
+        vm.confirmJoinTeam = function() {
+            let body = {
+                user_player_id: vm.user.user_id,
+                team_player_id: vm.selectedTeam.team_id
+            };
+
+            teamService.addIsComposedOf(body)
+                .then(function() {
+                    Materialize.toast('You have joined ' + vm.selectedTeam.name, 3000, 'red');
+                    vm.joinedTeamId = vm.selectedTeam.team_id;
+                });
+        }
+
+        vm.confirmQuitTeam = function() {
+            teamService.deleteIsComposedOf(vm.selectedTeam.team_id, vm.user.user_id)
+                .then(function() {
+                    Materialize.toast('You have quit ' + vm.selectedTeam.name, 3000, 'red');
+                    vm.joinedTeamId = 0;
+                });
         }
 
         vm.createSport = function(sportId) {
@@ -170,7 +204,8 @@
 
                     teamService.create(fd)
                         .then(function(team) {
-                            $('#add-team').modal('close');
+                            Materialize.toast(team.name + ' has been created', 3000, 'red');
+                            $('#add-team-modal').modal('close');
                             $state.reload();
                         });
                 });
@@ -241,6 +276,10 @@
         }
 
         vm.$onInit = function() {
+            vm.user = sessionService.user();
+
+            
+
             institutionService.getAll()
                 .then(function(institutions) {
                     vm.institutions = institutions;
@@ -262,6 +301,22 @@
                 let games = data[1];
                 vm.teams = data[2];
                 vm.venues = data[3];
+
+                if (vm.user) {
+                    teamService.getTeamId(vm.user.user_id)
+                        .then(function(teamIds) {
+                            vm.joinedTeamId = (function() {
+                                for (let teamId of teamIds) {
+                                    for (let team of vm.teams) {
+                                        if (teamId.team_player_id == team.team_id) {
+                                            return true;
+                                        }
+                                    }
+                                }
+                                return false
+                            })();
+                        });
+                }
 
                 $q.all(vm.teams.map(function(team) {
                     return teamService.getGames(team.team_id)
@@ -329,8 +384,8 @@
                         });
                         startDate = new Date(startDate.setDate(startDate.getDate() + 1));
                     }
-
-                    vm.dates[0].show = true;
+                    // CHECK ADMIN
+                    // vm.dates[0].show = true;
                     vm.filtered = $.extend(true, [], vm.dates)
                     $('.collapsible').collapsible();
                     console.log(vm.dates);

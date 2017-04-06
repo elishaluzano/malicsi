@@ -84,7 +84,7 @@
 
             teamService.getIsUserOfTeam(vm.currentTeam.team_id, vm.currentUser.user_id)
                 .then(function(data){
-                    if(data.length != 0){
+                    if(!data){
                         vm.isMember = true;
                     }
                 })

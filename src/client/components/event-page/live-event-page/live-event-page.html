@@ -96,24 +96,37 @@
                                 {{ team.name }}
                         </a>
                     </div>
-                    <div class="col s1 center-align">
-                        <a class="chip green white-text pointer">
+                    <div class="col s1 center-align"
+                        ng-if="!ctrl.isJoinedTeam && $ctrl.user">
+                        <a class="chip white-text green pointer"
+                            ng-click="$ctrl.selectTeam(team)"
+                            modal
+                            data-target="join-team-modal">
                             Join
                         </a>
                     </div>
-                    <div class="col s1 center-align">
-                        <a class="chip grey white-text pointer">
-                            Cancel
+                    <div class="col s1 center-align"
+                        ng-if="$ctrl.isJoinedTeam == team.team_id">
+                        <a class="chip red white-text pointer"
+                            ng-click="$ctrl.selectTeam(team)"
+                            modal
+                            data-target="quit-team-modal">
+                            Quit
                         </a>
                     </div>
-                    <div class="col s1 center-align">
+                    <div class="col s1 center-align"
                         <a class="chip grey white-text pointer"
-                            ng-click="$ctrl.editTeam(team)">
+                            ng-click="$ctrl.selectTeam(team)"
+                            modal
+                            data-target="edit-team-modal">
                             Edit
                         </a>
                     </div>
                     <div class="col s1 center-align">
-                        <a class="chip red white-text pointer">
+                        <a class="chip red white-text pointer"
+                            ng-click="$ctrl.selectTeam(team)"
+                            modal
+                            data-target="delete-team-modal">
                             Delete
                         </a>
                     </div>
@@ -433,3 +446,57 @@
     </div>
 </div>
 
+
+<div id="delete-team-modal" class="modal">
+    <div class="modal-content">
+        <h5>
+            Deleting {{ $ctrl.selectedTeam.name }} from {{ $ctrl.event.name }}
+        </h5>
+        <p>
+            Are you sure you want to delete {{ $ctrl.selectedTeam.name }}?
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
+        <a class="btn-flat modal-action modal-close waves-effect waves-green pointer"
+            ng-click="$ctrl.confirmDeleteTeam()">
+            Delete
+        </a>
+    </div>
+</div>
+
+<div id="join-team-modal" class="modal">
+    <div class="modal-content">
+        <h5>
+            Joining {{ $ctrl.selectedTeam.name }}
+        </h5>
+        <p>
+            Are you sure you want to join {{ $ctrl.selectedTeam.name }}?
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
+        <a class="btn-flat modal-action modal-close waves-effect waves-green pointer"
+            ng-click="$ctrl.confirmJoinTeam()">
+            Join Team
+        </a>
+    </div>
+</div>
+
+<div id="quit-team-modal" class="modal">
+    <div class="modal-content">
+        <h5>
+            Quiting {{ $ctrl.selectedTeam.name }}
+        </h5>
+        <p>
+            Are you sure you want to quit {{ $ctrl.selectedTeam.name }}?
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
+        <a class="btn-flat modal-action modal-close waves-effect waves-green pointer"
+            ng-click="$ctrl.confirmQuitTeam()">
+            Quit Team
+        </a>
+    </div>
+</div>

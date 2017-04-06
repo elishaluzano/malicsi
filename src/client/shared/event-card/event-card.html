@@ -1,7 +1,10 @@
 <div class="col s12 m6 l3">
   <div class="hoverable card">
     <div class="card-image">
-       <a ui-sref="eventPage({ eventId: $ctrl.event.event_id })"><img ng-src="{{ $ctrl.event.picture }}" alt="event logo"></a>
+       <a ui-sref="eventPage({ eventId: $ctrl.event.event_id })">
+           <img ng-src="{{ $ctrl.event.picture }}" alt="event logo"
+            style="height: 63vh;">
+        </a>
         <span class="card-title black-text">{{ $ctrl.event.event_title }}</span>
 
       <!-- Settings button is available only for Admin-->

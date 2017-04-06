@@ -196,10 +196,10 @@
                     .catch(function(err) {
                         console.log('Error in getting team stats!');
                          console.log(err.status + ': ' + err.statusText);
-                    });
+                    });        
+            },
 
-                    
-            }
+            
 
         }
 

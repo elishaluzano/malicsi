@@ -173,7 +173,11 @@ exports.getIsUserOfTeam = (req,res) => {
             res.send(err);
          }
         else {
-            res.send(rows);
+            if (rows.length) {
+                res.send(rows[0]);
+            } else {
+                res.send(null);
+            }
         }
 	});
 };
