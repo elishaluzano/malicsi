@@ -49,14 +49,14 @@
         vm.selectedGame = null;
 
 
-        vm.d = function() {
+        vm.editEvent = function() {
             vm.editedEvent = angular.copy(vm.event);
             vm.editedEvent.start_date = new Date(vm.editedEvent.start_date);
             vm.editedEvent.end_date = new Date(vm.editedEvent.end_date);
             console.log(vm.editedEvent);
         }
 
-        vm.confirmd = function() {
+        vm.confirmEditEvent = function() {
             if (vm.editedEvent.start_date.getTime() > vm.editedEvent.end_date.getTime()) {
                 return Materialize.toast('Start date should be before the end date', 3000, 'red');
             }
@@ -128,18 +128,8 @@
                 time: time
             };
 
-            gameService.update(vm.selectedGame.game_id, body)
-                .then(function(game) {
-                    teamService.getGames()
-                });
-        }
-
-        vm.deleteGame = function() {
-            gameService.delete(vm.selectedGame.game_id)
-                .then(function() {
-                    Materialize.toast('Game has been delete', 3000, 'red');
-                    $state.reload();
-                });
+            
+            
         }
 
         vm.confirmCreateGame = function() {

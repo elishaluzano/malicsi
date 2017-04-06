@@ -64,6 +64,17 @@
                     });
             },
 
+            updateGame: function(teamId, gameId, body) {
+                return $http.get(api + 'plays/' + teamId + '/' + gameId,  body)
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(err) {
+                        console.log('Error in updating game of a team');
+                        console.log(err.status + ': ' + err.statusText);
+                    });
+            },
+
             create: function(body) {
                 let options = {
                     transformRequest: angular.identity,

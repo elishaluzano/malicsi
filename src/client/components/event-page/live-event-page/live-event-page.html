@@ -256,7 +256,10 @@
                                                 data-target="edit-game-modal">
                                                 Edit
                                             </a>
-                                            <a class="chip red white-text pointer">
+                                            <a class="chip red lighten-1 white-text pointer"
+                                                ng-click="$ctrl.selectGame(game.game_id, game.teamsPlaying[0].team_id, game.teamsPlaying[1].team_id, info.date)"
+                                                modal
+                                                data-target="delete-game-modal">
                                                 Delete
                                             </a>
                                         </td>
@@ -280,6 +283,23 @@
         </div>
     </div>
 
+</div>
+
+
+<div id="delete-game-modal" class="modal">
+    <div class="modal-content">
+        <h5>Delete Game</h5>
+        <p>
+            Are you sure you want to continue?
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
+        <a class="btn-flat modal-action modal-close waves-effect waves-green pointer"
+            ng-click="$ctrl.deleteGame()">
+            Delete Game
+        </a>
+    </div>
 </div>
 
 <div id="delete-event-modal" class="modal">
@@ -698,7 +718,7 @@
             Cancel
         </a>
         <a class="btn-flat modal-action waves-effect waves-green"
-            ng-click="$ctrl.confirmCreateGame()">
+            ng-click="$ctrl.editGame()">
             Done
         </a>
     </div>

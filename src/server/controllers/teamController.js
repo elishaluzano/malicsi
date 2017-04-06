@@ -225,6 +225,7 @@ exports.getAllPlays = (req, res) => {
 	});
 };
 
+
 exports.getPlays = (req, res) => {
 	connection.query('SELECT * FROM teamPlaysGame JOIN game ON game_id_play = game_id WHERE teamPlaysGame.team_id_play = ?', [ req.params.id ], function(err, rows, fields) {
 		if(!err) {
