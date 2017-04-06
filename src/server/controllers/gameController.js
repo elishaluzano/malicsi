@@ -98,3 +98,23 @@ exports.viewGamesInformation = (req,res) => {
 		}
 	});
 };
+
+exports.endGame = (req, res) => {
+    connection.query('UPDATE game set status = "FINISHED" where game_id = ?', [req.params.id], function(err, rows, fields){
+		if(!err) {
+			res.send(rows);
+		}else{
+			console.log(err);
+		}
+	});
+};
+
+exports.openGame = (req, res) => {
+    connection.query('UPDATE game set status = "ONGOING" where game_id = ?', [req.params.id], function(err, rows, fields){
+		if(!err) {
+			res.send(rows);
+		}else{
+			console.log(err);
+		}
+	});
+};

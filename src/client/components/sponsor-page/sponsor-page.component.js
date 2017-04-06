@@ -23,17 +23,18 @@
 					vm.events = events;
 				});
 
-			let user = sessionService.user();
-			adminService.checkAdmin(user.user_id)
-				.then(function(admin) {
-					for(let x of admin){
-						if (x.institution_no && vm.institution.institution_id == x.institution_no) {
-							vm.admin = admin;
-							break;
-						}
+			var user = sessionService.user();
+			adminService.checkAdminOfInstitution(user.user_id, vm.institution.institution_id)
+				.then(function(institution) {
+					if(institution){
+						vm.admin = true;
+						console.log(institution);
 					}
-					
-				});
+				})
+				.catch(function(e){
+					console.log(e);
+				})
+
 		}
 
 		vm.deleteAdminPrivileges = function() {

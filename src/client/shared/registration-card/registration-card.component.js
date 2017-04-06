@@ -7,7 +7,7 @@
             controller: registrationCardController,
         });
 
-    function registrationCardController(userService, searchService, $state) {
+    function registrationCardController(userService, searchService, sessionService, $state) {
         var vm = this;
         vm.name = '';
         vm.username = '';
@@ -17,6 +17,7 @@
         vm.gender = '';
         vm.birthday = '';
         vm.gender = '';
+        vm.contact_number = '';
 
         vm.$onInit = function() {
             setTimeout(Materialize.updateTextFields, 1);
@@ -85,9 +86,9 @@
                 gender : vm.gender,
                 birthday : (new Date(vm.birthday.setDate(vm.birthday.getDate()+1))).toISOString().substring(0, 10), // for some reason kailangan +1
                 email : vm.email,
-                contact_number : null,
+                contact_number : vm.contact_number,
                 contact_person : null,
-                profile_pic : (vm.gender === 'male')? 'default-boy.png' : 'default-girl.png',
+                profile_pic : (vm.gender === 'male')? '/images/default-boy.png' : '/images/default-girl.png',
                 isOverallAdmin : 0
             };
             
@@ -95,7 +96,22 @@
                 .then(function(data) {
                     if (data) {
                         Materialize.toast("Successfully registered!", 3000, 'red');
-                        $state.go('landingPage');
+                        sessionService.login(vm.username, vm.password)
+                            .then(function(user) {
+                                vm.user = user;
+                                vm.username = '';
+                                vm.password = '';
+                                if (user) {
+                                    console.log('hello');
+                                    WebuiPopovers.hide('#login');
+                                    $state.go('landingPage')
+                                        .then(function(){
+                                            window.location.reload(true);   
+                                        })
+                                } else { // if wrong credentials
+                                    Materialize.toast('Wrong credentials!', 2000, 'red');
+                                }
+                        });
                     }
                 });           
         }
