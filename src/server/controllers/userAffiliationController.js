@@ -48,9 +48,10 @@ exports.viewUserAffiliation = (req,res) => {
 exports.updateUserAffiliation = (req,res) => {
     var user_affiliation = {
 		user_no: req.params.id,
-		affiliation : req.body.affiliation
+		affiliation : req.body.affiliation,
+		old_affiliation : req.body.old_affiliation
 	};
-	connection.query('UPDATE userAffiliation SET affiliation = ? WHERE user_no = ?', [ req.body.affiliation, req.params.id ], function(err, rows, fields){
+	connection.query('UPDATE userAffiliation SET affiliation = ? WHERE user_no = ? and affiliation = ?', [ req.body.affiliation, req.params.id, req.body.old_affiliation ], function(err, rows, fields){
 		if (err) {
             console.log(err);
             res.send(err);
