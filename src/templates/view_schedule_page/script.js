@@ -1,6 +1,6 @@
 window.onload = function(){
     
-    var d = new Date("June 2018");
+    var d = new Date();
     var month_name = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     var month = d.getMonth();   //0-11
     var year = d.getFullYear(); //2014
@@ -14,8 +14,18 @@ window.onload = function(){
     var days = new Date(year, month+1, 0).getDate();    //30
     //Tue Sep 30 2014 ...
     var calendar = get_calendar(day_no, days);
+
+
     document.getElementById("calendar-month-year").innerHTML = month_name[month]+" "+year;
     document.getElementById("calendar-dates").appendChild(calendar);
+}
+
+function prevMonth(){
+
+}
+
+function nextMonth(){
+
 }
 
 function get_calendar(day_no, days){
