@@ -39,7 +39,7 @@
         vm.teams = [];
         vm.user = null;
 
-        vm.isAdmin = false;
+        vm.isAdmin = true;
         vm.joinedTeamId = 0;
         vm.allSports = [];
         vm.selectedSport = null;
@@ -278,8 +278,6 @@
         vm.$onInit = function() {
             vm.user = sessionService.user();
 
-            
-
             institutionService.getAll()
                 .then(function(institutions) {
                     vm.institutions = institutions;
@@ -309,11 +307,11 @@
                                 for (let teamId of teamIds) {
                                     for (let team of vm.teams) {
                                         if (teamId.team_player_id == team.team_id) {
-                                            return true;
+                                            return team.team_id;
                                         }
                                     }
                                 }
-                                return false
+                                return 0
                             })();
                         });
                 }

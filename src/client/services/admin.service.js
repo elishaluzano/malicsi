@@ -19,10 +19,6 @@
 					});
 			},
 
-            checkAdminOfInstitution: function(userId, institutionId) {
-                
-            },
-
 			checkAdminOfTeam: function(userId, teamId) {
 				return $http.get(api + 'checkAdminOfTeam/' + userId + '/' + teamId)
                     .then(function(response) {
