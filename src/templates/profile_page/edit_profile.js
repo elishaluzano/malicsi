@@ -28,10 +28,14 @@ $(document).ready(()=>{
 
     deleteRow = (item) => {
         item.on("click", () => {
-            item.tooltip('remove');
-            item.parent().parent().remove();
-            numAffRow = numAffRow - 1;
-            checkAffRows();
+            if (item.hasClass("disabled")) {
+                console.log("do nothing");
+            } else {
+                item.tooltip('remove');
+                item.parent().parent().remove();
+                numAffRow = numAffRow - 1;
+                checkAffRows();
+            }
         });
     }
 
