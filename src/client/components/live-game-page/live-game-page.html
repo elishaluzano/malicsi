@@ -3,9 +3,9 @@
     <div>
       <br>
       <div ng-repeat="team in $ctrl.teamsInGame" class="col s4 center">
-        <a href="../view_team_page/view_team.html"><img id="team-img" class="circle responsive-img" src=""></a>
-        <a class="white-text" href="../view_team_page/view_team.html"><h4>{{team.name}}</h4></a>
-        <h3 class="white-text">{{team.score}}</h3>
+        <a class="pointer" ui-sref="teamPage({ teamId: team.team_id })"><img id="team-img" class="circle responsive-img" ng-src="{{ team.picture }}"></a>
+        <a class="white-text pointer" ui-sref="teamPage({ teamId: team.team_id })"><h4>{{team.name}}</h4></a>
+        <h3 class="black-text">{{team.score}}</h3>
       </div>
        <!--  <a class="modal-trigger" href="#edit-score">
           <div class = "chip orange white-text">Update Score</div>

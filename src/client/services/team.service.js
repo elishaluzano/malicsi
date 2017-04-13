@@ -65,7 +65,7 @@
             },
 
             updateGame: function(teamId, gameId, body) {
-                return $http.get(api + 'plays/' + teamId + '/' + gameId,  body)
+                return $http.put(api + 'plays/' + teamId + '/' + gameId,  body)
                     .then(function(response) {
                         return response.data;
                     })

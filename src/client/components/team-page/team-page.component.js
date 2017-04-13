@@ -51,7 +51,10 @@
                 .then(function(data) {
                     if(data) {
                         vm.event = data;
-                        if(vm.currentUser){
+                        if (vm.currentUser && vm.currentUser.isOverallAdmin) {
+                            vm.isAdminOfTeam = true;
+                        }
+                        else if(vm.currentUser){
                             adminService.checkAdminOfTeam(vm.currentUser.user_id, vm.currentTeam.team_id)
                                 .then(function(data){
                                     if(data) vm.isAdminOfTeam = true;

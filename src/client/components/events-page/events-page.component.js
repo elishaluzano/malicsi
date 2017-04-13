@@ -17,15 +17,16 @@
             vm.isAdmin = false;
             vm.user = null;
             vm.event_title = '';
-            vm.picture = '';
             vm.venue = '';
             vm.start_date = null;
             vm.end_date = null;
             vm.institutions = [];
             vm.ins = null;
             vm.venues = [];
+            vm.files = [];
 
             vm.$onInit = function() {
+                console.log()
                 vm.modalOpen = true;
                  $('select').material_select();
 
@@ -61,6 +62,7 @@
                                     for(let each of data) {
                                         vm.institutions.push(each);
                                     }
+                                    console.log(vm.institutions);
                                 })
                             vm.isAdmin = true;
                     }
@@ -68,14 +70,15 @@
             }
 
             vm.addEvent = function() {
-                const body = {
-                    event_title: vm.event_title,
-                    venue_id_key: vm.venue,
-                    start_date: (new Date(vm.start_date)).toISOString().substring(0, 10),
-                    end_date: (new Date(vm.end_date)).toISOString().substring(0, 10),
-                    picture: vm.picture,
-                    institution_id_key: vm.ins
-                }
+                var fd = new FormData();
+                fd.append('event_title', vm.event_title);
+                fd.append('venue_id_key', vm.venue);
+                fd.append('start_date', (new Date(vm.start_date)).toISOString().substring(0, 10));
+                fd.append('end_date',  (new Date(vm.end_date)).toISOString().substring(0, 10));
+                fd.append('picture', (vm.files[0])? vm.files[0] : vm.currentTeam.picture);
+                fd.append('institution_id_key', vm.ins);
+
+                console.log(vm.ins);
 
                 if(vm.event_title == '') {
                     Materialize.toast("Please add an Event Title", 3000);
@@ -93,7 +96,7 @@
                     Materialize.toast("Please add an Institution", 3000);
                 }
                 else{
-                    eventService.create(body)
+                    eventService.create(fd)
                         .then(function(data) {
                             vm.events.push(data);
                             Materialize.toast("Successfully added an event!", 3000);

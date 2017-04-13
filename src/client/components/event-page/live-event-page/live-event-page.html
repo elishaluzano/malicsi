@@ -69,7 +69,7 @@
                     Teams
                 </button>
 
-                <button
+                <button ng-if="$ctrl.isAdmin"
                     class="tablinks red white-text"
                     ng-click="$ctrl.toggleToSports()">
                     Sports
@@ -244,7 +244,7 @@
                                             {{ game.venue }}
                                         </td>
                                         <td ng-if="game.status.text === 'ONGOING'">
-                                            <a ui-sref="gamePage({ gameId: game.game_id })"
+                                            <a ui-sref="liveGamePage({ gameId: game.game_id })"
                                                 class="chip orange white-text pointer">
                                                 View Game
                                             </a>
@@ -316,7 +316,7 @@
         <a class="btn-flat modal-action modal-close waves-effect waves-red pointer">Cancel</a>
         <a class="btn-flat modal-action modal-close waves-effect waves-green pointer"
             ng-click="$ctrl.deleteEvent()">
-            Delete Event
+            Delete Game
         </a>
     </div>
 </div>
@@ -617,7 +617,7 @@
                         <h5>Venue</h5>
                         <select watch class="browser-default"
                             material-select
-                            ng-model="$ctrl.newGame.venue_id">
+                            ng-model="$ctrl.newGame.venue">
                             <option ng-repeat="venue in $ctrl.venues"
                                 ng-value="venue.venue_id">
                                 {{ venue.name }}

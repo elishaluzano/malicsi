@@ -35,7 +35,7 @@
             }
             for(let game of vm.allGamesInformation){
                 for(let sport of vm.sports){
-                    if(game.sport_id === sport.sport_id && game.status === "FINISHED"){
+                    if(game.sport_id === sport.sport_id && game.status === "ONGOING"){
                         sport.games.push(game);
                     }
                 }

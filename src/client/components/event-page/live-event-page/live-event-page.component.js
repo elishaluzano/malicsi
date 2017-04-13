@@ -11,7 +11,7 @@
             }
         });
 
-    function liveEventPageController($q, eventService, venueService, teamService, institutionService, $state, searchService, sportService, sessionService, gameService) {
+    function liveEventPageController($q, eventService, venueService, teamService, institutionService, $state, searchService, sportService, sessionService, gameService, adminService) {
         var vm = this;
 
         vm.sports = [];
@@ -39,7 +39,7 @@
         vm.teams = [];
         vm.user = null;
 
-        vm.isAdmin = true;
+        vm.isAdmin = false;
         vm.joinedTeamId = 0;
         vm.allSports = [];
         vm.selectedSport = null;
@@ -101,6 +101,50 @@
             }
 
             let time = (new Date(vm.selectedGame.date.setDate(vm.selectedGame.date.getDate()+1))).toISOString().substring(0, 10) + ' ' + ((vm.selectedGame.start_hour < 10)? ('0' + vm.selectedGame.start_hour) : (vm.selectedGame.start_hour)) + ':' + ((vm.selectedGame.start_minute < 10)? ('0' + vm.selectedGame.start_minute) : (vm.selectedGame.start_minute)) + ':00';
+            let body = {
+                min_num_of_players: 0,
+                max_num_of_players: 0,
+                status: 'PENDING',
+                venue: vm.selectedGame.venue,
+                event_id: vm.event.event_id,
+                sport_id: vm.selectedGame.sport_id,
+                time: time
+            };
+
+            console.log(vm.selectedGame);
+            gameService.update(vm.selectedGame.game_id, body)
+                .then(function(game) {
+                    gameService.getTeamsInGame(vm.selectedGame.game_id)
+                        .then(function(teams) {
+                            teamService.updateGame(teams[0].team_id, vm.selectedGame.game_id, {
+                                    score: teams[0].score,
+                                    record: teams[1].record,
+                                    team_id: vm.selectedGame.team1_id
+                                })
+                                .then(function(teamGame) {
+                                    console.log('changed team');
+                                });
+
+                            teamService.updateGame(teams[1].team_id, vm.selectedGame.game_id, {
+                                    score: teams[0].score,
+                                    record: teams[1].record,
+                                    team_id: vm.selectedGame.team2_id
+                                })
+                                .then(function(teamGame) {
+                                    console.log('changed team');
+                                });
+                        });
+
+                    Materialize.toast('Updated game', 3000, 'red');
+                });
+        }
+
+        vm.deleteGame = function() {
+            gameService.delete(vm.selectedGame.game_id)
+                .then(function() {
+                    Materialize.toast('Game has been deleted', 3000, 'red');
+                    $state.reload();
+                });
         }
 
         vm.createGame = function(selectedSport, date) {
@@ -109,27 +153,14 @@
             }).sport_id;
 
             vm.newGame = {
-                venue_id: vm.venues[0].venue_id,
+                venue: vm.venues[0].venue_id,
                 sport_id: sport_id,
                 team1_id: vm.teams[0].team_id,
                 team2_id: (vm.teams[1])? vm.teams[1].team_id : vm.teams[0].team_id,
                 start_hour: 0,
                 start_minute: 0,
                 date: angular.copy(date)
-            };
-
-            let body = {
-                min_num_of_players: 0,
-                max_num_of_players: 0,
-                status: 'PENDING',
-                venue: vm.selectedGame.venue_id,
-                event_id: vm.event.event_id,
-                sport_id: vm.selectedGame.sport_id,
-                time: time
-            };
-
-            
-            
+            };   
         }
 
         vm.confirmCreateGame = function() {
@@ -147,11 +178,18 @@
 
             let time = (new Date(vm.newGame.date.setDate(vm.newGame.date.getDate()+1))).toISOString().substring(0, 10) + ' ' + ((vm.newGame.start_hour < 10)? ('0' + vm.newGame.start_hour) : (vm.newGame.start_hour)) + ':' + ((vm.newGame.start_minute < 10)? ('0' + vm.newGame.start_minute) : (vm.newGame.start_minute)) + ':00';
 
+            let status = 'PENDING';
+            let nowTime = new Date().getTime();
+            let gameTime = new Date(time).getTime();
+            if (gameTime <= nowTime) {
+                status = 'ONGOING';
+            }
+
             let body = {
                 min_num_of_players: 0,
                 max_num_of_players: 0,
-                status: 'PENDING',
-                venue: vm.newGame.venue_id,
+                status: status,
+                venue: vm.newGame.venue,
                 event_id: vm.event.event_id,
                 sport_id: vm.newGame.sport_id,
                 time: time
@@ -388,6 +426,17 @@
 
         vm.$onInit = function() {
             vm.user = sessionService.user();
+            if (vm.user && vm.user.isOverallAdmin) {
+                vm.isAdmin = true;
+            }
+            else if (vm.user) {
+                adminService.checkAdminOfEvent(vm.user.user_id, vm.event.event_id)
+                    .then(function(isAdmin) {
+                        if (isAdmin) {
+                            vm.isAdmin = true;
+                        }
+                    });
+            }
 
             institutionService.getAll()
                 .then(function(institutions) {

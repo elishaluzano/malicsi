@@ -24,16 +24,18 @@
 				});
 
 			var user = sessionService.user();
-			adminService.checkAdminOfInstitution(user.user_id, vm.institution.institution_id)
-				.then(function(institution) {
-					if(institution){
-						vm.admin = true;
-						console.log(institution);
-					}
-				})
-				.catch(function(e){
-					console.log(e);
-				})
+            if (user) {
+                adminService.checkAdminOfInstitution(user.user_id, vm.institution.institution_id)
+                    .then(function(institution) {
+                        if(institution){
+                            vm.admin = true;
+                            console.log(institution);
+                        }
+                    })
+                    .catch(function(e){
+                        console.log(e);
+                    })
+            }
 
 		}
 

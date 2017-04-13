@@ -241,7 +241,9 @@ exports.getPlays = (req, res) => {
 exports.addPlays = (req, res) => {
 	var newPlay = {
 		team_id_play: req.body.team_id_play,
-		game_id_play: req.body.game_id_play
+		game_id_play: req.body.game_id_play,
+        score: req.body.score || 0,
+        record: req.body.record || null
 	};
 	connection.query('INSERT INTO teamPlaysGame SET ?', newPlay, function(err, rows, fields) {
 		if(!err) {
@@ -285,11 +287,11 @@ exports.getAllGameInfo = (req, res) => {
 exports.updatePlays = (req, res) => {
     var newPlay = {
         record: req.body.record,
-		team_id_play: req.params.team_id,
+		team_id_play: req.body.team_id,
 		game_id_play: req.params.game_id,
 		score: req.body.score
 	};
-    connection.query('UPDATE teamPlaysGame SET record = ?, score = ? where team_id_play = ? and game_id_play = ?', [ req.body.record, req.body.score, req.params.team_id, req.params.game_id ], function(err, rows, fields) {
+    connection.query('UPDATE teamPlaysGame SET record = ?, score = ?, team_id_play = ? where team_id_play = ? and game_id_play = ?', [ req.body.record, req.body.score, req.body.team_id, req.params.team_id, req.params.game_id ], function(err, rows, fields) {
         if(!err) {
 			res.send(newPlay);
 			console.log("Successfully updated the record");
