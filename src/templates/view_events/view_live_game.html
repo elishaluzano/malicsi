@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <!--Import Google Icon Font-->
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.css" media="screen,projection" />    
-        <link href="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.css" rel="stylesheet" />
-    
-        <!-- FOR NAVIGATION CSS -->
-        <link type="text/css" rel="stylesheet" href="../index_page/index.css" />
-        
-        <link type="text/css" rel="stylesheet" href="view_live_page.css" />
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<html lang="en">
+<head>
 
-    </head>
-    <body>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 
-    <!--========================================================== NAVIGATION =========================================================-->
-    <div class ="navbar-fixed">
+	<title>MalICSihan</title>
+	
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="../../../node_modules/materialize-css/dist/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="../../../node_modules/webui-popover/dist/jquery.webui-popover.css">
+  <!-- FOR NAVIGATION CSS -->
+  <link type="text/css" rel="stylesheet" href="../index_page/index.css" />
+  <link type="text/css" rel="stylesheet" href="view_live_game.css"/>
+  <link type="text/css" rel="stylesheet" href="../scrollbar.css" />
+
+</head>
+<body>
+
+ <div class = "navbar-fixed">
    <nav id="top" class="white">
             <div class="nav-wrapper">
                 <a class="left" id="malicsi-logo-link" href="#"><img src="../images/malicsi-logo.png"></a>
                 <i id="drop-links" style="cursor: pointer;" class="black-text large material-icons left hide-on-large-only">menu</i>
                 <ul class="left hide-on-med-and-down">
-                    <li><a class="black-text" href="#">Live</a></li>
+                    <li ><a class="black-text" href="../index_page/index_logged_in.html">Live</a></li>
                     <li class = "active"><a class="black-text" href="../view_events/view_events.html">Events</a></li>
-                    <li><a class="black-text" href="../view_team_page/view_teams.html">Teams</a></li>
-                    <li><a class="black-text" href="../view_schedule_page/view_schedule.html">Schedules</a></li>
+                    <li><a class="black-text" href="../view_team_page/view_team.html">Teams</a></li>
+                    <li><a class="black-text " href="../view_schedule_page/view_schedule.html">Schedules</a></li>
                     <li><a class="black-text" href="../view_sponsors_page/view_sponsors.html">Sponsors</a></li>
 
                 </ul>
@@ -53,11 +53,10 @@
             </div>
         </nav>
         </div>
-
         <div id="additional-links" class="webui-popover-content">
             <div><a id="dropdown-links" href = "#">Live</a></div>
             <div><a id="dropdown-links" href = "../view_events/view_events.html">Events</a></div>
-            <div><a id="dropdown-links" href = "../view_team_page/view_teams.html">Teams</a></div>
+            <div><a id="dropdown-links" href = "../view_team_page/view_team.html">Teams</a></div>
             <div><a id="dropdown-links" href = "../view_schedule_page/view_schedules.html">Schedules</a></div>
             <div><a id="dropdown-links" href = "../view_sponsors_page/view_sponsors.html">Sponsors</a></div>
         </div>
@@ -78,134 +77,200 @@
             <li><a href="../index_page/index.html">Sign out<i class="material-icons">power_settings_new</i></a></li>
         </ul>
 
-        <!--========================================================== NAVIGATION =========================================================-->
+<!-- END OF NAV -->
 
-        <div class = "row">
-            <div class = "col m3">
-            </div>
+<div class = "row">
+  <div class = "col s12 m12 l12"  id = "score-bg">
+    <div>
+      <br>
+      <div  class="col s4 center">
+        <a href="../view_team_page/view_team.html"><img id="team-img" class="circle responsive-img" src="../images/logo/red_lion.png"></a>
+        <a class="white-text" href="../view_team_page/view_team.html"><h4>Red Lions</h4></a>
+        <h3 class="white-text">99</h3>
+      </div>
+      <div class="col s4 center"><h1 class="white-text vs">VS</h1></div>
+      <div  class="col s4 center">
+        <a href="../view_team_page/view_team.html"><img id="team-img" class="circle responsive-img" src="../images/logo/blue_tiger.png"></a>
+        <a class="white-text" href="../view_team_page/view_team.html"><h4>Blue Tigers</h4></a>
+        <h3 class="white-text">100</h3>
+      </div>
+      <div class="right">
+       <!--  <a class="modal-trigger" href="#edit-score">
+          <div class = "chip orange white-text">Update Score</div>
+        </a> -->
+      </div>
+    </div>
+  </div>
 
-            <div class = "col s12 m8">
-            <!-- Your code here!!! -->
+  <div class="row">
 
-            <div id="score-bg" class="card col s12">
-                <!--image for the background-->
+    <div class = "container">
 
-                <div  class="col s4 center">
-                    <a href="../view_team_page/view_teams.html"><img id="team-img" class="circle responsive-img" src="../images/logo/red_lion.png"></a>
-                    <a class="white-text" href="../view_team_page/view_teams.html"><h4>Red Lions</h4></a>
-                    <h3 class="white-text">99</h3>
-                </div>
+    <div id="test2" class="col s12 l12">
+      <div style = "max-height:300px;overflow-y:scroll;background-color:#f4f4f4;padding-left:10px">
+        <br>
+        <div class = "right" style="width:100%">
+          <span class = "right">
+            <a href="#delete-history"><i class = "material-icons" style = "top:5px;position:relative;">delete</i></a>
+            <a href="#edit-history"><i class = "material-icons" style = "top:5px;position:relative;">edit</i></a>
+            <div class = "chip blue white-text">Team 2 is now 2 points</div>
+            <p class = "center-align grey-text" style ="margin-top:0em;">hh:mm:ss</p>
 
-                <div class="col s4 center"><h1 class="white-text vs">VS</h1></div>
-                
-                <div  class="col s4 center">
-                    <a href="../view_team_page/view_teams.html"><img id="team-img" class="circle responsive-img" src="../images/logo/blue_tiger.png"></a>
-                    <a class="white-text" href="../view_team_page/view_teams.html"><h4>Blue Tigers</h4></a>
-                    <h3 class="white-text">100</h3>
-                </div>
-                <div class"right">
-                <a class="modal-trigger waves-effect waves-light btn" href="#edit_scores"><i class="material-icons">mode_edit</i></a>
+          </span>
+        </div>      
+        <div class = "left" style="width:100%">
+          <span class ="left">
+            <div class = "chip red white-text">Teams 1 is now 3 points</div>
 
-                <div id="edit_scores" class="modal modal-fixed-footer">
-                    <div class="modal-content">
-                        <div class="row">
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input type="text" id="team1score" placeholder="10"></input>
-                                        <label for="team1score">Red Lions Score</label>  
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input type="text" id="team2score" placeholder="10"></input>
-                                        <label for="team2score">Blue Tigers Score</label>  
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"> OK </a>
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"> Cancel </a>
-                    </div>
-                </div>    
-                </div>
-            </div>
-            <div class="card-tabs">
-            <ul class="tabs tabs-fixed-width">
-                <li class="tab col s2 disabled"><a class="black-text" href="#history">HISTORY</a></li>
-                <li class="tab col s2 disabled"><a class="black-text" href="#stat">STAT</a></li>
-                <li class="tab col s2"><a class="black-text" href="#players">PLAYERS</a></li>
-            </ul>
-            </div>
-
-            <div id="history" class="col s12">HISTORY</div>
-            <div id="stat" class="col s12">STATISTICS</div>
-            <div id="players" class="col s12 center">
-                <ul class="collapsible" data-collapsible="expandable">
-                    <li class="active">
-                        <div class="collapsible-header active">
-                            <a class="black-text" href="../view_team_page/view_teams.html"><h5>Red Lions</h5></a>
-                        </div>
-                        <div class="collapsible-body ">
-                            <a href="../profile_page/profile.html"><img id="user-img" class="circle responsive-img" src="../images/person-flat.png"></a>
-                            <a class="black-text" href="../profile_page/profile.html">Player 1</a>
-                        </div>
-                        <div class="collapsible-body ">
-                            <a href="../profile_page/profile.html"><img id="user-img" class="circle responsive-img" src="../images/person-flat.png"></a>
-                            <a class="black-text" href="../profile_page/profile.html">Player 2</a>
-                        </div>
-                        <div class="collapsible-body ">
-                            <a href="../profile_page/profile.html"><img id="user-img" class="circle responsive-img" src="../images/person-flat.png"></a>
-                            <a class="black-text" href="../profile_page/profile.html">Player 3</a>
-                        </div>
-                        <div class="collapsible-body ">
-                            <a href="../profile_page/profile.html"><img id="user-img" class="circle responsive-img" src="../images/person-flat.png"></a>
-                            <a class="black-text" href="../profile_page/profile.html">Player 4</a>
-                        </div>
-                        <div class="collapsible-body ">
-                            <a href="../profile_page/profile.html"><img id="user-img" class="circle responsive-img" src="../images/person-flat.png"></a>
-                            <a class="black-text" href="../profile_page/profile.html">Player 5</a>
-                        </div>
-                    </li>
-         
-                    <li class="active">
-                        <div class="collapsible-header active">
-                            <a class="black-text" href="../view_team_page/view_teams.html"><h5>Blue Tigers</h5></a>
-                        </div>
-                        <div class="collapsible-body ">
-                            <a href="../profile_page/profile.html"><img id="user-img" class="circle responsive-img" src="../images/person-flat.png"></a>
-                            <a class="black-text" href="../profile_page/profile.html">Player 1</a>
-                        </div>
-                        <div class="collapsible-body ">
-                            <a href="../profile_page/profile.html"><img id="user-img" class="circle responsive-img" src="../images/person-flat.png"></a>
-                            <a class="black-text" href="../profile_page/profile.html">Player 2</a>
-                        </div>
-                        <div class="collapsible-body ">
-                            <a href="../profile_page/profile.html"><img id="user-img" class="circle responsive-img" src="../images/person-flat.png"></a>
-                            <a class="black-text" href="../profile_page/profile.html">Player 3</a>
-                        </div>
-                        <div class="collapsible-body ">
-                            <a href="../profile_page/profile.html"><img id="user-img" class="circle responsive-img" src="../images/person-flat.png"></a>
-                            <a class="black-text" href="../profile_page/profile.html">Player 4</a>
-                        </div>
-                        <div class="collapsible-body ">
-                            <a href="../profile_page/profile.html"><img id="user-img" class="circle responsive-img" src="../images/person-flat.png"></a>
-                            <a class="black-text" href="../profile_page/profile.html">Player 5</a>
-                        </div>
-                    </li>
-                </ul>       
-            </div>
-
-                </div>  
-            </div>
-            
-
-            </div>
+            <a href="#delete-history"><i class = "material-icons" style = "top:5px;position:relative;">delete</i></a>
+            <a href="#edit-history"><i class = "material-icons" style = "top:5px;position:relative;">edit</i></a>
+            <p class = "center-align grey-text" style ="margin-top:0em;">hh:mm:ss</p>
+          </span>
         </div>
+        <div class = "right" style="width:100%">
+          <span class = "right">
+            <a href="#delete-history"><i class = "material-icons" style = "top:5px;position:relative;">delete</i></a>
+            <a href="#edit-history"><i class = "material-icons" style = "top:5px;position:relative;">edit</i></a>
+            <div class = "chip blue white-text">Team 2 is now 5 points</div>
+            <p class = "center-align grey-text" style ="margin-top:0em;">hh:mm:ss</p>
+          </span>
+        </div>
+        <div class = "left" style="width:100%">
+          <span class ="left">
+            <div class = "chip red white-text">Teams 1 is now 5 points</div>
+            <a href="#delete-history"><i class = "material-icons" style = "top:5px;position:relative;">delete</i></a>
+            <a href="#edit-history"><i class = "material-icons" style = "top:5px;position:relative;">edit</i></a>
+            <p class = "center-align grey-text" style ="margin-top:0em;">hh:mm:ss</p>
+          </span>
+        </div>
+        <div class = "right" style="width:100%">
+          <span class = "right">
+            <a href="#delete-history"><i class = "material-icons" style = "top:5px;position:relative;">delete</i></a>
+            <a href="#edit-history"><i class = "material-icons" style = "top:5px;position:relative;">edit</i></a>
+            <div class = "chip blue white-text">Team 2 is now 7 points</div>
+            <p class = "center-align grey-text" style ="margin-top:0em;">hh:mm:ss</p>
+          </span>
+        </div>
+        <div class = "right" style="width:100%">
+          <span class = "right">
 
-        <footer class="red page-footer">
+            <a href="#delete-history"><i class = "material-icons" style = "top:5px;position:relative;">delete</i>
+            <a href="#edit-history"><i class = "material-icons" style = "top:5px;position:relative;">edit</i>
+            <div class = "chip blue white-text">Team 2 is now 9 points</div>
+            <p class = "center-align grey-text" style ="margin-top:0em;">hh:mm:ss</p>
+          </span>
+        </div>
+        
+        
+      
+      </div>
+      <div class = "">
+      <br>
+      <a class = "btn-flat orange white-text right" href="#update-history-modal" >Update live</a>
+     </div>
+    </div>
+    
+
+    </div>
+
+  </div>
+        
+</div>
+
+<!-- update-history-modal -->
+<div id="update-history-modal" class="modal">
+    <div class="modal-content">
+      <h5>
+        Update history
+        <a class = "modal-action modal-close red-text right"><i class = "material-icons">close</i></a>
+      </h5>
+      <div class="divider"></div>
+      <div class = "container">
+        <form>
+          <br>
+          <div class = "row">
+            <div class = "col s12 l12">
+              <div class="input-field">
+                <select>
+                  <option value="" disabled selected>Select Team</option>
+                  <option value="1" data-icon="../images/logo/red_lion.png" class = "right circle">Red Lions</option>
+                  <option value="2" data-icon="../images/logo/blue_tiger.png" class = "right circle">Blue Tigers</option>
+                </select>
+                <label>Team Select</label>
+              </div>
+              <div class ="input-field">
+                <input id = "icon_prefix" type = "number" placeholder="" >
+              </div>
+            </div>
+          </div>
+          <div class="center">
+          <a class = "waves-effect waves-light green btn z-depth-0 modal-action modal-close" value="submit" type="submit">Submit</a>
+          <a class = "waves-effect waves-light grey btn z-depth-0 modal-action modal-close" value="submit" type="submit">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Edit history log -->
+<div id="edit-history" class="modal">
+    <div class="modal-content">
+      <h5>
+        Edit History
+        <a class = "modal-action modal-close red-text right"><i class = "material-icons">close</i></a>
+      </h5>
+      <div class="divider"></div>
+      <div class = "container">
+        <form>
+          <br>
+          <div class = "row">
+            <div class = "col s12 l12">
+              <div class="input-field">
+                <select>
+                  <option value="" disabled selected>Select Team</option>
+                  <option value="1" data-icon="../images/logo/red_lion.png" class = "right circle">Red Lions</option>
+                  <option value="2" data-icon="../images/logo/blue_tiger.png" class = "right circle">Blue Tigers</option>
+                </select>
+                <label>Team Select</label>
+              </div>
+              <div class ="input-field">
+                <input id = "icon_prefix" type = "number" placeholder="" >
+              </div>
+            </div>
+          </div>
+          <div class="center">
+          <a class = " modal-action modal-close green white-text btn z-depth-0" value = "submit" type = "submit">Confirm</a>
+          <a class = " modal-action modal-close grey white-text btn z-depth-0" type = "submit">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<!-- Delete history log -->
+
+<div id="delete-history" class="modal">
+    <div class="modal-content">
+      <h5>
+        Delete history
+        <a class = "modal-action modal-close red-text right"><i class = "material-icons">close</i></a>
+      </h5>
+      <div class="divider"></div>
+        <p>Are you sure you want to delete this history log?</p>
+          <div class="center">
+          <!-- <input type ="submit" value = "Submit" class = " right modal-action modal-close"> -->
+          <a class = " modal-action modal-close green white-text btn z-depth-0" value = "submit" type = "submit">Confirm</a>
+          <a class = " modal-action modal-close grey white-text btn z-depth-0" type = "submit">Cancel</a>
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+<!-- ====================================================== FOOTER ===========================================-->                  
+
+    <footer class="red page-footer">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
@@ -232,13 +297,14 @@
         </footer>
 
 
+<!-- =================================== SCRIPTS ===========================================-->
 
-        <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.js"></script>
-        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.js"></script>
-        <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
-        <!-- FOR NAVIGATION JS -->
-        <script src="../index_page/index.js"></script>     
-        <script src="view_live_page.js"></script>
-    </body>
+  <script src="../../../node_modules/jquery/dist/jquery.js"></script>
+  <script src="sample.js"></script>
+  <script src="init.js"></script>
+  <script src="../../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
+  <script src = "events.js"></script>
+        
+</body>
 </html>
