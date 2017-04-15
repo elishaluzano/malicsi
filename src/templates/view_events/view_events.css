@@ -1,0 +1,13 @@
+.card .card-image img {
+  height: 300px;
+}
+
+.custom-content{
+	height:100px;
+	overflow-y:scroll;
+}
+
+.custom-image{
+	height:300px !important;
+
+}
