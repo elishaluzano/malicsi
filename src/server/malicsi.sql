@@ -168,6 +168,14 @@ update gameUpdateLog set score = point and team_id = team_id and game_id = game_
 update teamPlaysGame set score = (score - prev_score) + point where team_id_play = team_id and game_id_play = game_id;
 END;
 //
+
+create procedure deleteGameLog(in id int, prev_score float)
+BEGIN
+delete from gameUpdateLog where gameUpdateLog_id = id;
+update teamPlaysGame set score = (score - prev_score) where team_id_play = team_id and game_id_play = game_id;
+END;
+//
+
 delimiter ;
 
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Ryan Magorian','Father','09987898765');
