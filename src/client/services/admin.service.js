@@ -19,13 +19,46 @@
 					});
 			},
 
+            checkAdminOfInstitution: function(userId, institutionId) {
+				return $http.get(api + 'checkAdminOfInstitution/' + userId + '/' + institutionId)
+                    .then(function(response) {
+						return response.data
+					})
+					.catch(function(err) {
+						console.log("Error in checking of admin of institution!");
+						console.log(err.status + ': ' + err.statusText);
+					});
+			},
+
+			checkAdminOfEvent: function(userId, eventId) {
+				return $http.get(api + 'checkAdminOfEvent/' + userId + '/' + eventId)
+                    .then(function(response) {
+						return response.data
+					})
+					.catch(function(err) {
+						console.log("Error in checking of admin of event!");
+						console.log(err.status + ': ' + err.statusText);
+					});
+			},
+
+			checkAdminOfGame: function(userId, gameId) {
+				return $http.get(api + 'checkAdminOfGame/' + userId + '/' + gameId)
+                    .then(function(response) {
+						return response.data
+					})
+					.catch(function(err) {
+						console.log("Error in checking of admin of game!");
+						console.log(err.status + ': ' + err.statusText);
+					});
+			},
+
 			checkAdminOfTeam: function(userId, teamId) {
 				return $http.get(api + 'checkAdminOfTeam/' + userId + '/' + teamId)
                     .then(function(response) {
 						return response.data
 					})
 					.catch(function(err) {
-						console.log("Error in checking of admin!");
+						console.log("Error in checking of admin of team!");
 						console.log(err.status + ': ' + err.statusText);
 					});
 			},

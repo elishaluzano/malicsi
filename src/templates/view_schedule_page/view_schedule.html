@@ -1,42 +1,18 @@
-<!-- NOTES 
-
-1.) if there is an overlapping event (eg. Event A has dates June 12 to June 15 and Event B as dates June 14 to 15),
-    system should be able to cater information. Hence, the event name in the schedule. 
-
-2.) if event is already done, score and winner should be present
-
-3.) if event is ongoing, current score is available, but winner is N/A
-
-4.) if event in upcoming, score AND winner is N/A
-
-5.) not yet responsive tho
--->
-
-
-
 <!DOCTYPE html>
 <html>
     <head>
-        <!--Import Google Icon Font-->
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.css" media="screen,projection" />    
+        <title>Calendar</title>
+        <link type="text/css" rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="../../../node_modules/materialize-css/dist/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.css" rel="stylesheet" />
-    
         <!-- FOR NAVIGATION CSS -->
         <link type="text/css" rel="stylesheet" href="../index_page/index.css" />
-        
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-        <!-- FOR SCHED DATES CSS -->
-        <link href = "view_schedule.css" type = "text/css" rel = "stylesheet">
-
+        <link href = "custtabs.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href = "view_schedule.css" type="text/css" rel="stylesheet" media="screen,projection" />
     </head>
     <body>
-
-    <!--======================================================= NAVIGATION ========================================================-->
-  <div class = "navbar-fixed">
+<div class = "navbar-fixed">
    <nav id="top" class="white">
             <div class="nav-wrapper">
                 <a class="left" id="malicsi-logo-link" href="../index_page/index_logged_in.html"><img src="../images/malicsi-logo.png"></a>
@@ -99,18 +75,40 @@
 
 
 
-        <div class = "row">
-            <div class = "s12 m12 l12">
-                <div class = "tab-custom" id = "addhere">
-                <button class = "tablinks tooltipped" onclick="openData(event,'June_12_game')" data-position="bottom" data-delay="50" data-tooltip = "yesterday">June 12</button>
-                <button class = "tablinks active tooltipped" onclick="openData(event,'June_13_game')" id ="defaultOpen" data-position ="bottom" data-delay = "50" data-tooltip="today">June 13</button>
-                <button class = "tablinks tooltipped" onclick="openData(event,'June_14_game')" data-position ="bottom" data-delay = "50" data-tooltip="tomorrow">June 14</button>
-                <button class = "tablinks" onclick="openData(event,'June_15_game')">June 15</button>
-                </div>
-            </div>
 
-            <div class = "game-container">
-                <div id = "June_12_game" class = "tabcontent">
+
+
+        <div class = "row">
+            <div class = "col l3 s12 m3">
+             <!--    <div class = "card" style = "position">
+                  <div class = "card-content">
+
+                <div id="calendar-container">
+                    <div id="calendar-header">
+                        <span id="calendar-month-year"></span>
+                    </div>
+                    <div id="calendar-dates">
+                    </div>
+                </div>
+                  </div>
+                </div> -->
+
+                <div class = "calendar-container">
+                  <div class = "card">
+                    
+                    <div class = "card-content" id = "calendar-dates">
+                      <span class = "card-title" id = "calendar-month-year"></span>
+                      <div class = "divider"></div>
+                    </div>
+                  </div>
+                </div>
+
+
+            </div>
+            
+            <div class = "col l9 s12 m9">
+                <div class = "game_container">
+                    <div id = "June_12_game" class = "tabcontent">
                     <ul class = "collapsible popout" data-collapsible="expandable">
                         <li>
                             <div class = "collapsible-header active">Basketball</div>
@@ -575,17 +573,20 @@
                         </li>
                     </ul>
                 </div>
-            </div> <!--END OF GAME CONTAINER-->
+                </div>
+            </div>
         </div>
-
-        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="custtab.js"></script>
+        <script type="text/javascript" src="script.js"></script>
         <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.js"></script>
-        <script type = "text/javascript" src = "view_schedule.js"></script> 
+        
         <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.js"></script>
         <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
         
         <!-- FOR NAVIGATION JS -->
-        <script src="../index_page/index.js"></script>     
+        <script src="../index_page/index.js"></script>    
+
+        
         
     </body>
 </html>

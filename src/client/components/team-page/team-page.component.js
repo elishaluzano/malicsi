@@ -51,7 +51,10 @@
                 .then(function(data) {
                     if(data) {
                         vm.event = data;
-                        if(vm.currentUser){
+                        if (vm.currentUser && vm.currentUser.isOverallAdmin) {
+                            vm.isAdminOfTeam = true;
+                        }
+                        else if(vm.currentUser){
                             adminService.checkAdminOfTeam(vm.currentUser.user_id, vm.currentTeam.team_id)
                                 .then(function(data){
                                     if(data) vm.isAdminOfTeam = true;
@@ -70,10 +73,11 @@
 
 
                         var startDate = new Date(vm.event.start_date).getTime();
+                        var endDate = new Date(vm.event.end_date).getTime();
                         var curdate = (new Date).getTime();
 
 
-                        if(startDate > curdate){
+                        if(startDate >= curdate || endDate >= curdate){
                             vm.isSoon = true;
                         }
                     }
@@ -82,12 +86,14 @@
                     }
                 });
 
-            teamService.getIsUserOfTeam(vm.currentTeam.team_id, vm.currentUser.user_id)
-                .then(function(data){
-                    if(!data){
-                        vm.isMember = true;
-                    }
-                })
+            if(vm.currentUser){
+                teamService.getIsUserOfTeam(vm.currentTeam.team_id, vm.currentUser.user_id)
+                    .then(function(data){
+                        if(data.length != 0){
+                            vm.isMember = true;
+                        }
+                    })
+            }
 
 
             for(let record of vm.teamPlaysGame){
@@ -145,7 +151,10 @@
                 vm.lastOpponent = 'None';
             }
 
+        }
 
+        vm.print = function(a){
+            console.log(a);
         }
 
         vm.reset = function(){

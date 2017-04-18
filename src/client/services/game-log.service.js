@@ -21,7 +21,8 @@
             },
 
             getOne: function(id) {
-                return $http.get(api + id)
+                ///api/gamelogs/:id/game
+                return $http.get(api + id + '/game')
                     .then(function(response) {
                         return response.data;
                     })
