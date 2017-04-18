@@ -3,9 +3,9 @@
     <div>
       <br>
       <div ng-repeat="team in $ctrl.teamsInGame" class="col s4 center">
-        <a href="../view_team_page/view_team.html"><img id="team-img" class="circle responsive-img" src=""></a>
-        <a class="white-text" href="../view_team_page/view_team.html"><h4>{{team.name}}</h4></a>
-        <h3 class="white-text">{{team.score}}</h3>
+        <a class="pointer" ui-sref="teamPage({ teamId: team.team_id })"><img id="team-img" class="circle responsive-img" ng-src="{{ team.picture }}"></a>
+        <a class="white-text pointer" ui-sref="teamPage({ teamId: team.team_id })"><h4>{{team.name}}</h4></a>
+        <h3 class="black-text">{{team.score}}</h3>
       </div>
        <!--  <a class="modal-trigger" href="#edit-score">
           <div class = "chip orange white-text">Update Score</div>
@@ -55,17 +55,20 @@
         <br>
         <div ng-repeat="score in $ctrl.scores" ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'" style="width:100%"><span ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'"><div ng-class = "(score.teamVal % 2) == 0 ? 'red' : 'blue'" class = "chip white-text">{{score.name}} scores {{score.score}} points</div>
 
-        <a href="" modal data-target="delete-history" ng-click="$ctrl.getId(score.gameUpdateLog_id)" ng-if="$ctrl.isAdmin && $ctrl.game.status != 'ONGOING'"><i class = "material-icons" style = "top:5px;position:relative;">delete</i></a>
+        <a href="" modal data-target="delete-history" ng-click="$ctrl.getId(score.gameUpdateLog_id, score.score)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "material-icons" style = "top:5px;position:relative;">delete</i></a>
 
-        <a href="" modal data-target="edit-history" ng-click="$ctrl.getId(score.gameUpdateLog_id, score.score)" ng-if="$ctrl.isAdmin &&  $ctrl.game.status != 'ONGOING'"><i class = "material-icons" style = "top:5px;position:relative;">edit</i></a>
+        <a href="" modal data-target="edit-history" ng-click="$ctrl.getId(score.gameUpdateLog_id, score.score)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "material-icons" style = "top:5px;position:relative;">edit</i></a>
 
         <p class = "center-align grey-text" style ="margin-top:0em;">{{score.time | date: "MM-dd-yyyy hh:mm a"}}</p></span>
         </div> 
 
       </div>
       <div class = "container">
+      
       <br>
-      <a class = "chip orange white-text right" data-target="update-history-modal" href="" modal ng-if="$ctrl.isAdmin && $ctrl.game.status!= 'ONGOING'">Update live</a>
+      <a class = "chip black white-text right" data-target="end-game" href="" modal ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'">Close Game</a>
+      <a class = "chip orange white-text right" data-target="update-history-modal" href="" modal ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'">Add score</a>
+      <a class = "chip black white-text right" data-target="open-game" href="" modal ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'FINISHED'">Open Game</a>
      </div>
     </div>
     
@@ -87,6 +90,7 @@
     <div class = "container">
       <form>
         <br>
+
         <div class = "row">
           <div class = "col s12 l12">
             <div input-field>
@@ -164,3 +168,41 @@
       </div>
     </div>
   </div>
+
+
+<!-- End game -->
+
+<div id="end-game" class="modal">
+    <div class="modal-content">
+      <h5>End Game</h5>
+      <div class="divider"></div>
+        <p>Are you sure you want to close this game?</p>
+        <p>All edits and deletions will be disabled.</p>
+
+        <br><br><br>
+          <div class="modal-footer">
+          <!-- <input type ="submit" value = "Submit" class = " right modal-action modal-close"> -->
+          <a class = "right modal-action modal-close" value = "submit" type = "submit" ng-click="$ctrl.endGame()"><div class = "chip green white-text">Confirm</div></a>
+          <a class = "right modal-action modal-close" value = "submit" type = "submit"><div class = "chip red white-text">Cancel</div></a>
+          </div>
+
+      </div>
+</div>
+
+<!-- Open game -->
+
+<div id="open-game" class="modal">
+    <div class="modal-content">
+      <h5>End Game</h5>
+      <div class="divider"></div>
+        <p>Are you sure you want to re-open this game?</p>
+
+        <br><br><br>
+          <div class="modal-footer">
+          <!-- <input type ="submit" value = "Submit" class = " right modal-action modal-close"> -->
+          <a class = "right modal-action modal-close" value = "submit" type = "submit" ng-click="$ctrl.openGame()"><div class = "chip green white-text">Confirm</div></a>
+          <a class = "right modal-action modal-close" value = "submit" type = "submit"><div class = "chip red white-text">Cancel</div></a>
+          </div>
+
+      </div>
+</div>

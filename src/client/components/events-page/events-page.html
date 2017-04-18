@@ -46,7 +46,7 @@
               <div class="input-field col s12">
                 <select id="select-dropdown" class="left black-text browser-default" ng-model="$ctrl.ins">
                   <option value="" selected disabled>Sponsoring Institution</option>
-                  <option ng-repeat="ins in $ctrl.institutions" value="{{ ins.institution_no }}">
+                  <option ng-repeat="ins in $ctrl.institutions" ng-value="{{ ins.institution_no }}">
                     {{ ins.name }}
                   </option>
                 </select>
@@ -62,15 +62,17 @@
         			<div class="file-field input-field">
           				<div class="btn">
             				<span>Upload Logo</span>
-            				<input type="file">
+            				<input type="file" file-input="$ctrl.files">
           				</div>
           			
           				<div class="file-path-wrapper">
             				<input class="file-path validate" type="text">
           				</div>
           			</div>
-
-          			<input type ="submit" value = "Submit" class = "btn right modal-action modal-close" ng-click="$ctrl.addEvent()">
+                <div>
+                  <input type ="submit" value = "Submit" class = "btn right modal-action modal-close" ng-click="$ctrl.addEvent()">
+                  <input type ="submit" value = "Cancel" class = "btn right modal-action modal-close red">
+                </div>
       			</form>
       		</div>
     	</div>
