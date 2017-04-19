@@ -12,7 +12,7 @@
         });
 
         /* ADD sessionService, userService as parameter */
-        function eventsPageController(eventService, sessionService, adminService, institutionService, venueService) {
+        function eventsPageController(eventService, sessionService, adminService, institutionService, venueService, userLogService) {
             var vm = this;
             vm.isAdmin = false;
             vm.user = null;
@@ -99,6 +99,22 @@
                     eventService.create(fd)
                         .then(function(data) {
                             vm.events.push(data);
+                            
+                            var eventName = "Added " + vm.event_title + " event.";
+                            var log = {
+                                user_id: vm.user.user_id,
+                                institution_id: vm.ins,
+                                action: eventName
+                            }
+
+                            userLogService.create(log)
+                                .then(function(data) {
+                                  
+                                })
+                                .catch(function(err) {
+                                    console.log(err);
+                                })
+
                             Materialize.toast("Successfully added an event!", 3000);
                         })
                         .catch(function(err) {
