@@ -332,11 +332,12 @@
                             sport: name
                         });
                     }
-
+                    
                     vm.sports.push({
                         sport_id: eventHasSport.sport_id,
                         name: name
                     });
+                    $state.reload();
                 });
         }
 
