@@ -207,5 +207,5 @@ router.get('/api/gamelogs/:id/game', gameLogCtrl.viewGamelogsOfGame);
 router.get('/api/gamelogs/:id', gameLogCtrl.viewGamelog);
 router.post('/api/gamelogs', gameLogCtrl.addGameLog);
 router.put('/api/gamelogs/:id', gameLogCtrl.updateGameLog);
-router.delete('/api/gamelogs/:id', gameLogCtrl.deleteGameLog);
+router.post('/api/gamelogs/:id', gameLogCtrl.deleteGameLog);
 module.exports = router;
