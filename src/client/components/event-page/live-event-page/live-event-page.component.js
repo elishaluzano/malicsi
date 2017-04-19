@@ -431,7 +431,7 @@
         }
 
         vm.$onInit = function() {
-            // vm.isSoon = new Date(vm.event.start_date).getTime() > new Date().getTime();
+            vm.isSoon = new Date(vm.event.start_date).getTime() > new Date().getTime();
 
             // if (vm.isSoon) {
             //     $('#example').countdown({

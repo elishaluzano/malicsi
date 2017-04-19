@@ -64,7 +64,7 @@
             sessionService.logout()
                 .then(function(user) {
                     vm.user = user;
-                    $state.reload();
+                    $state.go('landingPage');
                 });
         }
 
