@@ -18,8 +18,8 @@
             vm.user = null;
             vm.event_title = '';
             vm.venue = '';
-            vm.start_date = null;
-            vm.end_date = null;
+            vm.start_date = new Date();
+            vm.end_date = new Date();
             vm.institutions = [];
             vm.ins = null;
             vm.venues = [];
@@ -70,16 +70,6 @@
             }
 
             vm.addEvent = function() {
-                var fd = new FormData();
-                fd.append('event_title', vm.event_title);
-                fd.append('venue_id_key', vm.venue);
-                fd.append('start_date', (new Date(vm.start_date)).toISOString().substring(0, 10));
-                fd.append('end_date',  (new Date(vm.end_date)).toISOString().substring(0, 10));
-                fd.append('picture', (vm.files[0])? vm.files[0] : vm.currentTeam.picture);
-                fd.append('institution_id_key', vm.ins);
-
-                console.log(vm.ins);
-
                 if(vm.event_title == '') {
                     Materialize.toast("Please add an Event Title", 3000);
                 }
@@ -89,17 +79,26 @@
                 else if(vm.start_date == null || vm.end_date == null) {
                     Materialize.toast("Date details incomplete.", 3000);
                 }
-                /*else if(vm.picture == '') {
-                    Materialize.toast("Please upload a logo", 3000);
-                }*/
                 else if(vm.ins == null) {
                     Materialize.toast("Please add an Institution", 3000);
                 }
+                else if(!vm.files[0]) {
+                    Materialize.toast("Please upload a logo", 3000);
+                }
                 else{
+                    var fd = new FormData();
+                    fd.append('event_title', vm.event_title);
+                    fd.append('venue_id_key', vm.venue);
+                    fd.append('start_date', (new Date(vm.start_date)).toISOString().substring(0, 10));
+                    fd.append('end_date',  (new Date(vm.end_date)).toISOString().substring(0, 10));
+                    fd.append('picture', vm.files[0]);
+                    fd.append('institution_id_key', vm.ins);
                     eventService.create(fd)
                         .then(function(data) {
+                            console.log(data);
                             vm.events.push(data);
                             Materialize.toast("Successfully added an event!", 3000);
+                            $('#modal-add-event').modal('close');
                         })
                         .catch(function(err) {
                             console.log(err);

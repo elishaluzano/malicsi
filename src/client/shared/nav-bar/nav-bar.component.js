@@ -52,7 +52,6 @@
                                     vm.isAdmin = true;
                                 }
                             });
-                        console.log('hello');
                         WebuiPopovers.hide('#login');
                         $state.reload();
                     } else { // if wrong credentials

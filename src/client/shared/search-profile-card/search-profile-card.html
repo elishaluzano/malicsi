@@ -8,10 +8,13 @@
         <span class="title">{{ $ctrl.user.name }}</span>
     </a>
     <!-- Affiliations -->
-    <p>
+    <p ng-show="$ctrl.affiliations.length">
         <strong>Affiliations:</strong>
         <ul class="profile-affiliations">
             <li ng-repeat = "affiliation in $ctrl.affiliations">{{affiliation.affiliation}}</li>
         </ul>
+    </p>
+    <p ng-hide="$ctrl.affiliations.length">
+        <strong>No Affiliations</strong>
     </p>
 </li>

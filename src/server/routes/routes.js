@@ -24,9 +24,12 @@ var teamCtrl = require('../controllers/teamController.js');
 //venues
 var venueCtrl = require('../controllers/venueController.js');
 
+var gameLogCtrl = require('../controllers/gameUpdateController.js');
 
+var userlogCtrl = require('../controllers/userlogController.js');
 //get for users
 router.post('/api/login', userCtrl.loginUser);
+router.post('/api/sessions', userCtrl.getAccount);
 router.post('/api/users', uploadCtrl.upload.single('profile_pic'), userCtrl.addUser);
 
 //get for user affiliations
@@ -105,8 +108,29 @@ router.get('/api/venues', venueCtrl.viewAllVenue);
 router.get('/api/venues/:id', venueCtrl.viewVenue);
 router.get('/api/venues/search/:search', venueCtrl.searchVenue);
 
+router.get('/api/gamelogs', gameLogCtrl.viewAllGamelogs);
+router.get('/api/gamelogs/:id/game', gameLogCtrl.viewGamelogsOfGame);
+router.get('/api/gamelogs/:id', gameLogCtrl.viewGamelog);
+
+router.get('/api/users', userCtrl.getUsers);
+router.get('/api/users/:id', userCtrl.getUser);
+router.get('/api/users/search/:search', userCtrl.searchUser);
+
+//admin routes
+router.get('/api/checkAdmin/:id', userCtrl.checkAdmin);
+router.get('/api/checkAdminOfInstitution/:user_id/:institutiont_id', userCtrl.checkAdminOfInstitution);
+router.get('/api/checkAdminOfEvent/:user_id/:event_id', userCtrl.checkAdminOfEvent);
+router.get('/api/checkAdminOfGame/:user_id/:game_id', userCtrl.checkAdminOfGame);
+router.get('/api/checkAdminOfTeam/:user_id/:team_id', userCtrl.checkAdminOfTeam);
+router.get('/api/admins/:id/institutions', userCtrl.getInstitutionByAdmin);
+router.get('/api/admins', userCtrl.getAdmins);
+router.get('/api/admins/:id', userCtrl.getAdmin);
+
+router.get('/api/userlogs', userlogCtrl.getUserlogs);
+router.get('/api/userlogs/:id', userlogCtrl.getUserlog);
+
 router.use(function(req, res, next) {
-	if (req.session.user){
+	if (req.session && req.session.user) {
 		next();
 	} else {
 		res.redirect('/')
@@ -114,12 +138,8 @@ router.use(function(req, res, next) {
 });
 
 //user account routes
-router.post('/api/sessions', userCtrl.getAccount);
 router.post('/api/logout', userCtrl.logout);
 //user routes
-router.get('/api/users', userCtrl.getUsers);
-router.get('/api/users/:id', userCtrl.getUser);
-router.get('/api/users/search/:search', userCtrl.searchUser);
 router.put('/api/users/:id', uploadCtrl.upload.single('profile_pic'), userCtrl.updateUser);
 router.delete('/api/users/:id', userCtrl.deleteUser);
 
@@ -133,23 +153,11 @@ router.post('/api/contacts',contactCtrl.addContact);
 router.put('/api/contacts/:id',contactCtrl.updateContact);
 router.delete('/api/contacts/:id',contactCtrl.deleteContact);
 
-//admin routes
-router.get('/api/checkAdmin/:id', userCtrl.checkAdmin);
-router.get('/api/checkAdminOfInstitution/:user_id/:institutiont_id', userCtrl.checkAdminOfInstitution);
-router.get('/api/checkAdminOfEvent/:user_id/:event_id', userCtrl.checkAdminOfEvent);
-router.get('/api/checkAdminOfGame/:user_id/:game_id', userCtrl.checkAdminOfGame);
-router.get('/api/checkAdminOfTeam/:user_id/:team_id', userCtrl.checkAdminOfTeam);
-router.get('/api/admins/:id/institutions', userCtrl.getInstitutionByAdmin);
-router.get('/api/admins', userCtrl.getAdmins);
-router.get('/api/admins/:id', userCtrl.getAdmin);
 router.post('/api/admins', userCtrl.addAdmin);
 router.delete('/api/admins/:institution_id/:user_id', userCtrl.deleteAdmin);
 
-var userlogCtrl = require('../controllers/userlogController.js');
 //userlog routes
 router.post('/api/userlogs', userlogCtrl.addLog);
-router.get('/api/userlogs', userlogCtrl.getUserlogs);
-router.get('/api/userlogs/:id', userlogCtrl.getUserlog);
 
 //institution routes
 router.post('/api/institutions',uploadCtrl.upload.single('picture'),institutionCtrl.addSponsoringInstitution);
@@ -200,11 +208,7 @@ router.post('/api/venues', venueCtrl.addVenue);
 router.put('/api/venues/:id', venueCtrl.updateVenue);
 router.delete('/api/venues/:id', venueCtrl.deleteVenue);
 
-var gameLogCtrl = require('../controllers/gameUpdateController.js');
 //game update log routes
-router.get('/api/gamelogs', gameLogCtrl.viewAllGamelogs);
-router.get('/api/gamelogs/:id/game', gameLogCtrl.viewGamelogsOfGame);
-router.get('/api/gamelogs/:id', gameLogCtrl.viewGamelog);
 router.post('/api/gamelogs', gameLogCtrl.addGameLog);
 router.put('/api/gamelogs/:id', gameLogCtrl.updateGameLog);
 router.delete('/api/gamelogs/:id', gameLogCtrl.deleteGameLog);

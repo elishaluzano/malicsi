@@ -9,7 +9,7 @@
                     <br>Standing
                 </div>
                 <div class="collapsible-body">
-                    <table>
+                    <table ng-show="x.eventTeams.length">
                         <thead>
                             <tr>
                                 <th>Team</th>
@@ -30,6 +30,9 @@
                             </tr>
                         </tbody>
                     </table>
+                    <p ng-hide="x.eventTeams.length">
+                        No teams
+                    </p>
                 </div>
             </li>
         </ul>

@@ -16,8 +16,8 @@
         vm.sportsAndGames = [];
 
         vm.$onInit = function(){
-            console.log(vm.information);
             for(let game of vm.information.games){
+                game.time = new Date(game.time);    
                 gameService.getTeamsInGame(game.game_id)
                     .then(function(data){
                         game.teams = data;

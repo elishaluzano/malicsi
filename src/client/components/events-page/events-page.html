@@ -46,7 +46,7 @@
               <div class="input-field col s12">
                 <select id="select-dropdown" class="left black-text browser-default" ng-model="$ctrl.ins">
                   <option value="" selected disabled>Sponsoring Institution</option>
-                  <option ng-repeat="ins in $ctrl.institutions" ng-value="{{ ins.institution_no }}">
+                  <option ng-repeat="ins in $ctrl.institutions" ng-value="ins.institution_id">
                     {{ ins.name }}
                   </option>
                 </select>
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="center">
-                  <a type ="submit" value = "Submit" class = "waves-effect waves-light green btn z-depth-0 modal-action modal-close" ng-click="$ctrl.addEvent()">Submit</a>
+                  <a type ="submit" value = "Submit" class = "waves-effect waves-light green btn z-depth-0 modal-action" ng-click="$ctrl.addEvent()">Submit</a>
                   <a class = "waves-effect waves-light grey btn z-depth-0 modal-action modal-close" value="submit" type="submit">Cancel</a>
                 </div>
       			</form>

@@ -48,6 +48,8 @@
 
         vm.selectedGame = null;
 
+        vm.isSoon = false;
+
 
         vm.editEvent = function() {
             vm.editedEvent = angular.copy(vm.event);
@@ -73,8 +75,8 @@
                     var fd = new FormData();
                     fd.append('event_title', vm.editedEvent.event_title);
                     fd.append('institution_id_key', vm.editedEvent.institution_id_key);
-                    fd.append('start_date', (new Date(vm.editedEvent.start_date.setDate(vm.editedEvent.start_date.getDate()+1))).toISOString().substring(0, 10));
-                    fd.append('end_date', (new Date(vm.editedEvent.end_date.setDate(vm.editedEvent.end_date.getDate()+1))).toISOString().substring(0, 10));
+                    fd.append('start_date', (new Date(vm.editedEvent.start_date.setDate(vm.editedEvent.start_date.getDate()))).toISOString().substring(0, 10));
+                    fd.append('end_date', (new Date(vm.editedEvent.end_date.setDate(vm.editedEvent.end_date.getDate()))).toISOString().substring(0, 10));
                     fd.append('picture', (vm.files[0])? vm.files[0] : vm.editedEvent.picture);
                     fd.append('venue_id_key', vm.editedEvent.venue_id_key);
 
@@ -100,7 +102,7 @@
                 return Materialize.toast('Start minute should be in (00-59) format', 3000, 'red');
             }
 
-            let time = (new Date(vm.selectedGame.date.setDate(vm.selectedGame.date.getDate()+1))).toISOString().substring(0, 10) + ' ' + ((vm.selectedGame.start_hour < 10)? ('0' + vm.selectedGame.start_hour) : (vm.selectedGame.start_hour)) + ':' + ((vm.selectedGame.start_minute < 10)? ('0' + vm.selectedGame.start_minute) : (vm.selectedGame.start_minute)) + ':00';
+            let time = (new Date(vm.selectedGame.date.setDate(vm.selectedGame.date.getDate()))).toISOString().substring(0, 10) + ' ' + ((vm.selectedGame.start_hour < 10)? ('0' + vm.selectedGame.start_hour) : (vm.selectedGame.start_hour)) + ':' + ((vm.selectedGame.start_minute < 10)? ('0' + vm.selectedGame.start_minute) : (vm.selectedGame.start_minute)) + ':00';
             let body = {
                 min_num_of_players: 0,
                 max_num_of_players: 0,
@@ -134,8 +136,10 @@
                                     console.log('changed team');
                                 });
                         });
-
+                    
+                    $('#edit-game-modal').modal('close');
                     Materialize.toast('Updated game', 3000, 'red');
+                    $state.reload();
                 });
         }
 
@@ -176,7 +180,7 @@
                 return Materialize.toast('Start minute should be in (00-59) format', 3000, 'red');
             }
 
-            let time = (new Date(vm.newGame.date.setDate(vm.newGame.date.getDate()+1))).toISOString().substring(0, 10) + ' ' + ((vm.newGame.start_hour < 10)? ('0' + vm.newGame.start_hour) : (vm.newGame.start_hour)) + ':' + ((vm.newGame.start_minute < 10)? ('0' + vm.newGame.start_minute) : (vm.newGame.start_minute)) + ':00';
+            let time = (new Date(vm.newGame.date.setDate(vm.newGame.date.getDate()))).toISOString().substring(0, 10) + ' ' + ((vm.newGame.start_hour < 10)? ('0' + vm.newGame.start_hour) : (vm.newGame.start_hour)) + ':' + ((vm.newGame.start_minute < 10)? ('0' + vm.newGame.start_minute) : (vm.newGame.start_minute)) + ':00';
 
             let status = 'PENDING';
             let nowTime = new Date().getTime();
@@ -212,6 +216,7 @@
                     });
                     $('#add-game-modal').modal('close');
                     Materialize.toast('Successfully created the game', 3000, 'red');
+                    $state.reload();
                 });
                 
         }
@@ -223,7 +228,7 @@
                     vm.selectedGame.team1_id = team1_id;
                     vm.selectedGame.team2_id = team2_id;
                     console.log(vm.selectedGame);
-                    let time = vm.selectedGame.time.split('T')[1].split(':');
+                    let time = vm.selectedGame.time.split(' ')[1].split(':');
                     vm.selectedGame.start_hour = +time[0];
                     vm.selectedGame.start_minute = +time[1];
                     vm.selectedGame.date = date;
@@ -425,6 +430,21 @@
         }
 
         vm.$onInit = function() {
+            // vm.isSoon = new Date(vm.event.start_date).getTime() > new Date().getTime();
+
+            // if (vm.isSoon) {
+            //     $('#example').countdown({
+            //         date: vm.event.start_date,
+            //         offset: +8,
+            //         day: 'Day',
+            //         days: 'Days'
+            //     }, function() {
+            //         $state.reload();
+            //     });
+            //     console.log($('.countdown'));
+
+            // }
+
             vm.user = sessionService.user();
             if (vm.user && vm.user.isOverallAdmin) {
                 vm.isAdmin = true;

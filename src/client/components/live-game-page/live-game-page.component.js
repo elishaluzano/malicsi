@@ -203,6 +203,7 @@
                             break;
                         }
                     }
+                    console.log('hello');
                     vm.scores.push(data);
                 })
                 .catch(function(e){

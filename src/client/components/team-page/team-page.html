@@ -5,7 +5,7 @@
             ng-model="$ctrl.searchInput"
             ng-change="$ctrl.searchEnter()">
         </div>
-        <a ng-repeat="team in $ctrl.allTeams" ui-sref="teamPage({ teamId: team.team_id })" class="collection-item">{{team.name}}</a>
+        <a ng-repeat="team in $ctrl.allTeams" ui-sref-active="red white-text" ui-sref="teamPage({ teamId: team.team_id })" class="collection-item">{{team.name}}</a>
     </div>
 
 

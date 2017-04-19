@@ -9,3 +9,5 @@ require('materialize-css/dist/js/materialize.js');
 require('angular-ui-router');
 require('angular-materialize/src');
 require('webui-popover/dist/jquery.webui-popover.js');
+// require('./client/lib/jquery.countdown.css');
+// require('./client/lib/jquery.countdown.js');
