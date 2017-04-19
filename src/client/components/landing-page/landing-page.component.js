@@ -66,7 +66,6 @@
                 let toDate = new Date().getTime();
                 let startDate = new Date(event.start_date).getTime();
                 let endDate = new Date(event.end_date).getTime();
-                endDate = addDate(endDate, 1);
 
                 if (toDate <= startDate) {
                     vm.soonEvents.push(event);
@@ -79,7 +78,6 @@
                 let toDate = new Date().getTime();
                 let startDate = new Date(event.start_date).getTime();
                 let endDate = new Date(event.end_date).getTime();
-                endDate = addDate(endDate, 1);
 
                 if (toDate >= startDate && toDate <= endDate) {                    
                     eventService.getTeams(event.event_id)
@@ -112,11 +110,6 @@
             console.log(vm.objects);
             
             $('.collapsible').collapsible();
-        }
-        function addDate(date, days) {
-            var result = new Date(date);
-            result.setDate(result.getDate() + days);
-            return result;
         }
     }
 
