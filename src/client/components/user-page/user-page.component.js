@@ -17,13 +17,17 @@
         vm.isBeingEdited = false;
         vm.files = [];
         vm.usercopy = null;
+        vm.isAdmin = false;
 
         vm.$onInit = function() {
             $('.modal').modal();
             vm.usercopy = angular.copy(vm.user);
             vm.user.birthday = new Date(vm.user.birthday);
             if (sessionService.user() && vm.user.user_id === sessionService.user().user_id) {
-                vm.isSameUser = true;
+                vm.isSameUser = true;    
+            }
+            if (sessionService.user() && sessionService.user().isOverallAdmin) {
+                vm.isAdmin = true;
             }
         }
 
