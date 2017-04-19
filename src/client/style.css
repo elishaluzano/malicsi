@@ -347,3 +347,17 @@ style = "width:10%;vertical-align:middle;"*/
 ::-webkit-scrollbar-thumb {
     background: #fc9948;
 }
+
+.custom-card.card .card-image img {
+  height: 300px;
+}
+
+.custom-content{
+	height:100px;
+	overflow-y:scroll;
+}
+
+.custom-image{
+	height:300px !important;
+
+}
