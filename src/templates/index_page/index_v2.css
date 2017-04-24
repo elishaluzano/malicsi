@@ -1,0 +1,67 @@
+
+.gradient-color{
+   background: linear-gradient(to right, #562764 , #f96b25); /* Standard syntax */
+   
+}
+
+      
+  /* label color */
+   .input-field label {
+     color: #fff;
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: orange;
+   }
+    .input-field input[type=password]:focus + label {
+       color: orange;
+     }
+
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid orange;
+     box-shadow: 0 1px 0 0 orange;
+   }
+
+   .input-field input[type=password]:focus {
+     border-bottom: 1px solid orange;
+     box-shadow: 0 1px 0 0 orange;
+   }
+   /* valid color */
+   .input-field input[type=text].valid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+
+   .input-field input[type=password].valid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* invalid color */
+   .input-field input[type=text].invalid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* icon prefix focus color */
+   .input-field .prefix.active {
+     color: orange;
+   }
+
+   .orange-bordered{
+    border :2px solid orange;
+    background-color:transparent !important;
+   }
+
+
+   select{
+    background-color:transparent;
+    border-radius:20px;
+   }
+
+   select option{
+        background-color: #93414c;
+   }
+
+   select:focus{
+
+   }
