@@ -1,3 +1,12 @@
+@font-face{
+    font-family:Coolvetica;
+    src:url(../fonts/coolvetica.ttf);
+}
+
+.FFF-font{
+    font-family:FFF;
+}
+
 #news {
     margin: 0px 0px 50px 0px;
 }
@@ -80,4 +89,10 @@
 
 #sidenav-icon {
     margin: 0px 15px;
+}
+
+.slider .slides {
+    background-color: #ffffff;
+    margin: 0;
+    height: 400px;
 }
