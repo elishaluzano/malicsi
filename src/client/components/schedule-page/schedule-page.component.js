@@ -21,10 +21,6 @@
             selectYears: 15 // Creates a dropdown of 15 years to control year
           });
 
-
-           console.log(vm.sports);
-           console.log(vm.allGamesInformation);
-
            for(let sport of vm.sports){
                 sport.games = [];
            }

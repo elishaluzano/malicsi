@@ -18,7 +18,7 @@
                 <div class="col s4 right">
                     <button class="btn red"
                         ng-click="$ctrl.createInstitution()">
-                        New
+                        Add
                     </button>
                 </div>
             </fieldset>
@@ -85,7 +85,7 @@
                     </div>
                 </div>
 
-                <div class="col s12">
+                <div class="col s12" ng-show="$ctrl.selectedInstitution.picture">
                     <img ng-src="{{ $ctrl.selectedInstitution.picture }}" 
                         alt="Sponsoring Institution Logo"
                         class="responsive-img">
@@ -93,8 +93,10 @@
 
                 <div class="col s12">
                     <div class="file-field input-field">
-                        <div class="btn red">
-                            <span>File</span>
+                        <div class="btn red z-depth-0">
+                            <span>
+                                <i class="material-icons">add_a_photo</i>
+                            </span>
                             <input type="file" file-input="$ctrl.files">
                         </div>
                         <div class="file-path-wrapper">

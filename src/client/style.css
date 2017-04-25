@@ -196,7 +196,7 @@ th, td{
 }
 
 
-.input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label, .input-field input[type=date]:focus + label, .input-field input[type=email]:focus + label {
+.input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label, .input-field input[type=date]:focus + label, .input-field input[type=email]:focus + label, .file-path-wrapper input[type=text]:focus {
     color: red;
 }
 
@@ -346,4 +346,58 @@ style = "width:10%;vertical-align:middle;"*/
 }
 ::-webkit-scrollbar-thumb {
     background: #fc9948;
+}
+
+.custom-card.card .card-image img {
+  height: 300px;
+}
+
+.custom-content{
+	height:100px;
+	overflow-y:scroll;
+}
+
+.custom-image{
+	height:300px !important;
+
+}
+
+#event-main-content {
+	min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -270px;
+}
+
+#score-bg{
+	background-image: url('/images/bg2.jpg');
+	background-size: 100%;
+}
+
+.user-img{
+    height: 100px;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.team-img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.vs{
+	margin-top: 100px;
+}
+
+#live-update-left {
+    text-align: left;
+    padding: 5px 5px 5px 20px;
+}
+
+#live-update-right {
+    text-align: right;
+    padding: 5px 20px 5px 5px;
 }

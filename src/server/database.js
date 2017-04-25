@@ -6,7 +6,8 @@ const connection = mysql.createConnection({
   host : 'localhost',
   user : 'root',
   password : 'admin',
-  db : 'malicsi'
+  db : 'malicsi',
+  dateStrings: true
 });
 
 //check database connection

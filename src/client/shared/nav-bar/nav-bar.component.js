@@ -52,7 +52,6 @@
                                     vm.isAdmin = true;
                                 }
                             });
-                        console.log('hello');
                         WebuiPopovers.hide('#login');
                         $state.reload();
                     } else { // if wrong credentials
@@ -65,7 +64,7 @@
             sessionService.logout()
                 .then(function(user) {
                     vm.user = user;
-                    $state.reload();
+                    $state.go('landingPage');
                 });
         }
 

@@ -26,18 +26,20 @@ app.use(session({
 app.use('/', routes);
 //index page
 app.get('/', function(req, res) {
-	res.sendFile(path.resolve('./dist/index.html'));
+	res.sendFile(path.resolve('index.html'));
 });
 //about page
 app.get('/betelog', function(req, res) {
-	res.sendFile(path.resolve('./dist/betelog.html'));
+	res.sendFile(path.resolve('betelog.html'));
 });
 //404 error page
 app.get('*', function(req, res) {
-	res.sendFile(path.resolve('./dist/404.html'));
+    console.log(req.url);
+	res.sendFile(path.resolve('404.html'));
 });
 
 //listening on port 8000
-app.listen(8000, function(){
-	console.log('Server running at localhost:8000');
+var port = process.env.PORT || 8000;
+app.listen(port, function(){
+	console.log('Server running at localhost:', port);
 });
