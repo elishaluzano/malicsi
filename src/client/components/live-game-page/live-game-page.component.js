@@ -104,6 +104,15 @@
                         }
                     }
                     Materialize.toast('Successfully deleted game log!', 2000, 'red');
+                    var logName = "Deleted " + vm.idToBeChanged + " log.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: vm.institutionId,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
                 })
                 .catch(function(e){
                     Materialize.toast('Unsuccessfully deleted game log!', 2000, 'red');
@@ -176,6 +185,16 @@
                             break;
                         }
                     }
+
+                    var logName = "Updated " + vm.idToBeChanged + " log.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: vm.institutionId,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
                 
                     vm.reset();
 
@@ -227,6 +246,16 @@
                     }
                     console.log('hello');
                     vm.scores.push(data);
+
+                    var logName = "Added " + vm.idToBeChanged + " log.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: vm.institutionId,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
                     vm.reset();
                 })
                 .catch(function(e){
@@ -241,6 +270,15 @@
                 .then(function(data){
                     vm.game.status = 'FINISHED';
                     Materialize.toast('Successfully ended game!', 2000, 'red');
+                    var logName = "Ended " + vm.game.game_id + " game.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: vm.institutionId,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
                 })
                 .catch(function(data){
                     Materialize.toast('Unsuccessfully ended game!', 2000, 'red');
@@ -252,6 +290,15 @@
                 .then(function(data){
                     vm.game.status = 'ONGOING';
                     Materialize.toast('Successfully opened game!', 2000, 'red');
+                    var logName = "Opened " + vm.game.game_id + " game.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: vm.institutionId,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
                 })
                 .catch(function(data){
                     Materialize.toast('Unsuccessfully opened game!', 2000, 'red');
