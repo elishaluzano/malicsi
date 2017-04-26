@@ -18,6 +18,7 @@
         vm.files = [];
         vm.usercopy = null;
         vm.isAdmin = false;
+        vm.affiliations = [];
 
         vm.$onInit = function() {
             $('.modal').modal();
@@ -29,6 +30,10 @@
             if (sessionService.user() && sessionService.user().isOverallAdmin) {
                 vm.isAdmin = true;
             }
+            userAffiliationService.getAllById(vm.user.user_id)
+                .then(function(affiliations) {
+                    vm.affiliations = affiliations;
+                });
         }
 
         vm.discardChanges = function() {
