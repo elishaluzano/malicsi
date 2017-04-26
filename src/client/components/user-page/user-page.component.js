@@ -11,7 +11,7 @@
             }
         });
 
-    function userPageController(userService, sessionService, searchService, $state) {
+    function userPageController(userService, sessionService, searchService, $state, userAffiliationService) {
         var vm = this;
         vm.isSameUser = false;
         vm.isBeingEdited = false;
