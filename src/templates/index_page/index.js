@@ -16,10 +16,11 @@ $('a').click(function(){
 });
 
 $('.carousel.carousel-slider').carousel({fullWidth: true});
-autoplay()   
+autoplay();   
 function autoplay() {
+     setTimeout(autoplay, 6000);
     $('.carousel.carousel-slider').carousel('next');
-    setTimeout(autoplay, 6000);
+    
 }        
 
 $('#login').webuiPopover({url:'#login-form'});

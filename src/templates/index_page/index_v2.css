@@ -111,3 +111,16 @@
    .input-field .in-nav .prefix.active {
      color: black;
    }
+
+   .up-and-down-animation{
+      -webkit-animation-name: example;
+      animation-name: example;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+   }
+
+   @keyframes example {
+    0%   {left:0px; top:500px;}
+    20%  {left:0px; top:475px;}
+
+}
