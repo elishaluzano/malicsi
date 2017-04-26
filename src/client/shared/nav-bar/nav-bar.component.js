@@ -53,7 +53,7 @@
                                 }
                             });
                         WebuiPopovers.hide('#login');
-                        $state.reload();
+                        $state.go('landingPage');
                     } else { // if wrong credentials
                         Materialize.toast('Wrong credentials!', 2000, 'red');
                     }
