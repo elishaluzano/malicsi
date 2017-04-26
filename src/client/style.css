@@ -401,3 +401,115 @@ style = "width:10%;vertical-align:middle;"*/
     text-align: right;
     padding: 5px 20px 5px 5px;
 }
+
+.gradient-color{
+   background: linear-gradient(to right, #562764 , #f96b25); /* Standard syntax */
+}
+
+/* label color */
+   .index .input-field label {
+     color: #fff;
+   }
+   /* label focus color */
+   .index .input-field input[type=text]:focus + label {
+     color: orange;
+   }
+    .index .input-field input[type=password]:focus + label {
+       color: orange;
+     }
+
+   /* label underline focus color */
+   .index .input-field input[type=text]:focus {
+     border-bottom: 1px solid orange;
+     box-shadow: 0 1px 0 0 orange;
+   }
+
+   .index .input-field input[type=password]:focus {
+     border-bottom: 1px solid orange;
+     box-shadow: 0 1px 0 0 orange;
+   }
+   /* valid color */
+   .index .input-field input[type=text].valid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+
+   .index .input-field input[type=password].valid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* invalid color */
+  .index  .input-field input[type=text].invalid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* icon prefix focus color */
+   .index .input-field .prefix.active {
+     color: orange;
+   }
+
+   .index .orange-bordered{
+    border :2px solid orange;
+    background-color:transparent !important;
+   }
+
+
+   .index select{
+    background-color:transparent;
+    border-radius:20px;
+
+   }
+
+   .index select option{
+        background-color: #93414c;
+   }
+
+   .index select option:focus{
+        background-color: #93414c;
+   }
+   .index select:focus{
+    outline:none;
+   }
+
+
+   /* label color */
+   .index .input-field .in-nav label {
+     color: #fff;
+   }
+   /* label focus color */
+     .index .input-field .in-nav input[type=text]:focus + label {
+     color: black;
+   }
+     .input-field .in-nav input[type=password]:focus + label {
+       color: black;
+     }
+
+   /* label underline focus color */
+   .index .input-field .in-nav input[type=text]:focus {
+     border-bottom: 1px solid black;
+     box-shadow: 0 1px 0 0 black;
+   }
+
+   .index  .input-field .in-nav input[type=password]:focus {
+     border-bottom: 1px solid black;
+     box-shadow: 0 1px 0 0 black;
+   }
+   /* valid color */
+   .index  .input-field .in-nav input[type=text].valid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+
+  .index  .input-field .in-nav input[type=password].valid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* invalid color */
+  .index  .input-field .in-nav input[type=text].invalid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* icon prefix focus color */
+  .index  .input-field .in-nav .prefix.active {
+     color: black;
+   }

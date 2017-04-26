@@ -32,6 +32,12 @@
             sessionService.session()
                 .then(function(user) {
                     vm.user = user;
+                    adminService.checkAdmin(vm.user.user_id)
+                        .then(function(admin) {
+                            if (admin) {
+                                vm.isAdmin = true;
+                            }
+                        });
                 });
         }
 
@@ -53,7 +59,11 @@
                                 }
                             });
                         WebuiPopovers.hide('#login');
-                        $state.go('landingPage');
+                        if ($state.current.name === 'landingPage') {
+                            $state.reload();
+                        } else {
+                            $state.go('landingPage');
+                        }
                     } else { // if wrong credentials
                         Materialize.toast('Wrong credentials!', 2000, 'red');
                     }
@@ -64,7 +74,11 @@
             sessionService.logout()
                 .then(function(user) {
                     vm.user = user;
-                    $state.go('landingPage');
+                    if ($state.current.name === 'landingPage') {
+                        $state.reload();
+                    } else {
+                        $state.go('landingPage');
+                    }
                 });
         }
 
