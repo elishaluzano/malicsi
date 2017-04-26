@@ -211,5 +211,5 @@ router.delete('/api/venues/:id', venueCtrl.deleteVenue);
 //game update log routes
 router.post('/api/gamelogs', gameLogCtrl.addGameLog);
 router.put('/api/gamelogs/:id', gameLogCtrl.updateGameLog);
-router.delete('/api/gamelogs/:id', gameLogCtrl.deleteGameLog);
+router.post('/api/gamelogs/:id', gameLogCtrl.deleteGameLog);
 module.exports = router;
