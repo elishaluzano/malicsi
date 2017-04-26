@@ -20,7 +20,6 @@
     function teamPageController(sessionService, adminService, eventService, teamService, searchService, $state) {
         var vm = this;
         vm.searchInput = '';
-         var vm = this;
         vm.pastGameCount = 0;
         vm.lastFiveGames = [];
         vm.pastGames = [];
@@ -38,14 +37,29 @@
         vm.isMember = false
         vm.files = [];
         vm.sampleName = '';
+        vm.isMemberOfAnother = false;
         var game;
         
         vm.$onInit = function() {
+            console.log(vm.isLoggedIn + " " + vm.isSoon + " " + vm.isAdminOfTeam);
             setTimeout(function(){ $('.modal').modal(); }, 1);
             vm.sampleName = vm.currentTeam.name;
             var min;
 
             vm.currentUser = sessionService.user();
+
+
+            for(let team of vm.allTeams){
+                if(team.event_id_key == vm.currentTeam.event_id_key && team.team_id != vm.currentTeam.team_id){
+                    teamService.getIsUserOfTeam(team.team_id, vm.currentUser.user_id)
+                        .then(function(data){
+                            if(data){
+                                console.log(data);
+                                vm.isMemberOfAnother = true;
+                            }
+                        })
+                }
+            }
 
             eventService.getOne(vm.currentTeam.event_id_key)
                 .then(function(data) {
@@ -78,6 +92,7 @@
 
 
                         if(startDate >= curdate || endDate >= curdate){
+                            console.log(startDate + " " + endDate + " " + curdate);
                             vm.isSoon = true;
                         }
                     }

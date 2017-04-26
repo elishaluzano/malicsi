@@ -15,6 +15,7 @@
 
     function teamsPageController() {
         var vm = this;
+        vm.events2 = [{event_title: "HI"}];
 
         vm.filters = {
             Live: true,
@@ -24,6 +25,7 @@
         
         vm.$onInit = function() {
             var curdate = new Date().getTime();
+
 
             for(let team of vm.teams){
                 team.win = 0;
@@ -67,6 +69,13 @@
                     }
                 }
             }
+
+
+            var len = vm.events.length;
+            if(len%2 != 0)  vm.events2 = vm.events.splice(Math.floor(len/2)+1, len-1);
+            else vm.events2 = vm.events.splice(len/2, len);
+            console.log(vm.events2);
+            console.log(vm.events);
         }
 
     }
