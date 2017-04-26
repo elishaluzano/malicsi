@@ -1,0 +1,187 @@
+<div ng-show="!$ctrl.user"
+    id="login-form" 
+    class="webui-popover-content">
+    <form id="login-form">
+        <div class="input-field">
+            <input type="text" name="username" id="login-username" ng-model="$ctrl.username">
+            <label for="username">Username</label>
+        </div>
+        <div class="input-field">
+            <input type="password" name="password" ng-model="$ctrl.password">
+            <label for="password">Password</label>
+        </div>
+        <button ng-click="$ctrl.login()"
+            class="right red btn waves-effect waves-light">
+            Login
+        </button>
+    </form>
+</div>
+
+
+<div class="navbar-fixed">
+    <nav id="top" class="white">
+        <div class="nav-wrapper">
+            <a ui-sref="landingPage" class="left"
+                id="malicsi-logo-link">
+                <img ng-src="/images/malicsi-logo.png" alt="malicsi-logo"> 
+            </a>
+            
+            <i id="drop-link" style="cursor: pointer;"
+                class="black-text large material-icons left hide-on-large-only">
+                menu
+            </i>
+
+            <ul class="left hide-on-med-and-down">
+                <li ui-sref-active="active">
+                    <a ui-sref="landingPage" class="black-text">Live</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="eventsPage" class="black-text">Events</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="teamsPage" class="black-text">Teams</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="schedulePage" class="black-text">Schedules</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="sponsorsPage" class="black-text">Sponsors</a>
+                </li>
+                <li ng-if="$ctrl.isAdmin || $ctrl.user.isOverallAdmin"
+                     ui-sref-active="active">
+                    <a ui-sref="userLogPage" class="black-text">Logs</a>
+                </li>
+                <li ng-if="$ctrl.user.isOverallAdmin"
+                     ui-sref-active="active">
+                    <a ui-sref="adminPage" class="black-text">Admin</a>
+                </li>
+            </ul>
+            <form class="left hide-on-small-only">
+                <div class="left" id="search-bar-div">
+                    <select id="select-dropdown"
+                        ng-model="$ctrl.searchCategory"
+                        class="left black-text browser-default">
+
+                        <option value="all">Search All</option>
+                        <option value="player">Player</option> 
+                        <option value="team">Team</option> 
+                        <option value="event">Event</option> 
+                        <option value="institution">Sponsoring Institution</option> 
+                    </select>
+                </div>
+
+                <div class="left">
+                    <input type="text" class="left black-text"
+                        placeholder="Search"
+                        ng-model="$ctrl.searchInput"
+                        ng-keydown="$ctrl.searchEnter($event)">
+                    <i class="black-text material-icons" 
+                        id="search-icon"
+                        ng-click="$ctrl.search()">
+                        search
+                    </i>
+                </div>
+            </form>
+
+            <ul class="right" ng-hide="$ctrl.user">
+                <li>
+                    <a ui-sref="registrationPage" class="black-text">
+                        Register
+                    </a>
+                </li>
+                <li>
+                    <a id="login" href="#login-form" 
+                        class="black-text" ng-click="$ctrl.focusLogin()">
+                        Login
+                        <i class="right material-icons">arrow_drop_down</i>
+                    </a>
+                </li>
+            </ul>
+
+            <a ng-show="$ctrl.user"
+                class="right black-text side-nav-button"
+                data-activates="slide-out">
+                {{ $ctrl.user.username }}
+                <i class="right black-text material-icons">play_arrow</i>    
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div id="additional-links" class="webui-popover-content">
+    <a class="dropdown-links" ui-sref="landingPage" ng-click="$ctrl.closeMenu()">Live</a>
+    <a class="dropdown-links" ui-sref="eventsPage" ng-click="$ctrl.closeMenu()">Events</a>
+    <a class="dropdown-links" ui-sref="teamsPage" ng-click="$ctrl.closeMenu()">Teams</a>
+    <a class="dropdown-links" ui-sref="schedulePage" ng-click="$ctrl.closeMenu()">Schedules</a>
+    <a class="dropdown-links" ui-sref="sponsorsPage" ng-click="$ctrl.closeMenu()">Sponsors</a>
+    <a class="dropdown-links" ui-sref="userLogsPage" ng-if="$ctrl.isAdmin || $ctrl.user.isOverallAdmin" ng-click="$ctrl.closeMenu()">Logs</a>
+    <a class="dropdown-links" ui-sref="adminPage" ng-if="$ctrl.user.isOverallAdmin" ng-click="$ctrl.closeMenu()">Admin</a>
+</div>
+
+
+<ul id="slide-out" class="side-nav" ng-show="$ctrl.user">
+    <li>
+        <div class="userView">
+            <div class="background">
+                <img ng-src="/images/parallaxsampsquaresmall.jpg" alt="background">
+            </div>
+            
+            <img ng-src="{{$ctrl.user.profile_pic}}" 
+                alt="profile pic" class="circle">
+            
+            <span class="white-text name">
+                {{ $ctrl.user.name }}
+            <span>
+            
+            <span class="white-text email">
+                {{ $ctrl.user.username }}
+            </span>
+        </div>
+    </li>
+
+    <!--<li>
+        <a ui-sref="userPage({ userId: $ctrl.user.user_id })">
+            Notifications
+            <i class="material-icons">
+                notifications
+            </i>
+        </a>
+    </li>-->
+    
+    <li>
+        <a ui-sref="userPage({ userId: $ctrl.user.user_id })">
+            Stats
+            <i class="material-icons">
+                equalizer
+            </i>
+        </a>
+    </li>
+
+    <!--<li>
+        <a ui-sref="userPage({ userId: $ctrl.user.user_id })">
+            Joined Events
+            <i class="material-icons">
+                subject
+            </i>
+        </a>
+    </li>-->
+
+    <li>
+        <a ui-sref="userPage({ userId: $ctrl.user.user_id })">
+            Edit  profile
+            <i class="material-icons">
+                settings
+            </i>
+        </a>
+    </li>
+
+    <li>
+        <a ng-click="$ctrl.logout()">
+            Sign out
+            <i class="material-icons">
+                power_settings_new
+            </i>
+        </a>
+    </li>
+</ul>
+

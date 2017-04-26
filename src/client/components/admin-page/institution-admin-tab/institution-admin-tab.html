@@ -1,0 +1,198 @@
+
+<div id="institutions" class="container">
+    <div class="row">
+        <div class="col s4">
+            <fieldset>
+                <legend>
+                    <h5>
+                        Institutions
+                    </h5>
+                </legend>
+                <div class="collection">
+                    <a class="collection-item pointer red-text"
+                        ng-repeat="institution in $ctrl.institutions"
+                        ng-click="$ctrl.selectInstitution(institution)">
+                        {{ institution.name }}
+                    </a>
+                </div>
+                <div class="col s4 right">
+                    <button class="btn red"
+                        ng-click="$ctrl.createInstitution()">
+                        Add
+                    </button>
+                </div>
+            </fieldset>
+        </div>
+
+
+        <div class="col s4" ng-if="$ctrl.creatingInstitution">
+            <fieldset>
+                <legend>
+                    <h5>
+                        Add Institution
+                    </h5>
+                </legend>
+                <div class="col s12">
+                    <div class="input-field">
+                        <input type="text"
+                            ng-model="$ctrl.newInstitutionName"
+                            id="new-institution-name">
+                        <label for="new-institution-name">New Institution Name</label>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <div class="input-field">
+                        <textarea class="materialize-textarea"
+                            ng-model="$ctrl.newInstitutionDescription"
+                            id="new-institution-description"></textarea>
+                        <label for="new-institution-description">New Institution Description</label>
+                    </div>
+                </div>
+                <div class="col s4 right">
+                    <button class="btn red"
+                        ng-click="$ctrl.confirmCreateInstitution()">
+                        Add
+                    </button>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col s4" ng-if="$ctrl.selectedInstitution">
+            <fieldset> 
+                <legend>
+                    <h5>
+                        {{ $ctrl.selectedInstitution.originalName }}
+                    </h5>
+                </legend>
+
+                <div class="col s12">
+                    <div class="input-field">
+                        <input type="text"
+                            ng-model="$ctrl.selectedInstitution.name"
+                            id="edit-institution-name">
+                        <label for="edit-institution-name">Edit institution name</label>
+                    </div>
+                </div>
+
+                <div class="col s12">
+                    <div class="input-field">
+                        <textarea
+                            class="materialize-textarea"
+                            ng-model="$ctrl.selectedInstitution.description"
+                            id="edit-institution-description">
+                        </textarea>
+                        <label for="edit-institution-description">Edit institution description</label>
+                    </div>
+                </div>
+
+                <div class="col s12" ng-show="$ctrl.selectedInstitution.picture">
+                    <img ng-src="{{ $ctrl.selectedInstitution.picture }}" 
+                        alt="Sponsoring Institution Logo"
+                        class="responsive-img">
+                </div>
+
+                <div class="col s12">
+                    <div class="file-field input-field">
+                        <div class="btn red z-depth-0">
+                            <span>
+                                <i class="material-icons">add_a_photo</i>
+                            </span>
+                            <input type="file" file-input="$ctrl.files">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div ng-if="!$ctrl.editingInstitution && !$ctrl.deletingInstitution">
+                    <div class="col s6 center-align">
+                        <button class="btn grey"
+                            ng-click="$ctrl.editInstitution()">
+                            Edit
+                        </button>
+                    </div>
+
+                    <div class="col s6 center-align">
+                        <button class="btn grey"
+                            ng-click="$ctrl.deleteInstitution()">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+
+                <div ng-if="$ctrl.editingInstitution">
+                    <div class="col s6 center-align">
+                        <button class="btn green"
+                            ng-click="$ctrl.confirmEditInstitution()">
+                            Confirm
+                        </button>
+                    </div>
+
+                    <div class="col s6 center-align">
+                        <button class="btn red"
+                            ng-click="$ctrl.cancelEditInstitution()">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+
+                <div ng-if="$ctrl.deletingInstitution">
+                    <div class="col s6 center-align">
+                        <button class="btn green"
+                            ng-click="$ctrl.confirmDeleteInstitution()">
+                            Confirm
+                        </button>
+                    </div>
+
+                    <div class="col s6 center-align">
+                        <button class="btn red"
+                            ng-click="$ctrl.cancelDeleteInstitution()">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col s4" ng-if="$ctrl.selectedInstitution">
+            <fieldset>
+                <legend>
+                    <h5>{{ $ctrl.selectedInstitution.originalName }} Admins</h5>
+                </legend>
+                <div class="col s12" ng-show="$ctrl.selectedAdmins.length">
+                    <ul class="collection">
+                        <li class="collection-item"
+                            ng-repeat="admin in $ctrl.selectedAdmins | orderBy: 'username'">
+                            {{ admin.username }}
+                            <a class="secondary-content pointer"
+                                ng-click="$ctrl.deleteAdmin(admin)">
+                                <i class="material-icons red-text">
+                                    cancel
+                                </i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col s12" ng-show="!$ctrl.selectedAdmins.length">
+                    <p>No admins</p>
+                </div>
+                <div class="col s12 divider"></div>
+                <div class="input-field col s12">
+                    <input type="text" 
+                        id="new-admin"
+                        ng-model="$ctrl.newAdmin"
+                        ng-keydown="$ctrl.checkEnterAddAdmin($event)">
+                    <label for="new-admin">New admin username</label>
+                </div>
+                <div class="col s4 right">
+                    <button class="btn red"
+                        ng-click="$ctrl.addAdmin()">
+                        Add
+                    </button>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>

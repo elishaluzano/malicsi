@@ -1,0 +1,120 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col s4">
+            <fieldset>
+                <legend>
+                    <h5>
+                        Venues
+                    </h5>
+                </legend>
+                <div class="collection">
+                    <a class="collection-item pointer red-text"
+                        ng-repeat="venue in $ctrl.venues"
+                        ng-click="$ctrl.selectVenue(venue)">
+                        {{ venue.name }}
+                    </a>
+                </div>
+                <div class="col s4 right">
+                    <button class="btn red"
+                        ng-click="$ctrl.createVenue()">
+                        Add
+                    </button>
+                </div>
+            </fieldset>
+        </div>
+
+
+        <div class="col s4" ng-if="$ctrl.creatingVenue">
+            <fieldset>
+                <legend>
+                    <h5>
+                        Add Venue
+                    </h5>
+                </legend>
+                <div class="col s12">
+                    <div class="input-field">
+                        <input type="text"
+                            ng-model="$ctrl.newVenue"
+                            id="new-venue">
+                        <label for="new-venue">New Venue</label>
+                    </div>
+                </div>
+                <div class="col s4 right">
+                    <button class="btn red"
+                        ng-click="$ctrl.confirmCreateVenue()">
+                        Add
+                    </button>
+                </div>
+            </fieldset>
+        </div>
+
+
+
+        <div class="col s4" ng-if="$ctrl.selectedVenue">
+            <fieldset>
+                <legend>
+                    <h5>
+                        {{ $ctrl.selectedVenue.originalName }}
+                    </h5>
+                </legend>
+                <div class="col s12">
+                    <div class="input-field">
+                        <input type="text"
+                            ng-model="$ctrl.selectedVenue.name"
+                            id="edit-Venue-name">
+                        <label for="edit-Venue-name">Edit venue name</label>
+                    </div>
+                </div>
+
+                <!--DEFAULT-->
+                <div ng-show="!$ctrl.editingVenue && !$ctrl.deletingVenue">
+                    <div class="col s6 center-align">
+                        <button class="btn grey"
+                            ng-click="$ctrl.editVenue()">
+                            Edit
+                        </button>
+                    </div>
+                    <div class="col s6 center-align">
+                        <button class="btn grey"
+                            ng-click="$ctrl.deleteVenue()">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+
+                <!--WHILE EDITING-->
+                <div ng-show="$ctrl.editingVenue">
+                    <div class="col s6 center-align">
+                        <button class="btn green"
+                            ng-click="$ctrl.confirmEditVenue()">
+                            Confirm
+                        </button>
+                    </div>
+                    <div class="col s6 center-align">
+                        <button class="btn red"
+                            ng-click="$ctrl.cancelEditVenue()">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+
+                <!--WHILE DELETING-->
+                <div ng-show="$ctrl.deletingVenue">
+                    <div class="col s6 center-align">
+                        <button class="btn green"
+                            ng-click="$ctrl.confirmDeleteVenue()">
+                            Confirm
+                        </button>
+                    </div>
+                    <div class="col s6 center-align">
+                        <button class="btn red"
+                            ng-click="$ctrl.cancelDeleteVenue()">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
