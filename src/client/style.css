@@ -533,3 +533,12 @@ style = "width:10%;vertical-align:middle;"*/
     0%   {left:0px; top:500px;}
     20%  {left:0px; top:475px;}
    }
+
+   @font-face{
+    font-family:Coolvetica;
+    src:url(/coolvetica.ttf);
+}
+
+.FFF-font{
+    font-family:FFF;
+}
