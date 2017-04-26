@@ -75,8 +75,8 @@
                     var fd = new FormData();
                     fd.append('event_title', vm.editedEvent.event_title);
                     fd.append('institution_id_key', vm.editedEvent.institution_id_key);
-                    fd.append('start_date', (new Date(vm.editedEvent.start_date.setDate(vm.editedEvent.start_date.getDate()))).toISOString().substring(0, 10));
-                    fd.append('end_date', (new Date(vm.editedEvent.end_date.setDate(vm.editedEvent.end_date.getDate()))).toISOString().substring(0, 10));
+                    fd.append('start_date', new Date(vm.editedEvent.start_date).toISOString().substring(0, 10));
+                    fd.append('end_date', new Date(vm.editedEvent.end_date).toISOString().substring(0, 10));
                     fd.append('picture', (vm.files[0])? vm.files[0] : vm.editedEvent.picture);
                     fd.append('venue_id_key', vm.editedEvent.venue_id_key);
 
