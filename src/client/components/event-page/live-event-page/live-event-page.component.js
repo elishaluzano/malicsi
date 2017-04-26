@@ -84,6 +84,20 @@
                         .then(function(event) {
                             Materialize.toast('Successfully updated ' + vm.editedEvent.event_title, 3000, 'red');
                             $state.reload();
+                            var string = "Updated " + vm.editedEvent.event_title + " event.";
+                            var log = {
+                                user_id: vm.user.user_id,
+                                institution_id: vm.ins,
+                                action: string
+                            }
+
+                            userLogService.create(log)
+                                .then(function(data) {
+                                  
+                                })
+                                .catch(function(err) {
+                                    console.log(err);
+                                })
                         });
 
                 });

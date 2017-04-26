@@ -12,7 +12,7 @@
         });
 
         /* ADD sessionService, userService as parameter */
-        function eventsPageController(eventService, sessionService, adminService, institutionService, venueService, searchService) {
+        function eventsPageController(eventService, sessionService, adminService, institutionService, venueService, searchService, userLogService) {
             var vm = this;
             vm.isAdmin = false;
             vm.user = null;
@@ -67,6 +67,7 @@
                         
                      }
             }
+            }
 
             vm.addEvent = function() {
                 searchService.events(vm.event_title)
@@ -106,17 +107,22 @@
                             fd.append('institution_id_key', vm.ins);
                             eventService.create(fd)
                                 .then(function(data) {
-                                    console.log(data);
                                     vm.events.push(data);
                                     Materialize.toast("Successfully added an event!", 3000);
                                     $('#modal-add-event').modal('close');
-                                })
-                                .catch(function(err) {
-                                    console.log(err);
-                                })
+                                    var eventName = "Added " + vm.event_title + " event.";
+                                    var log = {
+                                        user_id: vm.user.user_id,
+                                        institution_id: vm.ins,
+                                        action: eventName
+                                    };
+                                    userLogService.create(log)
+                                        .then(function(data) {
+                                        });
+                                });
                         }
                     });
             }
         }
-        }
+        
 })();

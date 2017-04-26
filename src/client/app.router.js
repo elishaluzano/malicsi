@@ -29,7 +29,12 @@
             .state({
                 name: 'userLogPage',
                 url: '/log',
-                component: 'userLogPage'
+                component: 'userLogPage',
+                resolve: {
+                    userLogs: function(userLogService) {
+                        return userLogService.getAll();
+                    }
+                }
             })     
             .state({
                 name: 'liveGamePage',

@@ -32,7 +32,7 @@
             },
 
             create: function(body) {
-                return $http.post(api) // tentative
+                return $http.post(api, body) // tentative
                     .then(function(response) {
                         return response.data;
                     })
