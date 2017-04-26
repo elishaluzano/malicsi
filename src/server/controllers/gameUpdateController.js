@@ -69,7 +69,7 @@ exports.updateGameLog = (req, res) => {
 
 
 exports.deleteGameLog = (req, res) => {
-    connection.query('call deleteGameLog(?,?)', [req.params.id,req.body.prev_score], function(err, rows, fields){
+    connection.query('call deleteGameLog(?, ?, ?,?)', [req.params.id,req.body.team_id, req.body.game_id,req.body.prev_score], function(err, rows, fields){
 		if(!err) {
 			res.send(null);
 		}else{

@@ -2,8 +2,8 @@
   <div class = "col s12 m12 l12"  id = "score-bg">
     <div>
       <br>
-      <div ng-repeat="team in $ctrl.teamsInGame" class="col s4 center">
-        <a class="pointer" ui-sref="teamPage({ teamId: team.team_id })"><img class="circle responsive-img team-img" ng-src="{{ team.picture }}"></a>
+      <div ng-repeat="team in $ctrl.teamsInGame" class="col s6 center">
+        <a class="pointer" ui-sref="teamPage({ teamId: team.team_id })"><img style="height: 200px; width: 200px;" class="circle responsive-img team-img" ng-src="{{ team.picture }}"></a>
         <a class="white-text pointer" ui-sref="teamPage({ teamId: team.team_id })"><h4>{{team.name}}</h4></a>
         <h3 class="white-text">{{team.score}}</h3>
       </div>
@@ -51,11 +51,11 @@
     </div>
 
     <div id="test2" class="col s12 l12">
-      <div class = "container" style = "max-height:200px;overflow-y:scroll;background-color:#f4f4f4;">
+      <div class = "container" style = "padding: 10px; max-height:300px;overflow-y:scroll;background-color:#f4f4f4;">
         <br>
         <div ng-repeat="score in $ctrl.scores" ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'" style="width:100%"><span ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'"><div ng-class = "(score.teamVal % 2) == 0 ? 'red' : 'blue'" class = "chip white-text">{{score.name}} scores {{score.score}} points</div>
 
-        <a href="" modal data-target="delete-history" ng-click="$ctrl.getId(score.gameUpdateLog_id, score.score)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "material-icons" style = "top:5px;position:relative;">delete</i></a>
+        <a href="" modal data-target="delete-history" ng-click="$ctrl.getIdDel(score.team_id, score.game_id, score.gameUpdateLog_id, score.score)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "material-icons" style = "top:5px;position:relative;">delete</i></a>
 
         <a href="" modal data-target="edit-history" ng-click="$ctrl.getId(score.gameUpdateLog_id, score.score)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "material-icons" style = "top:5px;position:relative;">edit</i></a>
 
@@ -66,9 +66,9 @@
       <div class = "container">
       
       <br>
-      <a class = "chip black white-text right" data-target="end-game" href="" modal ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'">Close Game</a>
-      <a class = "chip orange white-text right" data-target="update-history-modal" href="" modal ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'">Add score</a>
-      <a class = "chip black white-text right" data-target="open-game" href="" modal ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'FINISHED'">Open Game</a>
+      <a class = "btn black white-text right" data-target="end-game" href="" modal ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'">Close Game</a>
+      <a class = "btn orange white-text right" data-target="update-history-modal" href="" modal ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'">Add score</a>
+      <a class = "btn black white-text right" data-target="open-game" href="" modal ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'FINISHED'">Open Game</a>
      </div>
     </div>
     
