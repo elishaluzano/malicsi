@@ -179,6 +179,9 @@
                 start_minute: 0,
                 date: angular.copy(date)
             };   
+            setTimeout(function() {
+                Materialize.updateTextFields();
+            }, 10);
         }
 
         vm.confirmCreateGame = function() {
@@ -246,6 +249,9 @@
                     vm.selectedGame.start_hour = +time[0];
                     vm.selectedGame.start_minute = +time[1];
                     vm.selectedGame.date = date;
+                    setTimeout(function() {
+                        Materialize.updateTextFields();
+                    }, 10);
                 });
         }
 
