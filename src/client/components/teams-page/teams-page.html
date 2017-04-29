@@ -39,9 +39,9 @@
             <thead>
                 <tr>
                     <th>
-                        <div ng-show="event.status == 'Live'" class = "green chip">live</div>
-                        <div ng-show="event.status == 'Soon'" class = "red chip">soon</div>
-                        <div ng-show="event.status == 'Done'" class = "black chip white-text">done</div>
+                        <div ng-show="event.status == 'Live'" class = "green chip">{{event.status}}</div>
+                        <div ng-show="event.status == 'Soon'" class = "red chip">{{event.status}}</div>
+                        <div ng-show="event.status == 'Done'" class = "black chip white-text">{{event.status}}</div>
                         <a ui-sref = "eventPage({ eventId: event.event_id })">{{event.event_title}}</a>
                     </th>
                 </tr>
