@@ -35,7 +35,7 @@
                 vm.isScrolling = true;
                 $('html, body').animate({
                     scrollTop: $('#anchor_link').offset().top
-                }, 1000, function() {
+                }, 500, function() {
                     vm.isScrolling = false;
                 });
             }
