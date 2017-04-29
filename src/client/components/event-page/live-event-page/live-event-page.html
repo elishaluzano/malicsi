@@ -251,7 +251,7 @@
                                         <td>
                                             {{ game.venue }}
                                         </td>
-                                        <td ng-if="game.status.text === 'ONGOING'">
+                                        <td ng-if="game.status.text === 'ONGOING' || game.status.text === 'DONE'">
                                             <a ui-sref="liveGamePage({ gameId: game.game_id })"
                                                 class="btn-flat orange white-text pointer">
                                                 View Game
