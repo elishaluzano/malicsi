@@ -196,9 +196,13 @@
             <div ng-show="info.show"
                 class="tabcontent"
                 ng-repeat="info in $ctrl.filtered">
+                <h5 ng-show="!info.sports.length">
+                    Currently no sports :(
+                </h5>
 
                 <ul class="collapsible"
-                    data-collapsible="expandable">
+                    data-collapsible="expandable"
+                    ng-show="info.sports.length">
 
                     <li ng-repeat="sport in info.sports">
                         
@@ -278,7 +282,7 @@
                                 Add a Game
                             </a>
                             <p ng-if="$ctrl.isAdmin && $ctrl.teams.length < 2">
-                                Add more teams to {{ $ctrl.event.event_title }}!
+                                {{ $ctrl.event.event_title }} must have at least 2 teams to create a game!
                             </p>
                         </div>
                     </li>

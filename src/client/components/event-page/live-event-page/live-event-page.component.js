@@ -358,8 +358,11 @@
         vm.confirmCreateTeam = function() {
             searchService.teams(vm.newTeamName)
                 .then(function(teams) {
-                    if (teams.find(function(team) { return team.name === vm.newTeamName })) {
-                        return Materialize.toast(team.name + ' is already made', 3000, 'red');
+                    if (teams.find(function(team) { 
+                            console.log(team);
+                            return team.name === vm.newTeamName
+                        })) {
+                        return Materialize.toast(vm.newTeamName + ' is already made', 3000, 'red');
                     }
 
                     if (!vm.teamFiles[0]) {
