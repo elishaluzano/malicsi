@@ -59,6 +59,7 @@
                                 }
                             });
                         WebuiPopovers.hide('#login');
+                        $state.reload();
                         // if ($state.current.name === 'landingPage') {
                         //     $state.reload();
                         // } else {
