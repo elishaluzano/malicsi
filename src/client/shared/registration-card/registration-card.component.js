@@ -18,12 +18,14 @@
         vm.birthday = '';
         vm.gender = '';
         vm.contact_number = '';
+        vm.currdate = new Date();
 
         vm.$onInit = function() {
             setTimeout(Materialize.updateTextFields, 1);
         }
 
         vm.register = function() {
+
             if (!vm.name) {
                 return Materialize.toast("What's your name?", 3000, 'red');
             }
@@ -58,6 +60,10 @@
 
             if (!/^\w+@[a-zA-Z]+\.[a-zA-Z]+/.exec(vm.email)) {
                 return Materialize.toast('Is that a real email address?', 3000, 'red');
+            }
+
+            if(vm.birthday > vm.currdate){
+                return Materialize.toast('Your birthday cannot be greater than the current date', 3000, 'red');
             }
 
             searchService.users(vm.username)
