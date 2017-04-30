@@ -455,7 +455,7 @@
                         .then(function(data) {
                         });
 
-                    $state.go('landingPage');
+                    $state.go('eventsPage');
                 });
         }
 
