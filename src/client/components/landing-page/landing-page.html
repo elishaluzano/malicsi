@@ -50,7 +50,7 @@
         <ul class="collapsible" data-collapsible="expandable">
             <!-- TEAM STANDING CARD -->
             <li ng-repeat="x in $ctrl.objects">
-                <div class="collapsible-header">
+                <div class="collapsible-header active">
                     <div class="chip green white-text">Live</div>
                     {{ x.eventName.event_title }}
                     <br>Standing
@@ -92,8 +92,7 @@
             </div>
 
             <!-- EVENT-CARD -->
-            <event-card ng-repeat="each in $ctrl.soonEvents" event="each">
-            </event-card>
+            
         </div>
 
         <div class="row"> </div>
