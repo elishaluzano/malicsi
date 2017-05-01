@@ -33,6 +33,9 @@
                 resolve: {
                     userLogs: function(userLogService) {
                         return userLogService.getAll();
+                    },
+                    user: function(sessionService) {
+                        return sessionService.session();
                     }
                 }
             })     
