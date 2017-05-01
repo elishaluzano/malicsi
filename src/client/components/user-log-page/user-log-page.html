@@ -16,7 +16,7 @@
                 <tr ng-repeat="log in $ctrl.ownLog track by $index">
                     <td>{{log.user_id}}</td>
                     <td>{{log.action}}</td>
-                    <td>{{log.activity_time}}</td>
+                    <td>{{log.activity_time | date : '+0800'}}</td>
                 </tr>
             </tbody>
         </table>

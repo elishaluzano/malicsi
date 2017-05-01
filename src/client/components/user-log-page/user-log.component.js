@@ -20,9 +20,6 @@
             vm.user = sessionService.user();
 
             if (vm.user) {
-                console.log(vm.userLogs);
-                console.log(vm.user);
-
                 if (vm.user.user_id == 1) {
                     for (let each of vm.userLogs) {
                         vm.ownLog.push(each);

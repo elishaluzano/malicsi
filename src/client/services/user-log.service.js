@@ -32,6 +32,8 @@
             },
 
             create: function(body) {
+                console.log(new Date().toISOString());
+                console.log(body);
                 return $http.post(api, body) // tentative
                     .then(function(response) {
                         return response.data;
