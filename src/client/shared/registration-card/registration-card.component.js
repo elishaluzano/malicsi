@@ -44,6 +44,10 @@
                 return Materialize.toast('Is that really your contact number?', 3000, 'red');
             }
 
+            if (!vm.username) {
+                return Materialize.toast('Enter your username', 3000, 'red');
+            }
+
             if (/[\W]/.exec(vm.username)) {
                 return Materialize.toast('Username should only consist of alphanumeric characters and underscores', 3000, 'red');
             }
