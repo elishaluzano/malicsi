@@ -7,7 +7,8 @@ const connection = mysql.createConnection({
   user : 'root',
   password : 'admin',
   db : 'malicsi',
-  dateStrings: true
+  dateStrings: true,
+  timezone: '+08:00'
 });
 
 //check database connection
