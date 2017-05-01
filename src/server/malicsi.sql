@@ -169,7 +169,7 @@ update teamPlaysGame set score = (score - prev_score) + point where team_id_play
 END;
 //
 
-create procedure deleteGameLog(in id int, prev_score float)
+create procedure deleteGameLog(in id int, team_id int, game_id int, prev_score float)
 BEGIN
 delete from gameUpdateLog where gameUpdateLog_id = id;
 update teamPlaysGame set score = (score - prev_score) where team_id_play = team_id and game_id_play = game_id;

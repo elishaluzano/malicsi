@@ -11,13 +11,14 @@
             }
         });
 
-    function userPageController(userService, sessionService, searchService, $state) {
+    function userPageController(userService, sessionService, searchService, $state, userAffiliationService) {
         var vm = this;
         vm.isSameUser = false;
         vm.isBeingEdited = false;
         vm.files = [];
         vm.usercopy = null;
         vm.isAdmin = false;
+        vm.affiliations = [];
 
         vm.$onInit = function() {
             $('.modal').modal();
@@ -29,6 +30,10 @@
             if (sessionService.user() && sessionService.user().isOverallAdmin) {
                 vm.isAdmin = true;
             }
+            userAffiliationService.getAllById(vm.user.user_id)
+                .then(function(affiliations) {
+                    vm.affiliations = affiliations;
+                });
         }
 
         vm.discardChanges = function() {

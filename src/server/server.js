@@ -23,15 +23,15 @@ app.use(session({
 	proxy: true
 }));
 
+app.get('/betelog', function(req, res) {
+	res.sendFile(path.resolve('./dist/betelog.html'));
+});
 app.use('/', routes);
 //index page
 app.get('/', function(req, res) {
 	res.sendFile(path.resolve('index.html'));
 });
 //about page
-app.get('/betelog', function(req, res) {
-	res.sendFile(path.resolve('betelog.html'));
-});
 //404 error page
 app.get('*', function(req, res) {
     console.log(req.url);

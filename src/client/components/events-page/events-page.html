@@ -5,7 +5,7 @@
     <!-- ============================== FAB ===============================-->
 	<!-- ==================== ONLY AVAILABLE TO ADMIN =====================-->
   	<div class = "fixed-action-btn" ng-if="$ctrl.isAdmin">
-    	<a class="btn-floating btn-large waves-effect waves-light grey darken-3 tooltipped"data-position="left" data-tooltip="Add event" modal data-target="modal-add-event" ng-click="$ctrl.modalOpen"><i class="material-icons">note_add</i></a>
+    	<a class="btn-floating btn-large waves-effect waves-light orange darken-4 tooltipped" data-position="left" data-tooltip="Add event" modal data-target="modal-add-event" ng-click="$ctrl.modalOpen"><i class="material-icons">note_add</i></a>
   	</div>
 
 <!-- ============================= MODAL FOR ADD EVENT ==================================-->
@@ -65,11 +65,32 @@
                     </div>
                 </div>
                 <div class="center">
-                  <a type ="submit" value = "Submit" class = "waves-effect waves-light green btn z-depth-0 modal-action" ng-click="$ctrl.addEvent()">Submit</a>
+                  <a type ="submit" 
+                    value = "Submit" 
+                    class = "waves-effect waves-light green btn z-depth-0 modal-action"
+                    ng-click="$ctrl.addEvent()"
+                    onclick="show_loader()"
+                  >Submit</a>
                   <a class = "waves-effect waves-light grey btn z-depth-0 modal-action modal-close" value="submit" type="submit">Cancel</a>
+                  <div class=" progress" id = "my_loader" style = "display:none;">
+                    <div class="indeterminate"></div>
+                  </div>
                 </div>
       			</form>
       		</div>
     	</div>
   	</div>
 </div>
+
+<script>
+  function show_loader(){
+    var x = document.getElementById("my_loader");
+
+    if(x.style.display === 'none'){
+      x.style.display = 'block';
+    }else{
+      x.style.display = 'none';
+    }
+  }
+  setTimeout(function(){}, 2000);
+</script>

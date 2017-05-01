@@ -26,6 +26,8 @@
         vm.isAdmin = false;
         vm.isOverallAdmin = false;
         vm.scoreToBeChanged = '';
+        vm.teamDel = '';
+        vm.gameDel = '';
         var ids = [];
         var vals = {};
         
@@ -88,18 +90,41 @@
             }
 
             var params = {
+                team_id: vm.teamDel,
+                game_id: vm.gameDel,
                 prev_score: vm.scoreToBeChanged
             }
 
-            console.log(vm.scores);
 
-            gameLogService.deleteGameLog(id)
+            gameLogService.deleteGameLog(vm.idToBeChanged, params)
                 .then(function(data){
+                    for(team of vm.teamsInGame){
+                        if(team.team_id == vm.teamDel){
+                            team.score -= vm.scoreToBeChanged;
+                        }
+                    }
                     Materialize.toast('Successfully deleted game log!', 2000, 'red');
+                    var logName = "Deleted " + vm.idToBeChanged + " log.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: vm.institutionId,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
                 })
                 .catch(function(e){
                     Materialize.toast('Unsuccessfully deleted game log!', 2000, 'red');
                 })
+        }
+
+
+        vm.getIdDel = function(team, game, id, score){
+            vm.teamDel = team;
+            vm.gameDel = game;
+            vm.idToBeChanged = id;
+            vm.scoreToBeChanged = score;
         }
 
         vm.getId = function(id, score){
@@ -146,6 +171,8 @@
                     for(let team of vm.teamsInGame){
                         if(team.team_id == data.team_id){
                             data.name = team.name;
+                            team.score -= vm.scoreToBeChanged;
+                            team.score += vm.scoreUpdate;
                             break;
                         }
                     }
@@ -159,15 +186,27 @@
                         }
                     }
 
+                    var logName = "Updated " + vm.idToBeChanged + " log.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: vm.institutionId,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
+                
+                    vm.reset();
+
                 })
                 .catch(function(e){
                     console.log(e);
                     Materialize.toast('Unsuccessfully edited a score!', 2000, 'red');
+                
+            vm.reset();
                 })
 
 
-                
-            vm.reset();
         }
 
         vm.addLog = function(){
@@ -200,17 +239,30 @@
                     for(let team of vm.teamsInGame){
                         if(data.team_id == team.team_id){
                             data.name = team.name;
+                            team.score += vm.score;
+                            console.log(team.score);
                             break;
                         }
                     }
                     console.log('hello');
                     vm.scores.push(data);
+
+                    var logName = "Added " + vm.idToBeChanged + " log.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: vm.institutionId,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
+                    vm.reset();
                 })
                 .catch(function(e){
                     console.log(e);
                     Materialize.toast('Unsuccessfully added a score!', 2000, 'red');
+                    vm.reset();
                 })
-            vm.reset();
         }
 
         vm.endGame = function(){
@@ -218,10 +270,17 @@
                 .then(function(data){
                     vm.game.status = 'FINISHED';
                     Materialize.toast('Successfully ended game!', 2000, 'red');
+                    var logName = "Ended " + vm.game.game_id + " game.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: vm.institutionId,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
                 })
-                .catch(function(data){
-                    Materialize.toast('Unsuccessfully ended game!', 2000, 'red');
-                })
+                
         }
 
         vm.openGame = function(){
@@ -229,10 +288,17 @@
                 .then(function(data){
                     vm.game.status = 'ONGOING';
                     Materialize.toast('Successfully opened game!', 2000, 'red');
+                    var logName = "Opened " + vm.game.game_id + " game.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: vm.institutionId,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
                 })
-                .catch(function(data){
-                    Materialize.toast('Unsuccessfully opened game!', 2000, 'red');
-                })
+                
         }
         
     }
