@@ -46,8 +46,9 @@
                     });
             },
 
-            session: function() {
-                return $http.post('/api/sessions')
+            session: function(body) {
+                let values = body? body : {};
+                return $http.post('/api/sessions', values)
                     .then(function(response) {
                         currentUser = response.data;
                         return response.data;

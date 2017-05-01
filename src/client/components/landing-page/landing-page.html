@@ -49,8 +49,8 @@
     <div class="col l3">
         <ul class="collapsible" data-collapsible="expandable">
             <!-- TEAM STANDING CARD -->
-            <li ng-repeat="x in $ctrl.objects">
-                <div class="collapsible-header">
+            <li ng-repeat="x in $ctrl.objects track by $index">
+                <div class="collapsible-header" ng-class="{active: $index === 0}">
                     <div class="chip green white-text">Live</div>
                     {{ x.eventName.event_title }}
                     <br>Standing

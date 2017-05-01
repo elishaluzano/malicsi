@@ -59,7 +59,11 @@
                                 }
                             });
                         WebuiPopovers.hide('#login');
-                        $state.reload();
+                        if ($state.current.name === 'registrationPage') {
+                            $state.go('landingPage');
+                        } else {
+                            $state.reload();
+                        }
                         // if ($state.current.name === 'landingPage') {
                         //     $state.reload();
                         // } else {
