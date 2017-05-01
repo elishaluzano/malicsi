@@ -1,5 +1,6 @@
 <div class="col s12 m6 l3">
   <div class="customer-card hoverable card">
+    <div class="right chip white-text" ng-class="$ctrl.eventStatus.color" id="event-top-chip"> {{ $ctrl.eventStatus.text}} </div>
     <div class="card-image">
        <a ui-sref="eventPage({ eventId: $ctrl.event.event_id })">
            <img class="custom-image"
@@ -9,6 +10,7 @@
         <a class="card-title" ui-sref="eventPage({ eventId: $ctrl.event.event_id })">
           <div class = "white chip black-text" >
           {{ $ctrl.event.event_title }}</div></a>
+
 
       <!-- Settings button is available only for Admin-->
       <!-- Settings button is either gray or not visible to guest and normal user-->
@@ -21,10 +23,6 @@
         <li><i class = "material-icons">date_range</i> {{ $ctrl.event.start_date | date : fullDate}} - {{ $ctrl.event.end_date | date : fullDate}}</li>
         <li><i class = "material-icons">supervisor_account</i><a ui-sref="sponsorPage({ sponsorId: $ctrl.institution.institution_id })">{{ $ctrl.institution.name }}</a></li>
       </ul>
-    </div>
-    <div class="card-action">
-       <div class="chip white-text" ng-class="$ctrl.eventStatus.color"> {{ $ctrl.eventStatus.text}} </div>
-       <!-- <div class="chip blue white-text"> Your Event </div> -->
     </div>
   </div>
 </div>
