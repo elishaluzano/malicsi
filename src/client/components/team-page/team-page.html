@@ -1,12 +1,16 @@
 <div class="row">
+    <!--CHANGES-->
     <div class="col l2 collection hide-on-small-only" id="side-nav-teams">
         <div id="side-nav-teams-search">
-        <input placeholder="Search"
-            ng-model="$ctrl.searchInput"
-            ng-change="$ctrl.searchEnter()">
-        </div>
+	        <select class="browser-default">
+	        	<option value="1">Event 1</option>
+	        	<option value="2">Event 2</option>
+	        	<option value="3">Event 3</option>
+	        </select>
+    	</div>
         <a ng-repeat="team in $ctrl.allTeams" ui-sref-active="red white-text" ui-sref="teamPage({ teamId: team.team_id })" class="collection-item">{{team.name}}</a>
     </div>
+    <!--TO HERE-->
 
 
     <div class="col l10 s12 m9" id="right-team-page">
@@ -172,3 +176,9 @@
 	</div>
 
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	    $('select').material_select();
+	});
+</script>
