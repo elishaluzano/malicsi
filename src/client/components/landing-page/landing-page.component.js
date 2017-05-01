@@ -128,7 +128,7 @@
                 setTimeout(autoplay, 6000);
                 $('.carousel.carousel-slider').carousel('next');
                 
-            }        
+            }
         }
     }
 
