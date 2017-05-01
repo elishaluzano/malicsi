@@ -23,7 +23,7 @@
     <span class = "Cool-font center"><h3>Play-by-play</h3></span>
     <div class = "container">
     <div id="test2" class="col s12 l12">
-      <div style = "padding-left:10px: 10px; max-height:300px;overflow-y:scroll;background-color:#f4f4f4;">
+      <div style = "padding-left: 10px; max-height:300px;overflow-y:scroll;background-color:#f4f4f4;">
         <br>
         <div ng-repeat="score in $ctrl.scores" ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'" style="width:100%"><span ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'"><div ng-class = "(score.teamVal % 2) == 0 ? 'red' : 'blue'" class = "chip white-text">{{score.name}} scores {{score.score}} points</div>
 
