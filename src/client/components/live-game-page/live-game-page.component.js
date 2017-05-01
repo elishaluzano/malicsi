@@ -280,9 +280,7 @@
                         .then(function(data) {
                         });
                 })
-                .catch(function(data){
-                    Materialize.toast('Unsuccessfully ended game!', 2000, 'red');
-                })
+                
         }
 
         vm.openGame = function(){
@@ -300,9 +298,7 @@
                         .then(function(data) {
                         });
                 })
-                .catch(function(data){
-                    Materialize.toast('Unsuccessfully opened game!', 2000, 'red');
-                })
+                
         }
         
     }
