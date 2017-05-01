@@ -2,6 +2,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+/*    background-color:#35465c;*/
 }
 
 main {
@@ -197,7 +198,7 @@ th, td{
 
 
 .input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label, .input-field input[type=date]:focus + label, .input-field input[type=email]:focus + label, .file-path-wrapper input[type=text]:focus {
-    color: red;
+    color: black;
 }
 
 .input-field input[type=text]:focus, .input-field input[type=password]:focus, .input-field input[type=date]:focus, .input-field input[type=email]:focus {
@@ -541,4 +542,14 @@ style = "width:10%;vertical-align:middle;"*/
 
 .FFF-font{
     font-family:FFF;
+}
+
+
+#event-top-chip{
+  margin-top:5px;
+  margin-left:5px;
+}
+
+.add-margin-bottom{
+  margin-bottom:5px;
 }
