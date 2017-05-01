@@ -371,7 +371,7 @@ style = "width:10%;vertical-align:middle;"*/
 }
 
 #score-bg{
-    background-image: url('/images/bg2.jpg');
+    background-image: url('/images/background-copy.jpg');
     background-size: 100%;
 }
 
@@ -535,10 +535,18 @@ style = "width:10%;vertical-align:middle;"*/
     20%  {left:0px; top:475px;}
    }
 
-   @font-face{
+
+
+
+@font-face{
     font-family:Coolvetica;
-    src:url(/coolvetica.ttf);
+    src:url(assets/coolvetica.ttf);
 }
+
+.Cool-font{
+    font-family: Coolvetica;
+}
+
 
 .FFF-font{
     font-family:FFF;
@@ -552,4 +560,12 @@ style = "width:10%;vertical-align:middle;"*/
 
 .add-margin-bottom{
   margin-bottom:5px;
+}
+
+.add-margin-right{
+  margin-right:5px;
+}
+
+.add-margin-top{
+  margin-top:5px;
 }
