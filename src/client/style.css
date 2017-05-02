@@ -569,3 +569,18 @@ style = "width:10%;vertical-align:middle;"*/
 .add-margin-top{
   margin-top:5px;
 }
+
+.input-field input[type=text]:focus,
+.input-field input[type=file]:focus {
+  border-bottom: 1px solid orange;
+  /*-webkit-box-shadow: 0 1px 0 0 #099;
+  -moz-box-shadow: 0 1px 0 0 #099;
+  */box-shadow: 0 2px 0 0 orange;
+}
+
+.custom-border input[type=text]:focus {
+  border-bottom: 1px solid orange;
+  /*-webkit-box-shadow: 0 1px 0 0 #099;
+  -moz-box-shadow: 0 1px 0 0 #099;
+  */box-shadow: 0 2px 0 0 orange;
+}
