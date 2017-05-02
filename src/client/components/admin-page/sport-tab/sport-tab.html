@@ -16,7 +16,7 @@
                     </a>
                 </div>
                 <div class="col s4 offset-s3">
-                    <button class="btn red"
+                    <button class="btn orange"
                         ng-click="$ctrl.createSport()">
                         Add
                     </button>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="col s4 offset-s3">
-                    <button class="btn red"
+                    <button class="btn orange"
                         ng-click="$ctrl.confirmCreateSport()">
                         Add
                     </button>
@@ -85,13 +85,13 @@
                 <!--WHILE EDITING-->
                 <div ng-show="$ctrl.editingSport">
                     <div class="col s6 center-align">
-                        <button class="btn green"
+                        <button class="btn green white-text"
                             ng-click="$ctrl.confirmEditSport()">
                             Confirm
                         </button>
                     </div>
                     <div class="col s6 center-align">
-                        <button class="btn red"
+                        <button class="btn-flat waves-effect waves-red"
                             ng-click="$ctrl.cancelEditSport()">
                             Cancel
                         </button>
@@ -101,13 +101,13 @@
                 <!--WHILE DELETING-->
                 <div ng-show="$ctrl.deletingSport">
                     <div class="col s6 center-align">
-                        <button class="btn green"
+                        <button class="btn green white-text"
                             ng-click="$ctrl.confirmDeleteSport()">
                             Confirm
                         </button>
                     </div>
                     <div class="col s6 center-align">
-                        <button class="btn red"
+                        <button class="btn-flat waves-effect waves-red"
                             ng-click="$ctrl.cancelDeleteSport()">
                             Cancel
                         </button>
