@@ -118,7 +118,7 @@ router.get('/api/users/search/:search', userCtrl.searchUser);
 
 //admin routes
 router.get('/api/checkAdmin/:id', userCtrl.checkAdmin);
-router.get('/api/checkAdminOfInstitution/:user_id/:institutiont_id', userCtrl.checkAdminOfInstitution);
+router.get('/api/checkAdminOfInstitution/:user_id/:institution_id', userCtrl.checkAdminOfInstitution);
 router.get('/api/checkAdminOfEvent/:user_id/:event_id', userCtrl.checkAdminOfEvent);
 router.get('/api/checkAdminOfGame/:user_id/:game_id', userCtrl.checkAdminOfGame);
 router.get('/api/checkAdminOfTeam/:user_id/:team_id', userCtrl.checkAdminOfTeam);
