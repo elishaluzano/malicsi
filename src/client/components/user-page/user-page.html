@@ -39,19 +39,20 @@
                 </div>
             </div>
 
-            <div class="center row user-row">
+            <!--<div class="center row user-row">
                 <div class="right-align col s6">
                     <p>Affiliations</p>
                 </div>
                 <div class="left-align col s6">
                     <p>
                         <ul>
-                            <li>Affiliation One With A Long Name</li>
-                            <li>Affiliation 2</li>
+                            <li ng-repeat="affiliation in $ctrl.affiliations">
+                                {{ affiliation.affiliation }}
+                            </li>
                         </ul>
                     </p>
                 </div>
-            </div>
+            </div>-->
 
             <br>
             <div class="divider"></div>
@@ -150,7 +151,7 @@
                     <input type="text" id="change-mobile-number" placeholder="09XXXXXXXXX" ng-model="$ctrl.user.contact_number">
                 </div>
             </div>
-            <div class="center row user-row" id="affiliations">
+            <!--<div class="center row user-row" id="affiliations">
                 <div class="input-field right-align col s6">
                     <p>Affiliations</p>
                 </div>
@@ -162,7 +163,7 @@
                     </div>
                     <div class="left-align col s6"></div>
                 </div>
-            </div>
+            </div>-->
 
 
             <div class="file-field input-field">

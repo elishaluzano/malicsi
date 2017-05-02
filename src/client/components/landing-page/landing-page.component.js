@@ -12,7 +12,7 @@
             }
         });
 
-    function landingPageController(eventService, teamService, sportService) {
+    function landingPageController(eventService, teamService, sportService, sessionService, $state) {
         var vm = this;
         
         var teams = [];
@@ -28,6 +28,18 @@
         vm.soonEvents = [];
         vm.liveEvents = [];
         var hasDuplicate = false;
+        vm.isScrolling = false;
+
+        vm.scrollToAnchorLink = function() {
+            if (!vm.isScrolling) {
+                vm.isScrolling = true;
+                $('html, body').animate({
+                    scrollTop: $('#anchor_link').offset().top
+                }, 500, function() {
+                    vm.isScrolling = false;
+                });
+            }
+        }
 
         vm.$onInit = function() {
             for(let sport of vm.sports){
@@ -110,6 +122,13 @@
             console.log(vm.objects);
             
             $('.collapsible').collapsible();
+            $('.carousel.carousel-slider').carousel({fullWidth: true});
+            autoplay();   
+            function autoplay() {
+                setTimeout(autoplay, 6000);
+                $('.carousel.carousel-slider').carousel('next');
+                
+            }
         }
     }
 

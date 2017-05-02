@@ -1,12 +1,16 @@
 <div class="row">
+    <!--CHANGES-->
     <div class="col l2 collection hide-on-small-only" id="side-nav-teams">
         <div id="side-nav-teams-search">
-        <input placeholder="Search"
-            ng-model="$ctrl.searchInput"
-            ng-change="$ctrl.searchEnter()">
-        </div>
+	        <select class="browser-default">
+	        	<option value="1">Event 1</option>
+	        	<option value="2">Event 2</option>
+	        	<option value="3">Event 3</option>
+	        </select>
+    	</div>
         <a ng-repeat="team in $ctrl.allTeams" ui-sref-active="red white-text" ui-sref="teamPage({ teamId: team.team_id })" class="collection-item">{{team.name}}</a>
     </div>
+    <!--TO HERE-->
 
 
     <div class="col l10 s12 m9" id="right-team-page">
@@ -25,7 +29,7 @@
 	                <li>Last Opponent:</li>
 	            </ul>
 	            <button ng-if="$ctrl.isAdminOfTeam" class="red btn" data-target="edit-modal" modal>Edit Team</button> <!-- hide if not admin-->
-	            <button  ng-if="$ctrl.isLoggedIn && $ctrl.isSoon && !$ctrl.isAdminOfTeam" ng-disabled="$ctrl.isMember" class="red btn" data-target="join-modal">Join</button>
+	            <button  ng-if="$ctrl.isLoggedIn && $ctrl.isSoon && !$ctrl.isAdminOfTeam" ng-disabled="$ctrl.isMember || $ctrl.isMemberOfAnother" class="red btn" data-target="join-modal">Join</button>
 	        </div>
 	        <div class="col l3" style="font-size: 17px;">
 	            <ul>
@@ -35,7 +39,7 @@
 	                <li>{{$ctrl.lastOpponent}}</li>
 	            </ul>
 	            <button  ng-if="$ctrl.isAdminOfTeam" class="red btn" data-target="delete-modal">Delete Team</button> <!-- hide if not admin-->
-	            <button  ng-if="$ctrl.isLoggedIn && $ctrl.isSoon && !$ctrl.isAdminOfTeam" ng-click="$ctrl.print($ctrl.isMember)" ng-disabled="!$ctrl.isMember" class="red btn" data-target="leave-modal">Leave</button>
+	            <button  ng-if="$ctrl.isLoggedIn && $ctrl.isSoon && !$ctrl.isAdminOfTeam" ng-click="$ctrl.print($ctrl.isMember)" ng-disabled="!$ctrl.isMember && $ctrl.isMemberOfAnother" class="red btn" data-target="leave-modal">Leave</button>
 	        </div>
 
 	        <div id="delete-modal" class="modal">
@@ -55,8 +59,8 @@
 	                <p>Are you sure you want to join {{$ctrl.currentTeam.name}}?</p>
 	            </div>
 	            <div class="modal-footer">
-	                <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-	                <a ng-click="$ctrl.joinTeam()" class="modal-action modal-close waves-effect waves-green btn-flat">Okay</a>
+	                <button class="red white-text modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>
+	                <button ng-click="$ctrl.joinTeam()" class="green white-text modal-action modal-close waves-effect waves-green btn-flat">Okay</button>
 	            </div>
 	        </div>
 
@@ -68,8 +72,8 @@
 	                <p>Are you sure you want to leave {{$ctrl.currentTeam.name}}?</p>
 	            </div>
 	            <div class="modal-footer">
-	                <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-	                <a ng-click="$ctrl.leaveTeam()" class="modal-action modal-close waves-effect waves-green btn-flat">Okay</a>
+	                <button class="red white-text modal-action modal-close waves-effect waves-green btn-flat">Cancel</button>
+	                <button ng-click="$ctrl.leaveTeam()" class="green white-text modal-action modal-close waves-effect waves-green btn-flat">Okay</button>
 	            </div>
 	        </div>
 
@@ -84,7 +88,7 @@
 	                                <div class="center-align"><p id="vs">vs</p></div>
 	                                <div class="center-align"><a href="#">{{$ctrl.upcomingGame.team_name}}</a></div>
 	                            </div>
-	                            <div class="col l5" id="opponent-logo"><img  src="/images/engmeet2017.jpg" height="100px" width="100px"></div>
+	                            <div class="col l5" id="opponent-logo"><img ng-src="{{$ctrl.upcomingGame.picture}}" height="100px" width="100px"></div>
 	                        </div>
 	                         
 	                    </div>
@@ -172,3 +176,9 @@
 	</div>
 
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	    $('select').material_select();
+	});
+</script>

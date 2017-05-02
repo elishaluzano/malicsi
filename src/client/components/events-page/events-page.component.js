@@ -12,7 +12,7 @@
         });
 
         /* ADD sessionService, userService as parameter */
-        function eventsPageController(eventService, sessionService, adminService, institutionService, venueService) {
+        function eventsPageController(eventService, sessionService, adminService, institutionService, venueService, searchService, userLogService) {
             var vm = this;
             vm.isAdmin = false;
             vm.user = null;
@@ -48,62 +48,81 @@
                     if(vm.user){
                         adminService.getInstitutionsByAdmin(vm.user.user_id)
                             .then(function (institutions) {
-                                if (institutions) {
+                                if (institutions.length) {
                                     for(let inst of institutions){
                                         vm.institutions.push(inst);
                                     }
                                     vm.isAdmin = true;
                                 }
                             });
-                        
-                        if(vm.user.user_id == 1) {
+                        if(vm.user.isOverallAdmin) {
                             institutionService.getAll()
                                 .then(function(data) {
                                     for(let each of data) {
                                         vm.institutions.push(each);
                                     }
                                     console.log(vm.institutions);
+                                    vm.isAdmin = true;
                                 })
-                            vm.isAdmin = true;
-                    }
-                }
+                        
+                     }
+            }
             }
 
             vm.addEvent = function() {
-                if(vm.event_title == '') {
-                    Materialize.toast("Please add an Event Title", 3000);
-                }
-                else if(vm.venue == null) {
-                    Materialize.toast("Please add a Venue", 3000);
-                }
-                else if(vm.start_date == null || vm.end_date == null) {
-                    Materialize.toast("Date details incomplete.", 3000);
-                }
-                else if(vm.ins == null) {
-                    Materialize.toast("Please add an Institution", 3000);
-                }
-                else if(!vm.files[0]) {
-                    Materialize.toast("Please upload a logo", 3000);
-                }
-                else{
-                    var fd = new FormData();
-                    fd.append('event_title', vm.event_title);
-                    fd.append('venue_id_key', vm.venue);
-                    fd.append('start_date', (new Date(vm.start_date)).toISOString().substring(0, 10));
-                    fd.append('end_date',  (new Date(vm.end_date)).toISOString().substring(0, 10));
-                    fd.append('picture', vm.files[0]);
-                    fd.append('institution_id_key', vm.ins);
-                    eventService.create(fd)
-                        .then(function(data) {
-                            console.log(data);
-                            vm.events.push(data);
-                            Materialize.toast("Successfully added an event!", 3000);
-                            $('#modal-add-event').modal('close');
-                        })
-                        .catch(function(err) {
-                            console.log(err);
-                        })
-                }
+                searchService.events(vm.event_title)
+                    .then(function(events) {
+                        if (events.find(function(event) {
+                            return event.event_title.toLowerCase() === vm.event_title.toLowerCase()
+                                && event.event_id != vm.event_id;
+                        })) {
+                            return Materialize.toast(vm.event_title + ' is already taken', 3000, 'red');
+                        }
+                        if(vm.event_title == '') {
+                            Materialize.toast("Please add an Event Title", 3000);
+                        }
+                        else if(vm.venue == null) {
+                            Materialize.toast("Please add a Venue", 3000);
+                        }
+                        else if(vm.start_date == null || vm.end_date == null) {
+                            Materialize.toast("Date details incomplete.", 3000);
+                        }
+                        else if (new Date(vm.start_date).getTime() > new Date(vm.end_date).getTime()) {
+                            Materialize.toast("Start date must be before end date", 3000);
+                        }
+                        else if(vm.ins == null) {
+                            Materialize.toast("Please add an Institution", 3000);
+                        }
+                        else if(!vm.files[0]) {
+                            Materialize.toast("Please upload a logo", 3000);
+                        }
+                        else{
+                            console.log(vm.venue);
+                            var fd = new FormData();
+                            fd.append('event_title', vm.event_title);
+                            fd.append('venue', vm.venue);
+                            fd.append('start_date', (new Date(vm.start_date)).toISOString().substring(0, 10));
+                            fd.append('end_date',  (new Date(vm.end_date)).toISOString().substring(0, 10));
+                            fd.append('picture', vm.files[0]);
+                            fd.append('institution_id_key', vm.ins);
+                            eventService.create(fd)
+                                .then(function(data) {
+                                    vm.events.push(data);
+                                    Materialize.toast("Successfully added an event!", 3000);
+                                    $('#modal-add-event').modal('close');
+                                    var eventName = "Added " + vm.event_title + " event.";
+                                    var log = {
+                                        user_id: vm.user.user_id,
+                                        institution_id: vm.ins,
+                                        action: eventName
+                                    };
+                                    userLogService.create(log)
+                                        .then(function(data) {
+                                        });
+                                });
+                        }
+                    });
             }
         }
+        
 })();
