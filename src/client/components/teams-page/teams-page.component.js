@@ -22,6 +22,8 @@
             Soon: true,
             Done: true
         };
+
+
         
         vm.$onInit = function() {
             var curdate = new Date().getTime();
@@ -47,17 +49,19 @@
 
             for(let event of vm.events){
                 event.teams = [];
-                let startDate = new Date(event.start_date).getTime();
-                let endDate = new Date(event.end_date).getTime();
 
-                if(startDate < curdate && endDate > curdate){
-                    event.status = "Live";
+                let toDate = Math.floor(new Date().getTime()/1000/60/60/24);
+                let startDate = Math.floor(new Date(event.start_date).getTime()/1000/60/60/24);
+                let endDate = Math.floor(new Date(event.end_date).getTime()/1000/60/60/24);
+
+                if (toDate >= startDate && toDate <= endDate) {
+                    event.status = 'Live';
                 }
-                else if(startDate > curdate){
-                    event.status = "Soon";
+                else if (toDate < startDate) {
+                    event.status = 'Soon';
                 }
-                else if(endDate < curdate){
-                    event.status = "Done";
+                else {
+                    event.status = 'Done';
                 }
             }
 
@@ -76,7 +80,13 @@
             else vm.events2 = vm.events.splice(len/2, len);
             console.log(vm.events2);
             console.log(vm.events);
+
+
+
         }
+
+
+
 
     }
 })();

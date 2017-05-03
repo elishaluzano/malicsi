@@ -55,7 +55,7 @@
             },
 
             deleteGameLog: function(id, body) {
-                return $http.delete(api + id, body)
+                return $http.post(api + id, body)
                     .then(function(response) {
                         return response.data;
                     })

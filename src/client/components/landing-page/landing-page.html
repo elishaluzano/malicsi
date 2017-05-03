@@ -47,6 +47,7 @@
 </div>
 <div class="row" id="anchor_link">
     <div class="col l3">
+        <h5>Live Game Standings</h5>
         <ul class="collapsible" data-collapsible="expandable">
             <!-- TEAM STANDING CARD -->
             <li ng-repeat="x in $ctrl.objects track by $index">
@@ -86,6 +87,7 @@
 
     <div class="col l9">
         <div class="row">
+            <h5 style="margin-left: 1vw">Schedule</h5>
             <div ng-repeat="each in $ctrl.live">
                 <!-- class = "col s12 m8" -->
                 <sport-card information="each"></sport-card>

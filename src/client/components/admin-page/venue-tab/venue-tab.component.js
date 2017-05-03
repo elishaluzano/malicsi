@@ -8,7 +8,7 @@
             controller: venueTabController
         });
 
-    function venueTabController(venueService, searchService) {
+    function venueTabController(venueService, searchService, userLogService) {
         var vm = this;
 
         vm.selectedVenue = null;
@@ -63,6 +63,20 @@
                                 vm.creatingVenue = false;
                                 vm.selectVenue(venue);
                                 Materialize.toast(venue.name + ' has been created', 3000, 'red');
+                                var string = venue.name + " has been created.";
+                                var log = {
+                                    user_id: 1,
+                                    institution_id: 0,
+                                    action: string
+                                }
+
+                                userLogService.create(log)
+                                    .then(function(data) {
+                                      
+                                    })
+                                    .catch(function(err) {
+                                        console.log(err);
+                                    })
                             });
                     } else {
                         Materialize.toast(vm.newVenue + ' already created', 3000, 'red');
@@ -106,6 +120,20 @@
                             Materialize.toast(vm.selectedVenue.originalName + ' has been updated', 3000, 'red');
                             vm.selectedVenue.originalName = newVenue.name;
                             vm.editingVenue = false;
+                            var string = vm.selectedVenue.originalName + " has been updated.";
+                            var log = {
+                                user_id: 1,
+                                institution_id: 0,
+                                action: string
+                            }
+
+                            userLogService.create(log)
+                                .then(function(data) {
+                                  
+                                })
+                                .catch(function(err) {
+                                    console.log(err);
+                                })
                         }); 
 
                 })
@@ -135,6 +163,20 @@
                     Materialize.toast(vm.selectedVenue.originalName + ' has been deleted', 3000, 'red');
                     vm.selectedVenue = null;
                     vm.deletingVenue = false;
+                    var string = admin.username + " has been deleted.";
+                    var log = {
+                        user_id: 1,
+                        institution_id: 0,
+                        action: string
+                    }
+
+                    userLogService.create(log)
+                        .then(function(data) {
+                          
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        })
                 });
         }
 
