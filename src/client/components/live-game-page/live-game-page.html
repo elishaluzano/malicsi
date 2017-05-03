@@ -23,14 +23,12 @@
     <span class = "Cool-font center"><h3>Play-by-play</h3></span>
     <div class = "container">
     <div id="test2" class="col s12 l12">
-      <div style = "padding-left: 10px; max-height:300px;overflow-y:scroll;background-color:#f4f4f4;">
+      <div style = "padding-left:10px; padding-right: 10px; max-height:300px;height:300px;overflow-y:scroll;background-color:#f4f4f4;">
         <br>
-    <div ng-if="$ctrl.scores.length == 0"><span class = "Cool-font center"><h5>No record yet</h5></span></div>
-        <div ng-repeat="score in $ctrl.scores" ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'" style="width:100%"><span ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'"><div ng-class = "(score.teamVal % 2) == 0 ? 'red' : 'blue'" class = "chip white-text">{{score.name}} scores {{score.score}} points</div>
+        <div ng-repeat="score in $ctrl.scores" ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'" style="width:100%"><span ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'"><div ng-class = "(score.teamVal % 2) == 0 ? 'purple darken-2' : 'orange'" class = "chip white-text">{{score.name}} scores {{score.score}} points</div>
 
-        <a href="" modal data-target="delete-history" ng-click="$ctrl.getIdDel(score.team_id, score.game_id, score.gameUpdateLog_id, score.score)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "material-icons" style = "top:5px;position:relative;">delete</i></a>
-
-        <a href="" modal data-target="edit-history" ng-click="$ctrl.getId(score.gameUpdateLog_id, score.score, score.time)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "material-icons" style = "top:5px;position:relative;">edit</i></a>
+        <a href="" modal data-target="delete-history" ng-click="$ctrl.getIdDel(score.team_id, score.game_id, score.gameUpdateLog_id, score.score)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "grey-text material-icons" style = "top:5px;position:relative;">delete</i></a>
+        <a href="" modal data-target="edit-history" ng-click="$ctrl.getId(score.gameUpdateLog_id, score.score)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "grey-text material-icons" style = "top:5px;position:relative;">edit</i></a>
 
         <p class = "center-align grey-text" style ="margin-top:0em;">{{score.time | date: "MM-dd-yyyy hh:mm a"}}</p></span>
         </div> 
