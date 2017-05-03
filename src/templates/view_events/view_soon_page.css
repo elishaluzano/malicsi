@@ -1,0 +1,50 @@
+footer {
+	/*
+	position: relative;
+	bottom: 0px;
+	width: 100%;
+	*/
+	clear: both;
+	position: relative;
+	bottom: 0px;
+	width: 100%;
+	height: 250px;
+}
+
+html, body {
+	height: 100%;
+}
+
+#addhere {
+	float: right;
+}
+
+#soon-tabs li,
+#addhere li {
+	cursor: pointer;
+}
+
+#addhere li.tablinks {
+	border-left: 1px solid #D0D0D0;
+	border-right: 1px solid #D0D0D0;
+}
+
+#addhere li .active {
+	background-color: #A0A0A0;
+	color: white;
+}
+
+#timer {
+	margin: 10px 0px 20px 0px;
+}
+
+#add-game-schedule {
+	height: 100%;
+}
+
+#main-content {
+	min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -270px;
+}
