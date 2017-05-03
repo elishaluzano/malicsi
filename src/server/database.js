@@ -5,7 +5,7 @@ const mysql = require('mysql');
 const connection = mysql.createConnection({
   host : 'localhost',
   user : 'root',
-  password : 'root',
+  password : 'admin',
   db : 'malicsi',
   dateStrings: true,
   timezone: '+08:00'
