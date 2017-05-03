@@ -8,7 +8,7 @@
             controller: sportTabController
         });
 
-    function sportTabController(sportService, searchService) {
+    function sportTabController(sportService, searchService, userLogService) {
         var vm = this;
 
         vm.selectedSport = null;
@@ -64,6 +64,20 @@
                                 vm.creatingSport = false;
                                 vm.selectSport(sport);
                                 Materialize.toast(sport.name + ' has been created', 3000, 'red');
+                                var string = sport.name + " has been created.";
+                                var log = {
+                                    user_id: 1,
+                                    institution_id: 0,
+                                    action: string
+                                }
+
+                                userLogService.create(log)
+                                    .then(function(data) {
+                                      
+                                    })
+                                    .catch(function(err) {
+                                        console.log(err);
+                                    })
                             });
                     } else {
                         Materialize.toast(vm.newSport + ' already created', 3000, 'red');
@@ -107,6 +121,20 @@
                             Materialize.toast(vm.selectedSport.originalName + ' has been updated', 3000, 'red');
                             vm.selectedSport.originalName = newSport.name;
                             vm.editingSport = false;
+                            var string = vm.selectedSport.originalName + " has been updated.";
+                            var log = {
+                                user_id: 1,
+                                institution_id: 0,
+                                action: string
+                            }
+
+                            userLogService.create(log)
+                                .then(function(data) {
+                                  
+                                })
+                                .catch(function(err) {
+                                    console.log(err);
+                                })
                         }); 
 
                 });
@@ -136,6 +164,20 @@
                     Materialize.toast(vm.selectedSport.originalName + ' has been deleted', 3000, 'red');
                     vm.selectedSport = null;
                     vm.deletingSport = false;
+                    var string = vm.selectedSport.originalName + " has been deleted.";
+                    var log = {
+                        user_id: 1,
+                        institution_id: 0,
+                        action: string
+                    }
+
+                    userLogService.create(log)
+                        .then(function(data) {
+                          
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        })
                 });
         }
 

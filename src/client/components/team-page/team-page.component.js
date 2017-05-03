@@ -17,7 +17,7 @@
             }
         });
 
-    function teamPageController(sessionService, adminService, eventService, teamService, searchService, $state) {
+    function teamPageController(sessionService, adminService, eventService, teamService, searchService, $state, userLogService) {
         var vm = this;
         vm.searchInput = '';
         vm.pastGameCount = 0;
@@ -185,6 +185,20 @@
                 .then(function(team) {
                     Materialize.toast('Successfully updated team', 2000, 'red');
                     vm.currentTeam = team;
+                    var string = "Successfully updated team.";
+                    var log = {
+                        user_id: vm.currentUser.user_id,
+                        institution_id: vm.currentUser.institution_id,
+                        action: string
+                    }
+
+                    userLogService.create(log)
+                        .then(function(data) {
+                          
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        })
                 })
                 .catch(function(e){
                     Materialize.toast('Unsuccessfully updated team', 2000, 'red');
@@ -195,6 +209,20 @@
             teamService.delete(vm.currentTeam.team_id)
                 .then(function(data) {
                     Materialize.toast('Successfully deleted team', 2000, 'red');
+                    var string = "Successfully deleted team.";
+                    var log = {
+                        user_id: vm.currentUser.user_id,
+                        institution_id: vm.currentUser.institution_id,
+                        action: string
+                    }
+
+                    userLogService.create(log)
+                        .then(function(data) {
+                          
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        })
                     setTimeout(function(){ window.history.back(); }, 1000);
                 })
                 .catch(function(e){
@@ -216,6 +244,20 @@
                     Materialize.toast('Successfully joined team!', 2000, 'red');
                     vm.isMember = true;
                     vm.players.push(vm.currentUser);
+                    var string = "Successfully joined team.";
+                    var log = {
+                        user_id: vm.currentUser.user_id,
+                        institution_id: vm.currentUser.institution_id,
+                        action: string
+                    }
+
+                    userLogService.create(log)
+                        .then(function(data) {
+                          
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        })
                 })
                 .catch(function(e){
                     Materialize.toast('Unsuccessfully joined team!', 2000, 'red');
@@ -233,6 +275,20 @@
                             break;
                         }
                     }
+                    var string = "Successfully left team.";
+                    var log = {
+                        user_id: vm.currentUser.user_id,
+                        institution_id: vm.currentUser.institution_id,
+                        action: string
+                    }
+
+                    userLogService.create(log)
+                        .then(function(data) {
+                          
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        })
                 })
                 .catch(function(e){
                     Materialize.toast('Unsuccessfully left team!', 2000, 'red');
