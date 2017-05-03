@@ -13,7 +13,7 @@
             }
         });
 
-    function liveGamePageController(gameService, gameLogService, sessionService, adminService) {
+    function liveGamePageController(gameService, gameLogService, sessionService, adminService, userLogService) {
         var vm = this;
         vm.idToBeChanged = '';
         vm.teamToBeUpdated = '';
