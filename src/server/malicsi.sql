@@ -164,7 +164,7 @@ END;
 
 create procedure editGameLog(in id int, team_id int, game_id int, point float, prev_score float)
 BEGIN
-update gameUpdateLog set score = point and team_id = team_id and game_id = game_id where gameUpdateLog_id = id;
+update gameUpdateLog set score = point, team_id = team_id, game_id = game_id where gameUpdateLog_id = id;
 update teamPlaysGame set score = (score - prev_score) + point where team_id_play = team_id and game_id_play = game_id;
 END;
 //
