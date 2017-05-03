@@ -1,0 +1,25 @@
+#sponsor-big {
+    border-radius: 5px;
+    padding-top: 100px;
+    height: 250px;
+}
+
+#sponsor-info {
+    padding: 10px;
+}
+
+#add-sponsor-button {
+    margin-bottom: 10px;
+}
+
+.sponsor-row .right-align {
+    font-weight: bold;
+}
+
+.sponsor-row {
+    margin: 1px;
+}
+
+.container {
+    margin-bottom: 10px;
+}
