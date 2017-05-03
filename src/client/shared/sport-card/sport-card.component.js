@@ -17,6 +17,8 @@
 
         vm.$onInit = function(){
             for(let game of vm.information.games){
+                console.log(game);
+                game.on = true;
                 game.time = new Date(game.time);    
                 gameService.getTeamsInGame(game.game_id)
                     .then(function(data){
