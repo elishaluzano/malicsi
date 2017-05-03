@@ -95,6 +95,10 @@ function prevTab() {
     console.log("previous active " + previousActive.className + "||" + activeTab[0].className);
 }
 
+<<<<<<< HEAD
 document.getElementById("defaultOpen").click();
 
 
+=======
+document.getElementById("defaultOpen").click();
+>>>>>>> be5e56bf57d1ea7aa8b793e4e7a1f130c13319f5
