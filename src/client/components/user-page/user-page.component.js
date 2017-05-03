@@ -11,7 +11,7 @@
             }
         });
 
-    function userPageController(userService, sessionService, searchService, $state, userAffiliationService) {
+    function userPageController(userService, sessionService, searchService, $state, userAffiliationService, userLogService) {
         var vm = this;
         vm.isSameUser = false;
         vm.isBeingEdited = false;
@@ -105,6 +105,20 @@
                                     vm.isBeingEdited = false;
                                     sessionService.session(user)
                                         .then(function(user) {
+                                            var string = "Successfully updated user.";
+                                            var log = {
+                                                user_id: user.user_id,
+                                                institution_id: user.institution_id,
+                                                action: string
+                                            }
+
+                                            userLogService.create(log)
+                                                .then(function(data) {
+                                                  
+                                                })
+                                                .catch(function(err) {
+                                                    console.log(err);
+                                                })
                                             window.location.reload(true);
                                         });
                                 });
@@ -124,8 +138,22 @@
                     Materialize.toast('You account has been deleted', 3000, 'red');
                     sessionService.logout()
                         .then(function(user) {
-                            window.location.reload(true);
-                        });
+                            var string = "Your account has been deleted.";
+                            var log = {
+                                user_id: user.user_id,
+                                institution_id: user.institution_id,
+                                action: string
+                            }
+
+                            userLogService.create(log)
+                                .then(function(data) {
+                                  
+                                })
+                                .catch(function(err) {
+                                    console.log(err);
+                                })
+                                    window.location.reload(true);
+                                });
                 });
         }
         
