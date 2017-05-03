@@ -42,6 +42,8 @@ exports.addGameLog = (req, res) => {
     };
     connection.query('call gameUpdate(?,?,?)', [req.body.team_id, req.body.game_id, req.body.score], function(err, rows, fields){
 		if(!err) {
+			console.log(rows);
+			gamelog.gameUpdateLog_id = rows.insertId;
 			res.send(gamelog);
 		}else{
 			console.log(err);
@@ -56,9 +58,10 @@ exports.updateGameLog = (req, res) => {
         team_id : req.body.team_id,
         game_id : req.body.game_id,
         score : req.body.score,
-        prev_score : req.body.prev_score
+        prev_score : req.body.prev_score,
+        time: req.body.time
     };
-    connection.query('call editGameLog(?,?,?,?,?)', [req.params.id, req.body.team_id, req.body.game_id, req.body.score, req.body.prev_score], function(err, rows, fields){
+    connection.query('call editGameLog(?,?,?,?,?,?)', [req.params.id, req.body.team_id, req.body.game_id, req.body.score, req.body.prev_score, req.body.time], function(err, rows, fields){
 		if(!err) {
 			res.send(gamelog);
 		}else{

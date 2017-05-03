@@ -2,13 +2,17 @@
     <!--CHANGES-->
     <div class="col l2 collection hide-on-small-only" id="side-nav-teams">
         <div id="side-nav-teams-search">
-	        <select class="browser-default">
-	        	<option value="1">Event 1</option>
-	        	<option value="2">Event 2</option>
-	        	<option value="3">Event 3</option>
-	        </select>
+	        <select ng-model="$ctrl.eventSponsored" id="dropdown" class="left black-text browser-default">
+                <option value="all">All Events</option>
+                <option 
+                	ng-repeat="each in $ctrl.allEvents" 
+                	value="{{ each.event_id }}"
+                >
+                    {{ each.event_title }}
+                </option>
+            </select>
     	</div>
-        <a ng-repeat="team in $ctrl.allTeams" ui-sref-active="red white-text" ui-sref="teamPage({ teamId: team.team_id })" class="collection-item">{{team.name}}</a>
+        <div style="margin-top: 7vh"><a ng-repeat="team in $ctrl.allTeams" ui-sref-active="red white-text" ui-sref="teamPage({ teamId: team.team_id })" class="collection-item" ng-if="$ctrl.eventSponsored == team.event_id_key || $ctrl.eventSponsored == 'all'">{{team.name}}</a></div>
     </div>
     <!--TO HERE-->
 
@@ -27,6 +31,7 @@
 	                <li>Record:</li>
 	                <li>Winning percentage:</li>
 	                <li>Last Opponent:</li>
+	                <li>Event:</li>
 	            </ul>
 	            <button ng-if="$ctrl.isAdminOfTeam" class="red btn" data-target="edit-modal" modal>Edit Team</button> <!-- hide if not admin-->
 	            <button  ng-if="$ctrl.isLoggedIn && $ctrl.isSoon && !$ctrl.isAdminOfTeam" ng-disabled="$ctrl.isMember || $ctrl.isMemberOfAnother" class="red btn" data-target="join-modal">Join</button>
@@ -37,6 +42,7 @@
 	                <li>{{$ctrl.win}} - {{$ctrl.lose}}</li>
 	                <li>{{$ctrl.percentage}}%</li>
 	                <li>{{$ctrl.lastOpponent}}</li>
+	                <li><a ui-sref="eventPage({ eventId: $ctrl.event.event_id })">{{$ctrl.event.event_title}}</a></li>
 	            </ul>
 	            <button  ng-if="$ctrl.isAdminOfTeam" class="red btn" data-target="delete-modal">Delete Team</button> <!-- hide if not admin-->
 	            <button  ng-if="$ctrl.isLoggedIn && $ctrl.isSoon && !$ctrl.isAdminOfTeam" ng-click="$ctrl.print($ctrl.isMember)" ng-disabled="!$ctrl.isMember && $ctrl.isMemberOfAnother" class="red btn" data-target="leave-modal">Leave</button>
@@ -86,7 +92,7 @@
 	                        <div class="col l12" id="upcoming-game-inner-div">
 	                            <div class="col l7" id="upcoming-game-inner-inner-div">
 	                                <div class="center-align"><p id="vs">vs</p></div>
-	                                <div class="center-align"><a href="#">{{$ctrl.upcomingGame.team_name}}</a></div>
+	                                <div class="center-align"><a ui-sref="teamPage({ teamId: $ctrl.upcomingGame.team_id })">{{$ctrl.upcomingGame.team_name}}</a></div>
 	                            </div>
 	                            <div class="col l5" id="opponent-logo"><img ng-src="{{$ctrl.upcomingGame.picture}}" height="100px" width="100px"></div>
 	                        </div>
@@ -112,14 +118,12 @@
 	        <table class="bordered responsive-table" id="last-five-games-table">
 	            <tr>
 	                <th>Date</th>
-	                <th>Event</th>
 	                <th>Game</th>
 	                <th>Opponent</th>
 	                <th>Result</th>
 	            </tr>
 	            <tr ng-repeat="game in $ctrl.lastFiveGames">
 	                <td>{{game.time | date: "MM-dd-yyyy hh:mm a"}}</td>
-	                <td><a ui-sref="eventPage({ eventId: game.event_id })">{{game.event_title}}</a></td>
 	                <td><a>{{game.sport}}</a></td>
 	                <td><a ui-sref="teamPage({ teamId: game.team_id })">{{game.team_name}}</a></td>
 	                <td>{{game.team1_score}}-{{game.team2_score}}</td>

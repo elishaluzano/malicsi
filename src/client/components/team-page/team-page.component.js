@@ -13,12 +13,14 @@
                 players: '<',
                 allGames: '<',
                 currentTeam: '<',
-                teamPlaysGame: '<'
+                teamPlaysGame: '<',
+                allEvents: '<'
             }
         });
 
     function teamPageController(sessionService, adminService, eventService, teamService, searchService, $state) {
         var vm = this;
+        vm.eventSponsored = 'all';
         vm.searchInput = '';
         vm.pastGameCount = 0;
         vm.lastFiveGames = [];
@@ -38,15 +40,18 @@
         vm.files = [];
         vm.sampleName = '';
         vm.isMemberOfAnother = false;
+        vm.eventChoice = 'All Events';
         var game;
         
         vm.$onInit = function() {
+            console.log(vm.allEvents);
             console.log(vm.isLoggedIn + " " + vm.isSoon + " " + vm.isAdminOfTeam);
             setTimeout(function(){ $('.modal').modal(); }, 1);
             vm.sampleName = vm.currentTeam.name;
             var min;
 
             vm.currentUser = sessionService.user();
+            console.log(vm.currentUser);
 
 
             for(let team of vm.allTeams){
@@ -165,6 +170,11 @@
             } else {
                 vm.lastOpponent = 'None';
             }
+            
+        }
+
+        vm.chooseEvent = function(){
+            console.log(vm.eventChoice);
         }
 
         vm.print = function(a){
@@ -255,11 +265,12 @@
         }
 
         vm.searchEnter = function() {
-                search();
+            search();
         }
 
         function search(){
-            if(vm.searchInput == "") {
+            console.log(vm.eventChoice);
+            if(vm.eventChoice == "all") {
                 teamService.getAll()
                     .then(function(data){
                         vm.allTeams = data;
@@ -269,13 +280,17 @@
                     })
             }
             else{
-                searchService.teams(vm.searchInput)
-                    .then(function(data){
-                        vm.allTeams = data;
+                eventService.getOne(vm.eventChoice)
+                    .then(function(event){
+                        searchService.teams(event.event_title)
+                            .then(function(data){
+                                vm.allTeams = data;
+                            })
+                            .catch(function(err){
+                                console.log(err);
+                            })
                     })
-                    .catch(function(err){
-                        console.log(err);
-                    })
+                
             }
         }
     }

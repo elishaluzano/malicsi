@@ -208,6 +208,9 @@
                     },
                     teamPlaysGame: function(teamService, $transition$) {
                         return teamService.getOneTeamPlaysGame($transition$.params().teamId);
+                    },
+                    allEvents: function(eventService){
+                        return eventService.getAll();
                     }
                 },
                 onEnter: function(currentTeam, componentName, params, $state) {

@@ -23,11 +23,11 @@
             </thead>
 
             <tbody>
-                <tr ng-repeat="game in $ctrl.information.games">
+                <tr ng-repeat="game in $ctrl.information.games" ng-if="game.on == true">
                     <td>{{game.time | date: 'MM-dd-yy'}}</td>
                     <td>{{game.time | date: 'HH:mm:ss'}}</td>
                     <td><p ng-repeat="team in game.teams"><a ui-sref="teamPage({ teamId: team.team_id })">{{team.name}}</a></p></td>
-                    <td><a href="#"><div class="chip">{{game.event_title}}</div></a></td>
+                    <td><a ui-sref="eventPage({ eventId: game.event_id })"><div class="chip">{{game.event_title}}</div></a></td>
                     <td><a ui-sref="sponsorPage({ sponsorId: game.sponsor_id })">{{game.sponsor}}</a></td>
                     <td>{{game.venue}}</td>
                 </tr>
