@@ -12,7 +12,7 @@
 			}
 		});
 
-	function sponsorPageController(institutionService, sessionService, adminService, $state) {
+	function sponsorPageController(institutionService, sessionService, adminService, $state, userLogService) {
 		var vm = this;
 		vm.admin = null;
 		vm.events = [];
@@ -43,6 +43,20 @@
 			adminService.deleteAsAdmin(vm.institution.institution_id, vm.admin.user_id)
 				.then(function(admin) {
 					Materialize.toast('Successfully deleted as admin!', 2000, 'red');
+					var string = "Successfully deleted as admin.";
+                    var log = {
+                        user_id: user.user_id,
+                        institution_id: vm.institution.institution_id,
+                        action: string
+                    }
+
+                    userLogService.create(log)
+                        .then(function(data) {
+                          
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        })
 					$state.reload();
 				})
 				.catch(function(error) {	
