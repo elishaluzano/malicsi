@@ -45,7 +45,7 @@
 	                <li><a ui-sref="eventPage({ eventId: $ctrl.event.event_id })">{{$ctrl.event.event_title}}</a></li>
 	            </ul>
 	            <button  ng-if="$ctrl.isAdminOfTeam" class="red btn" data-target="delete-modal">Delete Team</button> <!-- hide if not admin-->
-	            <button  ng-if="$ctrl.isLoggedIn && $ctrl.isSoon && !$ctrl.isAdminOfTeam" ng-click="$ctrl.print($ctrl.isMember)" ng-disabled="!$ctrl.isMember && $ctrl.isMemberOfAnother" class="red btn" data-target="leave-modal">Leave</button>
+	            <button  ng-if="$ctrl.isLoggedIn && $ctrl.isSoon && !$ctrl.isAdminOfTeam" ng-click="$ctrl.print($ctrl.isMember)" ng-disabled="!$ctrl.isMember || $ctrl.isMemberOfAnother" class="red btn" data-target="leave-modal">Leave</button>
 	        </div>
 
 	        <div id="delete-modal" class="modal">
