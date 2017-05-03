@@ -6,7 +6,10 @@ const connection = require(__dirname + '/../database.js');
 
 // get current user
 exports.getAccount = (req, res) => {
-  res.send(req.session.user);
+    if (req.body && req.body.user) {
+        req.session.user = req.body.user;
+    }
+    res.send(req.session.user);
 };
 // login
 exports.loginUser = (req, res) => {
@@ -62,6 +65,7 @@ exports.addUser = (req, res) => {
 
 // logout
 exports.logout = (req, res) => {
+    console.log('logged out');
     req.session.user = null;
     res.send(null);
 };

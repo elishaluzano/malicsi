@@ -59,11 +59,16 @@
                                 }
                             });
                         WebuiPopovers.hide('#login');
-                        if ($state.current.name === 'landingPage') {
-                            $state.reload();
-                        } else {
+                        if ($state.current.name === 'registrationPage') {
                             $state.go('landingPage');
+                        } else {
+                            $state.reload();
                         }
+                        // if ($state.current.name === 'landingPage') {
+                        //     $state.reload();
+                        // } else {
+                        //     $state.go('landingPage');
+                        // }
                     } else { // if wrong credentials
                         Materialize.toast('Wrong credentials!', 2000, 'red');
                     }

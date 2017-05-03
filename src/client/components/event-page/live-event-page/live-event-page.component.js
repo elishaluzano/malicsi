@@ -11,7 +11,7 @@
             }
         });
 
-    function liveEventPageController($q, eventService, venueService, teamService, institutionService, $state, searchService, sportService, sessionService, gameService, adminService) {
+    function liveEventPageController($q, eventService, venueService, teamService, institutionService, $state, searchService, sportService, sessionService, gameService, adminService, userLogService) {
         var vm = this;
 
         vm.sports = [];
@@ -179,6 +179,9 @@
                 start_minute: 0,
                 date: angular.copy(date)
             };   
+            setTimeout(function() {
+                Materialize.updateTextFields();
+            }, 10);
         }
 
         vm.confirmCreateGame = function() {
@@ -246,6 +249,9 @@
                     vm.selectedGame.start_hour = +time[0];
                     vm.selectedGame.start_minute = +time[1];
                     vm.selectedGame.date = date;
+                    setTimeout(function() {
+                        Materialize.updateTextFields();
+                    }, 10);
                 });
         }
 
@@ -293,6 +299,17 @@
             teamService.delete(vm.selectedTeam.team_id)
                 .then(function() {
                     Materialize.toast(vm.selectedTeam.name + ' has been deleted', 3000, 'red');
+                    
+                    var logName = "Deleted " + vm.selectedTeam.name + " team.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: 0,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
+
                     $state.reload();
                 });
         }
@@ -307,6 +324,16 @@
                 .then(function() {
                     Materialize.toast('You have joined ' + vm.selectedTeam.name, 3000, 'red');
                     vm.joinedTeamId = vm.selectedTeam.team_id;
+
+                    var logName = vm.user.name + " joined " + vm.selectedTeam.name + " team.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: 0,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
                 });
         }
 
@@ -315,6 +342,15 @@
                 .then(function() {
                     Materialize.toast('You have quit ' + vm.selectedTeam.name, 3000, 'red');
                     vm.joinedTeamId = 0;
+                    var logName = vm.user.name + " quit " + vm.selectedTeam.name + " team.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: 0,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
                 });
         }
 
@@ -351,6 +387,17 @@
                         sport_id: eventHasSport.sport_id,
                         name: name
                     });
+
+                    var logName = "Added " + name + " sport.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: 0,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
+
                     $state.reload();
                 });
         }
@@ -358,8 +405,11 @@
         vm.confirmCreateTeam = function() {
             searchService.teams(vm.newTeamName)
                 .then(function(teams) {
-                    if (teams.find(function(team) { return team.name === vm.newTeamName })) {
-                        return Materialize.toast(team.name + ' is already made', 3000, 'red');
+                    if (teams.find(function(team) { 
+                            console.log(team);
+                            return team.name === vm.newTeamName
+                        })) {
+                        return Materialize.toast(vm.newTeamName + ' is already made', 3000, 'red');
                     }
 
                     if (!vm.teamFiles[0]) {
@@ -376,6 +426,15 @@
                             Materialize.toast(team.name + ' has been created', 3000, 'red');
                             $('#add-team-modal').modal('close');
                             $state.reload();
+                            var logName = "Added " + team.name + " team.";
+                            var log = {
+                                user_id: vm.user.user_id,
+                                institution_id: 0,
+                                action: logName
+                            };
+                            userLogService.create(log)
+                                .then(function(data) {
+                                });
                         });
                 });
         }
@@ -385,7 +444,18 @@
             eventService.delete(vm.event.event_id)
                 .then(function() {
                     Materialize.toast(title + ' has been deleted', 3000, 'red');
-                    $state.go('landingPage');
+
+                    var logName = "Deleted" + title + " event.";
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: 0,
+                        action: logName
+                    };
+                    userLogService.create(log)
+                        .then(function(data) {
+                        });
+
+                    $state.go('eventsPage');
                 });
         }
 

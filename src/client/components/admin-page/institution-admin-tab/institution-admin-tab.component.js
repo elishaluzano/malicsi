@@ -136,7 +136,8 @@
                             vm.institutions = vm.institutions.map(function(institution) {
                                 if (institution.institution_id == vm.selectedInstitution.institution_id) {
                                     Materialize.toast(vm.selectedInstitution.originalName + ' has been updated', 3000, 'red');
-                                    vm.selectedInstitution = institution = angular.copy(newInstitution);
+                                    vm.selectedInstitution = angular.copy(newInstitution);
+                                    vm.selectedInstitution.originalName = newInstitution.name;
                                 }
                                 return institution;
                             });

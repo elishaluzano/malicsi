@@ -1,12 +1,14 @@
-<div class = "row">
-    <!-- <div class = "col m3">
-        Add filters here
-    
-    </div> -->
+<div class="container">
+    <div class = "row">
+        <!-- <div class = "col m3">
+            Add filters here
+        
+        </div> -->
 
-    <div class = "col s12 m8" ng-repeat="each in $ctrl.sports">
-       <sport-card information="each"></sport-card>
+        <div class = "col s12" ng-repeat="each in $ctrl.sports">
+            <sport-card information="each"></sport-card>
+        </div>
     </div>
-</div>
 
-<input type="date" class="datepicker">
+    <!--<input type="date" class="datepicker">-->
+</div>

@@ -103,6 +103,10 @@
                                     vm.user = user;
                                     vm.user.birthday = new Date(vm.user.birthday);
                                     vm.isBeingEdited = false;
+                                    sessionService.session(user)
+                                        .then(function(user) {
+                                            window.location.reload(true);
+                                        });
                                 });
                             vm.usercopy = vm.user;
                         }
@@ -118,7 +122,10 @@
             userService.delete(vm.user.user_id)
                 .then(function() {
                     Materialize.toast('You account has been deleted', 3000, 'red');
-                    $state.go('landingPage');
+                    sessionService.logout()
+                        .then(function(user) {
+                            window.location.reload(true);
+                        });
                 });
         }
         

@@ -24,12 +24,17 @@
         }
 
         vm.register = function() {
+
             if (!vm.name) {
                 return Materialize.toast("What's your name?", 3000, 'red');
             }
 
             if (!vm.birthday) {
                 return Materialize.toast('When is your birthday?', 3000, 'red');
+            }
+            
+            if(new Date(vm.birthday).getTime() > new Date().getTime()){
+                return Materialize.toast('Your birthday cannot be greater than the current date', 3000, 'red');
             }
 
             if (!vm.gender) {
@@ -42,6 +47,10 @@
 
             if (isNaN(vm.contact_number)) {
                 return Materialize.toast('Is that really your contact number?', 3000, 'red');
+            }
+
+            if (!vm.username) {
+                return Materialize.toast('Enter your username', 3000, 'red');
             }
 
             if (/[\W]/.exec(vm.username)) {
@@ -59,6 +68,7 @@
             if (!/^\w+@[a-zA-Z]+\.[a-zA-Z]+/.exec(vm.email)) {
                 return Materialize.toast('Is that a real email address?', 3000, 'red');
             }
+
 
             searchService.users(vm.username)
                 .then(function(users) {

@@ -28,26 +28,20 @@
         vm.soonEvents = [];
         vm.liveEvents = [];
         var hasDuplicate = false;
-        vm.isLoggedIn = false;
-        vm.username = '';
-        vm.password = '';
+        vm.isScrolling = false;
 
-        vm.login = function() {
-            sessionService.login(vm.username, vm.password)
-                .then(function(user) {
-                    if (user) {
-                        window.location.reload();
-                    } else { // if wrong credentials
-                        Materialize.toast('Wrong credentials!', 2000, 'red');
-                    }
+        vm.scrollToAnchorLink = function() {
+            if (!vm.isScrolling) {
+                vm.isScrolling = true;
+                $('html, body').animate({
+                    scrollTop: $('#anchor_link').offset().top
+                }, 500, function() {
+                    vm.isScrolling = false;
                 });
+            }
         }
 
         vm.$onInit = function() {
-            if (sessionService.user()) {
-                vm.isLoggedIn = true;
-            }
-
             for(let sport of vm.sports){
                 sport.games = [];
             }
@@ -134,7 +128,7 @@
                 setTimeout(autoplay, 6000);
                 $('.carousel.carousel-slider').carousel('next');
                 
-            }        
+            }
         }
     }
 

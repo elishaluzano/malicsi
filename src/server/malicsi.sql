@@ -176,6 +176,13 @@ update teamPlaysGame set score = (score - prev_score) where team_id_play = team_
 END;
 //
 
+create trigger deleteGameAfterDeleteTeam
+    before delete on team
+    for each row
+BEGIN
+    delete from game where game_id in (select game_id_play from team join teamPlaysGame on team.team_id = teamPlaysGame.team_id_play where team.team_id = OLD.team_id);
+END;
+//
 delimiter ;
 
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Ryan Magorian','Father','09987898765');
