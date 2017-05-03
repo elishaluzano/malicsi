@@ -108,13 +108,13 @@
                             </td>
                             <td>
                                 <a class="btn green white-text pointer z-depth-0"
-                                    ng-if="!$ctrl.joinedTeamId && $ctrl.user && !$ctrl.isAdmin"
+                                    ng-if="!$ctrl.joinedTeamId && $ctrl.user && !$ctrl.isAdmin && $ctrl.isSoon"
                                     ng-click="$ctrl.selectTeam(team)"
                                     modal
                                     data-target="join-team-modal">
                                     Join
                                 </a>
-                                <a ng-if="($ctrl.user && $ctrl.joinedTeamId && !$ctrl.isAdmin) && ($ctrl.joinedTeamId == team.team_id)"
+                                <a ng-if="($ctrl.user && $ctrl.joinedTeamId && !$ctrl.isAdmin) && ($ctrl.joinedTeamId == team.team_id)  && $ctrl.isSoon"
                                     class="btn grey white-text pointer z-depth-0"
                                     ng-click="$ctrl.selectTeam(team)"
                                     modal
@@ -425,8 +425,10 @@
         </div>
         <div class="row">
             <div class="file-field input-field">
-                <div class="btn red">
-                    <span>File</span>
+                <div class="btn grey darken-3 z-depth-0">
+                    <span>
+                        <i class="material-icons">add_a_photo</i>
+                    </span>
                     <input type="file" file-input="$ctrl.teamFiles">
                 </div>
                 <div class="file-path-wrapper">

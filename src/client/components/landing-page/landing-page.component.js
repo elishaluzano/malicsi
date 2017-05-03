@@ -12,7 +12,7 @@
             }
         });
 
-    function landingPageController(eventService, teamService, sportService) {
+    function landingPageController(eventService, teamService, sportService, sessionService, $state) {
         var vm = this;
         
         var teams = [];
@@ -28,8 +28,26 @@
         vm.soonEvents = [];
         vm.liveEvents = [];
         var hasDuplicate = false;
+        vm.isLoggedIn = false;
+        vm.username = '';
+        vm.password = '';
+
+        vm.login = function() {
+            sessionService.login(vm.username, vm.password)
+                .then(function(user) {
+                    if (user) {
+                        window.location.reload();
+                    } else { // if wrong credentials
+                        Materialize.toast('Wrong credentials!', 2000, 'red');
+                    }
+                });
+        }
 
         vm.$onInit = function() {
+            if (sessionService.user()) {
+                vm.isLoggedIn = true;
+            }
+
             for(let sport of vm.sports){
                 sport.games = [];
             }
@@ -66,7 +84,6 @@
                 let toDate = new Date().getTime();
                 let startDate = new Date(event.start_date).getTime();
                 let endDate = new Date(event.end_date).getTime();
-                endDate = addDate(endDate, 1);
 
                 if (toDate <= startDate) {
                     vm.soonEvents.push(event);
@@ -79,7 +96,6 @@
                 let toDate = new Date().getTime();
                 let startDate = new Date(event.start_date).getTime();
                 let endDate = new Date(event.end_date).getTime();
-                endDate = addDate(endDate, 1);
 
                 if (toDate >= startDate && toDate <= endDate) {                    
                     eventService.getTeams(event.event_id)
@@ -112,11 +128,13 @@
             console.log(vm.objects);
             
             $('.collapsible').collapsible();
-        }
-        function addDate(date, days) {
-            var result = new Date(date);
-            result.setDate(result.getDate() + days);
-            return result;
+            $('.carousel.carousel-slider').carousel({fullWidth: true});
+            autoplay();   
+            function autoplay() {
+                setTimeout(autoplay, 6000);
+                $('.carousel.carousel-slider').carousel('next');
+                
+            }        
         }
     }
 

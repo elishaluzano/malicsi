@@ -37,7 +37,10 @@ exports.addLog = (req, res) => {
         institution_id : req.body.institution_id,
         action : req.body.action
     }
-    connection.query('INSERT INTO userlog SET ?', newLog, function(err, rows, fields){
+
+    console.log(req.body);
+
+    connection.query('INSERT INTO userlog(user_id, institution_id, action) VALUES (?, ?, ?)', [newLog.user_id, newLog.institution_id, newLog.action], function(err, rows, fields){
         if (!err) {
             newLog.log_id = rows.insertId;
             res.send(newLog);

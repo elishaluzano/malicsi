@@ -16,12 +16,22 @@ $('a').click(function(){
 });
 
 $('.carousel.carousel-slider').carousel({fullWidth: true});
-autoplay()   
+autoplay();   
 function autoplay() {
+     setTimeout(autoplay, 6000);
     $('.carousel.carousel-slider').carousel('next');
-    setTimeout(autoplay, 6000);
+    
 }        
 
 $('#login').webuiPopover({url:'#login-form'});
 
 $('#drop-links').webuiPopover({url:'#additional-links'});
+
+  $(document).ready(function(){
+      $('.slider').slider({
+          height: 300,
+          transition: 1000, 
+          interval: 3000,
+         indicators:true,
+      });
+  });

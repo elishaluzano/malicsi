@@ -13,9 +13,9 @@
             </thead>
 
             <tbody>
-                <tr ng-repeat="log in $ctrl.userLog track by $index">
+                <tr ng-repeat="log in $ctrl.ownLog track by $index">
                     <td>{{log.user_id}}</td>
-                    <td>{{log.activity}}</td>
+                    <td>{{log.action}}</td>
                     <td>{{log.activity_time}}</td>
                 </tr>
             </tbody>

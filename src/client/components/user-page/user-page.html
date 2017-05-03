@@ -46,8 +46,9 @@
                 <div class="left-align col s6">
                     <p>
                         <ul>
-                            <li>Affiliation One With A Long Name</li>
-                            <li>Affiliation 2</li>
+                            <li ng-repeat="affiliation in $ctrl.affiliations">
+                                {{ affiliation.affiliation }}
+                            </li>
                         </ul>
                     </p>
                 </div>

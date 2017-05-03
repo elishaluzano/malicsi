@@ -165,7 +165,6 @@
             } else {
                 vm.lastOpponent = 'None';
             }
-
         }
 
         vm.print = function(a){
