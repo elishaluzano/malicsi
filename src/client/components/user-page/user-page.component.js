@@ -133,27 +133,26 @@
         }
 
         vm.deleteUser = function() {
-            userService.delete(vm.user.user_id)
+            var string = vm.user.username + " has been deleted.";
+            sessionService.logout()
                 .then(function() {
-                    Materialize.toast('You account has been deleted', 3000, 'red');
-                    sessionService.logout()
-                        .then(function(user) {
-                            var string = "Your account has been deleted.";
-                            var log = {
-                                user_id: user.user_id,
-                                institution_id: user.institution_id,
-                                action: string
-                            }
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: vm.user.institution_id,
+                        action: string
+                    };
 
-                            userLogService.create(log)
-                                .then(function(data) {
-                                  
-                                })
-                                .catch(function(err) {
-                                    console.log(err);
-                                })
-                                    window.location.reload(true);
+                    userLogService.create(log)
+                        .then(function(data) {
+                            userService.delete(vm.user.user_id)
+                                .then(function() {
+                                    Materialize.toast('You account has been deleted', 3000, 'red');
+                                    window.location.reload();
                                 });
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        });
                 });
         }
         
