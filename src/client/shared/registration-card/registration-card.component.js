@@ -65,7 +65,7 @@
                 return Materialize.toast("Passwords do not match!", 3000, 'red');
             }
 
-            if (!/^\w+@[a-zA-Z]+\.[a-zA-Z]+/.exec(vm.email)) {
+            if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.exec(vm.email)) {
                 return Materialize.toast('Is that a real email address?', 3000, 'red');
             }
 

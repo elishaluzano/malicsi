@@ -48,6 +48,7 @@
             for(let game of vm.allGamesInformation){
                 for(let sport of vm.sports){
                     if(game.sport_id === sport.sport_id && game.status === "ONGOING"){
+                        console.log(game);
                         sport.games.push(game);
                     }
                 }
@@ -99,6 +100,7 @@
                                 team.loses = 0;
                                 teamService.getGames(team.team_id)
                                     .then(function(games) {
+                                        console.log(games);
                                         for (let game of games) {
                                             if (game.record === 'WIN') {
                                                 team.wins++;
