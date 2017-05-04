@@ -1,0 +1,20 @@
+.gradient-color{
+	background: linear-gradient(to right, #562764 , #f96b25); /* Standard syntax */
+}
+
+select{
+    background-color:transparent;
+    border-radius:20px;
+
+   }
+
+   select option{
+        background-color: #93414c;
+   }
+
+   select option:focus{
+        background-color: #93414c;
+   }
+   select:focus{
+    outline:none;
+   }

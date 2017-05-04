@@ -1,0 +1,11 @@
+#sponsor-link {
+	color: #ff4d4d;
+}
+
+#sponsor-link:hover {
+	color: red;
+}
+
+#sponsor-name {
+	font-weight: bold;
+}

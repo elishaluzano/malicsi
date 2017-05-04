@@ -1,0 +1,25 @@
+#user-image {
+    height: 100px;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#user-big {
+    border-radius: 5px;
+    padding-top: 15px;
+    background-image: url(../images/temp-bg-2.jpg);
+}
+
+.user-row .right-align {
+    font-weight: bold;
+}
+
+.user-row {
+    margin: 1px;
+}
+
+.container {
+    margin-bottom: 10px;
+}

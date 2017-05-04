@@ -8,7 +8,8 @@ module.exports = function(env) {
     return {
         entry: {
             main: './src/client/app.module.js',
-            vendor: './src/vendor.js'
+            vendor: './src/vendor.js',
+            betelog: './src/betelog.js'
         },
         output: {
             filename: '[name].js',
@@ -22,16 +23,12 @@ module.exports = function(env) {
                         use: 'css-loader'
                     })
                 },
-                {
-                    test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                    use: "url-loader?limit=10000&mimetype=application/font-woff"
-                },
                 { 
-                    test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-                    use: "file-loader" 
+                    test: /\.(ttf|eot|svg|woff(2)|woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+                    use: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]" 
                 }, 
                 {
-                    test: /\.(jpg|gif|png)$/,
+                    test: /\.(jpg|gif|png|ico)$/i,
                     use: 'file-loader?name=images/[name].[ext]'
                 },
                 {
@@ -48,15 +45,21 @@ module.exports = function(env) {
             }),
             new webpack.optimize.AggressiveMergingPlugin(),
             new webpack.optimize.CommonsChunkPlugin({
-                name: ['vendor', 'manifest']
+                name: ['betelog', 'vendor', 'manifest',]
             }),
-            new ExtractTextPlugin('style.css'),
+            new ExtractTextPlugin('[name].css'),
             new HtmlWebpackPlugin({
+                filename: 'index.html',
                 template: './src/client/index.html'
+            }),
+            new HtmlWebpackPlugin({
+                filename: 'betelog.html',
+                template: './src/client/betelog.html'
             }),
             new webpack.ProvidePlugin({
                 $: 'jquery',
-                jQuery: 'jquery'
+                jQuery: 'jquery',
+                'window.jQuery': 'jquery'
             }),
             new CompressionPlugin({
                 asset: "[path].gz[query]",
@@ -66,6 +69,6 @@ module.exports = function(env) {
                 minRatio: 0.8
             })
         ],
-        devtool: 'cheap-module-source-map'
+        devtool: 'eval'
     }
 }

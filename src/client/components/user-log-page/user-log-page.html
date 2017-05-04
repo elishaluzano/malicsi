@@ -1,0 +1,25 @@
+<div class = "row">
+    <div class = "col m2">
+    </div>
+    
+    <div class = "col m8">
+        <table class = "centered bordered highlight">
+            <thead>
+                <tr>
+                    <th data-field="id">User</th>
+                    <th data-field="name">Action</th>
+                    <th data-field="price">Time Stamp</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="log in $ctrl.ownLog track by $index">
+                    <td>{{log.user_id}}</td>
+                    <td>{{log.action}}</td>
+                    <td>{{log.activity_time}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
