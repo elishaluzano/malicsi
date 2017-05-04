@@ -30,7 +30,7 @@
 
         <a href="" modal data-target="delete-history" ng-click="$ctrl.getIdDel(score.team_id, score.game_id, score.gameUpdateLog_id, score.score)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "material-icons" style = "top:5px;position:relative;">delete</i></a>
 
-        <a href="" modal data-target="edit-history" ng-click="$ctrl.getId(score.gameUpdateLog_id, score.score, score.time)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "material-icons" style = "top:5px;position:relative;">edit</i></a>
+        <a href="" modal data-target="edit-history" ng-click="$ctrl.getId(score.gameUpdateLog_id, score.score, score.team_id)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "material-icons" style = "top:5px;position:relative;">edit</i></a>
 
         <p class = "center-align grey-text" style ="margin-top:0em;">{{score.time | date: "MM-dd-yyyy hh:mm a"}}</p></span>
         </div> 

@@ -228,6 +228,7 @@ exports.checkAdminOfTeam = (req, res) => {
         if (!err){
             if (rows[0] !== null){
                 res.send(rows[0]);
+                console.log(rows);
                 console.log("User is an admin of team");
             }
             else {

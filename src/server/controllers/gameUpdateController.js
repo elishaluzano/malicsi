@@ -42,9 +42,16 @@ exports.addGameLog = (req, res) => {
     };
     connection.query('call gameUpdate(?,?,?)', [req.body.team_id, req.body.game_id, req.body.score], function(err, rows, fields){
 		if(!err) {
-			console.log(rows);
-			gamelog.gameUpdateLog_id = rows.insertId;
-			res.send(gamelog);
+			connection.query('select max(gameUpdateLog_id) as id from gameUpdateLog', [], function(err, result){
+				if(!err){
+					gamelog.gameUpdateLog_id = result[0].id;
+					gamelog.time = new Date();
+					res.send(gamelog);
+				}
+				else{
+					console.log(err);
+				}
+			});
 		}else{
 			console.log(err);
 		}
@@ -56,18 +63,34 @@ exports.updateGameLog = (req, res) => {
     var gamelog = {
         gameUpdateLog_id : req.params.id,
         team_id : req.body.team_id,
+        prev_team_id: req.body.prev_team_id,
         game_id : req.body.game_id,
         score : req.body.score,
-        prev_score : req.body.prev_score,
-        time: req.body.time
+        prev_score : req.body.prev_score
     };
-    connection.query('call editGameLog(?,?,?,?,?,?)', [req.params.id, req.body.team_id, req.body.game_id, req.body.score, req.body.prev_score, req.body.time], function(err, rows, fields){
-		if(!err) {
-			res.send(gamelog);
-		}else{
-			console.log(err);
+
+    if(gamelog.team_id == gamelog.prev_team_id){
+    	connection.query('call editGameLog(?,?,?,?,?)', [req.params.id, req.body.team_id, req.body.game_id, req.body.score, req.body.prev_score], function(err, rows, fields){
+			if(!err) {
+				res.send(gamelog);
+			}else{
+				console.log(err);
+			}
+		});
+    }
+    else{
+		if(gamelog.team_id != gamelog.prev_team_id){
+			connection.query('call editGameLogNewTeam(?,?,?,?,?,?)', [req.params.id, req.body.team_id, req.body.prev_team_id, req.body.game_id, req.body.score, req.body.prev_score], function(err, rows, fields){
+				if(!err) {
+					res.send(gamelog);
+					console.log("ok");
+				}else{
+					console.log(err);
+				}
+			});
 		}
-	});
+    }
+    
 };
 
 
