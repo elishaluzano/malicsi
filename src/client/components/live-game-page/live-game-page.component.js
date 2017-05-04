@@ -29,6 +29,7 @@
         vm.teamDel = '';
         vm.gameDel = '';
         vm.time = '';
+        vm.teamIdToBeChanged = '';
         var ids = [];
         var vals = {};
         
@@ -94,7 +95,6 @@
 
             gameLogService.deleteGameLog(vm.idToBeChanged, params)
                 .then(function(data){
-                    console.log("why");
                     for(let team of vm.teamsInGame){
                         if(team.team_id == vm.teamDel){
                             team.score -= vm.scoreToBeChanged;
@@ -106,6 +106,7 @@
                             break;
                         }
                     }
+                    console.log(vm.idToBeChanged, params);
                     Materialize.toast('Successfully deleted game log!', 2000, 'red');
                     var logName = "Deleted " + vm.idToBeChanged + " log.";
                     var log = {
@@ -140,11 +141,10 @@
             console.log(vm.scores);
         }
 
-        vm.getId = function(id, score, time){
+        vm.getId = function(id, score, teamId){
             vm.idToBeChanged = id;
-            vm.time = time;
             vm.scoreToBeChanged = score;
-            console.log(time);
+            vm.teamIdToBeChanged = teamId;
         }
 
         vm.reset = function(){
@@ -153,6 +153,7 @@
             vm.idToBeChanged  = '';
             vm.teamToBeEdited = null;
             vm.scoreUpdate = '';
+            vm.teamIdToBeChanged = '';
         }
 
         vm.editLog = function(){
@@ -176,21 +177,38 @@
             var params = {
                 gameUpdateLog_id: vm.idToBeChanged,
                 team_id: vm.teamToBeEdited,
+                prev_team_id: vm.teamIdToBeChanged,
                 game_id: vm.game.game_id,
                 score: vm.scoreUpdate,
                 prev_score: vm.scoreToBeChanged,
-                time: vm.time
             }
+
+            console.log(params);
             gameLogService.updateGameLog(parseInt(vm.idToBeChanged), params)
                 .then(function(data){
+
                     console.log(data);
                     Materialize.toast('Successfully edited a score!', 2000, 'red');
-                    for(let team of vm.teamsInGame){
-                        if(team.team_id == data.team_id){
-                            data.name = team.name;
-                            team.score -= vm.scoreToBeChanged;
-                            team.score += vm.scoreUpdate;
-                            break;
+                    console.log("here");
+                    if(params.team_id == params.prev_team_id){
+                        for(let team of vm.teamsInGame){
+                            if(team.team_id == data.team_id){
+                                data.name = team.name;
+                                team.score -= vm.scoreToBeChanged;
+                                team.score += vm.scoreUpdate;
+                                break;
+                            }
+                        }
+                    }
+                    else{
+                        for(let team of vm.teamsInGame){
+                            if(team.team_id == data.team_id){
+                                data.name = team.name;
+                                team.score += vm.scoreUpdate;
+                            }
+                            else if(team.team_id == data.prev_team_id){
+                                team.score -= vm.scoreToBeChanged;
+                            }
                         }
                     }
                     for(let score of vm.scores){

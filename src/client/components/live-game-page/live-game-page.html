@@ -28,7 +28,8 @@
         <div ng-repeat="score in $ctrl.scores" ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'" style="width:100%"><span ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'"><div ng-class = "(score.teamVal % 2) == 0 ? 'purple darken-2' : 'orange'" class = "chip white-text">{{score.name}} scores {{score.score}} points</div>
 
         <a href="" modal data-target="delete-history" ng-click="$ctrl.getIdDel(score.team_id, score.game_id, score.gameUpdateLog_id, score.score)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "grey-text material-icons" style = "top:5px;position:relative;">delete</i></a>
-        <a href="" modal data-target="edit-history" ng-click="$ctrl.getId(score.gameUpdateLog_id, score.score)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "grey-text material-icons" style = "top:5px;position:relative;">edit</i></a>
+
+        <a href="" modal data-target="edit-history" ng-click="$ctrl.getId(score.gameUpdateLog_id, score.score, score.team_id)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "grey-text material-icons" style = "top:5px;position:relative;">edit</i></a>
 
         <p class = "center-align grey-text" style ="margin-top:0em;">{{score.time | date: "MM-dd-yyyy hh:mm a"}}</p></span>
         </div> 

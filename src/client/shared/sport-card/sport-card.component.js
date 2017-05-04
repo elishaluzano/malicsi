@@ -29,6 +29,8 @@
                     })
             }
 
+            console.log(vm.information);
+
             /*console.log(vm.information);
             vm.information.forEach(function(information){
                 if(vm.sports.indexOf(information.sport) < 0){

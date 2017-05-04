@@ -53,8 +53,10 @@
             vm.currentUser = sessionService.user();
             console.log(vm.currentUser);
 
+            console.log(vm.Teams);
 
             for(let team of vm.allTeams){
+                console.log(team);
                 if(team.event_id_key == vm.currentTeam.event_id_key && team.team_id != vm.currentTeam.team_id){
                     teamService.getIsUserOfTeam(team.team_id, vm.currentUser.user_id)
                         .then(function(data){
@@ -65,6 +67,7 @@
                         })
                 }
             }
+
 
             eventService.getOne(vm.currentTeam.event_id_key)
                 .then(function(data) {
@@ -88,8 +91,7 @@
                             vm.isAdminOfTeam = false;
                         }
 
-                        if(vm.currentUser && !vm.isAdminOfTeam) vm.isLoggedIn = true;
-
+                        if(vm.currentUser != undefined && !vm.isAdminOfTeam) vm.isLoggedIn = true;
 
                         var startDate = new Date(vm.event.start_date).getTime();
                         var endDate = new Date(vm.event.end_date).getTime();
@@ -114,6 +116,9 @@
                         }
                     })
             }
+
+            console.log(vm.isMember);
+            console.log(vm.isMemberOfAnother);
 
 
             for(let record of vm.teamPlaysGame){
@@ -252,7 +257,11 @@
             teamService.addIsComposedOf(params)
                 .then(function(data){
                     Materialize.toast('Successfully joined team!', 2000, 'red');
+
                     vm.isMember = true;
+
+
+                    setTimeout(function(){ window.location.reload(), 1000});
                     vm.players.push(vm.currentUser);
                     var string = "Successfully joined team.";
                     var log = {
@@ -268,6 +277,8 @@
                         .catch(function(err) {
                             console.log(err);
                         })
+
+
                 })
                 .catch(function(e){
                     Materialize.toast('Unsuccessfully joined team!', 2000, 'red');

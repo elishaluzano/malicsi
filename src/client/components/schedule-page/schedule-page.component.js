@@ -112,7 +112,6 @@
             vm.calendar = [];
             var mo = vm.setmonth;
             var yr = parseInt(vm.setyear);
-            console.log(vm.setmonth);
             var year = '';
             var month = '';
             for(let each of vm.monthcodes) {
@@ -122,23 +121,39 @@
             for(let each of vm.yearcodes) {
                 if(each[((yr)+"")[0] + ((yr)+"")[1]] != undefined) year = each[((yr)+"")[0] + ((yr)+"")[1]];
             };
-            console.log(month);
-            console.log(year);
             vm.days = [];
 
+
+            if((vm.setmonth == 'Feb' || vm.setmonth == 'Jan') && parseInt(vm.setyear)%4 == 0){
+                var z = 1;
+            }
+            else{
+                var z = 0;
+            }
+
             
-            for(var i=1; i<31; i++){
+            for(var i=1; i<32; i++){
                 vm.days.push({
                     month: mo,
                     year: yr,
                     date: i,
-                    val: (Math.floor((year%100)/4)+i+year+month+(year%100))%7,
-                    weekday: vm.daycodes[(Math.floor((year%100)/4)+i+year+month+(year%100))%7]
+                    val: (Math.floor((yr%100)/4)+i+year+month+(yr%100))%7 - z,
+                    weekday: vm.daycodes[(Math.floor((yr%100)/4)+i+yr+month+(year%100))%7 - z]
                 })
             }
 
             var week = [];
             var x = vm.days.length;
+            if(vm.setmonth == 'Apr' || vm.setmonth == 'Jun' || vm.setmonth == 'Sep' || vm.setmonth == 'Nov'){
+                x = 30;
+            }
+            else if(vm.setmonth == 'Feb' && parseInt(vm.setyear)%4 == 0){
+                x = 29;
+            }
+            else if(vm.setmonth == 'Feb' && parseInt(vm.setyear)%4 != 0){
+                x = 28;
+            }
+
             for(let i=0; i<x; i++){
                 if(i==0){
                     if(vm.days[i].val == 0){ var val = 7 }
@@ -147,7 +162,12 @@
                         week.push({date: '', val: 0, weekday: ''});
                     }
                 }
-                if(vm.days[i].val % 7 != 1) week.push(vm.days[i])
+                if(vm.days[i].val % 7 != 1){
+                    week.push(vm.days[i])
+                    if(i==x-1){
+                        vm.calendar.push(week);
+                    }
+                }
                 else{
                     vm.calendar.push(week);
                     week = [];
