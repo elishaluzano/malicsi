@@ -37,11 +37,9 @@
                     //}
                 });
 
-            let toDate = new Date().getTime();
-            let startDate = new Date(vm.event.start_date).getTime();
-            let endDate = new Date(vm.event.end_date).getTime();
-            endDate = addDate(endDate, 1);
-
+            let toDate = Math.floor(new Date().getTime()/1000/60/60/24);
+            let startDate = Math.floor(new Date(vm.event.start_date).getTime()/1000/60/60/24);
+            let endDate = Math.floor(new Date(vm.event.end_date).getTime()/1000/60/60/24);
             if (toDate >= startDate && toDate <= endDate) {
                 vm.eventStatus.color = 'green';
                 vm.eventStatus.text = 'Live';
@@ -55,11 +53,7 @@
                 vm.eventStatus.text = 'Done';
             }
         }
-        function addDate(date, days) {
-            var result = new Date(date);
-            result.setDate(result.getDate() + days);
-            return result;
-        }
+
     }
 
 })();

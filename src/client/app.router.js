@@ -29,7 +29,15 @@
             .state({
                 name: 'userLogPage',
                 url: '/log',
-                component: 'userLogPage'
+                component: 'userLogPage',
+                resolve: {
+                    userLogs: function(userLogService) {
+                        return userLogService.getAll();
+                    },
+                    user: function(sessionService) {
+                        return sessionService.session();
+                    }
+                }
             })     
             .state({
                 name: 'liveGamePage',
@@ -200,6 +208,9 @@
                     },
                     teamPlaysGame: function(teamService, $transition$) {
                         return teamService.getOneTeamPlaysGame($transition$.params().teamId);
+                    },
+                    allEvents: function(eventService){
+                        return eventService.getAll();
                     }
                 },
                 onEnter: function(currentTeam, componentName, params, $state) {

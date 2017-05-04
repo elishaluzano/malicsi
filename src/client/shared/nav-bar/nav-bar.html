@@ -1,25 +1,25 @@
 <div ng-show="!$ctrl.user"
     id="login-form" 
-    class="webui-popover-content">
+    class="webui-popover-content index">
     <form id="login-form">
         <div class="input-field">
             <input type="text" name="username" id="login-username" ng-model="$ctrl.username">
-            <label for="username">Username</label>
+            <label for="username" class="grey-text">Username</label>
         </div>
         <div class="input-field">
             <input type="password" name="password" ng-model="$ctrl.password">
-            <label for="password">Password</label>
+            <label for="password" class="grey-text">Password</label>
         </div>
         <button ng-click="$ctrl.login()"
-            class="right red btn waves-effect waves-light">
+            class="right orange btn waves-effect waves-light">
             Login
         </button>
     </form>
 </div>
 
 
-<div class="navbar-fixed">
-    <nav id="top" class="white">
+<div class="navbar-fixed index">
+    <nav id="top" class="gradient-color z-depth-5">
         <div class="nav-wrapper">
             <a ui-sref="landingPage" class="left"
                 id="malicsi-logo-link">
@@ -27,38 +27,32 @@
             </a>
             
             <i id="drop-link" style="cursor: pointer;"
-                class="black-text large material-icons left hide-on-large-only">
+                class="white-text large material-icons left hide-on-large-only">
                 menu
             </i>
 
             <ul class="left hide-on-med-and-down">
-                <li>
-                    <a ui-sref="landingPage" class="black-text">Live</a>
+                <li ui-sref-active="active">
+                    <a ui-sref="landingPage" class="white-text">Live</a>
                 </li>
-                <li>
-                    <a ui-sref="eventsPage" class="black-text">Events</a>
+                <li ui-sref-active="active">
+                    <a ui-sref="eventsPage" class="white-text">Events</a>
                 </li>
-                <li>
-                    <a ui-sref="teamsPage" class="black-text">Teams</a>
+                <li ui-sref-active="active">
+                    <a ui-sref="teamsPage" class="white-text">Teams</a>
                 </li>
-                <li>
-                    <a ui-sref="schedulePage" class="black-text">Schedules</a>
+                <li ui-sref-active="active">
+                    <a ui-sref="schedulePage" class="white-text">Schedules</a>
                 </li>
-                <li>
-                    <a ui-sref="sponsorsPage" class="black-text">Sponsors</a>
-                </li>
-                <li ng-if="$ctrl.isAdmin || $ctrl.user.isOverallAdmin">
-                    <a ui-sref="userLogPage" class="black-text">Logs</a>
-                </li>
-                <li ng-if="$ctrl.user.isOverallAdmin">
-                    <a ui-sref="adminPage" class="black-text">Admin</a>
+                <li ui-sref-active="active">
+                    <a ui-sref="sponsorsPage" class="white-text">Sponsors</a>
                 </li>
             </ul>
             <form class="left hide-on-small-only">
                 <div class="left" id="search-bar-div">
                     <select id="select-dropdown"
                         ng-model="$ctrl.searchCategory"
-                        class="left black-text browser-default">
+                        class="left white-text browser-default">
 
                         <option value="all">Search All</option>
                         <option value="player">Player</option> 
@@ -68,12 +62,12 @@
                     </select>
                 </div>
 
-                <div class="left">
-                    <input type="text" class="left black-text"
+                <div class="left custom-border">
+                    <input type="text" class="left white-text"
                         placeholder="Search"
                         ng-model="$ctrl.searchInput"
                         ng-keydown="$ctrl.searchEnter($event)">
-                    <i class="black-text material-icons" 
+                    <i class="white-text material-icons" 
                         id="search-icon"
                         ng-click="$ctrl.search()">
                         search
@@ -83,13 +77,13 @@
 
             <ul class="right" ng-hide="$ctrl.user">
                 <li>
-                    <a ui-sref="registrationPage" class="black-text">
+                    <a ui-sref="registrationPage" class="white-text">
                         Register
                     </a>
                 </li>
                 <li>
                     <a id="login" href="#login-form" 
-                        class="black-text" ng-click="$ctrl.focusLogin()">
+                        class="white-text" ng-click="$ctrl.focusLogin()">
                         Login
                         <i class="right material-icons">arrow_drop_down</i>
                     </a>
@@ -97,10 +91,10 @@
             </ul>
 
             <a ng-show="$ctrl.user"
-                class="right black-text side-nav-button"
+                class="right white-text side-nav-button"
                 data-activates="slide-out">
                 {{ $ctrl.user.username }}
-                <i class="right black-text material-icons">play_arrow</i>    
+                <i class="right white-text material-icons">play_arrow</i>    
             </a>
         </div>
     </nav>
@@ -112,8 +106,6 @@
     <a class="dropdown-links" ui-sref="teamsPage" ng-click="$ctrl.closeMenu()">Teams</a>
     <a class="dropdown-links" ui-sref="schedulePage" ng-click="$ctrl.closeMenu()">Schedules</a>
     <a class="dropdown-links" ui-sref="sponsorsPage" ng-click="$ctrl.closeMenu()">Sponsors</a>
-    <a class="dropdown-links" ui-sref="userLogsPage" ng-if="$ctrl.isAdmin || $ctrl.user.isOverallAdmin" ng-click="$ctrl.closeMenu()">Logs</a>
-    <a class="dropdown-links" ui-sref="adminPage" ng-if="$ctrl.user.isOverallAdmin" ng-click="$ctrl.closeMenu()">Admin</a>
 </div>
 
 
@@ -124,7 +116,7 @@
                 <img ng-src="/images/parallaxsampsquaresmall.jpg" alt="background">
             </div>
             
-            <img ng-src="{{$ctrl.user.profile_pic}}" 
+            <img ng-show="$ctrl.user.profile_pic" ng-src="{{$ctrl.user.profile_pic}}" 
                 alt="profile pic" class="circle">
             
             <span class="white-text name">
@@ -146,14 +138,14 @@
         </a>
     </li>-->
     
-    <li>
+    <!--<li ng-if="!$ctrl.user.isOverallAdmin">
         <a ui-sref="userPage({ userId: $ctrl.user.user_id })">
             Stats
             <i class="material-icons">
                 equalizer
             </i>
         </a>
-    </li>
+    </li>-->
 
     <!--<li>
         <a ui-sref="userPage({ userId: $ctrl.user.user_id })">
@@ -164,9 +156,26 @@
         </a>
     </li>-->
 
-    <li>
+    <li ng-if="!$ctrl.user.isOverallAdmin">
         <a ui-sref="userPage({ userId: $ctrl.user.user_id })">
-            Edit  profile
+            Profile
+            <i class="material-icons">
+                settings
+            </i>
+        </a>
+    </li>
+
+    <li ng-if="$ctrl.isAdmin || $ctrl.user.isOverallAdmin">
+        <a ui-sref="userLogPage">
+            Logs
+            <i class="material-icons">
+                settings
+            </i>
+        </a>
+    </li>
+    <li ng-if="$ctrl.user.isOverallAdmin">
+        <a ui-sref="adminPage">
+            Admin
             <i class="material-icons">
                 settings
             </i>

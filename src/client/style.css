@@ -2,6 +2,9 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+/*    background-color:#35465c;*/
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
 }
 
 main {
@@ -196,8 +199,8 @@ th, td{
 }
 
 
-.input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label, .input-field input[type=date]:focus + label, .input-field input[type=email]:focus + label {
-    color: red;
+.input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label, .input-field input[type=date]:focus + label, .input-field input[type=email]:focus + label, .file-path-wrapper input[type=text]:focus {
+    color: black;
 }
 
 .input-field input[type=text]:focus, .input-field input[type=password]:focus, .input-field input[type=date]:focus, .input-field input[type=email]:focus {
@@ -346,4 +349,236 @@ style = "width:10%;vertical-align:middle;"*/
 }
 ::-webkit-scrollbar-thumb {
     background: #fc9948;
+}
+
+.custom-card.card .card-image img {
+  height: 300px;
+}
+
+.custom-content{
+	height:100px;
+	overflow-y:scroll;
+}
+
+.custom-image{
+	height:300px !important;
+
+}
+
+#event-main-content {
+	min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -270px;
+}
+
+#score-bg{
+    background-image: url('/images/background-copy.jpg');
+    background-size: 100%;
+}
+
+#user-img{
+    height: 100px;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#team-img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+
+.vs{
+    margin-top: 100px;
+}
+
+#live-update-left {
+    text-align: left;
+    padding: 5px 5px 5px 20px;
+}
+
+#live-update-right {
+    text-align: right;
+    padding: 5px 20px 5px 5px;
+}
+
+.gradient-color{
+   background: linear-gradient(to right, #562764 , #f96b25); /* Standard syntax */
+}
+
+/* label color */
+   .index .input-field label {
+     color: #fff;
+   }
+   /* label focus color */
+   .index .input-field input[type=text]:focus + label {
+     color: orange;
+   }
+    .index .input-field input[type=password]:focus + label {
+       color: orange;
+     }
+
+   /* label underline focus color */
+   .index .input-field input[type=text]:focus {
+     border-bottom: 1px solid orange;
+     box-shadow: 0 1px 0 0 orange;
+   }
+
+   .index .input-field input[type=password]:focus {
+     border-bottom: 1px solid orange;
+     box-shadow: 0 1px 0 0 orange;
+   }
+   /* valid color */
+   .index .input-field input[type=text].valid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+
+   .index .input-field input[type=password].valid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* invalid color */
+  .index  .input-field input[type=text].invalid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* icon prefix focus color */
+   .index .input-field .prefix.active {
+     color: orange;
+   }
+
+   .index .orange-bordered{
+    border :2px solid orange;
+    background-color:transparent !important;
+   }
+
+
+   .index select{
+    background-color:transparent;
+    border-radius:20px;
+
+   }
+
+   .index select option{
+        background-color: #93414c;
+   }
+
+   .index select option:focus{
+        background-color: #93414c;
+   }
+   .index select:focus{
+    outline:none;
+   }
+
+
+   /* label color */
+   .index .input-field .in-nav label {
+     color: #fff;
+   }
+   /* label focus color */
+     .index .input-field .in-nav input[type=text]:focus + label {
+     color: black;
+   }
+     .input-field .in-nav input[type=password]:focus + label {
+       color: black;
+     }
+
+   /* label underline focus color */
+   .index .input-field .in-nav input[type=text]:focus {
+     border-bottom: 1px solid black;
+     box-shadow: 0 1px 0 0 black;
+   }
+
+   .index  .input-field .in-nav input[type=password]:focus {
+     border-bottom: 1px solid black;
+     box-shadow: 0 1px 0 0 black;
+   }
+   /* valid color */
+   .index  .input-field .in-nav input[type=text].valid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+
+  .index  .input-field .in-nav input[type=password].valid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* invalid color */
+  .index  .input-field .in-nav input[type=text].invalid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* icon prefix focus color */
+  .index  .input-field .in-nav .prefix.active {
+     color: black;
+   }
+#live-update-right {
+    text-align: right;
+    padding: 5px 20px 5px 5px;
+}
+.orange-bordered{
+    border :2px solid orange;
+    background-color:transparent !important;
+   }
+    .up-and-down-animation{
+      -webkit-animation-name: example;
+      animation-name: example;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+   }
+
+   @keyframes example {
+    0%   {left:0px; top:500px;}
+    20%  {left:0px; top:475px;}
+   }
+
+
+
+
+@font-face{
+    font-family:Coolvetica;
+    src:url(assets/coolvetica.ttf);
+}
+
+.Cool-font{
+    font-family: Coolvetica;
+}
+
+
+.FFF-font{
+    font-family:FFF;
+}
+
+
+#event-top-chip{
+  margin-top:5px;
+  margin-left:5px;
+}
+
+.add-margin-bottom{
+  margin-bottom:5px;
+}
+
+.add-margin-right{
+  margin-right:5px;
+}
+
+.add-margin-top{
+  margin-top:5px;
+}
+
+.input-field input[type=text]:focus,
+.input-field input[type=file]:focus {
+  border-bottom: 1px solid orange;
+  */box-shadow: 0 2px 0 0 orange;
+}
+
+.custom-border input[type=text]:focus {
+  border-bottom: 1px solid orange;
+  */box-shadow: 0 2px 0 0 orange;
 }

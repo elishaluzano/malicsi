@@ -5,8 +5,10 @@ const mysql = require('mysql');
 const connection = mysql.createConnection({
   host : 'localhost',
   user : 'root',
-  password : 'justletmein',
-  db : 'malicsi'
+  password : 'admin',
+  db : 'malicsi',
+  dateStrings: true,
+  timezone: '+08:00'
 });
 
 //check database connection

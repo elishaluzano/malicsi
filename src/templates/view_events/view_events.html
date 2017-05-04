@@ -12,6 +12,9 @@
   <link rel="stylesheet" type="text/css" href="../../../node_modules/webui-popover/dist/jquery.webui-popover.css">
   <!-- FOR NAVIGATION CSS -->
   <link type="text/css" rel="stylesheet" href="../index_page/index.css" />
+  <link type="text/css" rel="stylesheet" href="../view_events/view_events.css" />
+  <link type="text/css" rel="stylesheet" href = "../scrollbar.css">
+
 
 </head>
 <body>
@@ -75,34 +78,29 @@
             <li><a href="../index_page/index.html">Sign out<i class="material-icons">power_settings_new</i></a></li>
         </ul>
 
-
-
-
-<!-- =================================== EVENT CARDS ===========================================-->
-<!--Make this dynamic-->
-<!--Order is reverse chronological-->
-
-
  <div class="row" name = "eventRow">
 
        <div class="col s12 m6 l3">
           <div class="hoverable card" >
             <div class="card-image">
-               <a href = "view_soon_page.html"><img src="../images/logo/malicsi2018.jpg"></a>
+               <a href = "view_soon_page.html"><img src="../images/logo/malicsi2018.jpg" class = "custom-image"></a>
               <span class="card-title black-text">Malicsi Intergames 2018</span>
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> be5e56bf57d1ea7aa8b793e4e7a1f130c13319f5
             </div>
             <div class="divider"></div>
-            <div class="card-content hide-on-medium-only">
-              <ul>
+            <div class="card-content">
+              <ul class = "custom-content">
                 <li><i class = "material-icons">date_range</i> June 12 - June 14</li>
                 <li><i class = "material-icons">supervisor_account</i><a href = "../view_sponsor_page/view_sponsor.html"> Institute of Computer Science</a></li>
               </ul>
             </div>
             <div class="card-action">
                <div class="chip red white-text"> Soon </div>
-               <!-- <div class="chip blue white-text"> Your Event </div> -->
+               
             </div>
           </div>
         </div>
@@ -111,12 +109,16 @@
         <div class="col s12 m6 l3">
           <div class="hoverable card">
             <div class="card-image">
+<<<<<<< HEAD
+               <a href = "../view_events/view_live_event.html"><img src="../images/logo/engmeet2017.jpg" class = "custom-image"></a>
+=======
                <a href = "../view_events/view_live_event.html"><img src="../images/logo/engmeet2017.jpg"></a>
+>>>>>>> be5e56bf57d1ea7aa8b793e4e7a1f130c13319f5
               <span class="card-title black-text">Engineering Meet 2017</span>
             </div>
             <div class="divider"></div>
             <div class="card-content hide-on-medium-only">
-              <ul>
+              <ul class = "custom-content">
                 <li><i class = "material-icons">date_range</i> June 12 - June 14</li>
                 <li><i class = "material-icons">supervisor_account</i><a href = "../view_sponsor_page/view_sponsor.html"> Institute of Computer Science</a></li>
               </ul>
@@ -130,12 +132,12 @@
         <div class="col s12 m6 l3">
           <div class="hoverable card">
             <div class="card-image">
-              <a href = "../game_history_page/game_history.html"><img src="../images/logo/palacasan2016.jpg"></a>
+              <a href = "../game_history_page/game_history.html"><img src="../images/logo/palacasan2016.jpg" class = "custom-image"></a>
               <span class="card-title black-text">PalaCASan 2016</span>
             </div>
             <div class="divider"></div>
             <div class="card-content hide-on-medium-only">
-              <ul>
+              <ul class = "custom-content">
                 <li><i class = "material-icons">date_range</i> June 12 - June 14</li>
                 <li><i class = "material-icons">supervisor_account</i><a href = "../view_sponsor_page/view_sponsor.html"> Institute of Computer Science</a></li>
               </ul>
@@ -154,7 +156,7 @@
             </div>
             <div class="divider"></div>
             <div class="card-content hide-on-medium-only">
-              <ul>
+              <ul class = "custom-content">
                 <li><i class = "material-icons">date_range</i> June 12 - June 14</li>
                 <li><i class = "material-icons">supervisor_account</i><a href = "../view_sponsor_page/view_sponsor.html"> Institute of Computer Science</a></li>
               </ul>
@@ -165,16 +167,21 @@
           </div>
         </div>
 
-<!-- ========================================== FAB ====================================================-->
-<!-- =============================== ONLY AVAILABLE TO ADMIN ===========================================-->
+
   <div class = "fixed-action-btn">
-    <a class="btn-floating btn-large waves-effect waves-light red tooltipped" href="#modal-add-event"data-position="left" data-tooltip="Add event"><i class="material-icons">note_add</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light grey darken-3" href="#modal-add-event">
+      <i class="material-icons">note_add</i>
+    </a>
   </div>
 
-<!-- =================================== MODAL FOR ADD EVENT ===========================================-->
-  <div id="modal-add-event" class="modal">
+</div>
+
+  <div id="modal-add-event" class="modal" style = "overflow-x:scroll">
     <div class="modal-content">
-      <h5>ADD EVENT</h5>
+      <h5>
+      ADD EVENT
+      <a class = "modal-action modal-close red-text right"><i class = "material-icons">close</i></a>
+      </h5>
       <div class="divider"></div>
       <div class = " container row">
         <form>
@@ -194,31 +201,53 @@
           <label for = "icon_prefix">Event end date</label>
         </div>
         <div class="file-field input-field">
-          <div class="btn">
-            <span>Upload Logo</span>
+          <div class="btn grey darken-3 z-depth-0">
+            <span><i class = "material-icons">add_a_photo</i></span>
             <input type="file">
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text">
           </div>
           </div>
-
-          <input type ="submit" value = "Submit" class = "btn right modal-action modal-close">
+          <div class = "center">
+          <a class = "waves-effect waves-light green btn z-depth-0 modal-action modal-close" value="submit" type="submit">Submit</a>
+          <a class = "waves-effect waves-light grey btn z-depth-0 modal-action modal-close" value="submit" type="submit">Cancel</a>
+          </div>
       </form>
       </div>
     </div>
   </div>
 
-<!-- =================================== MODAL FOR EDIT EVENT ===========================================-->
-<!-- Notes
-1. ) PLACEHOLDERS - Placeholder for input must be the current value on the display
-  e.g. if the event is entitled MALICSI Intergames 2018, upon clicking
-      the edit button, the input field's placeholder must be "MALICSI Intergames 2018".
-      Same goes for other input fields.
 
-2.) DATE PLACEHOLDERS - Made the input type = text since i can't make that placeholder of
-      input type = date to a date format. Can you guys find a way to do it?
+<!-- ====================================================== FOOTER ===========================================-->                  
 
+<<<<<<< HEAD
+    <footer class="black page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Footer Content</h5>
+                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    BETELOG 2017 Copyright 
+                    <a class="grey-text text-lighten-4 right" href="#top">Back to top</a>
+                </div>
+            </div>
+        </footer>
+=======
 -->
   <div id="modal-edit-event" class="modal z-depth-0">
     <div class="modal-content container">
@@ -261,15 +290,11 @@
   1.) Cancel button closes the modal
   2.) Okay button must delete the event, then, reloads the page
 -->
+>>>>>>> be5e56bf57d1ea7aa8b793e4e7a1f130c13319f5
 
-  <div id="modal-delete-event" class="modal z-depth-0 center">
-    <h5>Delete Event</h5>
-    <div class="divider"></div>
-    <div class="container modal-content">
-       <p>Are you sure you want to delete <br>Malicsihan Intergames 2018?</p>
-       <a class="btn grey modal-trigger modal-action modal-close">Cancel</a>
-       <a class="btn modal-action modal-close">Okay</a>
 
+<<<<<<< HEAD
+=======
     </div>
   </div>
 
@@ -302,36 +327,15 @@
         </footer>
 
 
+>>>>>>> be5e56bf57d1ea7aa8b793e4e7a1f130c13319f5
 <!-- =================================== SCRIPTS ===========================================-->
 
   <script src="../../../node_modules/jquery/dist/jquery.js"></script>
   <script src="sample.js"></script>
   <script src="init.js"></script>
+  <script src = "events.js"></script>
   <script src="../../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
   <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
-
-  <script>
-    $(document).ready(function(){
-      $('select').material_select();
-      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-      $('.modal').modal({
-      opacity: .5, // Opacity of modal background
-      });
-    });
-    // Initialize collapsible (uncomment the line below if you use the dropdown variation)
-    //$('.collapsible').collapsible();
-
-  </script>
-  <script>
-    $('.side-nav-button').sideNav({
-      menuWidth: 300, // Default is 300
-      edge: 'right', // Choose the horizontal origin
-      closeOnClick: true
-    });
-  </script>
-  <script>
-    $('#drop-links').webuiPopover({url:'#additional-links'});
-  </script>
         
 </body>
 </html>

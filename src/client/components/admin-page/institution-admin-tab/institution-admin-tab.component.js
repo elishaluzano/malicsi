@@ -8,7 +8,7 @@
             controller: institutionAdminTabController
         });
 
-    function institutionAdminTabController($scope, institutionService, userService, adminService, searchService) {
+    function institutionAdminTabController($scope, institutionService, userService, adminService, searchService, userLogService) {
         var vm = this;
 
         vm.selectedInstitution = null;
@@ -91,6 +91,20 @@
                                 vm.creatingInstitution = false;
                                 vm.selectInstitution(institution);
                                 Materialize.toast(institution.name + ' has been created', 3000, 'red');
+                                var string = institution.name + " has been created.";
+                                var log = {
+                                    user_id: 1,
+                                    institution_id: 0,
+                                    action: string
+                                }
+
+                                userLogService.create(log)
+                                    .then(function(data) {
+                                      
+                                    })
+                                    .catch(function(err) {
+                                        console.log(err);
+                                    })
                             });
                     } else {
                         Materialize.toast(vm.newInstitutionName + ' is already taken', 3000, 'red');
@@ -136,7 +150,23 @@
                             vm.institutions = vm.institutions.map(function(institution) {
                                 if (institution.institution_id == vm.selectedInstitution.institution_id) {
                                     Materialize.toast(vm.selectedInstitution.originalName + ' has been updated', 3000, 'red');
-                                    vm.selectedInstitution = institution = angular.copy(newInstitution);
+                                    vm.selectedInstitution = angular.copy(newInstitution);
+                                    vm.selectedInstitution.originalName = newInstitution.name;
+
+                                    var string = vm.selectedInstitution.originalName + " has been updated.";
+                                    var log = {
+                                        user_id: 1,
+                                        institution_id: 0,
+                                        action: string
+                                    }
+
+                                    userLogService.create(log)
+                                        .then(function(data) {
+                                          
+                                        })
+                                        .catch(function(err) {
+                                            console.log(err);
+                                        })
                                 }
                                 return institution;
                             });
@@ -166,6 +196,21 @@
                     });
                     Materialize.toast(vm.selectedInstitution.name + ' has been deleted', 3000, 'red');vm.selectedInstitution = null;
                     vm.deletingInstitution = false;
+
+                    var string = vm.selectedInstitution.name + " has been deleted.";
+                    var log = {
+                        user_id: 1,
+                        institution_id: 0,
+                        action: string
+                    }
+
+                    userLogService.create(log)
+                        .then(function(data) {
+                          
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        })
                 });
         }
 
@@ -213,6 +258,20 @@
                                 vm.selectedAdmins.push(admin); 
                                 Materialize.toast(admin.username + ' has been added as an admin', 3000, 'red');
                                 vm.newAdmin = '';
+                                var string = admin.username + " has been added as an admin.";
+                                var log = {
+                                    user_id: 1,
+                                    institution_id: 0,
+                                    action: string
+                                }
+
+                                userLogService.create(log)
+                                    .then(function(data) {
+                                      
+                                    })
+                                    .catch(function(err) {
+                                        console.log(err);
+                                    })
                             });
                     }
                 });
@@ -236,6 +295,20 @@
                     });
 
                     Materialize.toast(deletedAdmin.name + ' has been removed as admin from ' + vm.selectedInstitution.name, 3000, 'red');
+                    var string = deletedAdmin.name + " has been removed as an admin from " + vm.selectedInstitution.name;
+                    var log = {
+                        user_id: 1,
+                        institution_id: 0,
+                        action: string
+                    }
+
+                    userLogService.create(log)
+                        .then(function(data) {
+                          
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        })
                 });
         }
 

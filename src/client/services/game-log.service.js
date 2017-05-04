@@ -54,8 +54,8 @@
                     });
             },
 
-            deleteGameLog: function(id) {
-                return $http.delete(api + id)
+            deleteGameLog: function(id, body) {
+                return $http.post(api + id, body)
                     .then(function(response) {
                         return response.data;
                     })

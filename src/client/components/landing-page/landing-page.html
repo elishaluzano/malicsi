@@ -1,15 +1,63 @@
-<div class = "row">
-    <div class = "col l3">
+<!--<div ng-if="!$ctrl.isLoggedIn" class = "center index" style = "background: url(/images/background-copy.jpg) no-repeat center center fixed;height:95vh;max-width:100%">
+            <span style = "vertical-align:middle;position:relative;top:50px;font-size:5em;font-family:Coolvetica" class = "white-text">malicsi</span>
+            <div class = "row container" style="padding-top:30px">
+              <form action = "#">
+              <div class = "row">
+                <div class = "col s12 center input-field white-text">
+                  <i class="material-icons prefix">account_circle</i>
+                  <input type = "text"  style ="width:50%" ng-model="$ctrl.username">
+                  <label>Username</label>
+                </div>
+                <div class = "col s12 center input-field white-text">
+                  <i class="material-icons prefix">lock</i>
+                  <input type = "password"  style ="width:50%" ng-model="$ctrl.password">
+                  <label for="icon_prefix">Password</label>
+                </div>
+              </div>
+              <div class = "col s12">
+              <button class = "btn z-depth-3 orange-bordered darken-3 " type = "submit" ng-click="$ctrl.login()">Sign in</button>
+              </div>
+              <br><br>
+              <span class = "white-text">Don't have an account? <a ui-sref="registrationPage" class="pointer" style="font-style: italic;">Sign up.</a></span>
+            </div>
+            </form>
+          <a href = "#anchor_link"><span class = "white-text"><h3>&darr;</h3></span></a>
+        </div>-->
+<div class="carousel carousel-slider center" carousel duration="500" full-width data-indicators="true" style="background: url(/images/background-copy.jpg) no-repeat center center fixed;height:95vh;width:100%">
+    <div class="carousel-fixed-item center up-and-down-animation" style="position:absoulute;top:500px;">
+        <a class="pointer" ng-click="$ctrl.scrollToAnchorLink()"><span class = "white-text"><h3>&darr;</h3></span></a>
+    </div>
+
+    <div style="position:fixed;">
+    </div>
+    <div class="carousel-item white-text" href="#one!" style="position:absolute;top:100px">
+        <h1 style="font-family:Coolvetica">Welcome to Malicsi</h1>
+        <p class="white-text" style="font-size:2em">Manage game schedules in real time</p>
+        <a class="btn z-depth-3 orange-bordered darken-3" href="https://github.com/elishaluzano/malicsi">to github</a>
+
+    </div>
+    <div class="carousel-item white-text" href="#two!" style="position:absolute;top:100px">
+        <div style="height:150px;background: url(/images/project-2.png) center no-repeat"></div>
+        <h2 style="font-family:Coolvetica" style="top:-10px">What is malicsi?</h2>
+        <p class="white-text">Malicsi is a web application that allows a user to manage sports events.<br>It was the first project ever created
+            by the //BTLG team under the supervision of Ms. Marie Betel De Robles.</p>
+        <a class="btn z-depth-3 orange" href="/betelog">Meet the makers</a>
+    </div>
+
+</div>
+<div class="row" id="anchor_link">
+    <div class="col l3">
+        <h5>Live Game Standings</h5>
         <ul class="collapsible" data-collapsible="expandable">
-            <!-- TEAM STANDING CARD --> 
-            <li ng-repeat="x in $ctrl.objects">
-                <div class="collapsible-header">
+            <!-- TEAM STANDING CARD -->
+            <li ng-repeat="x in $ctrl.objects track by $index">
+                <div class="collapsible-header" ng-class="{active: $index === 0}">
                     <div class="chip green white-text">Live</div>
                     {{ x.eventName.event_title }}
                     <br>Standing
                 </div>
                 <div class="collapsible-body">
-                    <table>
+                    <table ng-show="x.eventTeams.length">
                         <thead>
                             <tr>
                                 <th>Team</th>
@@ -19,8 +67,7 @@
                         <tbody>
                             <tr ng-repeat="team in x.eventTeams">
                                 <td ui-sref="teamPage({ teamId: team.team_id })">
-                                    <a class="pointer"
-                                        ui-sref="teamPage({ teamId: team.team_id })">
+                                    <a class="pointer" ui-sref="teamPage({ teamId: team.team_id })">
                                         {{ team.name }}
                                     </a>
                                 </td>
@@ -30,22 +77,26 @@
                             </tr>
                         </tbody>
                     </table>
+                    <p ng-hide="x.eventTeams.length">
+                        No teams
+                    </p>
                 </div>
             </li>
         </ul>
     </div>
 
-    <div class = "col l9">
-        <div class = "row">
-            <div ng-repeat="each in $ctrl.live"> <!-- class = "col s12 m8" -->
-               <sport-card information="each"></sport-card>
+    <div class="col l9">
+        <div class="row">
+            <h5 style="margin-left: 1vw">Schedule</h5>
+            <div ng-repeat="each in $ctrl.live">
+                <!-- class = "col s12 m8" -->
+                <sport-card information="each"></sport-card>
             </div>
-            
+
             <!-- EVENT-CARD -->
-            <event-card ng-repeat="each in $ctrl.soonEvents" event="each">
-            </event-card>
+            
         </div>
-        
-        <div class = "row"> </div>
+
+        <div class="row"> </div>
     </div>
 </div>

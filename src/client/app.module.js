@@ -8,7 +8,7 @@
     require('./app.router');
 
     var assets = require.context('./assets', true, /.*\.(png|jpg|gif)$/);
-    var libs = require.context('./lib', true, /\.js$/);
+    var libs = require.context('./lib', true, /\.(js|css)$/);
     var services = require.context('./services', true, /.*\.service\.js$/);
     var shared = require.context('./shared', true, /.*\.component\.js$/);
     var components = require.context('./components', true, /.*\.component\.js$/);

@@ -15,10 +15,10 @@
                         {{ institution.name }}
                     </a>
                 </div>
-                <div class="col s4 right">
-                    <button class="btn red"
+                <div class="col s4 offset-s3">
+                    <button class="btn orange"
                         ng-click="$ctrl.createInstitution()">
-                        New
+                        Add
                     </button>
                 </div>
             </fieldset>
@@ -48,8 +48,8 @@
                         <label for="new-institution-description">New Institution Description</label>
                     </div>
                 </div>
-                <div class="col s4 right">
-                    <button class="btn red"
+                <div class="col s4 offset-s3">
+                    <button class="btn orange"
                         ng-click="$ctrl.confirmCreateInstitution()">
                         Add
                     </button>
@@ -85,7 +85,7 @@
                     </div>
                 </div>
 
-                <div class="col s12">
+                <div class="col s12" ng-show="$ctrl.selectedInstitution.picture">
                     <img ng-src="{{ $ctrl.selectedInstitution.picture }}" 
                         alt="Sponsoring Institution Logo"
                         class="responsive-img">
@@ -93,8 +93,10 @@
 
                 <div class="col s12">
                     <div class="file-field input-field">
-                        <div class="btn red">
-                            <span>File</span>
+                        <div class="btn orange z-depth-0">
+                            <span>
+                                <i class="material-icons">add_a_photo</i>
+                            </span>
                             <input type="file" file-input="$ctrl.files">
                         </div>
                         <div class="file-path-wrapper">
@@ -122,14 +124,14 @@
 
                 <div ng-if="$ctrl.editingInstitution">
                     <div class="col s6 center-align">
-                        <button class="btn green"
+                        <button class="btn green white-text"
                             ng-click="$ctrl.confirmEditInstitution()">
                             Confirm
                         </button>
                     </div>
 
                     <div class="col s6 center-align">
-                        <button class="btn red"
+                        <button class="btn-flat waves-effect waves-red"
                             ng-click="$ctrl.cancelEditInstitution()">
                             Cancel
                         </button>
@@ -138,14 +140,14 @@
 
                 <div ng-if="$ctrl.deletingInstitution">
                     <div class="col s6 center-align">
-                        <button class="btn green"
+                        <button class="btn green white-text"
                             ng-click="$ctrl.confirmDeleteInstitution()">
                             Confirm
                         </button>
                     </div>
 
                     <div class="col s6 center-align">
-                        <button class="btn red"
+                        <button class="btn-flat waves-red waves-effect"
                             ng-click="$ctrl.cancelDeleteInstitution()">
                             Cancel
                         </button>
@@ -184,8 +186,8 @@
                         ng-keydown="$ctrl.checkEnterAddAdmin($event)">
                     <label for="new-admin">New admin username</label>
                 </div>
-                <div class="col s4 right">
-                    <button class="btn red"
+                <div class="col s4 offset-s3">
+                    <button class="btn orange"
                         ng-click="$ctrl.addAdmin()">
                         Add
                     </button>

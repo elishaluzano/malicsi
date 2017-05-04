@@ -24,12 +24,17 @@
         }
 
         vm.register = function() {
+
             if (!vm.name) {
                 return Materialize.toast("What's your name?", 3000, 'red');
             }
 
             if (!vm.birthday) {
                 return Materialize.toast('When is your birthday?', 3000, 'red');
+            }
+            
+            if(new Date(vm.birthday).getTime() > new Date().getTime()){
+                return Materialize.toast('Your birthday cannot be greater than the current date', 3000, 'red');
             }
 
             if (!vm.gender) {
@@ -44,6 +49,10 @@
                 return Materialize.toast('Is that really your contact number?', 3000, 'red');
             }
 
+            if (!vm.username) {
+                return Materialize.toast('Enter your username', 3000, 'red');
+            }
+
             if (/[\W]/.exec(vm.username)) {
                 return Materialize.toast('Username should only consist of alphanumeric characters and underscores', 3000, 'red');
             }
@@ -56,9 +65,10 @@
                 return Materialize.toast("Passwords do not match!", 3000, 'red');
             }
 
-            if (!/^\w+@[a-zA-Z]+\.[a-zA-Z]+/.exec(vm.email)) {
+            if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.exec(vm.email)) {
                 return Materialize.toast('Is that a real email address?', 3000, 'red');
             }
+
 
             searchService.users(vm.username)
                 .then(function(users) {

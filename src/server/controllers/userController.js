@@ -6,7 +6,10 @@ const connection = require(__dirname + '/../database.js');
 
 // get current user
 exports.getAccount = (req, res) => {
-  res.send(req.session.user);
+    if (req.body && req.body.user) {
+        req.session.user = req.body.user;
+    }
+    res.send(req.session.user);
 };
 // login
 exports.loginUser = (req, res) => {
@@ -62,6 +65,7 @@ exports.addUser = (req, res) => {
 
 // logout
 exports.logout = (req, res) => {
+    console.log('logged out');
     req.session.user = null;
     res.send(null);
 };
@@ -224,6 +228,7 @@ exports.checkAdminOfTeam = (req, res) => {
         if (!err){
             if (rows[0] !== null){
                 res.send(rows[0]);
+                console.log(rows);
                 console.log("User is an admin of team");
             }
             else {

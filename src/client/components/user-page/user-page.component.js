@@ -11,20 +11,29 @@
             }
         });
 
-    function userPageController(userService, sessionService, searchService, $state) {
+    function userPageController(userService, sessionService, searchService, $state, userAffiliationService, userLogService) {
         var vm = this;
         vm.isSameUser = false;
         vm.isBeingEdited = false;
         vm.files = [];
         vm.usercopy = null;
+        vm.isAdmin = false;
+        vm.affiliations = [];
 
         vm.$onInit = function() {
             $('.modal').modal();
             vm.usercopy = angular.copy(vm.user);
             vm.user.birthday = new Date(vm.user.birthday);
             if (sessionService.user() && vm.user.user_id === sessionService.user().user_id) {
-                vm.isSameUser = true;
+                vm.isSameUser = true;    
             }
+            if (sessionService.user() && sessionService.user().isOverallAdmin) {
+                vm.isAdmin = true;
+            }
+            userAffiliationService.getAllById(vm.user.user_id)
+                .then(function(affiliations) {
+                    vm.affiliations = affiliations;
+                });
         }
 
         vm.discardChanges = function() {
@@ -94,6 +103,24 @@
                                     vm.user = user;
                                     vm.user.birthday = new Date(vm.user.birthday);
                                     vm.isBeingEdited = false;
+                                    sessionService.session(user)
+                                        .then(function(user) {
+                                            var string = "Successfully updated user.";
+                                            var log = {
+                                                user_id: user.user_id,
+                                                institution_id: user.institution_id,
+                                                action: string
+                                            }
+
+                                            userLogService.create(log)
+                                                .then(function(data) {
+                                                  
+                                                })
+                                                .catch(function(err) {
+                                                    console.log(err);
+                                                })
+                                            window.location.reload(true);
+                                        });
                                 });
                             vm.usercopy = vm.user;
                         }
@@ -106,10 +133,26 @@
         }
 
         vm.deleteUser = function() {
-            userService.delete(vm.user.user_id)
+            var string = vm.user.username + " has been deleted.";
+            sessionService.logout()
                 .then(function() {
-                    Materialize.toast('You account has been deleted', 3000, 'red');
-                    $state.go('landingPage');
+                    var log = {
+                        user_id: vm.user.user_id,
+                        institution_id: vm.user.institution_id,
+                        action: string
+                    };
+
+                    userLogService.create(log)
+                        .then(function(data) {
+                            userService.delete(vm.user.user_id)
+                                .then(function() {
+                                    Materialize.toast('You account has been deleted', 3000, 'red');
+                                    window.location.reload();
+                                });
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        });
                 });
         }
         

@@ -1,12 +1,111 @@
-<div class = "row">
-    <!-- <div class = "col m3">
-        Add filters here
-    
-    </div> -->
+<div class="row" style="margin-top: 20px">
+        <div class="col s4"> <h5>Calendar of Games</h5>    
+<select ng-model="$ctrl.setmonth" id="dropdown" class="left black-text browser-default">
+    <option value="all">Month</option>
+    <option 
+    	ng-repeat="each in $ctrl.months" 
+    	value="{{ each }}"
+    >
+        {{ each }}
+    </option>
+</select>
 
-    <div class = "col s12 m8" ng-repeat="each in $ctrl.sports">
-       <sport-card information="each"></sport-card>
+<input type="number" ng-model="$ctrl.setyear"/>
+<div class="center"><button class="btn orange" ng-click="$ctrl.hello()">Search</button></div>
+
+
+	<table>
+		<th>
+			<tr><td>Sun</td>
+			<td>Mon</td>
+			<td>Tue</td>
+			<td>Wed</td>
+			<td>Thu</td>
+			<td>Fri</td>
+			<td>Sat</td></tr>
+		</th>
+		<tbody>
+			<tr ng-repeat="week in $ctrl.calendar">
+					<td ng-repeat="day in week">
+
+					<a ng-if="day.date!=0" class="chip" ng-class="{'pink darken-4 white-text pointer':day.date == $ctrl.date, 'orange pointer':day.date != $ctrl.date}" ng-click="$ctrl.hi(day.month, day.year, day.date)"><span ng-if="day.date<10">0</span>{{day.date}}</a>
+
+					<span ng-if="day.date == 0"></span>
+					</td>
+				</tr>
+		</tbody>
+	</table>  </div>
+
+<div class="container col s8">
+    <!-- <div class = "row">
+        <div class = "col m3">
+            Add filters here
+        
+        </div>
+    
+        <div class = "col l3 s12 m3">
+    
+                  
+                    
+                  
+                  
+    
+    
+            </div>
+            
+    
+        <div class = "col s12" ng-repeat="each in $ctrl.sports">
+    
+            <div class="row">
+    			    <div class="col m3">
+    			    </div>
+    
+    			    <div class="col s12 m8 l12">   
+    			       <ul class="collection">
+    			        <li class="collection-header"><h5>&nbsp;&nbsp;
+    			        &nbsp;{{each.name}}</h5></li>
+    			        <li class="collection-item"> 
+    			        <h6 ng-hide="each.games.length">
+    			            No scheduled games
+    			        </h6>
+    			        <table class="highlight" ng-show="each.games.length">
+    			            <thead>
+    			                <tr>
+    			                  <th data-field="id">Date</th>
+    			                  <th data-field="name">Time</th>
+    			                  <th data-field="price">Matchup</th>
+    			                  <th data-field="price">Event name</th>
+    			                  <th data-field="sponsor">Sponsor</th>
+    			                  <th data-field="price">Venue</th>
+    			                </tr>
+    			            </thead>
+    
+    			            <tbody>
+    			                <tr ng-repeat="game in each.games" ng-if="game.on == true">
+    			                    <td>{{game.time | date: 'MM-dd-yy'}}</td>
+    			                    <td>{{game.time | date: 'HH:mm:ss'}}</td>
+    			                    <td><p ng-repeat="team in game.teams"><a ui-sref="teamPage({ teamId: team.team_id })">{{team.name}}</a></p></td>
+    			                    <td><a ui-sref="eventPage({ eventId: game.event_id })"><div class="chip">{{game.event_title}}</div></a></td>
+    			                    <td><a ui-sref="sponsorPage({ sponsorId: game.sponsor_id })">{{game.sponsor}}</a></td>
+    			                    <td>{{game.venue}}</td>
+    			                </tr>
+    
+    			            </tbody>
+    			        </table></li>
+    
+    			       </ul> 
+    			    </div>
+    			</div>
+        </div> -->
+
+        <div ng-repeat="each in $ctrl.sports">
+            <!-- class = "col s12 m8" -->
+            <sport-card information="each"></sport-card>
+        </div>
+
     </div>
+
+    <!--<input type="date" class="datepicker">-->
 </div>
 
-<input type="date" class="datepicker">
+</div>
