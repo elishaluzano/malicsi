@@ -122,13 +122,9 @@
             console.log(vm.objects);
             
             $('.collapsible').collapsible();
-            $('.carousel.carousel-slider').carousel({fullWidth: true});
-            autoplay();   
-            function autoplay() {
-                setTimeout(autoplay, 6000);
-                $('.carousel.carousel-slider').carousel('next');
-                
-            }
+            setTimeout(function() {
+                $('.carousel').carousel('next');
+            }, 6000);
         }
     }
 
