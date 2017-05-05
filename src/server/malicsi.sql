@@ -184,6 +184,19 @@ update teamPlaysGame set score = (score - prev_score) where team_id_play = team_
 END;
 //
 
+create procedure setRecord(in id int, team1_id int, team2_id int)
+BEGIN
+update teamPlaysGame set record = "WIN" where team_id_play = team1_id and game_id_play = id;
+update teamPlaysGame set record = "LOSE" where team_id_play = team2_id and game_id_play = id;
+END;
+//
+
+create procedure setDrawRecord(in id int)
+BEGIN
+update teamPlaysGame set record = "DRAW" where game_id_play = id;
+END;
+//
+
 create trigger deleteGameAfterDeleteTeam
     before delete on team
     for each row
