@@ -11,15 +11,15 @@ var userCtrl = require('../controllers/userController.js');
 var contactCtrl = require('../controllers/contactController.js');
 //userAffiliations
 var userAffiliationCtrl = require('../controllers/userAffiliationController.js');
-//institutions 
+//institutions
 var institutionCtrl = require('../controllers/institutionController.js');
 //events
 var eventCtrl = require('../controllers/eventController.js');
-//sports 
+//sports
 var sportCtrl = require('../controllers/sportController.js');
-//games 
+//games
 var gameCtrl = require('../controllers/gameController.js');
-//teams 
+//teams
 var teamCtrl = require('../controllers/teamController.js');
 //venues
 var venueCtrl = require('../controllers/venueController.js');
@@ -36,7 +36,7 @@ router.post('/api/users', uploadCtrl.upload.single('profile_pic'), userCtrl.addU
 router.get('/api/useraffiliations', userAffiliationCtrl.viewAllUserAffiliation);
 router.get('/api/useraffiliations/:id', userAffiliationCtrl.viewUserAffiliation);
 
-//get for contact persons 
+//get for contact persons
 router.get('/api/contacts/:id',contactCtrl.viewContact);
 router.get('/api/contacts',contactCtrl.viewAllContact);
 
@@ -68,16 +68,16 @@ router.get('/api/events/:id/info', eventCtrl.viewGeneralInformation);
 //get general information of an event
 router.get('/api/events/:id/eventinfo', eventCtrl.viewDoneEventInfo);
 
-//get for sports 
+//get for sports
 router.get('/api/sports/:id',sportCtrl.viewSport);
 router.get('/api/sports',sportCtrl.viewAllSport);
 //search
 router.get('/api/sports/search/:search',sportCtrl.searchSport);
-//joins 
+//joins
 router.get('/api/teams/joins', sportCtrl.getAllJoins);
 router.get('/api/teams/joins/:id', sportCtrl.getJoins);
 
-//get for games 
+//get for games
 router.get('/api/games/:id',gameCtrl.viewGame);
 router.get('/api/games',gameCtrl.viewAllGame);
 
@@ -133,7 +133,7 @@ router.use(function(req, res, next) {
 	if (req.session && req.session.user) {
 		next();
 	} else {
-		res.redirect('/')
+		res.redirect('/');
 	}
 });
 
@@ -185,6 +185,10 @@ router.post('/api/games',gameCtrl.addGame);
 router.put('/api/games/:id',gameCtrl.updateGame);
 router.delete('/api/games/:id',gameCtrl.deleteGame);
 
+//game record routes
+router.put('/api/games/records/:game_id/draw', gameCtrl.setDrawRecord);
+router.put('/api/games/records/:game_id', gameCtrl.setRecord);
+
 //get all teams from specific game
 router.put('/api/games/:id/endgame',gameCtrl.endGame);
 router.put('/api/games/:id/opengame',gameCtrl.openGame);
@@ -202,6 +206,7 @@ router.delete('/api/teams/composedOf/:team_id/:user_id', teamCtrl.deleteIsCompos
 router.post('/api/teams/plays', teamCtrl.addPlays);
 router.put('/api/teams/plays/:team_id/:game_id',teamCtrl.updatePlays);
 router.delete('/api/teams/plays/:id/:game', teamCtrl.deletePlays);
+
 
 //venue routes
 router.post('/api/venues', venueCtrl.addVenue);
