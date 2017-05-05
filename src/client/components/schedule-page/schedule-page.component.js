@@ -71,18 +71,20 @@
 
         vm.date = '';
 
-        vm.setmonth = (new Date()).getMonth() + 1;
-        for(let key in vm.monthnums){
-            if(vm.monthnums[key] == vm.setmonth){
-                vm.setmonth = key;
-                break;
-            }
-        }
-        vm.setyear = (new Date()).getFullYear();
-
         vm.calendar = [];
 
         vm.$onInit = function() {
+
+
+
+            vm.setmonth = (new Date()).getMonth() + 1;
+            for(let key in vm.monthnums){
+                if(vm.monthnums[key] == vm.setmonth){
+                    vm.setmonth = key;
+                    break;
+                }
+            }
+            vm.setyear = (new Date()).getFullYear();
 
           $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
@@ -103,6 +105,7 @@
 
 
             vm.hello();
+
             vm.hi(vm.setmonth, vm.setyear, (new Date().getDate()));
 
         }
@@ -176,7 +179,12 @@
             }
 
             var y = [];
+
+            for(let sport of vm.sports){
+                sport.landing = false;
+            }
             console.log(vm.calendar);
+            vm.hi(mo, yr, new Date().getDate());
     }
 
 
@@ -189,15 +197,13 @@
         for(let sport of vm.sports){
             for(let game of sport.games){
                 let gameday = new Date(game.time);
-                console.log(gameday);
-                console.log(month + " " + year + " " + date)
                 if(gameday.getDate() == date &&
                     gameday.getMonth()+1 == month &&
                     gameday.getFullYear() == year){
-                    game.on = true;
+                    game.now = true;
                 }
                 else{
-                    game.on = false;
+                    game.now = false;
                 }
             }
         }

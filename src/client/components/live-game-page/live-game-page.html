@@ -1,17 +1,38 @@
+
+
 <div class = "row">
   <div class = "col s12 m12 l12"  id = "score-bg">
     <div>
+
       <br>
-      <div ng-repeat="team in $ctrl.teamsInGame" class="col s6 center hide-on-small-only">
-        <a class="pointer" ui-sref="teamPage({ teamId: team.team_id })"><img style="height: 200px; width: 200px;" class="circle responsive-img team-img" ng-src="{{ team.picture }}"></a>
-        <a class="white-text pointer Cool-font" ui-sref="teamPage({ teamId: team.team_id })"><h4>{{team.name}}</h4></a>
-        <h3 class="white-text ">{{team.score}}</h3>
+
+      <div class="col s4 center hide-on-small-only">
+        <a class="pointer" ui-sref="teamPage({ teamId: $ctrl.teamsInGame[0].team_id })"><img style="height: 200px; width: 200px;" class="circle responsive-img team-img" ng-src="{{ $ctrl.teamsInGame[0].picture }}"></a>
+        <a class="white-text pointer Cool-font" ui-sref="teamPage({ teamId: $ctrl.teamsInGame[0].team_id })"><h4>{{$ctrl.teamsInGame[0].name}}</h4></a>
+        <h3 class="white-text ">{{$ctrl.teamsInGame[0].score}}</h3>
       </div>
-      <div ng-repeat="team in $ctrl.teamsInGame" class="col s6 center hide-on-large-only">
+
+
+      <div class="col s4 center"><h1 style="word-wrap: break-word;" class="white-text Cool-font">{{$ctrl.game.sport}}</h1></div>
+
+
+      <div class="col s4 center hide-on-small-only">
+        <a class="pointer" ui-sref="teamPage({ teamId: $ctrl.teamsInGame[1].team_id })"><img style="height: 200px; width: 200px;" class="circle responsive-img team-img" ng-src="{{ $ctrl.teamsInGame[1].picture }}"></a>
+        <a class="white-text pointer Cool-font" ui-sref="teamPage({ teamId: $ctrl.teamsInGame[1].team_id })"><h4>{{$ctrl.teamsInGame[1].name}}</h4></a>
+        <h3 class="white-text ">{{$ctrl.teamsInGame[1].score}}</h3>
+      </div>
+
+
+
+      <!-- 
+      
+      <div ng-repeat="team in $ctrl.teamsInGame" class="col s5 center hide-on-large-only">
         <a class="pointer" ui-sref="teamPage({ teamId: team.team_id })"><img style="height: 100px; width: 100px;" class="circle responsive-img team-img" ng-src="{{ team.picture }}"></a>
         <a class="white-text pointer Cool-font" ui-sref="teamPage({ teamId: team.team_id })"><h4>{{team.name}}</h4></a>
         <h3 class="white-text">{{team.score}}</h3>
       </div>
+      
+       -->
        <!--  <a class="modal-trigger" href="#edit-score">
           <div class = "chip orange white-text">Update Score</div>
         </a> -->
@@ -20,11 +41,12 @@
   </div>
 
   <div class="row">
-    <span class = "Cool-font center"><h3>Play-by-play</h3></span>
+    <span class = "Cool-font center"><h4>Play-by-play</h4></span>
     <div class = "container">
     <div id="test2" class="col s12 l12">
       <div style = "padding-left:10px; padding-right: 10px; max-height:300px;height:300px;overflow-y:scroll;background-color:#f4f4f4;">
         <br>
+        <div class="center" ng-if="$ctrl.scores.length == 0"><h5 class="Cool-font">No record yet</h5></div>
         <div ng-repeat="score in $ctrl.scores" ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'" style="width:100%"><span ng-class = "(score.teamVal % 2) == 0 ? 'left' : 'right'"><div ng-class = "(score.teamVal % 2) == 0 ? 'purple darken-2' : 'orange'" class = "chip white-text">{{score.name}} scores {{score.score}} points</div>
 
         <a href="" modal data-target="delete-history" ng-click="$ctrl.getIdDel(score.team_id, score.game_id, score.gameUpdateLog_id, score.score)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "grey-text material-icons" style = "top:5px;position:relative;">delete</i></a>

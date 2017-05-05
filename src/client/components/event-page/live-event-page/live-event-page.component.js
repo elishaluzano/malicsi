@@ -530,6 +530,11 @@
 
             // }
 
+            institutionService.getOne(vm.event.institution_id_key)
+                .then(function(instititution){
+                    vm.event.institution = instititution.name;
+                });
+
             vm.user = sessionService.user();
             if (vm.user && vm.user.isOverallAdmin) {
                 vm.isAdmin = true;

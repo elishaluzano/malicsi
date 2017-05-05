@@ -13,7 +13,7 @@
             }
         });
 
-    function liveGamePageController(gameService, gameLogService, sessionService, adminService, userLogService) {
+    function liveGamePageController(gameService, sportService, gameLogService, sessionService, adminService, userLogService) {
         var vm = this;
         vm.idToBeChanged = '';
         vm.teamToBeUpdated = '';
@@ -79,6 +79,14 @@
             for(let score of vm.scores){
                 score.teamVal = vals[score.team_id]
             }
+
+            sportService.getOne(vm.game.sport_id)
+                .then(function(sport){
+                    vm.game.sport = sport.name;
+                });
+
+            console.log(vm.teamsInGame);
+
 
         }
 

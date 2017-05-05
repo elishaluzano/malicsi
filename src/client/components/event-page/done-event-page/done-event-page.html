@@ -1,12 +1,13 @@
-<div class="parallax-container">
+<div class="parallax-container"><!-- 
 	<div class = "Cool-font"
 		 style="position:absolute;top:50%;">
-		Hello, its me
-	</div>
+				Hello, its me
+	</div> -->
 	<div class="parallax valign"><img alt="/images/temp-bg-2.jpg" ng-src="{{$ctrl.event.picture}}"/></div>
 </div>
 
 <div class="container">
+	<h5 class="center">{{$ctrl.event.event_title}}</h5>
 	<ul class="collapsible" data-collapsible="accordion">
 	    <li ng-repeat="sport in $ctrl.allSports">
 			<div class="collapsible-header"><i class="material-icons"><i class="material-icons">toll</i></i>{{ sport.sport }}</div>
@@ -22,7 +23,7 @@
 				  </thead>
 				  <tbody ng-repeat="game in sport.games">
 				    <tr>
-				      <td><a ui-sref="gamePage({ gameId: game.game_id })">{{ game.game_id }}</a>
+				      <td><a ui-sref="liveGamePage({ gameId: game.game_id })">{{ game.game_id }}</a></td>
 				      <td><a ui-sref="teamPage({ teamId: game.teams[0].team_id })">{{ game.teams[0].name }}</a> vs <a ui-sref="teamPage({ teamId: game.teams[1].team_id })">{{ game.teams[1].name }}</a></td>
 				      <td>{{ game.teams[0].score }}-{{ game.teams[1].score }}</td>
 				      <td>{{ game.teams[0].record === "WIN" ? game.teams[0].name : game.teams[1].name }}</td>
