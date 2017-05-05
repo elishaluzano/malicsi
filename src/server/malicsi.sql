@@ -210,6 +210,18 @@ BEGIN
     delete from game where game_id in (select game_id_play from team join teamPlaysGame on team.team_id = teamPlaysGame.team_id_play where team.team_id = OLD.team_id);
 END;
 //
+
+create trigger setPicture
+    before insert on user
+    for each row
+BEGIN
+    if (new.gender = "female") then
+        set new.profile_pic = "images/default-girl.png";
+    else
+        set new.profile_pic = "images/default-boy.png";
+    end if;
+END
+//
 delimiter ;
 
 insert into contactPersonInCaseOfEmergency values (contact_person_id,'Ryan Magorian','Father','09987898765');
