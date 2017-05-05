@@ -312,7 +312,43 @@
             gameService.endGame(vm.game.game_id)
                 .then(function(data){
                     vm.game.status = 'FINISHED';
-                    Materialize.toast('Successfully ended game!', 2000, 'red');
+
+                    var winTeam = '';
+                    var loseTeam = '';
+
+                    if(vm.teamsInGame[0].score == vm.teamsInGame[1].score){
+                        gameService.setDrawRecord(vm.game.game_id)
+                            .then(function(data){
+                                Materialize.toast('Successfully ended game!', 2000, 'red');
+                            })
+                            .catch(function(data){
+                                Materialize.toast('Unsuccessfully ended game!', 2000, 'red');
+                            })
+                    }
+                    else{
+                        console.log('not draw');
+                        if(vm.teamsInGame[0].score > vm.teamsInGame[1].score){
+                            winTeam = vm.teamsInGame[0];
+                            loseTeam = vm.teamsInGame[1];
+                        }
+                        else{
+                            winTeam = vm.teamsInGame[1];
+                            loseTeam = vm.teamsInGame[0];
+                        }
+                        var params = {
+                            team1_id: winTeam.team_id,
+                            team2_id: loseTeam.team_id
+                        }
+
+                        gameService.setRecord(vm.game.game_id, params)
+                            .then(function(data){
+                                Materialize.toast('Successfully ended game!', 2000, 'red');
+                            })
+                            .catch(function(data){
+                                Materialize.toast('Unsuccessfully ended game!', 2000, 'red');
+                            })
+                    }
+
                     var logName = "Ended " + vm.game.game_id + " game.";
                     var log = {
                         user_id: vm.currentUser.user_id,
@@ -330,7 +366,13 @@
             gameService.openGame(vm.game.game_id)
                 .then(function(data){
                     vm.game.status = 'ONGOING';
-                    Materialize.toast('Successfully opened game!', 2000, 'red');
+                    gameService.setRecord(vm.game.game_id)
+                            .then(function(data){
+                                Materialize.toast('Successfully opened game!', 2000, 'red');
+                            })
+                            .catch(function(data){
+                                Materialize.toast('Unsuccessfully opened game!', 2000, 'red');
+                            })
                     var logName = "Opened " + vm.game.game_id + " game.";
                     var log = {
                         user_id: vm.currentUser.user_id,
@@ -340,6 +382,9 @@
                     userLogService.create(log)
                         .then(function(data) {
                         });
+                })
+                .catch(function(data){
+                    Materialize.toast('Unsuccessfully opened game!', 2000, 'red');
                 })
                 
         }

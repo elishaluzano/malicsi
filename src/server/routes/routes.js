@@ -186,6 +186,7 @@ router.put('/api/games/:id',gameCtrl.updateGame);
 router.delete('/api/games/:id',gameCtrl.deleteGame);
 
 //game record routes
+router.put('/api/games/records/:game_id/open', gameCtrl.openRecord);
 router.put('/api/games/records/:game_id/draw', gameCtrl.setDrawRecord);
 router.put('/api/games/records/:game_id', gameCtrl.setRecord);
 
