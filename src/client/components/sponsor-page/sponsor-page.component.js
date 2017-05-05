@@ -12,7 +12,7 @@
 			}
 		});
 
-	function sponsorPageController(institutionService, sessionService, adminService, $state, userLogService) {
+	function sponsorPageController(institutionService, sessionService, adminService, $state, userLogService, venueService) {
 		var vm = this;
 		vm.admin = null;
 		vm.events = [];
@@ -21,7 +21,16 @@
 			institutionService.getEvents(vm.institution.institution_id)
 				.then(function(events) {
 					vm.events = events;
+
+					for(let event of vm.events){
+						venueService.getOne(event.venue_id_key)
+							.then(function(venue){
+								console.log(venue);
+								event.venue = venue.name;
+							})
+					}
 				});
+
 
 			var user = sessionService.user();
             if (user) {

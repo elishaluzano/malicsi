@@ -51,12 +51,8 @@
             var min;
 
             vm.currentUser = sessionService.user();
-            console.log(vm.currentUser);
-
-            console.log(vm.Teams);
 
             for(let team of vm.allTeams){
-                console.log(team);
                 if(team.event_id_key == vm.currentTeam.event_id_key && team.team_id != vm.currentTeam.team_id){
                     teamService.getIsUserOfTeam(team.team_id, vm.currentUser.user_id)
                         .then(function(data){
@@ -91,7 +87,9 @@
                             vm.isAdminOfTeam = false;
                         }
 
-                        if(vm.currentUser != undefined && !vm.isAdminOfTeam) vm.isLoggedIn = true;
+                        if((vm.currentUser != undefined && vm.currentUser != '') && !vm.isAdminOfTeam){
+                            vm.isLoggedIn = true;
+                        }
 
                         var startDate = new Date(vm.event.start_date).getTime();
                         var endDate = new Date(vm.event.end_date).getTime();
@@ -136,13 +134,14 @@
             }
 
             for(game of vm.allGameInfo){
-                if(game.datediff < 0){
+                if(game.status == 'FINISHED'){
+                    game.time = new Date(game.time);
                     vm.lastFiveGames.push(game);
                 }
             }
 
             for(game of vm.allGameInfo){
-                if(game.datediff > 0){
+                if(game.status == 'PENDING'){
                     min = game.datediff;
                     vm.upcomingGame = game;
                     break;
@@ -171,10 +170,23 @@
             }
 
             if (vm.lastFiveGames.length) {
-                vm.lastOpponent = vm.lastFiveGames[0].team_name;
+                vm.lastOpponent = {
+                    name: vm.lastFiveGames[0].team_name,
+                    id: vm.lastFiveGames[0].team_id
+                }
             } else {
-                vm.lastOpponent = 'None';
+                vm.lastOpponent = {
+                    name: 'None',
+                    id: ''
+                }
             }
+
+            vm.upcomingGame.time = new Date(vm.upcomingGame.time);
+
+            console.log(vm.upcomingGame);
+
+            console.log(vm.isLoggedIn + " " + vm.isSoon + " " + vm.isAdminOfTeam);
+            console.log(vm.isMember + " " + vm.isMemberOfAnother);
             
         }
 

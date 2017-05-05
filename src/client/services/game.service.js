@@ -110,7 +110,43 @@
                         console.log('Error in re-opening game');
                         console.log(error.status + ': ' + error.statusText);
                     });
-            }
+            },
+
+
+            setDrawRecord: function(id) {
+                return $http.put(api + 'records/' + id + '/draw')
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(error) {
+                        console.log('Error in setting draw');
+                        console.log(error.status + ': ' + error.statusText);
+                    });
+            },
+
+
+            setRecord: function(id, body) {
+                return $http.put(api + 'records/' + id, body)
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(error) {
+                        console.log('Error in setting win and lose');
+                        console.log(error.status + ': ' + error.statusText);
+                    });
+            },
+
+            openRecord: function(id) {
+                return $http.put(api + 'records/' + id + '/open')
+                    .then(function(response) {
+                        return response.data;
+                    })
+                    .catch(function(error) {
+                        console.log('Error in re-opening game');
+                        console.log(error.status + ': ' + error.statusText);
+                    });
+            },
+
         };
 
         return service;

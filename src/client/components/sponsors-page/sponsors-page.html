@@ -1,4 +1,16 @@
-<div class="row">
+<!-- <pagination
+    page="1"
+    page-size="10"
+    total="200"
+    show-prev-next="true"
+    use-simple-prev-next="false"
+    dots="...."
+    hide-if-empty="false"
+    adjacent="2"
+    scroll-top="false"
+    pagination-action="$ctrl.changePage(this)" /> -->
+
+    <div class="row">
 	<div class="col l12">
 		<div id="sponsors-card" class="col l3" ng-repeat="sponsor in $ctrl.sponsors">
 	      	<div class="card">
@@ -19,3 +31,13 @@
 	    </div>
 	</div> 
 </div>
+
+
+<!-- <div class="pagination_wrapper">
+  <ul class="pagination">
+    <li><i class="material-icons pointer">chevron_left</i></li>
+   		<li class="pointer" ng-class="{ 'active': page.num === $ctrl.activePage }" ng-repeat="page in $ctrl.pages" ng-click="$ctrl.setActivePage(page.num)">{{ page.num }}</li>
+    <li><i class="material-icons pointer">chevron_right</i></li>
+  </ul>
+</div>
+ -->

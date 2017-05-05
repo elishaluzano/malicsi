@@ -197,6 +197,12 @@ update teamPlaysGame set record = "DRAW" where game_id_play = id;
 END;
 //
 
+create procedure openRecord(in id int)
+BEGIN
+update teamPlaysGame set record = NULL where game_id_play = id;
+END;
+//
+
 create trigger deleteGameAfterDeleteTeam
     before delete on team
     for each row
