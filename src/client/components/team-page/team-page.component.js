@@ -156,7 +156,7 @@
             }
 
             for(game of vm.allGameInfo){
-                if(game.datediff < 0){
+                if(game.status == 'FINISHED'){
                     vm.pastGames.push(game);
                     vm.pastGameCount ++;
                 }

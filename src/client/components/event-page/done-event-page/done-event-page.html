@@ -7,7 +7,9 @@
 </div>
 
 <div class="container">
+  	
 	<h5 class="center">{{$ctrl.event.event_title}}</h5>
+	<div class="center"><div class="center card-title chip white-text black" id="event-top-chip">Done</div></div>
 	<ul class="collapsible" data-collapsible="accordion">
 	    <li ng-repeat="sport in $ctrl.allSports">
 			<div class="collapsible-header"><i class="material-icons"><i class="material-icons">toll</i></i>{{ sport.sport }}</div>
