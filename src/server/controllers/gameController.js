@@ -118,3 +118,28 @@ exports.openGame = (req, res) => {
 		}
 	});
 };
+
+//sets the record in teamPlaysGame
+exports.setRecord = (req, res) => {
+    
+    connection.query('call setRecord(?,?,?)',[req.params.game_id, req.body.team1_id, req.body.team2_id], function(err, rows, fields) {
+        if(!err) {
+            res.send(true);
+        }
+        else {
+            console.log(err);
+        }
+    });
+};
+
+exports.setDrawRecord = (req, res) => {
+    
+    connection.query('call setDrawRecord(?)',[req.params.game_id], function(err, rows, fields) {
+        if(!err) {
+            res.send(true);
+        }
+        else {
+            console.log(err);
+        }
+    });
+};
