@@ -1,0 +1,59 @@
+<div class="container row">
+    <h3>Search Profiles</h3>
+
+    <div class="col s4" id = "filters">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Filters</span>
+                <form action="#">
+                    <!--
+                    <p>
+                        <select ng-model="$ctrl.eventSelected" id="dropdown" class="left black-text browser-default" ng-change="$ctrl.filter()">
+                            <option value="all">All Events</option>
+                            <option ng-repeat="each in $ctrl.allEvents" value="{{ each.event_id }}" event="each">
+                                {{ each.event_title }}
+                            </option>
+                        </select>
+                    </p>
+
+                    <br><br><br>
+                    -->
+                    <p>
+                        <select ng-model="$ctrl.teamSelected" id="dropdown" class="left black-text browser-default" ng-change="$ctrl.filter()">
+                            <option value="all">All Teams</option>
+                            <option ng-repeat="each in $ctrl.allTeams" value="{{ each.team_id }}" team="each">
+                                {{ each.name }}
+                            </option>
+                        </select>
+                    </p>
+                    <br><br><br>
+                    <strong>Gender</strong>
+                    <br><br>
+                    <p>
+                        <input type="checkbox" id="profile-gender-male" ng-model="$ctrl.genderStatus.male" ng-change="$ctrl.filter()"/>
+                        <label for="profile-gender-male">Male</label>
+                    </p>
+                    <br>
+                    <p>
+                        <input type="checkbox" id="profile-gender-female" ng-model="$ctrl.genderStatus.female" ng-change="$ctrl.filter()"/>
+                        <label for="profile-gender-female">Female</label> 
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col s8" id = "results">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Results</span>
+                <ul class="collection">
+                    <!-- One profile -->
+                    <search-profile-card ng-repeat="each in $ctrl.tempUsers" user="each">
+                    </search-profile-card>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
