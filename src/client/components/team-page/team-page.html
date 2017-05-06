@@ -1,0 +1,174 @@
+<div class="row">
+    <div class="col l2 collection hide-on-small-only" id="side-nav-teams">
+        <div id="side-nav-teams-search">
+        <input placeholder="Search"
+            ng-model="$ctrl.searchInput"
+            ng-change="$ctrl.searchEnter()">
+        </div>
+        <a ng-repeat="team in $ctrl.allTeams" ui-sref-active="red white-text" ui-sref="teamPage({ teamId: team.team_id })" class="collection-item">{{team.name}}</a>
+    </div>
+
+
+    <div class="col l10 s12 m9" id="right-team-page">
+	    <div class="col l3">
+	        <img ng-src="{{ $ctrl.currentTeam.picture }}" width="256px" height="256px">
+	    </div>
+
+	    <div class="col l9">
+	        <b id="team-name">{{$ctrl.currentTeam.name}}</b>
+	        <div class="divider"></div>
+	        <div class="col l4" id="team-stats">
+	            <ul>
+	                <li>Games Played:</li>
+	                <li>Record:</li>
+	                <li>Win rate:</li>
+	                <li>Last Opponent:</li>
+	            </ul>
+	            <button ng-if="$ctrl.isAdminOfTeam" class="red btn" data-target="edit-modal" modal>Edit Team</button> <!-- hide if not admin-->
+	            <button  ng-if="$ctrl.isLoggedIn && $ctrl.isSoon && !$ctrl.isAdminOfTeam" ng-disabled="$ctrl.isMember || $ctrl.isMemberOfAnother" class="red btn" data-target="join-modal">Join</button>
+	        </div>
+	        <div class="col l3" style="font-size: 17px;">
+	            <ul>
+	                <li>{{$ctrl.pastGameCount}}</li>
+	                <li>{{$ctrl.win}} - {{$ctrl.lose}}</li>
+	                <li>{{$ctrl.percentage}}%</li>
+	                <li>{{$ctrl.lastOpponent}}</li>
+	            </ul>
+	            <button  ng-if="$ctrl.isAdminOfTeam" class="red btn" data-target="delete-modal">Delete Team</button> <!-- hide if not admin-->
+	            <button  ng-if="$ctrl.isLoggedIn && $ctrl.isSoon && !$ctrl.isAdminOfTeam" ng-click="$ctrl.print($ctrl.isMember)" ng-disabled="!$ctrl.isMember && $ctrl.isMemberOfAnother" class="red btn" data-target="leave-modal">Leave</button>
+	        </div>
+
+	        <div id="delete-modal" class="modal">
+	            <div class="modal-content">
+	                <h4>Delete Team</h4>
+	                <p>Are you sure you want to delete {{$ctrl.currentTeam.name}}?</p>
+	            </div>
+	            <div class="center">
+	                <a ng-click="$ctrl.deleteTeam()" class="center add-margin-bottom modal-action modal-close waves-effect waves-green white-text green btn">Okay</a>
+	                <a class="center add-margin-bottom modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+	            </div>
+	        </div>
+
+			<div id="join-modal" class="modal">
+	            <div class="modal-content">
+	                <h4>Join Team</h4>
+	                <p>Are you sure you want to join {{$ctrl.currentTeam.name}}?</p>
+	            </div>
+	            <div class="center">
+	                <a ng-click="$ctrl.joinTeam()" class="center modal-action modal-close waves-effect waves-green white-text green btn">Okay</a>
+	                <a class="center modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+	            </div>
+	        </div>
+
+
+
+			<div id="leave-modal" class="modal">
+	            <div class="modal-content">
+	                <h4>Leave Team</h4>
+	                <p>Are you sure you want to leave {{$ctrl.currentTeam.name}}?</p>
+	            </div>
+	            <div class="center ">
+	                <a ng-click="$ctrl.leaveTeam()" class="center modal-action modal-close waves-effect waves-green green white-text btn">Okay</a>
+	                <a class="center modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+	            </div>
+	        </div>
+
+	        <div class="col l5">      
+	            <div class="col l12">
+	                <div class="card" ng-if="$ctrl.showUpcoming">
+	                    <div class="card-content row" style="margin-bottom: 0px; padding-bottom: 5px">
+	                        <div id="upcoming-game">Upcoming Game</div>
+	                        <div class="divider"></div>
+	                        <div class="col l12" id="upcoming-game-inner-div">
+	                            <div class="col l7" id="upcoming-game-inner-inner-div">
+	                                <div class="center-align"><p id="vs">vs</p></div>
+	                                <div class="center-align"><a href="#">{{$ctrl.upcomingGame.team_name}}</a></div>
+	                            </div>
+	                            <div class="col l5" id="opponent-logo"><img ng-src="{{$ctrl.upcomingGame.picture}}" height="100px" width="100px"></div>
+	                        </div>
+	                         
+	                    </div>
+	                    <div class="card-action" id="upcoming-game-details">
+	                        <div><text>{{$ctrl.upcomingGame.sport}}</text></div>
+	                        <div><text>{{$ctrl.upcomingGame.venue}}</text></div>
+	                        <div><text>{{$ctrl.upcomingGame.time | date: "MM-dd-yyyy hh:mm a"}}</text></div>
+	                    </div>
+	                </div>
+	                <div class="card" ng-if="!$ctrl.showUpcoming">
+	                    <div class="card-content row" style="margin-bottom: 10px; padding-bottom: 5px">
+	                        <h6 class="center-align">No upcoming game</h6>
+	                    </div>
+	                </div>
+	            </div>
+	        </div> 
+	    </div>
+	    
+	    <div class="collection col l12" id="last-five-games-div">
+	        <div class="collection-header"><b id="last-five-games-header">Last 5 Games</b></div>
+	        <table class="bordered responsive-table" id="last-five-games-table">
+	            <tr>
+	                <th>Date</th>
+	                <th>Event</th>
+	                <th>Game</th>
+	                <th>Opponent</th>
+	                <th>Result</th>
+	            </tr>
+	            <tr ng-repeat="game in $ctrl.lastFiveGames">
+	                <td>{{game.time | date: "MM-dd-yyyy hh:mm a"}}</td>
+	                <td><a ui-sref="eventPage({ eventId: game.event_id })">{{game.event_title}}</a></td>
+	                <td><a>{{game.sport}}</a></td>
+	                <td><a ui-sref="teamPage({ teamId: game.team_id })">{{game.team_name}}</a></td>
+	                <td>{{game.team1_score}}-{{game.team2_score}}</td>
+	            </tr>
+	        </table>
+	    </div>
+
+	    <div class="collection col l12 row">
+	        <div class="collection-header col l12"><b id="players-header">Players</b></div>
+	        <div class="col l2 s12 m6" ng-repeat="player in $ctrl.players">
+	            <div class=" card">
+	                <div class="card-image">
+	                    <img ng-src="{{ player.profile_pic }}" alt="profile pic">
+	                </div>
+	                <div class="card-content" id="player-card">
+	                    <a ui-sref="userPage({ userId: player.user_id })" class="center-align">{{player.name}}</a>
+	                </div>
+	            </div>
+	        </div>
+
+	    </div>
+	</div>
+
+
+	<div id="edit-modal" class="modal">
+	    <div class="center modal-content">
+	      <h4>Edit Team</h4>
+	        <div class="row">
+	            <div class="input-field col l8 offset-l2">
+	                <i class="material-icons prefix">mode_edit</i>
+	                <input ng-model="$ctrl.sampleName" id="team-name-new" type="text">
+	                <label class="active" for="team-name-new">Team name</label>
+
+
+	                <div class="file-field input-field">
+                        <div class="btn red">
+                            <span>File</span>
+                            <input type="file" file-input="$ctrl.files">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+
+	            </div>
+	        </div>
+
+	          
+	    </div>
+	    <div class="center">
+	      <a ng-click="$ctrl.editTeam()" class="center add-margin-bottom modal-action modal-close waves-effect waves-green white-text green btn">Save</a>
+	      <a class="center add-margin-bottom modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+	    </div>
+	</div>
+
+</div>

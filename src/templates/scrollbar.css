@@ -1,0 +1,8 @@
+
+::-webkit-scrollbar {
+    width: 5px;  /* remove scrollbar space */
+    background: 1;  /* optional: just make scrollbar invisible */
+}
+::-webkit-scrollbar-thumb {
+    background: #fc9948;
+}
