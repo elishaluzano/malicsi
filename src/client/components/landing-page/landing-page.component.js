@@ -125,7 +125,7 @@
             $('.carousel.carousel-slider').carousel({fullWidth: true});
             autoplay();   
             function autoplay() {
-                setTimeout(autoplay, 6000);
+                setTimeout(autoplay, 12000);
                 $('.carousel.carousel-slider').carousel('next');
                 
             }        
