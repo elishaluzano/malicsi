@@ -78,7 +78,7 @@ CREATE TABLE game (
     time datetime NOT NULL,
     min_num_of_players int NOT NULL,
     max_num_of_players int NOT NULL,
-    status ENUM('PENDING','FINISHED','ONGOING') NOT NULL,
+    status ENUM('PENDING','FINISHED','ONGOING'),
     venue int,
     event_id int NOT NULL,
     sport_id int NOT NULL,
@@ -222,46 +222,19 @@ BEGIN
     end if;
 END
 //
-delimiter ;
 
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Ryan Magorian','Father','09987898765');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Cath Kaufer','Mother', '09192969040');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Sheerrie Linton','Sister', '09296004019');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Ben West','Brother', '09124365874');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Dan Gofe','Uncle','09700973926');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Joy Aran','Aunt', '09739700926');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Angel Adriatico','Grandmother','09097073926');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Anton Aleta','Grandfather','09680402919');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Avril Morgan','Mother','09040682919');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Ana Moran','Mother','09564738219');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Thelma Saludo', 'Mother', '09361524567');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Mar Platon', 'Father', '09879623142');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Sam Mangilin', 'Father', '09456278569');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Annie Sorilla', 'Mother', '09126573487');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Francis Gonzales', 'Mother', '09126573487');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Karl Abuda', 'Brother', '09126573424');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Joven Binamera', 'Father', '09126573425');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Mark Diokno', 'Father', '09126573426');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Jim Gonzales', 'Brother', '09126573427');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Delvin Hernandez', 'Brother', '09126573428');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Neil Manzanilla', 'Father', '09126573429');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Arnold Natanauan', 'Father', '09126573430');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Christian Seda', 'Father', '09126573431');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Noah Laurel', 'Brother', '09126573432');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Kae Alo', 'Sister', '09126573434');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Gezelle Angeles', 'Sister', '09126573435');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Jeremie Bilog', 'Mother', '09126573436');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Allana Buno', 'Mother', '09126573437');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Jenneth Castillo', 'Sister', '09126573438');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Ronalyn Collado', 'Sister', '09126573439');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Rachell Cordero', 'Mother', '09126573440');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Racquel Cordero', 'Mother', '09126573441');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Herlyn Dela Rosa', 'Sister', '09126573442');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Lara Escol', 'Mother', '09126573443');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Jenalyn Escalante', 'Sister', '09126573444');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Danna Quilloy', 'Mother', '09126573445');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Gracielle Trinidad', 'Sister', '09126573446');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Cherry Jimena', 'Mother', '09126573447');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Rochelle Opulencia', 'Sister', '09126573448');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Marlou Herrero', 'Brother', '09126573449');
-insert into contactPersonInCaseOfEmergency values (contact_person_id,'Angelica Ramirez', 'Sister', '09126573450');
+create trigger setGameStatus
+    before insert on game
+    for each row
+BEGIN
+    if (new.time = curdate()) then
+        set new.status = "ONGOING";
+    end if;
+    if (new.time < curdate()) then
+        set new.status = "FINISHED";
+    else
+        set new.status = "PENDING";
+    end if;
+END
+//
+delimiter ;
