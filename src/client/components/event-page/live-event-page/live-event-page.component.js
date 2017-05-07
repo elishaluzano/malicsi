@@ -534,19 +534,22 @@
                 .then(function(instititution){
                     vm.event.institution = instititution.name;
                 });
-
-            vm.user = sessionService.user();
-            if (vm.user && vm.user.isOverallAdmin) {
-                vm.isAdmin = true;
-            }
-            else if (vm.user) {
-                adminService.checkAdminOfEvent(vm.user.user_id, vm.event.event_id)
-                    .then(function(isAdmin) {
-                        if (isAdmin) {
+            
+            sessionService.session()
+                .then(function(user) {
+                    if (user) {
+                        vm.user = user;
+                        if (vm.user.isOverallAdmin) {
                             vm.isAdmin = true;
-                        }
-                    });
-            }
+                        } else {
+                            adminService.checkAdminOfEvent(vm.user.user_id,
+                                vm.event.event_id)
+                                .then(function(isAdmin) {
+                                    vm.isAdmin = true;
+                                });
+                        }    
+                    }
+                });
 
             institutionService.getAll()
                 .then(function(institutions) {
