@@ -88,10 +88,16 @@
             }
 
             for (let event of vm.events) {
-                let toDate = new Date().getTime();
-                let startDate = new Date(event.start_date).getTime();
-                let endDate = new Date(event.end_date).getTime();
-
+                let toDate = new Date();
+                toDate.setHours(0, 0, 0, 0);
+                toDate = toDate.getTime();
+                let startDate = new Date(event.start_date);
+                startDate.setHours(0, 0, 0, 0);
+                startDate = startDate.getTime();
+                let endDate = new Date(event.end_date);
+                endDate.setHours(0, 0, 0, 0);
+                endDate = endDate.getTime();
+                
                 if (toDate >= startDate && toDate <= endDate) {                    
                     eventService.getTeams(event.event_id)
                         .then(function(teams) {
