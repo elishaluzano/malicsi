@@ -31,8 +31,6 @@
                  $('select').material_select();
 
                 /* check the current user if admin */
-                vm.user = sessionService.user();
-                
                 venueService.getAll()
                     .then(function(v) {
                         console.log(v); 
@@ -44,29 +42,32 @@
                         console.log(err);
                     })
 
-               
-                    if(vm.user){
-                        adminService.getInstitutionsByAdmin(vm.user.user_id)
-                            .then(function (institutions) {
-                                if (institutions.length) {
-                                    for(let inst of institutions){
-                                        vm.institutions.push(inst);
+                sessionService.session()
+                    .then(function(user) {
+                        vm.user = user;
+                        if(vm.user){
+                            adminService.getInstitutionsByAdmin(vm.user.user_id)
+                                .then(function (institutions) {
+                                    if (institutions.length) {
+                                        for(let inst of institutions){
+                                            vm.institutions.push(inst);
+                                        }
+                                        vm.isAdmin = true;
                                     }
-                                    vm.isAdmin = true;
-                                }
-                            });
-                        if(vm.user.isOverallAdmin) {
-                            institutionService.getAll()
-                                .then(function(data) {
-                                    for(let each of data) {
-                                        vm.institutions.push(each);
-                                    }
-                                    console.log(vm.institutions);
-                                    vm.isAdmin = true;
-                                })
-                        
-                     }
-            }
+                                });
+                            if(vm.user.isOverallAdmin) {
+                                institutionService.getAll()
+                                    .then(function(data) {
+                                        for(let each of data) {
+                                            vm.institutions.push(each);
+                                        }
+                                        console.log(vm.institutions);
+                                        vm.isAdmin = true;
+                                    })
+                            
+                            }
+                        }
+                    });
             }
 
             vm.addEvent = function() {

@@ -42,28 +42,28 @@
             $('ul.tabs').tabs();
             console.log(vm.scores);
 
-
-            vm.currentUser = sessionService.user();
-
+            sessionService.session()
+                .then(function(user) {
+                    if (user) {
+                        vm.currentUser = user;
+                        vm.isOverallAdmin = vm.currentUser.isOverallAdmin;
+                        adminService.checkAdminOfGame(vm.currentUser.user_id, vm.game.game_id)
+                        .then(function(game){
+                            if(game){
+                                vm.isAdmin = true;
+                            }
+                        })
+                        .catch(function(e){
+                            console.log(e);
+                        })
+                    }
+                });
             
 
             for(let event of vm.events){
                 if(event.event_id == vm.game.event_id){
                     vm.institutionId = event.institution_id_key;
                 }
-            }
-
-            if(vm.currentUser){
-                vm.isOverallAdmin = vm.currentUser.isOverallAdmin;
-                adminService.checkAdminOfGame(vm.currentUser.user_id, vm.game.game_id)
-                    .then(function(game){
-                        if(game){
-                            vm.isAdmin = true;
-                        }
-                    })
-                    .catch(function(e){
-                        console.log(e);
-                    })
             }
 
             var it=0;

@@ -32,21 +32,23 @@
 				});
 
 
-			var user = sessionService.user();
-            if (user) {
-                adminService.checkAdminOfInstitution(user.user_id, vm.institution.institution_id)
-                    .then(function(institution) {
-                        if(institution){
-                            vm.admin = true;
-                            console.log(institution);
-                        }
-                    })
-                    .catch(function(e){
-                        console.log(e);
-                    })
-            }
-
-		}
+            sessionService.session()
+                .then(function(user) {
+                    if (user) {
+                        adminService.checkAdminOfInstitution(user.user_id, vm.institution.institution_id)
+                            .then(function(institution) {
+                                if(institution){
+                                    vm.admin = true;
+                                    console.log(institution);
+                                }
+                            })
+                            .catch(function(e){
+                                console.log(e);
+                            })
+                    }
+                });
+        }
+        
 
 		vm.deleteAdminPrivileges = function() {
 			adminService.deleteAsAdmin(vm.institution.institution_id, vm.admin.user_id)
@@ -72,5 +74,6 @@
 					Materialize.toast('Error in deleting as admin', 2000, 'red');
 				});
 		}
-	}
+    }
+	
 })();
