@@ -39,6 +39,19 @@
                             }
                         });
                 });
+
+            setTimeout(function() {
+                sessionService.session()
+                    .then(function(user) {
+                        vm.user = user;
+                        adminService.checkAdmin(vm.user.user_id)
+                            .then(function(admin) {
+                                if (admin) {
+                                    vm.isAdmin = true;
+                                }
+                            });
+                    });
+            }, 1000);
         }
 
         vm.focusLogin = function() {

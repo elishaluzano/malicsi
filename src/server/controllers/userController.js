@@ -122,6 +122,9 @@ exports.updateUser = (req, res) => {
 	connection.query('UPDATE user SET name = ?, username = ?, password = ?, gender = ?, birthday = ?, email = ?, contact_number = ?, profile_pic = ?, isOverallAdmin = ? where user_id = ?',[req.body.name, req.body.username, crypt.encrypt(req.body.password), req.body.gender, req.body.birthday, req.body.email, req.body.contact_number, newUser.profile_pic, req.body.isOverallAdmin, req.params.id], function(err, rows, fields) {
 		if (!err) {
 			console.log("Successfully edited user");
+            if (req.params.id == req.session.user) {
+                req.session.user = newUser;
+            }
 			newUser.password = crypt.decrypt(newUser.password);
 			res.send(newUser);
 		}
