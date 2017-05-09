@@ -202,6 +202,8 @@
             let status = 'PENDING';
             let nowTime = new Date().getTime();
             let gameTime = new Date(time).getTime();
+            console.log(nowTime);
+            console.log(gameTime);
             if (gameTime <= nowTime) {
                 status = 'ONGOING';
             }
