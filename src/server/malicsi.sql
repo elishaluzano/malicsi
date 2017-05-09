@@ -227,11 +227,8 @@ create trigger setGameStatus
     before insert on game
     for each row
 BEGIN
-    if (new.time = curdate()) then
+    if (new.time <= now()) then
         set new.status = "ONGOING";
-    end if;
-    if (new.time < curdate()) then
-        set new.status = "FINISHED";
     else
         set new.status = "PENDING";
     end if;
