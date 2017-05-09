@@ -545,7 +545,9 @@
                             adminService.checkAdminOfEvent(vm.user.user_id,
                                 vm.event.event_id)
                                 .then(function(isAdmin) {
-                                    vm.isAdmin = true;
+                                    if (isAdmin) {
+                                        vm.isAdmin = true;
+                                    }
                                 });
                         }    
                     }
