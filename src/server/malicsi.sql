@@ -15,7 +15,7 @@ CREATE TABLE user (
     password varchar(72) NOT NULL,
     gender ENUM('female', 'male') NOT NULL,
     birthday date NOT NULL,
-    email varchar(30),
+    email varchar(50),
     contact_number varchar(11),
     contact_person int default NULL,
     profile_pic text,
