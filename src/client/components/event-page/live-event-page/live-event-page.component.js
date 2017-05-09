@@ -621,6 +621,7 @@
                                                 return false;
                                             }
                                         }).map(function(game) {
+                                            console.log(game.status);
                                             switch (game.status) {
                                                 case 'PENDING':
                                                     game.status = { color: 'red', text: 'UPCOMING' };
