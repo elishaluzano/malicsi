@@ -65,26 +65,6 @@
                         }
                     }
 
-
-            vm.currentUser = sessionService.user();
-
-            userService.getOne(vm.currentUser.user_id)
-                .then(function(user){
-                    vm.currentUser = user;
-                })
-                .catch(function(err){
-                    console.log(err);
-                });
-
-
-            for(let team of vm.allTeams){
-                if(team.event_id_key == vm.currentTeam.event_id_key && team.team_id != vm.currentTeam.team_id){
-                    teamService.getIsUserOfTeam(team.team_id, vm.currentUser.user_id)
-                        .then(function(data){
-                            if(data){
-                                console.log(data);
-                                vm.isMemberOfAnother = true;
-
                     eventService.getOne(vm.currentTeam.event_id_key)
                         .then(function(data) {
                             if(data) {
@@ -120,7 +100,6 @@
                                     console.log(startDate + " " + endDate + " " + curdate);
                                     vm.isSoon = true;
                                 }
-                                
                             }
                             else{
                                 console.log("wew");
