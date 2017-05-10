@@ -5,6 +5,7 @@ const session = require('express-session');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const path = require('path');
+const connection = require(__dirname + '/database.js');
 
 const app = express();
 
@@ -37,6 +38,12 @@ app.get('*', function(req, res) {
     console.log(req.url);
 	res.sendFile(path.resolve('404.html'));
 });
+
+setInterval(function(){ 
+    connection.query('UPDATE game SET status = "ONGOING" WHERE status = "PENDING" AND time <= now()', function(err, rows) {
+        console.log(rows);
+    }); 
+}, (1000 * 60 * 5));
 
 //listening on port 8000
 var port = process.env.PORT || 8000;
