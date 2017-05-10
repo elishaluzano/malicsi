@@ -18,12 +18,14 @@
                     }      
                 },     
                 onEnter: function(name, params, $state, sessionService) {      
-                    let user = sessionService.user();      
-                    if (!user || !user.isOverallAdmin) {       
-                        Materialize.toast('Unauthorized access!', 2000, 'red');        
-                        name = (!name || name === 'adminPage')? 'landingPage' : name;      
-                        $state.go(name, params);       
-                    }      
+                    sessionService.session()
+                        .then(function(user) {
+                            if (!user || !user.isOverallAdmin) {       
+                                Materialize.toast('Unauthorized access!', 2000, 'red');        
+                                name = (!name || name === 'adminPage')? 'landingPage' : name;      
+                                $state.go(name, params);       
+                            }      
+                        })   
                 }      
             })     
             .state({

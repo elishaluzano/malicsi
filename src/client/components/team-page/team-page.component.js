@@ -49,6 +49,22 @@
             setTimeout(function(){ $('.modal').modal(); }, 1);
             vm.sampleName = vm.currentTeam.name;
             var min;
+            
+            sessionService.session()
+                .then(function(user) {
+                    vm.currentUser = user;
+                    for(let team of vm.allTeams){
+                        if(team.event_id_key == vm.currentTeam.event_id_key && team.team_id != vm.currentTeam.team_id){
+                            teamService.getIsUserOfTeam(team.team_id, vm.currentUser.user_id)
+                                .then(function(data){
+                                    if(data){
+                                        console.log(data);
+                                        vm.isMemberOfAnother = true;
+                                    }
+                                })
+                        }
+                    }
+
 
             vm.currentUser = sessionService.user();
 
@@ -68,65 +84,60 @@
                             if(data){
                                 console.log(data);
                                 vm.isMemberOfAnother = true;
+
+                    eventService.getOne(vm.currentTeam.event_id_key)
+                        .then(function(data) {
+                            if(data) {
+                                vm.event = data;
+                                if (vm.currentUser && vm.currentUser.isOverallAdmin) {
+                                    vm.isAdminOfTeam = true;
+                                }
+                                else if(vm.currentUser){
+                                    adminService.checkAdminOfTeam(vm.currentUser.user_id, vm.currentTeam.team_id)
+                                        .then(function(data){
+                                            if(data) vm.isAdminOfTeam = true;
+                                            else{
+                                                vm.isAdminOfTeam = false;
+                                            }
+                                        }).catch(function(err){
+                                            console.log(err);
+                                        })
+                                }
+                                else{
+                                    vm.isAdminOfTeam = false;
+                                }
+
+                                if((vm.currentUser != undefined && vm.currentUser != '') && !vm.isAdminOfTeam){
+                                    vm.isLoggedIn = true;
+                                }
+
+                                var startDate = new Date(vm.event.start_date).getTime();
+                                var endDate = new Date(vm.event.end_date).getTime();
+                                var curdate = (new Date).getTime();
+
+
+                                if(startDate >= curdate || endDate >= curdate){
+                                    console.log(startDate + " " + endDate + " " + curdate);
+                                    vm.isSoon = true;
+                                }
+                                
                             }
-                        })
-                }
-            }
+                            else{
+                                console.log("wew");
+                            }
+                        });
 
-
-            eventService.getOne(vm.currentTeam.event_id_key)
-                .then(function(data) {
-                    if(data) {
-                        vm.event = data;
-                        if (vm.currentUser && vm.currentUser.isOverallAdmin) {
-                            vm.isAdminOfTeam = true;
-                        }
-                        else if(vm.currentUser){
-                            adminService.checkAdminOfTeam(vm.currentUser.user_id, vm.currentTeam.team_id)
+                        if (vm.currentUser) {
+                            teamService.getIsUserOfTeam(vm.currentTeam.team_id, vm.currentUser.user_id)
                                 .then(function(data){
-                                    if(data) vm.isAdminOfTeam = true;
-                                    else{
-                                        vm.isAdminOfTeam = false;
+                                    if(data.length != 0){
+                                        vm.isMember = true;
                                     }
-                                }).catch(function(err){
-                                    console.log(err);
                                 })
                         }
-                        else{
-                            vm.isAdminOfTeam = false;
-                        }
-
-                        if((vm.currentUser != undefined && vm.currentUser != '') && !vm.isAdminOfTeam){
-                            vm.isLoggedIn = true;
-                        }
-
-                        var startDate = new Date(vm.event.start_date).getTime();
-                        var endDate = new Date(vm.event.end_date).getTime();
-                        var curdate = (new Date).getTime();
 
 
-                        if(startDate >= curdate || endDate >= curdate){
-                            console.log(startDate + " " + endDate + " " + curdate);
-                            vm.isSoon = true;
-                        }
-                    }
-                    else{
-                        console.log("wew");
-                    }
                 });
-
-            if(vm.currentUser){
-                teamService.getIsUserOfTeam(vm.currentTeam.team_id, vm.currentUser.user_id)
-                    .then(function(data){
-                        if(data.length != 0){
-                            vm.isMember = true;
-                        }
-                    })
-            }
-
-            console.log(vm.isMember);
-            console.log(vm.isMemberOfAnother);
-
 
             for(let record of vm.teamPlaysGame){
                 if(record.record === "WIN"){

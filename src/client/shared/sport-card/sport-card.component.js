@@ -12,12 +12,17 @@
 
     function sportCardController(gameService) {
         var vm = this;
+        vm.gameNow = false;
         vm.sports = [];
         vm.sportsAndGames = [];
 
         vm.$onInit = function(){
-
+            console.log(vm.information);
             for(let game of vm.information.games){
+                console.log(game);
+                if (game.now) {
+                    vm.gameNow = true
+                }; 
                 game.time = new Date(game.time);    
                 gameService.getTeamsInGame(game.game_id)
                     .then(function(data){

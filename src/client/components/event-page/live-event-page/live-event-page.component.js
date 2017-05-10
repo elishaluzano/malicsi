@@ -207,6 +207,8 @@
             let status = 'PENDING';
             let nowTime = new Date().getTime();
             let gameTime = new Date(time).getTime();
+            console.log(nowTime);
+            console.log(gameTime);
             if (gameTime <= nowTime) {
                 status = 'ONGOING';
             }
@@ -555,19 +557,24 @@
                 .then(function(instititution){
                     vm.event.institution = instititution.name;
                 });
-
-            vm.user = sessionService.user();
-            if (vm.user && vm.user.isOverallAdmin) {
-                vm.isAdmin = true;
-            }
-            else if (vm.user) {
-                adminService.checkAdminOfEvent(vm.user.user_id, vm.event.event_id)
-                    .then(function(isAdmin) {
-                        if (isAdmin) {
+            
+            sessionService.session()
+                .then(function(user) {
+                    if (user) {
+                        vm.user = user;
+                        if (vm.user.isOverallAdmin) {
                             vm.isAdmin = true;
-                        }
-                    });
-            }
+                        } else {
+                            adminService.checkAdminOfEvent(vm.user.user_id,
+                                vm.event.event_id)
+                                .then(function(isAdmin) {
+                                    if (isAdmin) {
+                                        vm.isAdmin = true;
+                                    }
+                                });
+                        }    
+                    }
+                });
 
             institutionService.getAll()
                 .then(function(institutions) {
@@ -635,6 +642,7 @@
                                                 return false;
                                             }
                                         }).map(function(game) {
+                                            console.log(game.status);
                                             switch (game.status) {
                                                 case 'PENDING':
                                                     game.status = { color: 'red', text: 'UPCOMING' };

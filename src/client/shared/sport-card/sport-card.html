@@ -7,10 +7,10 @@
         <li class="collection-header"><h5>&nbsp;&nbsp;
         &nbsp;{{$ctrl.information.name}}</h5></li>
         <li class="collection-item"> 
-        <h6 ng-hide="$ctrl.information.games.length">
+        <h6 ng-hide="$ctrl.gameNow">
             No scheduled games
         </h6>
-        <table class="highlight" ng-show="$ctrl.information.games.length">
+        <table class="highlight" ng-show="$ctrl.gameNow">
             <thead>
                 <tr>
                   <th data-field="id">Date</th>

@@ -103,7 +103,8 @@
                 id="teams"
                 class="tabcontent">
                 <div class="row">
-                    <table class="col l12">
+                    <h5 ng-if="!$ctrl.teams.length">Currently no teams :(</h5>
+                    <table class="col l12" ng-if="$ctrl.teams.length">
                     <tbody>
                         <tr ng-repeat="team in $ctrl.teams">
                             <td>

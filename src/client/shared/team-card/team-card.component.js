@@ -33,21 +33,20 @@
             var min;
             console.log(vm.currentTeam);
 
-            vm.currentUser = sessionService.user();
-            if(vm.currentUser){
-                adminService.checkAdminOfTeam(vm.currentUser.user_id, vm.currentTeam.team_id)
-                    .then(function(data){
-                        console.log(data);
-                        if(data) vm.isAdminOfTeam = true;
-                        else vm.isAdminOfTeam = false;
-                    }).catch(function(err){
-                        console.log(err);
-                    })
-            }
-            else{
-                vm.isAdminOfTeam = false;
-            }
-
+            sessionService.session()
+                .then(function(user) {
+                    if (user) {
+                        vm.currentUser = user;
+                        adminService.checkAdminOfTeam(vm.currentUser.user_id, vm.currentTeam.team_id)
+                            .then(function(data){
+                                console.log(data);
+                                if(data) vm.isAdminOfTeam = true;
+                                else vm.isAdminOfTeam = false;
+                            }).catch(function(err){
+                                console.log(err);
+                            })
+                    }
+                });
 
 
             for(game of vm.allGameInfo){

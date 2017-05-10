@@ -15,7 +15,7 @@
 		<div id="sponsors-card" class="col l3" ng-repeat="sponsor in $ctrl.sponsors">
 	      	<div class="card">
 	      		<div class="card-image">
-	              	<img ng-src="{{ sponsor.picture }}" alt="sponsor logo"
+	              	<img ng-src="{{ sponsor.picture? sponsor.picture : '/images/alt_institution.png' }}" alt="sponsor logo"
                         style="height: 63vh;">
 	            </div>
 			    <div id="sponsors-info" class="card-content">

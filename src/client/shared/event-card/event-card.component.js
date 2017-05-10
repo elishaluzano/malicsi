@@ -25,16 +25,6 @@
             institutionService.getOne(vm.event.institution_id_key)
                 .then(function(institution) {
                     vm.institution = institution;
-                    let user = sessionService.user();
-                    //if (user) {
-                        //hardcoded yung 3 (user.user_id)
-                        adminService.checkAdmin(3)
-                            .then(function(admin) {
-                                //if (admin) {
-                                    vm.isAdmin = true;
-                                //}
-                            });
-                    //}
                 });
 
             let toDate = Math.floor(new Date().getTime()/1000/60/60/24);

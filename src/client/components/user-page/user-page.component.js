@@ -24,12 +24,15 @@
             $('.modal').modal();
             vm.usercopy = angular.copy(vm.user);
             vm.user.birthday = new Date(vm.user.birthday);
-            if (sessionService.user() && vm.user.user_id === sessionService.user().user_id) {
-                vm.isSameUser = true;    
-            }
-            if (sessionService.user() && sessionService.user().isOverallAdmin) {
-                vm.isAdmin = true;
-            }
+            sessionService.session()
+                .then(function(user) {
+                    if (user && user.user_id === vm.user.user_id) {
+                        vm.isSameUser = true;
+                    }
+                    if (user && user.isOverallAdmin) {
+                        vm.isAdmin = true;
+                    }
+                });
             userAffiliationService.getAllById(vm.user.user_id)
                 .then(function(affiliations) {
                     vm.affiliations = affiliations;

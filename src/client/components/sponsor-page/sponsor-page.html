@@ -1,11 +1,14 @@
 <div class="container z-depth-1">
-    <div id="sponsor-big" style="background-image: url({{ $ctrl.institution.picture }})">
+    <div id="sponsor-big" 
+    style="background-image: url('/images/alt_institution.png'); height: 20vh"
+    ng-style="{{$ctrl.institution.picture.length}}
+    && {'background-image': 'url({{$ctrl.institution.picture}})'}">
         <!--Change the background-image url to the logo of the sponsor-->
-        <div class="center row">
+    </div>
+    <div class="center row">
             <h4>{{ $ctrl.institution.name }}</h4>
             <p>SPONSOR</p>
         </div>
-    </div>
 
     <!--Holds the sponsor's information-->
     <div class="center row" id="sponsor-info">
