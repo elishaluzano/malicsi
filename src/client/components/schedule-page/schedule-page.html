@@ -1,7 +1,7 @@
 <div class="row" style="margin-top: 20px">
         <div class="col s4"> <h5>Calendar of Games</h5>    
 <select ng-model="$ctrl.setmonth" id="dropdown" class="left black-text browser-default">
-    <option value="all">Month</option>
+    <option value="all" disabled>Month</option>
     <option 
     	ng-repeat="each in $ctrl.months" 
     	value="{{ each }}"
