@@ -21,6 +21,9 @@
                         teamService.getTeamStats(id.team_player_id)
                             .then(function(stats) {
                                 for(let stat of stats) {
+                                    if(stat.losses == 0 && stat.wins == 0) stat.percentage = 0;
+                                    else stat.percentage = stat.wins/(stat.wins + stat.losses)*100;
+                                    console.log(stat);
                                     vm.objects.push(stat);
                                 }
                             }).catch(function(err) {

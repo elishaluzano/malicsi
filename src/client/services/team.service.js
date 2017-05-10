@@ -212,7 +212,7 @@
             getTeamStats: function(id){
                 return $http.get(api + id + '/getTeamStats')
                     .then(function(response){
-                        console.log(response.data);
+                        console.log('here' + response.data);
                         return response.data
                     })
                     .catch(function(err) {

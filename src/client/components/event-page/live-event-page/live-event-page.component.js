@@ -680,6 +680,8 @@
                     console.log(vm.dates);
                 });
             });
+
+        
         }
 
         vm.filterList = function() {

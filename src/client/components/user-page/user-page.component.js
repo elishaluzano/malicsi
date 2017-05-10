@@ -72,7 +72,8 @@
                     return Materialize.toast('Your password should be at least 6 characters long', 3000, 'red');
                 }
 
-                if (!/^\w+@[a-zA-Z]+\.[a-zA-Z]+/.exec(vm.user.email)) {
+                if (/*!/^\w+@[a-zA-Z]+\.[a-zA-Z]+/.exec(vm.user.email)*/
+                    !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.exec(vm.user.email)) {
                     return Materialize.toast('Is that a real email address?', 3000, 'red');
                 }
 

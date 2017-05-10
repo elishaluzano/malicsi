@@ -13,7 +13,12 @@
       </div>
 
 
-      <div class="col s4 center"><h1 style="word-wrap: break-word;" class="white-text Cool-font">{{$ctrl.game.sport}}</h1></div>
+      <div class="col s4 center">
+        <h1 style="word-wrap: break-word;" class="white-text Cool-font">{{$ctrl.game.sport}}</h1>
+        <a ui-sref="eventPage({eventId: $ctrl.game.event_id})" style="word-wrap: break-word;" class="white-text">{{$ctrl.game.event}}</a>
+        <br>
+        <a ui-sref="sponsorPage({sponsorId: $ctrl.game.institution_id})" style="word-wrap: break-word;" class="white-text">{{$ctrl.game.institution}}</a>
+      </div>
 
 
       <div class="col s4 center hide-on-small-only">
@@ -51,7 +56,7 @@
 
         <a href="" modal data-target="delete-history" ng-click="$ctrl.getIdDel(score.team_id, score.game_id, score.gameUpdateLog_id, score.score)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "grey-text material-icons" style = "top:5px;position:relative;">delete</i></a>
 
-        <a href="" modal data-target="edit-history" ng-click="$ctrl.getId(score.gameUpdateLog_id, score.score, score.team_id)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "grey-text material-icons" style = "top:5px;position:relative;">edit</i></a>
+        <a href="" modal data-target="edit-history" ng-click="$ctrl.getId(score.gameUpdateLog_id, score.score, score.team_id, score.name)" ng-if="($ctrl.isAdmin || $ctrl.isOverallAdmin) && $ctrl.game.status == 'ONGOING'"><i class = "grey-text material-icons" style = "top:5px;position:relative;">edit</i></a>
 
         <p class = "center-align grey-text" style ="margin-top:0em;">{{score.time | date: "MM-dd-yyyy hh:mm a"}}</p></span>
         </div> 
@@ -115,14 +120,12 @@
         <div class = "row">
           <div class = "col s12 l12">
             <div input-field>
-              <select class="" ng-model="$ctrl.teamToBeEdited" material-select watch>
+              <select class="browser-default" ng-model="$ctrl.teamToBeEdited">
 
-                <option value="" disabled selected>Select Team</option>
+                <option ng-selected="$ctrl.teamEdit == team.name" ng-repeat="team in $ctrl.teamsInGame" ng-value="team.team_id">{{team.name}}</option>
 
-                <option ng-repeat="team in $ctrl.teamsInGame" ng-value="team.team_id">{{team.name}}</option>
               </select>
 
-              <label>Team Select</label>
             </div>
             <div class ="input-field">
               <input id = "icon_prefix" type = "number" placeholder="" ng-model="$ctrl.scoreUpdate" >

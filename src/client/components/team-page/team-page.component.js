@@ -18,7 +18,7 @@
             }
         });
 
-    function teamPageController(sessionService, adminService, eventService, teamService, searchService, $state, userLogService) {
+    function teamPageController(userService, sessionService, adminService, eventService, teamService, searchService, $state, userLogService) {
         var vm = this;
         vm.eventSponsored = 'all';
         vm.searchInput = '';
@@ -51,6 +51,15 @@
             var min;
 
             vm.currentUser = sessionService.user();
+
+            userService.getOne(vm.currentUser.user_id)
+                .then(function(user){
+                    vm.currentUser = user;
+                })
+                .catch(function(err){
+                    console.log(err);
+                });
+
 
             for(let team of vm.allTeams){
                 if(team.event_id_key == vm.currentTeam.event_id_key && team.team_id != vm.currentTeam.team_id){
@@ -272,8 +281,6 @@
 
                     vm.isMember = true;
 
-
-                    setTimeout(function(){ window.location.reload(), 1000});
                     vm.players.push(vm.currentUser);
                     var string = "Successfully joined team.";
                     var log = {
