@@ -50,6 +50,11 @@
 
         vm.isSoon = false;
 
+        vm.eventStatus = {
+            color: '',
+            text: ''
+        };
+
 
         vm.editEvent = function() {
             vm.editedEvent = angular.copy(vm.event);
@@ -532,6 +537,22 @@
 
             // }
 
+            let toDate = Math.floor(new Date().getTime()/1000/60/60/24);
+            let startDate = Math.floor(new Date(vm.event.start_date).getTime()/1000/60/60/24);
+            let endDate = Math.floor(new Date(vm.event.end_date).getTime()/1000/60/60/24);
+            if (toDate >= startDate && toDate <= endDate) {
+                vm.eventStatus.color = 'green';
+                vm.eventStatus.text = 'Live';
+            }
+            else if (toDate < startDate) {
+                vm.eventStatus.color = 'red';
+                vm.eventStatus.text = 'Soon';
+            }
+            else {
+                vm.eventStatus.color = 'black';
+                vm.eventStatus.text = 'Done';
+            }
+
             institutionService.getOne(vm.event.institution_id_key)
                 .then(function(instititution){
                     vm.event.institution = instititution.name;
@@ -667,6 +688,8 @@
                     console.log(vm.dates);
                 });
             });
+
+        
         }
 
         vm.filterList = function() {

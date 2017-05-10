@@ -2,6 +2,9 @@
     <div class="col m3 l3 hide-on-small-only">
         <div class="card">
             <div class="card-content">
+
+            <div class="right chip white-text" ng-class="$ctrl.eventStatus.color" id="event-top-chip"> {{ $ctrl.eventStatus.text }} </div>
+
                 <span class="card-title"> 
                     {{ $ctrl.event.event_title }}
                     <a class="pointer"
@@ -105,6 +108,7 @@
                     <tbody>
                         <tr ng-repeat="team in $ctrl.teams">
                             <td>
+
                                 <a ui-sref="teamPage({ teamId: team.team_id })"
                                     class="pointer">
                                         {{ team.name }}

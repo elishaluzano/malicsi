@@ -56,6 +56,7 @@
             for(let sport of vm.sports){
                 if(sport.games.length != 0){
                     vm.live.push(sport);
+                    console.log(sport);
                 }
             }
 
@@ -88,6 +89,7 @@
             }
 
             for (let event of vm.events) {
+
                 let toDate = new Date();
                 toDate.setHours(0, 0, 0, 0);
                 toDate = toDate.getTime();
