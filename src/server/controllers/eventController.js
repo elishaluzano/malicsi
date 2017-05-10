@@ -146,7 +146,7 @@ exports.viewGamesInEvent = (req, res) => {
 };
 
 exports.viewGamesInSportInEvent = (req, res) => {
-    connection.query('select * from game where sport_id=? and event_id=?'/*'SELECT * FROM game where sport_id = (select sport_id from eventHasSport where event_id = ? and sport_id = ?)'*/, [req.params.event_id, req.params.sport_id], function(err, rows, fields){
+    connection.query('select * from game where sport_id=? and event_id=?'/*'SELECT * FROM game where sport_id = (select sport_id from eventHasSport where event_id = ? and sport_id = ?)'*/, [req.params.sport_id, req.params.event_id], function(err, rows, fields){
         if (!err) {
             console.log("Success");
             res.send(rows);
