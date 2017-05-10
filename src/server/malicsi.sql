@@ -223,15 +223,15 @@ BEGIN
 END
 //
 
-create trigger setGameStatus
-    before insert on game
-    for each row
-BEGIN
-    if (new.time <= now()) then
-        set new.status = "ONGOING";
-    else
-        set new.status = "PENDING";
-    end if;
-END
-//
+-- create trigger setGameStatus
+--     before insert on game
+--     for each row
+-- BEGIN
+--     if (new.time <= now()) then
+--         set new.status = "ONGOING";
+--     else
+--         set new.status = "PENDING";
+--     end if;
+-- END
+-- //
 delimiter ;
