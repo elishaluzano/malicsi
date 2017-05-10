@@ -13,7 +13,7 @@
             }
         });
 
-    function liveGamePageController(gameService, sportService, gameLogService, sessionService, adminService, userLogService) {
+    function liveGamePageController(gameService, eventService, institutionService, sportService, gameLogService, sessionService, adminService, userLogService) {
         var vm = this;
         vm.idToBeChanged = '';
         vm.teamToBeUpdated = '';
@@ -30,6 +30,7 @@
         vm.gameDel = '';
         vm.time = '';
         vm.teamIdToBeChanged = '';
+        vm.teamEdit = '';
         var ids = [];
         var vals = {};
         
@@ -85,9 +86,19 @@
                     vm.game.sport = sport.name;
                 });
 
-            console.log(vm.teamsInGame);
+            eventService.getOne(vm.game.event_id)
+                .then(function(event){
+                    vm.game.event = event.event_title;
+
+                    institutionService.getOne(event.institution_id_key)
+                        .then(function(institution){
+                            vm.game.institution = institution.name;
+                            vm.game.institution_id = institution.institution_id;
+                        });
+                });
 
 
+                console.log(vm.teamsInGame);
         }
 
         vm.deleteLog = function(id){
@@ -149,10 +160,13 @@
             console.log(vm.scores);
         }
 
-        vm.getId = function(id, score, teamId){
+        vm.getId = function(id, score, teamId, teamName){
             vm.idToBeChanged = id;
             vm.scoreToBeChanged = score;
             vm.teamIdToBeChanged = teamId;
+            vm.scoreUpdate = score;
+            vm.teamToBeEdited = teamId;
+            vm.teamEdit = teamName;
         }
 
         vm.reset = function(){
@@ -165,6 +179,7 @@
         }
 
         vm.editLog = function(){
+            console.log(vm.teamToBeEdited);
             if( (vm.teamToBeEdited == null || vm.teamToBeEdited == '')
                 && (vm.scoreUpdate == null || vm.scoreUpdate == '')){
                 Materialize.toast('Please input a team and score!', 2000, 'red');

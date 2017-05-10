@@ -18,7 +18,7 @@
             }
         });
 
-    function teamPageController(sessionService, adminService, eventService, teamService, searchService, $state, userLogService) {
+    function teamPageController(userService, sessionService, adminService, eventService, teamService, searchService, $state, userLogService) {
         var vm = this;
         vm.eventSponsored = 'all';
         vm.searchInput = '';
@@ -155,7 +155,7 @@
             }
 
             for(game of vm.allGameInfo){
-                if(game.datediff < 0){
+                if(game.status == 'FINISHED'){
                     vm.pastGames.push(game);
                     vm.pastGameCount ++;
                 }
@@ -271,8 +271,6 @@
 
                     vm.isMember = true;
 
-
-                    setTimeout(function(){ window.location.reload(), 1000});
                     vm.players.push(vm.currentUser);
                     var string = "Successfully joined team.";
                     var log = {

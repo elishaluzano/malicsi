@@ -42,6 +42,7 @@
                     for(let sport of vm.allSports) {
                         eventService.getGamesOfSport(vm.event.event_id, sport.sport_id)
                             .then(function(games) {
+                                console.log(games);
                                 vm.allGamesInSport = games;
                                 for(let gamesOfSport of vm.allGamesInSport) {
                                     if(gamesOfSport.sport_id === sport.sport_id && gamesOfSport.status != "PENDING") {

@@ -2,7 +2,6 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-/*    background-color:#35465c;*/
     -webkit-animation: fadeEffect 1s;
     animation: fadeEffect 1s; /* Fading effect takes 1 second */
     font-family:Coolvetica;
@@ -28,6 +27,8 @@ main {
 .dropdown-links:hover {
     color: #ff0000;
 }
+
+
 
 #login-form {
     padding: 10px 10px;
@@ -526,6 +527,7 @@ style = "width:10%;vertical-align:middle;"*/
     border :2px solid orange;
     background-color:transparent !important;
    }
+
     .up-and-down-animation{
       -webkit-animation-name: example;
       animation-name: example;
@@ -537,8 +539,6 @@ style = "width:10%;vertical-align:middle;"*/
     0%   {left:0px; top:500px;}
     20%  {left:0px; top:475px;}
    }
-
-
 
 
 @font-face{
@@ -574,7 +574,8 @@ style = "width:10%;vertical-align:middle;"*/
 }
 
 .input-field input[type=text]:focus,
-.input-field input[type=file]:focus {
+.input-field input[type=file]:focus,
+.input-field input[type=date]:focus{
   border-bottom: 1px solid orange;
   */box-shadow: 0 2px 0 0 orange;
 }

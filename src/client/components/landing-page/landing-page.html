@@ -48,7 +48,8 @@
 <div class="row" id="anchor_link">
     <div class="col l3">
         <h5>Live Game Standings</h5>
-        <ul class="collapsible" data-collapsible="expandable">
+        <div style="padding: 10px" class="collection" ng-if="$ctrl.objects.length == 0">No standings available</div>
+        <ul ng-if="$ctrl.objects.length != 0" class="collapsible" data-collapsible="expandable">
             <!-- TEAM STANDING CARD -->
             <li ng-repeat="x in $ctrl.objects track by $index">
                 <div class="collapsible-header" ng-class="{active: $index === 0}">
