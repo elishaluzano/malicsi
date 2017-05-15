@@ -1,0 +1,44 @@
+<div class="parallax-container"><!-- 
+	<div class = "Cool-font"
+		 style="position:absolute;top:50%;">
+				Hello, its me
+	</div> -->
+	<div class="parallax valign"><img alt="/images/temp-bg-2.jpg" ng-src="{{$ctrl.event.picture}}"/></div>
+</div>
+
+<div class="container">
+  	
+	<h5 class="center">{{$ctrl.event.event_title}}</h5>
+	<div class="center"><div class="center card-title chip white-text black" id="event-top-chip">Done</div></div>
+	<ul class="collapsible" data-collapsible="accordion">
+	    <li ng-repeat="sport in $ctrl.allSports">
+			<div class="collapsible-header"><i class="material-icons"><i class="material-icons">toll</i></i>{{ sport.sport }}</div>
+			<div class="collapsible-body">
+				<table class="highlight bordered striped">
+				  <thead>
+				    <tr>
+				      <th>Game</th>
+				      <th>Competing Teams</th>
+				      <th>Score</th>
+				      <th>Winner</th>
+				    </tr>
+				  </thead>
+				  <tbody ng-repeat="game in sport.games">
+				    <tr>
+				      <td><a ui-sref="liveGamePage({ gameId: game.game_id })">{{ game.game_id }}</a></td>
+				      <td><a ui-sref="teamPage({ teamId: game.teams[0].team_id })">{{ game.teams[0].name }}</a> vs <a ui-sref="teamPage({ teamId: game.teams[1].team_id })">{{ game.teams[1].name }}</a></td>
+				      <td>{{ game.teams[0].score }}-{{ game.teams[1].score }}</td>
+				      <td>{{ game.teams[0].record === "WIN" ? game.teams[0].name : game.teams[1].name }}</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+	   	</li>
+	   	<li>
+	   		<div class="collapsible-header"><i class="material-icons"><i class="material-icons">event</i></i>Sponsoring Institution</div>
+			<div class="collapsible-body" style="font-weight: bold">
+				{{ $ctrl.institution }}
+			</div>
+	   	</li>
+	</ul>
+</div>

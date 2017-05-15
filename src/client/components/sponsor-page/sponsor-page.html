@@ -1,0 +1,45 @@
+<div class="container z-depth-1">
+    <div id="sponsor-big" 
+    style="background-image: url('/images/alt_institution.png'); height: 20vh"
+    ng-style="{{$ctrl.institution.picture.length}}
+    && {'background-image': 'url({{$ctrl.institution.picture}})'}">
+        <!--Change the background-image url to the logo of the sponsor-->
+    </div>
+    <div class="center row">
+            <h4>{{ $ctrl.institution.name }}</h4>
+            <p>SPONSOR</p>
+        </div>
+
+    <!--Holds the sponsor's information-->
+    <div class="center row" id="sponsor-info">
+        <p>{{ $ctrl.institution.description }}</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div id="sponsor-info">
+        <h5 class="center">SPONSORED EVENTS</h5>
+        <div class="container">
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Event Title</th>
+                        <th>Venue</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="event in $ctrl.events">
+                        <td><a ui-sref="eventPage({ eventId: event.event_id })">{{ event.event_title }}</a></td>
+                        <td>{{ event.venue }}</td>
+                        <td>{{ event.start_date | date: fullDate }}</td>
+                        <td>{{ event.end_date | date: fullDate }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <button ng-if="$ctrl.admin" ng-click="$ctrl.deleteAdminPrivileges()">Remove admin powers</button>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,13 @@
-require('angular');
-require('angular-ui-router');
-require('jquery');
+require('./client/index.html');
 require('materialize-css/dist/css/materialize.css');
+require('webui-popover/dist/jquery.webui-popover.css');
+require('material-design-icons/iconfont/material-icons.css');
+require('./client/style.css');
+window.jQuery = window.$ = require('jquery');
+require('angular');
 require('materialize-css/dist/js/materialize.js');
+require('angular-ui-router');
+require('angular-materialize/src');
+require('webui-popover/dist/jquery.webui-popover.js');
+// require('./client/lib/jquery.countdown.css');
+// require('./client/lib/jquery.countdown.js');

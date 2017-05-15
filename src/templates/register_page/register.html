@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="../index_page/index.css" />
+        <link href="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.css" rel="stylesheet" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div id="login-form" class="webui-popover-content">
+            <form id="login-form" action="../index_page/index_logged_in.html" method="post">
+                <div class="input-field">
+                    <input id="uname" type="text" class="validate">
+                    <label for="uname">Username</label>
+                </div>
+                <div class="input-field">
+                    <input id="pword" type="password" class="validate">
+                    <label for="pword">Password</label>
+                </div>
+                <button id="login-button" class="right red btn waves-effect waves-light" type="submit" name="action">Login</button>
+            </form>
+            <a id="forgot-password-link" class="right">Forgot your password?</a>
+        </div>
+        <div>
+        <nav id="top" class="white">
+            <div class="nav-wrapper">
+                <a class="left" id="malicsi-logo-link" href="../index_page/index.html"><img src="../images/malicsi-logo.png"></a>
+                <i id="drop-links" style="cursor: pointer;" class="black-text large material-icons left hide-on-large-only">menu</i>
+                <ul class="left hide-on-med-and-down">
+                    <li class = "active"><a class="black-text" href="../index_page/index.html">Live</a></li>
+                    <li><a class="black-text" href="../view_events/view_events.html">Events</a></li>
+                    <li><a class="black-text" href="../view_team_page/view_teams.html">Teams</a></li>
+                    <li><a class="black-text" href="../view_schedule_page/view_schedules.html">Schedules</a></li>
+                    <li><a class="black-text" href="../view_sponsors/view_sponsors.html">Sponsors</a></li>
+
+                </ul>
+                <form class = "left hide-on-small-only">
+                <div class="left" id="search-bar-div">
+                    <select id="select-dropdown" class="left black-text browser-default">
+                        <option value="" selected disabled>Search All</option>
+                        <option value="2">Player</option>
+                        <option value="3">Team</option>
+                        <option value="4">Event</option>
+                        <option value="5">Sponsoring Institution</option>
+                    </select>
+                </div>
+                 <div class="left" >
+                        <input class="left black-text" placeholder="Search" id="input">
+                        <i class="black-text material-icons" id="search-icon">search</i>
+                    </div>
+                </form>
+                <ul class="right">
+                    <li><a class="black-text" href="../register_page/register.html">Register</a></li>
+                    <li><a id="login" class="black-text" href="#login-form">Login<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>           
+            </div>
+        </nav>
+        </div>
+
+        <div id="additional-links" class="webui-popover-content">
+            <div><a id="dropdown-links" href = "#">Live</a></div>
+            <div><a id="dropdown-links" href = "../view_events/view_events.html">Events</a></div>
+            <div><a id="dropdown-links" href = "../view_teams/view_teams.html">Teams</a></div>
+            <div><a id="dropdown-links" href = "../view_schedule/view_schedules.htlm">Schedules</a></div>
+            <div><a id="dropdown-links" href = "../view_sponsors/view_sponsors.html">Sponsors</a></div>
+        </div>
+
+        
+        <div class = "row">
+        <div style = "container">
+            <form class = "col s12 l8 m12 offset-l2">
+                <fieldset>
+                    <legend style = "padding:5px">Personal Information</legend>
+                    <div class = "row">
+                        <div class = "input-field">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id = "name" type = "text" class = "validate" required placeholder = "eg. Juan A. Dela Cruz">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class = "input-field col s8">
+                            <i class = "material-icons prefix">event</i>
+                            <input id = "birthday" type = "date" class = "validate" required>
+                            <!-- <label for="birthday">Birthday</label> -->  
+                        </div>
+                        <div class = "input-field col s4">
+                            <select>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                            <label>Sex</label>
+                        </div>
+                        <div class = "input-field col s12">
+                            <i class="material-icons prefix">phone</i>
+                            <input id = "contact_number" type = "text" class = "validate" required maxlength = "11" placeholder = "e.g. 09xxxxxxxxx">
+                            <label for="contact_number">Contact number</label>
+                        </div>
+                    </div>
+                </fieldset>
+            
+                    <fieldset>
+                        <legend style = "padding:5px">Account Information</legend>
+                        <div class = "row">
+                            <div class = "input-field">
+                                <i class = "material-icons prefix">perm_contact_calendar</i>
+                                <input id = "username" type = "text" class = "validate" required placeholder = "Username">
+                                <label for="username">Username</label>
+                            </div>
+                            <div class = "input-field col s6">
+                                <i class = "material-icons prefix">lock</i>
+                                <input id = "password" type = "password" class = "validate" required placeholder = "Password">
+                                <label for="password">Password</label>
+                            </div>
+                            <div class = "input-field col s6">
+                                <!-- <i class = "material-icons prefix">lock</i> -->
+                                <input id = "password" type = "password" class = "validate" required placeholder = "Re-type password">
+                                <label for="password">Password confirmation</label>
+                            </div>
+                            <div class = "input-field col s12">
+                                <i class="material-icons prefix">email</i>
+                                <input id = "contact_number" type = "email" class = "validate" required maxlength = "11" placeholder = "e.g. jbguiao@up.edu.ph">
+                                <label for="contact_number">Email address</label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend style = "padding:5px">Additional Details</legend>
+                            <div class = "row">
+
+
+                                <div class = "input-field">
+                                    <i class = "material-icons prefix">perm_contact_calendar</i>
+                                    <input id = "username" type = "text" class = "validate" required placeholder = "eg. Pedro B. Dela Silva">
+                                    <label for="username">Person to contact in case of emergency</label>
+                                </div>
+                                <div class = "input-field col s6">
+                                    <i class="material-icons prefix">phone</i>
+                                    <input id = "emergency_number" type = "text" class = "validate" required maxlength = "11" placeholder = "e.g. 09xxxxxxxxx">
+                                    <label for="emergency_number">Contact number</label>
+                                </div>
+                                
+                                <div class = "input-field col s6">
+                                    <!-- <i class = "material-icons prefix">lock</i> -->
+                                    <input id = "relationship" type = "text" class = "validate" required placeholder = "eg. Mother">
+                                    <label for="relationship">Relationship to contact person</label>
+                                </div>
+                                <div class = "input-field col s12">
+                                    <i class="material-icons prefix">accessibility</i>
+                                    <input id = "affiliation_1" type = "email" class = "validate" placeholder = "e.g. UPLB Alliance of Young Computer Science Engineers Society">
+                                    <label for="affiliation_1">Affiliation</label>
+                                </div>
+                                <br><br><br><br><br><br>
+                                <div class = "file-field input-field">
+                                    <div class = "btn">
+                                        <span>upload a picture</span>
+                                        <input type ="file">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                    </fieldset>
+            </form>
+        </div>
+        </div>
+              
+
+
+        <footer class="red page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Footer Content</h5>
+                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    BETELOG 2017 Copyright 
+                    <a class="grey-text text-lighten-4 right" href="#top">Back to top</a>
+                </div>
+            </div>
+        </footer>
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.js"></script>
+        <script src="../../../node_modules/webui-popover/dist/jquery.webui-popover.min.js"></script>
+        <script src="../index_page/index.js"></script>   
+        <script>
+            $(document).ready(function() {
+                $('select').material_select();
+            });
+        </script>
+    </body>
+</html>

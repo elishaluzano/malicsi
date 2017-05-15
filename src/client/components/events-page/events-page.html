@@ -1,0 +1,96 @@
+<div class="row">
+    <event-card ng-repeat="eachEvent in $ctrl.events" event="eachEvent">
+    </event-card>
+
+    <!-- ============================== FAB ===============================-->
+	<!-- ==================== ONLY AVAILABLE TO ADMIN =====================-->
+  	<div class = "fixed-action-btn" ng-if="$ctrl.isAdmin">
+    	<a class="btn-floating btn-large waves-effect waves-light purple darken-4 tooltipped" data-position="left" data-tooltip="Add event" modal data-target="modal-add-event" ng-click="$ctrl.modalOpen"><i class="material-icons">note_add</i></a>
+  	</div>
+
+<!-- ============================= MODAL FOR ADD EVENT ==================================-->
+  	<div id="modal-add-event" class="modal">
+    	<div class="modal-content">
+      		<h5>ADD EVENT</h5>
+      		<div class="divider"></div>
+
+      		<div class="container row">
+        		<form>
+        			<div class="input-field">
+          				<i class="material-icons prefix">turned_in</i>
+          				<input id="icon_prefix" type="text" name="searchinput" ng-model="$ctrl.event_title">
+          				<label for="icon_prefix">Event name</label>
+        			</div>
+        
+        			<div class ="input-field">
+          				<i class ="material-icons prefix">today</i>
+          				<input id = "icon_prefix" type = "date" name = "searchinput" ng-model="$ctrl.start_date">
+          				<label for = "icon_prefix" class="active">Event start date</label>
+        			</div>
+        
+        			<div class ="input-field">
+          				<i class ="material-icons prefix">event</i>
+          				<input id = "icon_prefix" type = "date" name = "searchinput" ng-model="$ctrl.end_date">
+          				 <label for = "icon_prefix" class="active">Event end date</label> 
+        			</div>
+              
+              <div class="input-field col s12">
+                <select id="select-dropdown" class="left black-text browser-default" ng-model="$ctrl.venue">
+                  <option value="" selected disabled>Venue</option>
+                  <option ng-repeat="each in $ctrl.venues" value="{{ each.venue_id }}">
+                    {{ each.name }}
+                  </option>
+                </select>
+              </div>                
+
+              <div class="input-field col s12">
+                <select id="select-dropdown" class="left black-text browser-default" ng-model="$ctrl.ins">
+                  <option value="" selected disabled>Sponsoring Institution</option>
+                  <option ng-repeat="ins in $ctrl.institutions" ng-value="ins.institution_id">
+                    {{ ins.name }}
+                  </option>
+                </select>
+              </div>
+              <br><br><br><br><br><br>
+                <div class="file-field input-field">
+                    <div class="btn grey darken-3 z-depth-0">
+                        <span>
+                            <i class="material-icons">add_a_photo</i>
+                        </span>
+                        <input type="file" file-input="$ctrl.files">
+                    </div>
+                
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="center">
+                  <a type ="submit" 
+                    value = "Submit" 
+                    class = "waves-effect waves-light green btn z-depth-0 modal-action"
+                    ng-click="$ctrl.addEvent()"
+                    onclick="show_loader()"
+                  >Submit</a>
+                  <a class = "waves-effect waves-light grey btn z-depth-0 modal-action modal-close" value="submit" type="submit">Cancel</a>
+                  <div class=" progress" id = "my_loader" style = "display:none;">
+                    <div class="indeterminate"></div>
+                  </div>
+                </div>
+      			</form>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<script>
+  function show_loader(){
+    var x = document.getElementById("my_loader");
+
+    if(x.style.display === 'none'){
+      x.style.display = 'block';
+    }else{
+      x.style.display = 'none';
+    }
+  }
+  setTimeout(function(){}, 2000);
+</script>
